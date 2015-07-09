@@ -53,11 +53,11 @@ Package.onUse(function (api) {
   ], 'client');
 
   api.addFiles([
+    'routes/commits/blaze.js',
     'routes/angularTut.js',
     'routes/blazeTut.js',
     'routes/reactTut.js',
-    'routes/tutorial-pages.js',
-    'routes/commits/blaze.js'
+    'routes/tutorial-pages.js'
   ]);
 
   // Also, exports all of the templates from the steps/ directory

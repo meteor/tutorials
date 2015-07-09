@@ -6,7 +6,7 @@ BLAZE_TUT = [
     route: "tutorials.blaze.creating-an-app",
     path: "/tutorials/blaze/creating-an-app",
     contentTemplate: 'blaze-step01',
-    sha: BLAZE_COMMITS["1"]
+    sha: BLAZE_COMMITS["1"].sha
   },
   {
     id: "1",
@@ -15,7 +15,7 @@ BLAZE_TUT = [
     route: "tutorials.blaze.templates",
     path: "/tutorials/blaze/templates",
     contentTemplate: 'blaze-step02',
-    sha: BLAZE_COMMITS["2"]
+    sha: BLAZE_COMMITS["2"].sha
   },
   {
     id: "2",
@@ -24,7 +24,7 @@ BLAZE_TUT = [
     route: "tutorials.blaze.collections",
     path: "/tutorials/blaze/collections",
     contentTemplate: 'blaze-step03',
-    sha: BLAZE_COMMITS["3"]
+    sha: BLAZE_COMMITS["3"].sha
   },
   {
     id: "3",
@@ -33,7 +33,7 @@ BLAZE_TUT = [
     route: "tutorials.blaze.forms-and-events",
     path: "/tutorials/blaze/forms-and-events",
     contentTemplate: 'blaze-step04',
-    sha: BLAZE_COMMITS["4"]
+    sha: BLAZE_COMMITS["4"].sha
   },
   {
     id: "4",
@@ -42,7 +42,7 @@ BLAZE_TUT = [
     route: "tutorials.blaze.update-and-remove",
     path: "/tutorials/blaze/update-and-remove",
     contentTemplate: 'blaze-step05',
-    sha: BLAZE_COMMITS["5"]
+    sha: BLAZE_COMMITS["5"].sha
   },
   {
     id: "5",
@@ -67,7 +67,7 @@ BLAZE_TUT = [
     route: "tutorials.blaze.temporary-ui-state",
     path: "/tutorials/blaze/temporary-ui-state",
     contentTemplate: 'blaze-step08',
-    sha: BLAZE_COMMITS["8"]
+    sha: BLAZE_COMMITS["8"].sha
   },
   {
     id: "8",
@@ -76,7 +76,7 @@ BLAZE_TUT = [
     route: "tutorials.blaze.adding-user-accounts",
     path: "/tutorials/blaze/adding-user-accounts",
     contentTemplate: 'blaze-step09',
-    sha: BLAZE_COMMITS["9"]
+    sha: BLAZE_COMMITS["9"].sha
   },
   {
     id: "9",
@@ -85,7 +85,7 @@ BLAZE_TUT = [
     route: "tutorials.blaze.security-with-methods",
     path: "/tutorials/blaze/security-with-methods",
     contentTemplate: 'blaze-step10',
-    sha: BLAZE_COMMITS["10"]
+    sha: BLAZE_COMMITS["10"].sha
   },
   {
     id: "10",
@@ -94,7 +94,7 @@ BLAZE_TUT = [
     route: "tutorials.blaze.publish-and-subscribe",
     path: "/tutorials/blaze/publish-and-subscribe",
     contentTemplate: 'blaze-step11',
-    sha: BLAZE_COMMITS["11"]
+    sha: BLAZE_COMMITS["11"].sha
   },
   {
     id: "11",
