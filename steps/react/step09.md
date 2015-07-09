@@ -14,12 +14,12 @@ meteor add accounts-ui accounts-password
 
 ### Wrapping a Blaze component in React
 
-To use the UI component from the `accounts-ui` package, we need to wrap it in a React component. To do so, add this code near the bottom of `simple-todos-react.jsx`, below the `Task` component and above the `if (Meteor.isClient) { ... }` section.
+To use the Blaze UI component from the `accounts-ui` package, we need to wrap it in a React component. To do so, add this code near the bottom of `simple-todos-react.jsx`, below the `Task` component and above the `if (Meteor.isClient) { ... }` section.
 
 ```js
 AccountsUIWrapper = React.createClass({
   componentDidMount() {
-    // Use Meteor blaze to render login buttons
+    // Use Meteor Blaze to render login buttons
     Blaze.render(Template.loginButtons,
       React.findDOMNode(this.refs.container));
   },
@@ -47,7 +47,7 @@ Accounts.ui.config({
 
 ### Adding user-related functionality
 
-Now users can create accounts and log into your app! This is very nice, but logging in and out isn't very useful yet. Let's add two functions:
+Now users can create accounts and log into your app! This is very nice, but logging in and out isn't very useful yet. Let's add two features:
 
 1. Only display the new task input field to logged in users
 2. Show which user created each task
@@ -60,6 +60,7 @@ To do this, we will add two new fields to the `tasks` collection:
 First, let's add some code to save these fields into the `handleSubmit` event handler:
 
 ```js
+// Replace the existing insert inside the handleSubmit method
 Tasks.insert({
   text: text,
   createdAt: new Date(),            // current time

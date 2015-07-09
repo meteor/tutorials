@@ -25,14 +25,14 @@ App = React.createClass({
     }
   },
 
-  render() {
+  renderTasks() {
     // Get tasks from this.data.tasks
-    const tasks = this.data.tasks.map((task) => {
+    return this.data.tasks.map((task) => {
       return <Task key={task._id} task={task} />;
     });
+  },
 
-    // The rest of the file is unchanged
-
+  // ... rest of the methods are unchanged
 ```
 
 When you make these changes to the code, you'll notice that the tasks that used to be in the todo list have disappeared. That's because our database is currently empty &mdash; we need to insert some tasks!

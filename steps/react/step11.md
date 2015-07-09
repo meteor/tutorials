@@ -35,7 +35,7 @@ Calling `Meteor.publish` on the server registers a _publication_ named `"tasks"`
 
 ### Adding a button to make tasks private
 
-Let's add another property to tasks called "private" and a button for users to mark a task as private. This button should only show up for the owner of a task. It will display the current state of the item.
+Let's add another property to tasks called "private" and a button for users to mark a task as private. This button should only show up for the owner of a task. We want the label to indicate the current status: public or private.
 
 First, we need to add a new method that we can call to set a task's private status:
 
@@ -58,19 +58,22 @@ to show the private button; the button should show up only if the currently
 logged in user owns this task:
 
 ```js
-// New code to generate the tasks array at the top of the render function for
-// the App component
-const tasks = this.data.tasks.map((task) => {
-  const showPrivateButton = task.owner === this.data.currentUser._id;
-  return <Task
-    key={task._id}
-    task={task}
-    showPrivateButton={showPrivateButton} />;
-});
+// Update the renderTasks method to pass in showPrivateButton
+renderTasks() {
+  // Get tasks from this.data.tasks
+  return this.data.tasks.map((task) => {
+    const showPrivateButton = task.owner === this.data.currentUser._id;
+
+    return <Task
+      key={task._id}
+      task={task}
+      showPrivateButton={showPrivateButton} />;
+  });
+},
 ```
 
 ```js
-// Add a new proptype for showPrivateButton
+// Add a new prop type for showPrivateButton
 propTypes: {
   task: React.PropTypes.object.isRequired,
   showPrivateButton: React.PropTypes.bool.isRequired
@@ -102,19 +105,11 @@ One last thing, let's update the class of the `<li>` element in the `Task` compo
 ```js
 // At the top of the render method of the Task component
 render() {
-  // Generate the className property in a separate variable
-  const taskClassName = (this.props.task.checked ? "checked" : "") +
+  // Add checked and/or private to the className when needed
+  const taskClassName = (this.props.task.checked ? "checked" : "") + " " +
     (this.props.task.private ? "private" : "");
 
-  // The checkbox is read-only because we are going to manually manage
-  // its state.
-  return (
-    <li className={taskClassName}>
-      <button className="delete" onClick={this.deleteThisTask}>
-        &times;
-      </button>
-
-      // ... rest of render method
+  // ... rest of method
 ```
 
 ### Selectively publishing tasks based on privacy status
@@ -154,6 +149,8 @@ if (task.private && task.owner !== Meteor.userId()) {
   throw new Meteor.Error("not-authorized");
 }
 ```
+
+> Notice that with this code anyone can delete any public task. With some small modifications to the code, you should be able to make it so that only the owner can delete their tasks.
 
 We're done with our private task feature! Now our app is secure from attackers trying to view or modify someone's private tasks.
 {{/template}}

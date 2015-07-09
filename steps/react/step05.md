@@ -23,8 +23,12 @@ Task = React.createClass({
     Tasks.remove(this.props.task._id);
   },
   render() {
+    // Give tasks a different className when they are checked off,
+    // so that we can style them nicely in CSS
+    const taskClassName = {this.props.task.checked ? "checked" : ""};
+
     return (
-      <li className={this.props.task.checked ? "checked" : ""}>
+      <li className={taskClassName}>
         <button className="delete" onClick={this.deleteThisTask}>
           &times;
         </button>
@@ -52,13 +56,4 @@ In this case, the selector is just the `_id` of the relevant task. The update pa
 
 The `remove` function takes one argument, a selector that determines which item to remove from the collection.
 
-### Using object properties or helpers to add/remove classes
-
-If you try checking off some tasks after adding all of the above code, you will see that checked off tasks have a line through them. This is enabled by the following snippet:
-
-```html
-<li className={this.props.task.checked ? "checked" : ""}>
-```
-
-With this code, if the `checked` property of a task is `true`, the `checked` class is added to our list item. Using this class, we can make checked-off tasks look different in our CSS. 
 {{/template}}

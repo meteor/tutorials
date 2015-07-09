@@ -1,7 +1,7 @@
 {{#template name="react-step01"}}
 # Creating your first app
 
-In this tutorial, we are going to create a simple app to manage a 'to do' list and collaborate with others on those tasks.
+In this tutorial, we are going to create a simple app to manage a todo list and collaborate with others on those tasks.
 
 To create the app, open your terminal and type:
 

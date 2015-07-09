@@ -46,7 +46,7 @@ Now your app has a new input field. To add a task, just type into the input fiel
 
 ### Listening for events in React
 
-...
+As you can see, in React you handle DOM events by directly referencing a method on the component. Inside the event handler, you can reference elements from the component by giving them a `ref` property and using `React.findDOMNode`. Read more about the different kinds of events React supports, and how the event system works, in the [React docs](https://facebook.github.io/react/docs/events.html).
 
 ### Inserting into a collection
 
@@ -68,5 +68,5 @@ getMeteorData() {
 },
 ```
 
-In the next step, we'll add some very important todo list functions: checking off and deleting tasks.
+In the next step, we'll add some very important todo list features: checking off and deleting tasks.
 {{/template}}

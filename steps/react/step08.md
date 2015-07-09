@@ -2,7 +2,7 @@
 
 # Storing temporary UI data in component state
 
-In this step, we'll add a client-side data filtering feature to our app, so that users can check a box to only see incomplete tasks. We're going to learn how to use React's component state to store temporary data that is only used on the client.
+In this step, we'll add a client-side data filtering feature to our app, so that users can check a box to only see incomplete tasks. We're going to learn how to use React's component state to store temporary information that is only used on the client.
 
 First, we need to add a checkbox to our `App` component:
 
@@ -51,7 +51,7 @@ Now if you check the box, the task list will only show tasks that haven't been c
 
 ### One more feature: Showing a count of incomplete tasks
 
-Now that we have written a query that filters out completed tasks, we can use the same query to display a count of the tasks that haven't been checked off. To do this we need to return a count from `getMeteorData` and add a line to our `render` method.
+Now that we have written a query that filters out completed tasks, we can use the same query to display a count of the tasks that haven't been checked off. To do this we need to return a count from `getMeteorData` and add a line to our `render` method. Since we already have the data in the client-side Minimongo collection, adding this extra count doesn't involve asking the server for anything.
 
 ```js
 // Replace return statement in getMeteorData to also return incompleteCount
