@@ -56,7 +56,8 @@ Package.onUse(function (api) {
     'routes/angularTut.js',
     'routes/blazeTut.js',
     'routes/reactTut.js',
-    'routes/tutorial-pages.js'
+    'routes/tutorial-pages.js',
+    'routes/commits/blaze.js'
   ]);
 
   // Also, exports all of the templates from the steps/ directory

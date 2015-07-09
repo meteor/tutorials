@@ -6,7 +6,7 @@ BLAZE_TUT = [
     route: "tutorials.blaze.creating-an-app",
     path: "/tutorials/blaze/creating-an-app",
     contentTemplate: 'blaze-step01',
-    sha: "377a8610c2fa77056d015e6998d5eb894436c99e"
+    sha: BLAZE_COMMITS["1"]
   },
   {
     id: "1",
@@ -15,7 +15,7 @@ BLAZE_TUT = [
     route: "tutorials.blaze.templates",
     path: "/tutorials/blaze/templates",
     contentTemplate: 'blaze-step02',
-    sha: "9f5c65302f1527f25cacaaf275ea5c747d55e405"
+    sha: BLAZE_COMMITS["2"]
   },
   {
     id: "2",
@@ -24,7 +24,7 @@ BLAZE_TUT = [
     route: "tutorials.blaze.collections",
     path: "/tutorials/blaze/collections",
     contentTemplate: 'blaze-step03',
-    sha: "ab14d317db174a3b2d408f4e24a50c7af13342cd"
+    sha: BLAZE_COMMITS["3"]
   },
   {
     id: "3",
@@ -33,7 +33,7 @@ BLAZE_TUT = [
     route: "tutorials.blaze.forms-and-events",
     path: "/tutorials/blaze/forms-and-events",
     contentTemplate: 'blaze-step04',
-    sha: "9c24b998e540848f0dbc241702a4fcfa48fb9087"
+    sha: BLAZE_COMMITS["4"]
   },
   {
     id: "4",
@@ -42,7 +42,7 @@ BLAZE_TUT = [
     route: "tutorials.blaze.update-and-remove",
     path: "/tutorials/blaze/update-and-remove",
     contentTemplate: 'blaze-step05',
-    sha: "4e6f9494c895eff43fe26167a7b803a24c35854e"
+    sha: BLAZE_COMMITS["5"]
   },
   {
     id: "5",
@@ -67,7 +67,7 @@ BLAZE_TUT = [
     route: "tutorials.blaze.temporary-ui-state",
     path: "/tutorials/blaze/temporary-ui-state",
     contentTemplate: 'blaze-step08',
-    sha: "ad35c7e02a9f7c40f45f40dbff8d297fba4b13ac"
+    sha: BLAZE_COMMITS["8"]
   },
   {
     id: "8",
@@ -76,7 +76,7 @@ BLAZE_TUT = [
     route: "tutorials.blaze.adding-user-accounts",
     path: "/tutorials/blaze/adding-user-accounts",
     contentTemplate: 'blaze-step09',
-    sha: "bb4a0fc190c44aa8cfd4189a03c2e18f1294074c"
+    sha: BLAZE_COMMITS["9"]
   },
   {
     id: "9",
@@ -85,7 +85,7 @@ BLAZE_TUT = [
     route: "tutorials.blaze.security-with-methods",
     path: "/tutorials/blaze/security-with-methods",
     contentTemplate: 'blaze-step10',
-    sha: "e3b7fa8ed373c9e6b96fb3c370d0af238170b89a"
+    sha: BLAZE_COMMITS["10"]
   },
   {
     id: "10",
@@ -94,7 +94,7 @@ BLAZE_TUT = [
     route: "tutorials.blaze.publish-and-subscribe",
     path: "/tutorials/blaze/publish-and-subscribe",
     contentTemplate: 'blaze-step11',
-    sha: "44dfd82a9e90cf8600c18b7e9f3c2e742c34285d"
+    sha: BLAZE_COMMITS["11"]
   },
   {
     id: "11",
