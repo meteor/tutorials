@@ -35,6 +35,18 @@ Package.onUse(function (api) {
     'steps/blaze/step10.md',
     'steps/blaze/step11.md',
     'steps/blaze/step12.md',
+    'steps/react/step01.md',
+    'steps/react/step02.md',
+    'steps/react/step03.md',
+    'steps/react/step04.md',
+    'steps/react/step05.md',
+    'steps/react/step06.md',
+    'steps/react/step07.md',
+    'steps/react/step08.md',
+    'steps/react/step09.md',
+    'steps/react/step10.md',
+    'steps/react/step11.md',
+    'steps/react/step12.md',
     'steps/step00.html'
   ], 'client');
 
