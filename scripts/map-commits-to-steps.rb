@@ -8,7 +8,8 @@ require 'json'
 # Generate a dictionary where the keys are step numbers,
 # and the values are the title of the commit and the sha of the commit
 # 
-# Next step: somehow put that code into the package...
+# Output a file with VAR_NAME = <JSON blob> that can be included in this
+# package
 
 # Usage: ./map-commits-to-steps.rb <repo path> <output path> <var name>
 
