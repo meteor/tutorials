@@ -50,7 +50,7 @@ BLAZE_TUT = [
     seoTitle: 'Deploying your app',
     route: "tutorials.blaze.deploying-your-app",
     path: "/tutorials/blaze/deploying-your-app",
-    contentTemplate: 'blaze-step06'
+    contentTemplate: 'shared-step06'
   },
   {
     id: "6",

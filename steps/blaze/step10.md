@@ -62,18 +62,6 @@ Now all of our inputs and buttons will start working again. What did we gain fro
 2. We can add extra validation logic to `setChecked` and `deleteTask` in later steps when users can make tasks private.
 3. Our client code is now more separated from our database logic. Instead of a lot of stuff happening inside our event handlers, we now have methods that can be called from anywhere.
 
-### Latency compensation
+{{> step10OptimisticUI}}
 
-So why do we want to define our methods on the client and on the server? We do this to enable a feature called _latency compensation_.
-
-When you call a method on the client using `Meteor.call`, two things happen in parallel:
-
-1. The client sends a request to the server to run the method in a secure environment, just like an AJAX request would work
-2. A simulation of the method runs directly on the client to attempt to predict the outcome of the server call using the available information
-
-What this means is that a newly created task actually appears on the screen _before_ the result comes back from the server.
-
-If the result from the server comes back and is consistent with the simulation on the client, everything remains as is. If the result on the server is different from the result of the simulation on the client, the UI is patched to reflect the actual state of the server.
-
-With Meteor methods and latency compensation, you get the best of both worlds &mdash; the security of server code and no round-trip delay.
 {{/template}}

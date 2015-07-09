@@ -50,7 +50,7 @@ REACT_TUT = [
     seoTitle: 'Deploying your app',
     route: "tutorials.react.deploying-your-app",
     path: "/tutorials/react/deploying-your-app",
-    contentTemplate: 'react-step06'
+    contentTemplate: 'shared-step06'
   },
   {
     id: "6",

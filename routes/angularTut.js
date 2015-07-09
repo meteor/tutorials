@@ -50,7 +50,7 @@ ANGULAR_TUT = [
     seoTitle: 'Deploying your app',
     route: "tutorials.angular.deploying-your-app",
     path: "/tutorials/angular/deploying-your-app",
-    contentTemplate: 'angular-step06'
+    contentTemplate: 'shared-step06'
   },
   {
     id: "6",

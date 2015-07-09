@@ -17,7 +17,6 @@ Package.onUse(function (api) {
     'steps/angular/step03.md',
     'steps/angular/step04.md',
     'steps/angular/step05.md',
-    'steps/angular/step06.md',
     'steps/angular/step07.md',
     'steps/angular/step08.md',
     'steps/angular/step09.md',
@@ -29,7 +28,6 @@ Package.onUse(function (api) {
     'steps/blaze/step03.md',
     'steps/blaze/step04.md',
     'steps/blaze/step05.md',
-    'steps/blaze/step06.md',
     'steps/blaze/step07.md',
     'steps/blaze/step08.md',
     'steps/blaze/step09.md',
@@ -41,7 +39,6 @@ Package.onUse(function (api) {
     'steps/react/step03.md',
     'steps/react/step04.md',
     'steps/react/step05.md',
-    'steps/react/step06.md',
     'steps/react/step07.md',
     'steps/react/step08.md',
     'steps/react/step09.md',
@@ -51,7 +48,8 @@ Package.onUse(function (api) {
     'steps/step00.html',
 
     'shared/explanations.md',
-    'shared/code.md'
+    'shared/code.md',
+    'shared/step06.md'
   ], 'client');
 
   api.addFiles([

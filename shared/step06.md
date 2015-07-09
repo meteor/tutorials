@@ -1,4 +1,4 @@
-{{#template name="angular-step06"}}
+{{#template name="shared-step06"}}
 
 # Deploying your app
 
