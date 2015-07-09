@@ -38,7 +38,7 @@ Package.onUse(function (api) {
     'routes/angularTut.js',
     'routes/blazeTut.js',
     'routes/tutorial-pages.js'
-  ], 'client');
+  ]);
 
   // Also, exports all of the templates from the steps/ directory
   api.export('TUTORIAL_PAGES');
