@@ -1,5 +1,4 @@
-<template name="angular-step04">
-{{#markdown}}
+{{#template name="angular-step04"}}
 
 # Adding tasks with a form
 
@@ -64,5 +63,4 @@ $scope.tasks = $meteor.collection(function() {
 To better understand the difference between using the sort filter and the collection options, check out the advanced tutorial about [search, sort and pagination](http://angular-meteor.com/tutorial/step_12).
 
 In the next step, we'll add some very important todo list functions: checking off and deleting tasks.
-{{/markdown}}
-</template>
+{{/template}}

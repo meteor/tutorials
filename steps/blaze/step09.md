@@ -1,5 +1,4 @@
-<template name="blaze-step09">
-{{#markdown}}
+{{#template name="blaze-step09"}}
 
 # Adding user accounts
 
@@ -76,5 +75,4 @@ In your HTML, you can use the built-in `{{dstache}}currentUser}}` helper to chec
 In your JavaScript code, you can use `Meteor.userId()` to get the current user's `_id`, or `Meteor.user()` to get the whole user document.
 
 In the next step, we will learn how to make our app more secure by doing all of our data validation on the server instead of the client.
-{{/markdown}}
-</template>
+{{/template}}

@@ -1,5 +1,4 @@
-<template name="blaze-step03">
-{{#markdown}}
+{{#template name="angular-step03"}}
 
 # Storing tasks in a collection
 
@@ -10,18 +9,25 @@ Creating a new collection is as easy as calling `MyCollection = new Mongo.Collec
 Let's update our JavaScript code to get our tasks from a collection instead of a static array:
 
 ```js
-// simple-todos.js
+// simple-todos-angular.js
 Tasks = new Mongo.Collection("tasks");
 
 if (Meteor.isClient) {
-  // This code only runs on the client
-  Template.body.helpers({
-    tasks: function () {
-      return Tasks.find({});
-    }
-  });
+
+	// This code only runs on the client
+	angular.module("simple-todos",['angular-meteor']);
+
+	angular.module("simple-todos").controller("TodosListCtrl", ['$scope', '$meteor',
+	  function($scope, $meteor){
+
+	    $scope.tasks = $meteor.collection(Tasks);
+
+	}]);
 }
 ```
+
+We are using the `$meteor` service to bind our `Tasks` collection to our `$scope.tasks` variable.
+Now every change that will happen to each of those objects will be synced in real time across our stack.
 
 When you make these changes to the code, you'll notice that the tasks that used to be in the todo list have disappeared. That's because our database is currently empty &mdash; we need to insert some tasks!
 
@@ -39,9 +45,9 @@ This opens a console into your app's local development database. Into the prompt
 db.tasks.insert({ text: "Hello world!", createdAt: new Date() });
 ```
 
-In your web browser, you will see the UI of your app immediately update to show the new task. You can see that we didn't have to write any code to connect the server-side database to our front-end code &mdash; it just happened automatically.
+In your web browser, you will see the UI of your app immediately update to show the new task.
+You can see that we didn't have to write any explicit code to update our front-end code with the server-side database&mdash; it just happened automatically.
 
 Insert a few more tasks from the database console with different text. In the next step, we'll see how to add functionality to our app's UI so that we can add tasks without using the database console.
 
-{{/markdown}}
-</template>
+{{/template}}

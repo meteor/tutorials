@@ -1,5 +1,4 @@
-<template name="blaze-step04">
-{{#markdown}}
+{{#template name="blaze-step04"}}
 
 # Adding tasks with a form
 
@@ -76,5 +75,4 @@ Template.body.helpers({
 ```
 
 In the next step, we'll add some very important todo list functions: checking off and deleting tasks.
-{{/markdown}}
-</template>
+{{/template}}

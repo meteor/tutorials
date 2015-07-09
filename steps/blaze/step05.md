@@ -1,5 +1,4 @@
-<template name="blaze-step05">
-{{#markdown}}
+{{#template name="blaze-step05"}}
 
 # Checking off and deleting tasks
 
@@ -58,5 +57,4 @@ If you try checking off some tasks after adding all of the above code, you will 
 ```
 
 With this code, if the `checked` property of a task is `true`, the `checked` class is added to our list item. Using this class, we can make checked-off tasks look different in our CSS. 
-{{/markdown}}
-</template>
+{{/template}}

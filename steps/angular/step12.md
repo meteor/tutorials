@@ -1,5 +1,4 @@
-<template name="angular-step12">
-{{#markdown}}
+{{#template name="angular-step12"}}
 
 # What's next?
 
@@ -16,8 +15,6 @@ Here are some options for where you can go next:
 3. Continue to the [advanced tutorial](http://angular-meteor.com/tutorial)
 4. Explore this set of [tools]({{pathFor 'tools.info'}}) and [resources]({{pathFor 'tools.resources'}}) to help you build Meteor apps
 
-{{/markdown}}
-
 <div class="row">
   <hr />
   <div class="col-md-6">
@@ -27,5 +24,4 @@ Here are some options for where you can go next:
     {{> emailForm}}
   </div>
 </div>
-
-</template>
+{{/template}}

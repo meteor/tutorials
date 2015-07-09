@@ -1,5 +1,4 @@
-<template name="angular-step06">
-{{#markdown}}
+{{#template name="blaze-step06"}}
 
 # Deploying your app
 
@@ -16,5 +15,4 @@ Once you answer all of the prompts and the upload completes, you can go to `http
 Try opening the app on multiple devices such as your phone and your friend's computer. Add, remove, and check off some tasks and you will see that the UI of your app is really fast. That's because Meteor doesn't wait for the server to respond before updating the interface - we'll talk about this more in step 11.
 
 Congratulations, you've made a working app that you can now use with your friends! In later steps we will add more functionality involving multiple users, private tasks, and search. First, we'll take a detour to see that while we were building a web app, we also created a pretty nice mobile app along the way.
-{{/markdown}}
-</template>
+{{/template}}

@@ -1,38 +1,10 @@
-<template name="angular-step07">
-{{#markdown}}
+{{#template name="blaze-step07"}}
 
 # Running your app on Android or iOS
 
 So far, we've been building our app and testing only in a web browser, but Meteor has been designed to work across different platforms - your simple todo list website can become an iOS or Android app in just a few commands.
 
-### Bootstraping Angular for mobile
-
-Angular needs the main document to be ready so it can bootstrap, but different devices has different events for `ready`.
-
-To solve this, we need to change the way we bootstrap our Angular app.  Remove the current bootstrap by removing:
-
-    ng-app='simple-todos'
-
-from the BODY tag.
-
-Then add the following code right after `Meteor.isClient`:
-
-```js
-angular.module("simple-todos",['angular-meteor']);
-
-function onReady() {
-  angular.bootstrap(document, ['simple-todos']);
-}
-
-if (Meteor.isCordova)
-  angular.element(document).on("deviceready", onReady);
-else
-  angular.element(document).ready(onReady);
-```
-
-### Installing Tools for Mobile development
-
-Meteor makes it easy to set up all of the tools required to build mobile apps, but downloading all of the programs can take a while - for Android the download is about 300MB and for iOS you need to install Xcode which is about 2GB. If you don't want to wait to download these tools, feel free to [skip to the next step](/tutorials/angular/filtering-collections).
+Meteor makes it easy to set up all of the tools required to build mobile apps, but downloading all of the programs can take a while - for Android the download is about 300MB and for iOS you need to install Xcode which is about 2GB. If you don't want to wait to download these tools, feel free to [skip to the next step](/tutorials/blaze/temporary-ui-state).
 
 ### Running on an Android emulator
 
@@ -109,5 +81,4 @@ meteor run ios-device --mobile-server my_app_name.meteor.com
 
 Now that we have seen how easy it is to deploy our app and run it on mobile, let's get to adding some more features.
 
-{{/markdown}}
-</template>
+{{/template}}

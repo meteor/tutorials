@@ -1,5 +1,4 @@
-<template name="blaze-step08">
-{{#markdown}}
+{{#template name="blaze-step08"}}
 
 # Storing temporary UI state in Session
 
@@ -70,5 +69,4 @@ incompleteCount: function () {
 <h1>Todo List ({{dstache}}incompleteCount}})</h1>
 ```
 
-{{/markdown}}
-</template>
+{{/template}}

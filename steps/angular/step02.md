@@ -1,5 +1,4 @@
-<template name="angular-step02">
-{{#markdown}}
+{{#template name="angular-step02"}}
 # Defining views with templates
 
 To turn our Meteor app into Angular compatible, we need to add the [angular-meteor package](http://angular-meteor.com/) by typing the following
@@ -95,10 +94,8 @@ All of the code in your regular .HTML files is compiled with [Meteor's Spacebars
 Before we go any further, let's make our app look nice by adding some CSS.
 
 Since this tutorial is focused on working with HTML and JavaScript, just copy all the CSS code below into `simple-todos-angular.css`. This is all the CSS code you will need until the end of the tutorial. The app will still work without the CSS, but it will look much nicer if you add it.
-{{/markdown}}
 
 {{#codeBox "Replace simple-todos-angular.css with this code"}}
-{{#markdown}}
 ```css
 /* CSS declarations go here */
 body {
@@ -227,6 +224,5 @@ header .hide-completed {
   }
 }
 ```
-{{/markdown}}
 {{/codeBox}}
-</template>
+{{/template}}

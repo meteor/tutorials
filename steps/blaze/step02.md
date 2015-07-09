@@ -1,5 +1,4 @@
-<template name="blaze-step02">
-{{#markdown}}
+{{#template name="blaze-step02"}}
 # Defining views with templates
 
 To start working on our todo list app, let's replace the code of the default starter app with the code below. Then we'll talk about what it does.
@@ -73,10 +72,8 @@ In the next step, we will see how we can use helpers to make our templates displ
 Before we go any further, let's make our app look nice by adding some CSS.
 
 Since this tutorial is focused on working with HTML and JavaScript, just copy all the CSS code below into `simple-todos.css`. This is all the CSS code you will need until the end of the tutorial. The app will still work without the CSS, but it will look much nicer if you add it.
-{{/markdown}}
 
 {{#codeBox "Replace simple-todos.css with this code"}}
-{{#markdown}}
 ```css
 /* CSS declarations go here */
 body {
@@ -205,6 +202,5 @@ header .hide-completed {
   }
 }
 ```
-{{/markdown}}
 {{/codeBox}}
-</template>
+{{/template}}

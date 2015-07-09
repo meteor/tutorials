@@ -1,5 +1,4 @@
-<template name="angular-step08">
-{{#markdown}}
+{{#template name="angular-step08"}}
 
 # Filtering collections
 
@@ -94,5 +93,4 @@ $scope.incompleteCount = function () {
 <h1>Todo List ( {{dstache}} incompleteCount() }} )</h1>
 ```
 
-{{/markdown}}
-</template>
+{{/template}}

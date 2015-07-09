@@ -1,5 +1,4 @@
-<template name="angular-step09">
-{{#markdown}}
+{{#template name="angular-step09"}}
 
 # Adding user accounts
 
@@ -90,5 +89,4 @@ You can choose not to use the `accounts-ui` package template and create your own
 You can read more about it in the [chapter about angular-material](http://angular-meteor.com/tutorial/step_18) in the advanced tutorial.
 
 In the next step, we will learn how to make our app more secure by doing all of our data validation on the server instead of the client.
-{{/markdown}}
-</template>
+{{/template}}

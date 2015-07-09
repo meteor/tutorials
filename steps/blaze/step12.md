@@ -1,5 +1,4 @@
-<template name="blaze-step12">
-{{#markdown}}
+{{#template name="blaze-step12"}}
 
 # What's next?
 
@@ -25,8 +24,6 @@ Here are some options for where you can go next:
 4. Explore this set of [tools]({{pathFor 'tools.info'}}) and [resources]({{pathFor 'tools.resources'}}) to help you build Meteor apps
 5. Try this tutorial using [AngularJS](/tutorials/angular)
 
-{{/markdown}}
-
 <div class="row">
   <hr />
   <div class="col-md-6">
@@ -37,4 +34,4 @@ Here are some options for where you can go next:
   </div>
 </div>
 
-</template>
+{{/template}}

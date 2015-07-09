@@ -1,5 +1,4 @@
-<template name="blaze-step11">
-{{#markdown}}
+{{#template name="angular-step11"}}
 
 # Filtering data with publish and subscribe
 
@@ -11,7 +10,7 @@ Just like with `insecure` in the last step, all new Meteor apps start with the `
 meteor remove autopublish
 ```
 
-When the app refreshes, the task list will be empty. Without the `autopublish` package, we will have to specify explicitly what the server sends to the client. The functions in Meteor that do this are `Meteor.publish` and `Meteor.subscribe`.
+When the app refreshes, the task list will be empty. Without the `autopublish` package, we will have to specify explicitly what the server sends to the client. The functions in Meteor that do this are `Meteor.publish` and [$scope.$meteorSubscribe](http://angular-meteor.com/api/subscribe).
 
 Let's add them now.
 
@@ -25,13 +24,13 @@ if (Meteor.isServer) {
 ```
 
 ```js
-// At the top of our client code
-Meteor.subscribe("tasks");
+// At the top of our controller code
+$scope.$meteorSubscribe("tasks");
 ```
 
 Once you have added this code, all of the tasks will reappear.
 
-Calling `Meteor.publish` on the server registers a _publication_ named `"tasks"`. When `Meteor.subscribe` is called on the client with the publication name, the client _subscribes_ to all the data from that publication, which in this case is all of the tasks in the database. To truly see the power of the publish/subscribe model, let's implement a feature that allows users to mark tasks as "private" so that no other users can see them.
+Calling `Meteor.publish` on the server registers a _publication_ named `"tasks"`. When [$scope.$meteorSubscribe](http://angular-meteor.com/api/subscribe) is called on the client with the publication name, the client _subscribes_ to all the data from that publication, which in this case is all of the tasks in the database. To truly see the power of the publish/subscribe model, let's implement a feature that allows users to mark tasks as "private" so that no other users can see them.
 
 ### Implementing private tasks
 
@@ -39,34 +38,23 @@ First, let's add another property to tasks called "private" and a button for use
 
 ```html
 <!-- add right below the code for the checkbox in the task template -->
-{{dstache}}#if isOwner}}
-  <button class="toggle-private">
-    {{dstache}}#if private}}
-      Private
-    {{dstache}}else}}
-      Public
-    {{dstache}}/if}}
-  </button>
-{{dstache}}/if}}
+<button class="toggle-private"
+        ng-if="task.owner === $root.currentUser._id"
+        ng-click="setPrivate(task)">
+  {{dstache}}task.private == true ? "Private" : "Public"}}
+</button>
 
 <!-- modify the li tag to have the private class if the item is private -->
-<li class="{{dstache}}#if checked}}checked{{dstache}}/if}} {{dstache}}#if private}}private{{dstache}}/if}}">
+<li ng-class="{'checked': task.checked, 'private': task.private}">
 ```
 
 We need to modify our JavaScript code in three places:
 
 ```js
-// Define a helper to check if the current user is the task owner
-Template.task.helpers({
-  isOwner: function () {
-    return this.owner === Meteor.userId();
-  }
-});
-
-// Add an event for the new button to Template.task.events
-"click .toggle-private": function () {
-  Meteor.call("setPrivate", this._id, ! this.private);
-}
+// Add a setPrivate scope function
+$scope.setPrivate = function(task) {
+  $meteor.call("setPrivate", task._id, ! task.private);
+};
 
 // Add a method to Meteor.methods called setPrivate
 setPrivate: function (taskId, setToPrivate) {
@@ -118,5 +106,4 @@ if (task.private && task.owner !== Meteor.userId()) {
 ```
 
 We're done with our private task feature! Now our app is secure from attackers trying to view or modify someone's private tasks.
-{{/markdown}}
-</template>
+{{/template}}
