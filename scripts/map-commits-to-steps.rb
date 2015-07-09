@@ -10,12 +10,13 @@ require 'json'
 # 
 # Next step: somehow put that code into the package...
 
-# Usage: ./map-commits-to-steps.rb <repo path>
+# Usage: ./map-commits-to-steps.rb <repo path> <output path> <var name>
 
 # Methodology: calls git log and parses output
 
-if ARGV.length < 2
-  puts "Please pass the path to a Git repository and an output file"
+if ARGV.length < 3
+  puts "Please pass the path to a Git repository, \
+an output file, and a variable name"
   exit 1
 end
 
@@ -46,5 +47,5 @@ log_output.each_line do |line|
 end
 
 File.open out_file, "w" do |file|
-  file.write JSON.pretty_generate hash
+  file.write(ARGV[2] + " = " + JSON.pretty_generate(hash))
 end
