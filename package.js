@@ -48,7 +48,10 @@ Package.onUse(function (api) {
     'steps/react/step10.md',
     'steps/react/step11.md',
     'steps/react/step12.md',
-    'steps/step00.html'
+    'steps/step00.html',
+
+    'shared/explanations.md',
+    'shared/code.md'
   ], 'client');
 
   api.addFiles([
