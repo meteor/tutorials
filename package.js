@@ -5,9 +5,10 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  api.use('templating');
+  api.versionsFrom("1.1.0.2");
   api.use([
-    'simple:markdown-templating@1.2.7'
+    'simple:markdown-templating@1.2.7',
+    'templating'
   ]);
 
   api.addFiles([
@@ -53,9 +54,14 @@ Package.onUse(function (api) {
   api.addFiles([
     'routes/angularTut.js',
     'routes/blazeTut.js',
+    'routes/reactTut.js',
     'routes/tutorial-pages.js'
   ]);
 
   // Also, exports all of the templates from the steps/ directory
   api.export('TUTORIAL_PAGES');
+
+  api.export('REACT_TUT');
+  api.export('ANGULAR_TUT');
+  api.export('BLAZE_TUT');
 });
