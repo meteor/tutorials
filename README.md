@@ -22,3 +22,8 @@ We also maintain all of the tutorials as step-by-step git repositories here:
 
 1. Improve maintainability of the step-by-step git repositories
 2. Create a simple app in this repo to view the tutorials as a standalone thing
+
+### Updating Git SHAs for the tutorial
+
+Run the script:
+`./scripts/map-commits-to-steps.rb ~/git/simple-todos ~/git/tutorials/routes/commits/blaze.js BLAZE_COMMITS`
