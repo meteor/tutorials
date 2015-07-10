@@ -6,9 +6,9 @@ Feel free to submit a pull request to improve the content!
 
 ### Current contents
 
-1. [Meteor and Blaze tutorial](https://www.meteor.com/tutorials/blaze/creating-an-app): `/steps/blaze`
-2. [Meteor and Angular tutorial](https://www.meteor.com/tutorials/angular/creating-an-app): `/steps/angular`
-3. Meteor and React tutorial, work in progress (not live yet): `/steps/react`
+1. [Blaze tutorial](https://www.meteor.com/tutorials/blaze/creating-an-app): [`/steps/blaze`](https://github.com/meteor/tutorials/tree/master/steps/blaze)
+2. [Angular tutorial](https://www.meteor.com/tutorials/angular/creating-an-app): [`/steps/angular`](https://github.com/meteor/tutorials/tree/master/steps/angular)
+3. React tutorial, work in progress (not live yet): [`/steps/react`](https://github.com/meteor/tutorials/tree/master/steps/react)
 
 ### Tutorial step-by-step code
 
