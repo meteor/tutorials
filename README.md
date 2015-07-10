@@ -22,4 +22,3 @@ We also maintain all of the tutorials as step-by-step git repositories here:
 
 1. Improve maintainability of the step-by-step git repositories
 2. Create a simple app in this repo to view the tutorials as a standalone thing
-3. Factor out common content into templates to DRY things up
