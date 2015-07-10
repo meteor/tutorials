@@ -10,6 +10,14 @@ Feel free to submit a pull request to improve the content!
 2. `/steps/angular`: [Meteor and Angular tutorial](https://www.meteor.com/tutorials/angular/creating-an-app)
 3. `/steps/react`: Meteor and React tutorial, work in progress (not live yet)
 
+### Tutorial step-by-step code
+
+We also maintain all of the tutorials as step-by-step git repositories here:
+
+1. [Blaze](https://github.com/meteor/simple-todos)
+2. [Angular](https://github.com/meteor/simple-todos-angular)
+3. [React](https://github.com/meteor/simple-todos-react)
+
 ### To do
 
 1. Improve maintainability of the step-by-step git repositories
