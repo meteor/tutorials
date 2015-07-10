@@ -39,7 +39,8 @@ In the App component `render` method, right under the checkbox and above the new
 Then, at the bottom of the `if (Meteor.isClient) { ... }` block, add the following code to configure the accounts UI to use usernames instead of email addresses:
 
 ```js
-// At the bottom of the client code
+// At the beginning of the client code, right under the comment that says
+// "This code is executed on the client only"
 Accounts.ui.config({
   passwordSignupFields: "USERNAME_ONLY"
 });
@@ -101,6 +102,8 @@ Finally, add a statement to display the `username` field on each task right befo
   <strong>{this.props.task.username}</strong>: {this.props.task.text}
 </span>
 ```
+
+In your browser, add some tasks and notice that your username shows up. Old tasks that we added before this step won't have usernames attached; you can just delete them.
 
 Now, users can log in and we can track which user each task belongs to. Let's look at some of the concepts we just discovered in more detail.
 

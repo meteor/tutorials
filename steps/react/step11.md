@@ -4,7 +4,7 @@
 
 Now that we have moved all of our app's sensitive code into methods, we need to learn about the other half of Meteor's security story. Until now, we have worked assuming the entire database is present on the client, meaning if we call `Tasks.find()` we will get every task in the collection. That's not good if users of our application want to store privacy-sensitive data. We need a way of controlling which data Meteor sends to the client-side database.
 
-Just like with `insecure` in the last step, all new Meteor apps start with the `autopublish` package. Let's remove it and see what happens:
+Just like with `insecure` in the last step, all new Meteor apps start with the `autopublish` package, which automatically synchronizes all of the database contents to the client. Let's remove it and see what happens:
 
 ```bash
 meteor remove autopublish
@@ -61,7 +61,8 @@ logged in user owns this task:
 renderTasks() {
   // Get tasks from this.data.tasks
   return this.data.tasks.map((task) => {
-    const showPrivateButton = task.owner === this.data.currentUser._id;
+    const currentUserId = this.data.currentUser && this.data.currentUser._id;
+    const showPrivateButton = task.owner === currentUserId;
 
     return <Task
       key={task._id}

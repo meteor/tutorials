@@ -25,7 +25,7 @@ Task = React.createClass({
   render() {
     // Give tasks a different className when they are checked off,
     // so that we can style them nicely in CSS
-    const taskClassName = {this.props.task.checked ? "checked" : ""};
+    const taskClassName = this.props.task.checked ? "checked" : "";
 
     return (
       <li className={taskClassName}>
@@ -48,11 +48,26 @@ Task = React.createClass({
 
 ### Update
 
+In the code above, we have:
+
+```js
+// Set the checked property to the opposite of its current value
+Tasks.update(this.props.task._id, {
+  $set: {checked: ! this.props.task.checked}
+});
+```
+
 The `update` function on a collection takes two arguments. The first is a selector that identifies a subset of the collection, and the second is an update parameter that specifies what should be done to the matched objects.
 
 In this case, the selector is just the `_id` of the relevant task. The update parameter uses `$set` to toggle the `checked` field, which will represent whether the task has been completed.
 
 ### Remove
+
+This code from above removes a task:
+
+```js
+Tasks.remove(this.props.task._id);
+```
 
 The `remove` function takes one argument, a selector that determines which item to remove from the collection.
 

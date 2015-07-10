@@ -25,14 +25,14 @@ To test that this functionality works, you can use your browser's private browsi
 In order to finish up our private task feature, we need to add checks to our `deleteTask` and `setChecked` methods to make sure only the task owner can delete or check off a private task:
 
 ```js
-// Inside the deleteTask method
+// At the top of the deleteTask method
 var task = Tasks.findOne(taskId);
 if (task.private && task.owner !== Meteor.userId()) {
   // If the task is private, make sure only the owner can delete it
   throw new Meteor.Error("not-authorized");
 }
 
-// Inside the setChecked method
+// At the top of the setChecked method
 var task = Tasks.findOne(taskId);
 if (task.private && task.owner !== Meteor.userId()) {
   // If the task is private, make sure only the owner can check it off

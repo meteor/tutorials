@@ -7,10 +7,11 @@ In this step, we'll add an input field for users to add tasks to the list.
 First, let's add a form to our `App` component:
 
 ```
+{/* Inside simple-todos-react.jsx, in the App component */}
 <header>
   <h1>Todo List</h1>
 
-  <!-- add a form right below the h1 -->
+  {/* Add a form element right below the h1 */}
   <form className="new-task" onSubmit={this.handleSubmit} >
     <input
       type="text"
@@ -20,12 +21,14 @@ First, let's add a form to our `App` component:
 </header>
 ```
 
-You can see that the `form` element has an `onSubmit` attribute that references a method on the component called `handleSubmit`. This is how you listen to browser events, like the submit event on the form, in React. The `input` element has a `ref` property which will let us easily access this element later.
+> Tip: You can add comments to your JSX code by wrapping them in `{/* ... */}`
+
+You can see that the `form` element has an `onSubmit` attribute that references a method on the component called `handleSubmit`. In React, this is how you listen to browser events, like the submit event on the form. The `input` element has a `ref` property which will let us easily access this element later.
 
 Let's add a `handleSubmit` method to our `App` component:
 
 ```js
-// Inside the App component, below getMeteorData() and above render()
+// Inside the App component, below renderTasks() and above render()
 handleSubmit(event) {
   event.preventDefault();
 
@@ -67,6 +70,8 @@ getMeteorData() {
   }
 },
 ```
+
+Let's go back to the browser and make sure this worked: any new tasks that you add should appear at the top of the list, rather than at the bottom.
 
 In the next step, we'll add some very important todo list features: checking off and deleting tasks.
 {{/template}}

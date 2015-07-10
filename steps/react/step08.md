@@ -7,7 +7,7 @@ In this step, we'll add a client-side data filtering feature to our app, so that
 First, we need to add a checkbox to our `App` component:
 
 ```html
-<!-- add the checkbox to <header> right below the <h1> -->
+{/* add a checkbox to <header> right below the <h1> inside App */}
 <label className="hide-completed">
   <input
     type="checkbox"
@@ -18,7 +18,18 @@ First, we need to add a checkbox to our `App` component:
 </label>
 ```
 
-You can see that it reads from `this.state.hideCompleted`. React components have a special field called `state` where you can store encapsulated component data. We can update `this.state` from an event handler by calling `this.setState`, which will update the state property asynchronously and then cause the component to re-render:
+You can see that it reads from `this.state.hideCompleted`. React components have a special field called `state` where you can store encapsulated component data. We need to define a `getInitialState` method on our component to initialize this field:
+
+```js
+// Inside the App component, at the top right under the mixin property
+getInitialState() {
+  return {
+    hideCompleted: false
+  }
+},
+```
+
+We can update `this.state` from an event handler by calling `this.setState`, which will update the state property asynchronously and then cause the component to re-render:
 
 ```js
 // Add this method to the App component, right above render()
@@ -44,7 +55,7 @@ getMeteorData() {
   return {
     tasks: Tasks.find(query, {sort: {createdAt: -1}}).fetch()
   };
-}
+},
 ```
 
 Now if you check the box, the task list will only show tasks that haven't been completed.
@@ -58,7 +69,7 @@ Now that we have written a query that filters out completed tasks, we can use th
 return {
   tasks: Tasks.find(query, {sort: {createdAt: -1}}).fetch(),
   incompleteCount: Tasks.find({checked: {$ne: true}}).count()
-}
+};
 ```
 
 ```html

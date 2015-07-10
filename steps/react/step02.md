@@ -1,7 +1,9 @@
 {{#template name="react-step02"}}
 # Defining views with React components
 
-To start working with React as our view library, let's add the `react` package, which includes everything you need to get started using React in Meteor: the React library itself, automatic compilation of `.jsx` files, and a `ReactMeteorData` mixin for loading data.
+To start working with React as our view library, let's add the `react` package, which includes everything you need to get started using React in Meteor: the React library itself, automatic compilation of `.jsx` files, and a `ReactMeteorData` mixin for loading data. We'll see how to use all of these parts in the coming steps.
+
+Open a new terminal in the same directory as your running app, and type:
 
 ```sh
 meteor add react
@@ -20,7 +22,7 @@ First, replace the content of the initial HTML file:
 </head>
 
 <body>
-  <div id="app"></div>
+  <div id="render-target"></div>
 </body>
 ```
 
@@ -28,6 +30,8 @@ Second, delete `simple-todos-react.js` and create a new file called `simple-todo
 
 ```js
 // simple-todos-react.jsx
+
+// App component - represents the whole app
 App = React.createClass({
   getTasks() {
     return [
@@ -56,6 +60,7 @@ App = React.createClass({
   }
 });
 
+// Task component - represents a single todo item
 Task = React.createClass({
   propTypes: {
     // This component gets the task to display through a React prop.
@@ -70,12 +75,16 @@ Task = React.createClass({
 })
 
 if (Meteor.isClient) {
+  // This code is executed on the client only
+
   Meteor.startup(function () {
     // Use Meteor.startup to render the component after the page is ready
-    React.render(<App />, document.getElementById("app"));
+    React.render(<App />, document.getElementById("render-target"));
   });
 }
 ```
+
+In this new file, there are three important parts: an `App` React component, a `Task` React component, and a block inside `if (Meteor.isClient) { ... }`, which defines code to execute in the browser. Later in the tutorial, we will refer to these components when adding or changing code.
 
 ### Check the result
 
@@ -115,5 +124,7 @@ If you haven't tried next-generation JavaScript features yet, some of the syntax
 Read more about these features here: XXX
 
 {{> addingCSS}}
+
+Now that you've added the CSS, the app should look a lot nicer. Check in your browser to see that the new styles have loaded.
 
 {{/template}}

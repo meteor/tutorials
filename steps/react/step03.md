@@ -4,15 +4,22 @@
 
 {{> step03CollectionsIntro}}
 
-Let's update our code to get our tasks from a collection instead of a static array. We need to define a collection at the top of the file, and update our component to use this collection.
+Let's update our code to get our tasks from a collection instead of a static array. A summary of the changes, all are inside `simple-todos-react.jsx`:
+
+1. Define a collection at the top of the file
+2. Add a `mixins:` property to the `App` component definition
+3. Add a `getMeteorData` method to the `App` component
+4. Modify `renderTasks` to get task data from `this.data.tasks`
 
 ```js
 // simple-todos-react.jsx
 
-// Define a collection to hold our tasks
+// Define a collection at the top of the file to hold our tasks
 Tasks = new Mongo.Collection("tasks");
 
+// App component - represents the whole app
 App = React.createClass({
+
   // This mixin makes the getMeteorData method work
   mixins: [ReactMeteorData],
 
