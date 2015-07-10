@@ -54,6 +54,7 @@ Package.onUse(function (api) {
 
   api.addFiles([
     'routes/commits/blaze.js',
+    'routes/commits/angular.js',
     'routes/angularTut.js',
     'routes/blazeTut.js',
     'routes/reactTut.js',
