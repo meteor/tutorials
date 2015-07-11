@@ -28,7 +28,6 @@ Package.onUse(function (api) {
     'steps/blaze/step03.md',
     'steps/blaze/step04.md',
     'steps/blaze/step05.md',
-    'steps/blaze/step07.md',
     'steps/blaze/step08.md',
     'steps/blaze/step09.md',
     'steps/blaze/step10.md',
@@ -39,7 +38,6 @@ Package.onUse(function (api) {
     'steps/react/step03.md',
     'steps/react/step04.md',
     'steps/react/step05.md',
-    'steps/react/step07.md',
     'steps/react/step08.md',
     'steps/react/step09.md',
     'steps/react/step10.md',
@@ -49,7 +47,8 @@ Package.onUse(function (api) {
 
     'shared/explanations.md',
     'shared/code.md',
-    'shared/step06.md'
+    'shared/step06.md',
+    'shared/step07.md'
   ], 'client');
 
   api.addFiles([

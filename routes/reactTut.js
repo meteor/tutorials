@@ -58,7 +58,7 @@ REACT_TUT = [
     seoTitle: 'Running on mobile',
     route: "tutorials.react.running-on-mobile",
     path: "/tutorials/react/running-on-mobile",
-    contentTemplate: 'react-step07'
+    contentTemplate: 'sharedStep07'
   },
   {
     id: "7",

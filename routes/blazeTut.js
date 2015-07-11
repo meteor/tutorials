@@ -58,7 +58,7 @@ BLAZE_TUT = [
     seoTitle: 'Running on mobile',
     route: "tutorials.blaze.running-on-mobile",
     path: "/tutorials/blaze/running-on-mobile",
-    contentTemplate: 'blaze-step07'
+    contentTemplate: 'sharedStep07'
   },
   {
     id: "7",
