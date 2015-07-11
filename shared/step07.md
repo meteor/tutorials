@@ -2,13 +2,34 @@
 
 # Running your app on Android or iOS
 
+> Currently, Meteor on Windows does not support mobile builds. If you are using Meteor on Windows, you should skip this step.
+
 So far, we've been building our app and testing only in a web browser, but Meteor has been designed to work across different platforms - your simple todo list website can become an iOS or Android app in just a few commands.
 
-Meteor makes it easy to set up all of the tools required to build mobile apps, but downloading all of the programs can take a while - for Android the download is about 300MB and for iOS you need to install Xcode which is about 2GB. If you don't want to wait to download these tools, feel free to [skip to the next step](/tutorials/react/temporary-ui-state).
+Meteor makes it easy to set up all of the tools required to build mobile apps, but downloading all of the programs can take a while - for Android the download is about 300MB and for iOS you need to install Xcode which is about 2GB. If you don't want to wait to download these tools, feel free to skip to the next step.
 
 {{#if specialContent}}
   {{> Template.dynamic template=specialContent}}
 {{/if}}
+
+### Running on an iOS simulator (Mac Only)
+
+If you have a Mac, you can run your app inside the iOS simulator.
+
+Go to your app folder and type:
+
+```bash
+meteor install-sdk ios
+```
+
+This will run you through the setup necessary to build an iOS app from your project. When you're done, type:
+
+```bash
+meteor add-platform ios
+meteor run ios
+```
+
+You will see the iOS simulator pop up with your app running inside.
 
 ### Running on an Android emulator
 
@@ -47,25 +68,6 @@ The app will be built and installed on your device. If you want to point your ap
 ```bash
 meteor run android-device --mobile-server my_app_name.meteor.com
 ```
-
-### Running on an iOS simulator (Mac Only)
-
-If you have a Mac, you can run your app inside the iOS simulator.
-
-Go to your app folder and type:
-
-```bash
-meteor install-sdk ios
-```
-
-This will run you through the setup necessary to build an iOS app from your project. When you're done, type:
-
-```bash
-meteor add-platform ios
-meteor run ios
-```
-
-You will see the iOS simulator pop up with your app running inside.
 
 ### Running on an iPhone or iPad (Mac Only; requires Apple developer account)
 

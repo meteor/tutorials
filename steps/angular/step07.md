@@ -1,5 +1,5 @@
 {{#template name="angularSpecialPart07"}}
-### Bootstraping Angular for mobile
+### Bootstrapping Angular for mobile
 
 Angular needs the main document to be ready so it can bootstrap, but different devices has different events for `ready`.
 
