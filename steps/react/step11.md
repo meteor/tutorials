@@ -39,7 +39,7 @@ Let's add another property to tasks called "private" and a button for users to m
 First, we need to add a new method that we can call to set a task's private status:
 
 ```js
-// Add a method underneath `setChecked`
+// Inside Meteor.methods, add a method underneath `setChecked`
 setPrivate(taskId, setToPrivate) {
   var task = Tasks.findOne(taskId);
 
@@ -57,7 +57,7 @@ to show the private button; the button should show up only if the currently
 logged in user owns this task:
 
 ```js
-// Update the renderTasks method to pass in showPrivateButton
+// Update renderTasks method on the App component to pass in showPrivateButton
 renderTasks() {
   // Get tasks from this.data.tasks
   return this.data.tasks.map((task) => {
@@ -73,7 +73,7 @@ renderTasks() {
 ```
 
 ```js
-// Add a new prop type for showPrivateButton
+// Add a new prop type for showPrivateButton on the Task component
 propTypes: {
   task: React.PropTypes.object.isRequired,
   showPrivateButton: React.PropTypes.bool.isRequired
@@ -83,7 +83,7 @@ propTypes: {
 Let's add the button, using this new prop to decide whether it should be displayed:
 
 ```html
-<!-- inside the render function of Task, under the checkbox code -->
+{/* inside the render function of Task, under the checkbox code */}
 { this.props.showPrivateButton ? (
   <button className="toggle-private" onClick={this.togglePrivate}>
     { this.props.task.private ? "Private" : "Public" }
