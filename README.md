@@ -18,10 +18,15 @@ We also maintain all of the tutorials as step-by-step git repositories here:
 2. [Angular](https://github.com/meteor/simple-todos-angular)
 3. [React](https://github.com/meteor/simple-todos-react)
 
+### Tutorial viewer
+
+If you are editing the tutorials, use this simple app to view them: https://github.com/meteor/tutorial-viewer
+
 ### To do
 
 1. Improve maintainability of the step-by-step git repositories
-2. Create a simple app in this repo to view the tutorials as a standalone thing
+2. Generate code snippets automatically from git
+3. Improve code snippet context
 
 ### Updating Git SHAs for the tutorial
 
