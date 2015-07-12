@@ -50,10 +50,10 @@ Now that we have defined our methods, we need to update the places we were opera
 Meteor.call("addTask", text);
 
 // replace Tasks.update( ... ) with:
-Meteor.call("setChecked", this._id, ! this.checked);
+Meteor.call("setChecked", this.props.task._id, ! this.props.task.checked);
 
 // replace Tasks.remove( ... ) with:
-Meteor.call("deleteTask", this._id);
+Meteor.call("deleteTask", this.props.task._id);
 ```
 
 Now all of our inputs and buttons will start working again. What did we gain from all of this work?
