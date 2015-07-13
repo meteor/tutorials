@@ -32,3 +32,11 @@ If you are editing the tutorials, use this simple app to view them: https://gith
 
 Run the script:
 `./scripts/map-commits-to-steps.rb ~/git/simple-todos ~/git/tutorials/routes/commits/blaze.js BLAZE_COMMITS`
+
+### Updating tutorial
+
+#### Commit message format
+
+```
+Step 3.1: Add some feature
+```
