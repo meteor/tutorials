@@ -15,16 +15,7 @@ To get started, let's replace the code of the default starter app. Then we'll ta
 
 First, replace the content of the initial HTML file:
 
-```html
-<!-- replace simple-todos-react.html with this HTML -->
-<head>
-  <title>Todo List</title>
-</head>
-
-<body>
-  <div id="render-target"></div>
-</body>
-```
+{{> CodeBox view="react" step="2.2"}}
 
 Second, delete `simple-todos-react.js` and create a new file called `simple-todos-react.jsx`:
 

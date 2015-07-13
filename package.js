@@ -8,7 +8,19 @@ Package.onUse(function (api) {
   api.versionsFrom("1.1.0.2");
   api.use([
     'simple:markdown-templating@1.2.7',
-    'templating'
+    'templating',
+    'mdg:git-patch-viewer@0.1.3',
+    'underscore'
+  ]);
+
+  api.addFiles([
+    'routes/commits/blaze.js',
+    'routes/commits/angular.js',
+    'routes/commits/react.js',
+    'routes/angularTut.js',
+    'routes/blazeTut.js',
+    'routes/reactTut.js',
+    'routes/tutorial-pages.js'
   ]);
 
   api.addFiles([
@@ -48,17 +60,13 @@ Package.onUse(function (api) {
     'shared/explanations.md',
     'shared/code.md',
     'shared/step06.md',
-    'shared/step07.md'
-  ], 'client');
+    'shared/step07.md',
 
-  api.addFiles([
-    'routes/commits/blaze.js',
-    'routes/commits/angular.js',
-    'routes/angularTut.js',
-    'routes/blazeTut.js',
-    'routes/reactTut.js',
-    'routes/tutorial-pages.js'
-  ]);
+    'shared/code-box.html',
+    'shared/code-box.js',
+
+    'patches/react.multi.patch'
+  ], 'client');
 
   // Also, exports all of the templates from the steps/ directory
   api.export('TUTORIAL_PAGES');
