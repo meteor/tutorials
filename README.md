@@ -31,7 +31,7 @@ If you are editing the tutorials, use this simple app to view them: https://gith
 ### Updating Git SHAs for the tutorial
 
 Run the script:
-`./scripts/map-commits-to-steps.rb ~/git/simple-todos ~/git/tutorials/routes/commits/blaze.js BLAZE_COMMITS`
+`./scripts/process-repo.rb repos/blaze routes/commits/blaze.js BLAZE_COMMITS`
 
 ### Updating tutorial
 

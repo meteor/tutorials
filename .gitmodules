@@ -1,3 +1,9 @@
 [submodule "repos/react"]
 	path = repos/react
 	url = git@github.com:meteor/simple-todos-react.git
+[submodule "repos/blaze"]
+	path = repos/blaze
+	url = git@github.com:meteor/simple-todos.git
+[submodule "repos/angular"]
+	path = repos/angular
+	url = git@github.com:meteor/simple-todos-angular.git
