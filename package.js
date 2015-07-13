@@ -9,7 +9,7 @@ Package.onUse(function (api) {
   api.use([
     'simple:markdown-templating@1.2.7',
     'templating',
-    'mdg:git-patch-viewer@0.1.3',
+    'mdg:git-patch-viewer@0.1.4',
     'underscore'
   ]);
 

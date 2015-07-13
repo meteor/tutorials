@@ -28,8 +28,9 @@ Template.CodeBox.helpers({
   commit: function () {
     return getCommitData()[Template.currentData().step].sha;
   },
-  caption: function () {
-    return getCommitData()[Template.currentData().step].message;
+  summary: function () {
+    var step = Template.currentData().step;
+    return step + ": " + getCommitData()[step].message;
   },
   fileName: function () {
     if (Template.currentData().fileName) {

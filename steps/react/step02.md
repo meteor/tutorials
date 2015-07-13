@@ -17,63 +17,11 @@ First, replace the content of the initial HTML file:
 
 {{> CodeBox view="react" step="2.2"}}
 
-Second, delete `simple-todos-react.js` and create a new file called `simple-todos-react.jsx`:
+Second, delete `simple-todos-react.js` and create three new files:
 
-```js
-// simple-todos-react.jsx
-
-// App component - represents the whole app
-App = React.createClass({
-  getTasks() {
-    return [
-      { _id: 1, text: "This is task 1" },
-      { _id: 2, text: "This is task 2" },
-      { _id: 3, text: "This is task 3" }
-    ];
-  },
-  renderTasks() {
-    return this.getTasks().map((task) => {
-      return <Task key={task._id} task={task} />;
-    });
-  },
-  render() {
-    return (
-      <div className="container">
-        <header>
-          <h1>Todo List</h1>
-        </header>
-
-        <ul>
-          {this.renderTasks()}
-        </ul>
-      </div>
-    );
-  }
-});
-
-// Task component - represents a single todo item
-Task = React.createClass({
-  propTypes: {
-    // This component gets the task to display through a React prop.
-    // We can use propTypes to indicate it is required
-    task: React.PropTypes.object.isRequired
-  },
-  render() {
-    return (
-      <li>{this.props.task.text}</li>
-    );
-  }
-})
-
-if (Meteor.isClient) {
-  // This code is executed on the client only
-
-  Meteor.startup(function () {
-    // Use Meteor.startup to render the component after the page is ready
-    React.render(<App />, document.getElementById("render-target"));
-  });
-}
-```
+{{> CodeBox view="react" step="2.3"}}
+{{> CodeBox view="react" step="2.4"}}
+{{> CodeBox view="react" step="2.5"}}
 
 In this new file, there are three important parts: an `App` React component, a `Task` React component, and a block inside `if (Meteor.isClient) { ... }`, which defines code to execute in the browser. Later in the tutorial, we will refer to these components when adding or changing code.
 
