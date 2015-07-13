@@ -20,8 +20,12 @@ To use the Blaze UI component from the `accounts-ui` package, we need to wrap it
 AccountsUIWrapper = React.createClass({
   componentDidMount() {
     // Use Meteor Blaze to render login buttons
-    Blaze.render(Template.loginButtons,
+    this.view = Blaze.render(Template.loginButtons,
       React.findDOMNode(this.refs.container));
+  },
+  componentWillUnmount() {
+    // Clean up Blaze view
+    Blaze.remove(this.view);
   },
   render() {
     // Just render a placeholder container that will be filled in
