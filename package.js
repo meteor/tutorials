@@ -32,9 +32,9 @@ Package.onUse(function (api) {
   ], "client");
 
   api.addFiles([
-    'routes/commits/blaze.js',
-    'routes/commits/angular.js',
-    'routes/commits/react.js',
+    'generated/blaze-commits.js',
+    'generated/angular-commits.js',
+    'generated/react-commits.js',
     'routes/angularTut.js',
     'routes/blazeTut.js',
     'routes/reactTut.js',
@@ -83,7 +83,7 @@ Package.onUse(function (api) {
     'shared/code-box.html',
     'shared/code-box.js',
 
-    'patches/react.multi.patch'
+    'generated/react.multi.patch'
   ], 'client');
 
   // Also, exports all of the templates from the steps/ directory

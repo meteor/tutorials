@@ -30,8 +30,8 @@ view_type = ARGV[0]
 tutorial_root = File.realpath(File.join File.dirname(__FILE__), "..")
 
 repo = File.join tutorial_root, "repos", view_type
-out_file = File.join tutorial_root, "routes", "commits", (view_type + ".js")
-out_patch_file = File.join tutorial_root, "patches", (view_type + ".multi.patch")
+out_file = File.join tutorial_root, "generated", (view_type + "-commits.js")
+out_patch_file = File.join tutorial_root, "generated", (view_type + ".multi.patch")
 var_name = view_type.upcase + "_COMMITS"
 
 Dir.chdir repo
