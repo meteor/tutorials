@@ -39,7 +39,7 @@ Step 3.1: Add some feature
 After using `git rebase` to massage the repository into the desired state, run the script to update the relevant files:
 
 ```sh
-./scripts/process-repo.rb repos/blaze routes/commits/blaze.js BLAZE_COMMITS patches/blaze.multi.patch
+./scripts/process-repo.rb blaze
 ```
 
 The commit with this message can be included with the following code snippet:
