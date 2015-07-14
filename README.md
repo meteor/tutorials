@@ -79,7 +79,7 @@ This directory contains JavaScript data structures describing the different tuto
 
 #### /scripts/
 
-This contains a script that is used to update `/patches/` and `/routes/commits/` from the repositories in `/repos/`.
+This contains a script that is used to update `/generated/` from the repositories in `/repos/`.
 
 #### /shared/
 
