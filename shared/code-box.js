@@ -30,7 +30,7 @@ Template.CodeBox.helpers({
   },
   summary: function () {
     var step = Template.currentData().step;
-    return step + ": " + getCommitData()[step].message;
+    return getCommitData()[step].message;
   },
   fileName: function () {
     if (Template.currentData().fileName) {

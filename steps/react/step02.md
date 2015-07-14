@@ -20,7 +20,9 @@ First, replace the content of the initial HTML file:
 Second, delete `simple-todos-react.js` and create three new files:
 
 {{> CodeBox view="react" step="2.3"}}
+
 {{> CodeBox view="react" step="2.4"}}
+
 {{> CodeBox view="react" step="2.5"}}
 
 In this new file, there are three important parts: an `App` React component, a `Task` React component, and a block inside `if (Meteor.isClient) { ... }`, which defines code to execute in the browser. Later in the tutorial, we will refer to these components when adding or changing code.

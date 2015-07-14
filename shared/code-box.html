@@ -1,9 +1,8 @@
 <template name="CodeBox">
-  {{# GitPatch
+  {{> GitPatch
     repoName=repoName
     commit=commit
     fileName=fileName
-    summary=summary}}
-    {{> Template.contentBlock}}
-  {{/GitPatch}}
+    summary=summary
+    step=step}}
 </template>
