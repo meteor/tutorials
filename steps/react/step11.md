@@ -14,19 +14,7 @@ When the app refreshes, the task list will be empty. Without the `autopublish` p
 
 Let's add them now.
 
-```js
-// At the bottom of simple-todos-react.jsx
-if (Meteor.isServer) {
-  Meteor.publish("tasks", function () {
-    return Tasks.find();
-  });
-}
-```
-
-```js
-// At the top of the if (Meteor.isClient) { ... } block
-Meteor.subscribe("tasks");
-```
+{{> CodeBox step="11.2" view="react"}}
 
 Once you have added this code, all of the tasks will reappear.
 
@@ -38,80 +26,45 @@ Let's add another property to tasks called "private" and a button for users to m
 
 First, we need to add a new method that we can call to set a task's private status:
 
-```js
-// Inside Meteor.methods, add a method underneath `setChecked`
-setPrivate(taskId, setToPrivate) {
-  var task = Tasks.findOne(taskId);
-
-  // Make sure only the task owner can make a task private
-  if (task.owner !== Meteor.userId()) {
-    throw new Meteor.Error("not-authorized");
-  }
-
-  Tasks.update(taskId, { $set: { private: setToPrivate } });
-}
-``` 
+{{> CodeBox step="11.3" view="react"}} 
 
 Now, we need to pass a new property to the `Task` to decide whether we want
 to show the private button; the button should show up only if the currently
 logged in user owns this task:
 
-```js
-// Update renderTasks method on the App component to pass in showPrivateButton
-renderTasks() {
-  // Get tasks from this.data.tasks
-  return this.data.tasks.map((task) => {
-    const currentUserId = this.data.currentUser && this.data.currentUser._id;
-    const showPrivateButton = task.owner === currentUserId;
+{{> CodeBox step="11.4" view="react"}}
 
-    return <Task
-      key={task._id}
-      task={task}
-      showPrivateButton={showPrivateButton} />;
-  });
-},
-```
-
-```js
-// Add a new prop type for showPrivateButton on the Task component
-propTypes: {
-  task: React.PropTypes.object.isRequired,
-  showPrivateButton: React.PropTypes.bool.isRequired
-},
-```
+{{> CodeBox step="11.5" view="react"}}
 
 Let's add the button, using this new prop to decide whether it should be displayed:
 
-```html
-{/* inside the render function of Task, under the checkbox code */}
-{ this.props.showPrivateButton ? (
-  <button className="toggle-private" onClick={this.togglePrivate}>
-    { this.props.task.private ? "Private" : "Public" }
-  </button>
-) : ''}
-```
+{{> CodeBox step="11.6" view="react"}}
 
 We need to define the event handler called by the button:
 
-```js
-// Add this method on the Task component right below deleteThisTask()
-togglePrivate() {
-  Meteor.call("setPrivate", this.props.task._id, ! this.props.task.private);
-},
-```
+{{> CodeBox step="11.7" view="react"}}
 
 One last thing, let's update the class of the `<li>` element in the `Task` component to reflect it's privacy status:
 
-```js
-// At the top of the render method of the Task component
-render() {
-  // Add checked and/or private to the className when needed
-  const taskClassName = (this.props.task.checked ? "checked" : "") + " " +
-    (this.props.task.private ? "private" : "");
+{{> CodeBox step="11.8" view="react"}}
 
-  // ... rest of method
-```
+### Selectively publishing tasks based on privacy status
 
-{{> step11SelectivelyPublish}}
+Now that we have a way of setting which tasks are private, we should modify our
+publication function to only send the tasks that a user is authorized to see:
+
+{{> CodeBox step="11.9" view="react"}}
+
+To test that this functionality works, you can use your browser's private browsing mode to log in as a different user. Put the two windows side by side and mark a task private to confirm that the other user can't see it. Now make it public again and it will reappear!
+
+### Extra method security
+
+In order to finish up our private task feature, we need to add checks to our `deleteTask` and `setChecked` methods to make sure only the task owner can delete or check off a private task:
+
+{{> CodeBox step="11.10" view="react"}}
+
+> Notice that with this code anyone can delete any public task. With some small modifications to the code, you should be able to make it so that only the owner can delete their tasks.
+
+We're done with our private task feature! Now our app is secure from attackers trying to view or modify someone's private tasks.
 
 {{/template}}

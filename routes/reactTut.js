@@ -44,14 +44,16 @@ REACT_TUT = [
     title: 'Deploying your app',
     seoTitle: 'Deploying your app',
     route: "tutorials.react.deploying-your-app",
-    path: "/tutorials/react/deploying-your-app"
+    path: "/tutorials/react/deploying-your-app",
+    contentTemplate: "shared-step06"
   },
   {
     id: "6",
     title: 'Running on mobile',
     seoTitle: 'Running on mobile',
     route: "tutorials.react.running-on-mobile",
-    path: "/tutorials/react/running-on-mobile"
+    path: "/tutorials/react/running-on-mobile",
+    contentTemplate: "sharedStep07"
   },
   {
     id: "7",

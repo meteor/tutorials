@@ -17,7 +17,7 @@ First, replace the content of the initial HTML file:
 
 {{> CodeBox view="react" step="2.2"}}
 
-Second, delete `simple-todos-react.js` and create three new files:
+Second, **delete `simple-todos-react.js`** and create three new files:
 
 {{> CodeBox view="react" step="2.3"}}
 
@@ -25,7 +25,13 @@ Second, delete `simple-todos-react.js` and create three new files:
 
 {{> CodeBox view="react" step="2.5"}}
 
-In this new file, there are three important parts: an `App` React component, a `Task` React component, and a block inside `if (Meteor.isClient) { ... }`, which defines code to execute in the browser. Later in the tutorial, we will refer to these components when adding or changing code.
+We just added three things to our app:
+
+1. An `App` React component
+2. A `Task` React component
+3. Some code wrapped inside `if (Meteor.isClient) { ... }`, which defines code to execute in the browser, and `Meteor.startup`, which knows how to call code when the page is loaded and ready.
+
+Later in the tutorial, we will refer to these components when adding or changing code.
 
 ### Check the result
 
@@ -36,7 +42,7 @@ In our browser, the app should now look much like this:
 > - This is task 2
 > - This is task 3
 
-If your app doesn't look like this, use the GitHub links at the bottom of the page to see what each file is supposed to contain. Now let's find out what all these bits of code are doing!
+If your app doesn't look like this, use the GitHub link at the top right corner of each code snippet to see the entire file, and make sure your code matches the example.
 
 ### HTML files define static content
 

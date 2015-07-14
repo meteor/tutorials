@@ -14,41 +14,17 @@ meteor add accounts-ui accounts-password
 
 ### Wrapping a Blaze component in React
 
-To use the Blaze UI component from the `accounts-ui` package, we need to wrap it in a React component. To do so, add this code near the bottom of `simple-todos-react.jsx`, below the `Task` component and above the `if (Meteor.isClient) { ... }` section.
+To use the Blaze UI component from the `accounts-ui` package, we need to wrap it in a React component. To do so, let's create a new component called `AccountsUIWrapper` in a new file:
 
-```js
-AccountsUIWrapper = React.createClass({
-  componentDidMount() {
-    // Use Meteor Blaze to render login buttons
-    this.view = Blaze.render(Template.loginButtons,
-      React.findDOMNode(this.refs.container));
-  },
-  componentWillUnmount() {
-    // Clean up Blaze view
-    Blaze.remove(this.view);
-  },
-  render() {
-    // Just render a placeholder container that will be filled in
-    return <span ref="container" />;
-  }
-});
-```
+{{> CodeBox step="9.2" view="react"}}
 
-In the App component `render` method, right under the checkbox and above the new task form, include the component we just defined:
+Let's include the component we just defined inside App:
 
-```html
-<AccountsUIWrapper />
-```
+{{> CodeBox step="9.3" view="react"}}
 
-Then, at the bottom of the `if (Meteor.isClient) { ... }` block, add the following code to configure the accounts UI to use usernames instead of email addresses:
+Then, add the following code to configure the accounts UI to use usernames instead of email addresses:
 
-```js
-// At the beginning of the client code, right under the comment that says
-// "This code is executed on the client only"
-Accounts.ui.config({
-  passwordSignupFields: "USERNAME_ONLY"
-});
-```
+{{> CodeBox step="9.4" view="react"}}
 
 ### Adding user-related functionality
 
@@ -64,48 +40,19 @@ To do this, we will add two new fields to the `tasks` collection:
 
 First, let's add some code to save these fields into the `handleSubmit` event handler:
 
-```js
-// Replace the existing insert inside the handleSubmit method
-Tasks.insert({
-  text: text,
-  createdAt: new Date(),            // current time
-  owner: Meteor.userId(),           // _id of logged in user
-  username: Meteor.user().username  // username of logged in user
-});
-```
+{{> CodeBox step="9.5" view="react"}}
 
 Modify the `return` statement on `getMeteorData` to get information about the currently logged in user:
 
-```js
-// In the getMeteorData method
-return {
-  tasks: Tasks.find(query, {sort: {createdAt: -1}}).fetch(),
-  incompleteCount: Tasks.find({checked: {$ne: true}}).count(),
-  currentUser: Meteor.user()
-}
-```
+{{> CodeBox step="9.6" view="react"}}
 
 Then, in our render method, add a conditional statement to only show the form when there is a logged in user:
 
-```html
-{ this.data.currentUser ?
-  <form className="new-task" onSubmit={this.handleSubmit} >
-    <input
-      type="text"
-      ref="textInput"
-      placeholder="Type to add new tasks" />
-  </form> : ''
-}
-```
+{{> CodeBox step="9.7" view="react"}}
 
 Finally, add a statement to display the `username` field on each task right before the text:
 
-```html
-<!-- in the render method of the Task component -->
-<span className="text">
-  <strong>{this.props.task.username}</strong>: {this.props.task.text}
-</span>
-```
+{{> CodeBox step="9.8" view="react"}}
 
 In your browser, add some tasks and notice that your username shows up. Old tasks that we added before this step won't have usernames attached; you can just delete them.
 

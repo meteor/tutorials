@@ -10,14 +10,7 @@ Let's add two new elements to our `task` component, a checkbox and a delete butt
 
 ### Update
 
-In the code above, we have:
-
-```js
-// Set the checked property to the opposite of its current value
-Tasks.update(this.props.task._id, {
-  $set: {checked: ! this.props.task.checked}
-});
-```
+In the code above, we call `Tasks.update` to check off a task.
 
 The `update` function on a collection takes two arguments. The first is a selector that identifies a subset of the collection, and the second is an update parameter that specifies what should be done to the matched objects.
 
@@ -25,12 +18,6 @@ In this case, the selector is just the `_id` of the relevant task. The update pa
 
 ### Remove
 
-This code from above removes a task:
-
-```js
-Tasks.remove(this.props.task._id);
-```
-
-The `remove` function takes one argument, a selector that determines which item to remove from the collection.
+The code from above uses `Tasks.remove` to delete a task. The `remove` function takes one argument, a selector that determines which item to remove from the collection.
 
 {{/template}}
