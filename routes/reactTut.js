@@ -5,8 +5,7 @@ REACT_TUT = [
     seoTitle: 'Creating an app',
     route: "tutorials.react.creating-an-app",
     path: "/tutorials/react/creating-an-app",
-    contentTemplate: 'react-step01',
-    sha: "377a8610c2fa77056d015e6998d5eb894436c99e"
+    contentTemplate: 'react-step01'
   },
   {
     id: "1",
@@ -14,8 +13,7 @@ REACT_TUT = [
     seoTitle: 'Components',
     route: "tutorials.react.components",
     path: "/tutorials/react/components",
-    contentTemplate: 'react-step02',
-    sha: "9f5c65302f1527f25cacaaf275ea5c747d55e405"
+    contentTemplate: 'react-step02'
   },
   {
     id: "2",
@@ -23,8 +21,7 @@ REACT_TUT = [
     seoTitle: 'Collections',
     route: "tutorials.react.collections",
     path: "/tutorials/react/collections",
-    contentTemplate: 'react-step03',
-    sha: "ab14d317db174a3b2d408f4e24a50c7af13342cd"
+    contentTemplate: 'react-step03'
   },
   {
     id: "3",
@@ -32,8 +29,7 @@ REACT_TUT = [
     seoTitle: 'Forms and events',
     route: "tutorials.react.forms-and-events",
     path: "/tutorials/react/forms-and-events",
-    contentTemplate: 'react-step04',
-    sha: "9c24b998e540848f0dbc241702a4fcfa48fb9087"
+    contentTemplate: 'react-step04'
   },
   {
     id: "4",
@@ -41,24 +37,21 @@ REACT_TUT = [
     seoTitle: 'Update and remove',
     route: "tutorials.react.update-and-remove",
     path: "/tutorials/react/update-and-remove",
-    contentTemplate: 'react-step05',
-    sha: "4e6f9494c895eff43fe26167a7b803a24c35854e"
+    contentTemplate: 'react-step05'
   },
   {
     id: "5",
     title: 'Deploying your app',
     seoTitle: 'Deploying your app',
     route: "tutorials.react.deploying-your-app",
-    path: "/tutorials/react/deploying-your-app",
-    contentTemplate: 'shared-step06'
+    path: "/tutorials/react/deploying-your-app"
   },
   {
     id: "6",
     title: 'Running on mobile',
     seoTitle: 'Running on mobile',
     route: "tutorials.react.running-on-mobile",
-    path: "/tutorials/react/running-on-mobile",
-    contentTemplate: 'sharedStep07'
+    path: "/tutorials/react/running-on-mobile"
   },
   {
     id: "7",
@@ -66,8 +59,7 @@ REACT_TUT = [
     seoTitle: 'Temporary UI state',
     route: "tutorials.react.temporary-ui-state",
     path: "/tutorials/react/temporary-ui-state",
-    contentTemplate: 'react-step08',
-    sha: "ad35c7e02a9f7c40f45f40dbff8d297fba4b13ac"
+    contentTemplate: 'react-step08'
   },
   {
     id: "8",
@@ -75,8 +67,7 @@ REACT_TUT = [
     seoTitle: 'Adding user accounts',
     route: "tutorials.react.adding-user-accounts",
     path: "/tutorials/react/adding-user-accounts",
-    contentTemplate: 'react-step09',
-    sha: "bb4a0fc190c44aa8cfd4189a03c2e18f1294074c"
+    contentTemplate: 'react-step09'
   },
   {
     id: "9",
@@ -84,8 +75,7 @@ REACT_TUT = [
     seoTitle: 'Security with methods',
     route: "tutorials.react.security-with-methods",
     path: "/tutorials/react/security-with-methods",
-    contentTemplate: 'react-step10',
-    sha: "e3b7fa8ed373c9e6b96fb3c370d0af238170b89a"
+    contentTemplate: 'react-step10'
   },
   {
     id: "10",
@@ -93,8 +83,7 @@ REACT_TUT = [
     seoTitle: 'Publish and subscribe',
     route: "tutorials.react.publish-and-subscribe",
     path: "/tutorials/react/publish-and-subscribe",
-    contentTemplate: 'react-step11',
-    sha: "44dfd82a9e90cf8600c18b7e9f3c2e742c34285d"
+    contentTemplate: 'react-step11'
   },
   {
     id: "11",
