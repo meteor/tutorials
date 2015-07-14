@@ -30,25 +30,25 @@ Just edit the markdown files in `/steps/`.
 
 ### Editing code snippets
 
-The code snippets are generated from the step-by-step git repositories. Each code snippet is its own commit. Commit messages follow the following format:
+The code snippets are generated from the step-by-step git repositories which are git submodules in `/repos`. Each code snippet is its own commit. Commit messages follow the following format:
 
 ```
 Step 3.1: Add some feature
 ```
 
-After using `git rebase` to massage the repository into the desired state, run the script to update the relevant files:
+After using `git rebase -i --root` to massage the repository into the desired state, run the script to update the generated files:
 
 ```sh
 ./scripts/process-repo.rb blaze
 ```
 
-The commit with this message can be included with the following code snippet:
+The commit with this message can then be included in the content with the following code snippet:
 
 ```html
 {{> CodeBox step="3.1" view="blaze"}}
 ```
 
-You should replace `blaze` with the correct repository (currently this string is transformed to refer to the correct data structures).
+You should replace `blaze` with the correct view name (currently this string is automatically transformed to refer to the correct data structures).
 
 You're done! Make sure to commit the changes to all of the generated files.
 
