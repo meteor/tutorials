@@ -4,14 +4,32 @@ Package.describe({
   name: "tutorials"
 });
 
+Package.registerBuildPlugin({
+  name: "Git patch compiler",
+  sources: ["git-patch-viewer/patch-plugin.jsx"],
+  use: [
+    "jsx@0.1.1",
+    "underscore@1.0.3"
+  ]
+})
+
 Package.onUse(function (api) {
   api.versionsFrom("1.1.0.2");
   api.use([
     'simple:markdown-templating@1.2.7',
     'templating',
-    'mdg:git-patch-viewer@0.1.5',
-    'underscore'
+    'underscore',
+    'jsx@0.1.1',
+    'simple:highlight.js@1.0.9',
+    'reactive-var',
+    'less'
   ]);
+
+  api.addFiles([
+    "git-patch-viewer/patch-viewer.html",
+    "git-patch-viewer/patch-viewer.jsx",
+    "git-patch-viewer/patch-viewer.less"
+  ], "client");
 
   api.addFiles([
     'routes/commits/blaze.js',
