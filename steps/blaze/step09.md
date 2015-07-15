@@ -12,18 +12,11 @@ meteor add accounts-ui accounts-password
 
 In the HTML, right under the checkbox, include the following code to add a login dropdown:
 
-```html
-{{dstache}}> loginButtons}}
-```
+{{> CodeBox view="blaze" step="9.2"}}
 
 Then, in your JavaScript, add the following code to configure the accounts UI to use usernames instead of email addresses:
 
-```js
-// At the bottom of the client code
-Accounts.ui.config({
-  passwordSignupFields: "USERNAME_ONLY"
-});
-```
+{{> CodeBox view="blaze" step="9.3"}}
 
 Now users can create accounts and log into your app! This is very nice, but logging in and out isn't very useful yet. Let's add two functions:
 
@@ -37,30 +30,15 @@ To do this, we will add two new fields to the `tasks` collection:
 
 First, let's add some code to save these fields into the `submit .new-task` event handler:
 
-```js
-Tasks.insert({
-  text: text,
-  createdAt: new Date(),            // current time
-  owner: Meteor.userId(),           // _id of logged in user
-  username: Meteor.user().username  // username of logged in user
-});
-```
+{{> CodeBox view="blaze" step="9.4"}}
 
 Then, in our HTML, add an `#if` block helper to only show the form when there is a logged in user:
 
-```html
-{{dstache}}#if currentUser}}
-  <form class="new-task">
-    <input type="text" name="text" placeholder="Type to add new tasks" />
-  </form>
-{{dstache}}/if}}
-```
+{{> CodeBox view="blaze" step="9.5"}}
 
 Finally, add a Spacebars statement to display the `username` field on each task right before the text:
 
-```html
-<span class="text"><strong>{{dstache}}username}}</strong> - {{dstache}}text}}</span>
-```
+{{> CodeBox view="blaze" step="9.6"}}`
 
 Now, users can log in and we can track which user each task belongs to. Let's look at some of the concepts we just discovered in more detail.
 

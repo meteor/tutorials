@@ -5,8 +5,7 @@ BLAZE_TUT = [
     seoTitle: 'Creating an app',
     route: "tutorials.blaze.creating-an-app",
     path: "/tutorials/blaze/creating-an-app",
-    contentTemplate: 'blaze-step01',
-    sha: BLAZE_COMMITS["1"].sha
+    contentTemplate: 'blaze-step01'
   },
   {
     id: "1",
@@ -14,8 +13,7 @@ BLAZE_TUT = [
     seoTitle: 'Templates',
     route: "tutorials.blaze.templates",
     path: "/tutorials/blaze/templates",
-    contentTemplate: 'blaze-step02',
-    sha: BLAZE_COMMITS["2"].sha
+    contentTemplate: 'blaze-step02'
   },
   {
     id: "2",
@@ -23,8 +21,7 @@ BLAZE_TUT = [
     seoTitle: 'Collections',
     route: "tutorials.blaze.collections",
     path: "/tutorials/blaze/collections",
-    contentTemplate: 'blaze-step03',
-    sha: BLAZE_COMMITS["3"].sha
+    contentTemplate: 'blaze-step03'
   },
   {
     id: "3",
@@ -32,8 +29,7 @@ BLAZE_TUT = [
     seoTitle: 'Forms and events',
     route: "tutorials.blaze.forms-and-events",
     path: "/tutorials/blaze/forms-and-events",
-    contentTemplate: 'blaze-step04',
-    sha: BLAZE_COMMITS["4"].sha
+    contentTemplate: 'blaze-step04'
   },
   {
     id: "4",
@@ -41,8 +37,7 @@ BLAZE_TUT = [
     seoTitle: 'Update and remove',
     route: "tutorials.blaze.update-and-remove",
     path: "/tutorials/blaze/update-and-remove",
-    contentTemplate: 'blaze-step05',
-    sha: BLAZE_COMMITS["5"].sha
+    contentTemplate: 'blaze-step05'
   },
   {
     id: "5",
@@ -66,8 +61,7 @@ BLAZE_TUT = [
     seoTitle: 'Temporary UI state',
     route: "tutorials.blaze.temporary-ui-state",
     path: "/tutorials/blaze/temporary-ui-state",
-    contentTemplate: 'blaze-step08',
-    sha: BLAZE_COMMITS["8"].sha
+    contentTemplate: 'blaze-step08'
   },
   {
     id: "8",
@@ -75,8 +69,7 @@ BLAZE_TUT = [
     seoTitle: 'Adding user accounts',
     route: "tutorials.blaze.adding-user-accounts",
     path: "/tutorials/blaze/adding-user-accounts",
-    contentTemplate: 'blaze-step09',
-    sha: BLAZE_COMMITS["9"].sha
+    contentTemplate: 'blaze-step09'
   },
   {
     id: "9",
@@ -84,8 +77,7 @@ BLAZE_TUT = [
     seoTitle: 'Security with methods',
     route: "tutorials.blaze.security-with-methods",
     path: "/tutorials/blaze/security-with-methods",
-    contentTemplate: 'blaze-step10',
-    sha: BLAZE_COMMITS["10"].sha
+    contentTemplate: 'blaze-step10'
   },
   {
     id: "10",
@@ -93,8 +85,7 @@ BLAZE_TUT = [
     seoTitle: 'Publish and subscribe',
     route: "tutorials.blaze.publish-and-subscribe",
     path: "/tutorials/blaze/publish-and-subscribe",
-    contentTemplate: 'blaze-step11',
-    sha: BLAZE_COMMITS["11"].sha
+    contentTemplate: 'blaze-step11'
   },
   {
     id: "11",

@@ -3,44 +3,9 @@
 
 To start working on our todo list app, let's replace the code of the default starter app with the code below. Then we'll talk about what it does.
 
-```html
-<!-- simple-todos.html -->
-<head>
-  <title>Todo List</title>
-</head>
+{{> CodeBox view="blaze" step="2.1"}}
 
-<body>
-  <div class="container">
-    <header>
-      <h1>Todo List</h1>
-    </header>
-
-    <ul>
-      {{dstache}}#each tasks}}
-        {{dstache}}> task}}
-      {{dstache}}/each}}
-    </ul>
-  </div>
-</body>
-
-<template name="task">
-  <li>{{dstache}}text}}</li>
-{{lt}}/template>
-```
-
-```js
-// simple-todos.js
-if (Meteor.isClient) {
-  // This code only runs on the client
-  Template.body.helpers({
-    tasks: [
-      { text: "This is task 1" },
-      { text: "This is task 2" },
-      { text: "This is task 3" }
-    ]
-  });
-}
-```
+{{> CodeBox view="blaze" step="2.2"}}
 
 In our browser, the app will now look much like this:
 

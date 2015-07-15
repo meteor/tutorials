@@ -14,19 +14,7 @@ When the app refreshes, the task list will be empty. Without the `autopublish` p
 
 Let's add them now.
 
-```js
-// At the bottom of simple-todos.js
-if (Meteor.isServer) {
-  Meteor.publish("tasks", function () {
-    return Tasks.find();
-  });
-}
-```
-
-```js
-// At the top of our client code
-Meteor.subscribe("tasks");
-```
+{{> CodeBox view="blaze" step="11.2"}}
 
 Once you have added this code, all of the tasks will reappear.
 
@@ -36,50 +24,37 @@ Calling `Meteor.publish` on the server registers a _publication_ named `"tasks"`
 
 First, let's add another property to tasks called "private" and a button for users to mark a task as private. This button should only show up for the owner of a task. It will display the current state of the item.
 
-```html
-<!-- add right below the code for the checkbox in the task template -->
-{{dstache}}#if isOwner}}
-  <button class="toggle-private">
-    {{dstache}}#if private}}
-      Private
-    {{dstache}}else}}
-      Public
-    {{dstache}}/if}}
-  </button>
-{{dstache}}/if}}
+{{> CodeBox view="blaze" step="11.3"}}
 
-<!-- modify the li tag to have the private class if the item is private -->
-<li class="{{dstache}}#if checked}}checked{{dstache}}/if}} {{dstache}}#if private}}private{{dstache}}/if}}">
-```
+Let's make sure our task has a special class if it is marked private:
+
+{{> CodeBox view="blaze" step="11.4"}}
 
 We need to modify our JavaScript code in three places:
 
-```js
-// Define a helper to check if the current user is the task owner
-Template.task.helpers({
-  isOwner: function () {
-    return this.owner === Meteor.userId();
-  }
-});
+{{> CodeBox view="blaze" step="11.5"}}
 
-// Add an event for the new button to Template.task.events
-"click .toggle-private": function () {
-  Meteor.call("setPrivate", this._id, ! this.private);
-}
+{{> CodeBox view="blaze" step="11.6"}}
 
-// Add a method to Meteor.methods called setPrivate
-setPrivate: function (taskId, setToPrivate) {
-  var task = Tasks.findOne(taskId);
+{{> CodeBox view="blaze" step="11.7"}}
 
-  // Make sure only the task owner can make a task private
-  if (task.owner !== Meteor.userId()) {
-    throw new Meteor.Error("not-authorized");
-  }
+### Selectively publishing tasks based on privacy status
 
-  Tasks.update(taskId, { $set: { private: setToPrivate } });
-}
-```
+Now that we have a way of setting which tasks are private, we should modify our
+publication function to only send the tasks that a user is authorized to see:
 
-{{> step11SelectivelyPublish}}
+{{> CodeBox view="blaze" step="11.8"}}
+
+To test that this functionality works, you can use your browser's private browsing mode to log in as a different user. Put the two windows side by side and mark a task private to confirm that the other user can't see it. Now make it public again and it will reappear!
+
+### Extra method security
+
+In order to finish up our private task feature, we need to add checks to our `deleteTask` and `setChecked` methods to make sure only the task owner can delete or check off a private task:
+
+{{> CodeBox view="blaze" step="11.9"}}
+
+> Notice that with this code anyone can delete any public task. With some small modifications to the code, you should be able to make it so that only the owner can delete their tasks.
+
+We're done with our private task feature! Now our app is secure from attackers trying to view or modify someone's private tasks.
 
 {{/template}}

@@ -83,7 +83,8 @@ Package.onUse(function (api) {
     'shared/code-box.html',
     'shared/code-box.js',
 
-    'generated/react.multi.patch'
+    'generated/react.multi.patch',
+    'generated/blaze.multi.patch'
   ], 'client');
 
   // Also, exports all of the templates from the steps/ directory
@@ -92,4 +93,7 @@ Package.onUse(function (api) {
   api.export('REACT_TUT');
   api.export('ANGULAR_TUT');
   api.export('BLAZE_TUT');
+
+  // For easier debugging
+  api.export('GitPatches');
 });

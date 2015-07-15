@@ -6,46 +6,19 @@ In this step, we'll add a client-side data filtering feature to our app, so that
 
 First, we need to add a checkbox to our HTML:
 
-```html
-<!-- add the checkbox to <header> right below the h1 -->
-<label class="hide-completed">
-  <input type="checkbox" checked="{{dstache}}hideCompleted}}" />
-  Hide Completed Tasks
-</label>
-```
+{{> CodeBox view="blaze" step="8.1"}}
 
 Then, we need an event handler to update a `Session` variable when the checkbox
 is checked or unchecked. `Session` is a convenient place to store temporary UI
 state, and can be used in helpers just like a collection.
 
-```js
-// Add to Template.body.events
-"change .hide-completed input": function (event) {
-  Session.set("hideCompleted", event.target.checked);
-}
-```
+{{> CodeBox view="blaze" step="8.2"}}
 
 Now, we need to update `Template.body.helpers`. The code below has a new if
 block to filter the tasks if the checkbox is checked, and a helper to make sure
 the checkbox represents the state of our Session variable.
 
-```js
-// Replace the existing Template.body.helpers
-Template.body.helpers({
-  tasks: function () {
-    if (Session.get("hideCompleted")) {
-      // If hide completed is checked, filter tasks
-      return Tasks.find({checked: {$ne: true}}, {sort: {createdAt: -1}});
-    } else {
-      // Otherwise, return all of the tasks
-      return Tasks.find({}, {sort: {createdAt: -1}});
-    }
-  },
-  hideCompleted: function () {
-    return Session.get("hideCompleted");
-  }
-});
-```
+{{> CodeBox view="blaze" step="8.3"}}
 
 Now if you check the box, the task list will only show tasks that haven't been completed.
 
@@ -57,16 +30,8 @@ Until now, we have stored all of our state in collections, and the view updated 
 
 Now that we have written a query that filters out completed tasks, we can use the same query to display a count of the tasks that haven't been checked off. To do this we need to add a helper and change one line of the HTML.
 
-```js
-// Add to Template.body.helpers
-incompleteCount: function () {
-  return Tasks.find({checked: {$ne: true}}).count();
-}
-```
+{{> CodeBox view="blaze" step="8.4"}}
 
-```html
-<!-- display the count at the end of the <h1> tag -->
-<h1>Todo List ({{dstache}}incompleteCount}})</h1>
-```
+{{> CodeBox view="blaze" step="8.5"}}
 
 {{/template}}

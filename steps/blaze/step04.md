@@ -6,40 +6,11 @@ In this step, we'll add an input field for users to add tasks to the list.
 
 First, let's add a form to our HTML:
 
-```html
-<header>
-  <h1>Todo List</h1>
-
-  <!-- add a form below the h1 -->
-  <form class="new-task">
-    <input type="text" name="text" placeholder="Type to add new tasks" />
-  </form>
-</header>
-```
+{{> CodeBox view="blaze" step="4.1"}}
 
 Here's the JavaScript code we need to add to listen to the `submit` event on the form:
 
-```js
-// Inside the if (Meteor.isClient) block, right after Template.body.helpers:
-Template.body.events({
-  "submit .new-task": function (event) {
-    // This function is called when the new task form is submitted
-
-    var text = event.target.text.value;
-
-    Tasks.insert({
-      text: text,
-      createdAt: new Date() // current time
-    });
-
-    // Clear form
-    event.target.text.value = "";
-
-    // Prevent default form submit
-    return false;
-  }
-});
-```
+{{> CodeBox view="blaze" step="4.2"}}
 
 Now your app has a new input field. To add a task, just type into the input field and hit enter. If you open a new browser window and open the app again, you'll see that the list is automatically synchronized between all clients.
 
@@ -65,14 +36,7 @@ Currently, our code displays all new tasks at the bottom of the list. That's not
 
 We can solve this by sorting the results using the `createdAt` field that is automatically added by our new code. Just add a sort option to the `find` call inside the `tasks` helper:
 
-```js
-Template.body.helpers({
-  tasks: function () {
-    // Show newest tasks first
-    return Tasks.find({}, {sort: {createdAt: -1}});
-  }
-});
-```
+{{> CodeBox view="blaze" step="4.3"}}
 
 In the next step, we'll add some very important todo list functions: checking off and deleting tasks.
 {{/template}}

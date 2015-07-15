@@ -6,33 +6,11 @@ Until now, we have only interacted with a collection by inserting documents. Now
 
 Let's add two elements to our `task` template, a checkbox and a delete button:
 
-```html
-<!-- replace the existing task template with this code -->
-<template name="task">
-  <li class="{{dstache}}#if checked}}checked{{dstache}}/if}}">
-    <button class="delete">&times;</button>
-
-    <input type="checkbox" checked="{{dstache}}checked}}" class="toggle-checked" />
-
-    <span class="text">{{dstache}}text}}</span>
-  </li>
-{{lt}}/template>
-```
+{{> CodeBox view="blaze" step="5.1"}}
 
 We have added UI elements, but they don't do anything yet. We should add some event handlers:
 
-```js
-// In the client code, below everything else
-Template.task.events({
-  "click .toggle-checked": function () {
-    // Set the checked property to the opposite of its current value
-    Tasks.update(this._id, {$set: {checked: ! this.checked}});
-  },
-  "click .delete": function () {
-    Tasks.remove(this._id);
-  }
-});
-```
+{{> CodeBox view="blaze" step="5.2"}}
 
 ### Getting data in event handlers
 
