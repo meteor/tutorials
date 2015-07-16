@@ -1,20 +1,20 @@
 Package.describe({
-  summary: "Tutorial content, included in meteor.com via package",
-  version: "0.0.1",
-  name: "tutorials"
+  summary: 'Tutorial content, included in meteor.com via package',
+  version: '0.0.1',
+  name: 'tutorials'
 });
 
 Package.registerBuildPlugin({
-  name: "Git patch compiler",
-  sources: ["git-patch-viewer/patch-plugin.jsx"],
+  name: 'build-plugin',
+  sources: ['build-plugin/patch-plugin.jsx'],
   use: [
-    "jsx@0.1.1",
-    "underscore@1.0.3"
+    'jsx@0.1.1',
+    'underscore@1.0.3'
   ]
 })
 
 Package.onUse(function (api) {
-  api.versionsFrom("1.1.0.2");
+  api.versionsFrom('1.1.0.2');
   api.use([
     'simple:markdown-templating@1.2.7',
     'templating',
@@ -24,12 +24,6 @@ Package.onUse(function (api) {
     'reactive-var',
     'less'
   ]);
-
-  api.addFiles([
-    "git-patch-viewer/patch-viewer.html",
-    "git-patch-viewer/patch-viewer.jsx",
-    "git-patch-viewer/patch-viewer.less"
-  ], "client");
 
   api.addFiles([
     'generated/blaze-commits.js',
@@ -80,8 +74,11 @@ Package.onUse(function (api) {
     'content/shared/step06.md',
     'content/shared/step07.md',
 
-    'shared/code-box.html',
-    'shared/code-box.js',
+    'components/code-box.html',
+    'components/code-box.js',
+    'components/git-patch-viewer/patch-viewer.html',
+    'components/git-patch-viewer/patch-viewer.jsx',
+    'components/git-patch-viewer/patch-viewer.less',
 
     'generated/react.multi.patch',
     'generated/blaze.multi.patch'
