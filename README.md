@@ -6,9 +6,9 @@ Feel free to submit a pull request to improve the content!
 
 ### Tutorial content
 
-1. [Blaze tutorial](https://www.meteor.com/tutorials/blaze/creating-an-app): [`/steps/blaze`](https://github.com/meteor/tutorials/tree/master/steps/blaze)
-2. [Angular tutorial](https://www.meteor.com/tutorials/angular/creating-an-app): [`/steps/angular`](https://github.com/meteor/tutorials/tree/master/steps/angular)
-3. React tutorial, work in progress (not live yet): [`/steps/react`](https://github.com/meteor/tutorials/tree/master/steps/react)
+1. [Blaze tutorial](https://www.meteor.com/tutorials/blaze/creating-an-app): [`/content/blaze`](https://github.com/meteor/tutorials/tree/master/content/blaze)
+2. [Angular tutorial](https://www.meteor.com/tutorials/angular/creating-an-app): [`/content/angular`](https://github.com/meteor/tutorials/tree/master/content/angular)
+3. React tutorial, work in progress (not live yet): [`/content/react`](https://github.com/meteor/tutorials/tree/master/content/react)
 
 ### Tutorial step-by-step repositories
 
@@ -26,7 +26,7 @@ If you are editing the tutorials, use this simple app to view them: https://gith
 
 ### Editing the prose
 
-Just edit the markdown files in `/steps/`.
+Just edit the markdown files in `/content/`.
 
 ### Editing code snippets
 
@@ -58,9 +58,17 @@ This repository is a Meteor package; it's currently not published, but you can c
 
 The different parts of the repository have quite different responsibilities, but they are somewhat tightly coupled so it doesn't make sense to split them into separate packages at this point.
 
-#### /git-patch-viewer/
+#### /build-plugin/
 
-This directory contains a Blaze component and build plugin for viewing git patches, tailored specifically to the needs of these tutorials. The build plugin reads files with `.patch` and `.multi.patch` file extensions, and puts data on a package-local object named `GitPatches`. You can access the data for a specific commit on `GitPatches[commitSha]`. The Blaze view component reads this data structure and displays a diff with context and a link to GitHub. Don't use the `GitPatch` component directly; use it by calling the more convenient `CodeBox` component from the `/shared` directory, as described below.
+The build plugin reads files with `.patch` and `.multi.patch` file extensions, and puts data on a package-local object named `GitPatches`. You can access the data for a specific commit on `GitPatches[commitSha]`. The Blaze view component in `/components/git-patch-viewer` reads this data structure and displays a diff with context and a link to GitHub.
+
+#### /components/
+
+This directory contains Blaze components for viewing git patches, tailored specifically to the needs of these tutorials. Don't use the `GitPatch` component directly; use it by calling the more convenient `CodeBox` component instead.
+
+#### /content/
+
+The actual tutorial prose content, in Markdown format.
 
 #### /generated/ (don't edit manually)
 
@@ -84,7 +92,3 @@ This contains a script that is used to update `/generated/` from the repositorie
 #### /shared/
 
 Tutorial-specific templates. Some of them are shared content for the different tutorials in markdown format, others are useful UI widgets. Includes the useful `CodeBox` template, which wraps the `GitPatch` template with more convenient inputs.
-
-#### /steps/
-
-The actual tutorial prose content, in Markdown format.
