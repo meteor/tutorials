@@ -81,7 +81,8 @@ Package.onUse(function (api) {
     'components/git-patch-viewer/patch-viewer.less',
 
     'generated/react.multi.patch',
-    'generated/blaze.multi.patch'
+    'generated/blaze.multi.patch',
+    'generated/angular.multi.patch'
   ], 'client');
 
   // Also, exports all of the templates from the content/ directory
