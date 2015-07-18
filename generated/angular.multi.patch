@@ -1,7 +1,7 @@
 From b18f1aaf683e5f5c5b20212b43a4fef97c1c7664 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Wed, 13 May 2015 14:45:15 -0700
-Subject: [PATCH 01/37] Step 1: Run `meteor create`
+Subject: [PATCH 01/38] Step 1: Run `meteor create`
 
 ---
  .meteor/.finished-upgraders |  8 ++++++++
@@ -207,7 +207,7 @@ index 0000000..4f8c65d
 From 3da58d0f1228342c24254b0268ae04156c5009e9 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 12:34:04 +0300
-Subject: [PATCH 02/37] Step 2.1: Add the Angular package
+Subject: [PATCH 02/38] Step 2.1: Add the Angular package
 
 ---
  .meteor/packages | 1 +
@@ -263,7 +263,7 @@ index 410e1d9..70b0764 100644
 From 579e10de48cd091522b880c6280fcfcc3ec81ed5 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 12:44:07 +0300
-Subject: [PATCH 03/37] Step 2.2: Link main file to Angular templates
+Subject: [PATCH 03/38] Step 2.2: Link main file to Angular templates
 
 ---
  simple-todos-angular.html | 14 ++++----------
@@ -299,7 +299,7 @@ index 30ca9b0..f1391a5 100644
 From 82fd8e01f18fa64faca04535956815e5dc3f4ea3 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 12:46:44 +0300
-Subject: [PATCH 04/37] Step 2.3: Init Angular app and controller
+Subject: [PATCH 04/38] Step 2.3: Init Angular app and controller
 
 ---
  simple-todos-angular.js | 29 +++++++++++------------------
@@ -351,7 +351,7 @@ index 4f8c65d..fa676f2 100644
 From 7ec04bb81bd70c6926b42f7ee6f9f9995fe45ece Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 12:48:44 +0300
-Subject: [PATCH 05/37] Step 2.4: First Angular template
+Subject: [PATCH 05/38] Step 2.4: First Angular template
 
 ---
  todos-list.ng.html | 9 +++++++++
@@ -380,7 +380,7 @@ index 0000000..3dcfae9
 From f7cce808089dc131114eedd453292b95731690ac Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 12:50:26 +0300
-Subject: [PATCH 06/37] Step 2.5: Add CSS
+Subject: [PATCH 06/38] Step 2.5: Add CSS
 
 ---
  simple-todos-angular.css | 126 +++++++++++++++++++++++++++++++++++++++++++++++
@@ -525,7 +525,7 @@ index b6b4052..0bca5d2 100644
 From 5589cc40e89bf8ae25a31e69ed86c9c7ebf0073a Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 12:56:31 +0300
-Subject: [PATCH 07/37] Step 3.1: Replace the static array with a Collection
+Subject: [PATCH 07/38] Step 3.1: Replace the static array with a Collection
 
 ---
  simple-todos-angular.js | 14 ++++++--------
@@ -565,7 +565,7 @@ index fa676f2..9a9b236 100644
 From ab09bcf16256968772baf78d792ee3802230a615 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 12:58:59 +0300
-Subject: [PATCH 08/37] Step 4.1: Add new task form to template
+Subject: [PATCH 08/38] Step 4.1: Add new task form to template
 
 ---
  todos-list.ng.html | 6 ++++++
@@ -595,7 +595,7 @@ index 3dcfae9..6b6e0e0 100644
 From 3ba891e95d2ebb77e99acb525b79506fc516a1cb Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:00:30 +0300
-Subject: [PATCH 09/37] Step 4.2: Create Add Task scope function
+Subject: [PATCH 09/38] Step 4.2: Create Add Task scope function
 
 ---
  simple-todos-angular.js | 7 +++++++
@@ -625,7 +625,7 @@ index 9a9b236..e9dc878 100644
 From 7d3a03a08b48b1a1f0ac492d7f6685206b459d36 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:01:36 +0300
-Subject: [PATCH 10/37] Step 4.3: Sort task list by date
+Subject: [PATCH 10/38] Step 4.3: Sort task list by date
 
 ---
  simple-todos-angular.js | 4 +++-
@@ -653,7 +653,7 @@ index e9dc878..36ab6d1 100644
 From ade01c58b021c1fc432b323bbeaa78ab9f72b941 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:04:21 +0300
-Subject: [PATCH 11/37] Step 5.1: Add done and delete buttons to task
+Subject: [PATCH 11/38] Step 5.1: Add done and delete buttons to task
 
 ---
  todos-list.ng.html | 8 +++++++-
@@ -684,7 +684,7 @@ index 6b6e0e0..bda3dba 100644
 From 8466c1cdf7f7afc7f2f93dce2fa4d514c59f7130 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:08:33 +0300
-Subject: [PATCH 12/37] Step 7.1: Remove ng-app
+Subject: [PATCH 12/38] Step 7.1: Remove ng-app
 
 ---
  simple-todos-angular.html | 3 +--
@@ -710,7 +710,7 @@ index f1391a5..e43eceb 100644
 From 85e80627bfb80b13c21367c5f77cdcfdf5fadbd0 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:11:07 +0300
-Subject: [PATCH 13/37] Step 7.2: Bootstrap Angular to mobile as well
+Subject: [PATCH 13/38] Step 7.2: Bootstrap Angular to mobile as well
 
 ---
  simple-todos-angular.js | 9 +++++++++
@@ -743,7 +743,7 @@ index 36ab6d1..b002918 100644
 From 9b12d06c6242558c1077ad60ab07aefcecd3814f Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:13:14 +0300
-Subject: [PATCH 14/37] Step 8.1: Add hideComplete checkbox to template
+Subject: [PATCH 14/38] Step 8.1: Add hideComplete checkbox to template
 
 ---
  todos-list.ng.html | 5 +++++
@@ -772,7 +772,7 @@ index bda3dba..1049e4a 100644
 From 919560a990de2a2a370aea6f9e28888f09bd1b6f Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:14:54 +0300
-Subject: [PATCH 15/37] Step 8.2: Watch hideCompleted and change the query
+Subject: [PATCH 15/38] Step 8.2: Watch hideCompleted and change the query
  variable
 
 ---
@@ -803,7 +803,7 @@ index b002918..e759172 100644
 From 5adc4b31da9476a898df3db649a4aa7418b0b7d7 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:17:07 +0300
-Subject: [PATCH 16/37] Step 8.3: Change the Collection to use query parameter
+Subject: [PATCH 16/38] Step 8.3: Change the Collection to use query parameter
 
 ---
  simple-todos-angular.js | 4 ++--
@@ -831,7 +831,7 @@ index e759172..071be1f 100644
 From ea6ca654274d1e5a22ec76a2a33c32c388c4ce75 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:17:59 +0300
-Subject: [PATCH 17/37] Step 8.4: Make query parameter reactive
+Subject: [PATCH 17/38] Step 8.4: Make query parameter reactive
 
 ---
  simple-todos-angular.js | 2 +-
@@ -857,7 +857,7 @@ index 071be1f..24c55fa 100644
 From f0fb1566f2dfdcd206ec6efe2e274090a1c4a5a8 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:19:38 +0300
-Subject: [PATCH 18/37] Step 8.5: Add incompleteCount to scope
+Subject: [PATCH 18/38] Step 8.5: Add incompleteCount to scope
 
 ---
  simple-todos-angular.js | 4 ++++
@@ -884,7 +884,7 @@ index 24c55fa..5934036 100644
 From 3d4d598cac0c28b9c527545b36b3d7376a8c104c Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:21:13 +0300
-Subject: [PATCH 19/37] Step 8.6: Add incompleteCount to header
+Subject: [PATCH 19/38] Step 8.6: Add incompleteCount to header
 
 ---
  todos-list.ng.html | 2 +-
@@ -909,7 +909,7 @@ index 1049e4a..de9a630 100644
 From 452eb1f509886d58662fee94da75dffaeab9abc5 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:22:29 +0300
-Subject: [PATCH 20/37] Step 9.1: Add accounts-ui and accounts-password
+Subject: [PATCH 20/38] Step 9.1: Add accounts-ui and accounts-password
  packages
 
 ---
@@ -985,7 +985,7 @@ index 70b0764..de04912 100644
 From 35a313074e5780255f2c3010163a2dec2411afac Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:24:29 +0300
-Subject: [PATCH 21/37] Step 9.2: Add Blaze loginButtons template to HTML
+Subject: [PATCH 21/38] Step 9.2: Add Blaze loginButtons template to HTML
 
 ---
  todos-list.ng.html | 2 ++
@@ -1011,7 +1011,7 @@ index de9a630..e4c0123 100644
 From 253abff3918109b97f642067ec222cf529b09c6c Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:27:12 +0300
-Subject: [PATCH 22/37] Step 9.3: Configure accounts UI to use usernames
+Subject: [PATCH 22/38] Step 9.3: Configure accounts UI to use usernames
  instead of email
 
 ---
@@ -1040,7 +1040,7 @@ index 5934036..0c2d6c1 100644
 From 8210ff2c37a8b9ccb6b9750aa9d0df94f4e59a8a Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:29:48 +0300
-Subject: [PATCH 23/37] Step 9.4: Add owner and username to created task
+Subject: [PATCH 23/38] Step 9.4: Add owner and username to created task
 
 ---
  simple-todos-angular.js | 8 +++++---
@@ -1073,7 +1073,7 @@ index 0c2d6c1..d0b3829 100644
 From 78d5f5619d9434035d6451ea4077dfcc8edb54ef Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:31:13 +0300
-Subject: [PATCH 24/37] Step 9.5: Hide new task form if user is not logged in
+Subject: [PATCH 24/38] Step 9.5: Hide new task form if user is not logged in
 
 ---
  todos-list.ng.html | 4 +++-
@@ -1101,7 +1101,7 @@ index e4c0123..aa02851 100644
 From 5b026977269006ac5ebfda7ceb25923fc4d69ab4 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:32:49 +0300
-Subject: [PATCH 25/37] Step 9.6: Add username to the displayed task
+Subject: [PATCH 25/38] Step 9.6: Add username to the displayed task
 
 ---
  todos-list.ng.html | 4 +++-
@@ -1129,7 +1129,7 @@ index aa02851..ddc4777 100644
 From a01d86230123f4a46623ddf18775a41ca857e147 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:34:54 +0300
-Subject: [PATCH 26/37] Step 10.1: Remove the insecure package
+Subject: [PATCH 26/38] Step 10.1: Remove the insecure package
 
 ---
  .meteor/packages | 1 -
@@ -1167,7 +1167,7 @@ index de04912..38fa8cb 100644
 From 3adde199e75d84eae82cf51c48f94f8b3ac607f6 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 15:02:50 +0300
-Subject: [PATCH 27/37] Step 10.2: Add Meteor Methods for add, delete and check
+Subject: [PATCH 27/38] Step 10.2: Add Meteor Methods for add, delete and check
  tasks
 
 ---
@@ -1211,7 +1211,7 @@ index d0b3829..4b12a5e 100644
 From e6e0a9eff07668f5189c9e51b4162eacb858a02d Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 15:05:25 +0300
-Subject: [PATCH 28/37] Step 10.3: Add scope functions to call the Meteor
+Subject: [PATCH 28/38] Step 10.3: Add scope functions to call the Meteor
  methods
 
 ---
@@ -1253,7 +1253,7 @@ index 4b12a5e..655fe79 100644
 From 33215ecc0a0da5b8aedac04d5ae57f84770b9906 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 15:08:04 +0300
-Subject: [PATCH 29/37] Step 10.4: Change template events to call methods
+Subject: [PATCH 29/38] Step 10.4: Change template events to call methods
 
 ---
  todos-list.ng.html | 5 +++--
@@ -1283,7 +1283,7 @@ index ddc4777..ab2270f 100644
 From d14c3f1c5d1e6aebc8daec8b406c9021bbb7afe8 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 15:09:23 +0300
-Subject: [PATCH 30/37] Step 11.1: Remove the autopublish package
+Subject: [PATCH 30/38] Step 11.1: Remove the autopublish package
 
 ---
  .meteor/packages | 1 -
@@ -1321,7 +1321,7 @@ index 38fa8cb..96bf8b7 100644
 From e9afaa4006a2ffcb0b580a6d09b4d1a081fe12dc Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 15:10:25 +0300
-Subject: [PATCH 31/37] Step 11.2: Add server publish function to tasks
+Subject: [PATCH 31/38] Step 11.2: Add server publish function to tasks
 
 ---
  simple-todos-angular.js | 6 ++++++
@@ -1348,7 +1348,7 @@ index 655fe79..439a148 100644
 From e35c7c06c99042e26219976379ff75eef93876a7 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 15:11:21 +0300
-Subject: [PATCH 32/37] Step 11.3: Subscribe to tasks publication
+Subject: [PATCH 32/38] Step 11.3: Subscribe to tasks publication
 
 ---
  simple-todos-angular.js | 2 ++
@@ -1374,7 +1374,7 @@ index 439a148..6464ff3 100644
 From 52d3d8eff291d72e9d320a5048d05a8ba9b26e01 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 15:53:12 +0300
-Subject: [PATCH 33/37] Step 11.4: Add setPrivate button to template
+Subject: [PATCH 33/38] Step 11.4: Add setPrivate button to template
 
 ---
  todos-list.ng.html | 6 ++++++
@@ -1404,7 +1404,7 @@ index ab2270f..61435a2 100644
 From 953c93f072e41324937a7183015579ed4899c90c Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 15:54:33 +0300
-Subject: [PATCH 34/37] Step 11.5: Add private CSS class to task
+Subject: [PATCH 34/38] Step 11.5: Add private CSS class to task
 
 ---
  todos-list.ng.html | 2 +-
@@ -1427,31 +1427,20 @@ index 61435a2..1799364 100644
 2.3.2 (Apple Git-55)
 
 
-From 92a93e3b861d94aa9bcc65dc510e803f6029dd65 Mon Sep 17 00:00:00 2001
+From 3ee9ad2c8830a636f97f44fb5ae6c3f2f1d9d562 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Sat, 18 Jul 2015 15:56:20 +0300
-Subject: [PATCH 35/37] Step 11.6: Add setPrivate method
+Date: Sat, 18 Jul 2015 17:06:51 +0300
+Subject: [PATCH 35/38] Step 11.6: Add setPrivate Meteor Method
 
 ---
- simple-todos-angular.js | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ simple-todos-angular.js | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
 diff --git a/simple-todos-angular.js b/simple-todos-angular.js
-index 6464ff3..bdc75a8 100644
+index 6464ff3..0bd3853 100644
 --- a/simple-todos-angular.js
 +++ b/simple-todos-angular.js
-@@ -39,6 +39,10 @@ if (Meteor.isClient) {
-         $meteor.call('setChecked', task._id, !task.checked);
-       };
- 
-+      $scope.setPrivate = function (task) {
-+        $meteor.call('setPrivate', task._id, ! task.private);
-+      };
-+
-       $scope.$watch('hideCompleted', function() {
-         if ($scope.hideCompleted)
-           $scope.query = {checked: {$ne: true}};
-@@ -72,6 +76,16 @@ Meteor.methods({
+@@ -72,6 +72,16 @@ Meteor.methods({
    },
    setChecked: function (taskId, setChecked) {
      Tasks.update(taskId, { $set: { checked: setChecked} });
@@ -1472,10 +1461,38 @@ index 6464ff3..bdc75a8 100644
 2.3.2 (Apple Git-55)
 
 
-From f215e80f518c6d0aea213d6e230dc6521a028e2f Mon Sep 17 00:00:00 2001
+From 144a2f38e2fcea6c62783b18727f62ea44f02f9a Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 17:08:29 +0300
+Subject: [PATCH 36/38] Step 11.7: Add setPrivate scope function
+
+---
+ simple-todos-angular.js | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/simple-todos-angular.js b/simple-todos-angular.js
+index 0bd3853..bdc75a8 100644
+--- a/simple-todos-angular.js
++++ b/simple-todos-angular.js
+@@ -39,6 +39,10 @@ if (Meteor.isClient) {
+         $meteor.call('setChecked', task._id, !task.checked);
+       };
+ 
++      $scope.setPrivate = function (task) {
++        $meteor.call('setPrivate', task._id, ! task.private);
++      };
++
+       $scope.$watch('hideCompleted', function() {
+         if ($scope.hideCompleted)
+           $scope.query = {checked: {$ne: true}};
+-- 
+2.3.2 (Apple Git-55)
+
+
+From b9db3806a93e08b1f2952ca6d83070c28d0612a2 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 15:59:53 +0300
-Subject: [PATCH 36/37] Step 11.7: Publish only public and owner's tasks
+Subject: [PATCH 37/38] Step 11.8: Publish only public and owner's tasks
 
 ---
  simple-todos-angular.js | 7 ++++++-
@@ -1502,10 +1519,10 @@ index bdc75a8..a6089ab 100644
 2.3.2 (Apple Git-55)
 
 
-From da7a9772ff9d58545765dc9eb370508f25a06956 Mon Sep 17 00:00:00 2001
+From e4abba4a80843bb4b626c2d8db4f7c1eeeb375ff Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 16:02:20 +0300
-Subject: [PATCH 37/37] Step 11.8: Add extra security to methods
+Subject: [PATCH 38/38] Step 11.9: Add extra security to methods
 
 ---
  simple-todos-angular.js | 12 ++++++++++++

@@ -12,21 +12,14 @@ meteor add accounts-ui accounts-password
 
 In the HTML, right under the checkbox, include the following code to add a login dropdown:
 
-```html
-<meteor-include src="loginButtons"></meteor-include>
-```
+{{> CodeBox view="angular" step="9.2"}}
 
 The powerful [meteor-include](http://angular-meteor.com/api/meteor-include) directive let's you add **any Blaze template** into your Angular templates.
 We are adding `loginButtons` which is the Blaze template for user authentication flow supplied with the accounts-ui package.
 
 Then, in your JavaScript, add the following code to configure the accounts UI to use usernames instead of email addresses:
 
-```js
-// At the bottom of the client code
-Accounts.ui.config({
-  passwordSignupFields: "USERNAME_ONLY"
-});
-```
+{{> CodeBox view="angular" step="9.3"}}
 
 Now users can create accounts and log into your app! This is very nice, but logging in and out isn't very useful yet. Let's add two functions:
 
@@ -40,35 +33,15 @@ To do this, we will add two new fields to the `tasks` collection:
 
 First, let's add some code to save these fields into the `addTask` function:
 
-```js
-$scope.addTask = function(newTask) {
-  $scope.tasks.push({
-    text: newTask,
-    createdAt: new Date(),             // current time
-    owner: Meteor.userId(),            // _id of logged in user
-    username: Meteor.user().username}  // username of logged in user
-  );
-};
-```
+{{> CodeBox view="angular" step="9.4"}}
 
 Then, in our HTML, add an `ng-show` directive to only show the form when there is a logged in user:
 
-```html
-<form class="new-task"
-      ng-submit="addTask(newTask); newTask='';"
-      ng-show="$root.currentUser">
-  <input ng-model="newTask" type="text"
-         name="text" placeholder="Type to add new tasks" />
-</form>
-```
+{{> CodeBox view="angular" step="9.5"}}
 
 Finally, add a statement to display the `username` field on each task right before the text:
 
-```html
-<span class="text">
-  <strong>{{dstache}}task.username}}</strong> - {{dstache}}task.text}}
-</span>
-```
+{{> CodeBox view="angular" step="9.6"}}
 
 Now, users can log in and we can track which user each task belongs to. Let's look at some of the concepts we just discovered in more detail.
 

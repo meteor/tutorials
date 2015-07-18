@@ -18,55 +18,15 @@ If you try to use the app after removing this package, you will notice that none
 
 First, we need to define some methods. We need one method for each database operation we want to perform on the client. Methods should be defined in code that is executed on the client and the server - we will discuss this a bit later in the section titled _Latency compensation_.
 
-```js
-// At the bottom of simple-todos.js, outside of the client-only block
-Meteor.methods({
-  addTask: function (text) {
-    // Make sure the user is logged in before inserting a task
-    if (! Meteor.userId()) {
-      throw new Meteor.Error("not-authorized");
-    }
-
-    Tasks.insert({
-      text: text,
-      createdAt: new Date(),
-      owner: Meteor.userId(),
-      username: Meteor.user().username
-    });
-  },
-  deleteTask: function (taskId) {
-    Tasks.remove(taskId);
-  },
-  setChecked: function (taskId, setChecked) {
-    Tasks.update(taskId, { $set: { checked: setChecked} });
-  }
-});
-```
+{{> CodeBox view="angular" step="10.2"}}
 
 Now that we have defined our methods, we need to update the places we were operating on the collection to use the methods instead:
 
-```js
-$scope.addTask = function(newTask) {
-  $meteor.call("addTask", newTask);
-};
-
-$scope.deleteTask = function(task) {
-  $meteor.call("deleteTask", task._id);
-};
-
-$scope.setChecked = function(task) {
-  $meteor.call("setChecked", task._id, !task.checked);
-};
-```
+{{> CodeBox view="angular" step="10.3"}}
 
 and the way we handle the changes in the template:
 
-```html
-<button class="delete" ng-click="deleteTask(task)">&times;</button>
-
-<input type="checkbox" ng-checked="task.checked"
-       ng-click="setChecked(task)" class="toggle-checked" />
-```
+{{> CodeBox view="angular" step="10.4"}}
 
 Now all of our inputs and buttons will start working again. What did we gain from all of this work?
 

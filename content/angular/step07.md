@@ -3,26 +3,15 @@
 
 Angular needs the main document to be ready so it can bootstrap, but different devices has different events for `ready`.
 
-To solve this, we need to change the way we bootstrap our Angular app.  Remove the current bootstrap by removing:
+To solve this, we need to change the way we bootstrap our Angular app.
+Remove the current bootstrap by removing `ng-app` from the BODY tag:
 
-    ng-app='simple-todos'
-
-from the BODY tag.
+{{> CodeBox view="angular" step="7.1"}}
 
 Then add the following code right after `Meteor.isClient`:
 
-```js
-angular.module("simple-todos",['angular-meteor']);
+{{> CodeBox view="angular" step="7.2"}}
 
-function onReady() {
-  angular.bootstrap(document, ['simple-todos']);
-}
-
-if (Meteor.isCordova)
-  angular.element(document).on("deviceready", onReady);
-else
-  angular.element(document).ready(onReady);
-```
 {{/template}}
 
 {{#template name="angular-step07"}}

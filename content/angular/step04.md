@@ -6,30 +6,11 @@ In this step, we'll add an input field for users to add tasks to the list.
 
 First, let's add a form to our HTML:
 
-```html
-<!-- todos-list.ng.html -->
-<header>
-  <h1>Todo List</h1>
-
-  <!-- add a form below the h1 -->
-  <form class="new-task" ng-submit="addTask(newTask); newTask='';">
-    <input ng-model="newTask" type="text"
-           name="text" placeholder="Type to add new tasks" />
-  </form>
-</header>
-```
+{{> CodeBox view="angular" step="4.1"}}
 
 Here's the JavaScript code we need to add to listen to the `submit` event on the form:
 
-```js
-// Inside the if (Meteor.isClient) block, right after the definition of $scope.tasks:
-$scope.addTask = function(newTask) {
-  $scope.tasks.push( {
-    text: newTask,
-    createdAt: new Date() }
-  );
-};
-```
+{{> CodeBox view="angular" step="4.2"}}
 
 Now your app has a new input field. To add a task, just type into the input field and hit enter. If you open a new browser window and open the app again, you'll see that the list is automatically synchronized between all clients.
 
@@ -55,11 +36,8 @@ Until now you probably used Angular sort filter to do so. you can still use that
 Replace the `Tasks` collection variable with a function inside our `$meteor.collection` service call.
 The function will return a the result of calling the `find` function with the `sort` parameter on our `Tasks` collection, like that:
 
-```js
-$scope.tasks = $meteor.collection(function() {
-  return Tasks.find({}, { sort: { createdAt: -1 } })
-});
-```
+{{> CodeBox view="angular" step="4.3"}}
+
 To better understand the difference between using the sort filter and the collection options, check out the advanced tutorial about [search, sort and pagination](http://angular-meteor.com/tutorial/step_12).
 
 In the next step, we'll add some very important todo list functions: checking off and deleting tasks.

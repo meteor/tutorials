@@ -8,13 +8,7 @@ We're going to learn how to use Mongo's filtering API.
 
 First, we need to add a checkbox to our HTML:
 
-```html
-<!-- add the checkbox to <body> right below the h1 -->
-<label class="hide-completed">
-  <input type="checkbox" ng-model="$parent.hideCompleted"/>
-  Hide Completed Tasks
-</label>
-```
+{{> CodeBox view="angular" step="8.1"}}
 
 This checkbox binds to the scope's `hideCompleted` variable.
 > We are using `$parent` because it creates a new child scope.
@@ -40,21 +34,11 @@ Tasks.find({ checked: {$ne: true} }, { sort: { createdAt: -1 } })
 So let's create a scope variable that will hold the wanted query and will change together with the checkbox.
 Inside our controller:
 
-```js
-$scope.$watch('hideCompleted', function() {
-  if ($scope.hideCompleted)
-    $scope.query = {checked: {$ne: true}};
-  else
-    $scope.query = {};
-});
-```
+{{> CodeBox view="angular" step="8.2"}}
 
 and let's change our `$scope.tasks` definition accordingly:
-```js
-$scope.tasks = $meteor.collection(function() {
-  return Tasks.find($scope.query, {sort: {createdAt: -1}})
-});
-```
+
+{{> CodeBox view="angular" step="8.3"}}
 
 **but we are missing one more thing** - The expression we are sending `$meteor.collection` is a Meteor expression and
 **Meteor has to know that the Angular `query` parameter has changed**.
@@ -66,11 +50,7 @@ scope variables into [Meteor reactive variables](http://docs.meteor.com/#/full/r
 
 So now our definition should look like that:
 
-```js
-$scope.tasks = $meteor.collection(function() {
-  return Tasks.find($scope.getReactively('query'), {sort: {createdAt: -1}})
-});
-```
+{{> CodeBox view="angular" step="8.4"}}
 
 Now if you check the box, the task list will only show tasks that haven't been completed.
 
@@ -81,16 +61,8 @@ Now if you check the box, the task list will only show tasks that haven't been c
 
 Now that we have written a query that filters out completed tasks, we can use the same query to display a count of the tasks that haven't been checked off. To do this we need to add a scope function and change one line of the HTML.
 
-```js
-// Add to scope
-$scope.incompleteCount = function () {
-  return Tasks.find({ checked: {$ne: true} }).count();
-};
-```
+{{> CodeBox view="angular" step="8.5"}}
 
-```html
-<!-- display the count at the end of the <h1> tag -->
-<h1>Todo List ( {{dstache}} incompleteCount() }} )</h1>
-```
+{{> CodeBox view="angular" step="8.6"}}
 
 {{/template}}

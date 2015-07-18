@@ -6,16 +6,7 @@ Until now, we have only interacted with a collection by inserting documents. Now
 
 Let's add two elements to our `task` template, a checkbox and a delete button:
 
-```html
-<!-- replace the existing task template with this code -->
-<li ng-class="{'checked': task.checked}">
-  <button class="delete" ng-click="tasks.remove(task)">&times;</button>
-
-  <input type="checkbox" ng-model="task.checked" class="toggle-checked" />
-
-  <span class="text">{{dstache}}task.text}}</span>
-</li>
-```
+{{> CodeBox view="angular" step="5.1"}}
 
 ### Update
 

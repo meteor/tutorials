@@ -9,54 +9,16 @@ command into your command line:
 
 To start working on our todos list app, let's replace the code of the default starter app with the code below. Then we'll talk about what it does.
 
-```html
-<!-- simple-todos-angular.html -->
-<head>
-  <title>Todo List</title>
-</head>
+{{> CodeBox view="angular" step="2.2"}}
 
-<body ng-app="simple-todos"
-      ng-include="'todos-list.ng.html'"
-      ng-controller="TodosListCtrl">
-</body>
-```
 
-```js
-// simple-todos-angular.js
-if (Meteor.isClient) {
-
-	// This code only runs on the client
-	angular.module("simple-todos",['angular-meteor']);
-
-	angular.module("simple-todos").controller("TodosListCtrl", ['$scope',
-	  function($scope){
-
-      $scope.tasks = [
-        { text: "This is task 1" },
-        { text: "This is task 2" },
-        { text: "This is task 3" }
-      ];
-
-	}]);
-}
-```
+{{> CodeBox view="angular" step="2.3"}}
 
 To write Angular templates, we need to name our files with a `.ng.html` suffix.
 
 Create a new file named `todos-list.ng.html` and place it on the root folder:
 
-```html
-<!-- todos-list.ng.html -->
-<div class="container">
-  <header>
-    <h1>Todo List</h1>
-  </header>
-
-  <ul ng-repeat="task in tasks">
-    <li>{{dstache}}task.text}}</li>
-  </ul>
-</div>
-```
+{{> CodeBox view="angular" step="2.4"}}
 
 In our browser, the app should look pretty much like this:
 

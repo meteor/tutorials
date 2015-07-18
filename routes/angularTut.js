@@ -5,8 +5,7 @@ ANGULAR_TUT = [
     seoTitle: 'Creating an app',
     route: "tutorials.angular.creating-an-app",
     path: "/tutorials/angular/creating-an-app",
-    contentTemplate: 'angular-step01',
-    sha: ANGULAR_COMMITS["1"].sha
+    contentTemplate: 'angular-step01'
   },
   {
     id: "1",
@@ -14,8 +13,7 @@ ANGULAR_TUT = [
     seoTitle: 'Templates',
     route: "tutorials.angular.templates",
     path: "/tutorials/angular/templates",
-    contentTemplate: 'angular-step02',
-    sha: ANGULAR_COMMITS["2"].sha
+    contentTemplate: 'angular-step02'
   },
   {
     id: "2",
@@ -23,8 +21,7 @@ ANGULAR_TUT = [
     seoTitle: 'Collections',
     route: "tutorials.angular.collections",
     path: "/tutorials/angular/collections",
-    contentTemplate: 'angular-step03',
-    sha: ANGULAR_COMMITS["3"].sha
+    contentTemplate: 'angular-step03'
   },
   {
     id: "3",
@@ -32,8 +29,7 @@ ANGULAR_TUT = [
     seoTitle: 'Forms and events',
     route: "tutorials.angular.forms-and-events",
     path: "/tutorials/angular/forms-and-events",
-    contentTemplate: 'angular-step04',
-    sha: ANGULAR_COMMITS["4"].sha
+    contentTemplate: 'angular-step04'
   },
   {
     id: "4",
@@ -41,8 +37,7 @@ ANGULAR_TUT = [
     seoTitle: 'Update and remove',
     route: "tutorials.angular.update-and-remove",
     path: "/tutorials/angular/update-and-remove",
-    contentTemplate: 'angular-step05',
-    sha: ANGULAR_COMMITS["5"].sha
+    contentTemplate: 'angular-step05'
   },
   {
     id: "5",
@@ -58,8 +53,7 @@ ANGULAR_TUT = [
     seoTitle: 'Running on mobile',
     route: "tutorials.angular.running-on-mobile",
     path: "/tutorials/angular/running-on-mobile",
-    contentTemplate: 'angular-step07',
-    sha: ANGULAR_COMMITS["7"].sha
+    contentTemplate: 'angular-step07'
   },
   {
     id: "7",
@@ -67,8 +61,7 @@ ANGULAR_TUT = [
     seoTitle: 'Filtering Collections',
     route: "tutorials.angular.filtering-collections",
     path: "/tutorials/angular/filtering-collections",
-    contentTemplate: 'angular-step08',
-    sha: ANGULAR_COMMITS["8"].sha
+    contentTemplate: 'angular-step08'
   },
   {
     id: "8",
@@ -76,8 +69,7 @@ ANGULAR_TUT = [
     seoTitle: 'Adding user accounts',
     route: "tutorials.angular.adding-user-accounts",
     path: "/tutorials/angular/adding-user-accounts",
-    contentTemplate: 'angular-step09',
-    sha: ANGULAR_COMMITS["9"].sha
+    contentTemplate: 'angular-step09'
   },
   {
     id: "9",
@@ -85,8 +77,7 @@ ANGULAR_TUT = [
     seoTitle: 'Security with methods',
     route: "tutorials.angular.security-with-methods",
     path: "/tutorials/angular/security-with-methods",
-    contentTemplate: 'angular-step10',
-    sha: ANGULAR_COMMITS["10"].sha
+    contentTemplate: 'angular-step10'
   },
   {
     id: "10",
@@ -94,8 +85,7 @@ ANGULAR_TUT = [
     seoTitle: 'Publish and subscribe',
     route: "tutorials.angular.publish-and-subscribe",
     path: "/tutorials/angular/publish-and-subscribe",
-    contentTemplate: 'angular-step11',
-    sha: ANGULAR_COMMITS["11"].sha
+    contentTemplate: 'angular-step11'
   },
   {
     id: "11",
