@@ -1,7 +1,7 @@
-From c72debff708d1f5ed2ce9e2ca824cee2aec38277 Mon Sep 17 00:00:00 2001
+From b18f1aaf683e5f5c5b20212b43a4fef97c1c7664 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Wed, 13 May 2015 14:45:15 -0700
-Subject: [PATCH 01/10] Step 1: Run `meteor create`
+Subject: [PATCH 01/37] Step 1: Run `meteor create`
 
 ---
  .meteor/.finished-upgraders |  8 ++++++++
@@ -201,24 +201,18 @@ index 0000000..4f8c65d
 +  });
 +}
 -- 
-2.2.1
+2.3.2 (Apple Git-55)
 
 
-From 2b4394e49f1345e5e106781831759454841cda73 Mon Sep 17 00:00:00 2001
+From 3da58d0f1228342c24254b0268ae04156c5009e9 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Wed, 13 May 2015 15:12:54 -0700
-Subject: [PATCH 02/10] Step 2: Add templates backed by a static array and all
- of the CSS
+Date: Sat, 18 Jul 2015 12:34:04 +0300
+Subject: [PATCH 02/37] Step 2.1: Add the Angular package
 
 ---
- .meteor/packages          |   1 +
- .meteor/versions          |   4 ++
- simple-todos-angular.css  | 125 ++++++++++++++++++++++++++++++++++++++++++++++
- simple-todos-angular.html |  12 +----
- simple-todos-angular.js   |  31 +++++-------
- todos-list.ng.html        |   9 ++++
- 6 files changed, 153 insertions(+), 29 deletions(-)
- create mode 100644 todos-list.ng.html
+ .meteor/packages | 1 +
+ .meteor/versions | 4 ++++
+ 2 files changed, 5 insertions(+)
 
 diff --git a/.meteor/packages b/.meteor/packages
 index 99704e0..fa5ef7a 100644
@@ -230,11 +224,11 @@ index 99704e0..fa5ef7a 100644
  insecure
 +urigo:angular
 diff --git a/.meteor/versions b/.meteor/versions
-index 410e1d9..4404870 100644
+index 410e1d9..70b0764 100644
 --- a/.meteor/versions
 +++ b/.meteor/versions
 @@ -1,3 +1,4 @@
-+angular:angular@1.4.0
++angular:angular@1.4.2
  autopublish@1.0.3
  autoupdate@1.2.1
  base64@1.0.3
@@ -242,7 +236,7 @@ index 410e1d9..4404870 100644
  boilerplate-generator@1.0.3
  callback-hook@1.0.3
  check@1.0.5
-+dburles:mongo-collection-instances@0.3.3
++dburles:mongo-collection-instances@0.3.4
  ddp@1.1.0
  deps@1.0.7
  ejson@1.0.6
@@ -250,7 +244,7 @@ index 410e1d9..4404870 100644
  insecure@1.0.3
  jquery@1.11.3_2
  json@1.0.3
-+lai:collection-extensions@0.1.3
++lai:collection-extensions@0.1.4
  launch-screen@1.0.2
  livedata@1.0.13
  logging@1.0.7
@@ -258,15 +252,145 @@ index 410e1d9..4404870 100644
  tracker@1.0.7
  ui@1.0.6
  underscore@1.0.3
-+urigo:angular@0.9.0
++urigo:angular@0.9.2
  url@1.0.4
  webapp@1.2.0
  webapp-hashing@1.0.3
+-- 
+2.3.2 (Apple Git-55)
+
+
+From 579e10de48cd091522b880c6280fcfcc3ec81ed5 Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 12:44:07 +0300
+Subject: [PATCH 03/37] Step 2.2: Link main file to Angular templates
+
+---
+ simple-todos-angular.html | 14 ++++----------
+ 1 file changed, 4 insertions(+), 10 deletions(-)
+
+diff --git a/simple-todos-angular.html b/simple-todos-angular.html
+index 30ca9b0..f1391a5 100644
+--- a/simple-todos-angular.html
++++ b/simple-todos-angular.html
+@@ -1,14 +1,8 @@
+ <head>
+-  <title>simple-todos-angular</title>
++  <title>Todo List</title>
+ </head>
+ 
+-<body>
+-  <h1>Welcome to Meteor!</h1>
+-
+-  {{> hello}}
++<body ng-app="simple-todos"
++      ng-include="'todos-list.ng.html'"
++      ng-controller="TodosListCtrl">
+ </body>
+-
+-<template name="hello">
+-  <button>Click Me</button>
+-  <p>You've pressed the button {{counter}} times.</p>
+-</template>
+-- 
+2.3.2 (Apple Git-55)
+
+
+From 82fd8e01f18fa64faca04535956815e5dc3f4ea3 Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 12:46:44 +0300
+Subject: [PATCH 04/37] Step 2.3: Init Angular app and controller
+
+---
+ simple-todos-angular.js | 29 +++++++++++------------------
+ 1 file changed, 11 insertions(+), 18 deletions(-)
+
+diff --git a/simple-todos-angular.js b/simple-todos-angular.js
+index 4f8c65d..fa676f2 100644
+--- a/simple-todos-angular.js
++++ b/simple-todos-angular.js
+@@ -1,23 +1,16 @@
+ if (Meteor.isClient) {
+-  // counter starts at 0
+-  Session.setDefault('counter', 0);
+ 
+-  Template.hello.helpers({
+-    counter: function () {
+-      return Session.get('counter');
+-    }
+-  });
++  // This code only runs on the client
++  angular.module('simple-todos',['angular-meteor']);
+ 
+-  Template.hello.events({
+-    'click button': function () {
+-      // increment the counter when button is clicked
+-      Session.set('counter', Session.get('counter') + 1);
+-    }
+-  });
+-}
++  angular.module('simple-todos').controller('TodosListCtrl', ['$scope',
++    function ($scope) {
++
++      $scope.tasks = [
++        { text: 'This is task 1' },
++        { text: 'This is task 2' },
++        { text: 'This is task 3' }
++      ];
+ 
+-if (Meteor.isServer) {
+-  Meteor.startup(function () {
+-    // code to run on server at startup
+-  });
++  }]);
+ }
+-- 
+2.3.2 (Apple Git-55)
+
+
+From 7ec04bb81bd70c6926b42f7ee6f9f9995fe45ece Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 12:48:44 +0300
+Subject: [PATCH 05/37] Step 2.4: First Angular template
+
+---
+ todos-list.ng.html | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+ create mode 100644 todos-list.ng.html
+
+diff --git a/todos-list.ng.html b/todos-list.ng.html
+new file mode 100644
+index 0000000..3dcfae9
+--- /dev/null
++++ b/todos-list.ng.html
+@@ -0,0 +1,9 @@
++<div class="container">
++  <header>
++    <h1>Todo List</h1>
++  </header>
++
++  <ul ng-repeat="task in tasks">
++    <li>{{task.text}}</li>
++  </ul>
++</div>
+-- 
+2.3.2 (Apple Git-55)
+
+
+From f7cce808089dc131114eedd453292b95731690ac Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 12:50:26 +0300
+Subject: [PATCH 06/37] Step 2.5: Add CSS
+
+---
+ simple-todos-angular.css | 126 +++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 126 insertions(+)
+
 diff --git a/simple-todos-angular.css b/simple-todos-angular.css
-index b6b4052..cec3ae6 100644
+index b6b4052..0bca5d2 100644
 --- a/simple-todos-angular.css
 +++ b/simple-todos-angular.css
-@@ -1 +1,126 @@
+@@ -1 +1,127 @@
  /* CSS declarations go here */
 +body {
 +  font-family: sans-serif;
@@ -393,286 +517,273 @@ index b6b4052..cec3ae6 100644
 +    padding-bottom: 5px;
 +  }
 +}
-\ No newline at end of file
-diff --git a/simple-todos-angular.html b/simple-todos-angular.html
-index 30ca9b0..b6625d9 100644
---- a/simple-todos-angular.html
-+++ b/simple-todos-angular.html
-@@ -1,14 +1,6 @@
- <head>
--  <title>simple-todos-angular</title>
-+  <title>Todo List</title>
- </head>
- 
--<body>
--  <h1>Welcome to Meteor!</h1>
--
--  {{> hello}}
-+<body ng-app='simple-todos' ng-include="'todos-list.ng.html'"  ng-controller="TodosListCtrl">
- </body>
--
--<template name="hello">
--  <button>Click Me</button>
--  <p>You've pressed the button {{counter}} times.</p>
--</template>
-diff --git a/simple-todos-angular.js b/simple-todos-angular.js
-index 4f8c65d..53ebac1 100644
---- a/simple-todos-angular.js
-+++ b/simple-todos-angular.js
-@@ -1,23 +1,16 @@
- if (Meteor.isClient) {
--  // counter starts at 0
--  Session.setDefault('counter', 0);
- 
--  Template.hello.helpers({
--    counter: function () {
--      return Session.get('counter');
--    }
--  });
-+  // This code only runs on the client
-+  angular.module("simple-todos",['angular-meteor']);
- 
--  Template.hello.events({
--    'click button': function () {
--      // increment the counter when button is clicked
--      Session.set('counter', Session.get('counter') + 1);
--    }
--  });
--}
-+  angular.module("simple-todos").controller("TodosListCtrl", ['$scope',
-+    function($scope){
- 
--if (Meteor.isServer) {
--  Meteor.startup(function () {
--    // code to run on server at startup
--  });
--}
-+      $scope.tasks = [
-+        { text: "This is task 1" },
-+        { text: "This is task 2" },
-+        { text: "This is task 3" }
-+      ];
 +
-+    }]);
-+}
-\ No newline at end of file
-diff --git a/todos-list.ng.html b/todos-list.ng.html
-new file mode 100644
-index 0000000..176ffec
---- /dev/null
-+++ b/todos-list.ng.html
-@@ -0,0 +1,9 @@
-+<div class="container">
-+	<header>
-+		<h1>Todo List</h1>
-+	</header>
-+
-+	<ul ng-repeat="task in tasks">
-+		<li>{{task.text}}</li>
-+	</ul>
-+</div>
-\ No newline at end of file
 -- 
-2.2.1
+2.3.2 (Apple Git-55)
 
 
-From 3ccf55d5ffa976ebf849c4e16a2505e92c07fff0 Mon Sep 17 00:00:00 2001
+From 5589cc40e89bf8ae25a31e69ed86c9c7ebf0073a Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Wed, 13 May 2015 15:27:45 -0700
-Subject: [PATCH 03/10] Step 3: Replace the static array with a Collection
+Date: Sat, 18 Jul 2015 12:56:31 +0300
+Subject: [PATCH 07/37] Step 3.1: Replace the static array with a Collection
 
 ---
- simple-todos-angular.js | 12 +++++-------
- 1 file changed, 5 insertions(+), 7 deletions(-)
+ simple-todos-angular.js | 14 ++++++--------
+ 1 file changed, 6 insertions(+), 8 deletions(-)
 
 diff --git a/simple-todos-angular.js b/simple-todos-angular.js
-index 53ebac1..d9f076b 100644
+index fa676f2..9a9b236 100644
 --- a/simple-todos-angular.js
 +++ b/simple-todos-angular.js
 @@ -1,16 +1,14 @@
-+Tasks = new Mongo.Collection("tasks");
++Tasks = new Mongo.Collection('tasks');
 +
  if (Meteor.isClient) {
  
    // This code only runs on the client
-   angular.module("simple-todos",['angular-meteor']);
+   angular.module('simple-todos',['angular-meteor']);
  
--  angular.module("simple-todos").controller("TodosListCtrl", ['$scope',
--    function($scope){
-+  angular.module("simple-todos").controller("TodosListCtrl", ['$scope', '$meteor',
-+    function($scope, $meteor){
+-  angular.module('simple-todos').controller('TodosListCtrl', ['$scope',
+-    function ($scope) {
++  angular.module('simple-todos').controller('TodosListCtrl', ['$scope', '$meteor',
++    function ($scope, $meteor) {
  
 -      $scope.tasks = [
--        { text: "This is task 1" },
--        { text: "This is task 2" },
--        { text: "This is task 3" }
+-        { text: 'This is task 1' },
+-        { text: 'This is task 2' },
+-        { text: 'This is task 3' }
 -      ];
 +      $scope.tasks = $meteor.collection(Tasks);
  
-     }]);
+-  }]);
++    }]);
  }
-\ No newline at end of file
 -- 
-2.2.1
+2.3.2 (Apple Git-55)
 
 
-From 7037614aa24edbf7f2f5f1b8b44b8d813d604695 Mon Sep 17 00:00:00 2001
+From ab09bcf16256968772baf78d792ee3802230a615 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Wed, 13 May 2015 16:03:07 -0700
-Subject: [PATCH 04/10] Step 4: A form to add tasks, sort to make newest tasks
- at the top
+Date: Sat, 18 Jul 2015 12:58:59 +0300
+Subject: [PATCH 08/37] Step 4.1: Add new task form to template
 
 ---
- simple-todos-angular.js | 11 ++++++++++-
- todos-list.ng.html      |  4 ++++
- 2 files changed, 14 insertions(+), 1 deletion(-)
+ todos-list.ng.html | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/simple-todos-angular.js b/simple-todos-angular.js
-index d9f076b..7e2d724 100644
---- a/simple-todos-angular.js
-+++ b/simple-todos-angular.js
-@@ -8,7 +8,16 @@ if (Meteor.isClient) {
-   angular.module("simple-todos").controller("TodosListCtrl", ['$scope', '$meteor',
-     function($scope, $meteor){
- 
--      $scope.tasks = $meteor.collection(Tasks);
-+      $scope.tasks = $meteor.collection(function(){
-+        return Tasks.find({}, {sort: {createdAt: -1}})
-+      });
-+
-+      $scope.addTask = function(newTask){
-+        $scope.tasks.push({
-+            text: newTask,
-+            createdAt: new Date()}
-+        );
-+      };
- 
-     }]);
- }
-\ No newline at end of file
 diff --git a/todos-list.ng.html b/todos-list.ng.html
-index 176ffec..cf49025 100644
+index 3dcfae9..6b6e0e0 100644
 --- a/todos-list.ng.html
 +++ b/todos-list.ng.html
-@@ -1,6 +1,10 @@
+@@ -1,6 +1,12 @@
  <div class="container">
- 	<header>
- 		<h1>Todo List</h1>
+   <header>
+     <h1>Todo List</h1>
 +
-+		<form class="new-task" ng-submit="addTask(newTask); newTask='';">
-+			<input ng-model="newTask" type="text" name="text" placeholder="Type to add new tasks" />
-+		</form>
- 	</header>
++    <!-- add a form below the h1 -->
++    <form class="new-task" ng-submit="addTask(newTask); newTask='';">
++      <input ng-model="newTask" type="text"
++             name="text" placeholder="Type to add new tasks" />
++    </form>
+   </header>
  
- 	<ul ng-repeat="task in tasks">
+   <ul ng-repeat="task in tasks">
 -- 
-2.2.1
+2.3.2 (Apple Git-55)
 
 
-From a7ca2a6d3ff099d1253604619395b4ed6a46e691 Mon Sep 17 00:00:00 2001
+From 3ba891e95d2ebb77e99acb525b79506fc516a1cb Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Wed, 13 May 2015 16:27:56 -0700
-Subject: [PATCH 05/10] Step 5: Make it possible to check off and delete tasks
+Date: Sat, 18 Jul 2015 13:00:30 +0300
+Subject: [PATCH 09/37] Step 4.2: Create Add Task scope function
+
+---
+ simple-todos-angular.js | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/simple-todos-angular.js b/simple-todos-angular.js
+index 9a9b236..e9dc878 100644
+--- a/simple-todos-angular.js
++++ b/simple-todos-angular.js
+@@ -10,5 +10,12 @@ if (Meteor.isClient) {
+ 
+       $scope.tasks = $meteor.collection(Tasks);
+ 
++      $scope.addTask = function (newTask) {
++        $scope.tasks.push( {
++          text: newTask,
++          createdAt: new Date() }
++        );
++      };
++
+     }]);
+ }
+-- 
+2.3.2 (Apple Git-55)
+
+
+From 7d3a03a08b48b1a1f0ac492d7f6685206b459d36 Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 13:01:36 +0300
+Subject: [PATCH 10/37] Step 4.3: Sort task list by date
+
+---
+ simple-todos-angular.js | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/simple-todos-angular.js b/simple-todos-angular.js
+index e9dc878..36ab6d1 100644
+--- a/simple-todos-angular.js
++++ b/simple-todos-angular.js
+@@ -8,7 +8,9 @@ if (Meteor.isClient) {
+   angular.module('simple-todos').controller('TodosListCtrl', ['$scope', '$meteor',
+     function ($scope, $meteor) {
+ 
+-      $scope.tasks = $meteor.collection(Tasks);
++      $scope.tasks = $meteor.collection( function() {
++        return Tasks.find({}, { sort: { createdAt: -1 } })
++      });
+ 
+       $scope.addTask = function (newTask) {
+         $scope.tasks.push( {
+-- 
+2.3.2 (Apple Git-55)
+
+
+From ade01c58b021c1fc432b323bbeaa78ab9f72b941 Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 13:04:21 +0300
+Subject: [PATCH 11/37] Step 5.1: Add done and delete buttons to task
 
 ---
  todos-list.ng.html | 8 +++++++-
  1 file changed, 7 insertions(+), 1 deletion(-)
 
 diff --git a/todos-list.ng.html b/todos-list.ng.html
-index cf49025..7186cdb 100644
+index 6b6e0e0..bda3dba 100644
 --- a/todos-list.ng.html
 +++ b/todos-list.ng.html
-@@ -8,6 +8,12 @@
- 	</header>
+@@ -10,6 +10,12 @@
+   </header>
  
- 	<ul ng-repeat="task in tasks">
--		<li>{{task.text}}</li>
-+		<li ng-class="{'checked': task.checked}">
-+			<button class="delete" ng-click="tasks.remove(task)">&times;</button>
+   <ul ng-repeat="task in tasks">
+-    <li>{{task.text}}</li>
++    <li ng-class="{'checked': task.checked}">
++      <button class="delete" ng-click="tasks.remove(task)">&times;</button>
 +
-+			<input type="checkbox" ng-model="task.checked" class="toggle-checked" />
++      <input type="checkbox" ng-model="task.checked" class="toggle-checked" />
 +
-+			<span class="text">{{task.text}}</span>
-+		</li>
- 	</ul>
++      <span class="text">{{task.text}}</span>
++    </li>
+   </ul>
  </div>
-\ No newline at end of file
 -- 
-2.2.1
+2.3.2 (Apple Git-55)
 
 
-From bbcc31b5304fe95df6fe94cfe05229d75e1ce29f Mon Sep 17 00:00:00 2001
+From 8466c1cdf7f7afc7f2f93dce2fa4d514c59f7130 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Wed, 13 May 2015 16:43:16 -0700
-Subject: [PATCH 06/10] Step 7: Make Angular initialize on mobile devices
+Date: Sat, 18 Jul 2015 13:08:33 +0300
+Subject: [PATCH 12/37] Step 7.1: Remove ng-app
 
 ---
- simple-todos-angular.html | 2 +-
- simple-todos-angular.js   | 9 +++++++++
- 2 files changed, 10 insertions(+), 1 deletion(-)
+ simple-todos-angular.html | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
 diff --git a/simple-todos-angular.html b/simple-todos-angular.html
-index b6625d9..13799ce 100644
+index f1391a5..e43eceb 100644
 --- a/simple-todos-angular.html
 +++ b/simple-todos-angular.html
-@@ -2,5 +2,5 @@
+@@ -2,7 +2,6 @@
    <title>Todo List</title>
  </head>
  
--<body ng-app='simple-todos' ng-include="'todos-list.ng.html'"  ng-controller="TodosListCtrl">
-+<body ng-include="'todos-list.ng.html'"  ng-controller="TodosListCtrl">
+-<body ng-app="simple-todos"
+-      ng-include="'todos-list.ng.html'"
++<body ng-include="'todos-list.ng.html'"
+       ng-controller="TodosListCtrl">
  </body>
+-- 
+2.3.2 (Apple Git-55)
+
+
+From 85e80627bfb80b13c21367c5f77cdcfdf5fadbd0 Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 13:11:07 +0300
+Subject: [PATCH 13/37] Step 7.2: Bootstrap Angular to mobile as well
+
+---
+ simple-todos-angular.js | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
 diff --git a/simple-todos-angular.js b/simple-todos-angular.js
-index 7e2d724..9fe3be0 100644
+index 36ab6d1..b002918 100644
 --- a/simple-todos-angular.js
 +++ b/simple-todos-angular.js
 @@ -5,6 +5,15 @@ if (Meteor.isClient) {
    // This code only runs on the client
-   angular.module("simple-todos",['angular-meteor']);
+   angular.module('simple-todos',['angular-meteor']);
  
 +  function onReady() {
 +    angular.bootstrap(document, ['simple-todos']);
 +  }
 +
 +  if (Meteor.isCordova)
-+    angular.element(document).on("deviceready", onReady);
++    angular.element(document).on('deviceready', onReady);
 +  else
 +    angular.element(document).ready(onReady);
 +
-   angular.module("simple-todos").controller("TodosListCtrl", ['$scope', '$meteor',
-     function($scope, $meteor){
+   angular.module('simple-todos').controller('TodosListCtrl', ['$scope', '$meteor',
+     function ($scope, $meteor) {
  
 -- 
-2.2.1
+2.3.2 (Apple Git-55)
 
 
-From d6229448a5e63137ddaa67ee9e7431466d4e796c Mon Sep 17 00:00:00 2001
+From 9b12d06c6242558c1077ad60ab07aefcecd3814f Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Wed, 13 May 2015 17:18:24 -0700
-Subject: [PATCH 07/10] Step 8: Add an option to hide completed tasks, and show
- incomplete task count
+Date: Sat, 18 Jul 2015 13:13:14 +0300
+Subject: [PATCH 14/37] Step 8.1: Add hideComplete checkbox to template
 
 ---
- simple-todos-angular.js | 15 +++++++++++++--
- todos-list.ng.html      |  7 ++++++-
- 2 files changed, 19 insertions(+), 3 deletions(-)
+ todos-list.ng.html | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/todos-list.ng.html b/todos-list.ng.html
+index bda3dba..1049e4a 100644
+--- a/todos-list.ng.html
++++ b/todos-list.ng.html
+@@ -2,6 +2,11 @@
+   <header>
+     <h1>Todo List</h1>
+ 
++    <label class="hide-completed">
++      <input type="checkbox" ng-model="$parent.hideCompleted"/>
++      Hide Completed Tasks
++    </label>
++
+     <!-- add a form below the h1 -->
+     <form class="new-task" ng-submit="addTask(newTask); newTask='';">
+       <input ng-model="newTask" type="text"
+-- 
+2.3.2 (Apple Git-55)
+
+
+From 919560a990de2a2a370aea6f9e28888f09bd1b6f Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 13:14:54 +0300
+Subject: [PATCH 15/37] Step 8.2: Watch hideCompleted and change the query
+ variable
+
+---
+ simple-todos-angular.js | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
 diff --git a/simple-todos-angular.js b/simple-todos-angular.js
-index 9fe3be0..68a40f5 100644
+index b002918..e759172 100644
 --- a/simple-todos-angular.js
 +++ b/simple-todos-angular.js
-@@ -17,8 +17,8 @@ if (Meteor.isClient) {
-   angular.module("simple-todos").controller("TodosListCtrl", ['$scope', '$meteor',
-     function($scope, $meteor){
- 
--      $scope.tasks = $meteor.collection(function(){
--        return Tasks.find({}, {sort: {createdAt: -1}})
-+      $scope.tasks = $meteor.collection(function() {
-+        return Tasks.find($scope.getReactively('query'), {sort: {createdAt: -1}})
-       });
- 
-       $scope.addTask = function(newTask){
-@@ -28,5 +28,16 @@ if (Meteor.isClient) {
+@@ -28,5 +28,12 @@ if (Meteor.isClient) {
          );
        };
  
@@ -683,46 +794,128 @@ index 9fe3be0..68a40f5 100644
 +          $scope.query = {};
 +      });
 +
+     }]);
+ }
+-- 
+2.3.2 (Apple Git-55)
+
+
+From 5adc4b31da9476a898df3db649a4aa7418b0b7d7 Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 13:17:07 +0300
+Subject: [PATCH 16/37] Step 8.3: Change the Collection to use query parameter
+
+---
+ simple-todos-angular.js | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/simple-todos-angular.js b/simple-todos-angular.js
+index e759172..071be1f 100644
+--- a/simple-todos-angular.js
++++ b/simple-todos-angular.js
+@@ -17,8 +17,8 @@ if (Meteor.isClient) {
+   angular.module('simple-todos').controller('TodosListCtrl', ['$scope', '$meteor',
+     function ($scope, $meteor) {
+ 
+-      $scope.tasks = $meteor.collection( function() {
+-        return Tasks.find({}, { sort: { createdAt: -1 } })
++      $scope.tasks = $meteor.collection(function() {
++        return Tasks.find($scope.query, {sort: {createdAt: -1}})
+       });
+ 
+       $scope.addTask = function (newTask) {
+-- 
+2.3.2 (Apple Git-55)
+
+
+From ea6ca654274d1e5a22ec76a2a33c32c388c4ce75 Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 13:17:59 +0300
+Subject: [PATCH 17/37] Step 8.4: Make query parameter reactive
+
+---
+ simple-todos-angular.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/simple-todos-angular.js b/simple-todos-angular.js
+index 071be1f..24c55fa 100644
+--- a/simple-todos-angular.js
++++ b/simple-todos-angular.js
+@@ -18,7 +18,7 @@ if (Meteor.isClient) {
+     function ($scope, $meteor) {
+ 
+       $scope.tasks = $meteor.collection(function() {
+-        return Tasks.find($scope.query, {sort: {createdAt: -1}})
++        return Tasks.find($scope.getReactively('query'), {sort: {createdAt: -1}})
+       });
+ 
+       $scope.addTask = function (newTask) {
+-- 
+2.3.2 (Apple Git-55)
+
+
+From f0fb1566f2dfdcd206ec6efe2e274090a1c4a5a8 Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 13:19:38 +0300
+Subject: [PATCH 18/37] Step 8.5: Add incompleteCount to scope
+
+---
+ simple-todos-angular.js | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/simple-todos-angular.js b/simple-todos-angular.js
+index 24c55fa..5934036 100644
+--- a/simple-todos-angular.js
++++ b/simple-todos-angular.js
+@@ -35,5 +35,9 @@ if (Meteor.isClient) {
+           $scope.query = {};
+       });
+ 
 +      $scope.incompleteCount = function () {
-+        return Tasks.find({checked: {$ne: true}}).count();
++        return Tasks.find({ checked: {$ne: true} }).count();
 +      };
 +
      }]);
  }
-\ No newline at end of file
-diff --git a/todos-list.ng.html b/todos-list.ng.html
-index 7186cdb..2af2f0e 100644
---- a/todos-list.ng.html
-+++ b/todos-list.ng.html
-@@ -1,6 +1,11 @@
- <div class="container">
- 	<header>
--		<h1>Todo List</h1>
-+		<h1>Todo List ({{incompleteCount()}})</h1>
-+
-+		<label class="hide-completed">
-+			<input type="checkbox" ng-model="$parent.hideCompleted"/>
-+			Hide Completed Tasks
-+		</label>
- 
- 		<form class="new-task" ng-submit="addTask(newTask); newTask='';">
- 			<input ng-model="newTask" type="text" name="text" placeholder="Type to add new tasks" />
 -- 
-2.2.1
+2.3.2 (Apple Git-55)
 
 
-From 947d9a7761f5800f8189287752080157c4e125f3 Mon Sep 17 00:00:00 2001
+From 3d4d598cac0c28b9c527545b36b3d7376a8c104c Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Wed, 13 May 2015 18:17:11 -0700
-Subject: [PATCH 08/10] Step 9: Add users and login; display which user created
- a task
+Date: Sat, 18 Jul 2015 13:21:13 +0300
+Subject: [PATCH 19/37] Step 8.6: Add incompleteCount to header
 
 ---
- .meteor/packages        |  2 ++
- .meteor/versions        | 11 +++++++++++
- simple-todos-angular.js |  8 +++++++-
- todos-list.ng.html      |  6 ++++--
- 4 files changed, 24 insertions(+), 3 deletions(-)
+ todos-list.ng.html | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/todos-list.ng.html b/todos-list.ng.html
+index 1049e4a..de9a630 100644
+--- a/todos-list.ng.html
++++ b/todos-list.ng.html
+@@ -1,6 +1,6 @@
+ <div class="container">
+   <header>
+-    <h1>Todo List</h1>
++    <h1>Todo List ( {{ incompleteCount() }} )</h1>
+ 
+     <label class="hide-completed">
+       <input type="checkbox" ng-model="$parent.hideCompleted"/>
+-- 
+2.3.2 (Apple Git-55)
+
+
+From 452eb1f509886d58662fee94da75dffaeab9abc5 Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 13:22:29 +0300
+Subject: [PATCH 20/37] Step 9.1: Add accounts-ui and accounts-password
+ packages
+
+---
+ .meteor/packages |  2 ++
+ .meteor/versions | 11 +++++++++++
+ 2 files changed, 13 insertions(+)
 
 diff --git a/.meteor/packages b/.meteor/packages
 index fa5ef7a..703dc2c 100644
@@ -735,7 +928,7 @@ index fa5ef7a..703dc2c 100644
 +accounts-ui
 +accounts-password
 diff --git a/.meteor/versions b/.meteor/versions
-index 4404870..85ccb98 100644
+index 70b0764..de04912 100644
 --- a/.meteor/versions
 +++ b/.meteor/versions
 @@ -1,3 +1,7 @@
@@ -743,10 +936,10 @@ index 4404870..85ccb98 100644
 +accounts-password@1.1.1
 +accounts-ui@1.1.5
 +accounts-ui-unstyled@1.1.7
- angular:angular@1.4.0
+ angular:angular@1.4.2
  autopublish@1.0.3
  autoupdate@1.2.1
-@@ -12,6 +16,7 @@ dburles:mongo-collection-instances@0.3.3
+@@ -12,6 +16,7 @@ dburles:mongo-collection-instances@0.3.4
  ddp@1.1.0
  deps@1.0.7
  ejson@1.0.6
@@ -756,7 +949,7 @@ index 4404870..85ccb98 100644
  html-tools@1.0.4
 @@ -23,7 +28,9 @@ jquery@1.11.3_2
  json@1.0.3
- lai:collection-extensions@0.1.3
+ lai:collection-extensions@0.1.4
  launch-screen@1.0.2
 +less@1.0.14
  livedata@1.0.13
@@ -785,72 +978,163 @@ index 4404870..85ccb98 100644
  templating@1.1.1
  tracker@1.0.7
  ui@1.0.6
+-- 
+2.3.2 (Apple Git-55)
+
+
+From 35a313074e5780255f2c3010163a2dec2411afac Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 13:24:29 +0300
+Subject: [PATCH 21/37] Step 9.2: Add Blaze loginButtons template to HTML
+
+---
+ todos-list.ng.html | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/todos-list.ng.html b/todos-list.ng.html
+index de9a630..e4c0123 100644
+--- a/todos-list.ng.html
++++ b/todos-list.ng.html
+@@ -7,6 +7,8 @@
+       Hide Completed Tasks
+     </label>
+ 
++    <meteor-include src="loginButtons"></meteor-include>
++
+     <!-- add a form below the h1 -->
+     <form class="new-task" ng-submit="addTask(newTask); newTask='';">
+       <input ng-model="newTask" type="text"
+-- 
+2.3.2 (Apple Git-55)
+
+
+From 253abff3918109b97f642067ec222cf529b09c6c Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 13:27:12 +0300
+Subject: [PATCH 22/37] Step 9.3: Configure accounts UI to use usernames
+ instead of email
+
+---
+ simple-todos-angular.js | 4 ++++
+ 1 file changed, 4 insertions(+)
+
 diff --git a/simple-todos-angular.js b/simple-todos-angular.js
-index 68a40f5..6edc64e 100644
+index 5934036..0c2d6c1 100644
 --- a/simple-todos-angular.js
 +++ b/simple-todos-angular.js
-@@ -24,7 +24,9 @@ if (Meteor.isClient) {
-       $scope.addTask = function(newTask){
-         $scope.tasks.push({
-             text: newTask,
--            createdAt: new Date()}
-+            createdAt: new Date(),
-+            owner: Meteor.userId(),
-+            username: Meteor.user().username}
-         );
-       };
+@@ -2,6 +2,10 @@ Tasks = new Mongo.Collection('tasks');
  
-@@ -40,4 +42,8 @@ if (Meteor.isClient) {
-       };
+ if (Meteor.isClient) {
  
-     }]);
-+
 +  Accounts.ui.config({
 +    passwordSignupFields: "USERNAME_ONLY"
 +  });
- }
-\ No newline at end of file
-diff --git a/todos-list.ng.html b/todos-list.ng.html
-index 2af2f0e..ceb5b07 100644
---- a/todos-list.ng.html
-+++ b/todos-list.ng.html
-@@ -7,7 +7,9 @@
- 			Hide Completed Tasks
- 		</label>
- 
--		<form class="new-task" ng-submit="addTask(newTask); newTask='';">
-+		<meteor-include src="loginButtons"></meteor-include>
 +
-+		<form class="new-task" ng-submit="addTask(newTask); newTask='';" ng-show="$root.currentUser">
- 			<input ng-model="newTask" type="text" name="text" placeholder="Type to add new tasks" />
- 		</form>
- 	</header>
-@@ -18,7 +20,7 @@
+   // This code only runs on the client
+   angular.module('simple-todos',['angular-meteor']);
  
- 			<input type="checkbox" ng-model="task.checked" class="toggle-checked" />
- 
--			<span class="text">{{task.text}}</span>
-+			<span class="text"><strong>{{task.username}}</strong> - {{task.text}}</span>
- 		</li>
- 	</ul>
- </div>
-\ No newline at end of file
 -- 
-2.2.1
+2.3.2 (Apple Git-55)
 
 
-From 05d534ee034fea7ea0471033882acd32a4508fa4 Mon Sep 17 00:00:00 2001
+From 8210ff2c37a8b9ccb6b9750aa9d0df94f4e59a8a Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Thu, 14 May 2015 01:03:28 -0700
-Subject: [PATCH 09/10] Step 10: Move database logic into Meteor.methods,
- remove insecure package
+Date: Sat, 18 Jul 2015 13:29:48 +0300
+Subject: [PATCH 23/37] Step 9.4: Add owner and username to created task
 
 ---
- .meteor/packages        |  1 -
- .meteor/versions        |  1 -
- simple-todos-angular.js | 39 ++++++++++++++++++++++++++++++++-------
- todos-list.ng.html      |  4 ++--
- 4 files changed, 34 insertions(+), 11 deletions(-)
+ simple-todos-angular.js | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/simple-todos-angular.js b/simple-todos-angular.js
+index 0c2d6c1..d0b3829 100644
+--- a/simple-todos-angular.js
++++ b/simple-todos-angular.js
+@@ -25,10 +25,12 @@ if (Meteor.isClient) {
+         return Tasks.find($scope.getReactively('query'), {sort: {createdAt: -1}})
+       });
+ 
+-      $scope.addTask = function (newTask) {
++      $scope.addTask = function(newTask) {
+         $scope.tasks.push( {
+-          text: newTask,
+-          createdAt: new Date() }
++            text: newTask,
++            createdAt: new Date(),             // current time
++            owner: Meteor.userId(),            // _id of logged in user
++            username: Meteor.user().username }  // username of logged in user
+         );
+       };
+ 
+-- 
+2.3.2 (Apple Git-55)
+
+
+From 78d5f5619d9434035d6451ea4077dfcc8edb54ef Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 13:31:13 +0300
+Subject: [PATCH 24/37] Step 9.5: Hide new task form if user is not logged in
+
+---
+ todos-list.ng.html | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/todos-list.ng.html b/todos-list.ng.html
+index e4c0123..aa02851 100644
+--- a/todos-list.ng.html
++++ b/todos-list.ng.html
+@@ -10,7 +10,9 @@
+     <meteor-include src="loginButtons"></meteor-include>
+ 
+     <!-- add a form below the h1 -->
+-    <form class="new-task" ng-submit="addTask(newTask); newTask='';">
++    <form class="new-task"
++          ng-submit="addTask(newTask); newTask='';"
++          ng-show="$root.currentUser">
+       <input ng-model="newTask" type="text"
+              name="text" placeholder="Type to add new tasks" />
+     </form>
+-- 
+2.3.2 (Apple Git-55)
+
+
+From 5b026977269006ac5ebfda7ceb25923fc4d69ab4 Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 13:32:49 +0300
+Subject: [PATCH 25/37] Step 9.6: Add username to the displayed task
+
+---
+ todos-list.ng.html | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/todos-list.ng.html b/todos-list.ng.html
+index aa02851..ddc4777 100644
+--- a/todos-list.ng.html
++++ b/todos-list.ng.html
+@@ -24,7 +24,9 @@
+ 
+       <input type="checkbox" ng-model="task.checked" class="toggle-checked" />
+ 
+-      <span class="text">{{task.text}}</span>
++      <span class="text">
++        <strong>{{task.username}}</strong> - {{task.text}}
++      </span>
+     </li>
+   </ul>
+ </div>
+-- 
+2.3.2 (Apple Git-55)
+
+
+From a01d86230123f4a46623ddf18775a41ca857e147 Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 13:34:54 +0300
+Subject: [PATCH 26/37] Step 10.1: Remove the insecure package
+
+---
+ .meteor/packages | 1 -
+ .meteor/versions | 1 -
+ 2 files changed, 2 deletions(-)
 
 diff --git a/.meteor/packages b/.meteor/packages
 index 703dc2c..8798f9d 100644
@@ -865,7 +1149,7 @@ index 703dc2c..8798f9d 100644
  accounts-ui
  accounts-password
 diff --git a/.meteor/versions b/.meteor/versions
-index 85ccb98..9acf6b2 100644
+index de04912..38fa8cb 100644
 --- a/.meteor/versions
 +++ b/.meteor/versions
 @@ -23,7 +23,6 @@ html-tools@1.0.4
@@ -875,46 +1159,35 @@ index 85ccb98..9acf6b2 100644
 -insecure@1.0.3
  jquery@1.11.3_2
  json@1.0.3
- lai:collection-extensions@0.1.3
+ lai:collection-extensions@0.1.4
+-- 
+2.3.2 (Apple Git-55)
+
+
+From 3adde199e75d84eae82cf51c48f94f8b3ac607f6 Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 15:02:50 +0300
+Subject: [PATCH 27/37] Step 10.2: Add Meteor Methods for add, delete and check
+ tasks
+
+---
+ simple-todos-angular.js | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+
 diff --git a/simple-todos-angular.js b/simple-todos-angular.js
-index 6edc64e..0912cb1 100644
+index d0b3829..4b12a5e 100644
 --- a/simple-todos-angular.js
 +++ b/simple-todos-angular.js
-@@ -22,12 +22,15 @@ if (Meteor.isClient) {
-       });
+@@ -47,3 +47,25 @@ if (Meteor.isClient) {
  
-       $scope.addTask = function(newTask){
--        $scope.tasks.push({
--            text: newTask,
--            createdAt: new Date(),
--            owner: Meteor.userId(),
--            username: Meteor.user().username}
--        );
-+        $meteor.call("addTask", newTask);
-+      };
-+
-+      $scope.deleteTask = function(task){
-+        $meteor.call("deleteTask", task._id);
-+      };
-+
-+      $scope.setChecked = function(task){
-+        $meteor.call("setChecked", task._id, !task.checked);
-       };
- 
-       $scope.$watch('hideCompleted', function() {
-@@ -46,4 +49,26 @@ if (Meteor.isClient) {
-   Accounts.ui.config({
-     passwordSignupFields: "USERNAME_ONLY"
-   });
--}
-\ No newline at end of file
-+}
+     }]);
+ }
 +
 +Meteor.methods({
 +  addTask: function (text) {
 +    // Make sure the user is logged in before inserting a task
 +    if (! Meteor.userId()) {
-+      throw new Meteor.Error("not-authorized");
++      throw new Meteor.Error('not-authorized');
 +    }
 +
 +    Tasks.insert({
@@ -931,38 +1204,91 @@ index 6edc64e..0912cb1 100644
 +    Tasks.update(taskId, { $set: { checked: setChecked} });
 +  }
 +});
-diff --git a/todos-list.ng.html b/todos-list.ng.html
-index ceb5b07..958ab39 100644
---- a/todos-list.ng.html
-+++ b/todos-list.ng.html
-@@ -16,9 +16,9 @@
- 
- 	<ul ng-repeat="task in tasks">
- 		<li ng-class="{'checked': task.checked}">
--			<button class="delete" ng-click="tasks.remove(task)">&times;</button>
-+			<button class="delete" ng-click="deleteTask(task)">&times;</button>
- 
--			<input type="checkbox" ng-model="task.checked" class="toggle-checked" />
-+			<input type="checkbox" ng-checked="task.checked" ng-click="setChecked(task)" class="toggle-checked" />
- 
- 			<span class="text"><strong>{{task.username}}</strong> - {{task.text}}</span>
- 		</li>
 -- 
-2.2.1
+2.3.2 (Apple Git-55)
 
 
-From 0ca238c099dbf17aa66873f813e8fed43b9b694d Mon Sep 17 00:00:00 2001
+From e6e0a9eff07668f5189c9e51b4162eacb858a02d Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Thu, 14 May 2015 01:29:29 -0700
-Subject: [PATCH 10/10] Step 11: Add a private task feature, remove the
- autopublish package
+Date: Sat, 18 Jul 2015 15:05:25 +0300
+Subject: [PATCH 28/37] Step 10.3: Add scope functions to call the Meteor
+ methods
 
 ---
- .meteor/packages        |  1 -
- .meteor/versions        |  1 -
- simple-todos-angular.js | 37 +++++++++++++++++++++++++++++++++++++
- todos-list.ng.html      |  6 +++++-
- 4 files changed, 42 insertions(+), 3 deletions(-)
+ simple-todos-angular.js | 17 ++++++++++-------
+ 1 file changed, 10 insertions(+), 7 deletions(-)
+
+diff --git a/simple-todos-angular.js b/simple-todos-angular.js
+index 4b12a5e..655fe79 100644
+--- a/simple-todos-angular.js
++++ b/simple-todos-angular.js
+@@ -25,13 +25,16 @@ if (Meteor.isClient) {
+         return Tasks.find($scope.getReactively('query'), {sort: {createdAt: -1}})
+       });
+ 
+-      $scope.addTask = function(newTask) {
+-        $scope.tasks.push( {
+-            text: newTask,
+-            createdAt: new Date(),             // current time
+-            owner: Meteor.userId(),            // _id of logged in user
+-            username: Meteor.user().username }  // username of logged in user
+-        );
++      $scope.addTask = function (newTask) {
++        $meteor.call('addTask', newTask);
++      };
++
++      $scope.deleteTask = function (task) {
++        $meteor.call('deleteTask', task._id);
++      };
++
++      $scope.setChecked = function (task) {
++        $meteor.call('setChecked', task._id, !task.checked);
+       };
+ 
+       $scope.$watch('hideCompleted', function() {
+-- 
+2.3.2 (Apple Git-55)
+
+
+From 33215ecc0a0da5b8aedac04d5ae57f84770b9906 Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 15:08:04 +0300
+Subject: [PATCH 29/37] Step 10.4: Change template events to call methods
+
+---
+ todos-list.ng.html | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/todos-list.ng.html b/todos-list.ng.html
+index ddc4777..ab2270f 100644
+--- a/todos-list.ng.html
++++ b/todos-list.ng.html
+@@ -20,9 +20,10 @@
+ 
+   <ul ng-repeat="task in tasks">
+     <li ng-class="{'checked': task.checked}">
+-      <button class="delete" ng-click="tasks.remove(task)">&times;</button>
++      <button class="delete" ng-click="deleteTask(task)">&times;</button>
+ 
+-      <input type="checkbox" ng-model="task.checked" class="toggle-checked" />
++      <input type="checkbox" ng-checked="task.checked"
++             ng-click="setChecked(task)" class="toggle-checked" />
+ 
+       <span class="text">
+         <strong>{{task.username}}</strong> - {{task.text}}
+-- 
+2.3.2 (Apple Git-55)
+
+
+From d14c3f1c5d1e6aebc8daec8b406c9021bbb7afe8 Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 15:09:23 +0300
+Subject: [PATCH 30/37] Step 11.1: Remove the autopublish package
+
+---
+ .meteor/packages | 1 -
+ .meteor/versions | 1 -
+ 2 files changed, 2 deletions(-)
 
 diff --git a/.meteor/packages b/.meteor/packages
 index 8798f9d..2d0433a 100644
@@ -977,58 +1303,157 @@ index 8798f9d..2d0433a 100644
  accounts-ui
  accounts-password
 diff --git a/.meteor/versions b/.meteor/versions
-index 9acf6b2..e2b08b8 100644
+index 38fa8cb..96bf8b7 100644
 --- a/.meteor/versions
 +++ b/.meteor/versions
 @@ -3,7 +3,6 @@ accounts-password@1.1.1
  accounts-ui@1.1.5
  accounts-ui-unstyled@1.1.7
- angular:angular@1.4.0
+ angular:angular@1.4.2
 -autopublish@1.0.3
  autoupdate@1.2.1
  base64@1.0.3
  binary-heap@1.0.3
+-- 
+2.3.2 (Apple Git-55)
+
+
+From e9afaa4006a2ffcb0b580a6d09b4d1a081fe12dc Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 15:10:25 +0300
+Subject: [PATCH 31/37] Step 11.2: Add server publish function to tasks
+
+---
+ simple-todos-angular.js | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
 diff --git a/simple-todos-angular.js b/simple-todos-angular.js
-index 0912cb1..3937a29 100644
+index 655fe79..439a148 100644
 --- a/simple-todos-angular.js
 +++ b/simple-todos-angular.js
-@@ -17,6 +17,8 @@ if (Meteor.isClient) {
-   angular.module("simple-todos").controller("TodosListCtrl", ['$scope', '$meteor',
-     function($scope, $meteor){
+@@ -72,3 +72,9 @@ Meteor.methods({
+     Tasks.update(taskId, { $set: { checked: setChecked} });
+   }
+ });
++
++if (Meteor.isServer) {
++  Meteor.publish('tasks', function () {
++    return Tasks.find();
++  });
++}
+-- 
+2.3.2 (Apple Git-55)
+
+
+From e35c7c06c99042e26219976379ff75eef93876a7 Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 15:11:21 +0300
+Subject: [PATCH 32/37] Step 11.3: Subscribe to tasks publication
+
+---
+ simple-todos-angular.js | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/simple-todos-angular.js b/simple-todos-angular.js
+index 439a148..6464ff3 100644
+--- a/simple-todos-angular.js
++++ b/simple-todos-angular.js
+@@ -21,6 +21,8 @@ if (Meteor.isClient) {
+   angular.module('simple-todos').controller('TodosListCtrl', ['$scope', '$meteor',
+     function ($scope, $meteor) {
  
-+      $scope.$meteorSubscribe("tasks");
-+      
++      $scope.$meteorSubscribe('tasks');
++
        $scope.tasks = $meteor.collection(function() {
          return Tasks.find($scope.getReactively('query'), {sort: {createdAt: -1}})
        });
-@@ -33,6 +35,10 @@ if (Meteor.isClient) {
-         $meteor.call("setChecked", task._id, !task.checked);
+-- 
+2.3.2 (Apple Git-55)
+
+
+From 52d3d8eff291d72e9d320a5048d05a8ba9b26e01 Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 15:53:12 +0300
+Subject: [PATCH 33/37] Step 11.4: Add setPrivate button to template
+
+---
+ todos-list.ng.html | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/todos-list.ng.html b/todos-list.ng.html
+index ab2270f..61435a2 100644
+--- a/todos-list.ng.html
++++ b/todos-list.ng.html
+@@ -25,6 +25,12 @@
+       <input type="checkbox" ng-checked="task.checked"
+              ng-click="setChecked(task)" class="toggle-checked" />
+ 
++      <button class="toggle-private"
++              ng-if="task.owner === $root.currentUser._id"
++              ng-click="setPrivate(task)">
++        {{task.private == true ? "Private" : "Public"}}
++      </button>
++
+       <span class="text">
+         <strong>{{task.username}}</strong> - {{task.text}}
+       </span>
+-- 
+2.3.2 (Apple Git-55)
+
+
+From 953c93f072e41324937a7183015579ed4899c90c Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 15:54:33 +0300
+Subject: [PATCH 34/37] Step 11.5: Add private CSS class to task
+
+---
+ todos-list.ng.html | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/todos-list.ng.html b/todos-list.ng.html
+index 61435a2..1799364 100644
+--- a/todos-list.ng.html
++++ b/todos-list.ng.html
+@@ -19,7 +19,7 @@
+   </header>
+ 
+   <ul ng-repeat="task in tasks">
+-    <li ng-class="{'checked': task.checked}">
++    <li ng-class="{'checked': task.checked, 'private': task.private}">
+       <button class="delete" ng-click="deleteTask(task)">&times;</button>
+ 
+       <input type="checkbox" ng-checked="task.checked"
+-- 
+2.3.2 (Apple Git-55)
+
+
+From 92a93e3b861d94aa9bcc65dc510e803f6029dd65 Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 15:56:20 +0300
+Subject: [PATCH 35/37] Step 11.6: Add setPrivate method
+
+---
+ simple-todos-angular.js | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+diff --git a/simple-todos-angular.js b/simple-todos-angular.js
+index 6464ff3..bdc75a8 100644
+--- a/simple-todos-angular.js
++++ b/simple-todos-angular.js
+@@ -39,6 +39,10 @@ if (Meteor.isClient) {
+         $meteor.call('setChecked', task._id, !task.checked);
        };
  
-+      $scope.setPrivate = function(task){
-+        $meteor.call("setPrivate", task._id, ! task.private);
++      $scope.setPrivate = function (task) {
++        $meteor.call('setPrivate', task._id, ! task.private);
 +      };
 +
        $scope.$watch('hideCompleted', function() {
          if ($scope.hideCompleted)
            $scope.query = {checked: {$ne: true}};
-@@ -66,9 +72,40 @@ Meteor.methods({
-     });
-   },
-   deleteTask: function (taskId) {
-+    var task = Tasks.findOne(taskId);
-+    if (task.private && task.owner !== Meteor.userId()) {
-+      // If the task is private, make sure only the owner can delete it
-+      throw new Meteor.Error("not-authorized");
-+    }
-     Tasks.remove(taskId);
+@@ -72,6 +76,16 @@ Meteor.methods({
    },
    setChecked: function (taskId, setChecked) {
-+    var task = Tasks.findOne(taskId);
-+    if (task.private && task.owner !== Meteor.userId()) {
-+      // If the task is private, make sure only the owner can check it off
-+      throw new Meteor.Error("not-authorized");
-+    }
      Tasks.update(taskId, { $set: { checked: setChecked} });
 +  },
 +  setPrivate: function (taskId, setToPrivate) {
@@ -1036,45 +1461,82 @@ index 0912cb1..3937a29 100644
 +
 +    // Make sure only the task owner can make a task private
 +    if (task.owner !== Meteor.userId()) {
-+      throw new Meteor.Error("not-authorized");
++      throw new Meteor.Error('not-authorized');
 +    }
 +
 +    Tasks.update(taskId, { $set: { private: setToPrivate } });
    }
  });
-+
-+if (Meteor.isServer) {
-+  Meteor.publish("tasks", function () {
+ 
+-- 
+2.3.2 (Apple Git-55)
+
+
+From f215e80f518c6d0aea213d6e230dc6521a028e2f Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 15:59:53 +0300
+Subject: [PATCH 36/37] Step 11.7: Publish only public and owner's tasks
+
+---
+ simple-todos-angular.js | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/simple-todos-angular.js b/simple-todos-angular.js
+index bdc75a8..a6089ab 100644
+--- a/simple-todos-angular.js
++++ b/simple-todos-angular.js
+@@ -91,6 +91,11 @@ Meteor.methods({
+ 
+ if (Meteor.isServer) {
+   Meteor.publish('tasks', function () {
+-    return Tasks.find();
 +    return Tasks.find({
 +      $or: [
 +        { private: {$ne: true} },
 +        { owner: this.userId }
 +      ]
 +    });
-+  });
-+}
-\ No newline at end of file
-diff --git a/todos-list.ng.html b/todos-list.ng.html
-index 958ab39..62299df 100644
---- a/todos-list.ng.html
-+++ b/todos-list.ng.html
-@@ -15,11 +15,15 @@
- 	</header>
- 
- 	<ul ng-repeat="task in tasks">
--		<li ng-class="{'checked': task.checked}">
-+		<li ng-class="{'checked': task.checked, 'private': task.private}">
- 			<button class="delete" ng-click="deleteTask(task)">&times;</button>
- 
- 			<input type="checkbox" ng-checked="task.checked" ng-click="setChecked(task)" class="toggle-checked" />
- 
-+			<button class="toggle-private" ng-if="task.owner === $root.currentUser._id" ng-click="setPrivate(task)">
-+				{{task.private == true ? "Private" : "Public"}}
-+			</button>
-+
- 			<span class="text"><strong>{{task.username}}</strong> - {{task.text}}</span>
- 		</li>
- 	</ul>
+   });
+ }
 -- 
-2.2.1
+2.3.2 (Apple Git-55)
+
+
+From da7a9772ff9d58545765dc9eb370508f25a06956 Mon Sep 17 00:00:00 2001
+From: Uri Goldshtein <uri.goldshtein@gmail.com>
+Date: Sat, 18 Jul 2015 16:02:20 +0300
+Subject: [PATCH 37/37] Step 11.8: Add extra security to methods
+
+---
+ simple-todos-angular.js | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/simple-todos-angular.js b/simple-todos-angular.js
+index a6089ab..1d371fb 100644
+--- a/simple-todos-angular.js
++++ b/simple-todos-angular.js
+@@ -72,9 +72,21 @@ Meteor.methods({
+     });
+   },
+   deleteTask: function (taskId) {
++    var task = Tasks.findOne(taskId);
++    if (task.private && task.owner !== Meteor.userId()) {
++      // If the task is private, make sure only the owner can delete it
++      throw new Meteor.Error('not-authorized');
++    }
++
+     Tasks.remove(taskId);
+   },
+   setChecked: function (taskId, setChecked) {
++    var task = Tasks.findOne(taskId);
++    if (task.private && task.owner !== Meteor.userId()) {
++      // If the task is private, make sure only the owner can check it off
++      throw new Meteor.Error('not-authorized');
++    }
++
+     Tasks.update(taskId, { $set: { checked: setChecked} });
+   },
+   setPrivate: function (taskId, setToPrivate) {
+-- 
+2.3.2 (Apple Git-55)
 
