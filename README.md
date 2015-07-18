@@ -36,6 +36,8 @@ The code snippets are generated from the step-by-step git repositories which are
 Step 3.1: Add some feature
 ```
 
+You might also want to make sure that all of your files end with a newline so that you don't get an annoying "No newline at end of file" diff.
+
 After using `git rebase -i --root` to massage the repository into the desired state, run the script to update the generated files:
 
 ```sh
