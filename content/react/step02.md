@@ -68,7 +68,13 @@ If you haven't tried next-generation JavaScript features yet, some of the syntax
 2. Shorthand for methods: `render() { ... }`
 3. `const` and `let` instead of `var`
 
-Read more about these features here: XXX
+Read more about these features here: 
+
+* [Luke Hoban's "ES6 features"](http://git.io/es6features)
+
+* [Kyle Simpson's "You don't know JS: ES6 and beyond"](https://github.com/getify/You-Dont-Know-JS/tree/master/es6%20%26%20beyond)
+
+* [Nikolas C. Zakas "Understanding ECMAScript 6"](https://github.com/nzakas/understandinges6)
 
 {{> addingCSS}}
 
