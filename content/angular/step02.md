@@ -1,8 +1,8 @@
 {{#template name="angular-step02"}}
 # Defining views with templates
 
-To turn our Meteor app into Angular compatible, we need to add the [angular-meteor package](http://angular-meteor.com/) by typing the following
-command into your command line:
+To use Angular in our app, we need to add the [angular-meteor package](http://angular-meteor.com/) by typing the following
+command into the command line:
 
     meteor add urigo:angular
 
@@ -14,7 +14,7 @@ To start working on our todos list app, let's replace the code of the default st
 
 {{> CodeBox view="angular" step="2.3"}}
 
-To write Angular templates, we need to name our files with a `.ng.html` suffix.
+To write Angular templates, we need to name our files with the `.ng.html` extension.
 
 Create a new file named `todos-list.ng.html` and place it on the root folder:
 

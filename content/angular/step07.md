@@ -1,10 +1,10 @@
 {{#template name="angularSpecialPart07"}}
-### Bootstrapping Angular for mobile
+### Setting up Angular for mobile
 
-Angular needs the main document to be ready so it can bootstrap, but different devices has different events for `ready`.
+Angular needs the main document to be ready so it can bootstrap, but different devices have different events for `ready`.
 
 To solve this, we need to change the way we bootstrap our Angular app.
-Remove the current bootstrap by removing `ng-app` from the BODY tag:
+Remove the current bootstrap by removing `ng-app` from the `<body>` tag:
 
 {{> CodeBox view="angular" step="7.1"}}
 
