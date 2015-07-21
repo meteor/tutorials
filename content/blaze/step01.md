@@ -1,6 +1,8 @@
 {{#template name="blaze-step01"}}
 # Creating your first app
 
+> This tutorial uses [Blaze](/blaze), the default frontend rendering library that ships with Meteor. This is the recommended choice for beginners. If you are a seasoned frontend developer, you can also start with tutorials that demonstrate integration with the two most popular frontend frameworks: [Angular](/tutorials/angular) and [React](/tutorials/react).
+
 In this tutorial, we are going to create a simple app to manage a 'to do' list and collaborate with others on those tasks.
 
 To create the app, open your terminal and type:
