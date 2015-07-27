@@ -1,98 +1,67 @@
-BLAZE_TUT = [
-  {
-    id: "0",
-    title: 'Creating an app',
-    seoTitle: 'Creating an app',
-    route: "tutorials.blaze.creating-an-app",
-    path: "/tutorials/blaze/creating-an-app",
-    contentTemplate: 'blaze-step01'
-  },
-  {
-    id: "1",
-    title: 'Templates',
-    seoTitle: 'Templates',
-    route: "tutorials.blaze.templates",
-    path: "/tutorials/blaze/templates",
-    contentTemplate: 'blaze-step02'
-  },
-  {
-    id: "2",
-    title: 'Collections',
-    seoTitle: 'Collections',
-    route: "tutorials.blaze.collections",
-    path: "/tutorials/blaze/collections",
-    contentTemplate: 'blaze-step03'
-  },
-  {
-    id: "3",
-    title: 'Forms and events',
-    seoTitle: 'Forms and events',
-    route: "tutorials.blaze.forms-and-events",
-    path: "/tutorials/blaze/forms-and-events",
-    contentTemplate: 'blaze-step04'
-  },
-  {
-    id: "4",
-    title: 'Update and remove',
-    seoTitle: 'Update and remove',
-    route: "tutorials.blaze.update-and-remove",
-    path: "/tutorials/blaze/update-and-remove",
-    contentTemplate: 'blaze-step05'
-  },
-  {
-    id: "5",
-    title: 'Deploying your app',
-    seoTitle: 'Deploying your app',
-    route: "tutorials.blaze.deploying-your-app",
-    path: "/tutorials/blaze/deploying-your-app",
-    contentTemplate: 'shared-step06'
-  },
-  {
-    id: "6",
-    title: 'Running on mobile',
-    seoTitle: 'Running on mobile',
-    route: "tutorials.blaze.running-on-mobile",
-    path: "/tutorials/blaze/running-on-mobile",
-    contentTemplate: 'sharedStep07'
-  },
-  {
-    id: "7",
-    title: 'Temporary UI state',
-    seoTitle: 'Temporary UI state',
-    route: "tutorials.blaze.temporary-ui-state",
-    path: "/tutorials/blaze/temporary-ui-state",
-    contentTemplate: 'blaze-step08'
-  },
-  {
-    id: "8",
-    title: 'Adding user accounts',
-    seoTitle: 'Adding user accounts',
-    route: "tutorials.blaze.adding-user-accounts",
-    path: "/tutorials/blaze/adding-user-accounts",
-    contentTemplate: 'blaze-step09'
-  },
-  {
-    id: "9",
-    title: 'Security with methods',
-    seoTitle: 'Security with methods',
-    route: "tutorials.blaze.security-with-methods",
-    path: "/tutorials/blaze/security-with-methods",
-    contentTemplate: 'blaze-step10'
-  },
-  {
-    id: "10",
-    title: 'Publish and subscribe',
-    seoTitle: 'Publish and subscribe',
-    route: "tutorials.blaze.publish-and-subscribe",
-    path: "/tutorials/blaze/publish-and-subscribe",
-    contentTemplate: 'blaze-step11'
-  },
-  {
-    id: "11",
-    title: 'Next steps',
-    seoTitle: 'Next steps',
-    route: "tutorials.blaze.next-steps",
-    path: "/tutorials/blaze/next-steps",
-    contentTemplate: 'blaze-step12'
-  }
-];
+TutorialRegistry.registerTutorial("blaze", {
+  title: "Simple Todos",
+  subtitle: "Build a simple todo list app with Meteor",
+  tutorialSourceLink: "github.com/meteor/tutorials/content/blaze",
+  steps: [
+    {
+      title: 'Creating an app',
+      slug: "creating-an-app",
+      template: 'blaze-step01'
+    },
+    {
+      title: 'Templates',
+      slug: "templates",
+      template: 'blaze-step02'
+    },
+    {
+      title: 'Collections',
+      slug: "collections",
+      template: 'blaze-step03'
+    },
+    {
+      title: 'Forms and events',
+      slug: "forms-and-events",
+      template: 'blaze-step04'
+    },
+    {
+      title: 'Update and remove',
+      slug: "update-and-remove",
+      template: 'blaze-step05'
+    },
+    {
+      title: 'Deploying your app',
+      slug: "deploying-your-app",
+      template: 'shared-step06'
+    },
+    {
+      title: 'Running on mobile',
+      slug: "running-on-mobile",
+      template: 'sharedStep07'
+    },
+    {
+      title: 'Temporary UI state',
+      slug: "temporary-ui-state",
+      template: 'blaze-step08'
+    },
+    {
+      title: 'Adding user accounts',
+      slug: "adding-user-accounts",
+      template: 'blaze-step09'
+    },
+    {
+      title: 'Security with methods',
+      slug: "security-with-methods",
+      template: 'blaze-step10'
+    },
+    {
+      title: 'Publish and subscribe',
+      slug: "publish-and-subscribe",
+      template: 'blaze-step11'
+    },
+    {
+      title: 'Next steps',
+      slug: "next-steps",
+      template: 'blaze-step12'
+    }
+  ]
+});

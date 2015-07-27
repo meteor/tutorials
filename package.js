@@ -15,7 +15,8 @@ Package.onUse(function (api) {
     'reactive-var',
     'less',
     'mdg:tutorial-step-diff-compiler@0.1.0',
-    'mdg:tutorial-diff-box'
+    'mdg:tutorial-diff-box@0.1.1',
+    'mdg:tutorial-registry@0.1.0'
   ]);
 
   api.addFiles([
