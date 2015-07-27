@@ -1,4 +1,4 @@
 DiffBox.registerTutorial("simple-todos", {
   gitHubRepoName: "meteor/simple-todos",
-  patchFilename: "blaze.multi.patch"
+  patchFilename: "generated/blaze.multi.patch"
 });

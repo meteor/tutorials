@@ -6,19 +6,19 @@ In this step, we'll add a client-side data filtering feature to our app, so that
 
 First, we need to add a checkbox to our HTML:
 
-{{> DiffBox view="blaze" step="8.1"}}
+{{> DiffBox tutorialName="simple-todos" step="8.1"}}
 
 Then, we need an event handler to update a `Session` variable when the checkbox
 is checked or unchecked. `Session` is a convenient place to store temporary UI
 state, and can be used in helpers just like a collection.
 
-{{> DiffBox view="blaze" step="8.2"}}
+{{> DiffBox tutorialName="simple-todos" step="8.2"}}
 
 Now, we need to update `Template.body.helpers`. The code below has a new if
 block to filter the tasks if the checkbox is checked, and a helper to make sure
 the checkbox represents the state of our Session variable.
 
-{{> DiffBox view="blaze" step="8.3"}}
+{{> DiffBox tutorialName="simple-todos" step="8.3"}}
 
 Now if you check the box, the task list will only show tasks that haven't been completed.
 
@@ -30,8 +30,8 @@ Until now, we have stored all of our state in collections, and the view updated 
 
 Now that we have written a query that filters out completed tasks, we can use the same query to display a count of the tasks that haven't been checked off. To do this we need to add a helper and change one line of the HTML.
 
-{{> DiffBox view="blaze" step="8.4"}}
+{{> DiffBox tutorialName="simple-todos" step="8.4"}}
 
-{{> DiffBox view="blaze" step="8.5"}}
+{{> DiffBox tutorialName="simple-todos" step="8.5"}}
 
 {{/template}}

@@ -16,15 +16,15 @@ meteor add accounts-ui accounts-password
 
 To use the Blaze UI component from the `accounts-ui` package, we need to wrap it in a React component. To do so, let's create a new component called `AccountsUIWrapper` in a new file:
 
-{{> DiffBox step="9.2" view="react"}}
+{{> DiffBox step="9.2" tutorialName="simple-todos-react"}}
 
 Let's include the component we just defined inside App:
 
-{{> DiffBox step="9.3" view="react"}}
+{{> DiffBox step="9.3" tutorialName="simple-todos-react"}}
 
 Then, add the following code to configure the accounts UI to use usernames instead of email addresses:
 
-{{> DiffBox step="9.4" view="react"}}
+{{> DiffBox step="9.4" tutorialName="simple-todos-react"}}
 
 ### Adding user-related functionality
 
@@ -40,19 +40,19 @@ To do this, we will add two new fields to the `tasks` collection:
 
 First, let's add some code to save these fields into the `handleSubmit` event handler:
 
-{{> DiffBox step="9.5" view="react"}}
+{{> DiffBox step="9.5" tutorialName="simple-todos-react"}}
 
 Modify the `return` statement on `getMeteorData` to get information about the currently logged in user:
 
-{{> DiffBox step="9.6" view="react"}}
+{{> DiffBox step="9.6" tutorialName="simple-todos-react"}}
 
 Then, in our render method, add a conditional statement to only show the form when there is a logged in user:
 
-{{> DiffBox step="9.7" view="react"}}
+{{> DiffBox step="9.7" tutorialName="simple-todos-react"}}
 
 Finally, add a statement to display the `username` field on each task right before the text:
 
-{{> DiffBox step="9.8" view="react"}}
+{{> DiffBox step="9.8" tutorialName="simple-todos-react"}}
 
 In your browser, add some tasks and notice that your username shows up. Old tasks that we added before this step won't have usernames attached; you can just delete them.
 

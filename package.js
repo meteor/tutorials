@@ -29,6 +29,7 @@ Package.onUse(function (api) {
   ]);
 
   api.addFiles([
+    'content/angular/register.js',
     'content/angular/step01.md',
     'content/angular/step02.md',
     'content/angular/step03.md',
@@ -40,6 +41,8 @@ Package.onUse(function (api) {
     'content/angular/step10.md',
     'content/angular/step11.md',
     'content/angular/step12.md',
+
+    'content/blaze/register.js',
     'content/blaze/step01.md',
     'content/blaze/step02.md',
     'content/blaze/step03.md',
@@ -50,6 +53,8 @@ Package.onUse(function (api) {
     'content/blaze/step10.md',
     'content/blaze/step11.md',
     'content/blaze/step12.md',
+
+    'content/react/register.js',
     'content/react/step01.md',
     'content/react/step02.md',
     'content/react/step03.md',

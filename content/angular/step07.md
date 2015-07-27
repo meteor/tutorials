@@ -6,11 +6,11 @@ Angular needs the main document to be ready so it can bootstrap, but different d
 To solve this, we need to change the way we bootstrap our Angular app.
 Remove the current bootstrap by removing `ng-app` from the `<body>` tag:
 
-{{> DiffBox view="angular" step="7.1"}}
+{{> DiffBox tutorialName="simple-todos-angular" step="7.1"}}
 
 Then add the following code right after `Meteor.isClient`:
 
-{{> DiffBox view="angular" step="7.2"}}
+{{> DiffBox tutorialName="simple-todos-angular" step="7.2"}}
 
 {{/template}}
 

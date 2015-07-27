@@ -6,7 +6,7 @@ Until now, we have only interacted with a collection by inserting documents. Now
 
 Let's add two elements to our `task` template, a checkbox and a delete button:
 
-{{> DiffBox view="angular" step="5.1"}}
+{{> DiffBox tutorialName="simple-todos-angular" step="5.1"}}
 
 ### Update
 

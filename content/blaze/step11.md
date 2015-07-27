@@ -14,7 +14,7 @@ When the app refreshes, the task list will be empty. Without the `autopublish` p
 
 Let's add them now.
 
-{{> DiffBox view="blaze" step="11.2"}}
+{{> DiffBox tutorialName="simple-todos" step="11.2"}}
 
 Once you have added this code, all of the tasks will reappear.
 
@@ -24,26 +24,26 @@ Calling `Meteor.publish` on the server registers a _publication_ named `"tasks"`
 
 First, let's add another property to tasks called "private" and a button for users to mark a task as private. This button should only show up for the owner of a task. It will display the current state of the item.
 
-{{> DiffBox view="blaze" step="11.3"}}
+{{> DiffBox tutorialName="simple-todos" step="11.3"}}
 
 Let's make sure our task has a special class if it is marked private:
 
-{{> DiffBox view="blaze" step="11.4"}}
+{{> DiffBox tutorialName="simple-todos" step="11.4"}}
 
 We need to modify our JavaScript code in three places:
 
-{{> DiffBox view="blaze" step="11.5"}}
+{{> DiffBox tutorialName="simple-todos" step="11.5"}}
 
-{{> DiffBox view="blaze" step="11.6"}}
+{{> DiffBox tutorialName="simple-todos" step="11.6"}}
 
-{{> DiffBox view="blaze" step="11.7"}}
+{{> DiffBox tutorialName="simple-todos" step="11.7"}}
 
 ### Selectively publishing tasks based on privacy status
 
 Now that we have a way of setting which tasks are private, we should modify our
 publication function to only send the tasks that a user is authorized to see:
 
-{{> DiffBox view="blaze" step="11.8"}}
+{{> DiffBox tutorialName="simple-todos" step="11.8"}}
 
 To test that this functionality works, you can use your browser's private browsing mode to log in as a different user. Put the two windows side by side and mark a task private to confirm that the other user can't see it. Now make it public again and it will reappear!
 
@@ -51,7 +51,7 @@ To test that this functionality works, you can use your browser's private browsi
 
 In order to finish up our private task feature, we need to add checks to our `deleteTask` and `setChecked` methods to make sure only the task owner can delete or check off a private task:
 
-{{> DiffBox view="blaze" step="11.9"}}
+{{> DiffBox tutorialName="simple-todos" step="11.9"}}
 
 > Notice that with this code anyone can delete any public task. With some small modifications to the code, you should be able to make it so that only the owner can delete their tasks.
 

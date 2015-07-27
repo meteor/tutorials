@@ -15,15 +15,15 @@ To get started, let's replace the code of the default starter app. Then we'll ta
 
 First, replace the content of the initial HTML file:
 
-{{> DiffBox view="react" step="2.2"}}
+{{> DiffBox tutorialName="simple-todos-react" step="2.2"}}
 
 Second, **delete `simple-todos-react.js`** and create three new files:
 
-{{> DiffBox view="react" step="2.3"}}
+{{> DiffBox tutorialName="simple-todos-react" step="2.3"}}
 
-{{> DiffBox view="react" step="2.4"}}
+{{> DiffBox tutorialName="simple-todos-react" step="2.4"}}
 
-{{> DiffBox view="react" step="2.5"}}
+{{> DiffBox tutorialName="simple-todos-react" step="2.5"}}
 
 We just added three things to our app:
 

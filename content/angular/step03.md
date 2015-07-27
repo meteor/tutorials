@@ -6,7 +6,7 @@
 
 Let's update our JavaScript code to get our tasks from a collection instead of a static array:
 
-{{> DiffBox view="angular" step="3.1"}}
+{{> DiffBox tutorialName="simple-todos-angular" step="3.1"}}
 
 We are using the `$meteor` service to bind our `Tasks` collection to our `$scope.tasks` variable.
 Now every change that will happen to each of those objects will be synced in real time across our stack.

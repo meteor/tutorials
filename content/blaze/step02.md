@@ -3,9 +3,9 @@
 
 To start working on our todo list app, let's replace the code of the default starter app with the code below. Then we'll talk about what it does.
 
-{{> DiffBox view="blaze" step="2.1"}}
+{{> DiffBox tutorialName="simple-todos" step="2.1"}}
 
-{{> DiffBox view="blaze" step="2.2"}}
+{{> DiffBox tutorialName="simple-todos" step="2.2"}}
 
 In our browser, the app will now look much like this:
 

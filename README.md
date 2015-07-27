@@ -47,7 +47,7 @@ After using `git rebase -i --root` to massage the repository into the desired st
 The commit with this message can then be included in the content with the following code snippet:
 
 ```html
-{{> DiffBox step="3.1" view="blaze"}}
+{{> DiffBox step="3.1" tutorialName="simple-todos"}}
 ```
 
 You should replace `blaze` with the correct view name (currently this string is automatically transformed to refer to the correct data structures).
