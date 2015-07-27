@@ -6,7 +6,7 @@ Until now, we have only interacted with a collection by inserting documents. Now
 
 Let's add two new elements to our `task` component, a checkbox and a delete button, with event handlers for both:
 
-{{> CodeBox step="5.1" view="react"}}
+{{> DiffBox step="5.1" view="react"}}
 
 ### Update
 

@@ -14,9 +14,9 @@ When the app refreshes, the task list will be empty. Without the `autopublish` p
 
 Let's add them now.
 
-{{> CodeBox view="angular" step="11.2"}}
+{{> DiffBox view="angular" step="11.2"}}
 
-{{> CodeBox view="angular" step="11.3"}}
+{{> DiffBox view="angular" step="11.3"}}
 
 Once you have added this code, all of the tasks will reappear.
 
@@ -26,22 +26,22 @@ Calling `Meteor.publish` on the server registers a _publication_ named `"tasks"`
 
 First, let's add another property to tasks called "private" and a button for users to mark a task as private. This button should only show up for the owner of a task. It will display the current state of the item.
 
-{{> CodeBox view="angular" step="11.4"}}
+{{> DiffBox view="angular" step="11.4"}}
 
-{{> CodeBox view="angular" step="11.5"}}
+{{> DiffBox view="angular" step="11.5"}}
 
 We need to modify our JavaScript code in two places:
 
-{{> CodeBox view="angular" step="11.6"}}
+{{> DiffBox view="angular" step="11.6"}}
 
-{{> CodeBox view="angular" step="11.7"}}
+{{> DiffBox view="angular" step="11.7"}}
 
 ### Selectively publishing tasks based on privacy status
 
 Now that we have a way of setting which tasks are private, we should modify our
 publication function to only send the tasks that a user is authorized to see:
 
-{{> CodeBox view="angular" step="11.8"}}
+{{> DiffBox view="angular" step="11.8"}}
 
 To test that this functionality works, you can use your browser's private browsing mode to log in as a different user. Put the two windows side by side and mark a task private to confirm that the other user can't see it. Now make it public again and it will reappear!
 
@@ -49,7 +49,7 @@ To test that this functionality works, you can use your browser's private browsi
 
 In order to finish up our private task feature, we need to add checks to our `deleteTask` and `setChecked` methods to make sure only the task owner can delete or check off a private task:
 
-{{> CodeBox view="angular" step="11.9"}}
+{{> DiffBox view="angular" step="11.9"}}
 
 > Notice that with this code anyone can delete any public task. With some small modifications to the code, you should be able to make it so that only the owner can delete their tasks.
 

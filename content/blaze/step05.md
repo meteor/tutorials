@@ -6,11 +6,11 @@ Until now, we have only interacted with a collection by inserting documents. Now
 
 Let's add two elements to our `task` template, a checkbox and a delete button:
 
-{{> CodeBox view="blaze" step="5.1"}}
+{{> DiffBox view="blaze" step="5.1"}}
 
 We have added UI elements, but they don't do anything yet. We should add some event handlers:
 
-{{> CodeBox view="blaze" step="5.2"}}
+{{> DiffBox view="blaze" step="5.2"}}
 
 ### Getting data in event handlers
 

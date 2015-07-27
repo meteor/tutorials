@@ -9,16 +9,16 @@ command into the command line:
 
 To start working on our todos list app, let's replace the code of the default starter app with the code below. Then we'll talk about what it does.
 
-{{> CodeBox view="angular" step="2.2"}}
+{{> DiffBox view="angular" step="2.2"}}
 
 
-{{> CodeBox view="angular" step="2.3"}}
+{{> DiffBox view="angular" step="2.3"}}
 
 To write Angular templates, we need to name our files with the `.ng.html` extension.
 
 Create a new file named `todos-list.ng.html` and place it on the root folder:
 
-{{> CodeBox view="angular" step="2.4"}}
+{{> DiffBox view="angular" step="2.4"}}
 
 In our browser, the app should look pretty much like this:
 

@@ -4,15 +4,6 @@ Package.describe({
   name: 'tutorials'
 });
 
-Package.registerBuildPlugin({
-  name: 'build-plugin',
-  sources: ['build-plugin/patch-plugin.jsx'],
-  use: [
-    'jsx@0.1.1',
-    'underscore@1.0.3'
-  ]
-})
-
 Package.onUse(function (api) {
   api.versionsFrom('1.1.0.2');
   api.use([
@@ -22,7 +13,9 @@ Package.onUse(function (api) {
     'jsx@0.1.1',
     'simple:highlight.js@1.0.9',
     'reactive-var',
-    'less'
+    'less',
+    'mdg:tutorial-step-diff-compiler@0.1.0',
+    'mdg:tutorial-diff-box'
   ]);
 
   api.addFiles([
@@ -74,12 +67,6 @@ Package.onUse(function (api) {
     'content/shared/step06.md',
     'content/shared/step07.md',
 
-    'components/code-box.html',
-    'components/code-box.js',
-    'components/git-patch-viewer/patch-viewer.html',
-    'components/git-patch-viewer/patch-viewer.jsx',
-    'components/git-patch-viewer/patch-viewer.less',
-
     'generated/react.multi.patch',
     'generated/blaze.multi.patch',
     'generated/angular.multi.patch'
@@ -91,7 +78,4 @@ Package.onUse(function (api) {
   api.export('REACT_TUT');
   api.export('ANGULAR_TUT');
   api.export('BLAZE_TUT');
-
-  // For easier debugging
-  api.export('GitPatches');
 });

@@ -6,7 +6,7 @@ In this step, we'll add an input field for users to add tasks to the list.
 
 First, let's add a form to our `App` component:
 
-{{> CodeBox step="4.1" view="react"}}
+{{> DiffBox step="4.1" view="react"}}
 
 > Tip: You can add comments to your JSX code by wrapping them in `{/* ... */}`
 
@@ -14,7 +14,7 @@ You can see that the `form` element has an `onSubmit` attribute that references 
 
 Let's add a `handleSubmit` method to our `App` component:
 
-{{> CodeBox step="4.2" view="react"}}
+{{> DiffBox step="4.2" view="react"}}
 
 Now your app has a new input field. To add a task, just type into the input field and hit enter. If you open a new browser window and open the app again, you'll see that the list is automatically synchronized between all clients.
 
@@ -34,7 +34,7 @@ Currently, our code displays all new tasks at the bottom of the list. That's not
 
 We can solve this by sorting the results using the `createdAt` field that is automatically added by our new code. Just add a sort option to the `find` call inside `getMeteorData` on the `App` component:
 
-{{> CodeBox step="4.3" view="react"}}
+{{> DiffBox step="4.3" view="react"}}
 
 Let's go back to the browser and make sure this worked: any new tasks that you add should appear at the top of the list, rather than at the bottom.
 
