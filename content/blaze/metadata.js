@@ -1,32 +1,39 @@
-TutorialRegistry.registerTutorial("angular", {
-  title: "Simple Todos Angular",
-  subtitle: "Learn how to use Meteor and Angular together",
-  tutorialSourceLink: "github.com/meteor/tutorials/content/angular",
+if (Meteor.isClient) {
+  DiffBox.registerTutorial("simple-todos", {
+    gitHubRepoName: "meteor/simple-todos",
+    patchFilename: "generated/blaze.multi.patch"
+  });
+}
+
+TutorialRegistry.registerTutorial("blaze", {
+  title: "Simple Todos",
+  subtitle: "Build a simple todo list app with Meteor",
+  tutorialSourceLink: "github.com/meteor/tutorials/content/blaze",
   steps: [
     {
       title: 'Creating an app',
       slug: "creating-an-app",
-      template: 'angular-step01'
+      template: 'blaze-step01'
     },
     {
       title: 'Templates',
       slug: "templates",
-      template: 'angular-step02'
+      template: 'blaze-step02'
     },
     {
       title: 'Collections',
       slug: "collections",
-      template: 'angular-step03'
+      template: 'blaze-step03'
     },
     {
       title: 'Forms and events',
       slug: "forms-and-events",
-      template: 'angular-step04'
+      template: 'blaze-step04'
     },
     {
       title: 'Update and remove',
       slug: "update-and-remove",
-      template: 'angular-step05'
+      template: 'blaze-step05'
     },
     {
       title: 'Deploying your app',
@@ -36,32 +43,32 @@ TutorialRegistry.registerTutorial("angular", {
     {
       title: 'Running on mobile',
       slug: "running-on-mobile",
-      template: 'angular-step07'
+      template: 'sharedStep07'
     },
     {
-      title: 'Filtering Collections',
-      slug: "filtering-collections",
-      template: 'angular-step08'
+      title: 'Temporary UI state',
+      slug: "temporary-ui-state",
+      template: 'blaze-step08'
     },
     {
       title: 'Adding user accounts',
       slug: "adding-user-accounts",
-      template: 'angular-step09'
+      template: 'blaze-step09'
     },
     {
       title: 'Security with methods',
       slug: "security-with-methods",
-      template: 'angular-step10'
+      template: 'blaze-step10'
     },
     {
       title: 'Publish and subscribe',
       slug: "publish-and-subscribe",
-      template: 'angular-step11'
+      template: 'blaze-step11'
     },
     {
       title: 'Next steps',
       slug: "next-steps",
-      template: 'angular-step12'
+      template: 'blaze-step12'
     }
   ]
 });

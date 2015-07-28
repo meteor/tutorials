@@ -1,67 +1,75 @@
-TutorialRegistry.registerTutorial("blaze", {
-  title: "Simple Todos",
-  subtitle: "Build a simple todo list app with Meteor",
-  tutorialSourceLink: "github.com/meteor/tutorials/content/blaze",
+if (Meteor.isClient) {
+  DiffBox.registerTutorial("simple-todos-react", {
+    gitHubRepoName: "meteor/simple-todos-react",
+    patchFilename: "generated/react.multi.patch"
+  });
+}
+
+TutorialRegistry.registerTutorial("react", {
+  title: "Simple Todos React",
+  subtitle: "Learn how to use Meteor and React together",
+  tutorialSourceLink: "github.com/meteor/tutorials/content/angular",
   steps: [
     {
-      title: 'Creating an app',
+      title: "Creating an app",
       slug: "creating-an-app",
-      template: 'blaze-step01'
+      template: "react-step01"
     },
     {
-      title: 'Templates',
-      slug: "templates",
-      template: 'blaze-step02'
+      title: 'Components',
+      slug: "components",
+      template: 'react-step02'
     },
     {
       title: 'Collections',
       slug: "collections",
-      template: 'blaze-step03'
+      template: 'react-step03'
     },
     {
       title: 'Forms and events',
       slug: "forms-and-events",
-      template: 'blaze-step04'
+      template: 'react-step04'
     },
     {
       title: 'Update and remove',
       slug: "update-and-remove",
-      template: 'blaze-step05'
+      template: 'react-step05'
     },
     {
       title: 'Deploying your app',
       slug: "deploying-your-app",
-      template: 'shared-step06'
+      template: "shared-step06"
     },
     {
       title: 'Running on mobile',
       slug: "running-on-mobile",
-      template: 'sharedStep07'
+      template: "sharedStep07"
     },
     {
       title: 'Temporary UI state',
       slug: "temporary-ui-state",
-      template: 'blaze-step08'
+      template: 'react-step08'
     },
     {
       title: 'Adding user accounts',
       slug: "adding-user-accounts",
-      template: 'blaze-step09'
+      template: 'react-step09'
     },
     {
       title: 'Security with methods',
       slug: "security-with-methods",
-      template: 'blaze-step10'
+      template: 'react-step10'
     },
     {
       title: 'Publish and subscribe',
       slug: "publish-and-subscribe",
-      template: 'blaze-step11'
+      template: 'react-step11'
     },
     {
       title: 'Next steps',
       slug: "next-steps",
-      template: 'blaze-step12'
+      template: 'react-step12'
     }
   ]
 });
+
