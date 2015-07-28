@@ -63,5 +63,4 @@ The different parts of the repository have quite different responsibilities, but
 3. `/content/` The actual tutorial prose content, in Markdown format.
 4. `/generated/` (don't edit manually) This directory contains Git patch files generated from the step-by-step repos.
 5. `/repos/` This directory contains git submodules of all three step-by-step tutorial repositories.
-6. `/routes/` This directory contains JavaScript data structures describing the different tutorial steps. These are exported from the package; the meteor.com website and tutorial-viewer app know how to read them.
 7. `/scripts/` This contains a script that is used to update `/generated/` from the repositories in `/repos/`.
