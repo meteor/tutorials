@@ -23,7 +23,6 @@ Package.onUse(function (api) {
     'routes/angularTut.js',
     'routes/blazeTut.js',
     'routes/reactTut.js',
-    'routes/tutorial-pages.js'
   ]);
 
   api.addFiles([
