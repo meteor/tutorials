@@ -22,7 +22,7 @@ In our case above, we are listening to the `submit` event on any element that ma
 
 The event handler gets an argument called `event` that has some information about the event that was triggered. In this case `event.target` is our form element, and we can get the value of our input with `event.target.text.value`. You can see all of the other properties of the `event` object by adding a `console.log(event)` and inspecting the object in your browser console.
 
-The last two lines of our event handler perform some cleanup &mdash; first we make sure to make the input blank, and then we return `false` to tell the web browser to not do the default form submit action since we have already handled it.
+The last line of our event handler performs some cleanup by clearing the input.
 
 ### Inserting into a collection
 
