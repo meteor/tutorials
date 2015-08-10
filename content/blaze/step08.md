@@ -24,7 +24,7 @@ Now if you check the box, the task list will only show tasks that haven't been c
 
 ### Session is a reactive data store for the client
 
-Until now, we have stored all of our state in collections, and the view updated automatically when we modified the data inside these collections. This is because Meteor.Collection is recognized by Meteor as a _reactive data source_, meaning Meteor knows when the data inside has changed. `Session` is the same way, but is not synced with the server like collections are. This makes `Session` a convenient place to store temporary UI state like the checkbox above. Just like with collections, we don't have to write any extra code for the template to update when the `Session` variable changes &mdash; just calling `Session.get(...)` inside the helper is enough.
+Until now, we have stored all of our state in collections, and the view updated automatically when we modified the data inside these collections. This is because Mongo.Collection is recognized by Meteor as a _reactive data source_, meaning Meteor knows when the data inside has changed. `Session` is the same way, but is not synced with the server like collections are. This makes `Session` a convenient place to store temporary UI state like the checkbox above. Just like with collections, we don't have to write any extra code for the template to update when the `Session` variable changes &mdash; just calling `Session.get(...)` inside the helper is enough.
 
 ### One more feature: Showing a count of incomplete tasks
 
