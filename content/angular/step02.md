@@ -50,6 +50,6 @@ Everything inside &lt;template> tags is compiled into Meteor _templates_, which 
 
 All of the code in your regular .HTML files is compiled with [Meteor's Spacebars compiler](https://github.com/meteor/meteor/blob/devel/packages/spacebars/README.md).
 
-{{> addingCSS}}
+{{> addingCSS codeBox="Replace simple-todos-angular.css with this code"}}
 
 {{/template}}
