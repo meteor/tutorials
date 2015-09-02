@@ -29,5 +29,5 @@ Open your web browser and go to `http://localhost:3000` to see the app running.
 
 You can play around with this default app for a bit before we continue. For example, try editing the text in `<h1>` inside `simple-todos-react.html` using your favorite text editor. When you save the file, the page in your browser will automatically update with the new content. We call this "hot code push".
 
-Now that you have some experience editing the files in your Meteor app, let's start working on a simple React todo list application.
+Now that you have some experience editing the files in your Meteor app, let's start working on a simple React todo list application. If you find a bug or error in the tutorial, please file an issue or submit a pull request [on GitHub](https://github.com/meteor/tutorials).
 {{/template}}
