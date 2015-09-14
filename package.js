@@ -5,7 +5,7 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  api.versionsFrom('1.1.0.2');
+  api.versionsFrom('1.2-rc.14');
   api.use([
     'simple:markdown-templating@1.2.7',
     'templating',
@@ -15,7 +15,7 @@ Package.onUse(function (api) {
     'reactive-var',
     'less',
     'mdg:tutorial-step-diff-compiler@0.1.0',
-    'mdg:tutorial-diff-box@0.1.1',
+    'mdg:tutorial-diff-box@0.3.0',
     'mdg:tutorial-registry@0.1.1'
   ]);
 
