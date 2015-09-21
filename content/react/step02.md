@@ -68,7 +68,7 @@ If you haven't tried next-generation JavaScript features yet, some of the syntax
 2. Shorthand for methods: `render() { ... }`
 3. `const` and `let` instead of `var`
 
-Read more about these features here: 
+Read about the features that Meteor supports in the [ecmascript README](https://github.com/meteor/meteor/blob/master/packages/ecmascript/README.md). For more information about ECMAScript 2015, see some of the articles below:
 
 * [Luke Hoban's "ES6 features"](http://git.io/es6features)
 
