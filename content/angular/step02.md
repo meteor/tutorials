@@ -4,7 +4,7 @@
 To use Angular in our app, we need to add the [angular-meteor package](http://angular-meteor.com/) by typing the following
 command into the command line:
 
-    meteor add urigo:angular
+    meteor add angular
 
 
 To start working on our todos list app, let's replace the code of the default starter app with the code below. Then we'll talk about what it does.
