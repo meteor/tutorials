@@ -10,16 +10,24 @@ To enable the accounts system and UI, we need to add the relevant packages. In y
 meteor add accounts-ui accounts-password
 ```
 
+Now let's add our authentication UI.
+
+We will use the powerful [blaze-template](http://angular-meteor.com/api/blaze-template) directive which let's you add **any Blaze template** into your Angular templates.
+We are adding `loginButtons` which is the Blaze template for user authentication flow supplied with the `accounts-ui` package.
+
+First let's add the package to include that directive:
+
+```bash
+meteor add urigo:angular-blaze-template
+```
+
 In the HTML, right under the checkbox, include the following code to add a login dropdown:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="9.2"}}
-
-The powerful [meteor-include](http://angular-meteor.com/api/meteor-include) directive let's you add **any Blaze template** into your Angular templates.
-We are adding `loginButtons` which is the Blaze template for user authentication flow supplied with the accounts-ui package.
+{{> DiffBox tutorialName="simple-todos-angular" step="9.3"}}
 
 Then, in your JavaScript, add the following code to configure the accounts UI to use usernames instead of email addresses:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="9.3"}}
+{{> DiffBox tutorialName="simple-todos-angular" step="9.4"}}
 
 Now users can create accounts and log into your app! This is very nice, but logging in and out isn't very useful yet. Let's add two functions:
 
@@ -33,15 +41,15 @@ To do this, we will add two new fields to the `tasks` collection:
 
 First, let's add some code to save these fields into the `addTask` function:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="9.4"}}
+{{> DiffBox tutorialName="simple-todos-angular" step="9.5"}}
 
 Then, in our HTML, add an `ng-show` directive to only show the form when there is a logged in user:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="9.5"}}
+{{> DiffBox tutorialName="simple-todos-angular" step="9.6"}}
 
 Finally, add a statement to display the `username` field on each task right before the text:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="9.6"}}
+{{> DiffBox tutorialName="simple-todos-angular" step="9.7"}}
 
 Now, users can log in and we can track which user each task belongs to. Let's look at some of the concepts we just discovered in more detail.
 
