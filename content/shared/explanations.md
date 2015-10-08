@@ -8,7 +8,7 @@ Creating a new collection is as easy as calling `MyCollection = new Mongo.Collec
 
 {{#template name="step03InsertingTasksFromConsole"}}
 
-### Inserting tasks from the console
+### Inserting tasks from the server-side database console
 
 Items inside collections are called _documents_. Let's use the server database console to insert some documents into our collection. In a new terminal tab, go to your app directory and type:
 
