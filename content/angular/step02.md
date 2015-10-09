@@ -38,7 +38,7 @@ So, for example, when a file is named `my-angular-template.ng.html` is placed in
 
 All of the code in your `ng.html` files is compiled with Angular. Angular binds the data into our templates just like any other Angular app.
 
-In the next step, we will see how we can use the $meteor service bind our scope data to a database collection.
+In the next step, we will see how we can use the $meteor service to bind our scope data to a database collection.
 
 ### HTML files in Meteor define templates
 
