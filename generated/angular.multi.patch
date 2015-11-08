@@ -1,4 +1,4 @@
-From 66fa84a3a7722f0ad2053eae1faf32a5e31dc886 Mon Sep 17 00:00:00 2001
+From 3dc2173923b9df9038203763ca8d32864fd9f18d Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sun, 27 Sep 2015 14:18:50 +0300
 Subject: [PATCH 01/39] Step 1: Run `meteor create`
@@ -234,47 +234,94 @@ index 0000000..4f8c65d
 +  });
 +}
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From 16b95fd27ab756495e1bdf55c40800ede348ae7c Mon Sep 17 00:00:00 2001
+From 54b4fc3cc09f1071b204d2a722a9aa43df0e4a9e Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Sun, 27 Sep 2015 14:27:04 +0300
-Subject: [PATCH 02/39] Step 2.1: Add the Angular package
+Date: Sun, 8 Nov 2015 02:32:52 +0200
+Subject: [PATCH 02/39] Step 2.1: Remove blaze-html-templates and ecmascript
+ package and add angular
 
 ---
- .meteor/packages | 1 +
- .meteor/versions | 4 ++++
- 2 files changed, 5 insertions(+)
+ .meteor/packages |  3 +--
+ .meteor/release  |  2 +-
+ .meteor/versions | 43 ++++++++++++++++++++++++-------------------
+ 3 files changed, 26 insertions(+), 22 deletions(-)
 
 diff --git a/.meteor/packages b/.meteor/packages
-index a9f8340..03949b6 100644
+index a9f8340..7082732 100644
 --- a/.meteor/packages
 +++ b/.meteor/packages
-@@ -18,3 +18,4 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
+@@ -7,14 +7,13 @@
+ meteor-base             # Packages every Meteor app needs to have
+ mobile-experience       # Packages for a great mobile UX
+ mongo                   # The database Meteor supports right now
+-blaze-html-templates    # Compile .html files into Meteor Blaze views
+ session                 # Client-side reactive dictionary for your app
+ jquery                  # Helpful client-side library
+ tracker                 # Meteor's client-side reactive programming library
+ 
+ standard-minifiers      # JS/CSS minifiers run for production mode
+ es5-shim                # ECMAScript 5 compatibility for older browsers.
+-ecmascript              # Enable ECMAScript2015+ syntax in app code
  
  autopublish             # Publish all data to the clients (for prototyping)
  insecure                # Allow all DB writes from clients (for prototyping)
-+angular
++angular@1.2.0-rc.6
+diff --git a/.meteor/release b/.meteor/release
+index 238bbcc..3a05e0a 100644
+--- a/.meteor/release
++++ b/.meteor/release
+@@ -1 +1 @@
+-METEOR@1.2.0.1
++METEOR@1.2.1
 diff --git a/.meteor/versions b/.meteor/versions
-index e378b68..a702ca4 100644
+index e378b68..4a7a39b 100644
 --- a/.meteor/versions
 +++ b/.meteor/versions
-@@ -1,3 +1,5 @@
-+angular@1.0.0-rc.11
-+angular:angular@1.4.6
+@@ -1,27 +1,31 @@
++angular@1.2.0-rc.6
++angular-meteor-data@0.0.4
++angular-templates@0.0.1
++angular:angular@1.4.7
  autopublish@1.0.4
- autoupdate@1.2.3
+-autoupdate@1.2.3
++autoupdate@1.2.4
  babel-compiler@5.8.24_1
-@@ -12,6 +14,7 @@ caching-compiler@1.0.0
- caching-html-compiler@1.0.1
+ babel-runtime@0.1.4
+ base64@1.0.4
+ binary-heap@1.0.4
+ blaze@2.1.3
+-blaze-html-templates@1.0.1
+ blaze-tools@1.0.4
+ boilerplate-generator@1.0.4
+ caching-compiler@1.0.0
+-caching-html-compiler@1.0.1
++caching-html-compiler@1.0.2
  callback-hook@1.0.4
- check@1.0.6
+-check@1.0.6
++check@1.1.0
 +dburles:mongo-collection-instances@0.3.4
  ddp@1.2.2
  ddp-client@1.2.1
- ddp-common@1.2.1
-@@ -31,6 +34,7 @@ http@1.1.1
+-ddp-common@1.2.1
+-ddp-server@1.2.1
++ddp-common@1.2.2
++ddp-server@1.2.2
+ deps@1.0.9
+ diff-sequence@1.0.1
+-ecmascript@0.1.4
+-ecmascript-collections@0.1.6
++ecmascript@0.1.6
++ecmascript-runtime@0.2.6
+ ejson@1.0.7
+-es5-shim@4.1.13
++es5-shim@4.1.14
+ fastclick@1.0.7
+ geojson-utils@1.0.4
+ hot-code-push@1.0.0
+@@ -31,23 +35,25 @@ http@1.1.1
  id-map@1.0.4
  insecure@1.0.4
  jquery@1.11.4
@@ -282,47 +329,90 @@ index e378b68..a702ca4 100644
  launch-screen@1.0.4
  livedata@1.0.15
  logging@1.0.8
+-meteor@1.1.7
++meteor@1.1.10
+ meteor-base@1.0.1
+ minifiers@1.1.7
+-minimongo@1.0.9
++minimongo@1.0.10
+ mobile-experience@1.0.1
+ mobile-status-bar@1.0.6
+-mongo@1.1.1
++mongo@1.1.3
+ mongo-id@1.0.1
+ npm-mongo@1.4.39_1
+ observe-sequence@1.0.7
+ ordered-dict@1.0.4
+-promise@0.4.8
+-random@1.0.4
+-reactive-dict@1.1.1
++pbastowski:angular-babel@1.0.2
++promise@0.5.1
++random@1.0.5
++reactive-dict@1.1.3
+ reactive-var@1.0.6
+ reload@1.1.4
+ retry@1.0.4
+@@ -55,12 +61,11 @@ routepolicy@1.0.6
+ session@1.1.1
+ spacebars@1.0.7
+ spacebars-compiler@1.0.7
+-standard-minifiers@1.0.0
+-templating@1.1.3
++standard-minifiers@1.0.2
+ templating-tools@1.0.0
+-tracker@1.0.8
++tracker@1.0.9
+ ui@1.0.8
+ underscore@1.0.4
+ url@1.0.5
+-webapp@1.2.2
++webapp@1.2.3
+ webapp-hashing@1.0.5
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From 33e0dfed2e4708603d083a73d4552a60f2f5c545 Mon Sep 17 00:00:00 2001
+From 6fb657fa7f9189200a1725c8b8d9e261fc65dba0 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Sat, 18 Jul 2015 12:44:07 +0300
-Subject: [PATCH 03/39] Step 2.2: Link main file to Angular templates
+Date: Sun, 8 Nov 2015 02:36:49 +0200
+Subject: [PATCH 03/39] Step 2.2: Add Angular app and controller to HTML
 
 ---
- simple-todos-angular.html | 14 ++++----------
- 1 file changed, 4 insertions(+), 10 deletions(-)
+ simple-todos-angular.html | 16 ++++++----------
+ 1 file changed, 6 insertions(+), 10 deletions(-)
 
 diff --git a/simple-todos-angular.html b/simple-todos-angular.html
-index 30ca9b0..f1391a5 100644
+index 30ca9b0..1167ed1 100644
 --- a/simple-todos-angular.html
 +++ b/simple-todos-angular.html
-@@ -1,14 +1,8 @@
+@@ -1,14 +1,10 @@
  <head>
 -  <title>simple-todos-angular</title>
 +  <title>Todo List</title>
  </head>
  
--<body>
+ <body>
 -  <h1>Welcome to Meteor!</h1>
 -
 -  {{> hello}}
-+<body ng-app="simple-todos"
-+      ng-include="'todos-list.ng.html'"
-+      ng-controller="TodosListCtrl">
- </body>
+-</body>
 -
 -<template name="hello">
 -  <button>Click Me</button>
 -  <p>You've pressed the button {{counter}} times.</p>
 -</template>
++<div class="container"
++     ng-app="simple-todos"
++     ng-controller="TodosListCtrl">
++</div>
++</body>
+\ No newline at end of file
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From 62bd145d7c4ae0a31288c6d65c451ee5cd680997 Mon Sep 17 00:00:00 2001
+From 536a1e25561a9bd9e243e820144d2dc3b271ee62 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 12:46:44 +0300
 Subject: [PATCH 04/39] Step 2.3: Init Angular app and controller
@@ -371,26 +461,27 @@ index 4f8c65d..fa676f2 100644
 +  }]);
  }
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From 6d00ee43390d45ad17b463fc763b051bcc65b86d Mon Sep 17 00:00:00 2001
+From af67f32ed8e1a7a50111ca06aa7a492288c5d458 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Sun, 27 Sep 2015 14:32:33 +0300
-Subject: [PATCH 05/39] Step 2.4: First Angular template
+Date: Sun, 8 Nov 2015 02:40:20 +0200
+Subject: [PATCH 05/39] Step 2.4: Add Angular list to template
 
 ---
- todos-list.ng.html | 9 +++++++++
+ simple-todos-angular.html | 9 +++++++++
  1 file changed, 9 insertions(+)
- create mode 100644 todos-list.ng.html
 
-diff --git a/todos-list.ng.html b/todos-list.ng.html
-new file mode 100644
-index 0000000..9df43f5
---- /dev/null
-+++ b/todos-list.ng.html
-@@ -0,0 +1,9 @@
-+<div class="container">
+diff --git a/simple-todos-angular.html b/simple-todos-angular.html
+index 1167ed1..6c3ebe6 100644
+--- a/simple-todos-angular.html
++++ b/simple-todos-angular.html
+@@ -6,5 +6,14 @@
+ <div class="container"
+      ng-app="simple-todos"
+      ng-controller="TodosListCtrl">
++
 +  <header>
 +    <h1>Todo List</h1>
 +  </header>
@@ -398,12 +489,15 @@ index 0000000..9df43f5
 +  <ul>
 +    <li ng-repeat="task in tasks">{{task.text}}</li>
 +  </ul>
-+</div>
++
+ </div>
+ </body>
+\ No newline at end of file
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From 20bd3e588a45f479f5979780d968e8115f74d283 Mon Sep 17 00:00:00 2001
+From f7b3c6756898b1909e11dbf76a00669778f202ed Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 12:50:26 +0300
 Subject: [PATCH 06/39] Step 2.5: Add CSS
@@ -545,10 +639,10 @@ index b6b4052..0bca5d2 100644
 +}
 +
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From fe4c8778be9941cf31c4360fe5edd44b71cd7314 Mon Sep 17 00:00:00 2001
+From bd137585ec3e93383f3d85d7549fc3b6ece59e1d Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 12:56:31 +0300
 Subject: [PATCH 07/39] Step 3.1: Replace the static array with a Collection
@@ -585,24 +679,24 @@ index fa676f2..9a9b236 100644
 +    }]);
  }
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From b9e31524b6825ae75df8eddecdbfc388d38e6619 Mon Sep 17 00:00:00 2001
+From 051ed54c2a220f8c344ab2e9d8c878facb54bb0c Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Sat, 18 Jul 2015 12:58:59 +0300
+Date: Sun, 8 Nov 2015 02:44:38 +0200
 Subject: [PATCH 08/39] Step 4.1: Add new task form to template
 
 ---
- todos-list.ng.html | 6 ++++++
- 1 file changed, 6 insertions(+)
+ simple-todos-angular.html | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/todos-list.ng.html b/todos-list.ng.html
-index 9df43f5..52cdfb2 100644
---- a/todos-list.ng.html
-+++ b/todos-list.ng.html
-@@ -1,6 +1,12 @@
- <div class="container">
+diff --git a/simple-todos-angular.html b/simple-todos-angular.html
+index 6c3ebe6..ef1a923 100644
+--- a/simple-todos-angular.html
++++ b/simple-todos-angular.html
+@@ -9,6 +9,13 @@
+ 
    <header>
      <h1>Todo List</h1>
 +
@@ -611,14 +705,15 @@ index 9df43f5..52cdfb2 100644
 +      <input ng-model="newTask" type="text"
 +             name="text" placeholder="Type to add new tasks" />
 +    </form>
++
    </header>
  
    <ul>
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From cfc2a3af1d558a88ed7b8243efcc26e3a9d43460 Mon Sep 17 00:00:00 2001
+From b4bbb697c0147ba71087b5e4260f32f513d3390c Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:00:30 +0300
 Subject: [PATCH 09/39] Step 4.2: Create Add Task scope function
@@ -645,10 +740,10 @@ index 9a9b236..e9dc878 100644
      }]);
  }
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From d51818f027309c233b6c82a0691d74da5a614864 Mon Sep 17 00:00:00 2001
+From 5528d73545bfb1381b2dc21313e3ad32cd40401f Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:01:36 +0300
 Subject: [PATCH 10/39] Step 4.3: Sort task list by date
@@ -673,23 +768,23 @@ index e9dc878..36ab6d1 100644
        $scope.addTask = function (newTask) {
          $scope.tasks.push( {
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From 89f31a3e90112d31729b99d1fc8e5afe1ca5ce2f Mon Sep 17 00:00:00 2001
+From 60ba697f05f60f9e8f021ef0fe05effcb0f52fc0 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Sat, 18 Jul 2015 13:04:21 +0300
+Date: Sun, 8 Nov 2015 02:46:11 +0200
 Subject: [PATCH 11/39] Step 5.1: Add done and delete buttons to task
 
 ---
- todos-list.ng.html | 8 +++++++-
+ simple-todos-angular.html | 8 +++++++-
  1 file changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/todos-list.ng.html b/todos-list.ng.html
-index 52cdfb2..37b7a4a 100644
---- a/todos-list.ng.html
-+++ b/todos-list.ng.html
-@@ -10,6 +10,12 @@
+diff --git a/simple-todos-angular.html b/simple-todos-angular.html
+index ef1a923..54765ef 100644
+--- a/simple-todos-angular.html
++++ b/simple-todos-angular.html
+@@ -19,7 +19,13 @@
    </header>
  
    <ul>
@@ -702,38 +797,38 @@ index 52cdfb2..37b7a4a 100644
 +      <span class="text">{{task.text}}</span>
 +    </li>
    </ul>
+ 
  </div>
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From e0689052b0c5547ea709f8de698617eb63691657 Mon Sep 17 00:00:00 2001
+From 0cfcbd018b7d5bd32003160c2f42d0977f6f7217 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Sat, 18 Jul 2015 13:08:33 +0300
+Date: Sun, 8 Nov 2015 02:47:17 +0200
 Subject: [PATCH 12/39] Step 7.1: Remove ng-app
 
 ---
- simple-todos-angular.html | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ simple-todos-angular.html | 1 -
+ 1 file changed, 1 deletion(-)
 
 diff --git a/simple-todos-angular.html b/simple-todos-angular.html
-index f1391a5..e43eceb 100644
+index 54765ef..364fc82 100644
 --- a/simple-todos-angular.html
 +++ b/simple-todos-angular.html
-@@ -2,7 +2,6 @@
-   <title>Todo List</title>
- </head>
+@@ -4,7 +4,6 @@
  
--<body ng-app="simple-todos"
--      ng-include="'todos-list.ng.html'"
-+<body ng-include="'todos-list.ng.html'"
-       ng-controller="TodosListCtrl">
- </body>
+ <body>
+ <div class="container"
+-     ng-app="simple-todos"
+      ng-controller="TodosListCtrl">
+ 
+   <header>
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From 1d0204da487d07056d2a491dbb2249517884abed Mon Sep 17 00:00:00 2001
+From 5c7b2bbc168414348404ed513549e3c76715f5bf Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:11:07 +0300
 Subject: [PATCH 13/39] Step 7.2: Bootstrap Angular to mobile as well
@@ -763,28 +858,28 @@ index 36ab6d1..b002918 100644
      function ($scope, $meteor) {
  
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From 05e883af174064662e57b66e29a3f0adc2eeb484 Mon Sep 17 00:00:00 2001
+From 8281bede83ca7bfb1680709ac11770250feaa9ff Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Sat, 18 Jul 2015 13:13:14 +0300
+Date: Sun, 8 Nov 2015 02:48:18 +0200
 Subject: [PATCH 14/39] Step 8.1: Add hideComplete checkbox to template
 
 ---
- todos-list.ng.html | 5 +++++
+ simple-todos-angular.html | 5 +++++
  1 file changed, 5 insertions(+)
 
-diff --git a/todos-list.ng.html b/todos-list.ng.html
-index 37b7a4a..4c5a8c7 100644
---- a/todos-list.ng.html
-+++ b/todos-list.ng.html
-@@ -2,6 +2,11 @@
+diff --git a/simple-todos-angular.html b/simple-todos-angular.html
+index 364fc82..e03d952 100644
+--- a/simple-todos-angular.html
++++ b/simple-todos-angular.html
+@@ -9,6 +9,11 @@
    <header>
      <h1>Todo List</h1>
  
 +    <label class="hide-completed">
-+      <input type="checkbox" ng-model="$parent.hideCompleted"/>
++      <input type="checkbox" ng-model="hideCompleted"/>
 +      Hide Completed Tasks
 +    </label>
 +
@@ -792,10 +887,10 @@ index 37b7a4a..4c5a8c7 100644
      <form class="new-task" ng-submit="addTask(newTask); newTask='';">
        <input ng-model="newTask" type="text"
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From f04549f207754bcc187216363e086b96e4532978 Mon Sep 17 00:00:00 2001
+From 7c089e2da80cb1d02af16f8cb170389ffbe5cd55 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:14:54 +0300
 Subject: [PATCH 15/39] Step 8.2: Watch hideCompleted and change the query
@@ -823,10 +918,10 @@ index b002918..e759172 100644
      }]);
  }
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From 67416034b2d4f8974f95bf93cfd1ead4bd290db4 Mon Sep 17 00:00:00 2001
+From 555e830a7667ccc7c200ba2c5f1cb11f812009c8 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:17:07 +0300
 Subject: [PATCH 16/39] Step 8.3: Change the Collection to use query parameter
@@ -851,10 +946,10 @@ index e759172..071be1f 100644
  
        $scope.addTask = function (newTask) {
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From dd6fb8fe927779fd2b501b36cf72c3c266ae21b5 Mon Sep 17 00:00:00 2001
+From 8de554738cd12768383b74cf066057a43a971081 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:17:59 +0300
 Subject: [PATCH 17/39] Step 8.4: Make query parameter reactive
@@ -877,10 +972,10 @@ index 071be1f..24c55fa 100644
  
        $scope.addTask = function (newTask) {
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From e094f1b07119eb477f1a29a15a66adb7747ec394 Mon Sep 17 00:00:00 2001
+From 7c724675fd4e5f8bc3b433106181e7103f63fd97 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:19:38 +0300
 Subject: [PATCH 18/39] Step 8.5: Add incompleteCount to scope
@@ -904,104 +999,106 @@ index 24c55fa..5934036 100644
      }]);
  }
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From 319bc077190a51ce9be4b423df67d6ff48522099 Mon Sep 17 00:00:00 2001
+From abf9a8d56f1f058ed20c9ccd8378e8de161d882b Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Sat, 18 Jul 2015 13:21:13 +0300
+Date: Sun, 8 Nov 2015 02:51:49 +0200
 Subject: [PATCH 19/39] Step 8.6: Add incompleteCount to header
 
 ---
- todos-list.ng.html | 2 +-
+ simple-todos-angular.html | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/todos-list.ng.html b/todos-list.ng.html
-index 4c5a8c7..a515c63 100644
---- a/todos-list.ng.html
-+++ b/todos-list.ng.html
-@@ -1,6 +1,6 @@
- <div class="container">
+diff --git a/simple-todos-angular.html b/simple-todos-angular.html
+index e03d952..ef5bc59 100644
+--- a/simple-todos-angular.html
++++ b/simple-todos-angular.html
+@@ -7,7 +7,7 @@
+      ng-controller="TodosListCtrl">
+ 
    <header>
 -    <h1>Todo List</h1>
 +    <h1>Todo List ( {{ incompleteCount() }} )</h1>
  
      <label class="hide-completed">
-       <input type="checkbox" ng-model="$parent.hideCompleted"/>
+       <input type="checkbox" ng-model="hideCompleted"/>
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From b41def3f80c384bd2687d4470ef305ff0cb3a5d0 Mon Sep 17 00:00:00 2001
+From c0b1b91aaffdc311cd443e87505e57873166290a Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Sun, 27 Sep 2015 14:59:26 +0300
+Date: Sun, 8 Nov 2015 02:53:19 +0200
 Subject: [PATCH 20/39] Step 9.1: Add accounts-ui and accounts-password
  packages
 
 ---
  .meteor/packages |  2 ++
- .meteor/versions | 13 +++++++++++++
- 2 files changed, 15 insertions(+)
+ .meteor/versions | 14 ++++++++++++++
+ 2 files changed, 16 insertions(+)
 
 diff --git a/.meteor/packages b/.meteor/packages
-index 03949b6..d4fb217 100644
+index 7082732..00d102a 100644
 --- a/.meteor/packages
 +++ b/.meteor/packages
-@@ -19,3 +19,5 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
+@@ -17,3 +17,5 @@ es5-shim                # ECMAScript 5 compatibility for older browsers.
  autopublish             # Publish all data to the clients (for prototyping)
  insecure                # Allow all DB writes from clients (for prototyping)
- angular
-+accounts-ui
+ angular@1.2.0-rc.6
 +accounts-password
++accounts-ui
 diff --git a/.meteor/versions b/.meteor/versions
-index a702ca4..2e8f00b 100644
+index 4a7a39b..a2a14a6 100644
 --- a/.meteor/versions
 +++ b/.meteor/versions
 @@ -1,3 +1,7 @@
-+accounts-base@1.2.1
-+accounts-password@1.1.3
++accounts-base@1.2.2
++accounts-password@1.1.4
 +accounts-ui@1.1.6
 +accounts-ui-unstyled@1.1.8
- angular@1.0.0-rc.11
- angular:angular@1.4.6
- autopublish@1.0.4
-@@ -18,12 +22,14 @@ dburles:mongo-collection-instances@0.3.4
+ angular@1.2.0-rc.6
+ angular-meteor-data@0.0.4
+ angular-templates@0.0.1
+@@ -19,12 +23,14 @@ dburles:mongo-collection-instances@0.3.4
  ddp@1.2.2
  ddp-client@1.2.1
- ddp-common@1.2.1
+ ddp-common@1.2.2
 +ddp-rate-limiter@1.0.0
- ddp-server@1.2.1
+ ddp-server@1.2.2
  deps@1.0.9
  diff-sequence@1.0.1
- ecmascript@0.1.4
- ecmascript-collections@0.1.6
+ ecmascript@0.1.6
+ ecmascript-runtime@0.2.6
  ejson@1.0.7
-+email@1.0.7
- es5-shim@4.1.13
++email@1.0.8
+ es5-shim@4.1.14
  fastclick@1.0.7
  geojson-utils@1.0.4
-@@ -36,7 +42,9 @@ insecure@1.0.4
+@@ -37,7 +43,9 @@ insecure@1.0.4
  jquery@1.11.4
  lai:collection-extensions@0.1.4
  launch-screen@1.0.4
-+less@2.5.0_2
++less@2.5.1
  livedata@1.0.15
 +localstorage@1.0.5
  logging@1.0.8
- meteor@1.1.7
+ meteor@1.1.10
  meteor-base@1.0.1
-@@ -46,19 +54,24 @@ mobile-experience@1.0.1
+@@ -47,21 +55,27 @@ mobile-experience@1.0.1
  mobile-status-bar@1.0.6
- mongo@1.1.1
+ mongo@1.1.3
  mongo-id@1.0.1
 +npm-bcrypt@0.7.8_2
  npm-mongo@1.4.39_1
  observe-sequence@1.0.7
  ordered-dict@1.0.4
- promise@0.4.8
- random@1.0.4
+ pbastowski:angular-babel@1.0.2
+ promise@0.5.1
+ random@1.0.5
 +rate-limit@1.0.0
- reactive-dict@1.1.1
+ reactive-dict@1.1.3
  reactive-var@1.0.6
  reload@1.1.4
  retry@1.0.4
@@ -1012,16 +1109,18 @@ index a702ca4..2e8f00b 100644
  spacebars@1.0.7
  spacebars-compiler@1.0.7
 +srp@1.0.4
- standard-minifiers@1.0.0
- templating@1.1.3
+ standard-minifiers@1.0.2
++templating@1.1.5
  templating-tools@1.0.0
+ tracker@1.0.9
+ ui@1.0.8
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From 5f5816cf03c6bf709862f580bca1b955567fc81a Mon Sep 17 00:00:00 2001
+From b2158e46f52d065f88dcc80ebd34a30fafe170a6 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Sun, 27 Sep 2015 15:08:35 +0300
+Date: Sun, 8 Nov 2015 02:54:07 +0200
 Subject: [PATCH 21/39] Step 9.2: Add the urigo:angular-blaze-template package
 
 ---
@@ -1030,44 +1129,44 @@ Subject: [PATCH 21/39] Step 9.2: Add the urigo:angular-blaze-template package
  2 files changed, 2 insertions(+)
 
 diff --git a/.meteor/packages b/.meteor/packages
-index d4fb217..2833ad1 100644
+index 00d102a..357cc52 100644
 --- a/.meteor/packages
 +++ b/.meteor/packages
-@@ -21,3 +21,4 @@ insecure                # Allow all DB writes from clients (for prototyping)
- angular
- accounts-ui
+@@ -19,3 +19,4 @@ insecure                # Allow all DB writes from clients (for prototyping)
+ angular@1.2.0-rc.6
  accounts-password
+ accounts-ui
 +urigo:angular-blaze-template
 diff --git a/.meteor/versions b/.meteor/versions
-index 2e8f00b..9a60e0e 100644
+index a2a14a6..e6adb0d 100644
 --- a/.meteor/versions
 +++ b/.meteor/versions
-@@ -78,6 +78,7 @@ templating-tools@1.0.0
- tracker@1.0.8
+@@ -80,6 +80,7 @@ templating-tools@1.0.0
+ tracker@1.0.9
  ui@1.0.8
  underscore@1.0.4
-+urigo:angular-blaze-template@0.0.1
++urigo:angular-blaze-template@0.1.1
  url@1.0.5
- webapp@1.2.2
+ webapp@1.2.3
  webapp-hashing@1.0.5
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From e9c7eaa065b5046a7ec4f9d138911ecfd486a18f Mon Sep 17 00:00:00 2001
+From 416f23cb35b018d2c993fdcfc6f2a021fa5daf79 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Sun, 27 Sep 2015 15:16:54 +0300
+Date: Sun, 8 Nov 2015 02:54:37 +0200
 Subject: [PATCH 22/39] Step 9.3: Add Blaze loginButtons template to HTML
 
 ---
- todos-list.ng.html | 2 ++
+ simple-todos-angular.html | 2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/todos-list.ng.html b/todos-list.ng.html
-index a515c63..5fed06a 100644
---- a/todos-list.ng.html
-+++ b/todos-list.ng.html
-@@ -7,6 +7,8 @@
+diff --git a/simple-todos-angular.html b/simple-todos-angular.html
+index ef5bc59..c85d301 100644
+--- a/simple-todos-angular.html
++++ b/simple-todos-angular.html
+@@ -14,6 +14,8 @@
        Hide Completed Tasks
      </label>
  
@@ -1077,10 +1176,10 @@ index a515c63..5fed06a 100644
      <form class="new-task" ng-submit="addTask(newTask); newTask='';">
        <input ng-model="newTask" type="text"
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From ce33db4e17f0e04af05762e0e14395b899dbea83 Mon Sep 17 00:00:00 2001
+From 67203099053c256fc3111b9945ae94fe6e94e578 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:27:12 +0300
 Subject: [PATCH 23/39] Step 9.4: Configure accounts UI to use usernames
@@ -1106,10 +1205,10 @@ index 5934036..0c2d6c1 100644
    angular.module('simple-todos',['angular-meteor']);
  
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From 365ac0ccbb0f01e874330deb922966a5fd6b16a2 Mon Sep 17 00:00:00 2001
+From dd12ba1953b8fd6ad079f8ecbd74d600a9b3b8c5 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:29:48 +0300
 Subject: [PATCH 24/39] Step 9.5: Add owner and username to created task
@@ -1139,23 +1238,23 @@ index 0c2d6c1..d0b3829 100644
        };
  
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From 4c4f8624c026f182469c084dd15012e83cb97ece Mon Sep 17 00:00:00 2001
+From 155e690004514f3e5f4a2e7c2c0618fe60205fb4 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Sat, 18 Jul 2015 13:31:13 +0300
+Date: Sun, 8 Nov 2015 02:55:26 +0200
 Subject: [PATCH 25/39] Step 9.6: Hide new task form if user is not logged in
 
 ---
- todos-list.ng.html | 4 +++-
+ simple-todos-angular.html | 4 +++-
  1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/todos-list.ng.html b/todos-list.ng.html
-index 5fed06a..3b7bd2a 100644
---- a/todos-list.ng.html
-+++ b/todos-list.ng.html
-@@ -10,7 +10,9 @@
+diff --git a/simple-todos-angular.html b/simple-todos-angular.html
+index c85d301..5ef11a9 100644
+--- a/simple-todos-angular.html
++++ b/simple-todos-angular.html
+@@ -17,7 +17,9 @@
      <blaze-template name="loginButtons"></blaze-template>
  
      <!-- add a form below the h1 -->
@@ -1167,23 +1266,23 @@ index 5fed06a..3b7bd2a 100644
               name="text" placeholder="Type to add new tasks" />
      </form>
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From 4b61854da8353b09d28aadc8965755ea8bfcb207 Mon Sep 17 00:00:00 2001
+From e9c96426f3a87c82944175a71cda36b1d58c5c74 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Sat, 18 Jul 2015 13:32:49 +0300
+Date: Sun, 8 Nov 2015 02:56:09 +0200
 Subject: [PATCH 26/39] Step 9.7: Add username to the displayed task
 
 ---
- todos-list.ng.html | 4 +++-
+ simple-todos-angular.html | 4 +++-
  1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/todos-list.ng.html b/todos-list.ng.html
-index 3b7bd2a..d0bca05 100644
---- a/todos-list.ng.html
-+++ b/todos-list.ng.html
-@@ -24,7 +24,9 @@
+diff --git a/simple-todos-angular.html b/simple-todos-angular.html
+index 5ef11a9..19e72f6 100644
+--- a/simple-todos-angular.html
++++ b/simple-todos-angular.html
+@@ -32,7 +32,9 @@
  
        <input type="checkbox" ng-model="task.checked" class="toggle-checked" />
  
@@ -1193,14 +1292,14 @@ index 3b7bd2a..d0bca05 100644
 +      </span>
      </li>
    </ul>
- </div>
+ 
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From 2ed0dc78bb0e37cf006c4a3d7bcc4c3fdf4e00d8 Mon Sep 17 00:00:00 2001
+From a7138e0a983fb208af99fb9fc23ade358d2daf0d Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Sun, 27 Sep 2015 15:11:50 +0300
+Date: Sun, 8 Nov 2015 02:56:52 +0200
 Subject: [PATCH 27/39] Step 10.1: Remove the insecure package
 
 ---
@@ -1209,22 +1308,22 @@ Subject: [PATCH 27/39] Step 10.1: Remove the insecure package
  2 files changed, 2 deletions(-)
 
 diff --git a/.meteor/packages b/.meteor/packages
-index 2833ad1..9c46211 100644
+index 357cc52..ec2eac9 100644
 --- a/.meteor/packages
 +++ b/.meteor/packages
-@@ -17,7 +17,6 @@ es5-shim                # ECMAScript 5 compatibility for older browsers.
- ecmascript              # Enable ECMAScript2015+ syntax in app code
+@@ -15,7 +15,6 @@ standard-minifiers      # JS/CSS minifiers run for production mode
+ es5-shim                # ECMAScript 5 compatibility for older browsers.
  
  autopublish             # Publish all data to the clients (for prototyping)
 -insecure                # Allow all DB writes from clients (for prototyping)
- angular
- accounts-ui
+ angular@1.2.0-rc.6
  accounts-password
+ accounts-ui
 diff --git a/.meteor/versions b/.meteor/versions
-index 9a60e0e..095b2d0 100644
+index e6adb0d..6da5cab 100644
 --- a/.meteor/versions
 +++ b/.meteor/versions
-@@ -38,7 +38,6 @@ html-tools@1.0.5
+@@ -39,7 +39,6 @@ html-tools@1.0.5
  htmljs@1.0.5
  http@1.1.1
  id-map@1.0.4
@@ -1233,10 +1332,10 @@ index 9a60e0e..095b2d0 100644
  lai:collection-extensions@0.1.4
  launch-screen@1.0.4
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From 046737b0aa21bbb0eb55f92eaa35cd702e80a6e3 Mon Sep 17 00:00:00 2001
+From 5b4849d912f4f97b8e5c5e68c27d3a89bdd4e696 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 15:02:50 +0300
 Subject: [PATCH 28/39] Step 10.2: Add Meteor Methods for add, delete and check
@@ -1277,10 +1376,10 @@ index d0b3829..4b12a5e 100644
 +  }
 +});
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From b613f470ba414abe5fbc9f0980d2dc7498cf91b2 Mon Sep 17 00:00:00 2001
+From 24b023400b0cba198b7849fc7a9b694656b06e74 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 15:05:25 +0300
 Subject: [PATCH 29/39] Step 10.3: Add scope functions to call the Meteor
@@ -1319,23 +1418,23 @@ index 4b12a5e..655fe79 100644
  
        $scope.$watch('hideCompleted', function() {
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From 487edb5641c0c52c18432cc33494b8093af8e92b Mon Sep 17 00:00:00 2001
+From 006c9ebcb12e013f5233c5bbf54c40624d630685 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Sat, 18 Jul 2015 15:08:04 +0300
+Date: Sun, 8 Nov 2015 02:57:43 +0200
 Subject: [PATCH 30/39] Step 10.4: Change template events to call methods
 
 ---
- todos-list.ng.html | 5 +++--
+ simple-todos-angular.html | 5 +++--
  1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/todos-list.ng.html b/todos-list.ng.html
-index d0bca05..bdc26ea 100644
---- a/todos-list.ng.html
-+++ b/todos-list.ng.html
-@@ -20,9 +20,10 @@
+diff --git a/simple-todos-angular.html b/simple-todos-angular.html
+index 19e72f6..641b475 100644
+--- a/simple-todos-angular.html
++++ b/simple-todos-angular.html
+@@ -28,9 +28,10 @@
  
    <ul>
      <li ng-repeat="task in tasks" ng-class="{'checked': task.checked}">
@@ -1349,12 +1448,12 @@ index d0bca05..bdc26ea 100644
        <span class="text">
          <strong>{{task.username}}</strong> - {{task.text}}
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From 490fe55774d23212b652705826f89918d5c1b677 Mon Sep 17 00:00:00 2001
+From be8045229c7b002a1280f5a2f1e058073128651d Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Sun, 27 Sep 2015 15:25:25 +0300
+Date: Sun, 8 Nov 2015 02:58:12 +0200
 Subject: [PATCH 31/39] Step 11.1: Remove the autopublish package
 
 ---
@@ -1363,34 +1462,34 @@ Subject: [PATCH 31/39] Step 11.1: Remove the autopublish package
  2 files changed, 2 deletions(-)
 
 diff --git a/.meteor/packages b/.meteor/packages
-index 9c46211..ff6f9b5 100644
+index ec2eac9..5ec67ad 100644
 --- a/.meteor/packages
 +++ b/.meteor/packages
-@@ -16,7 +16,6 @@ standard-minifiers      # JS/CSS minifiers run for production mode
+@@ -14,7 +14,6 @@ tracker                 # Meteor's client-side reactive programming library
+ standard-minifiers      # JS/CSS minifiers run for production mode
  es5-shim                # ECMAScript 5 compatibility for older browsers.
- ecmascript              # Enable ECMAScript2015+ syntax in app code
  
 -autopublish             # Publish all data to the clients (for prototyping)
- angular
- accounts-ui
+ angular@1.2.0-rc.6
  accounts-password
+ accounts-ui
 diff --git a/.meteor/versions b/.meteor/versions
-index 095b2d0..f2c82e2 100644
+index 6da5cab..92f965d 100644
 --- a/.meteor/versions
 +++ b/.meteor/versions
-@@ -4,7 +4,6 @@ accounts-ui@1.1.6
- accounts-ui-unstyled@1.1.8
- angular@1.0.0-rc.11
- angular:angular@1.4.6
+@@ -6,7 +6,6 @@ angular@1.2.0-rc.6
+ angular-meteor-data@0.0.4
+ angular-templates@0.0.1
+ angular:angular@1.4.7
 -autopublish@1.0.4
- autoupdate@1.2.3
+ autoupdate@1.2.4
  babel-compiler@5.8.24_1
  babel-runtime@0.1.4
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From bf31c1c34d6f62f5a2dc90eeda37ff0f5d07086b Mon Sep 17 00:00:00 2001
+From 2fcdc23a833d0d6f912df18d9f9e1fea57a6f87e Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 15:10:25 +0300
 Subject: [PATCH 32/39] Step 11.2: Add server publish function to tasks
@@ -1414,10 +1513,10 @@ index 655fe79..439a148 100644
 +  });
 +}
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From e4556e5933dd677b80db347f910232762ffc8edd Mon Sep 17 00:00:00 2001
+From 939f74bcb38b5a24e112d8ac7d02e5d8b2b6e601 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 15:11:21 +0300
 Subject: [PATCH 33/39] Step 11.3: Subscribe to tasks publication
@@ -1440,23 +1539,23 @@ index 439a148..6464ff3 100644
          return Tasks.find($scope.getReactively('query'), {sort: {createdAt: -1}})
        });
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From 617d3f90bd1769730851b9623d7e3ae45d31d9f1 Mon Sep 17 00:00:00 2001
+From b91e37beceaffa590476b7b405e85d713e67ec4e Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Sat, 18 Jul 2015 15:53:12 +0300
+Date: Sun, 8 Nov 2015 02:59:00 +0200
 Subject: [PATCH 34/39] Step 11.4: Add setPrivate button to template
 
 ---
- todos-list.ng.html | 6 ++++++
+ simple-todos-angular.html | 6 ++++++
  1 file changed, 6 insertions(+)
 
-diff --git a/todos-list.ng.html b/todos-list.ng.html
-index bdc26ea..4674a2c 100644
---- a/todos-list.ng.html
-+++ b/todos-list.ng.html
-@@ -25,6 +25,12 @@
+diff --git a/simple-todos-angular.html b/simple-todos-angular.html
+index 641b475..208097f 100644
+--- a/simple-todos-angular.html
++++ b/simple-todos-angular.html
+@@ -33,6 +33,12 @@
        <input type="checkbox" ng-checked="task.checked"
               ng-click="setChecked(task)" class="toggle-checked" />
  
@@ -1470,37 +1569,37 @@ index bdc26ea..4674a2c 100644
          <strong>{{task.username}}</strong> - {{task.text}}
        </span>
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From e940423674d77b5bc33a69ad48ab9d5b89871683 Mon Sep 17 00:00:00 2001
+From c16f39fd138422aaa142974a36cfab0e4f59159d Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Sat, 18 Jul 2015 15:54:33 +0300
+Date: Sun, 8 Nov 2015 02:59:36 +0200
 Subject: [PATCH 35/39] Step 11.5: Add private CSS class to task
 
 ---
- todos-list.ng.html | 3 ++-
+ simple-todos-angular.html | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/todos-list.ng.html b/todos-list.ng.html
-index 4674a2c..6b1281a 100644
---- a/todos-list.ng.html
-+++ b/todos-list.ng.html
-@@ -19,7 +19,8 @@
+diff --git a/simple-todos-angular.html b/simple-todos-angular.html
+index 208097f..05e0f5d 100644
+--- a/simple-todos-angular.html
++++ b/simple-todos-angular.html
+@@ -27,7 +27,8 @@
    </header>
  
    <ul>
 -    <li ng-repeat="task in tasks" ng-class="{'checked': task.checked}">
-+    <li ng-repeat="task in tasks" 
++    <li ng-repeat="task in tasks"
 +        ng-class="{'checked': task.checked, 'private': task.private}">
        <button class="delete" ng-click="deleteTask(task)">&times;</button>
  
        <input type="checkbox" ng-checked="task.checked"
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From 8115a811efe74c4c87f2c8b01cfb831657b68645 Mon Sep 17 00:00:00 2001
+From 9644cfb1d867b175de825cf9803ef3a8ec74668a Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 17:06:51 +0300
 Subject: [PATCH 36/39] Step 11.6: Add setPrivate Meteor Method
@@ -1531,10 +1630,10 @@ index 6464ff3..0bd3853 100644
  });
  
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From 1eafaf21e69a40d4943b5214e6d4b48bbd558e7c Mon Sep 17 00:00:00 2001
+From d1d3255975957d11f52cd66b7233b4ce1dc5d733 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 17:08:29 +0300
 Subject: [PATCH 37/39] Step 11.7: Add setPrivate scope function
@@ -1559,10 +1658,10 @@ index 0bd3853..bdc75a8 100644
          if ($scope.hideCompleted)
            $scope.query = {checked: {$ne: true}};
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From 5daeeac68b717bac0c665aa20b15f680821e2cce Mon Sep 17 00:00:00 2001
+From b95e7e5c7083e88adc6d4f7cceb9fe613685615c Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 15:59:53 +0300
 Subject: [PATCH 38/39] Step 11.8: Publish only public and owner's tasks
@@ -1589,10 +1688,10 @@ index bdc75a8..a6089ab 100644
    });
  }
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
 
-From dffe7b5384c1639b5805c91e95225626fed6d0f4 Mon Sep 17 00:00:00 2001
+From 0951f20b03772deee83db07b41056127ace5dfe1 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 16:02:20 +0300
 Subject: [PATCH 39/39] Step 11.9: Add extra security to methods
@@ -1628,5 +1727,5 @@ index a6089ab..1d371fb 100644
    },
    setPrivate: function (taskId, setToPrivate) {
 -- 
-2.3.8 (Apple Git-58)
+2.4.9 (Apple Git-60)
 
