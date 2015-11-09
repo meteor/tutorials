@@ -7,19 +7,16 @@ Meteor comes with an accounts system and a drop-in login user interface that let
 To enable the accounts system and UI, we need to add the relevant packages. In your app directory, run the following command:
 
 ```bash
-meteor add accounts-ui accounts-password
+meteor add accounts-password dotansimha:accounts-ui-angular
 ```
 
-Now let's add our authentication UI.
+`accounts-password` is a package that includes all the logic for password based authentication.
 
-We will use the powerful [blaze-template](http://angular-meteor.com/api/blaze-template) directive which let's you add **any Blaze template** into your Angular templates.
-We are adding `loginButtons` which is the Blaze template for user authentication flow supplied with the `accounts-ui` package.
+`dotansimha:accounts-ui-angular` includes the `<login-buttons>` directive that contains all the HTML and CSS we need for user authentication forms.
+ 
+Now let's add dependency to `account.ui` module in our module definition:
 
-First let's add the package to include that directive:
-
-```bash
-meteor add urigo:angular-blaze-template
-```
+{{> DiffBox tutorialName="simple-todos-angular" step="9.2"}}
 
 In the HTML, right under the checkbox, include the following code to add a login dropdown:
 

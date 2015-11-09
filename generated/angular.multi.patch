@@ -1028,19 +1028,19 @@ index e03d952..ef5bc59 100644
 2.4.9 (Apple Git-60)
 
 
-From c0b1b91aaffdc311cd443e87505e57873166290a Mon Sep 17 00:00:00 2001
+From eca2a40c5edc1708b15395e06bfafe134bd4c2ca Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Sun, 8 Nov 2015 02:53:19 +0200
-Subject: [PATCH 20/39] Step 9.1: Add accounts-ui and accounts-password
- packages
+Date: Mon, 9 Nov 2015 11:41:07 +0200
+Subject: [PATCH 20/39] Step 9.1: Add accounts-password and
+ dotansimha:accounts-ui-angular packages
 
 ---
  .meteor/packages |  2 ++
- .meteor/versions | 14 ++++++++++++++
- 2 files changed, 16 insertions(+)
+ .meteor/versions | 16 ++++++++++++++++
+ 2 files changed, 18 insertions(+)
 
 diff --git a/.meteor/packages b/.meteor/packages
-index 7082732..00d102a 100644
+index 7082732..dbee131 100644
 --- a/.meteor/packages
 +++ b/.meteor/packages
 @@ -17,3 +17,5 @@ es5-shim                # ECMAScript 5 compatibility for older browsers.
@@ -1048,9 +1048,9 @@ index 7082732..00d102a 100644
  insecure                # Allow all DB writes from clients (for prototyping)
  angular@1.2.0-rc.6
 +accounts-password
-+accounts-ui
++dotansimha:accounts-ui-angular
 diff --git a/.meteor/versions b/.meteor/versions
-index 4a7a39b..a2a14a6 100644
+index 4a7a39b..cf8e714 100644
 --- a/.meteor/versions
 +++ b/.meteor/versions
 @@ -1,3 +1,7 @@
@@ -1061,7 +1061,15 @@ index 4a7a39b..a2a14a6 100644
  angular@1.2.0-rc.6
  angular-meteor-data@0.0.4
  angular-templates@0.0.1
-@@ -19,12 +23,14 @@ dburles:mongo-collection-instances@0.3.4
+@@ -9,6 +13,7 @@ babel-runtime@0.1.4
+ base64@1.0.4
+ binary-heap@1.0.4
+ blaze@2.1.3
++blaze-html-templates@1.0.1
+ blaze-tools@1.0.4
+ boilerplate-generator@1.0.4
+ caching-compiler@1.0.0
+@@ -19,12 +24,15 @@ dburles:mongo-collection-instances@0.3.4
  ddp@1.2.2
  ddp-client@1.2.1
  ddp-common@1.2.2
@@ -1069,6 +1077,7 @@ index 4a7a39b..a2a14a6 100644
  ddp-server@1.2.2
  deps@1.0.9
  diff-sequence@1.0.1
++dotansimha:accounts-ui-angular@0.0.1
  ecmascript@0.1.6
  ecmascript-runtime@0.2.6
  ejson@1.0.7
@@ -1076,7 +1085,7 @@ index 4a7a39b..a2a14a6 100644
  es5-shim@4.1.14
  fastclick@1.0.7
  geojson-utils@1.0.4
-@@ -37,7 +43,9 @@ insecure@1.0.4
+@@ -37,7 +45,9 @@ insecure@1.0.4
  jquery@1.11.4
  lai:collection-extensions@0.1.4
  launch-screen@1.0.4
@@ -1086,7 +1095,7 @@ index 4a7a39b..a2a14a6 100644
  logging@1.0.8
  meteor@1.1.10
  meteor-base@1.0.1
-@@ -47,21 +55,27 @@ mobile-experience@1.0.1
+@@ -47,21 +57,27 @@ mobile-experience@1.0.1
  mobile-status-bar@1.0.6
  mongo@1.1.3
  mongo-id@1.0.1
@@ -1118,59 +1127,50 @@ index 4a7a39b..a2a14a6 100644
 2.4.9 (Apple Git-60)
 
 
-From b2158e46f52d065f88dcc80ebd34a30fafe170a6 Mon Sep 17 00:00:00 2001
+From 6267f9440bc6b8c86c8214cca2e5251970d3a8f8 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Sun, 8 Nov 2015 02:54:07 +0200
-Subject: [PATCH 21/39] Step 9.2: Add the urigo:angular-blaze-template package
+Date: Mon, 9 Nov 2015 11:46:05 +0200
+Subject: [PATCH 21/39] Step 9.2: Add `accounts.ui` dependency to Angular app
 
 ---
- .meteor/packages | 1 +
- .meteor/versions | 1 +
- 2 files changed, 2 insertions(+)
+ simple-todos-angular.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/.meteor/packages b/.meteor/packages
-index 00d102a..357cc52 100644
---- a/.meteor/packages
-+++ b/.meteor/packages
-@@ -19,3 +19,4 @@ insecure                # Allow all DB writes from clients (for prototyping)
- angular@1.2.0-rc.6
- accounts-password
- accounts-ui
-+urigo:angular-blaze-template
-diff --git a/.meteor/versions b/.meteor/versions
-index a2a14a6..e6adb0d 100644
---- a/.meteor/versions
-+++ b/.meteor/versions
-@@ -80,6 +80,7 @@ templating-tools@1.0.0
- tracker@1.0.9
- ui@1.0.8
- underscore@1.0.4
-+urigo:angular-blaze-template@0.1.1
- url@1.0.5
- webapp@1.2.3
- webapp-hashing@1.0.5
+diff --git a/simple-todos-angular.js b/simple-todos-angular.js
+index 5934036..7ca4577 100644
+--- a/simple-todos-angular.js
++++ b/simple-todos-angular.js
+@@ -3,7 +3,7 @@ Tasks = new Mongo.Collection('tasks');
+ if (Meteor.isClient) {
+ 
+   // This code only runs on the client
+-  angular.module('simple-todos',['angular-meteor']);
++  angular.module('simple-todos',['angular-meteor', 'accounts.ui']);
+ 
+   function onReady() {
+     angular.bootstrap(document, ['simple-todos']);
 -- 
 2.4.9 (Apple Git-60)
 
 
-From 416f23cb35b018d2c993fdcfc6f2a021fa5daf79 Mon Sep 17 00:00:00 2001
+From 70e744b65b8aa04150cceebd37d5dc623ae383b6 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
-Date: Sun, 8 Nov 2015 02:54:37 +0200
-Subject: [PATCH 22/39] Step 9.3: Add Blaze loginButtons template to HTML
+Date: Mon, 9 Nov 2015 11:54:35 +0200
+Subject: [PATCH 22/39] Step 9.3: Add loginButtons directive
 
 ---
  simple-todos-angular.html | 2 ++
  1 file changed, 2 insertions(+)
 
 diff --git a/simple-todos-angular.html b/simple-todos-angular.html
-index ef5bc59..c85d301 100644
+index ef5bc59..5fdbfb8 100644
 --- a/simple-todos-angular.html
 +++ b/simple-todos-angular.html
 @@ -14,6 +14,8 @@
        Hide Completed Tasks
      </label>
  
-+    <blaze-template name="loginButtons"></blaze-template>
++    <login-buttons></login-buttons>
 +
      <!-- add a form below the h1 -->
      <form class="new-task" ng-submit="addTask(newTask); newTask='';">
@@ -1179,7 +1179,7 @@ index ef5bc59..c85d301 100644
 2.4.9 (Apple Git-60)
 
 
-From 67203099053c256fc3111b9945ae94fe6e94e578 Mon Sep 17 00:00:00 2001
+From 4f85b07d771feed9d392bdd9f8d8046521cc7bf3 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:27:12 +0300
 Subject: [PATCH 23/39] Step 9.4: Configure accounts UI to use usernames
@@ -1190,7 +1190,7 @@ Subject: [PATCH 23/39] Step 9.4: Configure accounts UI to use usernames
  1 file changed, 4 insertions(+)
 
 diff --git a/simple-todos-angular.js b/simple-todos-angular.js
-index 5934036..0c2d6c1 100644
+index 7ca4577..0b277df 100644
 --- a/simple-todos-angular.js
 +++ b/simple-todos-angular.js
 @@ -2,6 +2,10 @@ Tasks = new Mongo.Collection('tasks');
@@ -1202,13 +1202,13 @@ index 5934036..0c2d6c1 100644
 +  });
 +
    // This code only runs on the client
-   angular.module('simple-todos',['angular-meteor']);
+   angular.module('simple-todos',['angular-meteor', 'accounts.ui']);
  
 -- 
 2.4.9 (Apple Git-60)
 
 
-From dd12ba1953b8fd6ad079f8ecbd74d600a9b3b8c5 Mon Sep 17 00:00:00 2001
+From 55e9045c42743f0cd1370e0b3af9ce641532a780 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 13:29:48 +0300
 Subject: [PATCH 24/39] Step 9.5: Add owner and username to created task
@@ -1218,7 +1218,7 @@ Subject: [PATCH 24/39] Step 9.5: Add owner and username to created task
  1 file changed, 5 insertions(+), 3 deletions(-)
 
 diff --git a/simple-todos-angular.js b/simple-todos-angular.js
-index 0c2d6c1..d0b3829 100644
+index 0b277df..a83dad1 100644
 --- a/simple-todos-angular.js
 +++ b/simple-todos-angular.js
 @@ -25,10 +25,12 @@ if (Meteor.isClient) {
@@ -1241,7 +1241,7 @@ index 0c2d6c1..d0b3829 100644
 2.4.9 (Apple Git-60)
 
 
-From 155e690004514f3e5f4a2e7c2c0618fe60205fb4 Mon Sep 17 00:00:00 2001
+From 985ea3a7fdd00907ddbf6ceee36125e7d32d90f9 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sun, 8 Nov 2015 02:55:26 +0200
 Subject: [PATCH 25/39] Step 9.6: Hide new task form if user is not logged in
@@ -1251,11 +1251,11 @@ Subject: [PATCH 25/39] Step 9.6: Hide new task form if user is not logged in
  1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/simple-todos-angular.html b/simple-todos-angular.html
-index c85d301..5ef11a9 100644
+index 5fdbfb8..98c6a82 100644
 --- a/simple-todos-angular.html
 +++ b/simple-todos-angular.html
 @@ -17,7 +17,9 @@
-     <blaze-template name="loginButtons"></blaze-template>
+     <login-buttons></login-buttons>
  
      <!-- add a form below the h1 -->
 -    <form class="new-task" ng-submit="addTask(newTask); newTask='';">
@@ -1269,7 +1269,7 @@ index c85d301..5ef11a9 100644
 2.4.9 (Apple Git-60)
 
 
-From e9c96426f3a87c82944175a71cda36b1d58c5c74 Mon Sep 17 00:00:00 2001
+From 003f2ba777ce625b84cdbd0aab7dbe63dfd269b6 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sun, 8 Nov 2015 02:56:09 +0200
 Subject: [PATCH 26/39] Step 9.7: Add username to the displayed task
@@ -1279,7 +1279,7 @@ Subject: [PATCH 26/39] Step 9.7: Add username to the displayed task
  1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/simple-todos-angular.html b/simple-todos-angular.html
-index 5ef11a9..19e72f6 100644
+index 98c6a82..d12094e 100644
 --- a/simple-todos-angular.html
 +++ b/simple-todos-angular.html
 @@ -32,7 +32,9 @@
@@ -1297,7 +1297,7 @@ index 5ef11a9..19e72f6 100644
 2.4.9 (Apple Git-60)
 
 
-From a7138e0a983fb208af99fb9fc23ade358d2daf0d Mon Sep 17 00:00:00 2001
+From e891932002ddf3deac819ffe69795bba21d41631 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sun, 8 Nov 2015 02:56:52 +0200
 Subject: [PATCH 27/39] Step 10.1: Remove the insecure package
@@ -1308,7 +1308,7 @@ Subject: [PATCH 27/39] Step 10.1: Remove the insecure package
  2 files changed, 2 deletions(-)
 
 diff --git a/.meteor/packages b/.meteor/packages
-index 357cc52..ec2eac9 100644
+index dbee131..2d2e7c5 100644
 --- a/.meteor/packages
 +++ b/.meteor/packages
 @@ -15,7 +15,6 @@ standard-minifiers      # JS/CSS minifiers run for production mode
@@ -1318,12 +1318,12 @@ index 357cc52..ec2eac9 100644
 -insecure                # Allow all DB writes from clients (for prototyping)
  angular@1.2.0-rc.6
  accounts-password
- accounts-ui
+ dotansimha:accounts-ui-angular
 diff --git a/.meteor/versions b/.meteor/versions
-index e6adb0d..6da5cab 100644
+index cf8e714..fb60917 100644
 --- a/.meteor/versions
 +++ b/.meteor/versions
-@@ -39,7 +39,6 @@ html-tools@1.0.5
+@@ -41,7 +41,6 @@ html-tools@1.0.5
  htmljs@1.0.5
  http@1.1.1
  id-map@1.0.4
@@ -1335,7 +1335,7 @@ index e6adb0d..6da5cab 100644
 2.4.9 (Apple Git-60)
 
 
-From 5b4849d912f4f97b8e5c5e68c27d3a89bdd4e696 Mon Sep 17 00:00:00 2001
+From 16fe088c181ede4cfb733a359356cafd715ca3b0 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 15:02:50 +0300
 Subject: [PATCH 28/39] Step 10.2: Add Meteor Methods for add, delete and check
@@ -1346,7 +1346,7 @@ Subject: [PATCH 28/39] Step 10.2: Add Meteor Methods for add, delete and check
  1 file changed, 22 insertions(+)
 
 diff --git a/simple-todos-angular.js b/simple-todos-angular.js
-index d0b3829..4b12a5e 100644
+index a83dad1..b10a928 100644
 --- a/simple-todos-angular.js
 +++ b/simple-todos-angular.js
 @@ -47,3 +47,25 @@ if (Meteor.isClient) {
@@ -1379,7 +1379,7 @@ index d0b3829..4b12a5e 100644
 2.4.9 (Apple Git-60)
 
 
-From 24b023400b0cba198b7849fc7a9b694656b06e74 Mon Sep 17 00:00:00 2001
+From f7271f737a1852fd445bd7622c0b4aa692e2f6c4 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 15:05:25 +0300
 Subject: [PATCH 29/39] Step 10.3: Add scope functions to call the Meteor
@@ -1390,7 +1390,7 @@ Subject: [PATCH 29/39] Step 10.3: Add scope functions to call the Meteor
  1 file changed, 10 insertions(+), 7 deletions(-)
 
 diff --git a/simple-todos-angular.js b/simple-todos-angular.js
-index 4b12a5e..655fe79 100644
+index b10a928..417ebd9 100644
 --- a/simple-todos-angular.js
 +++ b/simple-todos-angular.js
 @@ -25,13 +25,16 @@ if (Meteor.isClient) {
@@ -1421,7 +1421,7 @@ index 4b12a5e..655fe79 100644
 2.4.9 (Apple Git-60)
 
 
-From 006c9ebcb12e013f5233c5bbf54c40624d630685 Mon Sep 17 00:00:00 2001
+From ac0c8565f3697ad5c41379a98503ff93427ebb89 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sun, 8 Nov 2015 02:57:43 +0200
 Subject: [PATCH 30/39] Step 10.4: Change template events to call methods
@@ -1431,7 +1431,7 @@ Subject: [PATCH 30/39] Step 10.4: Change template events to call methods
  1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/simple-todos-angular.html b/simple-todos-angular.html
-index 19e72f6..641b475 100644
+index d12094e..da9f25b 100644
 --- a/simple-todos-angular.html
 +++ b/simple-todos-angular.html
 @@ -28,9 +28,10 @@
@@ -1451,7 +1451,7 @@ index 19e72f6..641b475 100644
 2.4.9 (Apple Git-60)
 
 
-From be8045229c7b002a1280f5a2f1e058073128651d Mon Sep 17 00:00:00 2001
+From 67f8f540522edbcb5c6353729f503fbe28beeaf8 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sun, 8 Nov 2015 02:58:12 +0200
 Subject: [PATCH 31/39] Step 11.1: Remove the autopublish package
@@ -1462,7 +1462,7 @@ Subject: [PATCH 31/39] Step 11.1: Remove the autopublish package
  2 files changed, 2 deletions(-)
 
 diff --git a/.meteor/packages b/.meteor/packages
-index ec2eac9..5ec67ad 100644
+index 2d2e7c5..ed1f118 100644
 --- a/.meteor/packages
 +++ b/.meteor/packages
 @@ -14,7 +14,6 @@ tracker                 # Meteor's client-side reactive programming library
@@ -1472,9 +1472,9 @@ index ec2eac9..5ec67ad 100644
 -autopublish             # Publish all data to the clients (for prototyping)
  angular@1.2.0-rc.6
  accounts-password
- accounts-ui
+ dotansimha:accounts-ui-angular
 diff --git a/.meteor/versions b/.meteor/versions
-index 6da5cab..92f965d 100644
+index fb60917..711e407 100644
 --- a/.meteor/versions
 +++ b/.meteor/versions
 @@ -6,7 +6,6 @@ angular@1.2.0-rc.6
@@ -1489,7 +1489,7 @@ index 6da5cab..92f965d 100644
 2.4.9 (Apple Git-60)
 
 
-From 2fcdc23a833d0d6f912df18d9f9e1fea57a6f87e Mon Sep 17 00:00:00 2001
+From cb7509ba26c7108bb09266679c7954b11964ae74 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 15:10:25 +0300
 Subject: [PATCH 32/39] Step 11.2: Add server publish function to tasks
@@ -1499,7 +1499,7 @@ Subject: [PATCH 32/39] Step 11.2: Add server publish function to tasks
  1 file changed, 6 insertions(+)
 
 diff --git a/simple-todos-angular.js b/simple-todos-angular.js
-index 655fe79..439a148 100644
+index 417ebd9..b54fd8f 100644
 --- a/simple-todos-angular.js
 +++ b/simple-todos-angular.js
 @@ -72,3 +72,9 @@ Meteor.methods({
@@ -1516,7 +1516,7 @@ index 655fe79..439a148 100644
 2.4.9 (Apple Git-60)
 
 
-From 939f74bcb38b5a24e112d8ac7d02e5d8b2b6e601 Mon Sep 17 00:00:00 2001
+From 913f9e002d60edcb878323293dee75d918e8a3e6 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 15:11:21 +0300
 Subject: [PATCH 33/39] Step 11.3: Subscribe to tasks publication
@@ -1526,7 +1526,7 @@ Subject: [PATCH 33/39] Step 11.3: Subscribe to tasks publication
  1 file changed, 2 insertions(+)
 
 diff --git a/simple-todos-angular.js b/simple-todos-angular.js
-index 439a148..6464ff3 100644
+index b54fd8f..956f7a8 100644
 --- a/simple-todos-angular.js
 +++ b/simple-todos-angular.js
 @@ -21,6 +21,8 @@ if (Meteor.isClient) {
@@ -1542,7 +1542,7 @@ index 439a148..6464ff3 100644
 2.4.9 (Apple Git-60)
 
 
-From b91e37beceaffa590476b7b405e85d713e67ec4e Mon Sep 17 00:00:00 2001
+From 8035f864a6791f5a6ae456da1585b2edb2387445 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sun, 8 Nov 2015 02:59:00 +0200
 Subject: [PATCH 34/39] Step 11.4: Add setPrivate button to template
@@ -1552,7 +1552,7 @@ Subject: [PATCH 34/39] Step 11.4: Add setPrivate button to template
  1 file changed, 6 insertions(+)
 
 diff --git a/simple-todos-angular.html b/simple-todos-angular.html
-index 641b475..208097f 100644
+index da9f25b..1f44e28 100644
 --- a/simple-todos-angular.html
 +++ b/simple-todos-angular.html
 @@ -33,6 +33,12 @@
@@ -1572,7 +1572,7 @@ index 641b475..208097f 100644
 2.4.9 (Apple Git-60)
 
 
-From c16f39fd138422aaa142974a36cfab0e4f59159d Mon Sep 17 00:00:00 2001
+From ee73d01da9cd7275e47a7b97b24cc8c4634cb026 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sun, 8 Nov 2015 02:59:36 +0200
 Subject: [PATCH 35/39] Step 11.5: Add private CSS class to task
@@ -1582,7 +1582,7 @@ Subject: [PATCH 35/39] Step 11.5: Add private CSS class to task
  1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/simple-todos-angular.html b/simple-todos-angular.html
-index 208097f..05e0f5d 100644
+index 1f44e28..a483115 100644
 --- a/simple-todos-angular.html
 +++ b/simple-todos-angular.html
 @@ -27,7 +27,8 @@
@@ -1599,7 +1599,7 @@ index 208097f..05e0f5d 100644
 2.4.9 (Apple Git-60)
 
 
-From 9644cfb1d867b175de825cf9803ef3a8ec74668a Mon Sep 17 00:00:00 2001
+From 70f40781b1d587a9f66d5109a0cf9dd8f0681fa3 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 17:06:51 +0300
 Subject: [PATCH 36/39] Step 11.6: Add setPrivate Meteor Method
@@ -1609,7 +1609,7 @@ Subject: [PATCH 36/39] Step 11.6: Add setPrivate Meteor Method
  1 file changed, 10 insertions(+)
 
 diff --git a/simple-todos-angular.js b/simple-todos-angular.js
-index 6464ff3..0bd3853 100644
+index 956f7a8..49b4c12 100644
 --- a/simple-todos-angular.js
 +++ b/simple-todos-angular.js
 @@ -72,6 +72,16 @@ Meteor.methods({
@@ -1633,7 +1633,7 @@ index 6464ff3..0bd3853 100644
 2.4.9 (Apple Git-60)
 
 
-From d1d3255975957d11f52cd66b7233b4ce1dc5d733 Mon Sep 17 00:00:00 2001
+From 936c6c1e3b79f8bda609a0da745953e0cba12242 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 17:08:29 +0300
 Subject: [PATCH 37/39] Step 11.7: Add setPrivate scope function
@@ -1643,7 +1643,7 @@ Subject: [PATCH 37/39] Step 11.7: Add setPrivate scope function
  1 file changed, 4 insertions(+)
 
 diff --git a/simple-todos-angular.js b/simple-todos-angular.js
-index 0bd3853..bdc75a8 100644
+index 49b4c12..a89c2dc 100644
 --- a/simple-todos-angular.js
 +++ b/simple-todos-angular.js
 @@ -39,6 +39,10 @@ if (Meteor.isClient) {
@@ -1661,7 +1661,7 @@ index 0bd3853..bdc75a8 100644
 2.4.9 (Apple Git-60)
 
 
-From b95e7e5c7083e88adc6d4f7cceb9fe613685615c Mon Sep 17 00:00:00 2001
+From a57fd9b07e297caadcb6f050cddf7d708af3e8c0 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 15:59:53 +0300
 Subject: [PATCH 38/39] Step 11.8: Publish only public and owner's tasks
@@ -1671,7 +1671,7 @@ Subject: [PATCH 38/39] Step 11.8: Publish only public and owner's tasks
  1 file changed, 6 insertions(+), 1 deletion(-)
 
 diff --git a/simple-todos-angular.js b/simple-todos-angular.js
-index bdc75a8..a6089ab 100644
+index a89c2dc..2b429a3 100644
 --- a/simple-todos-angular.js
 +++ b/simple-todos-angular.js
 @@ -91,6 +91,11 @@ Meteor.methods({
@@ -1691,7 +1691,7 @@ index bdc75a8..a6089ab 100644
 2.4.9 (Apple Git-60)
 
 
-From 0951f20b03772deee83db07b41056127ace5dfe1 Mon Sep 17 00:00:00 2001
+From 30cd87728f077ae305c10dd35d59dcc0378ed175 Mon Sep 17 00:00:00 2001
 From: Uri Goldshtein <uri.goldshtein@gmail.com>
 Date: Sat, 18 Jul 2015 16:02:20 +0300
 Subject: [PATCH 39/39] Step 11.9: Add extra security to methods
@@ -1701,7 +1701,7 @@ Subject: [PATCH 39/39] Step 11.9: Add extra security to methods
  1 file changed, 12 insertions(+)
 
 diff --git a/simple-todos-angular.js b/simple-todos-angular.js
-index a6089ab..1d371fb 100644
+index 2b429a3..a47bf45 100644
 --- a/simple-todos-angular.js
 +++ b/simple-todos-angular.js
 @@ -72,9 +72,21 @@ Meteor.methods({
