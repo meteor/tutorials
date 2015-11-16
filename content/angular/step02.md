@@ -21,7 +21,7 @@ To start working on our todos list app, let's replace the code of the default st
 
 {{> DiffBox tutorialName="simple-todos-angular" step="2.3"}}
 
-Now let's create a simple Anuglar list repeater:
+Now let's create a simple Angular list repeater:
 
 {{> DiffBox tutorialName="simple-todos-angular" step="2.4"}}
 
