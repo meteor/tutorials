@@ -14,6 +14,7 @@ Package.onUse(function (api) {
     'simple:highlight.js@1.0.9',
     'reactive-var',
     'less',
+    'ecmascript',
     'mdg:tutorial-step-diff-compiler@0.1.0',
     'mdg:tutorial-diff-box@0.3.0',
     'mdg:tutorial-registry@0.1.1'
