@@ -8,7 +8,7 @@ Feel free to submit a pull request to improve the content!
 
 1. [Blaze tutorial](https://www.meteor.com/tutorials/blaze/creating-an-app): [`/content/blaze`](https://github.com/meteor/tutorials/tree/master/content/blaze)
 2. [Angular tutorial](https://www.meteor.com/tutorials/angular/creating-an-app): [`/content/angular`](https://github.com/meteor/tutorials/tree/master/content/angular)
-3. React tutorial, work in progress (not live yet): [`/content/react`](https://github.com/meteor/tutorials/tree/master/content/react)
+3. [React tutorial](https://www.meteor.com/tutorials/react/creating-an-app): [`/content/react`](https://github.com/meteor/tutorials/tree/master/content/react)
 
 ### Tutorial step-by-step repositories
 
