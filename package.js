@@ -63,6 +63,7 @@ Package.onUse(function (api) {
 
     'content/shared/explanations.md',
     'content/shared/adding-css.md',
+    'content/shared/adding-css.js',
     'content/shared/step06.md',
     'content/shared/step07.md',
 

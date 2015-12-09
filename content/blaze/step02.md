@@ -32,6 +32,6 @@ You can pass data into templates from your JavaScript code by defining _helpers_
 
 In the next step, we will see how we can use helpers to make our templates display dynamic data from a database collection.
 
-{{> addingCSS}}
+{{> addingCSS cssFileName="simple-todos.css"}}
 
 {{/template}}

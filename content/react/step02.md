@@ -76,7 +76,7 @@ Read about the features that Meteor supports in the [ecmascript README](https://
 
 * [Nikolas C. Zakas "Understanding ECMAScript 6"](https://github.com/nzakas/understandinges6)
 
-{{> addingCSS}}
+{{> addingCSS cssFileName="simple-todos-react.css"}}
 
 Now that you've added the CSS, the app should look a lot nicer. Check in your browser to see that the new styles have loaded.
 
