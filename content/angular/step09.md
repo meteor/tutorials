@@ -1,70 +1,39 @@
 {{#template name="angular-step09"}}
 
-# Adding user accounts
+# Security with methods
 
-Meteor comes with an accounts system and a drop-in login user interface that lets you add multi-user functionality to your app in minutes.
+Before this step, any user of the app could edit any part of the database. This might be okay for very small internal apps or demos, but any real application needs to control permissions for its data. In Meteor, the best way to do this is by declaring _methods_. Instead of the client code directly calling `insert`, `update`, and `remove`, it will instead call methods that will check if the user is authorized to complete the action and then make any changes to the database on the client's behalf.
 
-To enable the accounts system and UI, we need to add the relevant packages. In your app directory, run the following command:
+### Removing `insecure`
+
+Every newly created Meteor project has the `insecure` package added by default. This is the package that allows us to edit the database from the client. It's useful when prototyping, but now we are taking off the training wheels. To remove this package, go to your app directory and run:
 
 ```bash
-meteor add accounts-password dotansimha:accounts-ui-angular
+meteor remove insecure
 ```
 
-`accounts-password` is a package that includes all the logic for password based authentication.
+If you try to use the app after removing this package, you will notice that none of the inputs or buttons work anymore. This is because all client-side database permissions have been revoked. Now we need to rewrite some parts of our app to use methods.
 
-`dotansimha:accounts-ui-angular` includes the `<login-buttons>` directive that contains all the HTML and CSS we need for user authentication forms.
- 
-Now let's add dependency to `account.ui` module in our module definition:
+### Defining methods
+
+First, we need to define some methods. We need one method for each database operation we want to perform on the client. Methods should be defined in code that is executed on the client and the server - we will discuss this a bit later in the section titled _Optimistic UI_.
 
 {{> DiffBox tutorialName="simple-todos-angular" step="9.2"}}
 
-In the HTML, right under the checkbox, include the following code to add a login dropdown:
+Now that we have defined our methods, we need to update the places we were operating on the collection to use the methods instead:
 
 {{> DiffBox tutorialName="simple-todos-angular" step="9.3"}}
 
-Then, in your JavaScript, add the following code to configure the accounts UI to use usernames instead of email addresses:
+and the way we handle the changes in the template:
 
 {{> DiffBox tutorialName="simple-todos-angular" step="9.4"}}
 
-Now users can create accounts and log into your app! This is very nice, but logging in and out isn't very useful yet. Let's add two functions:
+Now all of our inputs and buttons will start working again. What did we gain from all of this work?
 
-1. Only display the new task input field to logged in users
-2. Show which user created each task
+1. When we insert tasks into the database, we can now securely verify that the user is logged in, that the `createdAt` field is correct, and that the `owner` and `username` fields are correct and the user isn't impersonating anyone.
+2. We can add extra validation logic to `setChecked` and `deleteTask` in later steps when users can make tasks private.
+3. Our client code is now more separated from our database logic. Instead of a lot of stuff happening inside our event handlers, we now have methods that can be called from anywhere.
 
-To do this, we will add two new fields to the `tasks` collection:
+{{> step09OptimisticUI}}
 
-1. `owner` - the `_id` of the user that created the task.
-2. `username` - the `username` of the user that created the task. We will save the username directly in the task object so that we don't have to look up the user every time we display the task.
-
-First, let's add some code to save these fields into the `addTask` function:
-
-{{> DiffBox tutorialName="simple-todos-angular" step="9.5"}}
-
-Then, in our HTML, add an `ng-show` directive to only show the form when there is a logged in user:
-
-{{> DiffBox tutorialName="simple-todos-angular" step="9.6"}}
-
-Finally, add a statement to display the `username` field on each task right before the text:
-
-{{> DiffBox tutorialName="simple-todos-angular" step="9.7"}}
-
-Now, users can log in and we can track which user each task belongs to. Let's look at some of the concepts we just discovered in more detail.
-
-### Automatic accounts UI
-
-If our app has the `accounts-ui` package, all we have to do to add a login dropdown is include the `loginButtons` template with [meteor-include](http://angular-meteor.com/api/meteor-include) directive.
-This dropdown detects which login methods have been added to the app and displays the appropriate controls. In our case, the only enabled login method is `accounts-password`, so the dropdown displays a password field. If you are adventurous, you can add the `accounts-facebook` package to enable Facebook login in your app - the Facebook button will automatically appear in the dropdown.
-
-### Getting information about the logged-in user
-
-In your HTML, you can use the built-in `$root.currentUser` variable to check if a user is logged in and get information about them. For example, `{{dstache}}$root.currentUser.username}}` will display the logged in user's username.
-
-In your JavaScript code, you can use `Meteor.userId()` to get the current user's `_id`, or `Meteor.user()` to get the whole user document.
-
-### Custom templates
-
-You can choose not to use the `accounts-ui` package template and create your own Angular login templates.
-You can read more about it in the [chapter about angular-material](http://angular-meteor.com/tutorial/step_18) in the advanced tutorial.
-
-In the next step, we will learn how to make our app more secure by doing all of our data validation on the server instead of the client.
 {{/template}}

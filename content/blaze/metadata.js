@@ -36,39 +36,34 @@ TutorialRegistry.registerTutorial("blaze", {
       template: 'blaze-step05'
     },
     {
-      title: 'Deploying your app',
-      slug: "deploying-your-app",
-      template: 'shared-step06'
-    },
-    {
       title: 'Running on mobile',
       slug: "running-on-mobile",
-      template: 'sharedStep07'
+      template: 'sharedStep06'
     },
     {
       title: 'Temporary UI state',
       slug: "temporary-ui-state",
-      template: 'blaze-step08'
+      template: 'blaze-step07'
     },
     {
       title: 'Adding user accounts',
       slug: "adding-user-accounts",
-      template: 'blaze-step09'
+      template: 'blaze-step08'
     },
     {
       title: 'Security with methods',
       slug: "security-with-methods",
-      template: 'blaze-step10'
+      template: 'blaze-step09'
     },
     {
       title: 'Publish and subscribe',
       slug: "publish-and-subscribe",
-      template: 'blaze-step11'
+      template: 'blaze-step10'
     },
     {
       title: 'Next steps',
       slug: "next-steps",
-      template: 'blaze-step12'
+      template: 'blaze-step11'
     }
   ]
 });

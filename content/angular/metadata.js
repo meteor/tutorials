@@ -36,39 +36,34 @@ TutorialRegistry.registerTutorial("angular", {
       template: 'angular-step05'
     },
     {
-      title: 'Deploying your app',
-      slug: "deploying-your-app",
-      template: 'shared-step06'
-    },
-    {
       title: 'Running on mobile',
       slug: "running-on-mobile",
-      template: 'angular-step07'
+      template: 'angular-step06'
     },
     {
       title: 'Filtering Collections',
       slug: "filtering-collections",
-      template: 'angular-step08'
+      template: 'angular-step07'
     },
     {
       title: 'Adding user accounts',
       slug: "adding-user-accounts",
-      template: 'angular-step09'
+      template: 'angular-step08'
     },
     {
       title: 'Security with methods',
       slug: "security-with-methods",
-      template: 'angular-step10'
+      template: 'angular-step09'
     },
     {
       title: 'Publish and subscribe',
       slug: "publish-and-subscribe",
-      template: 'angular-step11'
+      template: 'angular-step10'
     },
     {
       title: 'Next steps',
       slug: "next-steps",
-      template: 'angular-step12'
+      template: 'angular-step11'
     }
   ]
 });

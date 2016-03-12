@@ -28,7 +28,7 @@ Insert a few more tasks from the database console with different text. In the ne
 
 {{/template}}
 
-{{#template name="step10OptimisticUI"}}
+{{#template name="step09OptimisticUI"}}
 
 ### Optimistic UI
 

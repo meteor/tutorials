@@ -1,37 +1,60 @@
 {{#template name="blaze-step10"}}
 
-# Security with methods
+# Filtering data with publish and subscribe
 
-Before this step, any user of the app could edit any part of the database. This might be okay for very small internal apps or demos, but any real application needs to control permissions for its data. In Meteor, the best way to do this is by declaring _methods_. Instead of the client code directly calling `insert`, `update`, and `remove`, it will instead call methods that will check if the user is authorized to complete the action and then make any changes to the database on the client's behalf.
+Now that we have moved all of our app's sensitive code into methods, we need to learn about the other half of Meteor's security story. Until now, we have worked assuming the entire database is present on the client, meaning if we call `Tasks.find()` we will get every task in the collection. That's not good if users of our application want to store privacy-sensitive data. We need a way of controlling which data Meteor sends to the client-side database.
 
-### Removing `insecure`
-
-Every newly created Meteor project has the `insecure` package added by default. This is the package that allows us to edit the database from the client. It's useful when prototyping, but now we are taking off the training wheels. To remove this package, go to your app directory and run:
+Just like with `insecure` in the last step, all new Meteor apps start with the `autopublish` package. Let's remove it and see what happens:
 
 ```bash
-meteor remove insecure
+meteor remove autopublish
 ```
 
-If you try to use the app after removing this package, you will notice that none of the inputs or buttons work anymore. This is because all client-side database permissions have been revoked. Now we need to rewrite some parts of our app to use methods.
+When the app refreshes, the task list will be empty. Without the `autopublish` package, we will have to specify explicitly what the server sends to the client. The functions in Meteor that do this are `Meteor.publish` and `Meteor.subscribe`.
 
-### Defining methods
-
-First, we need to define some methods. We need one method for each database operation we want to perform on the client. Methods should be defined in code that is executed on the client and the server - we will discuss this a bit later in the section titled _Optimistic UI_.
+Let's add them now.
 
 {{> DiffBox tutorialName="simple-todos" step="10.2"}}
 
-Now that we have defined our methods, we need to update the places we were operating on the collection to use the methods instead:
+Once you have added this code, all of the tasks will reappear.
+
+Calling `Meteor.publish` on the server registers a _publication_ named `"tasks"`. When `Meteor.subscribe` is called on the client with the publication name, the client _subscribes_ to all the data from that publication, which in this case is all of the tasks in the database. To truly see the power of the publish/subscribe model, let's implement a feature that allows users to mark tasks as "private" so that no other users can see them.
+
+### Implementing private tasks
+
+First, let's add another property to tasks called "private" and a button for users to mark a task as private. This button should only show up for the owner of a task. It will display the current state of the item.
 
 {{> DiffBox tutorialName="simple-todos" step="10.3"}}
 
+Let's make sure our task has a special class if it is marked private:
+
 {{> DiffBox tutorialName="simple-todos" step="10.4"}}
 
-Now all of our inputs and buttons will start working again. What did we gain from all of this work?
+We need to modify our JavaScript code in three places:
 
-1. When we insert tasks into the database, we can now securely verify that the user is logged in, that the `createdAt` field is correct, and that the `owner` and `username` fields are correct and the user isn't impersonating anyone.
-2. We can add extra validation logic to `setChecked` and `deleteTask` in later steps when users can make tasks private.
-3. Our client code is now more separated from our database logic. Instead of a lot of stuff happening inside our event handlers, we now have methods that can be called from anywhere.
+{{> DiffBox tutorialName="simple-todos" step="10.5"}}
 
-{{> step10OptimisticUI}}
+{{> DiffBox tutorialName="simple-todos" step="10.6"}}
+
+{{> DiffBox tutorialName="simple-todos" step="10.7"}}
+
+### Selectively publishing tasks based on privacy status
+
+Now that we have a way of setting which tasks are private, we should modify our
+publication function to only send the tasks that a user is authorized to see:
+
+{{> DiffBox tutorialName="simple-todos" step="10.8"}}
+
+To test that this functionality works, you can use your browser's private browsing mode to log in as a different user. Put the two windows side by side and mark a task private to confirm that the other user can't see it. Now make it public again and it will reappear!
+
+### Extra method security
+
+In order to finish up our private task feature, we need to add checks to our `deleteTask` and `setChecked` methods to make sure only the task owner can delete or check off a private task:
+
+{{> DiffBox tutorialName="simple-todos" step="10.9"}}
+
+> Notice that with this code anyone can delete any public task. With some small modifications to the code, you should be able to make it so that only the owner can delete their tasks.
+
+We're done with our private task feature! Now our app is secure from attackers trying to view or modify someone's private tasks.
 
 {{/template}}

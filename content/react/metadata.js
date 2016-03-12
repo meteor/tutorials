@@ -36,39 +36,34 @@ TutorialRegistry.registerTutorial("react", {
       template: 'react-step05'
     },
     {
-      title: 'Deploying your app',
-      slug: "deploying-your-app",
-      template: "shared-step06"
-    },
-    {
       title: 'Running on mobile',
       slug: "running-on-mobile",
-      template: "sharedStep07"
+      template: "sharedStep06"
     },
     {
       title: 'Temporary UI state',
       slug: "temporary-ui-state",
-      template: 'react-step08'
+      template: 'react-step07'
     },
     {
       title: 'Adding user accounts',
       slug: "adding-user-accounts",
-      template: 'react-step09'
+      template: 'react-step08'
     },
     {
       title: 'Security with methods',
       slug: "security-with-methods",
-      template: 'react-step10'
+      template: 'react-step09'
     },
     {
       title: 'Publish and subscribe',
       slug: "publish-and-subscribe",
-      template: 'react-step11'
+      template: 'react-step10'
     },
     {
       title: 'Next steps',
       slug: "next-steps",
-      template: 'react-step12'
+      template: 'react-step11'
     }
   ]
 });

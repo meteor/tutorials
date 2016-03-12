@@ -24,7 +24,7 @@ In our case above, we are listening to the `submit` event on our form to call th
 
 Inside our scope function, we are adding a task to the `tasks` collection by simply calling `$scope.tasks.push()`. We can assign any properties to the task object, such as the time created, since we don't ever have to define a schema for the collection.
 
-Being able to insert anything into the database from the client isn't very secure, but it's okay for now. In step 10 we'll learn how we can make our app secure and restrict how data is inserted into the database.
+Being able to insert anything into the database from the client isn't very secure, but it's okay for now. In step 9 we'll learn how we can make our app secure and restrict how data is inserted into the database.
 
 ### Sorting our tasks
 

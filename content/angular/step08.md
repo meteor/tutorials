@@ -1,68 +1,70 @@
 {{#template name="angular-step08"}}
 
-# Filtering collections
+# Adding user accounts
 
-In this step, we'll add a client-side data filtering feature to our app, so that users can check a box to see only incomplete tasks.
+Meteor comes with an accounts system and a drop-in login user interface that lets you add multi-user functionality to your app in minutes.
 
-We're going to learn how to use Mongo's filtering API.
+To enable the accounts system and UI, we need to add the relevant packages. In your app directory, run the following command:
 
-First, we need to add a checkbox to our HTML:
-
-{{> DiffBox tutorialName="simple-todos-angular" step="8.1"}}
-
-This checkbox binds to the scope's `hideCompleted` variable.
-> We are using `$parent` because it creates a new child scope.
-
-Now, we need to update our `$scope.tasks` query each time `hideCompleted` changes.
-
-### Filtering collection syntax
-
-The query that returns all tasks (the current query looks like that:
-
-```js
-Tasks.find({}, { sort: { createdAt: -1 } })
+```bash
+meteor add accounts-password dotansimha:accounts-ui-angular
 ```
 
-and the query to return only the not completed todos looks like that:
+`accounts-password` is a package that includes all the logic for password based authentication.
 
-```js
-Tasks.find({ checked: {$ne: true} }, { sort: { createdAt: -1 } })
-```
-
-### Watching the checkbox
-
-So let's create a scope variable that will hold the wanted query and will change together with the checkbox.
-Inside our controller:
+`dotansimha:accounts-ui-angular` includes the `<login-buttons>` directive that contains all the HTML and CSS we need for user authentication forms.
+ 
+Now let's add dependency to `account.ui` module in our module definition:
 
 {{> DiffBox tutorialName="simple-todos-angular" step="8.2"}}
 
-and let's change our `$scope.tasks` definition accordingly:
+In the HTML, right under the checkbox, include the following code to add a login dropdown:
 
 {{> DiffBox tutorialName="simple-todos-angular" step="8.3"}}
 
-**but we are missing one more thing** - The expression we are sending `$meteor.collection` is a Meteor expression and
-**Meteor has to know that the Angular `query` parameter has changed**.
-
-### Connecting Angular bindings to Meteor's reactivity
-
-To make Meteor understand Angular bindings and the other way around, we use [$scope.getReactively](http://angular-meteor.com/api/getReactively) function that turns Angular
-scope variables into [Meteor reactive variables](http://docs.meteor.com/#/full/reactivevar_pkg).
-
-So now our definition should look like that:
+Then, in your JavaScript, add the following code to configure the accounts UI to use usernames instead of email addresses:
 
 {{> DiffBox tutorialName="simple-todos-angular" step="8.4"}}
 
-Now if you check the box, the task list will only show tasks that haven't been completed.
+Now users can create accounts and log into your app! This is very nice, but logging in and out isn't very useful yet. Let's add two functions:
 
-> To learn more about the [getReactively](http://angular-meteor.com/api/getReactively) feature
-> you can try the [advanced tutorial](http://angular-meteor.com/tutorial/step_12).
+1. Only display the new task input field to logged in users
+2. Show which user created each task
 
-### One more feature: Showing a count of incomplete tasks
+To do this, we will add two new fields to the `tasks` collection:
 
-Now that we have written a query that filters out completed tasks, we can use the same query to display a count of the tasks that haven't been checked off. To do this we need to add a scope function and change one line of the HTML.
+1. `owner` - the `_id` of the user that created the task.
+2. `username` - the `username` of the user that created the task. We will save the username directly in the task object so that we don't have to look up the user every time we display the task.
+
+First, let's add some code to save these fields into the `addTask` function:
 
 {{> DiffBox tutorialName="simple-todos-angular" step="8.5"}}
 
+Then, in our HTML, add an `ng-show` directive to only show the form when there is a logged in user:
+
 {{> DiffBox tutorialName="simple-todos-angular" step="8.6"}}
 
+Finally, add a statement to display the `username` field on each task right before the text:
+
+{{> DiffBox tutorialName="simple-todos-angular" step="8.7"}}
+
+Now, users can log in and we can track which user each task belongs to. Let's look at some of the concepts we just discovered in more detail.
+
+### Automatic accounts UI
+
+If our app has the `accounts-ui` package, all we have to do to add a login dropdown is include the `loginButtons` template with [meteor-include](http://angular-meteor.com/api/meteor-include) directive.
+This dropdown detects which login methods have been added to the app and displays the appropriate controls. In our case, the only enabled login method is `accounts-password`, so the dropdown displays a password field. If you are adventurous, you can add the `accounts-facebook` package to enable Facebook login in your app - the Facebook button will automatically appear in the dropdown.
+
+### Getting information about the logged-in user
+
+In your HTML, you can use the built-in `$root.currentUser` variable to check if a user is logged in and get information about them. For example, `{{dstache}}$root.currentUser.username}}` will display the logged in user's username.
+
+In your JavaScript code, you can use `Meteor.userId()` to get the current user's `_id`, or `Meteor.user()` to get the whole user document.
+
+### Custom templates
+
+You can choose not to use the `accounts-ui` package template and create your own Angular login templates.
+You can read more about it in the [chapter about angular-material](http://angular-meteor.com/tutorial/step_18) in the advanced tutorial.
+
+In the next step, we will learn how to make our app more secure by doing all of our data validation on the server instead of the client.
 {{/template}}
