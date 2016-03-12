@@ -63,11 +63,7 @@ Then, run the following command:
 meteor run android-device
 ```
 
-The app will be built and installed on your device. If you want to point your app to the server you deployed in the previous step, run:
-
-```bash
-meteor run android-device --mobile-server my_app_name.meteor.com
-```
+The app will be built and installed on your device.
 
 ### Running on an iPhone or iPad (Mac Only; requires Apple developer account)
 
@@ -79,12 +75,6 @@ meteor run ios-device
 
 This will open Xcode with a project for your iOS app. You can use Xcode to then launch the app on any device or simulator that Xcode supports.
 
-If you want to point your app at the previously deployed server, run:
-
-```bash
-meteor run ios-device --mobile-server my_app_name.meteor.com
-```
-
-Now that we have seen how easy it is to deploy our app and run it on mobile, let's get to adding some more features.
+Now that we have seen how easy it is to run our app on mobile, let's get to adding some more features.
 
 {{/template}}
