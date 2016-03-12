@@ -201,7 +201,7 @@ index 0000000..4f8c65d
 +  });
 +}
 -- 
-2.2.1
+2.6.3
 
 
 From be5979a8eae5766f74314e57f41037f4977d1372 Mon Sep 17 00:00:00 2001
@@ -246,7 +246,7 @@ index b08c7c3..95624e7 100644
 +  <li>{{text}}</li>
  </template>
 -- 
-2.2.1
+2.6.3
 
 
 From eda253878e20ba2577f28fe6fd7c3ce5090aec18 Mon Sep 17 00:00:00 2001
@@ -294,7 +294,7 @@ index 4f8c65d..871b655 100644
    });
  }
 -- 
-2.2.1
+2.6.3
 
 
 From e15faa0c628c7756e51d2470432f9aa548729739 Mon Sep 17 00:00:00 2001
@@ -438,7 +438,7 @@ index b6b4052..ed5e77e 100644
 +  }
 +}
 -- 
-2.2.1
+2.6.3
 
 
 From f78906af3d2d15fdb1851ff28122f9e08bc4ac9f Mon Sep 17 00:00:00 2001
@@ -472,7 +472,7 @@ index 871b655..69fdf2c 100644
    });
  }
 -- 
-2.2.1
+2.6.3
 
 
 From 8434ab7042eb750c50ab58efd7231f1c97c630ed Mon Sep 17 00:00:00 2001
@@ -500,7 +500,7 @@ index 95624e7..e31aef1 100644
  
      <ul>
 -- 
-2.2.1
+2.6.3
 
 
 From 7a1ace1482bbdd5ce38aa5db28ecb20ce0e12863 Mon Sep 17 00:00:00 2001
@@ -541,7 +541,7 @@ index 69fdf2c..8bfe857 100644
 +  });
  }
 -- 
-2.2.1
+2.6.3
 
 
 From a06c2235fa31bb876edc2f62ba62310dee40ab6c Mon Sep 17 00:00:00 2001
@@ -568,7 +568,7 @@ index 8bfe857..545a1db 100644
    });
  
 -- 
-2.2.1
+2.6.3
 
 
 From 5cdfa73dcd1a1973bf31e76ffb0e6af96d9a2d8a Mon Sep 17 00:00:00 2001
@@ -598,7 +598,7 @@ index e31aef1..94341cc 100644
 +  </li>
  </template>
 -- 
-2.2.1
+2.6.3
 
 
 From 383896358ebfb53c237a8611fc11a86aa71fbbf6 Mon Sep 17 00:00:00 2001
@@ -632,13 +632,13 @@ index 545a1db..36bdc0c 100644
 +  });
  }
 -- 
-2.2.1
+2.6.3
 
 
-From e62e4c1f8ca6f9808b6f3a78c39c4874dffdcbb4 Mon Sep 17 00:00:00 2001
+From 38cbb935edd47cf82fba70f2c3f865d0c5a1a55b Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:24:18 -0700
-Subject: [PATCH 11/34] Step 8.1: Add hide-completed checkbox to HTML
+Subject: [PATCH 11/34] Step 7.1: Add hide-completed checkbox to HTML
 
 ---
  simple-todos.html | 5 +++++
@@ -661,13 +661,13 @@ index 94341cc..7d837a9 100644
          <input type="text" name="text" placeholder="Type to add new tasks" />
        </form>
 -- 
-2.2.1
+2.6.3
 
 
-From 8a5390d3f596e1c2cefe56bfd417838ca834978c Mon Sep 17 00:00:00 2001
+From 47aef71308f768acf9bd65a5ae9234e3ed720feb Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:24:58 -0700
-Subject: [PATCH 12/34] Step 8.2: Add event handler for checkbox
+Subject: [PATCH 12/34] Step 7.2: Add event handler for checkbox
 
 ---
  simple-todos.js | 3 +++
@@ -688,13 +688,13 @@ index 36bdc0c..19f7ffd 100644
    });
  
 -- 
-2.2.1
+2.6.3
 
 
-From 3352071c6d1c414f94ee21038f28c45651d6216c Mon Sep 17 00:00:00 2001
+From a44b00fc6c73b0f35bf0a89f2d261d3560bf2025 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:25:38 -0700
-Subject: [PATCH 13/34] Step 8.3: Add helpers to body template
+Subject: [PATCH 13/34] Step 7.3: Add helpers to body template
 
 ---
  simple-todos.js | 12 ++++++++++--
@@ -724,13 +724,13 @@ index 19f7ffd..546fbe2 100644
    });
  
 -- 
-2.2.1
+2.6.3
 
 
-From d7e04b692a361153918f4a88548dfdc1c0220367 Mon Sep 17 00:00:00 2001
+From c3602209d76651d88761c667824f1b4f3fe5e125 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:26:17 -0700
-Subject: [PATCH 14/34] Step 8.4: Add incompleteCount helper to body
+Subject: [PATCH 14/34] Step 7.4: Add incompleteCount helper to body
 
 ---
  simple-todos.js | 3 +++
@@ -751,13 +751,13 @@ index 546fbe2..81bc5a9 100644
    });
  
 -- 
-2.2.1
+2.6.3
 
 
-From 48c14895d510dd095da3e114a40152d9291cbb83 Mon Sep 17 00:00:00 2001
+From 64d03503aa6830e56ef98f2d24fea4b079c4516d Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:26:37 -0700
-Subject: [PATCH 15/34] Step 8.5: Display incompleteCount
+Subject: [PATCH 15/34] Step 7.5: Display incompleteCount
 
 ---
  simple-todos.html | 2 +-
@@ -777,13 +777,13 @@ index 7d837a9..cb9b6f1 100644
        <label class="hide-completed">
          <input type="checkbox" checked="{{hideCompleted}}" />
 -- 
-2.2.1
+2.6.3
 
 
-From 36e2490f9302894bb63ce241343da41519b03600 Mon Sep 17 00:00:00 2001
+From 34072bdcbf906041634046dc2131bcafc71b9294 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:27:03 -0700
-Subject: [PATCH 16/34] Step 9.1: Add accounts-ui and accounts-password
+Subject: [PATCH 16/34] Step 8.1: Add accounts-ui and accounts-password
 
 ---
  .meteor/packages |  2 ++
@@ -852,13 +852,13 @@ index 410e1d9..26385bb 100644
  tracker@1.0.7
  ui@1.0.6
 -- 
-2.2.1
+2.6.3
 
 
-From 788b22e96afdbb0fb604834f4d08c61bb0178628 Mon Sep 17 00:00:00 2001
+From fb26978b41b31ce197bda1062ce61384cb15f548 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:27:23 -0700
-Subject: [PATCH 17/34] Step 9.2: Include loginButtons
+Subject: [PATCH 17/34] Step 8.2: Include loginButtons
 
 ---
  simple-todos.html | 2 ++
@@ -878,13 +878,13 @@ index cb9b6f1..55f385c 100644
          <input type="text" name="text" placeholder="Type to add new tasks" />
        </form>
 -- 
-2.2.1
+2.6.3
 
 
-From ddf3246896747a89f96aa64788f3daeca2e9a5c6 Mon Sep 17 00:00:00 2001
+From ea56ab8a78ec620f9a59a5cf66a82ee3bc06774f Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:27:46 -0700
-Subject: [PATCH 18/34] Step 9.3: Configure accounts-ui
+Subject: [PATCH 18/34] Step 8.3: Configure accounts-ui
 
 ---
  simple-todos.js | 4 ++++
@@ -904,13 +904,13 @@ index 81bc5a9..0d524f7 100644
 +  });
  }
 -- 
-2.2.1
+2.6.3
 
 
-From cd80f2966275060c64e4418c44cf13669386ce4d Mon Sep 17 00:00:00 2001
+From dff06692877ca27f212f12140ad7ec4d660edff3 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:28:24 -0700
-Subject: [PATCH 19/34] Step 9.4: Update insert to include user data
+Subject: [PATCH 19/34] Step 8.4: Update insert to include user data
 
 ---
  simple-todos.js | 4 +++-
@@ -932,13 +932,13 @@ index 0d524f7..cf0bd1e 100644
  
        // Clear form
 -- 
-2.2.1
+2.6.3
 
 
-From 29cff394ae08784db32c90affdc3bf8686b21d83 Mon Sep 17 00:00:00 2001
+From 65abbd15b9ec559cabc422af22e39291f176b6c0 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:28:47 -0700
-Subject: [PATCH 20/34] Step 9.5: Only show add task form if logged in
+Subject: [PATCH 20/34] Step 8.5: Only show add task form if logged in
 
 ---
  simple-todos.html | 8 +++++---
@@ -964,13 +964,13 @@ index 55f385c..9e4b61a 100644
  
      <ul>
 -- 
-2.2.1
+2.6.3
 
 
-From d7ad84ff5ae149e78621c85a1d2fd32959439f29 Mon Sep 17 00:00:00 2001
+From e1f7287dbb7750163d7dca971a6d10c8301014aa Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:29:11 -0700
-Subject: [PATCH 21/34] Step 9.6: Display username next to task
+Subject: [PATCH 21/34] Step 8.6: Display username next to task
 
 ---
  simple-todos.html | 2 +-
@@ -989,13 +989,13 @@ index 9e4b61a..55c1dc9 100644
    </li>
  </template>
 -- 
-2.2.1
+2.6.3
 
 
-From 59808d546321d201594a14dfa6a84c4a28eab53a Mon Sep 17 00:00:00 2001
+From 189b5aadecdaa2a5c44992f1abd27a5f9495bf8b Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:29:52 -0700
-Subject: [PATCH 22/34] Step 10.1: Remove insecure package
+Subject: [PATCH 22/34] Step 9.1: Remove insecure package
 
 ---
  .meteor/packages | 1 -
@@ -1026,13 +1026,13 @@ index 26385bb..6a03dd0 100644
  json@1.0.3
  launch-screen@1.0.2
 -- 
-2.2.1
+2.6.3
 
 
-From c209b47dcce29206ee5235e09817558440905a6e Mon Sep 17 00:00:00 2001
+From 7a680b88da2fc82820ee481f7f4f1a0b1b4a947e Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:30:20 -0700
-Subject: [PATCH 23/34] Step 10.2: Define some methods
+Subject: [PATCH 23/34] Step 9.2: Define some methods
 
 ---
  simple-todos.js | 22 ++++++++++++++++++++++
@@ -1069,13 +1069,13 @@ index cf0bd1e..40edc1a 100644
 +  }
 +});
 -- 
-2.2.1
+2.6.3
 
 
-From 7f422feef91339c9ffe9afd0a6069a14297f45b4 Mon Sep 17 00:00:00 2001
+From c3613e3ede173c3624d5a93409fdbd947ff44825 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:31:24 -0700
-Subject: [PATCH 24/34] Step 10.3: Replace insert with addTask method
+Subject: [PATCH 24/34] Step 9.3: Replace insert with addTask method
 
 ---
  simple-todos.js | 7 +------
@@ -1100,13 +1100,13 @@ index 40edc1a..3f35197 100644
        // Clear form
        event.target.text.value = "";
 -- 
-2.2.1
+2.6.3
 
 
-From 40f20dec61f94269f434f8e6600f52e48dab9c59 Mon Sep 17 00:00:00 2001
+From 27f8d1a79a05667342a7ffdbe19074d8398a248c Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:31:46 -0700
-Subject: [PATCH 25/34] Step 10.4: Replace update and remove with methods
+Subject: [PATCH 25/34] Step 9.4: Replace update and remove with methods
 
 ---
  simple-todos.js | 6 ++----
@@ -1132,13 +1132,13 @@ index 3f35197..d477b50 100644
    });
  
 -- 
-2.2.1
+2.6.3
 
 
-From 6d476642901e702bac6ead65d5522dbe85e7852c Mon Sep 17 00:00:00 2001
+From ed3ca0156c0ba6a15bd134e40d5178fb82dfed41 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:32:19 -0700
-Subject: [PATCH 26/34] Step 11.1: Remove autopublish
+Subject: [PATCH 26/34] Step 10.1: Remove autopublish
 
 ---
  .meteor/packages | 1 -
@@ -1169,13 +1169,13 @@ index 6a03dd0..6766561 100644
  base64@1.0.3
  binary-heap@1.0.3
 -- 
-2.2.1
+2.6.3
 
 
-From b292ba8028b19999a63e84d48fb2ca15d1e30110 Mon Sep 17 00:00:00 2001
+From fa380edb61cf1a07044f23afa76acb51b7afaf50 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:33:17 -0700
-Subject: [PATCH 27/34] Step 11.2: Add publish and subscribe
+Subject: [PATCH 27/34] Step 10.2: Add publish and subscribe
 
 ---
  simple-todos.js | 9 +++++++++
@@ -1203,13 +1203,13 @@ index d477b50..31eda5c 100644
      tasks: function () {
        if (Session.get("hideCompleted")) {
 -- 
-2.2.1
+2.6.3
 
 
-From 2c186456f68d31fbc51ef87cf10d8ff5a60f7cfe Mon Sep 17 00:00:00 2001
+From 75c795b419486b4dc7c81d353e4156185d4d73a8 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:33:43 -0700
-Subject: [PATCH 28/34] Step 11.3: Add private button
+Subject: [PATCH 28/34] Step 10.3: Add private button
 
 ---
  simple-todos.html | 10 ++++++++++
@@ -1237,13 +1237,13 @@ index 55c1dc9..bd18923 100644
    </li>
  </template>
 -- 
-2.2.1
+2.6.3
 
 
-From d1a2cc5eefa0b830f5f952cb6a94a496d7bb13aa Mon Sep 17 00:00:00 2001
+From e20dcfc13016f7f9a3642de3dd0c5530056adae2 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:34:13 -0700
-Subject: [PATCH 29/34] Step 11.4: Add private class to private tasks
+Subject: [PATCH 29/34] Step 10.4: Add private class to private tasks
 
 ---
  simple-todos.html | 2 +-
@@ -1263,13 +1263,13 @@ index bd18923..08854e2 100644
  
      <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
 -- 
-2.2.1
+2.6.3
 
 
-From ba34429a728da182231069f71f46ece369baa31b Mon Sep 17 00:00:00 2001
+From f5ff7942bb745e53c1d94d6d2555449544928754 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:34:47 -0700
-Subject: [PATCH 30/34] Step 11.5: Define helper to check ownership
+Subject: [PATCH 30/34] Step 10.5: Define helper to check ownership
 
 ---
  simple-todos.js | 6 ++++++
@@ -1293,13 +1293,13 @@ index 31eda5c..db6e512 100644
      "click .toggle-checked": function () {
        // Set the checked property to the opposite of its current value
 -- 
-2.2.1
+2.6.3
 
 
-From 47e1ff964973d319585bc7f5eb45b7ea78581028 Mon Sep 17 00:00:00 2001
+From c12c07a4480a0db0679c9af90fddcae0e843c816 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:35:31 -0700
-Subject: [PATCH 31/34] Step 11.6: Define method to set tasks to private
+Subject: [PATCH 31/34] Step 10.6: Define method to set tasks to private
 
 ---
  simple-todos.js | 10 ++++++++++
@@ -1326,13 +1326,13 @@ index db6e512..ff07739 100644
    }
  });
 -- 
-2.2.1
+2.6.3
 
 
-From 06f0e314c1dfe3dc8a44288e71d02cac85a32c0c Mon Sep 17 00:00:00 2001
+From a7412e05eb2294eba0ac8c3737acc9e996da9b0d Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:35:55 -0700
-Subject: [PATCH 32/34] Step 11.7: Add event handler to call the setPrivate
+Subject: [PATCH 32/34] Step 10.7: Add event handler to call the setPrivate
  method
 
 ---
@@ -1354,13 +1354,13 @@ index ff07739..937e361 100644
    });
  
 -- 
-2.2.1
+2.6.3
 
 
-From 6682fe168d69eb11b7fe280b67ae87fc6c06425a Mon Sep 17 00:00:00 2001
+From b027b618497c1c1d5f8c6d4d259e802018a6bab2 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:36:38 -0700
-Subject: [PATCH 33/34] Step 11.8: Only publish tasks the user is allowed to
+Subject: [PATCH 33/34] Step 10.8: Only publish tasks the user is allowed to
  see
 
 ---
@@ -1388,13 +1388,13 @@ index 937e361..fea68a1 100644
  }
  
 -- 
-2.2.1
+2.6.3
 
 
-From b5957208d50a064a4a22780c7ef76259691b2c7a Mon Sep 17 00:00:00 2001
+From 17b00f034ea0273a4eff10ab9ec4774fb7f98a7e Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:37:36 -0700
-Subject: [PATCH 34/34] Step 11.9: Add some extra security to methods
+Subject: [PATCH 34/34] Step 10.9: Add some extra security to methods
 
 ---
  simple-todos.js | 12 ++++++++++++
@@ -1427,5 +1427,5 @@ index fea68a1..9bf41bb 100644
    },
    setPrivate: function (taskId, setToPrivate) {
 -- 
-2.2.1
+2.6.3
 
