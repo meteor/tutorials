@@ -25,6 +25,7 @@ To run the newly created app:
 
 ```bash
 cd simple-todos
+meteor npm install
 meteor
 ```
 
