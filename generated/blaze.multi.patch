@@ -1,20 +1,24 @@
-From 8e14e687c3fe4add10f1d93215051d27faf3dd7c Mon Sep 17 00:00:00 2001
+From 1d9c7079a2ffb10bff504c472b2175c1ed7bf1b2 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:05:51 -0700
-Subject: [PATCH 01/34] Step 1: Run `meteor create`
+Subject: [PATCH 01/46] Step 1: Run `meteor create`
 
 ---
- .meteor/.finished-upgraders |  8 ++++++++
+ .gitignore                  |  1 +
+ .meteor/.finished-upgraders | 13 +++++++++
  .meteor/.gitignore          |  1 +
- .meteor/.id                 |  7 +++++++
- .meteor/packages            |  9 +++++++++
+ .meteor/.id                 |  7 +++++
+ .meteor/packages            | 21 ++++++++++++++
  .meteor/platforms           |  2 ++
  .meteor/release             |  1 +
- .meteor/versions            | 48 +++++++++++++++++++++++++++++++++++++++++++++
- simple-todos.css            |  1 +
- simple-todos.html           | 14 +++++++++++++
- simple-todos.js             | 23 ++++++++++++++++++++++
- 10 files changed, 114 insertions(+)
+ .meteor/versions            | 69 +++++++++++++++++++++++++++++++++++++++++++++
+ client/main.css             |  1 +
+ client/main.html            | 25 ++++++++++++++++
+ client/main.js              | 22 +++++++++++++++
+ package.json                | 10 +++++++
+ server/main.js              |  5 ++++
+ 13 files changed, 178 insertions(+)
+ create mode 100644 .gitignore
  create mode 100644 .meteor/.finished-upgraders
  create mode 100644 .meteor/.gitignore
  create mode 100644 .meteor/.id
@@ -22,16 +26,25 @@ Subject: [PATCH 01/34] Step 1: Run `meteor create`
  create mode 100644 .meteor/platforms
  create mode 100644 .meteor/release
  create mode 100644 .meteor/versions
- create mode 100644 simple-todos.css
- create mode 100644 simple-todos.html
- create mode 100644 simple-todos.js
+ create mode 100644 client/main.css
+ create mode 100644 client/main.html
+ create mode 100644 client/main.js
+ create mode 100644 package.json
+ create mode 100644 server/main.js
 
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..3c3629e
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1 @@
++node_modules
 diff --git a/.meteor/.finished-upgraders b/.meteor/.finished-upgraders
 new file mode 100644
-index 0000000..8a76103
+index 0000000..dacc2c0
 --- /dev/null
 +++ b/.meteor/.finished-upgraders
-@@ -0,0 +1,8 @@
+@@ -0,0 +1,13 @@
 +# This file contains information which helps Meteor properly upgrade your
 +# app when you run 'meteor update'. You should check it into version control
 +# with your project.
@@ -40,6 +53,11 @@ index 0000000..8a76103
 +notices-for-0.9.1
 +0.9.4-platform-file
 +notices-for-facebook-graph-api-2
++1.2.0-standard-minifiers-package
++1.2.0-meteor-platform-split
++1.2.0-cordova-changes
++1.2.0-breaking-changes
++1.3.0-split-minifiers-package
 diff --git a/.meteor/.gitignore b/.meteor/.gitignore
 new file mode 100644
 index 0000000..4083037
@@ -62,19 +80,31 @@ index 0000000..9a3be4f
 +1v2pn7n1jbklfu1hg4tnm
 diff --git a/.meteor/packages b/.meteor/packages
 new file mode 100644
-index 0000000..99704e0
+index 0000000..d4c8001
 --- /dev/null
 +++ b/.meteor/packages
-@@ -0,0 +1,9 @@
+@@ -0,0 +1,21 @@
 +# Meteor packages used by this project, one per line.
 +# Check this file (and the other files in this directory) into your repository.
 +#
 +# 'meteor add' and 'meteor remove' will edit this file for you,
 +# but you can also edit it by hand.
 +
-+meteor-platform
-+autopublish
-+insecure
++meteor-base             # Packages every Meteor app needs to have
++mobile-experience       # Packages for a great mobile UX
++mongo                   # The database Meteor supports right now
++blaze-html-templates    # Compile .html files into Meteor Blaze views
++reactive-var            # Reactive variable for tracker
++jquery                  # Helpful client-side library
++tracker                 # Meteor's client-side reactive programming library
++
++standard-minifier-css   # CSS minifier run for production mode
++standard-minifier-js    # JS minifier run for production mode
++es5-shim                # ECMAScript 5 compatibility for older browsers.
++ecmascript              # Enable ECMAScript2015+ syntax in app code
++
++autopublish             # Publish all data to the clients (for prototyping)
++insecure                # Allow all DB writes from clients (for prototyping)
 diff --git a/.meteor/platforms b/.meteor/platforms
 new file mode 100644
 index 0000000..efeba1b
@@ -85,231 +115,348 @@ index 0000000..efeba1b
 +browser
 diff --git a/.meteor/release b/.meteor/release
 new file mode 100644
-index 0000000..dab6b55
+index 0000000..ab70657
 --- /dev/null
 +++ b/.meteor/release
 @@ -0,0 +1 @@
-+METEOR@1.1.0.2
++METEOR@1.3-rc.2
 diff --git a/.meteor/versions b/.meteor/versions
 new file mode 100644
-index 0000000..410e1d9
+index 0000000..c3395d2
 --- /dev/null
 +++ b/.meteor/versions
-@@ -0,0 +1,48 @@
-+autopublish@1.0.3
-+autoupdate@1.2.1
-+base64@1.0.3
-+binary-heap@1.0.3
-+blaze@2.1.2
-+blaze-tools@1.0.3
-+boilerplate-generator@1.0.3
-+callback-hook@1.0.3
-+check@1.0.5
-+ddp@1.1.0
-+deps@1.0.7
-+ejson@1.0.6
-+fastclick@1.0.3
-+geojson-utils@1.0.3
-+html-tools@1.0.4
-+htmljs@1.0.4
-+http@1.1.0
-+id-map@1.0.3
-+insecure@1.0.3
-+jquery@1.11.3_2
-+json@1.0.3
-+launch-screen@1.0.2
-+livedata@1.0.13
-+logging@1.0.7
-+meteor@1.1.6
-+meteor-platform@1.2.2
-+minifiers@1.1.5
-+minimongo@1.0.8
-+mobile-status-bar@1.0.3
-+mongo@1.1.0
-+observe-sequence@1.0.6
-+ordered-dict@1.0.3
-+random@1.0.3
-+reactive-dict@1.1.0
-+reactive-var@1.0.5
-+reload@1.1.3
-+retry@1.0.3
-+routepolicy@1.0.5
-+session@1.1.0
-+spacebars@1.0.6
-+spacebars-compiler@1.0.6
-+templating@1.1.1
-+tracker@1.0.7
-+ui@1.0.6
-+underscore@1.0.3
-+url@1.0.4
-+webapp@1.2.0
-+webapp-hashing@1.0.3
-diff --git a/simple-todos.css b/simple-todos.css
+@@ -0,0 +1,69 @@
++allow-deny@1.0.2-rc.2
++autopublish@1.0.5-rc.2
++autoupdate@1.2.6-rc.2
++babel-compiler@6.5.1-rc.2
++babel-runtime@0.1.6-rc.2
++base64@1.0.6-rc.2
++binary-heap@1.0.6-rc.2
++blaze@2.1.5-rc.2
++blaze-html-templates@1.0.2-rc.2
++blaze-tools@1.0.6-rc.2
++boilerplate-generator@1.0.6-rc.2
++caching-compiler@1.0.2-rc.2
++caching-html-compiler@1.0.4-rc.2
++callback-hook@1.0.6-rc.2
++check@1.1.2-rc.2
++ddp@1.2.3-rc.2
++ddp-client@1.2.3-rc.2
++ddp-common@1.2.3-rc.2
++ddp-server@1.2.4-rc.2
++deps@1.0.10-rc.2
++diff-sequence@1.0.3-rc.2
++ecmascript@0.4.1-rc.2
++ecmascript-runtime@0.2.8-rc.2
++ejson@1.0.9-rc.2
++es5-shim@4.5.8-rc.2
++fastclick@1.0.9-rc.2
++geojson-utils@1.0.6-rc.2
++hot-code-push@1.0.2-rc.2
++html-tools@1.0.7-rc.2
++htmljs@1.0.7-rc.2
++http@1.1.3-rc.2
++id-map@1.0.5-rc.2
++insecure@1.0.5-rc.2
++jquery@1.11.6-rc.2
++launch-screen@1.0.7-rc.2
++livedata@1.0.16-rc.2
++logging@1.0.10-rc.2
++meteor@1.1.12-rc.2
++meteor-base@1.0.2-rc.2
++minifier-css@1.1.9-rc.2
++minifier-js@1.1.9-rc.2
++minimongo@1.0.12-rc.2
++mobile-experience@1.0.2-rc.2
++mobile-status-bar@1.0.9-rc.2
++modules@0.5.1-rc.2
++modules-runtime@0.6.1-rc.2
++mongo@1.1.5-rc.2
++mongo-id@1.0.2-rc.2
++npm-mongo@1.4.41-rc.2
++observe-sequence@1.0.9-rc.2
++ordered-dict@1.0.5-rc.2
++promise@0.6.4-rc.2
++random@1.0.7-rc.2
++reactive-var@1.0.7-rc.2
++reload@1.1.6-rc.2
++retry@1.0.5-rc.2
++routepolicy@1.0.8-rc.2
++spacebars@1.0.9-rc.2
++spacebars-compiler@1.0.9-rc.2
++standard-minifier-css@1.0.4-rc.2
++standard-minifier-js@1.0.4-rc.2
++templating@1.1.7-rc.2
++templating-tools@1.0.2-rc.2
++tracker@1.0.11-rc.2
++ui@1.0.9-rc.2
++underscore@1.0.6-rc.2
++url@1.0.7-rc.2
++webapp@1.2.6-rc.2
++webapp-hashing@1.0.7-rc.2
+diff --git a/client/main.css b/client/main.css
 new file mode 100644
 index 0000000..b6b4052
 --- /dev/null
-+++ b/simple-todos.css
++++ b/client/main.css
 @@ -0,0 +1 @@
 +/* CSS declarations go here */
-diff --git a/simple-todos.html b/simple-todos.html
+diff --git a/client/main.html b/client/main.html
 new file mode 100644
-index 0000000..b08c7c3
+index 0000000..6fe0dc5
 --- /dev/null
-+++ b/simple-todos.html
-@@ -0,0 +1,14 @@
++++ b/client/main.html
+@@ -0,0 +1,25 @@
 +<head>
-+  <title>simple-todos</title>
++  <title>simple</title>
 +</head>
 +
 +<body>
 +  <h1>Welcome to Meteor!</h1>
 +
 +  {{> hello}}
++  {{> info}}
 +</body>
 +
 +<template name="hello">
 +  <button>Click Me</button>
 +  <p>You've pressed the button {{counter}} times.</p>
 +</template>
-diff --git a/simple-todos.js b/simple-todos.js
++
++<template name="info">
++  <h2>Learn Meteor!</h2>
++  <ul>
++    <li><a href="https://www.meteor.com/try">Do the Tutorial</a></li>
++    <li><a href="http://guide.meteor.com">Follow the Guide</a></li>
++    <li><a href="https://docs.meteor.com">Read the Docs</a></li>
++    <li><a href="https://forums.meteor.com">Discussions</a></li>
++  </ul>
++</template>
+diff --git a/client/main.js b/client/main.js
 new file mode 100644
-index 0000000..4f8c65d
+index 0000000..ecb3282
 --- /dev/null
-+++ b/simple-todos.js
-@@ -0,0 +1,23 @@
-+if (Meteor.isClient) {
++++ b/client/main.js
+@@ -0,0 +1,22 @@
++import { Template } from 'meteor/templating';
++import { ReactiveVar } from 'meteor/reactive-var';
++
++import './main.html';
++
++Template.hello.onCreated(function helloOnCreated() {
 +  // counter starts at 0
-+  Session.setDefault('counter', 0);
++  this.counter = new ReactiveVar(0);
++});
 +
-+  Template.hello.helpers({
-+    counter: function () {
-+      return Session.get('counter');
-+    }
-+  });
++Template.hello.helpers({
++  counter() {
++    return Template.instance().counter.get();
++  },
++});
 +
-+  Template.hello.events({
-+    'click button': function () {
-+      // increment the counter when button is clicked
-+      Session.set('counter', Session.get('counter') + 1);
-+    }
-+  });
++Template.hello.events({
++  'click button'(event, instance) {
++    // increment the counter when button is clicked
++    instance.counter.set(instance.counter.get() + 1);
++  },
++});
+diff --git a/package.json b/package.json
+new file mode 100644
+index 0000000..4164b14
+--- /dev/null
++++ b/package.json
+@@ -0,0 +1,10 @@
++{
++  "name": "simple-todos",
++  "private": true,
++  "scripts": {
++    "start": "meteor run"
++  },
++  "dependencies": {
++    "meteor-node-stubs": "~0.2.0"
++  }
 +}
+diff --git a/server/main.js b/server/main.js
+new file mode 100644
+index 0000000..31a9e0e
+--- /dev/null
++++ b/server/main.js
+@@ -0,0 +1,5 @@
++import { Meteor } from 'meteor/meteor';
 +
-+if (Meteor.isServer) {
-+  Meteor.startup(function () {
-+    // code to run on server at startup
-+  });
-+}
++Meteor.startup(() => {
++  // code to run on server at startup
++});
 -- 
-2.6.3
+2.1.3
 
 
-From be5979a8eae5766f74314e57f41037f4977d1372 Mon Sep 17 00:00:00 2001
+From 1bca6e0184b74c344463a577a01d7a3dbad1f8be Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:07:22 -0700
-Subject: [PATCH 02/34] Step 2.1: Replace starter HTML code
+Subject: [PATCH 02/46] Step 2.1: Remove starter HTML code
 
 ---
- simple-todos.html | 19 +++++++++++++------
- 1 file changed, 13 insertions(+), 6 deletions(-)
+ client/main.html | 22 ----------------------
+ 1 file changed, 22 deletions(-)
 
-diff --git a/simple-todos.html b/simple-todos.html
-index b08c7c3..95624e7 100644
---- a/simple-todos.html
-+++ b/simple-todos.html
-@@ -1,14 +1,21 @@
+diff --git a/client/main.html b/client/main.html
+index 6fe0dc5..7c48505 100644
+--- a/client/main.html
++++ b/client/main.html
+@@ -1,25 +1,3 @@
  <head>
--  <title>simple-todos</title>
-+  <title>Todo List</title>
+   <title>simple</title>
  </head>
- 
- <body>
+-
+-<body>
 -  <h1>Welcome to Meteor!</h1>
+-
+-  {{> hello}}
+-  {{> info}}
+-</body>
+-
+-<template name="hello">
+-  <button>Click Me</button>
+-  <p>You've pressed the button {{counter}} times.</p>
+-</template>
+-
+-<template name="info">
+-  <h2>Learn Meteor!</h2>
+-  <ul>
+-    <li><a href="https://www.meteor.com/try">Do the Tutorial</a></li>
+-    <li><a href="http://guide.meteor.com">Follow the Guide</a></li>
+-    <li><a href="https://docs.meteor.com">Read the Docs</a></li>
+-    <li><a href="https://forums.meteor.com">Discussions</a></li>
+-  </ul>
+-</template>
+-- 
+2.1.3
+
+
+From 07b752c2a16a711e2596f2167a66ef700f3e4d2c Mon Sep 17 00:00:00 2001
+From: Tom Coleman <tom@thesnail.org>
+Date: Thu, 17 Mar 2016 13:11:52 +1100
+Subject: [PATCH 03/46] Step 2.2: Replace starter HTML code
+
+---
+ imports/ui/body.html | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+ create mode 100644 imports/ui/body.html
+
+diff --git a/imports/ui/body.html b/imports/ui/body.html
+new file mode 100644
+index 0000000..23a6507
+--- /dev/null
++++ b/imports/ui/body.html
+@@ -0,0 +1,17 @@
++<body>
 +  <div class="container">
 +    <header>
 +      <h1>Todo List</h1>
 +    </header>
- 
--  {{> hello}}
++
 +    <ul>
 +      {{#each tasks}}
 +        {{> task}}
 +      {{/each}}
 +    </ul>
 +  </div>
- </body>
- 
--<template name="hello">
--  <button>Click Me</button>
--  <p>You've pressed the button {{counter}} times.</p>
++</body>
++
 +<template name="task">
 +  <li>{{text}}</li>
- </template>
++</template>
 -- 
-2.6.3
+2.1.3
 
 
-From eda253878e20ba2577f28fe6fd7c3ce5090aec18 Mon Sep 17 00:00:00 2001
+From 7abbdb9a538a32b82c018df9ab9772cefdfb402b Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:07:50 -0700
-Subject: [PATCH 03/34] Step 2.2: Replace starter JS code
+Subject: [PATCH 04/46] Step 2.3: Replace starter JS code
 
 ---
- simple-todos.js | 27 +++++++--------------------
- 1 file changed, 7 insertions(+), 20 deletions(-)
+ imports/ui/body.js | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+ create mode 100644 imports/ui/body.js
 
-diff --git a/simple-todos.js b/simple-todos.js
-index 4f8c65d..871b655 100644
---- a/simple-todos.js
-+++ b/simple-todos.js
-@@ -1,23 +1,10 @@
- if (Meteor.isClient) {
--  // counter starts at 0
--  Session.setDefault('counter', 0);
--
--  Template.hello.helpers({
--    counter: function () {
--      return Session.get('counter');
--    }
--  });
--
--  Template.hello.events({
--    'click button': function () {
--      // increment the counter when button is clicked
--      Session.set('counter', Session.get('counter') + 1);
--    }
--  });
--}
--
--if (Meteor.isServer) {
--  Meteor.startup(function () {
--    // code to run on server at startup
-+  // This code only runs on the client
-+  Template.body.helpers({
-+    tasks: [
-+      { text: "This is task 1" },
-+      { text: "This is task 2" },
-+      { text: "This is task 3" }
-+    ]
-   });
- }
+diff --git a/imports/ui/body.js b/imports/ui/body.js
+new file mode 100644
+index 0000000..3ad20b1
+--- /dev/null
++++ b/imports/ui/body.js
+@@ -0,0 +1,11 @@
++import { Template } from 'meteor/templating';
++
++import './body.html';
++
++Template.body.helpers({
++  tasks: [
++    { text: 'This is task 1' },
++    { text: 'This is task 2' },
++    { text: 'This is task 3' },
++  ],
++});
 -- 
-2.6.3
+2.1.3
 
 
-From e15faa0c628c7756e51d2470432f9aa548729739 Mon Sep 17 00:00:00 2001
+From f33c2b6553d6a5502605de8b044b1e448894322d Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:08:17 -0700
-Subject: [PATCH 04/34] Step 2.3: Add CSS
+Subject: [PATCH 05/46] Step 2.4: Import starter JS
 
 ---
- simple-todos.css | 125 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ client/main.js | 23 +----------------------
+ 1 file changed, 1 insertion(+), 22 deletions(-)
+
+diff --git a/client/main.js b/client/main.js
+index ecb3282..4e7c1a4 100644
+--- a/client/main.js
++++ b/client/main.js
+@@ -1,22 +1 @@
+-import { Template } from 'meteor/templating';
+-import { ReactiveVar } from 'meteor/reactive-var';
+-
+-import './main.html';
+-
+-Template.hello.onCreated(function helloOnCreated() {
+-  // counter starts at 0
+-  this.counter = new ReactiveVar(0);
+-});
+-
+-Template.hello.helpers({
+-  counter() {
+-    return Template.instance().counter.get();
+-  },
+-});
+-
+-Template.hello.events({
+-  'click button'(event, instance) {
+-    // increment the counter when button is clicked
+-    instance.counter.set(instance.counter.get() + 1);
+-  },
+-});
++import '../imports/ui/body.js';
+-- 
+2.1.3
+
+
+From 39465319a937823b78df23fe36b1dd5a4bcd65c3 Mon Sep 17 00:00:00 2001
+From: Tom Coleman <tom@thesnail.org>
+Date: Thu, 17 Mar 2016 12:13:09 +1100
+Subject: [PATCH 06/46] Step 2.5: Add CSS
+
+---
+ client/main.css | 125 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  1 file changed, 125 insertions(+)
 
-diff --git a/simple-todos.css b/simple-todos.css
+diff --git a/client/main.css b/client/main.css
 index b6b4052..ed5e77e 100644
---- a/simple-todos.css
-+++ b/simple-todos.css
+--- a/client/main.css
++++ b/client/main.css
 @@ -1 +1,126 @@
  /* CSS declarations go here */
 +body {
@@ -438,57 +585,106 @@ index b6b4052..ed5e77e 100644
 +  }
 +}
 -- 
-2.6.3
+2.1.3
 
 
-From f78906af3d2d15fdb1851ff28122f9e08bc4ac9f Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:08:48 -0700
-Subject: [PATCH 05/34] Step 3.1: Define Tasks collection and load tasks from
- it
+From f7d73475384e80357eb9c7a5ca041d2546f60d62 Mon Sep 17 00:00:00 2001
+From: Tom Coleman <tom@thesnail.org>
+Date: Thu, 17 Mar 2016 12:15:47 +1100
+Subject: [PATCH 07/46] Step 3.1: Create tasks collection
 
 ---
- simple-todos.js | 10 +++++-----
+ imports/api/tasks.js | 5 +++++
+ 1 file changed, 5 insertions(+)
+ create mode 100644 imports/api/tasks.js
+
+diff --git a/imports/api/tasks.js b/imports/api/tasks.js
+new file mode 100644
+index 0000000..a9ab038
+--- /dev/null
++++ b/imports/api/tasks.js
+@@ -0,0 +1,5 @@
++import { Mongo } from 'meteor/mongo';
++
++const Tasks = new Mongo.Collection('tasks');
++
++export { Tasks };
+-- 
+2.1.3
+
+
+From ad62355a6a8ee24c21e37478504512596fe5201c Mon Sep 17 00:00:00 2001
+From: Tom Coleman <tom@thesnail.org>
+Date: Thu, 17 Mar 2016 12:20:32 +1100
+Subject: [PATCH 08/46] Step 3.2: Load tasks collection on the server
+
+---
+ server/main.js | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+diff --git a/server/main.js b/server/main.js
+index 31a9e0e..ab941a4 100644
+--- a/server/main.js
++++ b/server/main.js
+@@ -1,5 +1 @@
+-import { Meteor } from 'meteor/meteor';
+-
+-Meteor.startup(() => {
+-  // code to run on server at startup
+-});
++import '../imports/api/tasks.js';
+-- 
+2.1.3
+
+
+From 6aff55c365b0b5507877d5a66dd62d3a65a38cb2 Mon Sep 17 00:00:00 2001
+From: Tom Coleman <tom@thesnail.org>
+Date: Thu, 17 Mar 2016 12:16:03 +1100
+Subject: [PATCH 09/46] Step 3.3: Load tasks from Tasks collection
+
+---
+ imports/ui/body.js | 10 +++++-----
  1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/simple-todos.js b/simple-todos.js
-index 871b655..69fdf2c 100644
---- a/simple-todos.js
-+++ b/simple-todos.js
-@@ -1,10 +1,10 @@
-+Tasks = new Mongo.Collection("tasks");
+diff --git a/imports/ui/body.js b/imports/ui/body.js
+index 3ad20b1..fc36022 100644
+--- a/imports/ui/body.js
++++ b/imports/ui/body.js
+@@ -1,11 +1,11 @@
+ import { Template } from 'meteor/templating';
+ 
++import { Tasks } from '../api/tasks.js';
 +
- if (Meteor.isClient) {
-   // This code only runs on the client
-   Template.body.helpers({
--    tasks: [
--      { text: "This is task 1" },
--      { text: "This is task 2" },
--      { text: "This is task 3" }
--    ]
-+    tasks: function () {
-+      return Tasks.find({});
-+    }
-   });
- }
+ import './body.html';
+ 
+ Template.body.helpers({
+-  tasks: [
+-    { text: 'This is task 1' },
+-    { text: 'This is task 2' },
+-    { text: 'This is task 3' },
+-  ],
++  tasks() {
++    return Tasks.find({});
++  },
+ });
 -- 
-2.6.3
+2.1.3
 
 
-From 8434ab7042eb750c50ab58efd7231f1c97c630ed Mon Sep 17 00:00:00 2001
+From 9e387992b0911ef28958d5ec6d7380134da81c72 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:10:21 -0700
-Subject: [PATCH 06/34] Step 4.1: Add form for new tasks
+Subject: [PATCH 10/46] Step 4.1: Add form for new tasks
 
 ---
- simple-todos.html | 4 ++++
+ imports/ui/body.html | 4 ++++
  1 file changed, 4 insertions(+)
 
-diff --git a/simple-todos.html b/simple-todos.html
-index 95624e7..e31aef1 100644
---- a/simple-todos.html
-+++ b/simple-todos.html
-@@ -6,6 +6,10 @@
+diff --git a/imports/ui/body.html b/imports/ui/body.html
+index 23a6507..0a1f952 100644
+--- a/imports/ui/body.html
++++ b/imports/ui/body.html
+@@ -2,6 +2,10 @@
    <div class="container">
      <header>
        <h1>Todo List</h1>
@@ -500,95 +696,94 @@ index 95624e7..e31aef1 100644
  
      <ul>
 -- 
-2.6.3
+2.1.3
 
 
-From 7a1ace1482bbdd5ce38aa5db28ecb20ce0e12863 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:11:45 -0700
-Subject: [PATCH 07/34] Step 4.2: Add event handler for form submit
+From c86ea9c4669be127531e6e3245841d2f76486fae Mon Sep 17 00:00:00 2001
+From: Tom Coleman <tom@thesnail.org>
+Date: Thu, 17 Mar 2016 12:19:59 +1100
+Subject: [PATCH 11/46] Step 4.2: Add event handler for form submit
 
 ---
- simple-todos.js | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+ imports/ui/body.js | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-diff --git a/simple-todos.js b/simple-todos.js
-index 69fdf2c..8bfe857 100644
---- a/simple-todos.js
-+++ b/simple-todos.js
-@@ -7,4 +7,23 @@ if (Meteor.isClient) {
-       return Tasks.find({});
-     }
-   });
+diff --git a/imports/ui/body.js b/imports/ui/body.js
+index fc36022..42ad1d5 100644
+--- a/imports/ui/body.js
++++ b/imports/ui/body.js
+@@ -9,3 +9,23 @@ Template.body.helpers({
+     return Tasks.find({});
+   },
+ });
 +
-+  Template.body.events({
-+    "submit .new-task": function (event) {
-+      // Prevent default browser form submit
-+      event.preventDefault();
++Template.body.events({
++  'submit .new-task'(event) {
++    // Prevent default browser form submit
++    event.preventDefault();
 +
-+      // Get value from form element
-+      var text = event.target.text.value;
++    // Get value from form element
++    const target = event.target;
++    const text = target.text.value;
 +
-+      // Insert a task into the collection
-+      Tasks.insert({
-+        text: text,
-+        createdAt: new Date() // current time
-+      });
++    // Insert a task into the collection
++    Tasks.insert({
++      text,
++      createdAt: new Date(), // current time
++    });
 +
-+      // Clear form
-+      event.target.text.value = "";
-+    }
-+  });
- }
++    // Clear form
++    target.text.value = '';
++  },
++});
 -- 
-2.6.3
+2.1.3
 
 
-From a06c2235fa31bb876edc2f62ba62310dee40ab6c Mon Sep 17 00:00:00 2001
+From 28a7f6c41c48d3caf0b18e6dce1b32011b0b2f52 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:12:14 -0700
-Subject: [PATCH 08/34] Step 4.3: Show newest tasks at the top
+Subject: [PATCH 12/46] Step 4.3: Show newest tasks at the top
 
 ---
- simple-todos.js | 3 ++-
+ imports/ui/body.js | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/simple-todos.js b/simple-todos.js
-index 8bfe857..545a1db 100644
---- a/simple-todos.js
-+++ b/simple-todos.js
-@@ -4,7 +4,8 @@ if (Meteor.isClient) {
-   // This code only runs on the client
-   Template.body.helpers({
-     tasks: function () {
--      return Tasks.find({});
-+      // Show newest tasks at the top
-+      return Tasks.find({}, {sort: {createdAt: -1}});
-     }
-   });
+diff --git a/imports/ui/body.js b/imports/ui/body.js
+index 42ad1d5..6fbc9d5 100644
+--- a/imports/ui/body.js
++++ b/imports/ui/body.js
+@@ -6,7 +6,8 @@ import './body.html';
+ 
+ Template.body.helpers({
+   tasks() {
+-    return Tasks.find({});
++    // Show newest tasks at the top
++    return Tasks.find({}, { sort: { createdAt: -1 } });
+   },
+ });
  
 -- 
-2.6.3
+2.1.3
 
 
-From 5cdfa73dcd1a1973bf31e76ffb0e6af96d9a2d8a Mon Sep 17 00:00:00 2001
+From 3588b089c96167bfed5239d14491a00580c43aea Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:12:57 -0700
-Subject: [PATCH 09/34] Step 5.1: Add buttons to Task component
+Subject: [PATCH 13/46] Step 5.1: Add buttons to Task component
 
 ---
- simple-todos.html | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ imports/ui/task.html | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+ create mode 100644 imports/ui/task.html
 
-diff --git a/simple-todos.html b/simple-todos.html
-index e31aef1..94341cc 100644
---- a/simple-todos.html
-+++ b/simple-todos.html
-@@ -21,5 +21,11 @@
- </body>
- 
- <template name="task">
--  <li>{{text}}</li>
+diff --git a/imports/ui/task.html b/imports/ui/task.html
+new file mode 100644
+index 0000000..c4ab8e5
+--- /dev/null
++++ b/imports/ui/task.html
+@@ -0,0 +1,9 @@
++<template name="task">
 +  <li class="{{#if checked}}checked{{/if}}">
 +    <button class="delete">&times;</button>
 +
@@ -596,59 +791,112 @@ index e31aef1..94341cc 100644
 +
 +    <span class="text">{{text}}</span>
 +  </li>
- </template>
++</template>
 -- 
-2.6.3
+2.1.3
 
 
-From 383896358ebfb53c237a8611fc11a86aa71fbbf6 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:13:40 -0700
-Subject: [PATCH 10/34] Step 5.2: Add event handlers for Task buttons
+From 07235612b5bcbbaf82b8e453ee216878db2b1750 Mon Sep 17 00:00:00 2001
+From: Tom Coleman <tom@thesnail.org>
+Date: Thu, 17 Mar 2016 12:23:12 +1100
+Subject: [PATCH 14/46] Step 5.2: Remove Tasks component from Body file
 
 ---
- simple-todos.js | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ imports/ui/body.html | 4 ----
+ 1 file changed, 4 deletions(-)
 
-diff --git a/simple-todos.js b/simple-todos.js
-index 545a1db..36bdc0c 100644
---- a/simple-todos.js
-+++ b/simple-todos.js
-@@ -27,4 +27,16 @@ if (Meteor.isClient) {
-       event.target.text.value = "";
-     }
-   });
-+
-+  Template.task.events({
-+    "click .toggle-checked": function () {
-+      // Set the checked property to the opposite of its current value
-+      Tasks.update(this._id, {
-+        $set: {checked: ! this.checked}
-+      });
-+    },
-+    "click .delete": function () {
-+      Tasks.remove(this._id);
-+    }
-+  });
- }
+diff --git a/imports/ui/body.html b/imports/ui/body.html
+index 0a1f952..c40a87b 100644
+--- a/imports/ui/body.html
++++ b/imports/ui/body.html
+@@ -15,7 +15,3 @@
+     </ul>
+   </div>
+ </body>
+-
+-<template name="task">
+-  <li>{{text}}</li>
+-</template>
 -- 
-2.6.3
+2.1.3
 
 
-From 38cbb935edd47cf82fba70f2c3f865d0c5a1a55b Mon Sep 17 00:00:00 2001
+From 1fd0a2c27aaaffac17a1ca533fac433c4f09f19e Mon Sep 17 00:00:00 2001
+From: Tom Coleman <tom@thesnail.org>
+Date: Thu, 17 Mar 2016 12:26:44 +1100
+Subject: [PATCH 15/46] Step 5.3: Add event handlers for Task buttons
+
+---
+ imports/ui/task.js | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+ create mode 100644 imports/ui/task.js
+
+diff --git a/imports/ui/task.js b/imports/ui/task.js
+new file mode 100644
+index 0000000..782f932
+--- /dev/null
++++ b/imports/ui/task.js
+@@ -0,0 +1,17 @@
++import { Template } from 'meteor/templating';
++
++import { Tasks } from '../api/tasks.js';
++
++import './task.html';
++
++Template.task.events({
++  'click .toggle-checked'() {
++    // Set the checked property to the opposite of its current value
++    Tasks.update(this._id, {
++      $set: { checked: ! this.checked },
++    });
++  },
++  'click .delete'() {
++    Tasks.remove(this._id);
++  },
++});
+-- 
+2.1.3
+
+
+From ad56ff1c15c42de7d18f15ca9cd49e38bc2301e1 Mon Sep 17 00:00:00 2001
+From: Tom Coleman <tom@thesnail.org>
+Date: Thu, 17 Mar 2016 12:26:57 +1100
+Subject: [PATCH 16/46] Step 5.4: Import Task component from the body
+
+---
+ imports/ui/body.js | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/imports/ui/body.js b/imports/ui/body.js
+index 6fbc9d5..bac22c6 100644
+--- a/imports/ui/body.js
++++ b/imports/ui/body.js
+@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating';
+ 
+ import { Tasks } from '../api/tasks.js';
+ 
++import './task.js';
+ import './body.html';
+ 
+ Template.body.helpers({
+-- 
+2.1.3
+
+
+From de6ce06e8dc8b450598be076c0978ed948cc796a Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:24:18 -0700
-Subject: [PATCH 11/34] Step 7.1: Add hide-completed checkbox to HTML
+Subject: [PATCH 17/46] Step 7.1: Add hide-completed checkbox to HTML
 
 ---
- simple-todos.html | 5 +++++
+ imports/ui/body.html | 5 +++++
  1 file changed, 5 insertions(+)
 
-diff --git a/simple-todos.html b/simple-todos.html
-index 94341cc..7d837a9 100644
---- a/simple-todos.html
-+++ b/simple-todos.html
-@@ -7,6 +7,11 @@
+diff --git a/imports/ui/body.html b/imports/ui/body.html
+index c40a87b..a581239 100644
+--- a/imports/ui/body.html
++++ b/imports/ui/body.html
+@@ -3,6 +3,11 @@
      <header>
        <h1>Todo List</h1>
  
@@ -661,113 +909,180 @@ index 94341cc..7d837a9 100644
          <input type="text" name="text" placeholder="Type to add new tasks" />
        </form>
 -- 
-2.6.3
+2.1.3
 
 
-From 47aef71308f768acf9bd65a5ae9234e3ed720feb Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:24:58 -0700
-Subject: [PATCH 12/34] Step 7.2: Add event handler for checkbox
+From d7788574938a2b66e21ae6e04669e8ae89184e6d Mon Sep 17 00:00:00 2001
+From: Tom Coleman <tom@thesnail.org>
+Date: Thu, 17 Mar 2016 12:33:00 +1100
+Subject: [PATCH 18/46] Step 7.2: Add reactive-dict package
 
 ---
- simple-todos.js | 3 +++
+ .meteor/packages | 1 +
+ .meteor/versions | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/.meteor/packages b/.meteor/packages
+index d4c8001..a113025 100644
+--- a/.meteor/packages
++++ b/.meteor/packages
+@@ -19,3 +19,4 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
+ 
+ autopublish             # Publish all data to the clients (for prototyping)
+ insecure                # Allow all DB writes from clients (for prototyping)
++reactive-dict
+diff --git a/.meteor/versions b/.meteor/versions
+index c3395d2..ccbd7bb 100644
+--- a/.meteor/versions
++++ b/.meteor/versions
+@@ -51,6 +51,7 @@ observe-sequence@1.0.9-rc.2
+ ordered-dict@1.0.5-rc.2
+ promise@0.6.4-rc.2
+ random@1.0.7-rc.2
++reactive-dict@1.1.5-rc.2
+ reactive-var@1.0.7-rc.2
+ reload@1.1.6-rc.2
+ retry@1.0.5-rc.2
+-- 
+2.1.3
+
+
+From 0fdee1674646037fd9ce48d1b2b326472796b934 Mon Sep 17 00:00:00 2001
+From: Tom Coleman <tom@thesnail.org>
+Date: Thu, 17 Mar 2016 12:29:41 +1100
+Subject: [PATCH 19/46] Step 7.3: Add state dictionary to the body
+
+---
+ imports/ui/body.js | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/imports/ui/body.js b/imports/ui/body.js
+index bac22c6..d429b10 100644
+--- a/imports/ui/body.js
++++ b/imports/ui/body.js
+@@ -1,10 +1,15 @@
+ import { Template } from 'meteor/templating';
++import { ReactiveDict } from 'meteor/reactive-dict';
+ 
+ import { Tasks } from '../api/tasks.js';
+ 
+ import './task.js';
+ import './body.html';
+ 
++Template.body.onCreated(function bodyOnCreated() {
++  this.state = new ReactiveDict();
++});
++
+ Template.body.helpers({
+   tasks() {
+     // Show newest tasks at the top
+-- 
+2.1.3
+
+
+From 5a829eaf0add55a644414a18bce3dd680ff5426e Mon Sep 17 00:00:00 2001
+From: Tom Coleman <tom@thesnail.org>
+Date: Thu, 17 Mar 2016 12:30:11 +1100
+Subject: [PATCH 20/46] Step 7.4: Add event handler for checkbox
+
+---
+ imports/ui/body.js | 3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/simple-todos.js b/simple-todos.js
-index 36bdc0c..19f7ffd 100644
---- a/simple-todos.js
-+++ b/simple-todos.js
-@@ -25,6 +25,9 @@ if (Meteor.isClient) {
- 
-       // Clear form
-       event.target.text.value = "";
-+    },
-+    "change .hide-completed input": function (event) {
-+      Session.set("hideCompleted", event.target.checked);
-     }
-   });
- 
+diff --git a/imports/ui/body.js b/imports/ui/body.js
+index d429b10..856dad4 100644
+--- a/imports/ui/body.js
++++ b/imports/ui/body.js
+@@ -35,4 +35,7 @@ Template.body.events({
+     // Clear form
+     target.text.value = '';
+   },
++  'change .hide-completed input'(event, instance) {
++    instance.state.set('hideCompleted', event.target.checked);
++  },
+ });
 -- 
-2.6.3
+2.1.3
 
 
-From a44b00fc6c73b0f35bf0a89f2d261d3560bf2025 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:25:38 -0700
-Subject: [PATCH 13/34] Step 7.3: Add helpers to body template
+From 6acc630abe8ac8bef50a6abb5540c297e760bb53 Mon Sep 17 00:00:00 2001
+From: Tom Coleman <tom@thesnail.org>
+Date: Thu, 17 Mar 2016 12:31:16 +1100
+Subject: [PATCH 21/46] Step 7.5: Add helpers to body template
 
 ---
- simple-todos.js | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+ imports/ui/body.js | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/simple-todos.js b/simple-todos.js
-index 19f7ffd..546fbe2 100644
---- a/simple-todos.js
-+++ b/simple-todos.js
-@@ -4,8 +4,16 @@ if (Meteor.isClient) {
-   // This code only runs on the client
-   Template.body.helpers({
-     tasks: function () {
--      // Show newest tasks at the top
--      return Tasks.find({}, {sort: {createdAt: -1}});
-+      if (Session.get("hideCompleted")) {
-+        // If hide completed is checked, filter tasks
-+        return Tasks.find({checked: {$ne: true}}, {sort: {createdAt: -1}});
-+      } else {
-+        // Otherwise, return all of the tasks
-+        return Tasks.find({}, {sort: {createdAt: -1}});
-+      }
-+    },
-+    hideCompleted: function () {
-+      return Session.get("hideCompleted");
-     }
-   });
+diff --git a/imports/ui/body.js b/imports/ui/body.js
+index 856dad4..a207bf0 100644
+--- a/imports/ui/body.js
++++ b/imports/ui/body.js
+@@ -12,9 +12,18 @@ Template.body.onCreated(function bodyOnCreated() {
  
+ Template.body.helpers({
+   tasks() {
+-    // Show newest tasks at the top
++    const instance = Template.instance();
++    if (instance.state.get('hideCompleted')) {
++      // If hide completed is checked, filter tasks
++      return Tasks.find({ checked: { $ne: true } }, { sort: { createdAt: -1 } });
++    }
++    // Otherwise, return all of the tasks
+     return Tasks.find({}, { sort: { createdAt: -1 } });
+   },
++  hideCompleted() {
++    const instance = Template.instance();
++    return instance.state.get('hideCompleted');
++  },
+ });
+ 
+ Template.body.events({
 -- 
-2.6.3
+2.1.3
 
 
-From c3602209d76651d88761c667824f1b4f3fe5e125 Mon Sep 17 00:00:00 2001
+From d6c151918eedd35801c1d24f1584e68c0930445a Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:26:17 -0700
-Subject: [PATCH 14/34] Step 7.4: Add incompleteCount helper to body
+Subject: [PATCH 22/46] Step 7.6: Add incompleteCount helper to body
 
 ---
- simple-todos.js | 3 +++
+ imports/ui/body.js | 3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/simple-todos.js b/simple-todos.js
-index 546fbe2..81bc5a9 100644
---- a/simple-todos.js
-+++ b/simple-todos.js
-@@ -14,6 +14,9 @@ if (Meteor.isClient) {
-     },
-     hideCompleted: function () {
-       return Session.get("hideCompleted");
-+    },
-+    incompleteCount: function () {
-+      return Tasks.find({checked: {$ne: true}}).count();
-     }
-   });
+diff --git a/imports/ui/body.js b/imports/ui/body.js
+index a207bf0..f25871e 100644
+--- a/imports/ui/body.js
++++ b/imports/ui/body.js
+@@ -24,6 +24,9 @@ Template.body.helpers({
+     const instance = Template.instance();
+     return instance.state.get('hideCompleted');
+   },
++  incompleteCount() {
++    return Tasks.find({ checked: { $ne: true } }).count();
++  },
+ });
  
+ Template.body.events({
 -- 
-2.6.3
+2.1.3
 
 
-From 64d03503aa6830e56ef98f2d24fea4b079c4516d Mon Sep 17 00:00:00 2001
+From 2fca40720ee52fa8ce8379ff7ea5135eaf04a010 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:26:37 -0700
-Subject: [PATCH 15/34] Step 7.5: Display incompleteCount
+Subject: [PATCH 23/46] Step 7.7: Display incompleteCount
 
 ---
- simple-todos.html | 2 +-
+ imports/ui/body.html | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/simple-todos.html b/simple-todos.html
-index 7d837a9..cb9b6f1 100644
---- a/simple-todos.html
-+++ b/simple-todos.html
-@@ -5,7 +5,7 @@
+diff --git a/imports/ui/body.html b/imports/ui/body.html
+index a581239..a734c03 100644
+--- a/imports/ui/body.html
++++ b/imports/ui/body.html
+@@ -1,7 +1,7 @@
  <body>
    <div class="container">
      <header>
@@ -777,98 +1092,109 @@ index 7d837a9..cb9b6f1 100644
        <label class="hide-completed">
          <input type="checkbox" checked="{{hideCompleted}}" />
 -- 
-2.6.3
+2.1.3
 
 
-From 34072bdcbf906041634046dc2131bcafc71b9294 Mon Sep 17 00:00:00 2001
+From e7a71591be2d788d098e02fe4142eef79078fc19 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:27:03 -0700
-Subject: [PATCH 16/34] Step 8.1: Add accounts-ui and accounts-password
+Subject: [PATCH 24/46] Step 8.1: Add accounts-ui and accounts-password
 
 ---
  .meteor/packages |  2 ++
- .meteor/versions | 11 +++++++++++
- 2 files changed, 13 insertions(+)
+ .meteor/versions | 14 ++++++++++++++
+ 2 files changed, 16 insertions(+)
 
 diff --git a/.meteor/packages b/.meteor/packages
-index 99704e0..21b8d34 100644
+index a113025..5c68b39 100644
 --- a/.meteor/packages
 +++ b/.meteor/packages
-@@ -7,3 +7,5 @@
- meteor-platform
- autopublish
- insecure
+@@ -20,3 +20,5 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
+ autopublish             # Publish all data to the clients (for prototyping)
+ insecure                # Allow all DB writes from clients (for prototyping)
+ reactive-dict
 +accounts-ui
 +accounts-password
 diff --git a/.meteor/versions b/.meteor/versions
-index 410e1d9..26385bb 100644
+index ccbd7bb..b739407 100644
 --- a/.meteor/versions
 +++ b/.meteor/versions
 @@ -1,3 +1,7 @@
-+accounts-base@1.2.0
-+accounts-password@1.1.1
-+accounts-ui@1.1.5
-+accounts-ui-unstyled@1.1.7
- autopublish@1.0.3
- autoupdate@1.2.1
- base64@1.0.3
-@@ -10,6 +14,7 @@ check@1.0.5
- ddp@1.1.0
- deps@1.0.7
- ejson@1.0.6
-+email@1.0.6
- fastclick@1.0.3
- geojson-utils@1.0.3
- html-tools@1.0.4
-@@ -20,7 +25,9 @@ insecure@1.0.3
- jquery@1.11.3_2
- json@1.0.3
- launch-screen@1.0.2
-+less@1.0.14
- livedata@1.0.13
-+localstorage@1.0.3
- logging@1.0.7
- meteor@1.1.6
- meteor-platform@1.2.2
-@@ -28,6 +35,7 @@ minifiers@1.1.5
- minimongo@1.0.8
- mobile-status-bar@1.0.3
- mongo@1.1.0
++accounts-base@1.2.4-rc.2
++accounts-password@1.1.6-rc.2
++accounts-ui@1.1.7-rc.2
++accounts-ui-unstyled@1.1.10-rc.2
+ allow-deny@1.0.2-rc.2
+ autopublish@1.0.5-rc.2
+ autoupdate@1.2.6-rc.2
+@@ -16,12 +20,14 @@ check@1.1.2-rc.2
+ ddp@1.2.3-rc.2
+ ddp-client@1.2.3-rc.2
+ ddp-common@1.2.3-rc.2
++ddp-rate-limiter@1.0.2-rc.2
+ ddp-server@1.2.4-rc.2
+ deps@1.0.10-rc.2
+ diff-sequence@1.0.3-rc.2
+ ecmascript@0.4.1-rc.2
+ ecmascript-runtime@0.2.8-rc.2
+ ejson@1.0.9-rc.2
++email@1.0.10-rc.2
+ es5-shim@4.5.8-rc.2
+ fastclick@1.0.9-rc.2
+ geojson-utils@1.0.6-rc.2
+@@ -33,7 +39,9 @@ id-map@1.0.5-rc.2
+ insecure@1.0.5-rc.2
+ jquery@1.11.6-rc.2
+ launch-screen@1.0.7-rc.2
++less@2.5.5-rc.2
+ livedata@1.0.16-rc.2
++localstorage@1.0.7-rc.2
+ logging@1.0.10-rc.2
+ meteor@1.1.12-rc.2
+ meteor-base@1.0.2-rc.2
+@@ -46,18 +54,24 @@ modules@0.5.1-rc.2
+ modules-runtime@0.6.1-rc.2
+ mongo@1.1.5-rc.2
+ mongo-id@1.0.2-rc.2
 +npm-bcrypt@0.7.8_2
- observe-sequence@1.0.6
- ordered-dict@1.0.3
- random@1.0.3
-@@ -36,9 +44,12 @@ reactive-var@1.0.5
- reload@1.1.3
- retry@1.0.3
- routepolicy@1.0.5
-+service-configuration@1.0.4
- session@1.1.0
-+sha@1.0.3
- spacebars@1.0.6
- spacebars-compiler@1.0.6
-+srp@1.0.3
- templating@1.1.1
- tracker@1.0.7
- ui@1.0.6
+ npm-mongo@1.4.41-rc.2
+ observe-sequence@1.0.9-rc.2
+ ordered-dict@1.0.5-rc.2
+ promise@0.6.4-rc.2
+ random@1.0.7-rc.2
++rate-limit@1.0.2-rc.2
+ reactive-dict@1.1.5-rc.2
+ reactive-var@1.0.7-rc.2
+ reload@1.1.6-rc.2
+ retry@1.0.5-rc.2
+ routepolicy@1.0.8-rc.2
++service-configuration@1.0.7-rc.2
++session@1.1.3-rc.2
++sha@1.0.5-rc.2
+ spacebars@1.0.9-rc.2
+ spacebars-compiler@1.0.9-rc.2
++srp@1.0.6-rc.2
+ standard-minifier-css@1.0.4-rc.2
+ standard-minifier-js@1.0.4-rc.2
+ templating@1.1.7-rc.2
 -- 
-2.6.3
+2.1.3
 
 
-From fb26978b41b31ce197bda1062ce61384cb15f548 Mon Sep 17 00:00:00 2001
+From 58bc4b455dae5d3e7ed27fc692eae44b16a77bb3 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:27:23 -0700
-Subject: [PATCH 17/34] Step 8.2: Include loginButtons
+Subject: [PATCH 25/46] Step 8.2: Include loginButtons
 
 ---
- simple-todos.html | 2 ++
+ imports/ui/body.html | 2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/simple-todos.html b/simple-todos.html
-index cb9b6f1..55f385c 100644
---- a/simple-todos.html
-+++ b/simple-todos.html
-@@ -12,6 +12,8 @@
+diff --git a/imports/ui/body.html b/imports/ui/body.html
+index a734c03..353a82c 100644
+--- a/imports/ui/body.html
++++ b/imports/ui/body.html
+@@ -8,6 +8,8 @@
          Hide Completed Tasks
        </label>
  
@@ -878,77 +1204,99 @@ index cb9b6f1..55f385c 100644
          <input type="text" name="text" placeholder="Type to add new tasks" />
        </form>
 -- 
-2.6.3
+2.1.3
 
 
-From ea56ab8a78ec620f9a59a5cf66a82ee3bc06774f Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:27:46 -0700
-Subject: [PATCH 18/34] Step 8.3: Configure accounts-ui
+From 99d87f8e3bcdd2ef6f8cb96d3971e09a66f344a1 Mon Sep 17 00:00:00 2001
+From: Tom Coleman <tom@thesnail.org>
+Date: Thu, 17 Mar 2016 12:36:02 +1100
+Subject: [PATCH 26/46] Step 8.3: Configure accounts-ui
 
 ---
- simple-todos.js | 4 ++++
- 1 file changed, 4 insertions(+)
+ imports/startup/accounts-config.js | 5 +++++
+ 1 file changed, 5 insertions(+)
+ create mode 100644 imports/startup/accounts-config.js
 
-diff --git a/simple-todos.js b/simple-todos.js
-index 81bc5a9..0d524f7 100644
---- a/simple-todos.js
-+++ b/simple-todos.js
-@@ -53,4 +53,8 @@ if (Meteor.isClient) {
-       Tasks.remove(this._id);
-     }
-   });
+diff --git a/imports/startup/accounts-config.js b/imports/startup/accounts-config.js
+new file mode 100644
+index 0000000..7e4f7e5
+--- /dev/null
++++ b/imports/startup/accounts-config.js
+@@ -0,0 +1,5 @@
++import { Accounts } from 'meteor/accounts-base';
 +
-+  Accounts.ui.config({
-+    passwordSignupFields: "USERNAME_ONLY"
-+  });
- }
++Accounts.ui.config({
++  passwordSignupFields: 'USERNAME_ONLY',
++});
 -- 
-2.6.3
+2.1.3
 
 
-From dff06692877ca27f212f12140ad7ec4d660edff3 Mon Sep 17 00:00:00 2001
+From bac951b21ef76b2d815ba4c9a432c638230a8af4 Mon Sep 17 00:00:00 2001
+From: Tom Coleman <tom@thesnail.org>
+Date: Thu, 17 Mar 2016 12:36:36 +1100
+Subject: [PATCH 27/46] Step 8.4: Import accounts configuration
+
+---
+ client/main.js | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/client/main.js b/client/main.js
+index 4e7c1a4..739c50f 100644
+--- a/client/main.js
++++ b/client/main.js
+@@ -1 +1,2 @@
++import '../imports/startup/accounts-config.js';
+ import '../imports/ui/body.js';
+-- 
+2.1.3
+
+
+From 5d36f08b552dba72dbbc8cfba6ddc5e1af7e9b92 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:28:24 -0700
-Subject: [PATCH 19/34] Step 8.4: Update insert to include user data
+Subject: [PATCH 28/46] Step 8.5: Update insert to include user data
 
 ---
- simple-todos.js | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ imports/ui/body.js | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/simple-todos.js b/simple-todos.js
-index 0d524f7..cf0bd1e 100644
---- a/simple-todos.js
-+++ b/simple-todos.js
-@@ -31,7 +31,9 @@ if (Meteor.isClient) {
-       // Insert a task into the collection
-       Tasks.insert({
-         text: text,
--        createdAt: new Date() // current time
-+        createdAt: new Date(),            // current time
-+        owner: Meteor.userId(),           // _id of logged in user
-+        username: Meteor.user().username  // username of logged in user
-       });
+diff --git a/imports/ui/body.js b/imports/ui/body.js
+index f25871e..15a3c8e 100644
+--- a/imports/ui/body.js
++++ b/imports/ui/body.js
+@@ -1,3 +1,4 @@
++import { Meteor } from 'meteor/meteor';
+ import { Template } from 'meteor/templating';
+ import { ReactiveDict } from 'meteor/reactive-dict';
  
-       // Clear form
+@@ -42,6 +43,8 @@ Template.body.events({
+     Tasks.insert({
+       text,
+       createdAt: new Date(), // current time
++      owner: Meteor.userId(),
++      username: Meteor.user().username,
+     });
+ 
+     // Clear form
 -- 
-2.6.3
+2.1.3
 
 
-From 65abbd15b9ec559cabc422af22e39291f176b6c0 Mon Sep 17 00:00:00 2001
+From 826537bc83e8ac442b2bdb1898b7fba688cfe877 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:28:47 -0700
-Subject: [PATCH 20/34] Step 8.5: Only show add task form if logged in
+Subject: [PATCH 29/46] Step 8.6: Only show add task form if logged in
 
 ---
- simple-todos.html | 8 +++++---
+ imports/ui/body.html | 8 +++++---
  1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/simple-todos.html b/simple-todos.html
-index 55f385c..9e4b61a 100644
---- a/simple-todos.html
-+++ b/simple-todos.html
-@@ -14,9 +14,11 @@
+diff --git a/imports/ui/body.html b/imports/ui/body.html
+index 353a82c..6cd1dba 100644
+--- a/imports/ui/body.html
++++ b/imports/ui/body.html
+@@ -10,9 +10,11 @@
  
        {{> loginButtons}}
  
@@ -964,23 +1312,23 @@ index 55f385c..9e4b61a 100644
  
      <ul>
 -- 
-2.6.3
+2.1.3
 
 
-From e1f7287dbb7750163d7dca971a6d10c8301014aa Mon Sep 17 00:00:00 2001
+From 0958888adeb5999647cebe5c4d9239a8be834a6f Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:29:11 -0700
-Subject: [PATCH 21/34] Step 8.6: Display username next to task
+Subject: [PATCH 30/46] Step 8.7: Display username next to task
 
 ---
- simple-todos.html | 2 +-
+ imports/ui/task.html | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/simple-todos.html b/simple-todos.html
-index 9e4b61a..55c1dc9 100644
---- a/simple-todos.html
-+++ b/simple-todos.html
-@@ -35,6 +35,6 @@
+diff --git a/imports/ui/task.html b/imports/ui/task.html
+index c4ab8e5..c42e8fc 100644
+--- a/imports/ui/task.html
++++ b/imports/ui/task.html
+@@ -4,6 +4,6 @@
  
      <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
  
@@ -989,13 +1337,13 @@ index 9e4b61a..55c1dc9 100644
    </li>
  </template>
 -- 
-2.6.3
+2.1.3
 
 
-From 189b5aadecdaa2a5c44992f1abd27a5f9495bf8b Mon Sep 17 00:00:00 2001
+From 8f0bedc7c5f6874486b5b2717e33abe60e59e0bb Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:29:52 -0700
-Subject: [PATCH 22/34] Step 9.1: Remove insecure package
+Subject: [PATCH 31/46] Step 9.1: Remove insecure package
 
 ---
  .meteor/packages | 1 -
@@ -1003,142 +1351,160 @@ Subject: [PATCH 22/34] Step 9.1: Remove insecure package
  2 files changed, 2 deletions(-)
 
 diff --git a/.meteor/packages b/.meteor/packages
-index 21b8d34..bb3b694 100644
+index 5c68b39..d4578d9 100644
 --- a/.meteor/packages
 +++ b/.meteor/packages
-@@ -6,6 +6,5 @@
+@@ -18,7 +18,6 @@ es5-shim                # ECMAScript 5 compatibility for older browsers.
+ ecmascript              # Enable ECMAScript2015+ syntax in app code
  
- meteor-platform
- autopublish
--insecure
+ autopublish             # Publish all data to the clients (for prototyping)
+-insecure                # Allow all DB writes from clients (for prototyping)
+ reactive-dict
  accounts-ui
  accounts-password
 diff --git a/.meteor/versions b/.meteor/versions
-index 26385bb..6a03dd0 100644
+index b739407..3d9bd1e 100644
 --- a/.meteor/versions
 +++ b/.meteor/versions
-@@ -21,7 +21,6 @@ html-tools@1.0.4
- htmljs@1.0.4
- http@1.1.0
- id-map@1.0.3
--insecure@1.0.3
- jquery@1.11.3_2
- json@1.0.3
- launch-screen@1.0.2
+@@ -36,7 +36,6 @@ html-tools@1.0.7-rc.2
+ htmljs@1.0.7-rc.2
+ http@1.1.3-rc.2
+ id-map@1.0.5-rc.2
+-insecure@1.0.5-rc.2
+ jquery@1.11.6-rc.2
+ launch-screen@1.0.7-rc.2
+ less@2.5.5-rc.2
 -- 
-2.6.3
+2.1.3
 
 
-From 7a680b88da2fc82820ee481f7f4f1a0b1b4a947e Mon Sep 17 00:00:00 2001
+From aa81d23d23aef1bc3f7a1be5331be354b2a2bc7e Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:30:20 -0700
-Subject: [PATCH 23/34] Step 9.2: Define some methods
+Subject: [PATCH 32/46] Step 9.2: Define some methods
 
 ---
- simple-todos.js | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ imports/api/tasks.js | 31 +++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
 
-diff --git a/simple-todos.js b/simple-todos.js
-index cf0bd1e..40edc1a 100644
---- a/simple-todos.js
-+++ b/simple-todos.js
-@@ -60,3 +60,25 @@ if (Meteor.isClient) {
-     passwordSignupFields: "USERNAME_ONLY"
-   });
- }
-+
+diff --git a/imports/api/tasks.js b/imports/api/tasks.js
+index a9ab038..30194c5 100644
+--- a/imports/api/tasks.js
++++ b/imports/api/tasks.js
+@@ -1,5 +1,36 @@
++import { Meteor } from 'meteor/meteor';
+ import { Mongo } from 'meteor/mongo';
++import { check } from 'meteor/check';
+ 
+ const Tasks = new Mongo.Collection('tasks');
+ 
 +Meteor.methods({
-+  addTask: function (text) {
++  'tasks.insert'(text) {
++    check(text, String);
++
 +    // Make sure the user is logged in before inserting a task
 +    if (! Meteor.userId()) {
-+      throw new Meteor.Error("not-authorized");
++      throw new Meteor.Error('not-authorized');
 +    }
 +
 +    Tasks.insert({
-+      text: text,
++      text,
 +      createdAt: new Date(),
 +      owner: Meteor.userId(),
-+      username: Meteor.user().username
++      username: Meteor.user().username,
 +    });
 +  },
-+  deleteTask: function (taskId) {
++  'tasks.remove'(taskId) {
++    check(taskId, String);
++
 +    Tasks.remove(taskId);
 +  },
-+  setChecked: function (taskId, setChecked) {
-+    Tasks.update(taskId, { $set: { checked: setChecked} });
-+  }
++  'tasks.setChecked'(taskId, setChecked) {
++    check(taskId, String);
++    check(setChecked, Boolean);
++
++    Tasks.update(taskId, { $set: { checked: setChecked } });
++  },
 +});
++
+ export { Tasks };
 -- 
-2.6.3
+2.1.3
 
 
-From c3613e3ede173c3624d5a93409fdbd947ff44825 Mon Sep 17 00:00:00 2001
+From 6a9e4a34311cc0949b0d0310884781009287a6ce Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:31:24 -0700
-Subject: [PATCH 24/34] Step 9.3: Replace insert with addTask method
+Subject: [PATCH 33/46] Step 9.3: Replace insert with addTask method
 
 ---
- simple-todos.js | 7 +------
+ imports/ui/body.js | 7 +------
  1 file changed, 1 insertion(+), 6 deletions(-)
 
-diff --git a/simple-todos.js b/simple-todos.js
-index 40edc1a..3f35197 100644
---- a/simple-todos.js
-+++ b/simple-todos.js
-@@ -29,12 +29,7 @@ if (Meteor.isClient) {
-       var text = event.target.text.value;
+diff --git a/imports/ui/body.js b/imports/ui/body.js
+index 15a3c8e..d83eaca 100644
+--- a/imports/ui/body.js
++++ b/imports/ui/body.js
+@@ -40,12 +40,7 @@ Template.body.events({
+     const text = target.text.value;
  
-       // Insert a task into the collection
--      Tasks.insert({
--        text: text,
--        createdAt: new Date(),            // current time
--        owner: Meteor.userId(),           // _id of logged in user
--        username: Meteor.user().username  // username of logged in user
--      });
-+      Meteor.call("addTask", text);
+     // Insert a task into the collection
+-    Tasks.insert({
+-      text,
+-      createdAt: new Date(), // current time
+-      owner: Meteor.userId(),
+-      username: Meteor.user().username,
+-    });
++    Meteor.call('tasks.insert', text);
  
-       // Clear form
-       event.target.text.value = "";
+     // Clear form
+     target.text.value = '';
 -- 
-2.6.3
+2.1.3
 
 
-From 27f8d1a79a05667342a7ffdbe19074d8398a248c Mon Sep 17 00:00:00 2001
+From 22369c263971a1308c0e48503f30f6239cfab59f Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:31:46 -0700
-Subject: [PATCH 25/34] Step 9.4: Replace update and remove with methods
+Subject: [PATCH 34/46] Step 9.4: Replace update and remove with methods
 
 ---
- simple-todos.js | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ imports/ui/task.js | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
 
-diff --git a/simple-todos.js b/simple-todos.js
-index 3f35197..d477b50 100644
---- a/simple-todos.js
-+++ b/simple-todos.js
-@@ -42,12 +42,10 @@ if (Meteor.isClient) {
-   Template.task.events({
-     "click .toggle-checked": function () {
-       // Set the checked property to the opposite of its current value
--      Tasks.update(this._id, {
--        $set: {checked: ! this.checked}
--      });
-+      Meteor.call("setChecked", this._id, ! this.checked);
-     },
-     "click .delete": function () {
--      Tasks.remove(this._id);
-+      Meteor.call("deleteTask", this._id);
-     }
-   });
+diff --git a/imports/ui/task.js b/imports/ui/task.js
+index 782f932..3775ceb 100644
+--- a/imports/ui/task.js
++++ b/imports/ui/task.js
+@@ -1,17 +1,14 @@
++import { Meteor } from 'meteor/meteor';
+ import { Template } from 'meteor/templating';
  
+-import { Tasks } from '../api/tasks.js';
+-
+ import './task.html';
+ 
+ Template.task.events({
+   'click .toggle-checked'() {
+     // Set the checked property to the opposite of its current value
+-    Tasks.update(this._id, {
+-      $set: { checked: ! this.checked },
+-    });
++    Meteor.call('tasks.setChecked', this._id, !this.checked);
+   },
+   'click .delete'() {
+-    Tasks.remove(this._id);
++    Meteor.call('tasks.remove', this._id);
+   },
+ });
 -- 
-2.6.3
+2.1.3
 
 
-From ed3ca0156c0ba6a15bd134e40d5178fb82dfed41 Mon Sep 17 00:00:00 2001
+From 7632ca1dc2e711e6b356c75e85398e72eeb7d636 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:32:19 -0700
-Subject: [PATCH 26/34] Step 10.1: Remove autopublish
+Subject: [PATCH 35/46] Step 10.1: Remove autopublish
 
 ---
  .meteor/packages | 1 -
@@ -1146,80 +1512,103 @@ Subject: [PATCH 26/34] Step 10.1: Remove autopublish
  2 files changed, 2 deletions(-)
 
 diff --git a/.meteor/packages b/.meteor/packages
-index bb3b694..aaee953 100644
+index d4578d9..3ecf3a1 100644
 --- a/.meteor/packages
 +++ b/.meteor/packages
-@@ -5,6 +5,5 @@
- # but you can also edit it by hand.
+@@ -17,7 +17,6 @@ standard-minifier-js    # JS minifier run for production mode
+ es5-shim                # ECMAScript 5 compatibility for older browsers.
+ ecmascript              # Enable ECMAScript2015+ syntax in app code
  
- meteor-platform
--autopublish
+-autopublish             # Publish all data to the clients (for prototyping)
+ reactive-dict
  accounts-ui
  accounts-password
 diff --git a/.meteor/versions b/.meteor/versions
-index 6a03dd0..6766561 100644
+index 3d9bd1e..4f59e62 100644
 --- a/.meteor/versions
 +++ b/.meteor/versions
-@@ -2,7 +2,6 @@ accounts-base@1.2.0
- accounts-password@1.1.1
- accounts-ui@1.1.5
- accounts-ui-unstyled@1.1.7
--autopublish@1.0.3
- autoupdate@1.2.1
- base64@1.0.3
- binary-heap@1.0.3
+@@ -3,7 +3,6 @@ accounts-password@1.1.6-rc.2
+ accounts-ui@1.1.7-rc.2
+ accounts-ui-unstyled@1.1.10-rc.2
+ allow-deny@1.0.2-rc.2
+-autopublish@1.0.5-rc.2
+ autoupdate@1.2.6-rc.2
+ babel-compiler@6.5.1-rc.2
+ babel-runtime@0.1.6-rc.2
 -- 
-2.6.3
+2.1.3
 
 
-From fa380edb61cf1a07044f23afa76acb51b7afaf50 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:33:17 -0700
-Subject: [PATCH 27/34] Step 10.2: Add publish and subscribe
+From 1394681f2ba706a654785b75bc4cd21f72725d69 Mon Sep 17 00:00:00 2001
+From: Tom Coleman <tom@thesnail.org>
+Date: Thu, 17 Mar 2016 12:45:32 +1100
+Subject: [PATCH 36/46] Step 10.2: Add publication for tasks
 
 ---
- simple-todos.js | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ imports/api/tasks.js | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/simple-todos.js b/simple-todos.js
-index d477b50..31eda5c 100644
---- a/simple-todos.js
-+++ b/simple-todos.js
-@@ -1,7 +1,16 @@
- Tasks = new Mongo.Collection("tasks");
+diff --git a/imports/api/tasks.js b/imports/api/tasks.js
+index 30194c5..c048739 100644
+--- a/imports/api/tasks.js
++++ b/imports/api/tasks.js
+@@ -4,6 +4,13 @@ import { check } from 'meteor/check';
+ 
+ const Tasks = new Mongo.Collection('tasks');
  
 +if (Meteor.isServer) {
 +  // This code only runs on the server
-+  Meteor.publish("tasks", function () {
++  Meteor.publish('tasks', function tasksPublication() {
 +    return Tasks.find();
 +  });
 +}
 +
- if (Meteor.isClient) {
-   // This code only runs on the client
-+  Meteor.subscribe("tasks");
-+
-   Template.body.helpers({
-     tasks: function () {
-       if (Session.get("hideCompleted")) {
+ Meteor.methods({
+   'tasks.insert'(text) {
+     check(text, String);
 -- 
-2.6.3
+2.1.3
 
 
-From 75c795b419486b4dc7c81d353e4156185d4d73a8 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:33:43 -0700
-Subject: [PATCH 28/34] Step 10.3: Add private button
+From f0d39217e0e172b9dc88fa4c50fa934cf78c9b91 Mon Sep 17 00:00:00 2001
+From: Tom Coleman <tom@thesnail.org>
+Date: Thu, 17 Mar 2016 12:45:58 +1100
+Subject: [PATCH 37/46] Step 10.3: Subscribe to tasks
 
 ---
- simple-todos.html | 10 ++++++++++
+ imports/ui/body.js | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/imports/ui/body.js b/imports/ui/body.js
+index d83eaca..59e5225 100644
+--- a/imports/ui/body.js
++++ b/imports/ui/body.js
+@@ -9,6 +9,7 @@ import './body.html';
+ 
+ Template.body.onCreated(function bodyOnCreated() {
+   this.state = new ReactiveDict();
++  Meteor.subscribe('tasks');
+ });
+ 
+ Template.body.helpers({
+-- 
+2.1.3
+
+
+From 6943418ace2de7446f1254b472114c73d056e954 Mon Sep 17 00:00:00 2001
+From: Sashko Stubailo <sashko@stubailo.com>
+Date: Tue, 14 Jul 2015 19:33:43 -0700
+Subject: [PATCH 38/46] Step 10.4: Add private button
+
+---
+ imports/ui/task.html | 10 ++++++++++
  1 file changed, 10 insertions(+)
 
-diff --git a/simple-todos.html b/simple-todos.html
-index 55c1dc9..bd18923 100644
---- a/simple-todos.html
-+++ b/simple-todos.html
-@@ -35,6 +35,16 @@
+diff --git a/imports/ui/task.html b/imports/ui/task.html
+index c42e8fc..b9108ea 100644
+--- a/imports/ui/task.html
++++ b/imports/ui/task.html
+@@ -4,6 +4,16 @@
  
      <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
  
@@ -1237,25 +1626,23 @@ index 55c1dc9..bd18923 100644
    </li>
  </template>
 -- 
-2.6.3
+2.1.3
 
 
-From e20dcfc13016f7f9a3642de3dd0c5530056adae2 Mon Sep 17 00:00:00 2001
+From 38e94dd493444eacf0bb3142e9ded86d4afc2455 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:34:13 -0700
-Subject: [PATCH 29/34] Step 10.4: Add private class to private tasks
+Subject: [PATCH 39/46] Step 10.5: Add private class to private tasks
 
 ---
- simple-todos.html | 2 +-
+ imports/ui/task.html | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/simple-todos.html b/simple-todos.html
-index bd18923..08854e2 100644
---- a/simple-todos.html
-+++ b/simple-todos.html
-@@ -30,7 +30,7 @@
- </body>
- 
+diff --git a/imports/ui/task.html b/imports/ui/task.html
+index b9108ea..218789f 100644
+--- a/imports/ui/task.html
++++ b/imports/ui/task.html
+@@ -1,5 +1,5 @@
  <template name="task">
 -  <li class="{{#if checked}}checked{{/if}}">
 +  <li class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}">
@@ -1263,169 +1650,293 @@ index bd18923..08854e2 100644
  
      <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
 -- 
-2.6.3
+2.1.3
 
 
-From f5ff7942bb745e53c1d94d6d2555449544928754 Mon Sep 17 00:00:00 2001
+From 671d4b124526ed7570f44ef318935cb53108f021 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:34:47 -0700
-Subject: [PATCH 30/34] Step 10.5: Define helper to check ownership
+Subject: [PATCH 40/46] Step 10.6: Define helper to check ownership
 
 ---
- simple-todos.js | 6 ++++++
+ imports/ui/task.js | 6 ++++++
  1 file changed, 6 insertions(+)
 
-diff --git a/simple-todos.js b/simple-todos.js
-index 31eda5c..db6e512 100644
---- a/simple-todos.js
-+++ b/simple-todos.js
-@@ -48,6 +48,12 @@ if (Meteor.isClient) {
-     }
-   });
+diff --git a/imports/ui/task.js b/imports/ui/task.js
+index 3775ceb..af4bcf6 100644
+--- a/imports/ui/task.js
++++ b/imports/ui/task.js
+@@ -3,6 +3,12 @@ import { Template } from 'meteor/templating';
  
-+  Template.task.helpers({
-+    isOwner: function () {
-+      return this.owner === Meteor.userId();
-+    }
-+  });
+ import './task.html';
+ 
++Template.task.helpers({
++  isOwner() {
++    return this.owner === Meteor.userId();
++  },
++});
 +
-   Template.task.events({
-     "click .toggle-checked": function () {
-       // Set the checked property to the opposite of its current value
+ Template.task.events({
+   'click .toggle-checked'() {
+     // Set the checked property to the opposite of its current value
 -- 
-2.6.3
+2.1.3
 
 
-From c12c07a4480a0db0679c9af90fddcae0e843c816 Mon Sep 17 00:00:00 2001
+From 915efc0ffae6ac361db95a6dfb0e327042d89c3e Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:35:31 -0700
-Subject: [PATCH 31/34] Step 10.6: Define method to set tasks to private
+Subject: [PATCH 41/46] Step 10.7: Define method to set tasks to private
 
 ---
- simple-todos.js | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ imports/api/tasks.js | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/simple-todos.js b/simple-todos.js
-index db6e512..ff07739 100644
---- a/simple-todos.js
-+++ b/simple-todos.js
-@@ -88,5 +88,15 @@ Meteor.methods({
+diff --git a/imports/api/tasks.js b/imports/api/tasks.js
+index c048739..1c3e891 100644
+--- a/imports/api/tasks.js
++++ b/imports/api/tasks.js
+@@ -38,6 +38,19 @@ Meteor.methods({
+ 
+     Tasks.update(taskId, { $set: { checked: setChecked } });
    },
-   setChecked: function (taskId, setChecked) {
-     Tasks.update(taskId, { $set: { checked: setChecked} });
-+  },
-+  setPrivate: function (taskId, setToPrivate) {
-+    var task = Tasks.findOne(taskId);
++  'tasks.setPrivate'(taskId, setToPrivate) {
++    check(taskId, String);
++    check(setToPrivate, Boolean);
++
++    const task = Tasks.findOne(taskId);
 +
 +    // Make sure only the task owner can make a task private
 +    if (task.owner !== Meteor.userId()) {
-+      throw new Meteor.Error("not-authorized");
++      throw new Meteor.Error('not-authorized');
 +    }
 +
 +    Tasks.update(taskId, { $set: { private: setToPrivate } });
-   }
++  },
  });
+ 
+ export { Tasks };
 -- 
-2.6.3
+2.1.3
 
 
-From a7412e05eb2294eba0ac8c3737acc9e996da9b0d Mon Sep 17 00:00:00 2001
+From 12fc5a9ffcd73fba07a2d954c1e9d90bdd5c8c13 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:35:55 -0700
-Subject: [PATCH 32/34] Step 10.7: Add event handler to call the setPrivate
+Subject: [PATCH 42/46] Step 10.8: Add event handler to call the setPrivate
  method
 
 ---
- simple-todos.js | 3 +++
+ imports/ui/task.js | 3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/simple-todos.js b/simple-todos.js
-index ff07739..937e361 100644
---- a/simple-todos.js
-+++ b/simple-todos.js
-@@ -61,6 +61,9 @@ if (Meteor.isClient) {
-     },
-     "click .delete": function () {
-       Meteor.call("deleteTask", this._id);
-+    },
-+    "click .toggle-private": function () {
-+      Meteor.call("setPrivate", this._id, ! this.private);
-     }
-   });
- 
+diff --git a/imports/ui/task.js b/imports/ui/task.js
+index af4bcf6..6b51496 100644
+--- a/imports/ui/task.js
++++ b/imports/ui/task.js
+@@ -17,4 +17,7 @@ Template.task.events({
+   'click .delete'() {
+     Meteor.call('tasks.remove', this._id);
+   },
++  'click .toggle-private'() {
++    Meteor.call('tasks.setPrivate', this._id, !this.private);
++  },
+ });
 -- 
-2.6.3
+2.1.3
 
 
-From b027b618497c1c1d5f8c6d4d259e802018a6bab2 Mon Sep 17 00:00:00 2001
+From e26fa2b01321672c241a1b168a8fe8f975dcab38 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:36:38 -0700
-Subject: [PATCH 33/34] Step 10.8: Only publish tasks the user is allowed to
+Subject: [PATCH 43/46] Step 10.9: Only publish tasks the user is allowed to
  see
 
 ---
- simple-todos.js | 8 +++++++-
+ imports/api/tasks.js | 8 +++++++-
  1 file changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/simple-todos.js b/simple-todos.js
-index 937e361..fea68a1 100644
---- a/simple-todos.js
-+++ b/simple-todos.js
-@@ -2,8 +2,14 @@ Tasks = new Mongo.Collection("tasks");
+diff --git a/imports/api/tasks.js b/imports/api/tasks.js
+index 1c3e891..afbcb81 100644
+--- a/imports/api/tasks.js
++++ b/imports/api/tasks.js
+@@ -6,8 +6,14 @@ const Tasks = new Mongo.Collection('tasks');
  
  if (Meteor.isServer) {
    // This code only runs on the server
 +  // Only publish tasks that are public or belong to the current user
-   Meteor.publish("tasks", function () {
+   Meteor.publish('tasks', function tasksPublication() {
 -    return Tasks.find();
 +    return Tasks.find({
 +      $or: [
-+        { private: {$ne: true} },
-+        { owner: this.userId }
-+      ]
++        { private: { $ne: true } },
++        { owner: this.userId },
++      ],
 +    });
    });
  }
  
 -- 
-2.6.3
+2.1.3
 
 
-From 17b00f034ea0273a4eff10ab9ec4774fb7f98a7e Mon Sep 17 00:00:00 2001
+From 1214baf6ab1ded4093e239bcd688cb9ed7234f9a Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:37:36 -0700
-Subject: [PATCH 34/34] Step 10.9: Add some extra security to methods
+Subject: [PATCH 44/46] Step 10.10: Add some extra security to methods
 
 ---
- simple-todos.js | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ imports/api/tasks.js | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/simple-todos.js b/simple-todos.js
-index fea68a1..9bf41bb 100644
---- a/simple-todos.js
-+++ b/simple-todos.js
-@@ -93,9 +93,21 @@ Meteor.methods({
-     });
-   },
-   deleteTask: function (taskId) {
-+    var task = Tasks.findOne(taskId);
+diff --git a/imports/api/tasks.js b/imports/api/tasks.js
+index afbcb81..222dd81 100644
+--- a/imports/api/tasks.js
++++ b/imports/api/tasks.js
+@@ -26,6 +26,7 @@ Meteor.methods({
+       throw new Meteor.Error('not-authorized');
+     }
+ 
++
+     Tasks.insert({
+       text,
+       createdAt: new Date(),
+@@ -36,12 +37,24 @@ Meteor.methods({
+   'tasks.remove'(taskId) {
+     check(taskId, String);
+ 
++    const task = Tasks.findOne(taskId);
 +    if (task.private && task.owner !== Meteor.userId()) {
 +      // If the task is private, make sure only the owner can delete it
-+      throw new Meteor.Error("not-authorized");
++      throw new Meteor.Error('not-authorized');
 +    }
 +
      Tasks.remove(taskId);
    },
-   setChecked: function (taskId, setChecked) {
-+    var task = Tasks.findOne(taskId);
+   'tasks.setChecked'(taskId, setChecked) {
+     check(taskId, String);
+     check(setChecked, Boolean);
+ 
++    const task = Tasks.findOne(taskId);
 +    if (task.private && task.owner !== Meteor.userId()) {
 +      // If the task is private, make sure only the owner can check it off
-+      throw new Meteor.Error("not-authorized");
++      throw new Meteor.Error('not-authorized');
 +    }
 +
-     Tasks.update(taskId, { $set: { checked: setChecked} });
+     Tasks.update(taskId, { $set: { checked: setChecked } });
    },
-   setPrivate: function (taskId, setToPrivate) {
+   'tasks.setPrivate'(taskId, setToPrivate) {
 -- 
-2.6.3
+2.1.3
+
+
+From aee10beeee8932f432f25b4f4074238c3c8cab50 Mon Sep 17 00:00:00 2001
+From: Tom Coleman <tom@thesnail.org>
+Date: Thu, 17 Mar 2016 12:51:38 +1100
+Subject: [PATCH 45/46] Step 11.1: Added practicalmeteor:mocha package
+
+---
+ .meteor/packages | 1 +
+ .meteor/versions | 7 +++++++
+ 2 files changed, 8 insertions(+)
+
+diff --git a/.meteor/packages b/.meteor/packages
+index 3ecf3a1..6e6d2d4 100644
+--- a/.meteor/packages
++++ b/.meteor/packages
+@@ -20,3 +20,4 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
+ reactive-dict
+ accounts-ui
+ accounts-password
++practicalmeteor:mocha@2.1.1-rc.1
+diff --git a/.meteor/versions b/.meteor/versions
+index 4f59e62..a03c196 100644
+--- a/.meteor/versions
++++ b/.meteor/versions
+@@ -16,6 +16,7 @@ caching-compiler@1.0.2-rc.2
+ caching-html-compiler@1.0.4-rc.2
+ callback-hook@1.0.6-rc.2
+ check@1.1.2-rc.2
++coffeescript@1.0.15-rc.2
+ ddp@1.2.3-rc.2
+ ddp-client@1.2.3-rc.2
+ ddp-common@1.2.3-rc.2
+@@ -56,6 +57,11 @@ npm-bcrypt@0.7.8_2
+ npm-mongo@1.4.41-rc.2
+ observe-sequence@1.0.9-rc.2
+ ordered-dict@1.0.5-rc.2
++practicalmeteor:chai@2.1.0_1
++practicalmeteor:loglevel@1.2.0_2
++practicalmeteor:mocha@2.1.1-rc.1
++practicalmeteor:mocha-core@0.1.4
++practicalmeteor:sinon@1.14.1_2
+ promise@0.6.4-rc.2
+ random@1.0.7-rc.2
+ rate-limit@1.0.2-rc.2
+@@ -74,6 +80,7 @@ standard-minifier-css@1.0.4-rc.2
+ standard-minifier-js@1.0.4-rc.2
+ templating@1.1.7-rc.2
+ templating-tools@1.0.2-rc.2
++tmeasday:test-reporter-helpers@0.2.1
+ tracker@1.0.11-rc.2
+ ui@1.0.9-rc.2
+ underscore@1.0.6-rc.2
+-- 
+2.1.3
+
+
+From cf019568a922750076a3e9b5297bb689231744c6 Mon Sep 17 00:00:00 2001
+From: Tom Coleman <tom@thesnail.org>
+Date: Thu, 17 Mar 2016 12:52:51 +1100
+Subject: [PATCH 46/46] Step 11.2: Added a simple method test
+
+---
+ imports/api/tasks.tests.js | 36 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
+ create mode 100644 imports/api/tasks.tests.js
+
+diff --git a/imports/api/tasks.tests.js b/imports/api/tasks.tests.js
+new file mode 100644
+index 0000000..212a91d
+--- /dev/null
++++ b/imports/api/tasks.tests.js
+@@ -0,0 +1,36 @@
++/* eslint-env mocha */
++
++import { Meteor } from 'meteor/meteor';
++import { Random } from 'meteor/random';
++import { assert } from 'meteor/practicalmeteor:chai';
++
++import { Tasks } from './tasks.js';
++
++if (Meteor.isServer) {
++  describe('Tasks', () => {
++    describe('methods', () => {
++      const userId = Random.id();
++      let taskId;
++
++      beforeEach(() => {
++        Tasks.remove({});
++        taskId = Tasks.insert({
++          text: 'test task',
++          createdAt: new Date(),
++          owner: userId,
++          username: 'tmeasday',
++        });
++      });
++
++      it('can delete owned task', () => {
++        const deleteTask = Meteor.server.method_handlers['tasks.remove'];
++
++        // Call delete task with a faked user context, so the server thinks we have userId
++        const invocation = { userId };
++        deleteTask.apply(invocation, [taskId]);
++
++        assert.equal(Tasks.find().count(), 0);
++      });
++    });
++  });
++}
+-- 
+2.1.3
 

@@ -48,7 +48,7 @@ Package.onUse(function (api) {
     'content/blaze/step08.md',
     'content/blaze/step09.md',
     'content/blaze/step10.md',
-    'content/blaze/step11.md',
+    'content/blaze/step12.md',
 
     'content/react/step01.md',
     'content/react/step02.md',
@@ -67,6 +67,7 @@ Package.onUse(function (api) {
     'content/shared/adding-css.js',
     'content/shared/nextSteps.md',
     'content/shared/step06.md',
+    'content/shared/step11.md',
 
     'generated/react.multi.patch',
     'generated/blaze.multi.patch',

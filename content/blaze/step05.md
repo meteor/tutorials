@@ -4,13 +4,20 @@
 
 Until now, we have only interacted with a collection by inserting documents. Now, we will learn how to update and remove them.
 
-Let's add two elements to our `task` template, a checkbox and a delete button:
+Let's work on our `task` template---starting by moving it to it's own file, with some new features, a checkbox and a delete button:
 
 {{> DiffBox tutorialName="simple-todos" step="5.1"}}
 
+We also need to remove the old definition of the `task` template from the `imports/ui/body.html` file.
+
 We have added UI elements, but they don't do anything yet. We should add some event handlers:
 
-{{> DiffBox tutorialName="simple-todos" step="5.2"}}
+{{> DiffBox tutorialName="simple-todos" step="5.3"}}
+
+The `body` template uses the `task` template, so we need to import it as well:
+
+{{> DiffBox tutorialName="simple-todos" step="5.4"}}
+
 
 ### Getting data in event handlers
 

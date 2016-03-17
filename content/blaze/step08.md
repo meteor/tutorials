@@ -18,6 +18,10 @@ Then, in your JavaScript, add the following code to configure the accounts UI to
 
 {{> DiffBox tutorialName="simple-todos" step="8.3"}}
 
+We'll need to import that configuration from our JavaScript entrypoint also:
+
+{{> DiffBox tutorialName="simple-todos" step="8.4"}}
+
 Now users can create accounts and log into your app! This is very nice, but logging in and out isn't very useful yet. Let's add two functions:
 
 1. Only display the new task input field to logged in users
@@ -30,15 +34,15 @@ To do this, we will add two new fields to the `tasks` collection:
 
 First, let's add some code to save these fields into the `submit .new-task` event handler:
 
-{{> DiffBox tutorialName="simple-todos" step="8.4"}}
+{{> DiffBox tutorialName="simple-todos" step="8.5"}}
 
 Then, in our HTML, add an `#if` block helper to only show the form when there is a logged in user:
 
-{{> DiffBox tutorialName="simple-todos" step="8.5"}}
+{{> DiffBox tutorialName="simple-todos" step="8.6"}}
 
 Finally, add a Spacebars statement to display the `username` field on each task right before the text:
 
-{{> DiffBox tutorialName="simple-todos" step="8.6"}}`
+{{> DiffBox tutorialName="simple-todos" step="8.7"}}
 
 Now, users can log in and we can track which user each task belongs to. Let's look at some of the concepts we just discovered in more detail.
 

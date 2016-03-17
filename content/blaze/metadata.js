@@ -61,9 +61,14 @@ TutorialRegistry.registerTutorial("blaze", {
       template: 'blaze-step10'
     },
     {
+      title: 'Testing',
+      slug: "teesting",
+      template: 'sharedStep11'
+    },
+    {
       title: 'Next steps',
       slug: "next-steps",
-      template: 'blaze-step11'
+      template: 'blaze-step12'
     }
   ]
 });
