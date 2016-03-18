@@ -20,13 +20,19 @@ meteor test --driver-package practicalmeteor:mocha
 
 If you do so, you should see an empty test results page in your browser window.
 
-Let's add a simple test:
+Let's add a simple test (that doesn't do anything yet):
 
 {{> DiffBox tutorialName="simple-todos" step="11.2"}}
 
-This test runs only on the server, which allows us to easily control the database and call the method "as" any user we like without having to go through login steps. 
+In any test we need to ensure the database is in the state we expect before beginning. We can use Mocha's `beforeEach` construct to that easily:
 
-We use Mocha's builtin `describe`, `it`, and `beforeEach` syntax to ensure the database has a single task when the test starts, and then directly call the method's implementation as the task's owner. Then we can check that the task is deleted after the method call.
+{{> DiffBox tutorialName="simple-todos" step="11.3"}}
+
+Here we create a single task that's associated with a random `userId` that'll be different for each test run. 
+
+Now we can write the test to call the `task.remove` method "as" that user and verify the task is deleted:
+
+{{> DiffBox tutorialName="simple-todos" step="11.4"}}
 
 There's a lot more you can do in a Meteor test! You can read more about it in the Meteor Guide [article on testing](http://guide.meteor.com/testing.html).
 

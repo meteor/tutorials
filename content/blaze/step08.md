@@ -18,7 +18,7 @@ Then, in your JavaScript, add the following code to configure the accounts UI to
 
 {{> DiffBox tutorialName="simple-todos" step="8.3"}}
 
-We'll need to import that configuration from our JavaScript entrypoint also:
+We'll need to import that configuration from our *client-side JavaScript entrypoint* also:
 
 {{> DiffBox tutorialName="simple-todos" step="8.4"}}
 
@@ -58,3 +58,6 @@ In your JavaScript code, you can use `Meteor.userId()` to get the current user's
 
 In the next step, we will learn how to make our app more secure by doing all of our data validation on the server instead of the client.
 {{/template}}
+
+You can read more about using accounts in Meteor in the [Accounts article](http://guide.meteor.com/accounts.html) of the Meteor Guide.
+

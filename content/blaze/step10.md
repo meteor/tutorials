@@ -24,6 +24,8 @@ Once you have added this code, all of the tasks will reappear.
 
 Calling `Meteor.publish` on the server registers a _publication_ named `"tasks"`. When `Meteor.subscribe` is called on the client with the publication name, the client _subscribes_ to all the data from that publication, which in this case is all of the tasks in the database. To truly see the power of the publish/subscribe model, let's implement a feature that allows users to mark tasks as "private" so that no other users can see them.
 
+You can read more about publications in the [Data Loading article](http://guide.meteor.com/data-loading.html) of the Meteor Guide.
+
 ### Implementing private tasks
 
 First, let's add another property to tasks called "private" and a button for users to mark a task as private. This button should only show up for the owner of a task. It will display the current state of the item.

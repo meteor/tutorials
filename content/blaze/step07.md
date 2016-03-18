@@ -24,8 +24,7 @@ is checked or unchecked. An event handler takes two arguments, the second of whi
 {{> DiffBox tutorialName="simple-todos" step="7.4"}}
 
 Now, we need to update `Template.body.helpers`. The code below has a new if
-block to filter the tasks if the checkbox is checked, and a helper to make sure
-the checkbox represents the state of our internal `state` dictionary.
+block to filter the tasks if the checkbox is checked:
 
 {{> DiffBox tutorialName="simple-todos" step="7.5"}}
 
@@ -34,6 +33,9 @@ Now if you check the box, the task list will only show tasks that haven't been c
 ### ReactiveDicts are reactive data stores for the client
 
 Until now, we have stored all of our state in collections, and the view updated automatically when we modified the data inside these collections. This is because Mongo.Collection is recognized by Meteor as a _reactive data source_, meaning Meteor knows when the data inside has changed. `ReactiveDict` is the same way, but is not synced with the server like collections are. This makes a `ReactiveDict` a convenient place to store temporary UI state like the checkbox above. Just like with collections, we don't have to write any extra code for the template to update when the `ReactiveDict` variable changes &mdash; just calling `instance.state.get(...)` inside the helper is enough.
+
+You can read more about patterns for writing components in the [Blaze article](http://guide.meteor.com/blaze.html) of the Meteor Guide.
+
 
 ### One more feature: Showing a count of incomplete tasks
 

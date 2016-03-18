@@ -13,9 +13,11 @@ Then we create some new files in the `imports/` directory:
 
 {{> DiffBox tutorialName="simple-todos" step="2.3"}}
 
-Files inside `imports/` are not eagerly loaded, so we'll need to import `imports/ui/body.js` from our frontend JS entrypoint (`client/main.js`---note that we remove the rest of the code from this file):
+Files inside `imports/` only load if they are imported, so we'll need to import `imports/ui/body.js` from our frontend JS entrypoint (`client/main.js`---note that we remove the rest of the code from this file):
 
 {{> DiffBox tutorialName="simple-todos" step="2.4"}}
+
+You can read more about how imports work and how to structure your code in the [Application Structure article](http://guide.meteor.com/structure.html) of the Meteor Guide.
 
 In our browser, the app will now look much like this:
 
@@ -28,7 +30,7 @@ Now let's find out what all these bits of code are doing!
 
 ### HTML files in Meteor define templates
 
-Meteor parses all of the HTML files in your app folder and identifies three top-level tags: **&lt;head>**, **&lt;body>**, and **&lt;template>**.
+Meteor parses HTML files and identifies three top-level tags: **&lt;head>**, **&lt;body>**, and **&lt;template>**.
 
 Everything inside any &lt;head> tags is added to the `head` section of the HTML sent to the client, and everything inside &lt;body> tags is added to the `body` section, just like in a regular HTML file. 
 

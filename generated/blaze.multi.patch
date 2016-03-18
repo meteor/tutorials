@@ -1,7 +1,7 @@
-From 1d9c7079a2ffb10bff504c472b2175c1ed7bf1b2 Mon Sep 17 00:00:00 2001
+From 51e340b7cd2b944bd0929206b1871f1c044c2aa2 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:05:51 -0700
-Subject: [PATCH 01/46] Step 1: Run `meteor create`
+Subject: [PATCH 01/48] Step 1: Run `meteor create`
 
 ---
  .gitignore                  |  1 +
@@ -292,10 +292,10 @@ index 0000000..31a9e0e
 2.1.3
 
 
-From 1bca6e0184b74c344463a577a01d7a3dbad1f8be Mon Sep 17 00:00:00 2001
+From 431f75b28f8ee985b3ac341da6c4d752d204b135 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:07:22 -0700
-Subject: [PATCH 02/46] Step 2.1: Remove starter HTML code
+Subject: [PATCH 02/48] Step 2.1: Remove starter HTML code
 
 ---
  client/main.html | 22 ----------------------
@@ -335,10 +335,10 @@ index 6fe0dc5..7c48505 100644
 2.1.3
 
 
-From 07b752c2a16a711e2596f2167a66ef700f3e4d2c Mon Sep 17 00:00:00 2001
+From 99cffc464f80899ce34cf446179e8041c9f5114c Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 13:11:52 +1100
-Subject: [PATCH 03/46] Step 2.2: Replace starter HTML code
+Subject: [PATCH 03/48] Step 2.2: Add starter HTML code
 
 ---
  imports/ui/body.html | 17 +++++++++++++++++
@@ -372,10 +372,10 @@ index 0000000..23a6507
 2.1.3
 
 
-From 7abbdb9a538a32b82c018df9ab9772cefdfb402b Mon Sep 17 00:00:00 2001
+From 30e9ac16a2de85e74d5a6d92b16e41b37e7faf5e Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:07:50 -0700
-Subject: [PATCH 04/46] Step 2.3: Replace starter JS code
+Subject: [PATCH 04/48] Step 2.3: Add starter JS code
 
 ---
  imports/ui/body.js | 11 +++++++++++
@@ -403,10 +403,10 @@ index 0000000..3ad20b1
 2.1.3
 
 
-From f33c2b6553d6a5502605de8b044b1e448894322d Mon Sep 17 00:00:00 2001
+From d63fe20a79a2dd9be0034b72bba93d9654d10d31 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:08:17 -0700
-Subject: [PATCH 05/46] Step 2.4: Import starter JS
+Subject: [PATCH 05/48] Step 2.4: Import starter JS
 
 ---
  client/main.js | 23 +----------------------
@@ -444,10 +444,10 @@ index ecb3282..4e7c1a4 100644
 2.1.3
 
 
-From 39465319a937823b78df23fe36b1dd5a4bcd65c3 Mon Sep 17 00:00:00 2001
+From 63f980943c048f8084f5a42543ba3e13b4088800 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:13:09 +1100
-Subject: [PATCH 06/46] Step 2.5: Add CSS
+Subject: [PATCH 06/48] Step 2.5: Add CSS
 
 ---
  client/main.css | 125 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -588,35 +588,33 @@ index b6b4052..ed5e77e 100644
 2.1.3
 
 
-From f7d73475384e80357eb9c7a5ca041d2546f60d62 Mon Sep 17 00:00:00 2001
+From bbe752d39cf04a51376c1cd089b053615cf08df9 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:15:47 +1100
-Subject: [PATCH 07/46] Step 3.1: Create tasks collection
+Subject: [PATCH 07/48] Step 3.1: Create tasks collection
 
 ---
- imports/api/tasks.js | 5 +++++
- 1 file changed, 5 insertions(+)
+ imports/api/tasks.js | 3 +++
+ 1 file changed, 3 insertions(+)
  create mode 100644 imports/api/tasks.js
 
 diff --git a/imports/api/tasks.js b/imports/api/tasks.js
 new file mode 100644
-index 0000000..a9ab038
+index 0000000..3bed819
 --- /dev/null
 +++ b/imports/api/tasks.js
-@@ -0,0 +1,5 @@
+@@ -0,0 +1,3 @@
 +import { Mongo } from 'meteor/mongo';
 +
-+const Tasks = new Mongo.Collection('tasks');
-+
-+export { Tasks };
++export const Tasks = new Mongo.Collection('tasks');
 -- 
 2.1.3
 
 
-From ad62355a6a8ee24c21e37478504512596fe5201c Mon Sep 17 00:00:00 2001
+From 85ec00cdd88b93b68d2f3c517060594a8f015062 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:20:32 +1100
-Subject: [PATCH 08/46] Step 3.2: Load tasks collection on the server
+Subject: [PATCH 08/48] Step 3.2: Load tasks collection on the server
 
 ---
  server/main.js | 6 +-----
@@ -637,10 +635,10 @@ index 31a9e0e..ab941a4 100644
 2.1.3
 
 
-From 6aff55c365b0b5507877d5a66dd62d3a65a38cb2 Mon Sep 17 00:00:00 2001
+From f6b008980d6f04b93e05bf777bdb0378308f4b57 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:16:03 +1100
-Subject: [PATCH 09/46] Step 3.3: Load tasks from Tasks collection
+Subject: [PATCH 09/48] Step 3.3: Load tasks from Tasks collection
 
 ---
  imports/ui/body.js | 10 +++++-----
@@ -671,10 +669,10 @@ index 3ad20b1..fc36022 100644
 2.1.3
 
 
-From 9e387992b0911ef28958d5ec6d7380134da81c72 Mon Sep 17 00:00:00 2001
+From 5181113b59242497a2593b844337a93944b7d78a Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:10:21 -0700
-Subject: [PATCH 10/46] Step 4.1: Add form for new tasks
+Subject: [PATCH 10/48] Step 4.1: Add form for new tasks
 
 ---
  imports/ui/body.html | 4 ++++
@@ -699,10 +697,10 @@ index 23a6507..0a1f952 100644
 2.1.3
 
 
-From c86ea9c4669be127531e6e3245841d2f76486fae Mon Sep 17 00:00:00 2001
+From 828c084621cc5bd0d9373d54f4eda6188260bbda Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:19:59 +1100
-Subject: [PATCH 11/46] Step 4.2: Add event handler for form submit
+Subject: [PATCH 11/48] Step 4.2: Add event handler for form submit
 
 ---
  imports/ui/body.js | 20 ++++++++++++++++++++
@@ -740,10 +738,10 @@ index fc36022..42ad1d5 100644
 2.1.3
 
 
-From 28a7f6c41c48d3caf0b18e6dce1b32011b0b2f52 Mon Sep 17 00:00:00 2001
+From 0dc5c4c9c5bb0f8f769ef704a90a981de6090847 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:12:14 -0700
-Subject: [PATCH 12/46] Step 4.3: Show newest tasks at the top
+Subject: [PATCH 12/48] Step 4.3: Show newest tasks at the top
 
 ---
  imports/ui/body.js | 3 ++-
@@ -767,10 +765,10 @@ index 42ad1d5..6fbc9d5 100644
 2.1.3
 
 
-From 3588b089c96167bfed5239d14491a00580c43aea Mon Sep 17 00:00:00 2001
+From 89bc3233dc87cba97d7e5a89f659dfc463b8da53 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:12:57 -0700
-Subject: [PATCH 13/46] Step 5.1: Add buttons to Task component
+Subject: [PATCH 13/48] Step 5.1: Add buttons to Task component
 
 ---
  imports/ui/task.html | 9 +++++++++
@@ -796,10 +794,10 @@ index 0000000..c4ab8e5
 2.1.3
 
 
-From 07235612b5bcbbaf82b8e453ee216878db2b1750 Mon Sep 17 00:00:00 2001
+From acb70c80fb362a856eb7254d5b7dbe8492e2dc83 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:23:12 +1100
-Subject: [PATCH 14/46] Step 5.2: Remove Tasks component from Body file
+Subject: [PATCH 14/48] Step 5.2: Remove Tasks component from Body file
 
 ---
  imports/ui/body.html | 4 ----
@@ -821,10 +819,10 @@ index 0a1f952..c40a87b 100644
 2.1.3
 
 
-From 1fd0a2c27aaaffac17a1ca533fac433c4f09f19e Mon Sep 17 00:00:00 2001
+From 4f27c1302376e197c5e69b476f19d9cd13522ade Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:26:44 +1100
-Subject: [PATCH 15/46] Step 5.3: Add event handlers for Task buttons
+Subject: [PATCH 15/48] Step 5.3: Add event handlers for Task buttons
 
 ---
  imports/ui/task.js | 17 +++++++++++++++++
@@ -858,10 +856,10 @@ index 0000000..782f932
 2.1.3
 
 
-From ad56ff1c15c42de7d18f15ca9cd49e38bc2301e1 Mon Sep 17 00:00:00 2001
+From a26ed7b132ec652a7c4cd9f088f7eb3300e86389 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:26:57 +1100
-Subject: [PATCH 16/46] Step 5.4: Import Task component from the body
+Subject: [PATCH 16/48] Step 5.4: Import Task component from the body
 
 ---
  imports/ui/body.js | 1 +
@@ -883,17 +881,17 @@ index 6fbc9d5..bac22c6 100644
 2.1.3
 
 
-From de6ce06e8dc8b450598be076c0978ed948cc796a Mon Sep 17 00:00:00 2001
+From 4bfaa6f070101cb0caf35ab30343e1126b0e6701 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:24:18 -0700
-Subject: [PATCH 17/46] Step 7.1: Add hide-completed checkbox to HTML
+Subject: [PATCH 17/48] Step 7.1: Add hide-completed checkbox to HTML
 
 ---
  imports/ui/body.html | 5 +++++
  1 file changed, 5 insertions(+)
 
 diff --git a/imports/ui/body.html b/imports/ui/body.html
-index c40a87b..a581239 100644
+index c40a87b..b634377 100644
 --- a/imports/ui/body.html
 +++ b/imports/ui/body.html
 @@ -3,6 +3,11 @@
@@ -901,7 +899,7 @@ index c40a87b..a581239 100644
        <h1>Todo List</h1>
  
 +      <label class="hide-completed">
-+        <input type="checkbox" checked="{{hideCompleted}}" />
++        <input type="checkbox" />
 +        Hide Completed Tasks
 +      </label>
 +
@@ -912,10 +910,10 @@ index c40a87b..a581239 100644
 2.1.3
 
 
-From d7788574938a2b66e21ae6e04669e8ae89184e6d Mon Sep 17 00:00:00 2001
+From 11349ad2cad437421ad9fadb05f000fc2f24d928 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:33:00 +1100
-Subject: [PATCH 18/46] Step 7.2: Add reactive-dict package
+Subject: [PATCH 18/48] Step 7.2: Add reactive-dict package
 
 ---
  .meteor/packages | 1 +
@@ -947,10 +945,10 @@ index c3395d2..ccbd7bb 100644
 2.1.3
 
 
-From 0fdee1674646037fd9ce48d1b2b326472796b934 Mon Sep 17 00:00:00 2001
+From 349bd90805ba098d08c9445c00fb6776f2cb8b08 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:29:41 +1100
-Subject: [PATCH 19/46] Step 7.3: Add state dictionary to the body
+Subject: [PATCH 19/48] Step 7.3: Add state dictionary to the body
 
 ---
  imports/ui/body.js | 5 +++++
@@ -980,10 +978,10 @@ index bac22c6..d429b10 100644
 2.1.3
 
 
-From 5a829eaf0add55a644414a18bce3dd680ff5426e Mon Sep 17 00:00:00 2001
+From caa11a11d808123299380ee26229c9f358ba1775 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:30:11 +1100
-Subject: [PATCH 20/46] Step 7.4: Add event handler for checkbox
+Subject: [PATCH 20/48] Step 7.4: Add event handler for checkbox
 
 ---
  imports/ui/body.js | 3 +++
@@ -1005,20 +1003,20 @@ index d429b10..856dad4 100644
 2.1.3
 
 
-From 6acc630abe8ac8bef50a6abb5540c297e760bb53 Mon Sep 17 00:00:00 2001
+From 10e30f2ff2b42a53bd675433f65d21ac2beb679e Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:31:16 +1100
-Subject: [PATCH 21/46] Step 7.5: Add helpers to body template
+Subject: [PATCH 21/48] Step 7.5: Add helpers to body template
 
 ---
- imports/ui/body.js | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+ imports/ui/body.js | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
 diff --git a/imports/ui/body.js b/imports/ui/body.js
-index 856dad4..a207bf0 100644
+index 856dad4..18422ae 100644
 --- a/imports/ui/body.js
 +++ b/imports/ui/body.js
-@@ -12,9 +12,18 @@ Template.body.onCreated(function bodyOnCreated() {
+@@ -12,7 +12,12 @@ Template.body.onCreated(function bodyOnCreated() {
  
  Template.body.helpers({
    tasks() {
@@ -1031,33 +1029,27 @@ index 856dad4..a207bf0 100644
 +    // Otherwise, return all of the tasks
      return Tasks.find({}, { sort: { createdAt: -1 } });
    },
-+  hideCompleted() {
-+    const instance = Template.instance();
-+    return instance.state.get('hideCompleted');
-+  },
  });
- 
- Template.body.events({
 -- 
 2.1.3
 
 
-From d6c151918eedd35801c1d24f1584e68c0930445a Mon Sep 17 00:00:00 2001
+From 79b34c54716abd5aaa1a5d9f5068a8bd7c24e35b Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:26:17 -0700
-Subject: [PATCH 22/46] Step 7.6: Add incompleteCount helper to body
+Subject: [PATCH 22/48] Step 7.6: Add incompleteCount helper to body
 
 ---
  imports/ui/body.js | 3 +++
  1 file changed, 3 insertions(+)
 
 diff --git a/imports/ui/body.js b/imports/ui/body.js
-index a207bf0..f25871e 100644
+index 18422ae..3ca9a47 100644
 --- a/imports/ui/body.js
 +++ b/imports/ui/body.js
-@@ -24,6 +24,9 @@ Template.body.helpers({
-     const instance = Template.instance();
-     return instance.state.get('hideCompleted');
+@@ -20,6 +20,9 @@ Template.body.helpers({
+     // Otherwise, return all of the tasks
+     return Tasks.find({}, { sort: { createdAt: -1 } });
    },
 +  incompleteCount() {
 +    return Tasks.find({ checked: { $ne: true } }).count();
@@ -1069,17 +1061,17 @@ index a207bf0..f25871e 100644
 2.1.3
 
 
-From 2fca40720ee52fa8ce8379ff7ea5135eaf04a010 Mon Sep 17 00:00:00 2001
+From b26b4d486c9136a3db7beb5d63759b7fa1cdf0b3 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:26:37 -0700
-Subject: [PATCH 23/46] Step 7.7: Display incompleteCount
+Subject: [PATCH 23/48] Step 7.7: Display incompleteCount
 
 ---
  imports/ui/body.html | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/imports/ui/body.html b/imports/ui/body.html
-index a581239..a734c03 100644
+index b634377..6738d6c 100644
 --- a/imports/ui/body.html
 +++ b/imports/ui/body.html
 @@ -1,7 +1,7 @@
@@ -1090,15 +1082,15 @@ index a581239..a734c03 100644
 +      <h1>Todo List ({{incompleteCount}})</h1>
  
        <label class="hide-completed">
-         <input type="checkbox" checked="{{hideCompleted}}" />
+         <input type="checkbox" />
 -- 
 2.1.3
 
 
-From e7a71591be2d788d098e02fe4142eef79078fc19 Mon Sep 17 00:00:00 2001
+From eaa7cfb2bf6257ec2f64f9cfe454c688de9cc6c3 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:27:03 -0700
-Subject: [PATCH 24/46] Step 8.1: Add accounts-ui and accounts-password
+Subject: [PATCH 24/48] Step 8.1: Add accounts-ui and accounts-password
 
 ---
  .meteor/packages |  2 ++
@@ -1181,17 +1173,17 @@ index ccbd7bb..b739407 100644
 2.1.3
 
 
-From 58bc4b455dae5d3e7ed27fc692eae44b16a77bb3 Mon Sep 17 00:00:00 2001
+From bc9fb936699c1ce8a0643e5c563043d560a04811 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:27:23 -0700
-Subject: [PATCH 25/46] Step 8.2: Include loginButtons
+Subject: [PATCH 25/48] Step 8.2: Include loginButtons
 
 ---
  imports/ui/body.html | 2 ++
  1 file changed, 2 insertions(+)
 
 diff --git a/imports/ui/body.html b/imports/ui/body.html
-index a734c03..353a82c 100644
+index 6738d6c..6c60a17 100644
 --- a/imports/ui/body.html
 +++ b/imports/ui/body.html
 @@ -8,6 +8,8 @@
@@ -1207,10 +1199,10 @@ index a734c03..353a82c 100644
 2.1.3
 
 
-From 99d87f8e3bcdd2ef6f8cb96d3971e09a66f344a1 Mon Sep 17 00:00:00 2001
+From 7c48c9aa89e26eac39cc67046f85e54bab5889fe Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:36:02 +1100
-Subject: [PATCH 26/46] Step 8.3: Configure accounts-ui
+Subject: [PATCH 26/48] Step 8.3: Configure accounts-ui
 
 ---
  imports/startup/accounts-config.js | 5 +++++
@@ -1232,10 +1224,10 @@ index 0000000..7e4f7e5
 2.1.3
 
 
-From bac951b21ef76b2d815ba4c9a432c638230a8af4 Mon Sep 17 00:00:00 2001
+From 47fde1a42d5d6d1b765b2f16d0f0cc48e0567be1 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:36:36 +1100
-Subject: [PATCH 27/46] Step 8.4: Import accounts configuration
+Subject: [PATCH 27/48] Step 8.4: Import accounts configuration
 
 ---
  client/main.js | 1 +
@@ -1252,17 +1244,17 @@ index 4e7c1a4..739c50f 100644
 2.1.3
 
 
-From 5d36f08b552dba72dbbc8cfba6ddc5e1af7e9b92 Mon Sep 17 00:00:00 2001
+From 2e4234a228346ca731731166ca12aa38c857d82d Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:28:24 -0700
-Subject: [PATCH 28/46] Step 8.5: Update insert to include user data
+Subject: [PATCH 28/48] Step 8.5: Update insert to include user data
 
 ---
  imports/ui/body.js | 3 +++
  1 file changed, 3 insertions(+)
 
 diff --git a/imports/ui/body.js b/imports/ui/body.js
-index f25871e..15a3c8e 100644
+index 3ca9a47..08fad55 100644
 --- a/imports/ui/body.js
 +++ b/imports/ui/body.js
 @@ -1,3 +1,4 @@
@@ -1270,7 +1262,7 @@ index f25871e..15a3c8e 100644
  import { Template } from 'meteor/templating';
  import { ReactiveDict } from 'meteor/reactive-dict';
  
-@@ -42,6 +43,8 @@ Template.body.events({
+@@ -38,6 +39,8 @@ Template.body.events({
      Tasks.insert({
        text,
        createdAt: new Date(), // current time
@@ -1283,17 +1275,17 @@ index f25871e..15a3c8e 100644
 2.1.3
 
 
-From 826537bc83e8ac442b2bdb1898b7fba688cfe877 Mon Sep 17 00:00:00 2001
+From 7083c5b56ba521ed7f34a7039bb3510e6f522534 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:28:47 -0700
-Subject: [PATCH 29/46] Step 8.6: Only show add task form if logged in
+Subject: [PATCH 29/48] Step 8.6: Only show add task form if logged in
 
 ---
  imports/ui/body.html | 8 +++++---
  1 file changed, 5 insertions(+), 3 deletions(-)
 
 diff --git a/imports/ui/body.html b/imports/ui/body.html
-index 353a82c..6cd1dba 100644
+index 6c60a17..6a9e4e1 100644
 --- a/imports/ui/body.html
 +++ b/imports/ui/body.html
 @@ -10,9 +10,11 @@
@@ -1315,10 +1307,10 @@ index 353a82c..6cd1dba 100644
 2.1.3
 
 
-From 0958888adeb5999647cebe5c4d9239a8be834a6f Mon Sep 17 00:00:00 2001
+From da75b1705c5d5ae3470f47406c261d4303f95a87 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:29:11 -0700
-Subject: [PATCH 30/46] Step 8.7: Display username next to task
+Subject: [PATCH 30/48] Step 8.7: Display username next to task
 
 ---
  imports/ui/task.html | 2 +-
@@ -1340,10 +1332,10 @@ index c4ab8e5..c42e8fc 100644
 2.1.3
 
 
-From 8f0bedc7c5f6874486b5b2717e33abe60e59e0bb Mon Sep 17 00:00:00 2001
+From fc20c31540886a1c6b63673217f63e485c076cec Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:29:52 -0700
-Subject: [PATCH 31/46] Step 9.1: Remove insecure package
+Subject: [PATCH 31/48] Step 9.1: Remove insecure package
 
 ---
  .meteor/packages | 1 -
@@ -1378,26 +1370,26 @@ index b739407..3d9bd1e 100644
 2.1.3
 
 
-From aa81d23d23aef1bc3f7a1be5331be354b2a2bc7e Mon Sep 17 00:00:00 2001
+From aa0357a3c29f7fdedfbb7ff2b109e990831bb399 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:30:20 -0700
-Subject: [PATCH 32/46] Step 9.2: Define some methods
+Subject: [PATCH 32/48] Step 9.2: Define some methods
 
 ---
  imports/api/tasks.js | 31 +++++++++++++++++++++++++++++++
  1 file changed, 31 insertions(+)
 
 diff --git a/imports/api/tasks.js b/imports/api/tasks.js
-index a9ab038..30194c5 100644
+index 3bed819..0201eb4 100644
 --- a/imports/api/tasks.js
 +++ b/imports/api/tasks.js
-@@ -1,5 +1,36 @@
+@@ -1,3 +1,34 @@
 +import { Meteor } from 'meteor/meteor';
  import { Mongo } from 'meteor/mongo';
 +import { check } from 'meteor/check';
  
- const Tasks = new Mongo.Collection('tasks');
- 
+ export const Tasks = new Mongo.Collection('tasks');
++
 +Meteor.methods({
 +  'tasks.insert'(text) {
 +    check(text, String);
@@ -1426,26 +1418,24 @@ index a9ab038..30194c5 100644
 +    Tasks.update(taskId, { $set: { checked: setChecked } });
 +  },
 +});
-+
- export { Tasks };
 -- 
 2.1.3
 
 
-From 6a9e4a34311cc0949b0d0310884781009287a6ce Mon Sep 17 00:00:00 2001
+From f6f479327894e4d8f1cd559cdb587c93a86acb33 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:31:24 -0700
-Subject: [PATCH 33/46] Step 9.3: Replace insert with addTask method
+Subject: [PATCH 33/48] Step 9.3: Replace insert with addTask method
 
 ---
  imports/ui/body.js | 7 +------
  1 file changed, 1 insertion(+), 6 deletions(-)
 
 diff --git a/imports/ui/body.js b/imports/ui/body.js
-index 15a3c8e..d83eaca 100644
+index 08fad55..988f6a5 100644
 --- a/imports/ui/body.js
 +++ b/imports/ui/body.js
-@@ -40,12 +40,7 @@ Template.body.events({
+@@ -36,12 +36,7 @@ Template.body.events({
      const text = target.text.value;
  
      // Insert a task into the collection
@@ -1463,10 +1453,10 @@ index 15a3c8e..d83eaca 100644
 2.1.3
 
 
-From 22369c263971a1308c0e48503f30f6239cfab59f Mon Sep 17 00:00:00 2001
+From 574d23454196ee22d0ea3bc6cd152b41e37e42cd Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:31:46 -0700
-Subject: [PATCH 34/46] Step 9.4: Replace update and remove with methods
+Subject: [PATCH 34/48] Step 9.4: Replace update and remove with methods
 
 ---
  imports/ui/task.js | 9 +++------
@@ -1501,10 +1491,10 @@ index 782f932..3775ceb 100644
 2.1.3
 
 
-From 7632ca1dc2e711e6b356c75e85398e72eeb7d636 Mon Sep 17 00:00:00 2001
+From d96e7791d8be06e726b02b9a40abdc23630d99e6 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:32:19 -0700
-Subject: [PATCH 35/46] Step 10.1: Remove autopublish
+Subject: [PATCH 35/48] Step 10.1: Remove autopublish
 
 ---
  .meteor/packages | 1 -
@@ -1539,22 +1529,22 @@ index 3d9bd1e..4f59e62 100644
 2.1.3
 
 
-From 1394681f2ba706a654785b75bc4cd21f72725d69 Mon Sep 17 00:00:00 2001
+From 09284b4286add29217f39a59c7b7c63b93d6a74f Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:45:32 +1100
-Subject: [PATCH 36/46] Step 10.2: Add publication for tasks
+Subject: [PATCH 36/48] Step 10.2: Add publication for tasks
 
 ---
  imports/api/tasks.js | 7 +++++++
  1 file changed, 7 insertions(+)
 
 diff --git a/imports/api/tasks.js b/imports/api/tasks.js
-index 30194c5..c048739 100644
+index 0201eb4..234a839 100644
 --- a/imports/api/tasks.js
 +++ b/imports/api/tasks.js
 @@ -4,6 +4,13 @@ import { check } from 'meteor/check';
  
- const Tasks = new Mongo.Collection('tasks');
+ export const Tasks = new Mongo.Collection('tasks');
  
 +if (Meteor.isServer) {
 +  // This code only runs on the server
@@ -1570,17 +1560,17 @@ index 30194c5..c048739 100644
 2.1.3
 
 
-From f0d39217e0e172b9dc88fa4c50fa934cf78c9b91 Mon Sep 17 00:00:00 2001
+From cf3557458e16d0477f61cd2cdc5d07adbe225de6 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:45:58 +1100
-Subject: [PATCH 37/46] Step 10.3: Subscribe to tasks
+Subject: [PATCH 37/48] Step 10.3: Subscribe to tasks
 
 ---
  imports/ui/body.js | 1 +
  1 file changed, 1 insertion(+)
 
 diff --git a/imports/ui/body.js b/imports/ui/body.js
-index d83eaca..59e5225 100644
+index 988f6a5..8a4407f 100644
 --- a/imports/ui/body.js
 +++ b/imports/ui/body.js
 @@ -9,6 +9,7 @@ import './body.html';
@@ -1595,10 +1585,10 @@ index d83eaca..59e5225 100644
 2.1.3
 
 
-From 6943418ace2de7446f1254b472114c73d056e954 Mon Sep 17 00:00:00 2001
+From 559e0285e8d2ff713e00997b6f95463433fffa40 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:33:43 -0700
-Subject: [PATCH 38/46] Step 10.4: Add private button
+Subject: [PATCH 38/48] Step 10.4: Add private button
 
 ---
  imports/ui/task.html | 10 ++++++++++
@@ -1629,10 +1619,10 @@ index c42e8fc..b9108ea 100644
 2.1.3
 
 
-From 38e94dd493444eacf0bb3142e9ded86d4afc2455 Mon Sep 17 00:00:00 2001
+From 0518f1f4682540652dfabb104fe9f8274ecab735 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:34:13 -0700
-Subject: [PATCH 39/46] Step 10.5: Add private class to private tasks
+Subject: [PATCH 39/48] Step 10.5: Add private class to private tasks
 
 ---
  imports/ui/task.html | 2 +-
@@ -1653,10 +1643,10 @@ index b9108ea..218789f 100644
 2.1.3
 
 
-From 671d4b124526ed7570f44ef318935cb53108f021 Mon Sep 17 00:00:00 2001
+From 5f5dfb0eda840c8e796e07696e8412385453ead6 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:34:47 -0700
-Subject: [PATCH 40/46] Step 10.6: Define helper to check ownership
+Subject: [PATCH 40/48] Step 10.6: Define helper to check ownership
 
 ---
  imports/ui/task.js | 6 ++++++
@@ -1683,20 +1673,20 @@ index 3775ceb..af4bcf6 100644
 2.1.3
 
 
-From 915efc0ffae6ac361db95a6dfb0e327042d89c3e Mon Sep 17 00:00:00 2001
+From f3a0faebe7b53432e719148d109202a3179e207d Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:35:31 -0700
-Subject: [PATCH 41/46] Step 10.7: Define method to set tasks to private
+Subject: [PATCH 41/48] Step 10.7: Define method to set tasks to private
 
 ---
  imports/api/tasks.js | 13 +++++++++++++
  1 file changed, 13 insertions(+)
 
 diff --git a/imports/api/tasks.js b/imports/api/tasks.js
-index c048739..1c3e891 100644
+index 234a839..f1d2c92 100644
 --- a/imports/api/tasks.js
 +++ b/imports/api/tasks.js
-@@ -38,6 +38,19 @@ Meteor.methods({
+@@ -38,4 +38,17 @@ Meteor.methods({
  
      Tasks.update(taskId, { $set: { checked: setChecked } });
    },
@@ -1714,16 +1704,14 @@ index c048739..1c3e891 100644
 +    Tasks.update(taskId, { $set: { private: setToPrivate } });
 +  },
  });
- 
- export { Tasks };
 -- 
 2.1.3
 
 
-From 12fc5a9ffcd73fba07a2d954c1e9d90bdd5c8c13 Mon Sep 17 00:00:00 2001
+From e666e1411463ac2e076bd6b966c6ec9c85b504bd Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:35:55 -0700
-Subject: [PATCH 42/46] Step 10.8: Add event handler to call the setPrivate
+Subject: [PATCH 42/48] Step 10.8: Add event handler to call the setPrivate
  method
 
 ---
@@ -1746,10 +1734,10 @@ index af4bcf6..6b51496 100644
 2.1.3
 
 
-From e26fa2b01321672c241a1b168a8fe8f975dcab38 Mon Sep 17 00:00:00 2001
+From 1501ba07e7032887345eddef0fe542bfc8a21283 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:36:38 -0700
-Subject: [PATCH 43/46] Step 10.9: Only publish tasks the user is allowed to
+Subject: [PATCH 43/48] Step 10.9: Only publish tasks the user is allowed to
  see
 
 ---
@@ -1757,10 +1745,10 @@ Subject: [PATCH 43/46] Step 10.9: Only publish tasks the user is allowed to
  1 file changed, 7 insertions(+), 1 deletion(-)
 
 diff --git a/imports/api/tasks.js b/imports/api/tasks.js
-index 1c3e891..afbcb81 100644
+index f1d2c92..441feee 100644
 --- a/imports/api/tasks.js
 +++ b/imports/api/tasks.js
-@@ -6,8 +6,14 @@ const Tasks = new Mongo.Collection('tasks');
+@@ -6,8 +6,14 @@ export const Tasks = new Mongo.Collection('tasks');
  
  if (Meteor.isServer) {
    // This code only runs on the server
@@ -1780,28 +1768,20 @@ index 1c3e891..afbcb81 100644
 2.1.3
 
 
-From 1214baf6ab1ded4093e239bcd688cb9ed7234f9a Mon Sep 17 00:00:00 2001
+From b47254b75a77b7e17374a0cfefaa2b491db047bf Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:37:36 -0700
-Subject: [PATCH 44/46] Step 10.10: Add some extra security to methods
+Subject: [PATCH 44/48] Step 10.10: Add some extra security to methods
 
 ---
- imports/api/tasks.js | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ imports/api/tasks.js | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
 diff --git a/imports/api/tasks.js b/imports/api/tasks.js
-index afbcb81..222dd81 100644
+index 441feee..9d5b56a 100644
 --- a/imports/api/tasks.js
 +++ b/imports/api/tasks.js
-@@ -26,6 +26,7 @@ Meteor.methods({
-       throw new Meteor.Error('not-authorized');
-     }
- 
-+
-     Tasks.insert({
-       text,
-       createdAt: new Date(),
-@@ -36,12 +37,24 @@ Meteor.methods({
+@@ -36,12 +36,24 @@ Meteor.methods({
    'tasks.remove'(taskId) {
      check(taskId, String);
  
@@ -1830,10 +1810,10 @@ index afbcb81..222dd81 100644
 2.1.3
 
 
-From aee10beeee8932f432f25b4f4074238c3c8cab50 Mon Sep 17 00:00:00 2001
+From c9b1dd8bbc52eeebc6ea8d8c80147d11fc3a582d Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:51:38 +1100
-Subject: [PATCH 45/46] Step 11.1: Added practicalmeteor:mocha package
+Subject: [PATCH 45/48] Step 11.1: Added practicalmeteor:mocha package
 
 ---
  .meteor/packages | 1 +
@@ -1885,33 +1865,62 @@ index 4f59e62..a03c196 100644
 2.1.3
 
 
-From cf019568a922750076a3e9b5297bb689231744c6 Mon Sep 17 00:00:00 2001
+From 92f2ca1d2865a5fd196879bb0185fd2edf3c619c Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
-Date: Thu, 17 Mar 2016 12:52:51 +1100
-Subject: [PATCH 46/46] Step 11.2: Added a simple method test
+Date: Fri, 18 Mar 2016 12:36:41 +1100
+Subject: [PATCH 46/48] Step 11.2: Add a scaffold for a method test
 
 ---
- imports/api/tasks.tests.js | 36 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+ imports/api/tasks.tests.js | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
  create mode 100644 imports/api/tasks.tests.js
 
 diff --git a/imports/api/tasks.tests.js b/imports/api/tasks.tests.js
 new file mode 100644
-index 0000000..212a91d
+index 0000000..05287ba
 --- /dev/null
 +++ b/imports/api/tasks.tests.js
-@@ -0,0 +1,36 @@
+@@ -0,0 +1,12 @@
 +/* eslint-env mocha */
 +
 +import { Meteor } from 'meteor/meteor';
-+import { Random } from 'meteor/random';
-+import { assert } from 'meteor/practicalmeteor:chai';
-+
-+import { Tasks } from './tasks.js';
 +
 +if (Meteor.isServer) {
 +  describe('Tasks', () => {
 +    describe('methods', () => {
++      it('can delete owned task', () => {
++      });
++    });
++  });
++}
+-- 
+2.1.3
+
+
+From cd403a50cacba784de11a7a94e6d55bc884b33fb Mon Sep 17 00:00:00 2001
+From: Tom Coleman <tom@thesnail.org>
+Date: Fri, 18 Mar 2016 12:37:45 +1100
+Subject: [PATCH 47/48] Step 11.3: Prepare the database for each test
+
+---
+ imports/api/tasks.tests.js | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+diff --git a/imports/api/tasks.tests.js b/imports/api/tasks.tests.js
+index 05287ba..1359e85 100644
+--- a/imports/api/tasks.tests.js
++++ b/imports/api/tasks.tests.js
+@@ -1,10 +1,26 @@
+ /* eslint-env mocha */
+ 
+ import { Meteor } from 'meteor/meteor';
++import { Random } from 'meteor/random';
++
++import { Tasks } from './tasks.js';
+ 
+ if (Meteor.isServer) {
+   describe('Tasks', () => {
+     describe('methods', () => {
 +      const userId = Random.id();
 +      let taskId;
 +
@@ -1925,18 +1934,53 @@ index 0000000..212a91d
 +        });
 +      });
 +
-+      it('can delete owned task', () => {
+       it('can delete owned task', () => {
+       });
+     });
+-- 
+2.1.3
+
+
+From 9a08b96bae018a4ecb3d23dada624accdb817cb0 Mon Sep 17 00:00:00 2001
+From: Tom Coleman <tom@thesnail.org>
+Date: Fri, 18 Mar 2016 12:39:33 +1100
+Subject: [PATCH 48/48] Step 11.4: Added test to check delete method
+
+---
+ imports/api/tasks.tests.js | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/imports/api/tasks.tests.js b/imports/api/tasks.tests.js
+index 1359e85..9b61c5a 100644
+--- a/imports/api/tasks.tests.js
++++ b/imports/api/tasks.tests.js
+@@ -2,6 +2,7 @@
+ 
+ import { Meteor } from 'meteor/meteor';
+ import { Random } from 'meteor/random';
++import { assert } from 'meteor/practicalmeteor:chai';
+ 
+ import { Tasks } from './tasks.js';
+ 
+@@ -22,6 +23,18 @@ if (Meteor.isServer) {
+       });
+ 
+       it('can delete owned task', () => {
++        // Find the internal implementation of the task method so we can
++        // test it in isolation
 +        const deleteTask = Meteor.server.method_handlers['tasks.remove'];
 +
-+        // Call delete task with a faked user context, so the server thinks we have userId
++        // Set up a fake method invocation that looks like what the method expects
 +        const invocation = { userId };
++
++        // Run the method with `this` set to the fake invocation
 +        deleteTask.apply(invocation, [taskId]);
 +
++        // Verify that the method does what we expected
 +        assert.equal(Tasks.find().count(), 0);
-+      });
-+    });
-+  });
-+}
+       });
+     });
+   });
 -- 
 2.1.3
 

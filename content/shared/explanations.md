@@ -2,11 +2,15 @@
 
 Collections are Meteor's way of storing persistent data. The special thing about collections in Meteor is that they can be accessed from both the server and the client, making it easy to write view logic without having to write a lot of server code. They also update themselves automatically, so a view component backed by a collection will automatically display the most up-to-date data.
 
+You can read more about collections in the [Collections article](http://guide.meteor.com/collections.html) of the Meteor Guide.
+
 Creating a new collection is as easy as calling `MyCollection = new Mongo.Collection("my-collection");` in your JavaScript. On the server, this sets up a MongoDB collection called `my-collection`; on the client, this creates a cache connected to the server collection. We'll learn more about the client/server divide in step 12, but for now we can write our code with the assumption that the entire database is present on the client.
 
 To create the collection, we define a new `todos` module that creates a Mongo collection and exports it:
 
 {{> DiffBox tutorialName="simple-todos" step="3.1"}}
+
+Notice that we place this file in a new `imports/api` directory. This is a sensible place to store the API of your application---for now the collections that we'll use, and later the Publications that read from them and the Methods that write to them. You can read more about how to structure your code in the [Application Structure article](http://guide.meteor.com/structure.html) of the Meteor Guide.
 
 We need to import that module on the server (this creates the MongoDB collection and sets up the plumbing to get the data to the client):
 
@@ -51,6 +55,7 @@ What this means is that a newly created task actually appears on the screen _bef
 
 If the result from the server comes back and is consistent with the simulation on the client, everything remains as is. If the result on the server is different from the result of the simulation on the client, the UI is patched to reflect the actual state of the server.
 
-With Meteor methods and optimistic UI, you get the best of both worlds &mdash; the security of server code and no round-trip delay. Read more in our [blog post about optimistic UI](http://info.meteor.com/blog/optimistic-ui-with-meteor-latency-compensation).
+
+You can read more about methods and optimistic UI in the [Methods article](http://guide.meteor.com/methods.html) of the Meteor Guide, and our [blog post about optimistic UI](http://info.meteor.com/blog/optimistic-ui-with-meteor-latency-compensation).
 
 {{/template}}
