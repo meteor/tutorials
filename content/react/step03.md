@@ -2,17 +2,24 @@
 
 # Storing tasks in a collection
 
-{{> step03CollectionsIntro}}
-
-Let's add a line of code to define our first collection:
-
-{{> DiffBox step="3.1" tutorialName="simple-todos-react"}}
+{{> step03CollectionsIntro tutorialName="simple-todos-react"}}
 
 ### Using data from a collection inside a React component
 
-To use data from a Meteor collection inside a React component, include the `ReactMeteorData` mixin in a component. With this mixin in your component, you can define a method called `getMeteorData` which knows how to keep track of changes in data. The object you return from `getMeteorData` can be accessed on `this.data` inside the `render` method. Let's do this now:
+To use data from a Meteor collection inside a React component, we can use a Atmosphere package `react-meteor-data` which allows us to create a "data container" to feed Meteor's reactive data into React's component heirarchy.
 
-{{> DiffBox step="3.2" tutorialName="simple-todos-react"}}
+We need to install that package alongside a NPM package it utilizes, `react-addons-pure-render-mixin`:
+
+```bash
+meteor npm install --save react-addons-pure-render-mixin
+meteor add react-meteor-data
+```
+
+To use `react-meteor-data`, we need to wrap our component in a *container* using the `createContainer` Higher Order Component:
+
+{{> DiffBox step="3.4" tutorialName="simple-todos-react"}}
+
+The wrapped `App` component fetches tasks from the `Tasks` collection and supplies them to the underlying `App` component it wraps as the `tasks` prop. It does this in a reactive way, so that when the contents of the database changes, the `App` re-renders, as we'll soon see!
 
 When you make these changes to the code, you'll notice that the tasks that used to be in the todo list have disappeared. That's because our database is currently empty &mdash; we need to insert some tasks!
 

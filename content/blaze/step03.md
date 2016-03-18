@@ -2,7 +2,7 @@
 
 # Storing tasks in a collection
 
-{{> step03CollectionsIntro}}
+{{> step03CollectionsIntro tutorialName="simple-todos"}}
 
 Let's update our client-side JavaScript code to get our tasks from a collection instead of a static array:
 

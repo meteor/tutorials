@@ -37,3 +37,5 @@ Now we can write the test to call the `task.remove` method "as" that user and ve
 There's a lot more you can do in a Meteor test! You can read more about it in the Meteor Guide [article on testing](http://guide.meteor.com/testing.html).
 
 {{/template}}
+
+s

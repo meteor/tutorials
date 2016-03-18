@@ -1,12 +1,12 @@
 {{#template name="react-step02"}}
 # Defining views with React components
 
-To start working with React as our view library, let's add the `react` package, which includes everything you need to get started using React in Meteor: the React library itself, automatic compilation of `.jsx` files, and a `ReactMeteorData` mixin for loading data. We'll see how to use all of these parts in the coming steps.
+To start working with React as our view library, let's add some NPM packages which will allow us to get started with React.
 
 Open a new terminal in the same directory as your running app, and type:
 
 ```sh
-meteor add react
+meteor npm install --save react react-dom
 ```
 
 ### Replace the starter code
@@ -17,7 +17,7 @@ First, replace the content of the initial HTML file:
 
 {{> DiffBox tutorialName="simple-todos-react" step="2.2"}}
 
-Second, **delete `simple-todos-react.js`** and create three new files:
+Second, **delete `main/client.js`** and create three new files:
 
 {{> DiffBox tutorialName="simple-todos-react" step="2.3"}}
 
@@ -29,7 +29,9 @@ We just added three things to our app:
 
 1. An `App` React component
 2. A `Task` React component
-3. Some code wrapped inside `if (Meteor.isClient) { ... }`, which defines code to execute in the browser, and `Meteor.startup`, which knows how to call code when the page is loaded and ready.
+3. Some initialization code (in our `client/main.js` client JavaScript entrypoint), in a `Meteor.startup` block, which knows how to call code when the page is loaded and ready. This code loads the other components and renders them into the `#render-target` html element.
+
+You can read more about how imports work and how to structure your code in the [Application Structure article](http://guide.meteor.com/structure.html) of the Meteor Guide.
 
 Later in the tutorial, we will refer to these components when adding or changing code.
 
@@ -54,27 +56,13 @@ Everything inside &lt;template> tags is compiled into Meteor _templates_, which 
 
 ### Define view components with React
 
-In React, view components are classes defined with `React.createClass`. Your component can have any methods you like, but there are several methods such as `render` that have special functions. Components can also receive data from their parents through attributes called `props`. We'll go over some of the more common features of React in this tutorial; you can also check out [Facebook's React tutorial](https://facebook.github.io/react/docs/tutorial.html).
+In React, view components are subclasses of `React.Component` (which we import with `import { Component } from 'react';`). Your component can have any methods you like, but there are several methods such as `render` that have special functions. Components can also receive data from their parents through attributes called `props`. We'll go over some of the more common features of React in this tutorial; you can also check out [Facebook's React tutorial](https://facebook.github.io/react/docs/tutorial.html).
 
 ### Return markup from the render method with JSX
 
 The most important method in every React component is `render()`, which is called by React to get a description of the HTML that this component should display. The HTML content is written using a JavaScript extension called JSX, which kind of looks like writing HTML inside your JavaScript. You can see some obvious differences already: in JSX, you use the `className` attribute instead of `class`. An important thing to know about JSX is that it isn't a templating language like Spacebars or Angular - it actually compiles directly to regular JavaScript. Read more about JSX [in the React docs](https://facebook.github.io/react/docs/jsx-in-depth.html).
 
-### JSX files can use ES2015 features
-
-If you haven't tried next-generation JavaScript features yet, some of the syntax in the code snippet might look weird. This is because `.jsx` files compiled with the `react` package also include support for some commonly used features of ES2015, the next version of JavaScript. Some of these features include:
-
-1. Arrow functions: `(arg) => {return result;}`
-2. Shorthand for methods: `render() { ... }`
-3. `const` and `let` instead of `var`
-
-Read about the features that Meteor supports in the [ecmascript README](https://github.com/meteor/meteor/blob/master/packages/ecmascript/README.md). For more information about ECMAScript 2015, see some of the articles below:
-
-* [Luke Hoban's "ES6 features"](http://git.io/es6features)
-
-* [Kyle Simpson's "You don't know JS: ES6 and beyond"](https://github.com/getify/You-Dont-Know-JS/tree/master/es6%20%26%20beyond)
-
-* [Nikolas C. Zakas "Understanding ECMAScript 6"](https://github.com/nzakas/understandinges6)
+JSX is supported by the `ecmascript` Atmosphere package, which is included in all new Meteor apps by default.
 
 {{> addingCSS cssFileName="simple-todos-react.css"}}
 

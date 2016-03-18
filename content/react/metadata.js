@@ -13,7 +13,7 @@ TutorialRegistry.registerTutorial("react", {
     {
       title: "Creating an app",
       slug: "creating-an-app",
-      template: "react-step01"
+      template: "sharedStep01"
     },
     {
       title: 'Components',
@@ -59,6 +59,11 @@ TutorialRegistry.registerTutorial("react", {
       title: 'Publish and subscribe',
       slug: "publish-and-subscribe",
       template: 'react-step10'
+    },
+    {
+      title: 'Testing',
+      slug: "teesting",
+      template: 'sharedStep11'
     },
     {
       title: 'Next steps',

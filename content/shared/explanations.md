@@ -8,13 +8,13 @@ Creating a new collection is as easy as calling `MyCollection = new Mongo.Collec
 
 To create the collection, we define a new `todos` module that creates a Mongo collection and exports it:
 
-{{> DiffBox tutorialName="simple-todos" step="3.1"}}
+{{> DiffBox tutorialName=tutorialName step="3.1"}}
 
 Notice that we place this file in a new `imports/api` directory. This is a sensible place to store the API of your application---for now the collections that we'll use, and later the Publications that read from them and the Methods that write to them. You can read more about how to structure your code in the [Application Structure article](http://guide.meteor.com/structure.html) of the Meteor Guide.
 
 We need to import that module on the server (this creates the MongoDB collection and sets up the plumbing to get the data to the client):
 
-{{> DiffBox tutorialName="simple-todos" step="3.2"}}
+{{> DiffBox tutorialName=tutorialName step="3.2"}}
 
 {{/template}}
 

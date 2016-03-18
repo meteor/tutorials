@@ -2,7 +2,8 @@
 
 # Storing tasks in a collection
 
-{{> step03CollectionsIntro}}
+{{! XXX: should be "simple-todos-angular"}}
+{{> step03CollectionsIntro tutorialName="simple-todos"}}
 
 Let's update our JavaScript code to get our tasks from a collection instead of a static array:
 

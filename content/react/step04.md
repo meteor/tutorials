@@ -20,7 +20,7 @@ Now your app has a new input field. To add a task, just type into the input fiel
 
 ### Listening for events in React
 
-As you can see, in React you handle DOM events by directly referencing a method on the component. Inside the event handler, you can reference elements from the component by giving them a `ref` property and using `React.findDOMNode`. Read more about the different kinds of events React supports, and how the event system works, in the [React docs](https://facebook.github.io/react/docs/events.html).
+As you can see, in React you handle DOM events by directly referencing a method on the component. Inside the event handler, you can reference elements from the component by giving them a `ref` property and using `ReactDOM.findDOMNode`. Read more about the different kinds of events React supports, and how the event system works, in the [React docs](https://facebook.github.io/react/docs/events.html).
 
 ### Inserting into a collection
 
@@ -32,7 +32,7 @@ Being able to insert anything into the database from the client isn't very secur
 
 Currently, our code displays all new tasks at the bottom of the list. That's not very good for a task list, because we want to see the newest tasks first.
 
-We can solve this by sorting the results using the `createdAt` field that is automatically added by our new code. Just add a sort option to the `find` call inside `getMeteorData` on the `App` component:
+We can solve this by sorting the results using the `createdAt` field that is automatically added by our new code. Just add a sort option to the `find` call inside the data container wrapping the `App` component:
 
 {{> DiffBox step="4.3" tutorialName="simple-todos-react"}}
 

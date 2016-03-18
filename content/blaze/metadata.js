@@ -13,7 +13,7 @@ TutorialRegistry.registerTutorial("blaze", {
     {
       title: 'Creating an app',
       slug: "creating-an-app",
-      template: 'blaze-step01'
+      template: 'sharedStep01'
     },
     {
       title: 'Templates',
