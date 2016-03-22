@@ -38,7 +38,7 @@ Then, in our HTML, add an `#if` block helper to only show the form when there is
 
 Finally, add a Spacebars statement to display the `username` field on each task right before the text:
 
-{{> DiffBox tutorialName="simple-todos" step="8.6"}}`
+{{> DiffBox tutorialName="simple-todos" step="8.6"}}
 
 Now, users can log in and we can track which user each task belongs to. Let's look at some of the concepts we just discovered in more detail.
 
