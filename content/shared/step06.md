@@ -12,7 +12,7 @@ Downloading and installing all of the prerequisites for building mobile apps can
 
 ### Running on an iOS Simulator or on an iOS device (Mac Only)
 
-If you have a Mac, you can run your app inside the iOS Simulator or on an iOS device. In order to build and run iOS apps, you will need to install Xcode 7.2 or higher. Refer to the [mobile guide](http://guide.meteor.com/v1.3/mobile.html#installing-prerequisites-ios-on-mac) for the installation steps.
+If you have a Mac, you can run your app inside the iOS Simulator or on an iOS device. In order to build and run iOS apps, you will need to install Xcode 7.2 or higher. Refer to the [mobile guide](http://guide.meteor.com/mobile.html#installing-prerequisites-ios-on-mac) for the installation steps.
 
 In the terminal, go to your app folder and type:
 
@@ -33,7 +33,7 @@ This will open Xcode with a project for your iOS app. You can use Xcode to then 
 
 ### Running on an Android device
 
-In order to build and run Android apps, you will need to install a Java Development Kit (JDK), the Android SDK, and download the required tools, platforms, and other components (which is done most easily by installing Android Studio). Refer to the [mobile guide](http://guide.meteor.com/v1.3/mobile.html#installing-prerequisites-android-on-mac) for the installation steps.
+In order to build and run Android apps, you will need to install a Java Development Kit (JDK), the Android SDK, and download the required tools, platforms, and other components (which is done most easily by installing Android Studio). Refer to the [mobile guide](http://guide.meteor.com/mobile.html#installing-prerequisites-android-on-mac) for the installation steps.
 
 In the terminal, go to your app folder and type:
 
