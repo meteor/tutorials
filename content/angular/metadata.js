@@ -13,7 +13,7 @@ TutorialRegistry.registerTutorial("angular", {
     {
       title: 'Creating an app',
       slug: "creating-an-app",
-      template: 'angular-step01'
+      template: 'sharedStep01'
     },
     {
       title: 'Templates',
@@ -61,9 +61,14 @@ TutorialRegistry.registerTutorial("angular", {
       template: 'angular-step10'
     },
     {
+      title: 'Testing',
+      slug: "testing",
+      template: 'angular-step11'
+    },
+    {
       title: 'Next steps',
       slug: "next-steps",
-      template: 'angular-step11'
+      template: 'angular-step12'
     }
   ]
 });

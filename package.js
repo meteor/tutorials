@@ -27,7 +27,6 @@ Package.onUse(function (api) {
   ]);
 
   api.addFiles([
-    'content/angular/step01.md',
     'content/angular/step02.md',
     'content/angular/step03.md',
     'content/angular/step04.md',
@@ -38,6 +37,7 @@ Package.onUse(function (api) {
     'content/angular/step09.md',
     'content/angular/step10.md',
     'content/angular/step11.md',
+    'content/angular/step12.md',
 
     'content/blaze/step02.md',
     'content/blaze/step03.md',

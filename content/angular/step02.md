@@ -3,17 +3,17 @@
 
 To use Angular in our app, we first need to remove the default UI package of Meteor, called `Blaze`.
 
-We also need to remove Meteor's default ECMAScript2015 package named `ecmascript` because Angular-Meteor uses a package named `angular-babel` in order to get both ECMAScript2015 and AngularJS DI annotations.
-
 We remove it by running:
 
     meteor remove blaze-html-templates
-    meteor remove ecmascript
 
-Now we need to add the [angular-meteor package](http://angular-meteor.com/) by typing the following command into the command line:
+Now we need to replace it with UI package for angular:
 
-    meteor add angular
+    meteor add angular-templates
 
+To start working with [angular-meteor](http://angular-meteor.com/), let's add some NPM packages.
+
+    meteor npm install --save angular angular-meteor
 
 To start working on our todos list app, let's replace the code of the default starter app with the code below. Then we'll talk about what it does.
 
@@ -21,9 +21,23 @@ To start working on our todos list app, let's replace the code of the default st
 
 {{> DiffBox tutorialName="simple-todos-angular" step="2.3"}}
 
-Now let's create a simple Angular list repeater:
+Let's create a template for todosList component.
 
 {{> DiffBox tutorialName="simple-todos-angular" step="2.4"}}
+
+Add some functionality:
+
+{{> DiffBox tutorialName="simple-todos-angular" step="2.5"}}
+
+We can now implement it into the application.
+
+First, we have to put component into a template:
+
+{{> DiffBox tutorialName="simple-todos-angular" step="2.6"}}
+
+Then add module to the application:
+
+{{> DiffBox tutorialName="simple-todos-angular" step="2.7"}}
 
 In our browser, the app should look pretty much like this:
 

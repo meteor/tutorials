@@ -62,7 +62,7 @@ TutorialRegistry.registerTutorial("react", {
     },
     {
       title: 'Testing',
-      slug: "teesting",
+      slug: "testing",
       template: 'sharedStep11'
     },
     {
@@ -72,4 +72,3 @@ TutorialRegistry.registerTutorial("react", {
     }
   ]
 });
-

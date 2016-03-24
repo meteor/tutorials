@@ -4,17 +4,31 @@
 
 Until now, we have only interacted with a collection by inserting documents. Now, we will learn how to update and remove them.
 
-Let's add two elements to our `task` template, a checkbox and a delete button:
+Let's add two elements to our `todosList` component, a checkbox and a delete button:
 
 {{> DiffBox tutorialName="simple-todos-angular" step="5.1"}}
 
+{{> DiffBox tutorialName="simple-todos-angular" step="5.2"}}
+
 ### Update
 
-We simply bind the `checked` state of each task to a checkbox with Angular. Then Meteor takes care of saving and syncing the state across all clients without any extra code.
+As you can see we added two directives.
+
+To watch `checked` state of each task.
+
+```html
+ng-checked="task.checked"
+```
+
+And to change current state by calling `setChecked` method of the controller.
+
+```html
+ng-click="$ctrl.setChecked(task)"
+```
 
 ### Delete
 
-$meteor.collection gives us a simple helper method called `remove`. That method can take an object or an id of an object and will remove it from the database.
+We can delete task by clicking `removeTask` method.
 
 ### Classes
 
@@ -26,5 +40,5 @@ Here we bind the checked state of a task to a class with `ng-class`:
 <li ng-class="{'checked': task.checked}">
 ```
 
-With this code, if the `checked` property of a task is `true`, the `checked` class is added to our list item. Using this class, we can make checked-off tasks look different in our CSS. 
+With this code, if the `checked` property of a task is `true`, the `checked` class is added to our list item. Using this class, we can make checked-off tasks look different in our CSS.
 {{/template}}

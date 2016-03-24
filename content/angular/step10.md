@@ -10,7 +10,7 @@ Just like with `insecure` in the last step, all new Meteor apps start with the `
 meteor remove autopublish
 ```
 
-When the app refreshes, the task list will be empty. Without the `autopublish` package, we will have to specify explicitly what the server sends to the client. The functions in Meteor that do this are `Meteor.publish` and [$scope.$meteorSubscribe](http://angular-meteor.com/api/subscribe).
+When the app refreshes, the task list will be empty. Without the `autopublish` package, we will have to specify explicitly what the server sends to the client. The functions in Meteor that do this are `Meteor.publish` and [$scope.subscribe](http://angular-meteor.com/api/subscribe).
 
 Let's add them now.
 
@@ -20,7 +20,7 @@ Let's add them now.
 
 Once you have added this code, all of the tasks will reappear.
 
-Calling `Meteor.publish` on the server registers a _publication_ named `"tasks"`. When [$scope.$meteorSubscribe](http://angular-meteor.com/api/subscribe) is called on the client with the publication name, the client _subscribes_ to all the data from that publication, which in this case is all of the tasks in the database. To truly see the power of the publish/subscribe model, let's implement a feature that allows users to mark tasks as "private" so that no other users can see them.
+Calling `Meteor.publish` on the server registers a _publication_ named `"tasks"`. When [$scope.subscribe](http://angular-meteor.com/api/subscribe) is called on the client with the publication name, the client _subscribes_ to all the data from that publication, which in this case is all of the tasks in the database. To truly see the power of the publish/subscribe model, let's implement a feature that allows users to mark tasks as "private" so that no other users can see them.
 
 ### Implementing private tasks
 

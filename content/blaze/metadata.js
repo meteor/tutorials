@@ -62,7 +62,7 @@ TutorialRegistry.registerTutorial("blaze", {
     },
     {
       title: 'Testing',
-      slug: "teesting",
+      slug: "testing",
       template: 'sharedStep11'
     },
     {

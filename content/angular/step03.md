@@ -2,15 +2,11 @@
 
 # Storing tasks in a collection
 
-{{! XXX: should be "simple-todos-angular"}}
 {{> step03CollectionsIntro tutorialName="simple-todos"}}
 
-Let's update our JavaScript code to get our tasks from a collection instead of a static array:
+Let's update our client-side JavaScript code to get our tasks from a collection instead of a static array:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="3.1"}}
-
-We are using the `$meteor` service to bind our `Tasks` collection to our `$scope.tasks` variable.
-Now every change that will happen to each of those objects will be synced in real time across our stack.
+{{> DiffBox tutorialName="simple-todos-angular" step="3.3"}}
 
 When you make these changes to the code, you'll notice that the tasks that used to be in the todo list have disappeared. That's because our database is currently empty &mdash; we need to insert some tasks!
 

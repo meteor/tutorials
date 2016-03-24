@@ -13,7 +13,7 @@ meteor add accounts-password dotansimha:accounts-ui-angular
 `accounts-password` is a package that includes all the logic for password based authentication.
 
 `dotansimha:accounts-ui-angular` includes the `<login-buttons>` directive that contains all the HTML and CSS we need for user authentication forms.
- 
+
 Now let's add dependency to `account.ui` module in our module definition:
 
 {{> DiffBox tutorialName="simple-todos-angular" step="8.2"}}
@@ -25,6 +25,10 @@ In the HTML, right under the checkbox, include the following code to add a login
 Then, in your JavaScript, add the following code to configure the accounts UI to use usernames instead of email addresses:
 
 {{> DiffBox tutorialName="simple-todos-angular" step="8.4"}}
+
+We'll need to import that configuration from our *client-side JavaScript entrypoint* also:
+
+{{> DiffBox tutorialName="simple-todos-angular" step="8.5"}}
 
 Now users can create accounts and log into your app! This is very nice, but logging in and out isn't very useful yet. Let's add two functions:
 
@@ -38,15 +42,19 @@ To do this, we will add two new fields to the `tasks` collection:
 
 First, let's add some code to save these fields into the `addTask` function:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="8.5"}}
+{{> DiffBox tutorialName="simple-todos-angular" step="8.6"}}
+
+We want somehow to know about logged in user. We can use helper function! Let's call it `currentUser`:
+
+{{> DiffBox tutorialName="simple-todos-angular" step="8.7"}}
 
 Then, in our HTML, add an `ng-show` directive to only show the form when there is a logged in user:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="8.6"}}
+{{> DiffBox tutorialName="simple-todos-angular" step="8.8"}}
 
 Finally, add a statement to display the `username` field on each task right before the text:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="8.7"}}
+{{> DiffBox tutorialName="simple-todos-angular" step="8.9"}}
 
 Now, users can log in and we can track which user each task belongs to. Let's look at some of the concepts we just discovered in more detail.
 
@@ -57,9 +65,7 @@ This dropdown detects which login methods have been added to the app and display
 
 ### Getting information about the logged-in user
 
-In your HTML, you can use the built-in `$root.currentUser` variable to check if a user is logged in and get information about them. For example, `{{dstache}}$root.currentUser.username}}` will display the logged in user's username.
-
-In your JavaScript code, you can use `Meteor.userId()` to get the current user's `_id`, or `Meteor.user()` to get the whole user document.
+You can use `Meteor.userId()` to get the current user's `_id`, or `Meteor.user()` to get the whole user document.
 
 ### Custom templates
 
