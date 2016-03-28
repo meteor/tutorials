@@ -17,7 +17,7 @@ First, replace the content of the initial HTML file:
 
 {{> DiffBox tutorialName="simple-todos-react" step="2.2"}}
 
-Second, **delete `main/client.js`** and create three new files:
+Second, **delete `client/main.js`** and create three new files:
 
 {{> DiffBox tutorialName="simple-todos-react" step="2.3"}}
 
