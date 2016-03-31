@@ -19,7 +19,7 @@ To use `react-meteor-data`, we need to wrap our component in a *container* using
 
 {{> DiffBox step="3.4" tutorialName="simple-todos-react"}}
 
-The wrapped `App` component fetches tasks from the `Tasks` collection and supplies them to the underlying `App` component it wraps as the `tasks` prop. It does this in a reactive way, so that when the contents of the database changes, the `App` re-renders, as we'll soon see!
+The wrapped `App` component fetches tasks from the `Tasks` collection and supplies them to the underlying `App` component it wraps as the `tasks` prop. It does this in a reactive way, so that when the contents of the database change, the `App` re-renders, as we'll soon see!
 
 When you make these changes to the code, you'll notice that the tasks that used to be in the todo list have disappeared. That's because our database is currently empty &mdash; we need to insert some tasks!
 
