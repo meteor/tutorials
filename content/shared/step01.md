@@ -36,7 +36,7 @@ You can play around with this default app for a bit before we continue. For exam
 
 ### ES2015 JavaScript features
 
-If you haven't tried next-generation JavaScript features yet, some of the syntax in the intial app code, and throughout this tutorial, might look weird. This is Meteor ships by default with support for many features of ES2015, the next version of JavaScript. Some of these features include:
+If you haven't tried next-generation JavaScript features yet, some of the syntax in the intial app code, and throughout this tutorial, might look weird. This is because Meteor ships by default with support for many features of ES2015, the next version of JavaScript. Some of these features include:
 
 1. Arrow functions: `(arg) => {return result;}`
 2. Shorthand for methods: `render() { ... }`

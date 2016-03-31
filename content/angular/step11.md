@@ -12,7 +12,7 @@ To do so, we'll add a [test driver](http://guide.meteor.com/testing.html#test-dr
 meteor add practicalmeteor:mocha
 ```
 
-We can now run our app in "test mode" by calling out a special command and specifying to use the driver (you'll need to stop the regular app from running, or specify an alternate port with `--port XYZ`:
+We can now run our app in "test mode" by calling out a special command and specifying to use the driver (you'll need to stop the regular app from running, or specify an alternate port with `--port XYZ`):
 
 ```bash
 meteor test --driver-package practicalmeteor:mocha
