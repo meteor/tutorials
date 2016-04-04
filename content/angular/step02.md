@@ -64,6 +64,6 @@ All of the code in your `html` files is compiled with Angular. Angular binds the
 
 In the next step, we will see how we can use the $meteor service bind our scope data to a database collection.
 
-{{> addingCSS cssFileName="simple-todos-angular.css"}}
+{{> DiffBox tutorialName="simple-todos-angular" step="2.8"}}
 
 {{/template}}
