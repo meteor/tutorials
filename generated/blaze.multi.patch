@@ -1,4 +1,4 @@
-From 51e340b7cd2b944bd0929206b1871f1c044c2aa2 Mon Sep 17 00:00:00 2001
+From f074a805255262736d909d1d5e17eee22bbb6605 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:05:51 -0700
 Subject: [PATCH 01/48] Step 1: Run `meteor create`
@@ -289,10 +289,10 @@ index 0000000..31a9e0e
 +  // code to run on server at startup
 +});
 -- 
-2.1.3
+2.5.1
 
 
-From 431f75b28f8ee985b3ac341da6c4d752d204b135 Mon Sep 17 00:00:00 2001
+From f00a06c7c5e14b46f8c1c4b57b8308470ae4131b Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:07:22 -0700
 Subject: [PATCH 02/48] Step 2.1: Remove starter HTML code
@@ -332,10 +332,10 @@ index 6fe0dc5..7c48505 100644
 -  </ul>
 -</template>
 -- 
-2.1.3
+2.5.1
 
 
-From 99cffc464f80899ce34cf446179e8041c9f5114c Mon Sep 17 00:00:00 2001
+From d76d39724777bf82d31f70f3ded8de3659d0ba0f Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 13:11:52 +1100
 Subject: [PATCH 03/48] Step 2.2: Add starter HTML code
@@ -369,10 +369,10 @@ index 0000000..23a6507
 +  <li>{{text}}</li>
 +</template>
 -- 
-2.1.3
+2.5.1
 
 
-From 30e9ac16a2de85e74d5a6d92b16e41b37e7faf5e Mon Sep 17 00:00:00 2001
+From 81b442e117eb61469eef1b783552820aad769b08 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:07:50 -0700
 Subject: [PATCH 04/48] Step 2.3: Add starter JS code
@@ -400,10 +400,10 @@ index 0000000..3ad20b1
 +  ],
 +});
 -- 
-2.1.3
+2.5.1
 
 
-From d63fe20a79a2dd9be0034b72bba93d9654d10d31 Mon Sep 17 00:00:00 2001
+From 0ee65568d41f16915c4d1271ac307a1a362fb253 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:08:17 -0700
 Subject: [PATCH 05/48] Step 2.4: Import starter JS
@@ -441,10 +441,10 @@ index ecb3282..4e7c1a4 100644
 -});
 +import '../imports/ui/body.js';
 -- 
-2.1.3
+2.5.1
 
 
-From 63f980943c048f8084f5a42543ba3e13b4088800 Mon Sep 17 00:00:00 2001
+From 84a25d420baa2815108ecd22709339f1912478a9 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:13:09 +1100
 Subject: [PATCH 06/48] Step 2.5: Add CSS
@@ -585,10 +585,10 @@ index b6b4052..ed5e77e 100644
 +  }
 +}
 -- 
-2.1.3
+2.5.1
 
 
-From bbe752d39cf04a51376c1cd089b053615cf08df9 Mon Sep 17 00:00:00 2001
+From 9ee57a11d41eac7791920a24497bef8716a6301f Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:15:47 +1100
 Subject: [PATCH 07/48] Step 3.1: Create tasks collection
@@ -608,10 +608,10 @@ index 0000000..3bed819
 +
 +export const Tasks = new Mongo.Collection('tasks');
 -- 
-2.1.3
+2.5.1
 
 
-From 85ec00cdd88b93b68d2f3c517060594a8f015062 Mon Sep 17 00:00:00 2001
+From 96f0e2a82fa51aeb72170c2fb30814245806fd1c Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:20:32 +1100
 Subject: [PATCH 08/48] Step 3.2: Load tasks collection on the server
@@ -632,10 +632,10 @@ index 31a9e0e..ab941a4 100644
 -});
 +import '../imports/api/tasks.js';
 -- 
-2.1.3
+2.5.1
 
 
-From f6b008980d6f04b93e05bf777bdb0378308f4b57 Mon Sep 17 00:00:00 2001
+From f345b40d5bf55026d8bb72a771971d06f6cec25e Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:16:03 +1100
 Subject: [PATCH 09/48] Step 3.3: Load tasks from Tasks collection
@@ -666,10 +666,10 @@ index 3ad20b1..fc36022 100644
 +  },
  });
 -- 
-2.1.3
+2.5.1
 
 
-From 5181113b59242497a2593b844337a93944b7d78a Mon Sep 17 00:00:00 2001
+From 06fc0de9e7665c11170f69f7df069229fa99330f Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:10:21 -0700
 Subject: [PATCH 10/48] Step 4.1: Add form for new tasks
@@ -694,10 +694,10 @@ index 23a6507..0a1f952 100644
  
      <ul>
 -- 
-2.1.3
+2.5.1
 
 
-From 828c084621cc5bd0d9373d54f4eda6188260bbda Mon Sep 17 00:00:00 2001
+From 2fd36714d6494f4fb1bf99d1aefbc9a10dfde350 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:19:59 +1100
 Subject: [PATCH 11/48] Step 4.2: Add event handler for form submit
@@ -735,10 +735,10 @@ index fc36022..42ad1d5 100644
 +  },
 +});
 -- 
-2.1.3
+2.5.1
 
 
-From 0dc5c4c9c5bb0f8f769ef704a90a981de6090847 Mon Sep 17 00:00:00 2001
+From 3706dd75816a2a0ac525aa79acdb75f622e64d5a Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:12:14 -0700
 Subject: [PATCH 12/48] Step 4.3: Show newest tasks at the top
@@ -762,10 +762,10 @@ index 42ad1d5..6fbc9d5 100644
  });
  
 -- 
-2.1.3
+2.5.1
 
 
-From 89bc3233dc87cba97d7e5a89f659dfc463b8da53 Mon Sep 17 00:00:00 2001
+From 0f5a29b2ec349b1beefaea65da8795669eb3fbd6 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:12:57 -0700
 Subject: [PATCH 13/48] Step 5.1: Add buttons to Task component
@@ -791,10 +791,10 @@ index 0000000..c4ab8e5
 +  </li>
 +</template>
 -- 
-2.1.3
+2.5.1
 
 
-From acb70c80fb362a856eb7254d5b7dbe8492e2dc83 Mon Sep 17 00:00:00 2001
+From a0a45efdbc9f6304a07e3fd378ac063bbd4a552b Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:23:12 +1100
 Subject: [PATCH 14/48] Step 5.2: Remove Tasks component from Body file
@@ -816,10 +816,10 @@ index 0a1f952..c40a87b 100644
 -  <li>{{text}}</li>
 -</template>
 -- 
-2.1.3
+2.5.1
 
 
-From 4f27c1302376e197c5e69b476f19d9cd13522ade Mon Sep 17 00:00:00 2001
+From 9662f35f00dfc5bc0f5b6b363f17324d785b6684 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:26:44 +1100
 Subject: [PATCH 15/48] Step 5.3: Add event handlers for Task buttons
@@ -853,10 +853,10 @@ index 0000000..782f932
 +  },
 +});
 -- 
-2.1.3
+2.5.1
 
 
-From a26ed7b132ec652a7c4cd9f088f7eb3300e86389 Mon Sep 17 00:00:00 2001
+From 95760055fbe30f22a0f05154fbfb70628fa4d80b Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:26:57 +1100
 Subject: [PATCH 16/48] Step 5.4: Import Task component from the body
@@ -878,10 +878,10 @@ index 6fbc9d5..bac22c6 100644
  
  Template.body.helpers({
 -- 
-2.1.3
+2.5.1
 
 
-From 4bfaa6f070101cb0caf35ab30343e1126b0e6701 Mon Sep 17 00:00:00 2001
+From 35b9df8d06b3d3b1ea53adf1a0baeced4ad69e01 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:24:18 -0700
 Subject: [PATCH 17/48] Step 7.1: Add hide-completed checkbox to HTML
@@ -907,10 +907,10 @@ index c40a87b..b634377 100644
          <input type="text" name="text" placeholder="Type to add new tasks" />
        </form>
 -- 
-2.1.3
+2.5.1
 
 
-From 11349ad2cad437421ad9fadb05f000fc2f24d928 Mon Sep 17 00:00:00 2001
+From bc9bad96083398a27f0f5715d2c42840c550efbd Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:33:00 +1100
 Subject: [PATCH 18/48] Step 7.2: Add reactive-dict package
@@ -942,10 +942,10 @@ index c3395d2..ccbd7bb 100644
  reload@1.1.6-rc.2
  retry@1.0.5-rc.2
 -- 
-2.1.3
+2.5.1
 
 
-From 349bd90805ba098d08c9445c00fb6776f2cb8b08 Mon Sep 17 00:00:00 2001
+From 6278c9251e42824a54e33982f393f195f7c261a7 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:29:41 +1100
 Subject: [PATCH 19/48] Step 7.3: Add state dictionary to the body
@@ -975,10 +975,10 @@ index bac22c6..d429b10 100644
    tasks() {
      // Show newest tasks at the top
 -- 
-2.1.3
+2.5.1
 
 
-From caa11a11d808123299380ee26229c9f358ba1775 Mon Sep 17 00:00:00 2001
+From 099e720bdef9264fb4a50c96aff01cb776c61d58 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:30:11 +1100
 Subject: [PATCH 20/48] Step 7.4: Add event handler for checkbox
@@ -1000,10 +1000,10 @@ index d429b10..856dad4 100644
 +  },
  });
 -- 
-2.1.3
+2.5.1
 
 
-From 10e30f2ff2b42a53bd675433f65d21ac2beb679e Mon Sep 17 00:00:00 2001
+From 9f9c2e3690dc589db6515c68301af09f630c05c2 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:31:16 +1100
 Subject: [PATCH 21/48] Step 7.5: Add helpers to body template
@@ -1031,10 +1031,10 @@ index 856dad4..18422ae 100644
    },
  });
 -- 
-2.1.3
+2.5.1
 
 
-From 79b34c54716abd5aaa1a5d9f5068a8bd7c24e35b Mon Sep 17 00:00:00 2001
+From 8422a894f5acb8776657e6ec366a9cb174dfbd33 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:26:17 -0700
 Subject: [PATCH 22/48] Step 7.6: Add incompleteCount helper to body
@@ -1058,10 +1058,10 @@ index 18422ae..3ca9a47 100644
  
  Template.body.events({
 -- 
-2.1.3
+2.5.1
 
 
-From b26b4d486c9136a3db7beb5d63759b7fa1cdf0b3 Mon Sep 17 00:00:00 2001
+From 8580aba0afce4d9392a348d55be7bda3343d980b Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:26:37 -0700
 Subject: [PATCH 23/48] Step 7.7: Display incompleteCount
@@ -1084,10 +1084,10 @@ index b634377..6738d6c 100644
        <label class="hide-completed">
          <input type="checkbox" />
 -- 
-2.1.3
+2.5.1
 
 
-From eaa7cfb2bf6257ec2f64f9cfe454c688de9cc6c3 Mon Sep 17 00:00:00 2001
+From db10a094d8671ec2fd0adf4c25cd7412e54f5502 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:27:03 -0700
 Subject: [PATCH 24/48] Step 8.1: Add accounts-ui and accounts-password
@@ -1170,10 +1170,10 @@ index ccbd7bb..b739407 100644
  standard-minifier-js@1.0.4-rc.2
  templating@1.1.7-rc.2
 -- 
-2.1.3
+2.5.1
 
 
-From bc9fb936699c1ce8a0643e5c563043d560a04811 Mon Sep 17 00:00:00 2001
+From 40360df00f03958402f19e0101a03dbf202e8c8e Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:27:23 -0700
 Subject: [PATCH 25/48] Step 8.2: Include loginButtons
@@ -1196,10 +1196,10 @@ index 6738d6c..6c60a17 100644
          <input type="text" name="text" placeholder="Type to add new tasks" />
        </form>
 -- 
-2.1.3
+2.5.1
 
 
-From 7c48c9aa89e26eac39cc67046f85e54bab5889fe Mon Sep 17 00:00:00 2001
+From 80e9c894a81ce768c236d877a8b26a252cdd0077 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:36:02 +1100
 Subject: [PATCH 26/48] Step 8.3: Configure accounts-ui
@@ -1221,10 +1221,10 @@ index 0000000..7e4f7e5
 +  passwordSignupFields: 'USERNAME_ONLY',
 +});
 -- 
-2.1.3
+2.5.1
 
 
-From 47fde1a42d5d6d1b765b2f16d0f0cc48e0567be1 Mon Sep 17 00:00:00 2001
+From 128dc937cf215d45bb1f656afcd57eded2750b28 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:36:36 +1100
 Subject: [PATCH 27/48] Step 8.4: Import accounts configuration
@@ -1241,10 +1241,10 @@ index 4e7c1a4..739c50f 100644
 +import '../imports/startup/accounts-config.js';
  import '../imports/ui/body.js';
 -- 
-2.1.3
+2.5.1
 
 
-From 2e4234a228346ca731731166ca12aa38c857d82d Mon Sep 17 00:00:00 2001
+From 52d59c89e12a85ac4b9f4a92d094a49ac1388140 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:28:24 -0700
 Subject: [PATCH 28/48] Step 8.5: Update insert to include user data
@@ -1272,10 +1272,10 @@ index 3ca9a47..08fad55 100644
  
      // Clear form
 -- 
-2.1.3
+2.5.1
 
 
-From 7083c5b56ba521ed7f34a7039bb3510e6f522534 Mon Sep 17 00:00:00 2001
+From 33ecb2ba46eb0c5d1dff6234a3ef9c69f1726d47 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:28:47 -0700
 Subject: [PATCH 29/48] Step 8.6: Only show add task form if logged in
@@ -1304,10 +1304,10 @@ index 6c60a17..6a9e4e1 100644
  
      <ul>
 -- 
-2.1.3
+2.5.1
 
 
-From da75b1705c5d5ae3470f47406c261d4303f95a87 Mon Sep 17 00:00:00 2001
+From 4aa8bcb5754914e8254d37c124177d78d12c8aef Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:29:11 -0700
 Subject: [PATCH 30/48] Step 8.7: Display username next to task
@@ -1329,10 +1329,10 @@ index c4ab8e5..c42e8fc 100644
    </li>
  </template>
 -- 
-2.1.3
+2.5.1
 
 
-From fc20c31540886a1c6b63673217f63e485c076cec Mon Sep 17 00:00:00 2001
+From 8040d766c5ae5603dda1d25e4e1019aa45fb42a1 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:29:52 -0700
 Subject: [PATCH 31/48] Step 9.1: Remove insecure package
@@ -1367,10 +1367,10 @@ index b739407..3d9bd1e 100644
  launch-screen@1.0.7-rc.2
  less@2.5.5-rc.2
 -- 
-2.1.3
+2.5.1
 
 
-From aa0357a3c29f7fdedfbb7ff2b109e990831bb399 Mon Sep 17 00:00:00 2001
+From 74597e2a744493ae36ed7339ab0c9e64868efa1a Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:30:20 -0700
 Subject: [PATCH 32/48] Step 9.2: Define some methods
@@ -1380,7 +1380,7 @@ Subject: [PATCH 32/48] Step 9.2: Define some methods
  1 file changed, 31 insertions(+)
 
 diff --git a/imports/api/tasks.js b/imports/api/tasks.js
-index 3bed819..0201eb4 100644
+index 3bed819..af4962a 100644
 --- a/imports/api/tasks.js
 +++ b/imports/api/tasks.js
 @@ -1,3 +1,34 @@
@@ -1395,15 +1395,15 @@ index 3bed819..0201eb4 100644
 +    check(text, String);
 +
 +    // Make sure the user is logged in before inserting a task
-+    if (! Meteor.userId()) {
++    if (! this.userId) {
 +      throw new Meteor.Error('not-authorized');
 +    }
 +
 +    Tasks.insert({
 +      text,
 +      createdAt: new Date(),
-+      owner: Meteor.userId(),
-+      username: Meteor.user().username,
++      owner: this.userId,
++      username: Meteor.users.findOne(this.userId).username,
 +    });
 +  },
 +  'tasks.remove'(taskId) {
@@ -1419,10 +1419,10 @@ index 3bed819..0201eb4 100644
 +  },
 +});
 -- 
-2.1.3
+2.5.1
 
 
-From f6f479327894e4d8f1cd559cdb587c93a86acb33 Mon Sep 17 00:00:00 2001
+From 4bbebba69bd9eb56a871cad72c7be70e2ad413f8 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:31:24 -0700
 Subject: [PATCH 33/48] Step 9.3: Replace insert with addTask method
@@ -1450,10 +1450,10 @@ index 08fad55..988f6a5 100644
      // Clear form
      target.text.value = '';
 -- 
-2.1.3
+2.5.1
 
 
-From 574d23454196ee22d0ea3bc6cd152b41e37e42cd Mon Sep 17 00:00:00 2001
+From c6cd6fb218da10e02123835941c0adb45bfca8cc Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:31:46 -0700
 Subject: [PATCH 34/48] Step 9.4: Replace update and remove with methods
@@ -1488,10 +1488,10 @@ index 782f932..3775ceb 100644
    },
  });
 -- 
-2.1.3
+2.5.1
 
 
-From d96e7791d8be06e726b02b9a40abdc23630d99e6 Mon Sep 17 00:00:00 2001
+From 885b2a6e8b912616f09da67f09a7a5e9a5e53318 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:32:19 -0700
 Subject: [PATCH 35/48] Step 10.1: Remove autopublish
@@ -1526,10 +1526,10 @@ index 3d9bd1e..4f59e62 100644
  babel-compiler@6.5.1-rc.2
  babel-runtime@0.1.6-rc.2
 -- 
-2.1.3
+2.5.1
 
 
-From 09284b4286add29217f39a59c7b7c63b93d6a74f Mon Sep 17 00:00:00 2001
+From 39287e7708b461dec39f35765f0992cf8315dbb4 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:45:32 +1100
 Subject: [PATCH 36/48] Step 10.2: Add publication for tasks
@@ -1539,7 +1539,7 @@ Subject: [PATCH 36/48] Step 10.2: Add publication for tasks
  1 file changed, 7 insertions(+)
 
 diff --git a/imports/api/tasks.js b/imports/api/tasks.js
-index 0201eb4..234a839 100644
+index af4962a..80d36bc 100644
 --- a/imports/api/tasks.js
 +++ b/imports/api/tasks.js
 @@ -4,6 +4,13 @@ import { check } from 'meteor/check';
@@ -1557,10 +1557,10 @@ index 0201eb4..234a839 100644
    'tasks.insert'(text) {
      check(text, String);
 -- 
-2.1.3
+2.5.1
 
 
-From cf3557458e16d0477f61cd2cdc5d07adbe225de6 Mon Sep 17 00:00:00 2001
+From 96a1a2893e1092ba0d36bf344e39ea00f7b90396 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:45:58 +1100
 Subject: [PATCH 37/48] Step 10.3: Subscribe to tasks
@@ -1582,10 +1582,10 @@ index 988f6a5..8a4407f 100644
  
  Template.body.helpers({
 -- 
-2.1.3
+2.5.1
 
 
-From 559e0285e8d2ff713e00997b6f95463433fffa40 Mon Sep 17 00:00:00 2001
+From 277bf38e68bf34a59ef5d6fae33c2e207e219fa7 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:33:43 -0700
 Subject: [PATCH 38/48] Step 10.4: Add private button
@@ -1616,10 +1616,10 @@ index c42e8fc..b9108ea 100644
    </li>
  </template>
 -- 
-2.1.3
+2.5.1
 
 
-From 0518f1f4682540652dfabb104fe9f8274ecab735 Mon Sep 17 00:00:00 2001
+From 4051e10a9583d67383a3bb1467f69e8191f7c578 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:34:13 -0700
 Subject: [PATCH 39/48] Step 10.5: Add private class to private tasks
@@ -1640,10 +1640,10 @@ index b9108ea..218789f 100644
  
      <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
 -- 
-2.1.3
+2.5.1
 
 
-From 5f5dfb0eda840c8e796e07696e8412385453ead6 Mon Sep 17 00:00:00 2001
+From a2cf05ec7b904142615f64b0778d079a80f3ad81 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:34:47 -0700
 Subject: [PATCH 40/48] Step 10.6: Define helper to check ownership
@@ -1670,10 +1670,10 @@ index 3775ceb..af4bcf6 100644
    'click .toggle-checked'() {
      // Set the checked property to the opposite of its current value
 -- 
-2.1.3
+2.5.1
 
 
-From f3a0faebe7b53432e719148d109202a3179e207d Mon Sep 17 00:00:00 2001
+From 6992bb6ab2a4bda8002f88c57f62970015252690 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:35:31 -0700
 Subject: [PATCH 41/48] Step 10.7: Define method to set tasks to private
@@ -1683,7 +1683,7 @@ Subject: [PATCH 41/48] Step 10.7: Define method to set tasks to private
  1 file changed, 13 insertions(+)
 
 diff --git a/imports/api/tasks.js b/imports/api/tasks.js
-index 234a839..f1d2c92 100644
+index 80d36bc..63feeca 100644
 --- a/imports/api/tasks.js
 +++ b/imports/api/tasks.js
 @@ -38,4 +38,17 @@ Meteor.methods({
@@ -1697,7 +1697,7 @@ index 234a839..f1d2c92 100644
 +    const task = Tasks.findOne(taskId);
 +
 +    // Make sure only the task owner can make a task private
-+    if (task.owner !== Meteor.userId()) {
++    if (task.owner !== this.userId) {
 +      throw new Meteor.Error('not-authorized');
 +    }
 +
@@ -1705,10 +1705,10 @@ index 234a839..f1d2c92 100644
 +  },
  });
 -- 
-2.1.3
+2.5.1
 
 
-From e666e1411463ac2e076bd6b966c6ec9c85b504bd Mon Sep 17 00:00:00 2001
+From da837f661cf5fafa7ec93bce66156c279d33d06d Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:35:55 -0700
 Subject: [PATCH 42/48] Step 10.8: Add event handler to call the setPrivate
@@ -1731,10 +1731,10 @@ index af4bcf6..6b51496 100644
 +  },
  });
 -- 
-2.1.3
+2.5.1
 
 
-From 1501ba07e7032887345eddef0fe542bfc8a21283 Mon Sep 17 00:00:00 2001
+From c07b3f058d481728fa7f69c1704260a9164492be Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:36:38 -0700
 Subject: [PATCH 43/48] Step 10.9: Only publish tasks the user is allowed to
@@ -1745,7 +1745,7 @@ Subject: [PATCH 43/48] Step 10.9: Only publish tasks the user is allowed to
  1 file changed, 7 insertions(+), 1 deletion(-)
 
 diff --git a/imports/api/tasks.js b/imports/api/tasks.js
-index f1d2c92..441feee 100644
+index 63feeca..5f76880 100644
 --- a/imports/api/tasks.js
 +++ b/imports/api/tasks.js
 @@ -6,8 +6,14 @@ export const Tasks = new Mongo.Collection('tasks');
@@ -1765,10 +1765,10 @@ index f1d2c92..441feee 100644
  }
  
 -- 
-2.1.3
+2.5.1
 
 
-From b47254b75a77b7e17374a0cfefaa2b491db047bf Mon Sep 17 00:00:00 2001
+From e8a9282211d6f1bff187fd2d8d8abd7df62591c4 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Tue, 14 Jul 2015 19:37:36 -0700
 Subject: [PATCH 44/48] Step 10.10: Add some extra security to methods
@@ -1778,7 +1778,7 @@ Subject: [PATCH 44/48] Step 10.10: Add some extra security to methods
  1 file changed, 12 insertions(+)
 
 diff --git a/imports/api/tasks.js b/imports/api/tasks.js
-index 441feee..9d5b56a 100644
+index 5f76880..d7d72dd 100644
 --- a/imports/api/tasks.js
 +++ b/imports/api/tasks.js
 @@ -36,12 +36,24 @@ Meteor.methods({
@@ -1786,7 +1786,7 @@ index 441feee..9d5b56a 100644
      check(taskId, String);
  
 +    const task = Tasks.findOne(taskId);
-+    if (task.private && task.owner !== Meteor.userId()) {
++    if (task.private && task.owner !== this.userId) {
 +      // If the task is private, make sure only the owner can delete it
 +      throw new Meteor.Error('not-authorized');
 +    }
@@ -1798,7 +1798,7 @@ index 441feee..9d5b56a 100644
      check(setChecked, Boolean);
  
 +    const task = Tasks.findOne(taskId);
-+    if (task.private && task.owner !== Meteor.userId()) {
++    if (task.private && task.owner !== this.userId) {
 +      // If the task is private, make sure only the owner can check it off
 +      throw new Meteor.Error('not-authorized');
 +    }
@@ -1807,10 +1807,10 @@ index 441feee..9d5b56a 100644
    },
    'tasks.setPrivate'(taskId, setToPrivate) {
 -- 
-2.1.3
+2.5.1
 
 
-From c9b1dd8bbc52eeebc6ea8d8c80147d11fc3a582d Mon Sep 17 00:00:00 2001
+From de363404f1c60e48c91740e0ad447acf030dc626 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Thu, 17 Mar 2016 12:51:38 +1100
 Subject: [PATCH 45/48] Step 11.1: Added practicalmeteor:mocha package
@@ -1862,10 +1862,10 @@ index 4f59e62..a03c196 100644
  ui@1.0.9-rc.2
  underscore@1.0.6-rc.2
 -- 
-2.1.3
+2.5.1
 
 
-From 92f2ca1d2865a5fd196879bb0185fd2edf3c619c Mon Sep 17 00:00:00 2001
+From 1a33dc2c62700efa400e60ad561bbe03a8b03160 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 12:36:41 +1100
 Subject: [PATCH 46/48] Step 11.2: Add a scaffold for a method test
@@ -1894,10 +1894,10 @@ index 0000000..05287ba
 +  });
 +}
 -- 
-2.1.3
+2.5.1
 
 
-From cd403a50cacba784de11a7a94e6d55bc884b33fb Mon Sep 17 00:00:00 2001
+From db40b5fb0c309eed4202ad094fd5c323df13c0f2 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 12:37:45 +1100
 Subject: [PATCH 47/48] Step 11.3: Prepare the database for each test
@@ -1938,10 +1938,10 @@ index 05287ba..1359e85 100644
        });
      });
 -- 
-2.1.3
+2.5.1
 
 
-From 9a08b96bae018a4ecb3d23dada624accdb817cb0 Mon Sep 17 00:00:00 2001
+From 23156828acfc00fbcc682d6ab2212b18f85ff660 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 12:39:33 +1100
 Subject: [PATCH 48/48] Step 11.4: Added test to check delete method
@@ -1982,5 +1982,5 @@ index 1359e85..9b61c5a 100644
      });
    });
 -- 
-2.1.3
+2.5.1
 
