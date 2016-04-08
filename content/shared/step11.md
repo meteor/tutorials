@@ -34,6 +34,8 @@ Now we can write the test to call the `task.remove` method "as" that user and ve
 
 {{> DiffBox tutorialName="simple-todos" step="11.4"}}
 
+(You may need to change `Meteor.userId()` to `this.userId` in the server methods in order for the test to pass.)
+
 There's a lot more you can do in a Meteor test! You can read more about it in the Meteor Guide [article on testing](http://guide.meteor.com/testing.html).
 
 {{/template}}
