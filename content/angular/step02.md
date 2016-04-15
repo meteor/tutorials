@@ -56,7 +56,7 @@ Everything inside any &lt;head> tags is added to the `head` section of the HTML 
 
 The [angular-meteor package](http://angular-meteor.com/) parses all of the `html` files in your app folder and puts them in Angular's template cache with the id of their full path.
 
-So, for example, when a file is named `my-angular-template.html` is placed in the `client` folder, it will be available for `ng-include` or `ui-router` with the name `client/my-angular-template.html`.
+So, for example, when a file named `my-angular-template.html` is placed in the `client` folder, it will be available for `ng-include` or `ui-router` with the name `client/my-angular-template.html`.
 
 ### Adding logic and data to templates
 
