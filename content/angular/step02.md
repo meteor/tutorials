@@ -62,7 +62,7 @@ So, for example, when a file named `my-angular-template.html` is placed in the `
 
 All of the code in your `html` files is compiled with Angular. Angular binds the data into our templates just like any other Angular app.
 
-In the next step, we will see how we can use the $meteor service bind our scope data to a database collection.
+In the next step, we will see how we can use the $meteor service to bind our scope data to a database collection.
 
 {{> DiffBox tutorialName="simple-todos-angular" step="2.8"}}
 
