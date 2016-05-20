@@ -2,7 +2,7 @@
 
 # Testing
 
-Now we've created a few features for our application, let's add a test to ensure that we don't regress and that it works the way we expect. 
+Now that we've created a few features for our application, let's add a test to ensure that we don't regress and that it works the way we expect. 
 
 We'll write a test that exercises one of our Methods (which form the "write" part of our app's API), and verifies it works correctly.
 
@@ -24,7 +24,7 @@ Let's add a simple test (that doesn't do anything yet):
 
 {{> DiffBox tutorialName="simple-todos" step="11.2"}}
 
-In any test we need to ensure the database is in the state we expect before beginning. We can use Mocha's `beforeEach` construct to that easily:
+In any test we need to ensure the database is in the state we expect before beginning. We can use Mocha's `beforeEach` construct to do that easily:
 
 {{> DiffBox tutorialName="simple-todos" step="11.3"}}
 
@@ -37,5 +37,3 @@ Now we can write the test to call the `task.remove` method "as" that user and ve
 There's a lot more you can do in a Meteor test! You can read more about it in the Meteor Guide [article on testing](http://guide.meteor.com/testing.html).
 
 {{/template}}
-
-s
