@@ -6,7 +6,7 @@ To start working with React as our view library, let's add some NPM packages whi
 Open a new terminal in the same directory as your running app, and type:
 
 ```sh
-meteor npm install --save react react-dom
+npm install --save react react-dom
 ```
 
 ### Replace the starter code
