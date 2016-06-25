@@ -24,7 +24,7 @@ Let's add a simple test (that doesn't do anything yet):
 
 {{> DiffBox tutorialName="simple-todos-angular" step="11.2"}}
 
-In any test we need to ensure the database is in the state we expect before beginning. We can use Mocha's `beforeEach` construct to that easily:
+In any test we need to ensure the database is in the state we expect before beginning. We can use Mocha's `beforeEach` construct to do that easily:
 
 {{> DiffBox tutorialName="simple-todos-angular" step="11.3"}}
 
