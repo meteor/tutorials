@@ -46,6 +46,10 @@ You can pass data into templates from your JavaScript code by defining _helpers_
 
 In the next step, we will see how we can use helpers to make our templates display dynamic data from a database collection.
 
+### Styling with CSS
+
+To have a better experience while following the tutorial we suggest you copy-paste the following CSS code into your app:
+
 {{> DiffBox tutorialName="simple-todos" step="2.5"}}
 
 {{/template}}
