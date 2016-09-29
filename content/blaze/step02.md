@@ -40,7 +40,7 @@ Also, the `body` section can be referenced in your JavaScript with `Template.bod
 
 ### Adding logic and data to templates
 
-All of the code in your HTML files is compiled with [Meteor's Spacebars compiler](https://github.com/meteor/meteor/blob/devel/packages/spacebars/README.md). Spacebars uses statements surrounded by double curly braces such as `{{dstache}}#each}}` and `{{dstache}}#if}}` to let you add logic and data to your views.
+All of the code in your HTML files is compiled with [Meteor's Spacebars compiler](http://blazejs.org/guide/spacebars.html). Spacebars uses statements surrounded by double curly braces such as `{{dstache}}#each}}` and `{{dstache}}#if}}` to let you add logic and data to your views.
 
 You can pass data into templates from your JavaScript code by defining _helpers_. In the code above, we defined a helper called `tasks` on `Template.body` that returns an array. Inside the body tag of the HTML, we can use `{{dstache}}#each tasks}}` to iterate over the array and insert a `task` template for each value. Inside the `#each` block, we can display the `text` property of each array item using `{{dstache}}text}}`.
 
