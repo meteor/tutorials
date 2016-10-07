@@ -13,7 +13,7 @@ Then we create some new files in the `imports/` directory:
 
 {{> DiffBox tutorialName="simple-todos" step="2.3"}}
 
-Files inside `imports/` only load if they are imported, so we'll need to import `imports/ui/body.js` from our frontend JS entrypoint (`client/main.js`---note that we remove the rest of the code from this file):
+Create an `imports` folder inside the `simple-todos` folder.Files inside `imports/` only load if they are imported, so we'll need to import `imports/ui/body.js` from our frontend JS entrypoint (`client/main.js`---note that we remove the rest of the code from this file):
 
 {{> DiffBox tutorialName="simple-todos" step="2.4"}}
 
