@@ -291,7 +291,7 @@ index 0000000..31a9e0e
 +  // code to run on server at startup
 +});
 -- 
-2.6.3
+2.11.0
 
 
 From 137374c873054f0544bd88e270ed1e7e80f95d0e Mon Sep 17 00:00:00 2001
@@ -363,7 +363,7 @@ index 90be3e8..648e16e 100644
    }
  }
 -- 
-2.6.3
+2.11.0
 
 
 From daf14b564ab6de18f35a955b9488cb0fb2ae252c Mon Sep 17 00:00:00 2001
@@ -410,7 +410,7 @@ index 203539b..c064aae 100644
 -</template>
 \ No newline at end of file
 -- 
-2.6.3
+2.11.0
 
 
 From eeec7ea8a21aee5dad65cfc9ff480413d07fcb52 Mon Sep 17 00:00:00 2001
@@ -455,7 +455,7 @@ index ecb3282..053a00e 100644
 +  angularMeteor
 +]);
 -- 
-2.6.3
+2.11.0
 
 
 From fc48dfc5acdab05ccdf5ccf64c42301b22caa926 Mon Sep 17 00:00:00 2001
@@ -484,7 +484,7 @@ index 0000000..a992e45
 +  </li>
 +</ul>
 -- 
-2.6.3
+2.11.0
 
 
 From 0f38eae17f513aa55e6cec93e405e0b604799864 Mon Sep 17 00:00:00 2001
@@ -527,7 +527,7 @@ index 0000000..3dcaabb
 +    controller: TodosListCtrl
 +  });
 -- 
-2.6.3
+2.11.0
 
 
 From 5979d05e35df54b546251dac4395c5873d145d59 Mon Sep 17 00:00:00 2001
@@ -552,7 +552,7 @@ index c064aae..d0f7ed7 100644
    </div>
  </body>
 -- 
-2.6.3
+2.11.0
 
 
 From 12ffe2d30b1db1e4c7ca94fe830ba4ea0e28162b Mon Sep 17 00:00:00 2001
@@ -579,7 +579,7 @@ index 053a00e..8191cb2 100644
 +  todosList.name
  ]);
 -- 
-2.6.3
+2.11.0
 
 
 From 0393d12a1cea1c8b0e8713b65a23410f8cd43280 Mon Sep 17 00:00:00 2001
@@ -723,7 +723,7 @@ index b6b4052..a66ec6f 100644
 +    }
 +}
 -- 
-2.6.3
+2.11.0
 
 
 From e07b633fc1253c9b5b987e4d850770825a6470ca Mon Sep 17 00:00:00 2001
@@ -746,7 +746,7 @@ index 0000000..3bed819
 +
 +export const Tasks = new Mongo.Collection('tasks');
 -- 
-2.6.3
+2.11.0
 
 
 From 7d40b56d0f1b3dc2c20464df81f64afc97ad0608 Mon Sep 17 00:00:00 2001
@@ -770,7 +770,7 @@ index 31a9e0e..ab941a4 100644
 -});
 +import '../imports/api/tasks.js';
 -- 
-2.6.3
+2.11.0
 
 
 From fa3f484a4e0299f0b133958c4754e3d9e95c1550 Mon Sep 17 00:00:00 2001
@@ -821,7 +821,7 @@ index 3dcaabb..becd31b 100644
 +    controller: ['$scope', TodosListCtrl]
    });
 -- 
-2.6.3
+2.11.0
 
 
 From 7fb2b760210091447316c28ccd36b3dd9da1d86e Mon Sep 17 00:00:00 2001
@@ -849,7 +849,7 @@ index a992e45..899f2d5 100644
  
  <ul>
 -- 
-2.6.3
+2.11.0
 
 
 From 0c2b00a0141b02542bdf43ca7b79e3ff1a160f93 Mon Sep 17 00:00:00 2001
@@ -884,7 +884,7 @@ index becd31b..a27e7ae 100644
  
  export default angular.module('todosList', [
 -- 
-2.6.3
+2.11.0
 
 
 From ad36285f216856d4cd947e72983ee71e7232f740 Mon Sep 17 00:00:00 2001
@@ -915,7 +915,7 @@ index a27e7ae..976e9a9 100644
      })
    }
 -- 
-2.6.3
+2.11.0
 
 
 From e02c4a765836e7860ded695c2d0f8c6184b13220 Mon Sep 17 00:00:00 2001
@@ -948,7 +948,7 @@ index 899f2d5..1bfe1c4 100644
    </li>
  </ul>
 -- 
-2.6.3
+2.11.0
 
 
 From c637635457f0c0e5fe6af6fc5e4a7d708dac25d2 Mon Sep 17 00:00:00 2001
@@ -985,7 +985,7 @@ index 976e9a9..8d56f11 100644
  
  export default angular.module('todosList', [
 -- 
-2.6.3
+2.11.0
 
 
 From 89c6f656bff10973a22c8e8f5a78341051453096 Mon Sep 17 00:00:00 2001
@@ -1011,7 +1011,7 @@ index d0f7ed7..f7f43b1 100644
    </div>
  </body>
 -- 
-2.6.3
+2.11.0
 
 
 From 9d407e878bfc21b7be80bda6361f70a8b8e4f109 Mon Sep 17 00:00:00 2001
@@ -1042,7 +1042,7 @@ index 8191cb2..c79d69c 100644
 +  angular.element(document).ready(onReady);
 +}
 -- 
-2.6.3
+2.11.0
 
 
 From 6dc7a065fb5762d088623a0b5d65b2588980cfea Mon Sep 17 00:00:00 2001
@@ -1071,7 +1071,7 @@ index 1bfe1c4..73416a2 100644
      <input ng-model="$ctrl.newTask" type="text" name="text" placeholder="Type to add new tasks"/>
    </form>
 -- 
-2.6.3
+2.11.0
 
 
 From 24d5b599f22aef3e34782d2937667576be60154d Mon Sep 17 00:00:00 2001
@@ -1111,7 +1111,7 @@ index 8d56f11..88af3bf 100644
              createdAt: -1
            }
 -- 
-2.6.3
+2.11.0
 
 
 From 7d2e15defdc11ce55d32b8b3863041c432309c87 Mon Sep 17 00:00:00 2001
@@ -1142,7 +1142,7 @@ index 88af3bf..36deb05 100644
      })
    }
 -- 
-2.6.3
+2.11.0
 
 
 From 936d91c42a3abafe3bdedb7e17f7d2534bdcbd83 Mon Sep 17 00:00:00 2001
@@ -1166,7 +1166,7 @@ index 73416a2..59cd86a 100644
    <label class="hide-completed">
      <input type="checkbox" ng-model="$ctrl.hideCompleted"/>
 -- 
-2.6.3
+2.11.0
 
 
 From b2c749f6337fd98e1d5833f2b2823ae38e055ce4 Mon Sep 17 00:00:00 2001
@@ -1267,7 +1267,7 @@ index 13a756d..98c1d11 100644
  ui@1.0.9-rc.8
  underscore@1.0.6-rc.8
 -- 
-2.6.3
+2.11.0
 
 
 From 9db427c405476c1e5a436b94dbe97ccb54965f0c Mon Sep 17 00:00:00 2001
@@ -1294,7 +1294,7 @@ index c79d69c..086316a 100644
  
  function onReady() {
 -- 
-2.6.3
+2.11.0
 
 
 From 818dff1aaf30a50056d7dc9d471c3ef94f2a0134 Mon Sep 17 00:00:00 2001
@@ -1320,7 +1320,7 @@ index 59cd86a..e0f44ba 100644
      <input ng-model="$ctrl.newTask" type="text" name="text" placeholder="Type to add new tasks"/>
    </form>
 -- 
-2.6.3
+2.11.0
 
 
 From b935478ee458ebb5ec71decfb6d69471060c636c Mon Sep 17 00:00:00 2001
@@ -1345,7 +1345,7 @@ index 0000000..7e4f7e5
 +  passwordSignupFields: 'USERNAME_ONLY',
 +});
 -- 
-2.6.3
+2.11.0
 
 
 From f2ae55fd1d12073751f0d2a311b2ae7079f0ddfa Mon Sep 17 00:00:00 2001
@@ -1370,7 +1370,7 @@ index 086316a..16887a9 100644
  angular.module('simple-todos', [
    angularMeteor,
 -- 
-2.6.3
+2.11.0
 
 
 From 469977de20414ad5442833b3b0e6ae3461c31291 Mon Sep 17 00:00:00 2001
@@ -1405,7 +1405,7 @@ index 36deb05..4ed6d6a 100644
  
      // Clear form
 -- 
-2.6.3
+2.11.0
 
 
 From 648d1105eb366bcd8498c37d4529537c7a9580dc Mon Sep 17 00:00:00 2001
@@ -1432,7 +1432,7 @@ index 4ed6d6a..0a27893 100644
      })
    }
 -- 
-2.6.3
+2.11.0
 
 
 From 6e15ab5cae98aba242e5fcb20a2ca332d2cf84a6 Mon Sep 17 00:00:00 2001
@@ -1458,7 +1458,7 @@ index e0f44ba..7de6008 100644
    </form>
    
 -- 
-2.6.3
+2.11.0
 
 
 From 6bae63b513f16c37c8d09157328b81edae8e5730 Mon Sep 17 00:00:00 2001
@@ -1484,7 +1484,7 @@ index 7de6008..54dcf6f 100644
    </li>
  </ul>
 -- 
-2.6.3
+2.11.0
 
 
 From 3450992ba7fc685852ed6667ccdf25cd5566a7d6 Mon Sep 17 00:00:00 2001
@@ -1522,7 +1522,7 @@ index 98c1d11..ebc977e 100644
  launch-screen@1.0.8-rc.8
  less@2.5.6-rc.8
 -- 
-2.6.3
+2.11.0
 
 
 From 4c0a4805e8338c9e963ece53be4f97a5b70e018a Mon Sep 17 00:00:00 2001
@@ -1578,7 +1578,7 @@ index 3bed819..01ceabb 100644
 +  },
 +});
 -- 
-2.6.3
+2.11.0
 
 
 From ab0996ec019bad7e6f98631eaeb410a20b928ea2 Mon Sep 17 00:00:00 2001
@@ -1609,7 +1609,7 @@ index 0a27893..68913b3 100644
      // Clear form
      this.newTask = '';
 -- 
-2.6.3
+2.11.0
 
 
 From cd583ae0f7e053b8da0c5728a1bf2192bb8380e4 Mon Sep 17 00:00:00 2001
@@ -1644,7 +1644,7 @@ index 68913b3..c8a1f1d 100644
  }
  
 -- 
-2.6.3
+2.11.0
 
 
 From 4ecda4f067616b8ecff8cc3f831d8fa785d6765a Mon Sep 17 00:00:00 2001
@@ -1682,7 +1682,7 @@ index ebc977e..b2d83b9 100644
  babel-compiler@6.5.2-rc.8
  babel-runtime@0.1.6-rc.8
 -- 
-2.6.3
+2.11.0
 
 
 From 0984118c66958d35b560efdfdbdd9acefa043990 Mon Sep 17 00:00:00 2001
@@ -1713,7 +1713,7 @@ index 01ceabb..abbc060 100644
    'tasks.insert' (text) {
      check(text, String);
 -- 
-2.6.3
+2.11.0
 
 
 From 6ce0c99d129c7f69c89b43a930eedc5e42c5d07f Mon Sep 17 00:00:00 2001
@@ -1739,7 +1739,7 @@ index c8a1f1d..859b5f8 100644
  
      this.helpers({
 -- 
-2.6.3
+2.11.0
 
 
 From a9f5b38100a71d3a2aeae3152ce851179f432264 Mon Sep 17 00:00:00 2001
@@ -1766,7 +1766,7 @@ index 54dcf6f..bdab140 100644
    </li>
  </ul>
 -- 
-2.6.3
+2.11.0
 
 
 From 7d96735e1bfb86a7522532f74625fd6fa53c3dbd Mon Sep 17 00:00:00 2001
@@ -1792,7 +1792,7 @@ index bdab140..ca14799 100644
  
      <input type="checkbox" ng-checked="task.checked" ng-click="$ctrl.setChecked(task)" class="toggle-checked"/>
 -- 
-2.6.3
+2.11.0
 
 
 From 4dc64e7c5a3a55f6eb732cc74ec159e274e21226 Mon Sep 17 00:00:00 2001
@@ -1831,7 +1831,7 @@ index abbc060..53e070b 100644
 +  },
  });
 -- 
-2.6.3
+2.11.0
 
 
 From 40d23f30d4ce79cb453a0407560b199ed574c86b Mon Sep 17 00:00:00 2001
@@ -1859,7 +1859,7 @@ index 859b5f8..789bf4b 100644
  
  export default angular.module('todosList', [
 -- 
-2.6.3
+2.11.0
 
 
 From 4bbf32caa76e7a8bdbd843f9b11f090eaac3d72a Mon Sep 17 00:00:00 2001
@@ -1896,7 +1896,7 @@ index 53e070b..a39c461 100644
  }
  
 -- 
-2.6.3
+2.11.0
 
 
 From 5cee5bd2a60ad284ff7d403c1458f8383274b42d Mon Sep 17 00:00:00 2001
@@ -1938,7 +1938,7 @@ index a39c461..610c90d 100644
        $set: {
          checked: setChecked
 -- 
-2.6.3
+2.11.0
 
 
 From 33929986de31d2c67324ebc9aed88f39d1218768 Mon Sep 17 00:00:00 2001
@@ -1985,7 +1985,7 @@ index b2d83b9..f1652dd 100644
  random@1.0.7-rc.8
  rate-limit@1.0.2-rc.8
 -- 
-2.6.3
+2.11.0
 
 
 From 1004db1df20b7a68e370b8bee46a6e4b9aca3b4f Mon Sep 17 00:00:00 2001
@@ -2017,7 +2017,7 @@ index 0000000..05287ba
 +  });
 +}
 -- 
-2.6.3
+2.11.0
 
 
 From 304ab142599572ac72dea888aa2ef97382f41669 Mon Sep 17 00:00:00 2001
@@ -2063,7 +2063,7 @@ index 05287ba..a033a3b 100644
    });
  }
 -- 
-2.6.3
+2.11.0
 
 
 From d2f794f656c50b1c4ce11857ca3b8a2249a7fd4e Mon Sep 17 00:00:00 2001
@@ -2112,7 +2112,7 @@ index a033a3b..54e6c41 100644
    });
  }
 -- 
-2.6.3
+2.11.0
 
 
 From 993972ce855fb8b87e4f46db95ba071f9abce43b Mon Sep 17 00:00:00 2001
@@ -2138,7 +2138,7 @@ index 648e16e..c257af6 100644
    }
  }
 -- 
-2.6.3
+2.11.0
 
 
 From 0676ae95b052efd2e2795b12bcf9e67c7a5d99be Mon Sep 17 00:00:00 2001
@@ -2183,7 +2183,7 @@ index 0000000..67f5256
 +  });
 +})
 -- 
-2.6.3
+2.11.0
 
 
 From eacbd5e02918599cb3783188bf4220fd1eae27cc Mon Sep 17 00:00:00 2001
@@ -2219,7 +2219,7 @@ index 67f5256..41167bc 100644
 +  });
  })
 -- 
-2.6.3
+2.11.0
 
 
 From 624322117e54c32ee9883f12ac66fc2b2c0328b2 Mon Sep 17 00:00:00 2001
@@ -2267,7 +2267,7 @@ index 41167bc..bb290ed 100644
 +  });
  })
 -- 
-2.6.3
+2.11.0
 
 
 From de86d18961051b18c9fc78f4d55873711a76144f Mon Sep 17 00:00:00 2001
@@ -2296,7 +2296,7 @@ index bb290ed..8a016aa 100644
    });
  })
 -- 
-2.6.3
+2.11.0
 
 
 From 83c53904e21e0aa21f236193532bb81075929d00 Mon Sep 17 00:00:00 2001
@@ -2324,5 +2324,5 @@ index 8a016aa..d293a4b 100644
    });
  })
 -- 
-2.6.3
+2.11.0
 
