@@ -30,7 +30,7 @@ In any test we need to ensure the database is in the state we expect before begi
 
 Here we create a single task that's associated with a random `userId` that'll be different for each test run. 
 
-Now we can write the test to call the `task.remove` method "as" that user and verify the task is deleted:
+Now we can write the test to call the `tasks.remove` method "as" that user and verify the task is deleted:
 
 {{> DiffBox tutorialName="simple-todos" step="11.4"}}
 
