@@ -39,7 +39,7 @@ Later in the tutorial, we will refer to these components when adding or changing
 
 ### Check the result
 
-In our browser, the app should now look like an unstyled version of this:
+In our browser, the app should **roughly** look like the following (though much less pretty):
 
 > #### Todo List
 > - This is task 1
