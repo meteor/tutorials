@@ -4,7 +4,7 @@
 
 Until now, we have only interacted with a collection by inserting documents. Now, we will learn how to update and remove them.
 
-Let's work on our `task` template---starting by moving it to it's own file, with some new features, a checkbox and a delete button:
+Let's work on our `task` template---starting by moving it to its own file, with some new features, a checkbox and a delete button:
 
 {{> DiffBox tutorialName="simple-todos" step="5.1"}}
 
