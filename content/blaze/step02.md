@@ -3,7 +3,7 @@
 
 To start working on our todo list app, let's replace the code of the default starter app with the code below. Then we'll talk about what it does.
 
-First, let's remove the body from our HTML entry point (leaving just the `<head>` tag):
+First, let's remove the body from our HTML entry-point (leaving just the `<head>` tag):
 
 {{> DiffBox tutorialName="simple-todos" step="2.1"}}
 
@@ -13,7 +13,7 @@ Create a new directory with the name `imports` inside `simple-todos` folder.Then
 
 {{> DiffBox tutorialName="simple-todos" step="2.3"}}
 
-Files inside `imports/` only load if they are imported, so we'll need to import `imports/ui/body.js` from our frontend JS entrypoint (`client/main.js`---note that we remove the rest of the code from this file):
+Inside our front-end JavaScript entry-point file, `client/main.js`, we'll _remove_ the rest of the code and import `imports/ui/body.js`:
 
 {{> DiffBox tutorialName="simple-todos" step="2.4"}}
 
