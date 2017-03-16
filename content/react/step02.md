@@ -64,7 +64,7 @@ The most important method in every React component is `render()`, which is calle
 
 JSX is supported by the `ecmascript` Atmosphere package, which is included in all new Meteor apps by default.
 
-{{> DiffBox tutorialName="simple-todos-react" step="2.6"}}
+{{> DiffBox tutorialName="client/main" step="2.6"}}
 
 Now that you've added the CSS, the app should look a lot nicer. Check in your browser to see that the new styles have loaded.
 
