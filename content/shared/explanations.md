@@ -10,7 +10,7 @@ To create the collection, we define a new `tasks` module that creates a Mongo co
 
 {{> DiffBox tutorialName=tutorialName step="3.1"}}
 
-Notice that we place this file in a new `imports/api` directory. This is a sensible place to store the API-related files for your application. For now, we will put our collections here. Later we will add the Publications that read from them and the Methods that write to them. You can read more about how to structure your code in the [Application Structure article](http://guide.meteor.com/structure.html) of the Meteor Guide.
+Notice that we place this file in a new `imports/api` directory. This is a sensible place to store API-related files for the application. We will start by putting "collections" here and later we will add "publications" that read from them and "methods" that write to them. You can read more about how to structure your code in the [Application Structure article](http://guide.meteor.com/structure.html) of the Meteor Guide.
 
 We need to import that module on the server (this creates the MongoDB collection and sets up the plumbing to get the data to the client):
 
