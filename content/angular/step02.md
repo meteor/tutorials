@@ -15,6 +15,8 @@ To start working with [angular-meteor](http://angular-meteor.com/), let's add so
 
     meteor npm install --save angular angular-meteor
 
+> Note: `meteor npm` supports the same features as `npm`, though the difference can be important.  Consult the [`meteor npm` documentation](https://docs.meteor.com/commandline.html#meteornpm) for more information.
+
 To start working on our todos list app, let's replace the code of the default starter app with the code below. Then we'll talk about what it does.
 
 {{> DiffBox tutorialName="simple-todos-angular" step="2.2"}}
