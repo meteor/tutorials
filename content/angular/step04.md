@@ -34,7 +34,7 @@ We can solve this by sorting the results using the `createdAt` field that is aut
 Until now you probably used Angular sort filter to do so. you can still use that here, but we are going to use a different method because it is better for real world use cases.
 
 Replace the `Tasks` collection variable with a function inside our `tasks` helper.
-The function will return a the result of calling the `find` function with the `sort` parameter on our `Tasks` collection, like that:
+The function will return the result of calling the `find` function with the `sort` parameter on our `Tasks` collection, like that:
 
 {{> DiffBox tutorialName="simple-todos-angular" step="4.3"}}
 
