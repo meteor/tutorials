@@ -21,9 +21,9 @@ To start working on our todos list app, let's replace the code of the default st
 
 {{> DiffBox tutorialName="simple-todos-angular" step="2.3"}}
 
-Now we need to create a new directory called `imports`, a specially-named directory which will behave different than other directories in the project.  Files outside the `imports` directory will be loaded automatically when the Meteor server starts, while files inside the `imports` directory will only load when an `import` statement is used to load them.
+Now we need to create a new directory called `imports`, a specially-named directory which will behave differently than other directories in the project.  Files outside the `imports` directory will be loaded automatically when the Meteor server starts, while files inside the `imports` directory will only load when an `import` statement is used to load them.
 
-After creating the `imports` directory, we will create new two new files inside it.
+After creating the `imports` directory, we will create two new files inside it.
 
 A template for the todosList component:
 
