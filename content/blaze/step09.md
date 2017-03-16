@@ -29,7 +29,7 @@ Now that we have defined our methods, we need to update the places we were opera
 Now all of our inputs and buttons will start working again. What did we gain from all of this work?
 
 1. When we insert tasks into the database, we can now securely verify that the user is logged in, that the `createdAt` field is correct, and that the `owner` and `username` fields are correct and the user isn't impersonating anyone.
-2. We can add extra validation logic to `setChecked` and `deleteTask` in later steps when users can make tasks private.
+2. We can add extra validation logic to `setChecked` and `remove` in later steps when users can make tasks private.
 3. Our client code is now more separated from our database logic. Instead of a lot of stuff happening inside our event handlers, we now have methods that can be called from anywhere.
 
 {{> step09OptimisticUI}}
