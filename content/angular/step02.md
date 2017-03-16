@@ -56,13 +56,13 @@ Everything inside any &lt;head> tags is added to the `head` section of the HTML 
 
 The [angular-meteor package](http://angular-meteor.com/) parses all of the `html` files in your app folder and puts them in Angular's template cache with the id of their full path.
 
-So, for example, when a file is named `my-angular-template.html` is placed in the `client` folder, it will be available for `ng-include` or `ui-router` with the name `client/my-angular-template.html`.
+So, for example, when a file named `my-angular-template.html` is placed in the `client` folder, it will be available for `ng-include` or `ui-router` with the name `client/my-angular-template.html`.
 
 ### Adding logic and data to templates
 
 All of the code in your `html` files is compiled with Angular. Angular binds the data into our templates just like any other Angular app.
 
-In the next step, we will see how we can use the $meteor service bind our scope data to a database collection.
+In the next step, we will see how we can use the $meteor service to bind our scope data to a database collection.
 
 {{> DiffBox tutorialName="simple-todos-angular" step="2.8"}}
 
