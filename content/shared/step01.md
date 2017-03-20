@@ -33,21 +33,8 @@ Open your web browser and go to `http://localhost:3000` to see the app running.
 
 You can play around with this default app for a bit before we continue. For example, try editing the text in `<h1>` inside `client/main.html` using your favorite text editor. When you save the file, the page in your browser will automatically update with the new content. We call this "hot code push".
 
-### ES2015 JavaScript features
-
-If you haven't tried next-generation JavaScript features yet, some of the syntax in the initial app code, and throughout this tutorial, might look weird. This is because Meteor ships by default with support for many features of ES2015, the next version of JavaScript. Some of these features include:
-
-1. Arrow functions: `(arg) => {return result;}`
-2. Shorthand for methods: `render() { ... }`
-3. `const` and `let` instead of `var`
-
-Read about the features that Meteor supports in the [ecmascript docs](https://docs.meteor.com/#/full/ecmascript). For more information about ECMAScript 2015, see some of the articles below:
-
-* [Luke Hoban's "ES6 features"](http://git.io/es6features)
-
-* [Kyle Simpson's "You don't know JS: ES6 and beyond"](https://github.com/getify/You-Dont-Know-JS/tree/master/es6%20%26%20beyond)
-
-* [Nikolas C. Zakas "Understanding ECMAScript 6"](https://github.com/nzakas/understandinges6)
+> ### Newer JavaScript syntax
+> Meteor supports many newer JavaScript features, such as those in ECMAScript 2015 (ES6). If you haven't tried these next-generation JavaScript features yet, we recommend taking a look at [Luke Hoban's "ES6 features"](http://git.io/es6features) to familiarize yourself with the newer syntax.
 
 Now that you have some experience editing the files in your Meteor app, let's start working on a simple todo list application. If you find a bug or error in the tutorial, please file an issue or submit a pull request [on GitHub](https://github.com/meteor/tutorials).
 {{/template}}
