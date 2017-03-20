@@ -24,6 +24,8 @@ Now that we have defined our methods, we need to update the places we were opera
 
 {{> DiffBox tutorialName="simple-todos" step="9.3"}}
 
+We do the same on this file, but also remove the `import` of the `Tasks` collection since it's no longer necessary:
+
 {{> DiffBox tutorialName="simple-todos" step="9.4"}}
 
 Now all of our inputs and buttons will start working again. What did we gain from all of this work?
