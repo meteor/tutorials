@@ -19,9 +19,13 @@ First, replace the content of the initial HTML file:
 
 {{> DiffBox tutorialName="simple-todos-react" step="2.2"}}
 
-Second, **delete `client/main.js`** and create three new files:
+Second, **delete `client/main.js`** and create this file:
 
 {{> DiffBox tutorialName="simple-todos-react" step="2.3"}}
+
+Now we need to create a new directory called `imports`, a specially-named directory which will behave differently than other directories in the project.  Files outside the `imports` directory will be loaded automatically when the Meteor server starts, while files inside the `imports` directory will only load when an `import` statement is used to load them.
+
+After creating the `imports` directory, we will create two new files inside it:
 
 {{> DiffBox tutorialName="simple-todos-react" step="2.4"}}
 
