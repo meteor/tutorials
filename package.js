@@ -15,8 +15,8 @@ Package.onUse(function (api) {
     'reactive-var',
     'less',
     'ecmascript',
-    'mdg:tutorial-step-diff-compiler@0.1.0',
-    'mdg:tutorial-diff-box@0.3.0',
+    'mdg:tutorial-step-diff-compiler@0.2.2',
+    'mdg:tutorial-diff-box@0.3.4',
     'mdg:tutorial-registry@0.1.1'
   ]);
 
