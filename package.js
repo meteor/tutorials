@@ -5,7 +5,7 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  api.versionsFrom('1.2-rc.14');
+  api.versionsFrom('1.2.1');
   api.use([
     'simple:markdown-templating@1.2.7',
     'templating',
