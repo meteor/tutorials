@@ -10,14 +10,14 @@ Package.onUse(function (api) {
     'simple:markdown-templating@1.2.7',
     'templating',
     'underscore',
-    'jsx@0.1.1',
+    'jsx@0.2.3',
     'simple:highlight.js@1.0.9',
     'reactive-var',
     'less',
     'ecmascript',
-    'mdg:tutorial-step-diff-compiler@0.2.2',
-    'mdg:tutorial-diff-box@0.3.4',
-    'mdg:tutorial-registry@0.1.1'
+    'mdg:tutorial-step-diff-compiler@0.4.1',
+    'mdg:tutorial-diff-box@0.4.1',
+    'mdg:tutorial-registry@0.4.1'
   ]);
 
   api.addFiles([
