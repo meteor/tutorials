@@ -5,12 +5,11 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  api.versionsFrom('1.2.1');
   api.use([
     'simple:markdown-templating@1.2.7',
     'templating',
     'underscore',
-    'jsx@0.2.3',
+    'jsx',
     'simple:highlight.js@1.0.9',
     'reactive-var',
     'less',
