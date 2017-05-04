@@ -6,7 +6,7 @@ To start working with React as our view library, let's add some NPM packages whi
 Open a new terminal in the same directory as your running app, and type:
 
 ```sh
-meteor npm install --save react react-dom
+npm install --save react react-dom
 ```
 
 > Note: `meteor npm` supports the same features as `npm`, though the difference can be important.  Consult the [`meteor npm` documentation](https://docs.meteor.com/commandline.html#meteornpm) for more information.
