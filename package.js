@@ -6,7 +6,7 @@ Package.describe({
 
 Package.onUse(function (api) {
   api.use([
-    'simple:markdown-templating@2.0.1',
+    'simple:markdown-templating@2.0.3',
     'templating',
     'underscore',
     'jsx',
