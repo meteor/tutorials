@@ -15,8 +15,8 @@ Package.onUse(function (api) {
     'less',
     'ecmascript',
     'mdg:tutorial-step-diff-compiler@0.4.2',
-    'mdg:tutorial-diff-box@0.4.2',
-    'mdg:tutorial-registry@0.4.2'
+    'mdg:tutorial-diff-box@0.4.3',
+    'mdg:tutorial-registry@0.4.3'
   ]);
 
   api.addFiles([
