@@ -8,11 +8,11 @@ Let's work on our `task` template---starting by moving it to its own file, with 
 
 {{> DiffBox tutorialName="simple-todos" step="5.1"}}
 
-We also need to remove the old definition of the `task` template from the `imports/ui/body.html` file.
+**5.2** Remove the previous `task` template
 
-Go ahead and **remove lines 18-21** of `imports/ui/body.html` now.
+Since we've added a new `task` template here, we need to remove the old `task` template we had before.  Open the `imports/ui/body.html` file and remove the entire `<template name="task">...</template>` section from the end.
 
-We have added UI elements, but they don't do anything yet. We should add some event handlers:
+Now we've added UI elements, but they don't do anything yet! We should add some event handlers:
 
 {{> DiffBox tutorialName="simple-todos" step="5.3"}}
 
