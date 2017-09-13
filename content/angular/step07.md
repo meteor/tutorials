@@ -40,12 +40,12 @@ As you can see, we used `getReactively()` method. You can read more about it in 
 
 ### Connecting Angular bindings to Meteor's reactivity
 
-To make Meteor understand Angular bindings and the other way around, we use [$scope.getReactively](http://angular-meteor.com/api/getReactively) function that turns Angular
+To make Meteor understand Angular bindings and the other way around, we use [$scope.getReactively](https://angular-meteor.com/api/angular-meteor/1.3.11/get-reactively) function that turns Angular
 scope variables into [Meteor reactive variables](http://docs.meteor.com/#/full/reactivevar_pkg).
 
 Now if you check the box, the task list will only show tasks that haven't been completed.
 
-> To learn more about the [getReactively](http://angular-meteor.com/api/getReactively) feature
+> To learn more about the [getReactively](https://angular-meteor.com/api/angular-meteor/1.3.11/get-reactively) feature
 > you can try the [advanced tutorial](http://angular-meteor.com/tutorial/step_12).
 
 ### One more feature: Showing a count of incomplete tasks
