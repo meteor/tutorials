@@ -38,7 +38,7 @@ The function will return the result of calling the `find` function with the `sor
 
 {{> DiffBox tutorialName="simple-todos-angular" step="4.3"}}
 
-To better understand the difference between using the sort filter and the collection options, check out the advanced tutorial about [search, sort and pagination](https://angular-meteor.com/tutorials/whatsapp2/ionic/filter-and-pagination).
+To better understand the difference between using the sort filter and the collection options, check out the advanced tutorial about [search, sort and pagination](https://angular-meteor.com/tutorials/socially/angular1/search-sort-pagination-and-reactive-vars).
 
 In the next step, we'll add some very important todo list functions: checking off and deleting tasks.
 {{/template}}
