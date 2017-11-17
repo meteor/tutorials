@@ -37,7 +37,29 @@ Now, we need to pass a new property to the `Task` to decide whether we want
 to show the private button; the button should show up only if the currently
 logged in user owns this task:
 
-> TODO:INCLUDE: DiffBox step="10.5" tutorialName="simple-todos-react"
+```diff
+     if (this.state.hideCompleted) {
+       filteredTasks = filteredTasks.filter(task => !task.checked);
+     }
+-    return filteredTasks.map((task) => (
+-      <Task key={task._id} task={task} />
+-    ));
++    return filteredTasks.map((task) => {
++      const currentUserId = this.props.currentUser && this.props.currentUser._id;
++      const showPrivateButton = task.owner === currentUserId;
++
++      return (
++        <Task
++          key={task._id}
++          task={task}
++          showPrivateButton={showPrivateButton}
++        />
++      );
++    });
+   }
+
+   render() {
+```
 
 > TODO:INCLUDE: DiffBox step="10.6" tutorialName="simple-todos-react"
 
