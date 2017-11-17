@@ -1,4 +1,3 @@
-{{#template name="angular-step11"}}
 
 ---
 title: Testing
@@ -24,17 +23,17 @@ If you do so, you should see an empty test results page in your browser window.
 
 Let's add a simple test (that doesn't do anything yet):
 
-{{> DiffBox tutorialName="simple-todos-angular" step="11.2"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="11.2"
 
 In any test we need to ensure the database is in the state we expect before beginning. We can use Mocha's `beforeEach` construct to do that easily:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="11.3"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="11.3"
 
 Here we create a single task that's associated with a random `userId` that'll be different for each test run.
 
 Now we can write the test to call the `task.remove` method "as" that user and verify the task is deleted:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="11.4"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="11.4"
 
 There's a lot more you can do in a Meteor test! You can read more about it in the Meteor Guide [article on testing](http://guide.meteor.com/testing.html).
 
@@ -48,22 +47,21 @@ meteor npm install --save-dev angular-mocks
 
 Let's prepare some background for tests:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="11.6"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="11.6"
 
 Add test to check incomplete tasks count:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="11.7"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="11.7"
 
 Now we can move to testing our controller:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="11.8"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="11.8"
 
 As you remember, we use meteor method to insert new tasks. Let's check if it works:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="11.9"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="11.9"
 
 It should also reseting form:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="11.10"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="11.10"
 
-{{/template}}

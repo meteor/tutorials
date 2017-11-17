@@ -1,4 +1,3 @@
-{{#template name="angular-step02"}}
 ---
 title: Defining views with templates
 ---
@@ -21,9 +20,9 @@ To start working with [angular-meteor](http://angular-meteor.com/), let's add so
 
 To start working on our todos list app, let's replace the code of the default starter app with the code below. Then we'll talk about what it does.
 
-{{> DiffBox tutorialName="simple-todos-angular" step="2.2"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="2.2"
 
-{{> DiffBox tutorialName="simple-todos-angular" step="2.3"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="2.3"
 
 Now we need to create a new directory called `imports`, a specially-named directory which will behave differently than other directories in the project.  Files outside the `imports` directory will be loaded automatically when the Meteor server starts, while files inside the `imports` directory will only load when an `import` statement is used to load them.
 
@@ -31,21 +30,21 @@ After creating the `imports` directory, we will create two new files inside it.
 
 A template for the todosList component:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="2.4"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="2.4"
 
 And some functionality:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="2.5"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="2.5"
 
 We can now implement it into the application.
 
 First, we have to put component into a template:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="2.6"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="2.6"
 
 Then add module to the application:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="2.7"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="2.7"
 
 You can read more about how imports work and how to structure your code in the [Application Structure article](http://guide.meteor.com/structure.html) of the Meteor Guide.
 
@@ -74,6 +73,5 @@ All of the code in your `html` files is compiled with Angular. Angular binds the
 
 In the next step, we will see how we can use the $meteor service to bind our scope data to a database collection.
 
-{{> DiffBox tutorialName="simple-todos-angular" step="2.8"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="2.8"
 
-{{/template}}

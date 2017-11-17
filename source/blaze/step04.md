@@ -1,4 +1,3 @@
-{{#template name="blaze-step04"}}
 
 ---
 title: Adding tasks with a form
@@ -8,11 +7,11 @@ In this step, we'll add an input field for users to add tasks to the list.
 
 First, let's add a form to our HTML:
 
-{{> DiffBox tutorialName="simple-todos" step="4.1"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos" step="4.1"
 
 Here's the JavaScript code we need to add to listen to the `submit` event on the form:
 
-{{> DiffBox tutorialName="simple-todos" step="4.2"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos" step="4.2"
 
 Now your app has a new input field. To add a task, just type into the input field and hit enter. If you open a new browser window and open the app again, you'll see that the list is automatically synchronized between all clients.
 
@@ -38,7 +37,6 @@ Currently, our code displays all new tasks at the bottom of the list. That's not
 
 We can solve this by sorting the results using the `createdAt` field that is automatically added by our new code. Just add a sort option to the `find` call inside the `tasks` helper:
 
-{{> DiffBox tutorialName="simple-todos" step="4.3"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos" step="4.3"
 
 In the next step, we'll add some very important todo list functions: checking off and deleting tasks.
-{{/template}}

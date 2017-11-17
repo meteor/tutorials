@@ -1,4 +1,3 @@
-{{#template name="blaze-step02"}}
 ---
 title: Defining views with templates
 ---
@@ -7,17 +6,17 @@ To start working on our todo list app, let's replace the code of the default sta
 
 First, let's remove the body from our HTML entry-point (leaving just the `<head>` tag):
 
-{{> DiffBox tutorialName="simple-todos" step="2.1"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos" step="2.1"
 
 Create a new directory with the name `imports` inside `simple-todos` folder. Then we create some new files in the `imports/` directory:
 
-{{> DiffBox tutorialName="simple-todos" step="2.2"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos" step="2.2"
 
-{{> DiffBox tutorialName="simple-todos" step="2.3"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos" step="2.3"
 
 Inside our front-end JavaScript entry-point file, `client/main.js`, we'll _remove_ the rest of the code and import `imports/ui/body.js`:
 
-{{> DiffBox tutorialName="simple-todos" step="2.4"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos" step="2.4"
 
 You can read more about how imports work and how to structure your code in the [Application Structure article](http://guide.meteor.com/structure.html) of the Meteor Guide.
 
@@ -52,6 +51,5 @@ In the next step, we will see how we can use helpers to make our templates displ
 
 To have a better experience while following the tutorial we suggest you copy-paste the following CSS code into your app:
 
-{{> DiffBox tutorialName="simple-todos" step="2.5"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos" step="2.5"
 
-{{/template}}

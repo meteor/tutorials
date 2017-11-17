@@ -1,4 +1,3 @@
-{{#template name="step11NextSteps"}}
 
 Here are some options for where you can go next:
 
@@ -12,8 +11,7 @@ Here are some options for where you can go next:
     <p>Don't forget to get on the mailing list - Meteor news, new releases, security alerts, and nothing else.</p>
   </div>
   <div class="col-md-6">
-    {{> emailForm}}
+    > TODO:INCLUDE: emailForm
   </div>
 </div>
 
-{{/template}}

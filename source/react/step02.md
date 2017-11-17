@@ -1,4 +1,3 @@
-{{#template name="react-step02"}}
 ---
 title: Defining views with React components
 ---
@@ -19,19 +18,19 @@ To get started, let's replace the code of the default starter app. Then we'll ta
 
 First, replace the content of the initial HTML file:
 
-{{> DiffBox tutorialName="simple-todos-react" step="2.2"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-react" step="2.2"
 
 Second, **delete `client/main.js`** and create this file:
 
-{{> DiffBox tutorialName="simple-todos-react" step="2.3"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-react" step="2.3"
 
 Now we need to create a new directory called `imports`, a specially-named directory which will behave differently than other directories in the project.  Files outside the `imports` directory will be loaded automatically when the Meteor server starts, while files inside the `imports` directory will only load when an `import` statement is used to load them.
 
 After creating the `imports` directory, we will create two new files inside it:
 
-{{> DiffBox tutorialName="simple-todos-react" step="2.4"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-react" step="2.4"
 
-{{> DiffBox tutorialName="simple-todos-react" step="2.5"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-react" step="2.5"
 
 We just added three things to our app:
 
@@ -72,8 +71,7 @@ The most important method in every React component is `render()`, which is calle
 
 JSX is supported by the `ecmascript` Atmosphere package, which is included in all new Meteor apps by default.
 
-{{> DiffBox tutorialName="simple-todos-react" step="2.6"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-react" step="2.6"
 
 Now that you've added the CSS, the app should look a lot nicer. Check in your browser to see that the new styles have loaded.
 
-{{/template}}

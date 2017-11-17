@@ -1,4 +1,3 @@
-{{#template name="react-step11"}}
 
 ---
 title: What's next?
@@ -17,6 +16,5 @@ meteor create --example todos
 meteor create --example localmarket
 ```
 
-{{> step11NextSteps}}
+> TODO:INCLUDE: step11NextSteps
 
-{{/template}}

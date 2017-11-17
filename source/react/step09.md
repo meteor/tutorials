@@ -1,4 +1,3 @@
-{{#template name="react-step09"}}
 
 ---
 title: Security with methods
@@ -20,13 +19,13 @@ If you try to use the app after removing this package, you will notice that none
 
 First, we need to define some methods. We need one method for each database operation we want to perform on the client. Methods should be defined in code that is executed on the client and the server - we will discuss this a bit later in the section titled _Optimistic UI_.
 
-{{> DiffBox step="9.2" tutorialName="simple-todos-react"}}
+> TODO:INCLUDE: DiffBox step="9.2" tutorialName="simple-todos-react"
 
 Now that we have defined our methods, we need to update the places we were operating on the collection to use the methods instead:
 
-{{> DiffBox step="9.3" tutorialName="simple-todos-react"}}
+> TODO:INCLUDE: DiffBox step="9.3" tutorialName="simple-todos-react"
 
-{{> DiffBox step="9.4" tutorialName="simple-todos-react"}}
+> TODO:INCLUDE: DiffBox step="9.4" tutorialName="simple-todos-react"
 
 Now all of our inputs and buttons will start working again. What did we gain from all of this work?
 
@@ -34,6 +33,5 @@ Now all of our inputs and buttons will start working again. What did we gain fro
 2. We can add extra validation logic to `setChecked` and `deleteTask` in later steps when users can make tasks private.
 3. Our client code is now more separated from our database logic. Instead of a lot of stuff happening inside our event handlers, we now have methods that can be called from anywhere.
 
-{{> step09OptimisticUI}}
+> TODO:INCLUDE: step09OptimisticUI
 
-{{/template}}

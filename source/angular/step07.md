@@ -1,4 +1,3 @@
-{{#template name="angular-step07"}}
 
 ---
 title: Filtering collections
@@ -10,7 +9,7 @@ We're going to learn how to use Mongo's filtering API.
 
 First, we need to add a checkbox to our HTML:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="7.1"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="7.1"
 
 This checkbox binds to the controller's `hideCompleted` variable.
 
@@ -36,7 +35,7 @@ We somehow want to update the query every time `hideComplete` changes.
 
 Let's implement some reactivity into `tasks` helper:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="7.2"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="7.2"
 
 As you can see, we used `getReactively()` method. You can read more about it in the following chapter.
 
@@ -54,8 +53,7 @@ Now if you check the box, the task list will only show tasks that haven't been c
 
 Now that we have written a query that filters out completed tasks, we can use the same query to display a count of the tasks that haven't been checked off. To do this we need to add a scope function and change one line of the HTML.
 
-{{> DiffBox tutorialName="simple-todos-angular" step="7.3"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="7.3"
 
-{{> DiffBox tutorialName="simple-todos-angular" step="7.4"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="7.4"
 
-{{/template}}

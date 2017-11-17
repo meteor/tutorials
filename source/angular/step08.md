@@ -1,4 +1,3 @@
-{{#template name="angular-step08"}}
 
 ---
 title: Adding user accounts
@@ -18,19 +17,19 @@ meteor add accounts-password dotansimha:accounts-ui-angular
 
 Now let's add dependency to `account.ui` module in our module definition:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="8.2"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="8.2"
 
 In the HTML, right under the checkbox, include the following code to add a login dropdown:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="8.3"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="8.3"
 
 Then, in your JavaScript, add the following code to configure the accounts UI to use usernames instead of email addresses:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="8.4"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="8.4"
 
 We'll need to import that configuration from our *client-side JavaScript entrypoint* also:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="8.5"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="8.5"
 
 Now users can create accounts and log into your app! This is very nice, but logging in and out isn't very useful yet. Let's add two functions:
 
@@ -44,19 +43,19 @@ To do this, we will add two new fields to the `tasks` collection:
 
 First, let's add some code to save these fields into the `addTask` function:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="8.6"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="8.6"
 
 We want somehow to know about logged in user. We can use helper function! Let's call it `currentUser`:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="8.7"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="8.7"
 
 Then, in our HTML, add an `ng-show` directive to only show the form when there is a logged in user:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="8.8"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="8.8"
 
 Finally, add a statement to display the `username` field on each task right before the text:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="8.9"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos-angular" step="8.9"
 
 Now, users can log in and we can track which user each task belongs to. Let's look at some of the concepts we just discovered in more detail.
 
@@ -75,4 +74,3 @@ You can choose not to use the `accounts-ui` package template and create your own
 You can read more about it in the [chapter about angular-material](http://angular-meteor.com/tutorial/step_18) in the advanced tutorial.
 
 In the next step, we will learn how to make our app more secure by doing all of our data validation on the server instead of the client.
-{{/template}}

@@ -1,4 +1,3 @@
-{{#template name="blaze-step05"}}
 
 ---
 title: Checking off and deleting tasks
@@ -8,7 +7,7 @@ Until now, we have only interacted with a collection by inserting documents. Now
 
 Let's work on our `task` template---starting by moving it to its own file, with some new features, a checkbox and a delete button:
 
-{{> DiffBox tutorialName="simple-todos" step="5.1"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos" step="5.1"
 
 **5.2** Remove the previous `task` template
 
@@ -16,11 +15,11 @@ Since we've added a new `task` template here, we need to remove the old `task` t
 
 Now we've added UI elements, but they don't do anything yet! We should add some event handlers:
 
-{{> DiffBox tutorialName="simple-todos" step="5.3"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos" step="5.3"
 
 The `body` template uses the `task` template, so we need to import it as well:
 
-{{> DiffBox tutorialName="simple-todos" step="5.4"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos" step="5.4"
 
 
 ### Getting data in event handlers
@@ -46,4 +45,3 @@ If you try checking off some tasks after adding all of the above code, you will 
 ```
 
 With this code, if the `checked` property of a task is `true`, the `checked` class is added to our list item. Using this class, we can make checked-off tasks look different in our CSS. 
-{{/template}}

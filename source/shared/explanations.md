@@ -1,4 +1,3 @@
-{{#template name="step03CollectionsIntro"}}
 
 Collections are Meteor's way of storing persistent data. The special thing about collections in Meteor is that they can be accessed from both the server and the client, making it easy to write view logic without having to write a lot of server code. They also update themselves automatically, so a view component backed by a collection will automatically display the most up-to-date data.
 
@@ -8,17 +7,15 @@ Creating a new collection is as easy as calling `MyCollection = new Mongo.Collec
 
 To create the collection, we define a new `tasks` module that creates a Mongo collection and exports it:
 
-{{> DiffBox tutorialName=tutorialName step="3.1"}}
+> TODO:INCLUDE: DiffBox tutorialName=tutorialName step="3.1"
 
 Notice that we place this file in a new `imports/api` directory. This is a sensible place to store API-related files for the application. We will start by putting "collections" here and later we will add "publications" that read from them and "methods" that write to them. You can read more about how to structure your code in the [Application Structure article](http://guide.meteor.com/structure.html) of the Meteor Guide.
 
 We need to import that module on the server (this creates the MongoDB collection and sets up the plumbing to get the data to the client):
 
-{{> DiffBox tutorialName=tutorialName step="3.2"}}
+> TODO:INCLUDE: DiffBox tutorialName=tutorialName step="3.2"
 
-{{/template}}
 
-{{#template name="step03InsertingTasksFromConsole"}}
 
 ### Inserting tasks from the server-side database console
 
@@ -38,9 +35,7 @@ In your web browser, you will see the UI of your app immediately update to show 
 
 Insert a few more tasks from the database console with different text. In the next step, we'll see how to add functionality to our app's UI so that we can add tasks without using the database console.
 
-{{/template}}
 
-{{#template name="step09OptimisticUI"}}
 
 ### Optimistic UI
 
@@ -58,4 +53,3 @@ If the result from the server comes back and is consistent with the simulation o
 
 You can read more about methods and optimistic UI in the [Methods article](http://guide.meteor.com/methods.html) of the Meteor Guide, and our [blog post about optimistic UI](http://info.meteor.com/blog/optimistic-ui-with-meteor-latency-compensation).
 
-{{/template}}

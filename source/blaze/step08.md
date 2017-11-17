@@ -1,4 +1,3 @@
-{{#template name="blaze-step08"}}
 
 ---
 title: Adding user accounts
@@ -14,15 +13,15 @@ meteor add accounts-ui accounts-password
 
 In the HTML, right under the checkbox, include the following code to add a login dropdown:
 
-{{> DiffBox tutorialName="simple-todos" step="8.2"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos" step="8.2"
 
 Then, in your JavaScript, add the following code to configure the accounts UI to use usernames instead of email addresses:
 
-{{> DiffBox tutorialName="simple-todos" step="8.3"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos" step="8.3"
 
 We'll need to import that configuration from our *client-side JavaScript entrypoint* also:
 
-{{> DiffBox tutorialName="simple-todos" step="8.4"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos" step="8.4"
 
 Now users can create accounts and log into your app! This is very nice, but logging in and out isn't very useful yet. Let's add two functions:
 
@@ -36,15 +35,15 @@ To do this, we will add two new fields to the `tasks` collection:
 
 First, let's add some code to save these fields into the `submit .new-task` event handler:
 
-{{> DiffBox tutorialName="simple-todos" step="8.5"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos" step="8.5"
 
 Then, in our HTML, add an `#if` block helper to only show the form when there is a logged in user:
 
-{{> DiffBox tutorialName="simple-todos" step="8.6"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos" step="8.6"
 
 Finally, add a Spacebars statement to display the `username` field on each task right before the text:
 
-{{> DiffBox tutorialName="simple-todos" step="8.7"}}
+> TODO:INCLUDE: DiffBox tutorialName="simple-todos" step="8.7"
 
 Now, users can log in and we can track which user each task belongs to. Let's look at some of the concepts we just discovered in more detail.
 
@@ -59,7 +58,6 @@ In your HTML, you can use the built-in `{{dstache}}currentUser}}` helper to chec
 In your JavaScript code, you can use `Meteor.userId()` to get the current user's `_id`, or `Meteor.user()` to get the whole user document.
 
 In the next step, we will learn how to make our app more secure by doing all of our data validation on the server instead of the client.
-{{/template}}
 
 You can read more about using accounts in Meteor in the [Accounts article](http://guide.meteor.com/accounts.html) of the Meteor Guide.
 

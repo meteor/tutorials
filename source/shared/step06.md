@@ -1,4 +1,3 @@
-{{#template name="sharedStep06"}}
 
 ---
 title: Running your app on Android or iOS
@@ -10,9 +9,9 @@ So far, we've been building our app and testing only in a web browser, but Meteo
 
 Meteor makes it easy to set up all of the tools required to build mobile apps, but downloading all of the programs can take a while - for Android the download is about 300MB and for iOS you need to install Xcode which is about 2GB. If you don't want to wait to download these tools, feel free to skip to the next step.
 
-{{#if specialContent}}
-  {{> Template.dynamic template=specialContent}}
-{{/if}}
+> TODO:BLOCKOPEN: if specialContent
+  > TODO:INCLUDE: Template.dynamic template=specialContent
+> TODO:BLOCKCLOSE: if
 
 ### Running on an iOS simulator (Mac Only)
 
@@ -79,4 +78,3 @@ This will open Xcode with a project for your iOS app. You can use Xcode to then 
 
 Now that we have seen how easy it is to run our app on mobile, let's get to adding some more features.
 
-{{/template}}

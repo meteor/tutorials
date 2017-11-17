@@ -1,4 +1,3 @@
-{{#template name="react-step05"}}
 
 ---
 title: Checking off and deleting tasks
@@ -8,7 +7,7 @@ Until now, we have only interacted with a collection by inserting documents. Now
 
 Let's add two new elements to our `task` component, a checkbox and a delete button, with event handlers for both:
 
-{{> DiffBox step="5.1" tutorialName="simple-todos-react"}}
+> TODO:INCLUDE: DiffBox step="5.1" tutorialName="simple-todos-react"
 
 ### Update
 
@@ -22,4 +21,3 @@ In this case, the selector is just the `_id` of the relevant task. The update pa
 
 The code from above uses `Tasks.remove` to delete a task. The `remove` function takes one argument, a selector that determines which item to remove from the collection.
 
-{{/template}}
