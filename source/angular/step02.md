@@ -1,5 +1,7 @@
 {{#template name="angular-step02"}}
-# Defining views with templates
+---
+title: Defining views with templates
+---
 
 To use Angular in our app, we first need to remove the default UI package of Meteor, called `Blaze`.
 

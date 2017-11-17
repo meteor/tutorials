@@ -1,5 +1,7 @@
 {{#template name="blaze-step02"}}
-# Defining views with templates
+---
+title: Defining views with templates
+---
 
 To start working on our todo list app, let's replace the code of the default starter app with the code below. Then we'll talk about what it does.
 

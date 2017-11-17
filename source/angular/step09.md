@@ -1,6 +1,8 @@
 {{#template name="angular-step09"}}
 
-# Security with methods
+---
+title: Security with methods
+---
 
 Before this step, any user of the app could edit any part of the database. This might be okay for very small internal apps or demos, but any real application needs to control permissions for its data. In Meteor, the best way to do this is by declaring _methods_. Instead of the client code directly calling `insert`, `update`, and `remove`, it will instead call methods that will check if the user is authorized to complete the action and then make any changes to the database on the client's behalf.
 

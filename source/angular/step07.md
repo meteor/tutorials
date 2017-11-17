@@ -1,6 +1,8 @@
 {{#template name="angular-step07"}}
 
-# Filtering collections
+---
+title: Filtering collections
+---
 
 In this step, we'll add a client-side data filtering feature to our app, so that users can check a box to see only incomplete tasks.
 

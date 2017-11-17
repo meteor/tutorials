@@ -1,6 +1,8 @@
 {{#template name="react-step08"}}
 
-# Adding user accounts
+---
+title: Adding user accounts
+---
 
 Meteor comes with an accounts system and a drop-in login user interface that lets you add multi-user functionality to your app in minutes.
 

@@ -1,6 +1,8 @@
 {{#template name="blaze-step05"}}
 
-# Checking off and deleting tasks
+---
+title: Checking off and deleting tasks
+---
 
 Until now, we have only interacted with a collection by inserting documents. Now, we will learn how to update and remove them.
 

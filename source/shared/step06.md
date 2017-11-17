@@ -1,6 +1,8 @@
 {{#template name="sharedStep06"}}
 
-# Running your app on Android or iOS
+---
+title: Running your app on Android or iOS
+---
 
 > Currently, Meteor on Windows does not support mobile builds. If you are using Meteor on Windows, you should skip this step.
 

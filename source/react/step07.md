@@ -1,6 +1,8 @@
 {{#template name="react-step07"}}
 
-# Storing temporary UI data in component state
+---
+title: Storing temporary UI data in component state
+---
 
 In this step, we'll add a client-side data filtering feature to our app, so that users can check a box to only see incomplete tasks. We're going to learn how to use React's component state to store temporary information that is only used on the client.
 

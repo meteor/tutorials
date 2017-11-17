@@ -1,6 +1,8 @@
 {{#template name="angular-step10"}}
 
-# Filtering data with publish and subscribe
+---
+title: Filtering data with publish and subscribe
+---
 
 Now that we have moved all of our app's sensitive code into methods, we need to learn about the other half of Meteor's security story. Until now, we have worked assuming the entire database is present on the client, meaning if we call `Tasks.find()` we will get every task in the collection. That's not good if users of our application want to store privacy-sensitive data. We need a way of controlling which data Meteor sends to the client-side database.
 

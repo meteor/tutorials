@@ -1,6 +1,8 @@
 {{#template name="blaze-step03"}}
 
-# Storing tasks in a collection
+---
+title: Storing tasks in a collection
+---
 
 {{> step03CollectionsIntro tutorialName="simple-todos"}}
 

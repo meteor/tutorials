@@ -1,6 +1,8 @@
 {{#template name="react-step04"}}
 
-# Adding tasks with a form
+---
+title: Adding tasks with a form
+---
 
 In this step, we'll add an input field for users to add tasks to the list.
 

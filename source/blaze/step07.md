@@ -1,6 +1,8 @@
 {{#template name="blaze-step07"}}
 
-# Storing temporary UI state in a Reactive Dictionary
+---
+title: Storing temporary UI state in a Reactive Dictionary
+---
 
 In this step, we'll add a client-side data filtering feature to our app, so that users can check a box to only see incomplete tasks. We're going to learn how to use a [`ReactiveDict`](https://atmospherejs.com/meteor/reactive-dict) to store temporary reactive state on the client. A `ReactiveDict` is like a normal JS object with keys and values, but with built-in reactivity.
 

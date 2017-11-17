@@ -1,5 +1,7 @@
 {{#template name="react-step02"}}
-# Defining views with React components
+---
+title: Defining views with React components
+---
 
 To start working with React as our view library, let's add some NPM packages which will allow us to get started with React.
 

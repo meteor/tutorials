@@ -1,6 +1,8 @@
 {{#template name="blaze-step12"}}
 
-# What's next?
+---
+title: What's next?
+---
 
 Congratulations on your newly built Meteor app!
 
