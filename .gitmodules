@@ -7,3 +7,6 @@
 [submodule "repos/angular"]
 	path = repos/angular
 	url = git@github.com:meteor/simple-todos-angular.git
+[submodule "themes/meteor"]
+	path = themes/meteor
+	url = https://github.com/meteor/hexo-theme-meteor.git
