@@ -18,6 +18,7 @@ client/main.html      # an HTML file that defines view templates
 client/main.css       # a CSS file to define your app's styles
 server/main.js        # a JavaScript entry point loaded on the server
 package.json          # a control file for installing NPM packages
+package-lock.json     # Describes the NPM dependency tree
 .meteor               # internal Meteor files
 .gitignore            # a control file for git
 ```
