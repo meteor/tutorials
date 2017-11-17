@@ -14,6 +14,41 @@ apis:
 sidebar_categories:
   null:
     - index
+  React:
+    - react/step02
+    - react/step03
+    - react/step04
+    - react/step05
+    - react/step06
+    - react/step07
+    - react/step08
+    - react/step09
+    - react/step10
+    - react/step11
+  Blaze:
+    - blaze/step02
+    - blaze/step03
+    - blaze/step04
+    - blaze/step05
+    - blaze/step06
+    - blaze/step07
+    - blaze/step08
+    - blaze/step09
+    - blaze/step10
+    - blaze/step11
+    - blaze/step12
+  Angular:
+    - angular/step02
+    - angular/step03
+    - angular/step04
+    - angular/step05
+    - angular/step06
+    - angular/step07
+    - angular/step08
+    - angular/step09
+    - angular/step10
+    - angular/step11
+    - angular/step12
 versions:
   - '0.0.0'
 github_repo: 'meteor/tutorials'
