@@ -1,4 +1,4 @@
-From 44124496bcd4ff09013322ec69df74274f929979 Mon Sep 17 00:00:00 2001
+From 1293e1650170df237ab3b8b953e9aba4c5bf9e52 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:00:51 -0700
 Subject: [PATCH 01/52] Step 1: Run `meteor create`
@@ -289,10 +289,10 @@ index 0000000..31a9e0e
 +  // code to run on server at startup
 +});
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 875b31a5c970deb2ec1a7c01cac9f95f16e1bb18 Mon Sep 17 00:00:00 2001
+From 2602bba9177d31b4dddd1dcf8cfa742a01b23db7 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:02:01 -0700
 Subject: [PATCH 02/52] Step 2.1: Add the React NPM packages
@@ -316,10 +316,10 @@ index 4164b14..9cb9d8e 100644
    }
  }
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From c2a8cb28ac8b124993bfe3031a069b2b99ae89e8 Mon Sep 17 00:00:00 2001
+From 9659212ed039be6a00ccd04f4f14fd4022ea7412 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:03:54 -0700
 Subject: [PATCH 03/52] Step 2.2: Replace starter HTML code
@@ -361,10 +361,10 @@ index 6fe0dc5..1aae2d4 100644
 -  </ul>
 -</template>
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From d673060c623fc2731050ad6e62f5796145d4d927 Mon Sep 17 00:00:00 2001
+From 5fb14c103f751c336aa6eda200507ad2a98d6715 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:05:08 -0700
 Subject: [PATCH 04/52] Step 2.3: Replace starter JS
@@ -407,28 +407,28 @@ index ecb3282..00f2bbf 100644
 +  render(<App />, document.getElementById('render-target'));
  });
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 859eba1c0359db18e618fc1c047428158d1b0b42 Mon Sep 17 00:00:00 2001
+From 6fe05be2636becdd268dc990289453a12713ce0b Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:05:58 -0700
 Subject: [PATCH 05/52] Step 2.4: Create App component
 
 ---
- imports/ui/App.jsx | 34 ++++++++++++++++++++++++++++++++++
+ imports/ui/App.js | 34 ++++++++++++++++++++++++++++++++++
  1 file changed, 34 insertions(+)
- create mode 100644 imports/ui/App.jsx
+ create mode 100644 imports/ui/App.js
 
-diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
+diff --git a/imports/ui/App.js b/imports/ui/App.js
 new file mode 100644
-index 0000000..0f8372d
+index 0000000..bad39ea
 --- /dev/null
-+++ b/imports/ui/App.jsx
++++ b/imports/ui/App.js
 @@ -0,0 +1,34 @@
 +import React, { Component } from 'react';
 +
-+import Task from './Task.jsx';
++import Task from './Task.js';
 +
 +// App component - represents the whole app
 +export default class App extends Component {
@@ -461,10 +461,10 @@ index 0000000..0f8372d
 +  }
 +}
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From e7bb92c0e591eef692d03c2351129248c2322d7f Mon Sep 17 00:00:00 2001
+From e3eadf6aa362c1f860bff79ca393361f931cf4cc Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:06:31 -0700
 Subject: [PATCH 06/52] Step 2.5: Create Task component
@@ -497,10 +497,10 @@ index 0000000..a5000e0
 +  task: PropTypes.object.isRequired,
 +};
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 22450cd45f1bdf291a5b5a284b2b939171b3d4f8 Mon Sep 17 00:00:00 2001
+From df5be99881a8ff657a59531470172f86b972ec3a Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:07:02 -0700
 Subject: [PATCH 07/52] Step 2.6: Add CSS
@@ -642,10 +642,10 @@ index b6b4052..cec3ae6 100644
 +}
 \ No newline at end of file
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From af42bed3273406dfd4c7a052af75e66ecded40e6 Mon Sep 17 00:00:00 2001
+From aaa240879fbfff976b52fc3abb2c5ac317df6992 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 15:32:35 +1100
 Subject: [PATCH 08/52] Step 3.1: Create tasks collection
@@ -665,10 +665,10 @@ index 0000000..3bed819
 +
 +export const Tasks = new Mongo.Collection('tasks');
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From b17cb378fe9270005df8f995d43171953a6e7086 Mon Sep 17 00:00:00 2001
+From 05733459367e76507b36707f802288d2bf48579b Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 15:33:03 +1100
 Subject: [PATCH 09/52] Step 3.2: Load tasks collection on the server
@@ -689,10 +689,10 @@ index 31a9e0e..ab941a4 100644
 -});
 +import '../imports/api/tasks.js';
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 6ba55d4cf2a7d778f83ea5c582d1ffd94b4c6060 Mon Sep 17 00:00:00 2001
+From 842fa3356ae133a5c1587db2f8ca06973ea9149f Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 15:37:12 +1100
 Subject: [PATCH 10/52] Step 3.3: Add react-meteor-data package
@@ -737,23 +737,23 @@ index 9cb9d8e..fb213f3 100644
    }
  }
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 99e22f05b1559f96afe02921a537cd3503e44e53 Mon Sep 17 00:00:00 2001
+From bcf98879fe9d6c287077cb2f4cbc4749b50d1492 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 15:37:54 +1100
 Subject: [PATCH 11/52] Step 3.4: Modify App component to get tasks from
  collection
 
 ---
- imports/ui/App.jsx | 27 ++++++++++++++++-----------
+ imports/ui/App.js | 27 ++++++++++++++++-----------
  1 file changed, 16 insertions(+), 11 deletions(-)
 
-diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
-index 0f8372d..8f1bf8b 100644
---- a/imports/ui/App.jsx
-+++ b/imports/ui/App.jsx
+diff --git a/imports/ui/App.js b/imports/ui/App.js
+index bad39ea..dbdc5b9 100644
+--- a/imports/ui/App.js
++++ b/imports/ui/App.js
 @@ -1,19 +1,14 @@
 -import React, { Component } from 'react';
 +import React, { Component, PropTypes } from 'react';
@@ -761,7 +761,7 @@ index 0f8372d..8f1bf8b 100644
 +
 +import { Tasks } from '../api/tasks.js';
  
- import Task from './Task.jsx';
+ import Task from './Task.js';
  
  // App component - represents the whole app
 -export default class App extends Component {
@@ -795,22 +795,22 @@ index 0f8372d..8f1bf8b 100644
 +  };
 +}, App);
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From ec82b75b6f356b0287462af0c81b94de35aec10b Mon Sep 17 00:00:00 2001
+From 6055b9f937a37900d7245ac6bb669fbedc4f1306 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:13:37 -0700
 Subject: [PATCH 12/52] Step 4.1: Add form for new tasks
 
 ---
- imports/ui/App.jsx | 8 ++++++++
+ imports/ui/App.js | 8 ++++++++
  1 file changed, 8 insertions(+)
 
-diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
-index 8f1bf8b..c452da9 100644
---- a/imports/ui/App.jsx
-+++ b/imports/ui/App.jsx
+diff --git a/imports/ui/App.js b/imports/ui/App.js
+index dbdc5b9..95783a3 100644
+--- a/imports/ui/App.js
++++ b/imports/ui/App.js
 @@ -18,6 +18,14 @@ class App extends Component {
        <div className="container">
          <header>
@@ -827,29 +827,29 @@ index 8f1bf8b..c452da9 100644
  
          <ul>
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 129f76a5c6a6abf75fefe31fdc67d1942c6eca10 Mon Sep 17 00:00:00 2001
+From 786ffc5d8f339cbc6bc00e1ca4010535629389ad Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:14:08 -0700
 Subject: [PATCH 13/52] Step 4.2: Add handleSubmit method to App component
 
 ---
- imports/ui/App.jsx | 16 ++++++++++++++++
+ imports/ui/App.js | 16 ++++++++++++++++
  1 file changed, 16 insertions(+)
 
-diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
-index c452da9..332bd6e 100644
---- a/imports/ui/App.jsx
-+++ b/imports/ui/App.jsx
+diff --git a/imports/ui/App.js b/imports/ui/App.js
+index 95783a3..027a15a 100644
+--- a/imports/ui/App.js
++++ b/imports/ui/App.js
 @@ -1,4 +1,5 @@
  import React, { Component, PropTypes } from 'react';
 +import ReactDOM from 'react-dom';
  import { createContainer } from 'meteor/react-meteor-data';
  
  import { Tasks } from '../api/tasks.js';
-@@ -7,6 +8,21 @@ import Task from './Task.jsx';
+@@ -7,6 +8,21 @@ import Task from './Task.js';
  
  // App component - represents the whole app
  class App extends Component {
@@ -872,22 +872,22 @@ index c452da9..332bd6e 100644
      return this.props.tasks.map((task) => (
        <Task key={task._id} task={task} />
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 2348c928ec4e59f8b8d3244b1256f893f49ed75e Mon Sep 17 00:00:00 2001
+From 0a3c234769e13ee319937f12b176727d51af7146 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:14:40 -0700
 Subject: [PATCH 14/52] Step 4.3: Update data container to sort tasks by time
 
 ---
- imports/ui/App.jsx | 2 +-
+ imports/ui/App.js | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
-index 332bd6e..546d198 100644
---- a/imports/ui/App.jsx
-+++ b/imports/ui/App.jsx
+diff --git a/imports/ui/App.js b/imports/ui/App.js
+index 027a15a..0dd10a7 100644
+--- a/imports/ui/App.js
++++ b/imports/ui/App.js
 @@ -58,6 +58,6 @@ App.propTypes = {
  
  export default createContainer(() => {
@@ -897,10 +897,10 @@ index 332bd6e..546d198 100644
    };
  }, App);
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 088005e732f95e3af3efd97e4d4ac4907f36d096 Mon Sep 17 00:00:00 2001
+From 4269c1a9d1d8ff0a23a2f662976a285eab60f048 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:17:06 -0700
 Subject: [PATCH 15/52] Step 5.1: Update Task component to add features
@@ -956,22 +956,22 @@ index a5000e0..3140871 100644
    }
  }
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From c5226ef4b9f5f40d595e2781501845601b850802 Mon Sep 17 00:00:00 2001
+From 1a875b3953f8d9d93b7953aeb3e4f4f9a3d6e7a0 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:21:30 -0700
 Subject: [PATCH 16/52] Step 7.1: Add hide completed checkbox to App component
 
 ---
- imports/ui/App.jsx | 10 ++++++++++
+ imports/ui/App.js | 10 ++++++++++
  1 file changed, 10 insertions(+)
 
-diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
-index 546d198..31d7564 100644
---- a/imports/ui/App.jsx
-+++ b/imports/ui/App.jsx
+diff --git a/imports/ui/App.js b/imports/ui/App.js
+index 0dd10a7..1e889f7 100644
+--- a/imports/ui/App.js
++++ b/imports/ui/App.js
 @@ -35,6 +35,16 @@ class App extends Component {
          <header>
            <h1>Todo List</h1>
@@ -990,23 +990,23 @@ index 546d198..31d7564 100644
              <input
                type="text"
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 0b53b292641694866fcae36a34ccffc63da152a0 Mon Sep 17 00:00:00 2001
+From d8c5f8508a54b942611da138fd2f1d7485a09bc2 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:22:07 -0700
 Subject: [PATCH 17/52] Step 7.2: Add intial state to App component
 
 ---
- imports/ui/App.jsx | 8 ++++++++
+ imports/ui/App.js | 8 ++++++++
  1 file changed, 8 insertions(+)
 
-diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
-index 31d7564..246ad81 100644
---- a/imports/ui/App.jsx
-+++ b/imports/ui/App.jsx
-@@ -8,6 +8,14 @@ import Task from './Task.jsx';
+diff --git a/imports/ui/App.js b/imports/ui/App.js
+index 1e889f7..d5d76b9 100644
+--- a/imports/ui/App.js
++++ b/imports/ui/App.js
+@@ -8,6 +8,14 @@ import Task from './Task.js';
  
  // App component - represents the whole app
  class App extends Component {
@@ -1022,22 +1022,22 @@ index 31d7564..246ad81 100644
      event.preventDefault();
  
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 5193b76e56ebad826bcd753e4fabddf01f74d046 Mon Sep 17 00:00:00 2001
+From 40d1256fd58b4e1628f8dcf812b1478bfc7ede2c Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:22:32 -0700
 Subject: [PATCH 18/52] Step 7.3: Add toggleHideCompleted handler to App
 
 ---
- imports/ui/App.jsx | 6 ++++++
+ imports/ui/App.js | 6 ++++++
  1 file changed, 6 insertions(+)
 
-diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
-index 246ad81..3347daf 100644
---- a/imports/ui/App.jsx
-+++ b/imports/ui/App.jsx
+diff --git a/imports/ui/App.js b/imports/ui/App.js
+index d5d76b9..0671fbb 100644
+--- a/imports/ui/App.js
++++ b/imports/ui/App.js
 @@ -31,6 +31,12 @@ class App extends Component {
      ReactDOM.findDOMNode(this.refs.textInput).value = '';
    }
@@ -1052,22 +1052,22 @@ index 246ad81..3347daf 100644
      return this.props.tasks.map((task) => (
        <Task key={task._id} task={task} />
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 155fd06bff7e4b6daa1649573a1199fbe67d010f Mon Sep 17 00:00:00 2001
+From a0a130f1ffe2e9e65c6abb8b0cd13af0c43cf6cb Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:23:02 -0700
 Subject: [PATCH 19/52] Step 7.4: Filter tasks in renderTasks
 
 ---
- imports/ui/App.jsx | 6 +++++-
+ imports/ui/App.js | 6 +++++-
  1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
-index 3347daf..1500877 100644
---- a/imports/ui/App.jsx
-+++ b/imports/ui/App.jsx
+diff --git a/imports/ui/App.js b/imports/ui/App.js
+index 0671fbb..43f82dd 100644
+--- a/imports/ui/App.js
++++ b/imports/ui/App.js
 @@ -38,7 +38,11 @@ class App extends Component {
    }
  
@@ -1082,23 +1082,23 @@ index 3347daf..1500877 100644
      ));
    }
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 03db01b6fb49059137ddc9b5701dcd0cde108119 Mon Sep 17 00:00:00 2001
+From b1c8e4ae6f70d2b2463d6d39f8199f4aaa3fbadd Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:23:44 -0700
 Subject: [PATCH 20/52] Step 7.5: Update data container to return
  incompleteCount
 
 ---
- imports/ui/App.jsx | 1 +
+ imports/ui/App.js | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
-index 1500877..75714e5 100644
---- a/imports/ui/App.jsx
-+++ b/imports/ui/App.jsx
+diff --git a/imports/ui/App.js b/imports/ui/App.js
+index 43f82dd..0663262 100644
+--- a/imports/ui/App.js
++++ b/imports/ui/App.js
 @@ -87,5 +87,6 @@ App.propTypes = {
  export default createContainer(() => {
    return {
@@ -1107,22 +1107,22 @@ index 1500877..75714e5 100644
    };
  }, App);
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From d3a7bad81c1afce7b0430904aa78e3cec5d36923 Mon Sep 17 00:00:00 2001
+From ca2e232c1eda34d366559bf5afc8e455a5938629 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:24:09 -0700
 Subject: [PATCH 21/52] Step 7.6: Display incompleteCount in the header
 
 ---
- imports/ui/App.jsx | 3 ++-
+ imports/ui/App.js | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
-index 75714e5..78e5548 100644
---- a/imports/ui/App.jsx
-+++ b/imports/ui/App.jsx
+diff --git a/imports/ui/App.js b/imports/ui/App.js
+index 0663262..6ede22c 100644
+--- a/imports/ui/App.js
++++ b/imports/ui/App.js
 @@ -51,7 +51,7 @@ class App extends Component {
      return (
        <div className="container">
@@ -1141,10 +1141,10 @@ index 75714e5..78e5548 100644
  
  export default createContainer(() => {
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 38dbeff7d1c311cf2c110eb443c7be16edab7da6 Mon Sep 17 00:00:00 2001
+From b0e79be431b1c487d0bbec3786102c7d4136db69 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:26:02 -0700
 Subject: [PATCH 22/52] Step 8.1: Add accounts-ui and accounts-password
@@ -1229,10 +1229,10 @@ index c4bc9da..ecdd0db 100644
  standard-minifier-js@1.0.4-rc.2
  templating@1.1.7-rc.2
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From d49de97244cd5594ec9b7c3bcd15b9840e514952 Mon Sep 17 00:00:00 2001
+From dd287f7473e421315dbf275c55a2062a88ca8a80 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:26:59 -0700
 Subject: [PATCH 23/52] Step 8.2: Create Accounts UI wrapper component
@@ -1269,27 +1269,27 @@ index 0000000..208d5af
 +  }
 +}
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From fdb21155f221a7a10676133132d7a9af4cea21a3 Mon Sep 17 00:00:00 2001
+From b2ab37491d8b3d4762dff1010a0907566e50601e Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:27:36 -0700
 Subject: [PATCH 24/52] Step 8.3: Include sign in form
 
 ---
- imports/ui/App.jsx | 3 +++
+ imports/ui/App.js | 3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
-index 78e5548..1d0bbef 100644
---- a/imports/ui/App.jsx
-+++ b/imports/ui/App.jsx
+diff --git a/imports/ui/App.js b/imports/ui/App.js
+index 6ede22c..dd3e8e9 100644
+--- a/imports/ui/App.js
++++ b/imports/ui/App.js
 @@ -5,6 +5,7 @@ import { createContainer } from 'meteor/react-meteor-data';
  import { Tasks } from '../api/tasks.js';
  
- import Task from './Task.jsx';
-+import AccountsUIWrapper from './AccountsUIWrapper.jsx';
+ import Task from './Task.js';
++import AccountsUIWrapper from './AccountsUIWrapper.js';
  
  // App component - represents the whole app
  class App extends Component {
@@ -1303,10 +1303,10 @@ index 78e5548..1d0bbef 100644
              <input
                type="text"
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From d522f4885d1cb7cda55f84e4e96f2bb31fe45faa Mon Sep 17 00:00:00 2001
+From 089e2ac13838305f4ddb21b1e330cb3f7ab8cc9f Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 16:13:48 +1100
 Subject: [PATCH 25/52] Step 8.4: Configure accounts-ui
@@ -1328,10 +1328,10 @@ index 0000000..7e4f7e5
 +  passwordSignupFields: 'USERNAME_ONLY',
 +});
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From e0026145120067a9898e275d477c63e9a89fd549 Mon Sep 17 00:00:00 2001
+From ad9d437a4ec58484d8d50a25a979ab2ca56ea52f Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 16:14:08 +1100
 Subject: [PATCH 26/52] Step 8.5: Import accounts configuration
@@ -1353,22 +1353,22 @@ index 00f2bbf..2b50fc7 100644
  
  Meteor.startup(() => {
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From dbf83287d7760b8aae48ce2abbb1a2c589055d7a Mon Sep 17 00:00:00 2001
+From 4947295c85ad62e8f8c18d37559c2ddfb8ab9254 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:28:46 -0700
 Subject: [PATCH 27/52] Step 8.6: Update insert to save username and owner
 
 ---
- imports/ui/App.jsx | 3 +++
+ imports/ui/App.js | 3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
-index 1d0bbef..7694eb8 100644
---- a/imports/ui/App.jsx
-+++ b/imports/ui/App.jsx
+diff --git a/imports/ui/App.js b/imports/ui/App.js
+index dd3e8e9..4fe9bc5 100644
+--- a/imports/ui/App.js
++++ b/imports/ui/App.js
 @@ -1,5 +1,6 @@
  import React, { Component, PropTypes } from 'react';
  import ReactDOM from 'react-dom';
@@ -1386,23 +1386,23 @@ index 1d0bbef..7694eb8 100644
  
      // Clear form
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From d6b689a5d03280084c397b5f006aa1570ffcf61c Mon Sep 17 00:00:00 2001
+From 03fd0d42b7f3db18035f6c5b2e8dd9fa77f22e2e Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:29:16 -0700
 Subject: [PATCH 28/52] Step 8.7: Update data container to return data about
  user
 
 ---
- imports/ui/App.jsx | 1 +
+ imports/ui/App.js | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
-index 7694eb8..ce0b541 100644
---- a/imports/ui/App.jsx
-+++ b/imports/ui/App.jsx
+diff --git a/imports/ui/App.js b/imports/ui/App.js
+index 4fe9bc5..a195a49 100644
+--- a/imports/ui/App.js
++++ b/imports/ui/App.js
 @@ -95,5 +95,6 @@ export default createContainer(() => {
    return {
      tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
@@ -1411,23 +1411,23 @@ index 7694eb8..ce0b541 100644
    };
  }, App);
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 5e1fd3243e0009824bc5cf8c229fb04b41f1557e Mon Sep 17 00:00:00 2001
+From 45e395eed0897bacb5599f23aabc91bb419e04c2 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:30:06 -0700
 Subject: [PATCH 29/52] Step 8.8: Wrap new task form to only show when logged
  in
 
 ---
- imports/ui/App.jsx | 17 ++++++++++-------
+ imports/ui/App.js | 17 ++++++++++-------
  1 file changed, 10 insertions(+), 7 deletions(-)
 
-diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
-index ce0b541..bbbb728 100644
---- a/imports/ui/App.jsx
-+++ b/imports/ui/App.jsx
+diff --git a/imports/ui/App.js b/imports/ui/App.js
+index a195a49..d6277ef 100644
+--- a/imports/ui/App.js
++++ b/imports/ui/App.js
 @@ -69,13 +69,15 @@ class App extends Component {
  
            <AccountsUIWrapper />
@@ -1460,10 +1460,10 @@ index ce0b541..bbbb728 100644
  
  export default createContainer(() => {
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 4a0006095134a3c6f2402b7eb47e8aea0fb58bd0 Mon Sep 17 00:00:00 2001
+From e4ae86ddcb2e7bba796ea584f6f9eec230d9361f Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:30:48 -0700
 Subject: [PATCH 30/52] Step 8.9: Update Task component to show username
@@ -1488,10 +1488,10 @@ index 3140871..5650fa0 100644
      );
    }
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 783d016bead54e8128ea698547e39a869d06ca20 Mon Sep 17 00:00:00 2001
+From 665649faf18e58e598b1bd6d56c3846f56789b64 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:31:22 -0700
 Subject: [PATCH 31/52] Step 9.1: Remove insecure package
@@ -1526,10 +1526,10 @@ index ecdd0db..011fbef 100644
  launch-screen@1.0.7-rc.2
  less@2.5.5-rc.2
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 16b39291ed05f978acf7ba7dadfb8da0115d6b06 Mon Sep 17 00:00:00 2001
+From a0df7c7dd2d6580c974e077b4258ebeafb441d8b Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:32:21 -0700
 Subject: [PATCH 32/52] Step 9.2: Add methods for add, remove, update task
@@ -1578,23 +1578,23 @@ index 3bed819..af4962a 100644
 +  },
 +});
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 68c6d223c976efd260dc46dedc982d1e917e88c9 Mon Sep 17 00:00:00 2001
+From 0983358c79ac48d0d6a789b03419f6f85b20e960 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:32:59 -0700
 Subject: [PATCH 33/52] Step 9.3: Update App component to use tasks.insert
  method
 
 ---
- imports/ui/App.jsx | 7 +------
+ imports/ui/App.js | 7 +------
  1 file changed, 1 insertion(+), 6 deletions(-)
 
-diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
-index bbbb728..4f41c39 100644
---- a/imports/ui/App.jsx
-+++ b/imports/ui/App.jsx
+diff --git a/imports/ui/App.js b/imports/ui/App.js
+index d6277ef..5a6d684 100644
+--- a/imports/ui/App.js
++++ b/imports/ui/App.js
 @@ -24,12 +24,7 @@ class App extends Component {
      // Find the text field via the React ref
      const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
@@ -1610,10 +1610,10 @@ index bbbb728..4f41c39 100644
      // Clear form
      ReactDOM.findDOMNode(this.refs.textInput).value = '';
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From db213ff9b552b69e789baaf900496c3f7ca220a4 Mon Sep 17 00:00:00 2001
+From 692c48f8a0e3d6d65c670ebef723d32c1e1c5b16 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:33:38 -0700
 Subject: [PATCH 34/52] Step 9.4: Replace update and remove with methods
@@ -1649,10 +1649,10 @@ index 5650fa0..ee040c5 100644
  
    render() {
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 4e5000b3cfdf17077edb402c73907c1e6052225e Mon Sep 17 00:00:00 2001
+From b11e2c092a8b730f06967dafd837200d144a2cc2 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:34:33 -0700
 Subject: [PATCH 35/52] Step 10.1: Remove autopublish package
@@ -1687,10 +1687,10 @@ index 011fbef..cee5a46 100644
  babel-compiler@6.5.1-rc.2
  babel-runtime@0.1.6-rc.2
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 3655b9b9e33a5db2c3daeffa1748db225f73720e Mon Sep 17 00:00:00 2001
+From fb54f1f7e0f923afac4e4a5afba242ebc1a6a104 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 16:27:05 +1100
 Subject: [PATCH 36/52] Step 10.2: Add publication for tasks
@@ -1718,22 +1718,22 @@ index af4962a..80d36bc 100644
    'tasks.insert'(text) {
      check(text, String);
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From cda6d821e81eb5e366530edc95bcdf2195139153 Mon Sep 17 00:00:00 2001
+From 6181e183d585d8f043c621f89ad7bfe70bcd8665 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 16:28:14 +1100
 Subject: [PATCH 37/52] Step 10.3: Subscribe to tasks in App container
 
 ---
- imports/ui/App.jsx | 2 ++
+ imports/ui/App.js | 2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
-index 4f41c39..d6e5f0a 100644
---- a/imports/ui/App.jsx
-+++ b/imports/ui/App.jsx
+diff --git a/imports/ui/App.js b/imports/ui/App.js
+index 5a6d684..6eefe39 100644
+--- a/imports/ui/App.js
++++ b/imports/ui/App.js
 @@ -90,6 +90,8 @@ App.propTypes = {
  };
  
@@ -1744,10 +1744,10 @@ index 4f41c39..d6e5f0a 100644
      tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
      incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 62e70097354a8e1b78ae4f66da2d7bdca3b06ea8 Mon Sep 17 00:00:00 2001
+From b2b1a16041c502e8600de817d8764aa48e5b6042 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:36:29 -0700
 Subject: [PATCH 38/52] Step 10.4: Add tasks.setPrivate method
@@ -1779,23 +1779,23 @@ index 80d36bc..63feeca 100644
 +  },
  });
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From fc38fb8eaef508c95461e468ad4f391b00708f9a Mon Sep 17 00:00:00 2001
+From 5cedf9a642e0d73a46483e06734fa475f2c42eff Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:36:59 -0700
 Subject: [PATCH 39/52] Step 10.5: Update renderTasks to pass in
  showPrivateButton
 
 ---
- imports/ui/App.jsx | 15 ++++++++++++---
+ imports/ui/App.js | 15 ++++++++++++---
  1 file changed, 12 insertions(+), 3 deletions(-)
 
-diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
-index d6e5f0a..06262c5 100644
---- a/imports/ui/App.jsx
-+++ b/imports/ui/App.jsx
+diff --git a/imports/ui/App.js b/imports/ui/App.js
+index 6eefe39..51b025f 100644
+--- a/imports/ui/App.js
++++ b/imports/ui/App.js
 @@ -41,9 +41,18 @@ class App extends Component {
      if (this.state.hideCompleted) {
        filteredTasks = filteredTasks.filter(task => !task.checked);
@@ -1819,10 +1819,10 @@ index d6e5f0a..06262c5 100644
  
    render() {
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 8189017127bfa33e28d2d097840cd720948efc63 Mon Sep 17 00:00:00 2001
+From cad8e44996ccfcf597be5a6bc19b0312fbdbb860 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:37:28 -0700
 Subject: [PATCH 40/52] Step 10.6: Add a new prop type for Task component
@@ -1842,10 +1842,10 @@ index ee040c5..deba74a 100644
 +  showPrivateButton: React.PropTypes.bool.isRequired,
  };
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 6c2087ea6c5eb20d807ab63240f17cdc93b2d66b Mon Sep 17 00:00:00 2001
+From b2d6e43037adfa74617e72ba80c36940782d6f9e Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:38:04 -0700
 Subject: [PATCH 41/52] Step 10.7: Add private button, shown only to owner
@@ -1872,10 +1872,10 @@ index deba74a..bec76ba 100644
            <strong>{this.props.task.username}</strong>: {this.props.task.text}
          </span>
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 828b2888abb44e58927837e7970de992b0a9136b Mon Sep 17 00:00:00 2001
+From 3f6b6c2221c7992aa8c685ecae23ae3653f67511 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:38:33 -0700
 Subject: [PATCH 42/52] Step 10.8: Add private button event handler to Task
@@ -1900,10 +1900,10 @@ index bec76ba..db0999e 100644
      // Give tasks a different className when they are checked off,
      // so that we can style them nicely in CSS
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 1539dbc67bacd904961232a38b2789c8ba7f1478 Mon Sep 17 00:00:00 2001
+From 7bc8f9a7a9989777a45df9e00202dceca7f36105 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 16:33:06 +1100
 Subject: [PATCH 43/52] Step 10.9: Install the classnames NPM package
@@ -1925,10 +1925,10 @@ index fb213f3..ad97bd8 100644
      "react": "^0.14.7",
      "react-addons-pure-render-mixin": "^0.14.7",
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 9bee6b999692e0c062dedc9d7291d40ede057ef5 Mon Sep 17 00:00:00 2001
+From 2fe9f6b5c0ab473bf075cbfca90b86c36353e9a2 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:39:22 -0700
 Subject: [PATCH 44/52] Step 10.10: Add private className to Task when needed
@@ -1961,10 +1961,10 @@ index db0999e..52450c3 100644
      return (
        <li className={taskClassName}>
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From a172b0f664683ce55c1b21c611d17e2e91a81750 Mon Sep 17 00:00:00 2001
+From 5020276a3c6c1f905fe88988505fb43c1789fbdb Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:39:58 -0700
 Subject: [PATCH 45/52] Step 10.11: Only publish tasks the current user can see
@@ -1994,10 +1994,10 @@ index 63feeca..5f76880 100644
  }
  
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From a53c324a3c60f76dcb68c7c8fdd0045520aed490 Mon Sep 17 00:00:00 2001
+From ce3af3badc517ae362e7a223d9b368f27356ca3c Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:40:55 -0700
 Subject: [PATCH 46/52] Step 10.12: Add extra security to methods
@@ -2036,10 +2036,10 @@ index 5f76880..d7d72dd 100644
    },
    'tasks.setPrivate'(taskId, setToPrivate) {
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 44b4c119a595394c2efa7ff1b1668e2a59e45392 Mon Sep 17 00:00:00 2001
+From edc6d67fb7f54fc855ba88dbdc4b1dbb0170268c Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 16:35:58 +1100
 Subject: [PATCH 47/52] Step 11.1: Added practicalmeteor:mocha package
@@ -2083,10 +2083,10 @@ index cee5a46..53843b3 100644
  random@1.0.7-rc.2
  rate-limit@1.0.2-rc.2
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From f3a55e2f06db901f224a08f4c063fcde8ecf54d9 Mon Sep 17 00:00:00 2001
+From e659c4ce01fec0e40c9800f646ddc0b8cd495de9 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 16:36:17 +1100
 Subject: [PATCH 48/52] Step 11.2: Add a scaffold for a method test
@@ -2115,10 +2115,10 @@ index 0000000..05287ba
 +  });
 +}
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 495415edf4fbd9760f03139ed047530b42869c85 Mon Sep 17 00:00:00 2001
+From 5f753d45b15015d15a65b0ed18d6ebcedc42e4ce Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 16:36:29 +1100
 Subject: [PATCH 49/52] Step 11.3: Prepare the database for each test
@@ -2159,10 +2159,10 @@ index 05287ba..1359e85 100644
        });
      });
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From 9fe42819633b453dca3c366f3410b23e45439a70 Mon Sep 17 00:00:00 2001
+From 49e970b612f239ae8dfc97d1a6abbe944ef4e9ac Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 16:36:42 +1100
 Subject: [PATCH 50/52] Step 11.4: Added test to check delete method
@@ -2203,10 +2203,10 @@ index 1359e85..9b61c5a 100644
      });
    });
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From eb691b35811d49731bd3ed12a06e5a041ab90b1d Mon Sep 17 00:00:00 2001
+From c99d87fde52d706d5fc20cbff1b28c054dadce74 Mon Sep 17 00:00:00 2001
 From: Cliff Brake <cbrake@bec-systems.com>
 Date: Wed, 25 May 2016 10:25:52 -0400
 Subject: [PATCH 51/52] update dependencies
@@ -2422,10 +2422,10 @@ index ad97bd8..11fa4a3 100644
    }
  }
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
 
-From cab8ae7c8df498e34d2f025a10b98a58ba99eb37 Mon Sep 17 00:00:00 2001
+From 95ec67adcf7988a078a7e4463e879f8221586a65 Mon Sep 17 00:00:00 2001
 From: ALICIA P <superradleesha@gmail.com>
 Date: Thu, 15 Sep 2016 11:38:40 -0500
 Subject: [PATCH 52/52] Fixes link to Meteor Tutorial so that it goes to the
@@ -2452,5 +2452,5 @@ index a212293..d2f6d51 100644
 \ No newline at end of file
 +![screenshot](screenshot.png)
 -- 
-2.13.6 (Apple Git-96)
+2.15.0
 
