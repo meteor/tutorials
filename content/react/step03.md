@@ -8,14 +8,11 @@
 
 To use data from a Meteor collection inside a React component, we can use an Atmosphere package `react-meteor-data` which allows us to create a "data container" to feed Meteor's reactive data into React's component hierarchy.
 
-We need to install that package alongside a NPM package it utilizes, `react-addons-pure-render-mixin`:
-
 ```bash
-meteor npm install --save react-addons-pure-render-mixin
 meteor add react-meteor-data
 ```
 
-To use `react-meteor-data`, we need to wrap our component in a *container* using the `createContainer` Higher Order Component:
+To use `react-meteor-data`, we need to wrap our component in a *container* using the `withTracker` Higher Order Component:
 
 {{> DiffBox step="3.4" tutorialName="simple-todos-react"}}
 
