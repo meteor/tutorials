@@ -1,4 +1,4 @@
-From 1d7400a7bd84a64ec12ec6700f8bec8e31df720b Mon Sep 17 00:00:00 2001
+From 1ea9848eb3f70c11a39dde8921922c7900580bf2 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:00:51 -0700
 Subject: [PATCH 01/49] Step 1: Run `meteor create`
@@ -994,7 +994,7 @@ index 0000000..31a9e0e
 2.15.0
 
 
-From 5c6f19fc94dfe9f784b07a0fa35da14bbcf67b00 Mon Sep 17 00:00:00 2001
+From f1f111616dc4e7edc68de8e36e90e08c2c42d554 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:02:01 -0700
 Subject: [PATCH 02/49] Step 2.1: Add the React NPM packages
@@ -1021,7 +1021,7 @@ index 43db77e..09105cf 100644
 2.15.0
 
 
-From 66e3cae30eb692b084fec06af36f62be7b539751 Mon Sep 17 00:00:00 2001
+From b8c5da655108be87962f794f2814e2036a12a7e4 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:03:54 -0700
 Subject: [PATCH 03/49] Step 2.2: Replace starter HTML code
@@ -1066,7 +1066,7 @@ index 15a7c7d..1aae2d4 100644
 2.15.0
 
 
-From 2a705b85e67f024b4fd313a20c690039c0df7646 Mon Sep 17 00:00:00 2001
+From 4459f38b759d17ade45da61e67265fb48e6f39c5 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:05:08 -0700
 Subject: [PATCH 04/49] Step 2.3: Replace starter JS
@@ -1112,7 +1112,7 @@ index ecb3282..00f2bbf 100644
 2.15.0
 
 
-From fa6d68656c712fdb91250eb5b5b0d8360f51b698 Mon Sep 17 00:00:00 2001
+From 3f57957fe2f5797f651f2892374a99e626d97d72 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:05:58 -0700
 Subject: [PATCH 05/49] Step 2.4: Create App component
@@ -1166,7 +1166,7 @@ index 0000000..bad39ea
 2.15.0
 
 
-From 287a811e10bcc2bee496653e5aaafefd827989b2 Mon Sep 17 00:00:00 2001
+From 3084ff5657bb50fb6c14772b0af820f6760933d8 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:06:31 -0700
 Subject: [PATCH 06/49] Step 2.5: Create Task component
@@ -1196,7 +1196,7 @@ index 0000000..f0e1f80
 2.15.0
 
 
-From a4b9b9b15504ca692301596da6696e3eb20e27c0 Mon Sep 17 00:00:00 2001
+From fe25a7bdc0df460619938fbd7d2bb24be1eefaf1 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:07:02 -0700
 Subject: [PATCH 07/49] Step 2.6: Add CSS
@@ -1341,7 +1341,7 @@ index b6b4052..cec3ae6 100644
 2.15.0
 
 
-From 559971bd3039a1028d5709887a51d4af054f0ca9 Mon Sep 17 00:00:00 2001
+From 4dbe4278c947e46374dafa1d0e5fcd0291a6b7dd Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 15:32:35 +1100
 Subject: [PATCH 08/49] Step 3.1: Create tasks collection
@@ -1364,7 +1364,7 @@ index 0000000..3bed819
 2.15.0
 
 
-From db1809054191cf265f79d24da7926d6466ab18d9 Mon Sep 17 00:00:00 2001
+From 0ce3e305de070093bd928e6b18fc69c02d42fd3d Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 15:33:03 +1100
 Subject: [PATCH 09/49] Step 3.2: Load tasks collection on the server
@@ -1388,7 +1388,7 @@ index 31a9e0e..ab941a4 100644
 2.15.0
 
 
-From 7d44eebde2feadd80a237447d74dc7beca355af9 Mon Sep 17 00:00:00 2001
+From 6561f4929a2ac44177d51886c4b5f2323f30e443 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 15:37:12 +1100
 Subject: [PATCH 10/49] Step 3.3: Add react-meteor-data package
@@ -1431,7 +1431,7 @@ index cc65391..dbd3be5 100644
 2.15.0
 
 
-From 18294e96a4014ca06f68d29db757ee441f44058a Mon Sep 17 00:00:00 2001
+From e618d9e3650682448456219b32d29ee9d0023925 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 15:37:54 +1100
 Subject: [PATCH 11/49] Step 3.4: Modify App component to get tasks from
@@ -1484,7 +1484,7 @@ index bad39ea..3c1072d 100644
 2.15.0
 
 
-From 5ddefde8aad71d769e1cfdd55f6c42e83243cee4 Mon Sep 17 00:00:00 2001
+From ab42898122e1ecb2d7bf9fbe568197915ad29f20 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:13:37 -0700
 Subject: [PATCH 12/49] Step 4.1: Add form for new tasks
@@ -1516,7 +1516,7 @@ index 3c1072d..d8b597f 100644
 2.15.0
 
 
-From 3426ae057c9416ad9e4751ce0620b24b92ccf22d Mon Sep 17 00:00:00 2001
+From c85faa52a7c4d4aa4b63b014f78a773413a52e99 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:14:08 -0700
 Subject: [PATCH 13/49] Step 4.2: Add handleSubmit method to App component
@@ -1561,7 +1561,7 @@ index d8b597f..2b8fb3a 100644
 2.15.0
 
 
-From 6e9ec615df9e6b662bf01bae5b5d0498d9690c80 Mon Sep 17 00:00:00 2001
+From 66e3b1d29a01b51bf587fb261ae0cb0fc4ac7f4b Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:14:40 -0700
 Subject: [PATCH 14/49] Step 4.3: Update data container to sort tasks by time
@@ -1586,7 +1586,7 @@ index 2b8fb3a..9595e4a 100644
 2.15.0
 
 
-From 358a3e69ef61b73a513adb91bb644171ae56bc7d Mon Sep 17 00:00:00 2001
+From cf1b05a943414f12cd8a1a6dcf09a64daff5a7fa Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:17:06 -0700
 Subject: [PATCH 15/49] Step 5.1: Update Task component to add features
@@ -1645,7 +1645,7 @@ index f0e1f80..9d7bb46 100644
 2.15.0
 
 
-From 031312b4acc13305ff8c37ebdfabd354b985fd0b Mon Sep 17 00:00:00 2001
+From 82bd13d1e0239efdfd9e943779c2913f6beeb39b Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:21:30 -0700
 Subject: [PATCH 16/49] Step 7.1: Add hide completed checkbox to App component
@@ -1679,7 +1679,7 @@ index 9595e4a..10a95ae 100644
 2.15.0
 
 
-From 6b19579a09214c6836ae0f3217c2c30488795500 Mon Sep 17 00:00:00 2001
+From e4bb284d9182a459369dfe2155dd368f4c7919c9 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:22:07 -0700
 Subject: [PATCH 17/49] Step 7.2: Add intial state to App component
@@ -1711,7 +1711,7 @@ index 10a95ae..641aeee 100644
 2.15.0
 
 
-From 7840753bc66abd09dafa4bdd141138484eb249ca Mon Sep 17 00:00:00 2001
+From ef0273328b66585d037a8fe5baea106774a98b25 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:22:32 -0700
 Subject: [PATCH 18/49] Step 7.3: Add toggleHideCompleted handler to App
@@ -1741,7 +1741,7 @@ index 641aeee..6cef154 100644
 2.15.0
 
 
-From 837f59b2481002cf3f27eeb14b8b4ce179bbb408 Mon Sep 17 00:00:00 2001
+From 5faa61062219b1025cafba354275d5545b438fae Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:23:02 -0700
 Subject: [PATCH 19/49] Step 7.4: Filter tasks in renderTasks
@@ -1771,7 +1771,7 @@ index 6cef154..6157c83 100644
 2.15.0
 
 
-From aff914716d83e493d6d6bb67cdc8a76a006e698d Mon Sep 17 00:00:00 2001
+From dcbc0eba00587bf73c7b891efd45b5c6a17f9e33 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:23:44 -0700
 Subject: [PATCH 20/49] Step 7.5: Update data container to return
@@ -1796,7 +1796,7 @@ index 6157c83..2e324f0 100644
 2.15.0
 
 
-From 0e314bbe68619ffe2672d2278435b8d6e811c392 Mon Sep 17 00:00:00 2001
+From bcc9323ca56384b79ade6643f871cf2fb29f3f58 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:24:09 -0700
 Subject: [PATCH 21/49] Step 7.6: Display incompleteCount in the header
@@ -1822,7 +1822,7 @@ index 2e324f0..a0314af 100644
 2.15.0
 
 
-From eb369be9720b92f97f347ee39004b52212a81012 Mon Sep 17 00:00:00 2001
+From aad8b37df6c2dc68b5cf281fc2d95e7444259c13 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:26:02 -0700
 Subject: [PATCH 22/49] Step 8.1: Add accounts-ui and accounts-password
@@ -1912,7 +1912,7 @@ index dbd3be5..4931db8 100644
 2.15.0
 
 
-From ff81323d279679910fa5e17af70597c30c711275 Mon Sep 17 00:00:00 2001
+From 60c34e4b9c9b41b6fc998857a49a9427dcf361ce Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:26:59 -0700
 Subject: [PATCH 23/49] Step 8.2: Create Accounts UI wrapper component
@@ -1952,7 +1952,7 @@ index 0000000..208d5af
 2.15.0
 
 
-From 82cf9664c4c0925a4fbc742c822fd4e8aaefe346 Mon Sep 17 00:00:00 2001
+From 9175ba6fad940612485dcda22df373aa18c2a10c Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:27:36 -0700
 Subject: [PATCH 24/49] Step 8.3: Include sign in form
@@ -1986,7 +1986,7 @@ index a0314af..0d1914f 100644
 2.15.0
 
 
-From e6d6d54ff59463fee82dc3e29f3d49b4548e92e4 Mon Sep 17 00:00:00 2001
+From ea0057553355f9866a208ed78923fc079467dce8 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 16:13:48 +1100
 Subject: [PATCH 25/49] Step 8.4: Configure accounts-ui
@@ -2011,7 +2011,7 @@ index 0000000..7e4f7e5
 2.15.0
 
 
-From 03a4347eba5914b5b4f86e2c597320f26ee60de9 Mon Sep 17 00:00:00 2001
+From 1871470c91712f2799c221acd007458d70bdcfd4 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 16:14:08 +1100
 Subject: [PATCH 26/49] Step 8.5: Import accounts configuration
@@ -2036,7 +2036,7 @@ index 00f2bbf..2b50fc7 100644
 2.15.0
 
 
-From c458c3d35d3fc0080865f9468277641ba54d728c Mon Sep 17 00:00:00 2001
+From 5a2dd38a14bfcb125f5e4d8d13d9e99068be7f5a Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:28:46 -0700
 Subject: [PATCH 27/49] Step 8.6: Update insert to save username and owner
@@ -2069,7 +2069,7 @@ index 0d1914f..0ffb93a 100644
 2.15.0
 
 
-From 7ab12a6bdda91d207a5341f0ae62f5dc337f266c Mon Sep 17 00:00:00 2001
+From e34ee47b0ddebc85250dfa2ea3bf45424a732b09 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:29:16 -0700
 Subject: [PATCH 28/49] Step 8.7: Update data container to return data about
@@ -2094,7 +2094,7 @@ index 0ffb93a..c1171c0 100644
 2.15.0
 
 
-From 6f23c3706ba0a0d2890639335cc9d839f009ea99 Mon Sep 17 00:00:00 2001
+From a0f9e109381fef9d7027b1fe88040dacc73ce5d9 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:30:06 -0700
 Subject: [PATCH 29/49] Step 8.8: Wrap new task form to only show when logged
@@ -2135,7 +2135,7 @@ index c1171c0..89bc781 100644
 2.15.0
 
 
-From 51cc3ea1a0e6d288f3068014df2ceda170a59f71 Mon Sep 17 00:00:00 2001
+From 41188d25a8b9da6e6a8eea07e2977a550d6dc427 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:30:48 -0700
 Subject: [PATCH 30/49] Step 8.9: Update Task component to show username
@@ -2163,7 +2163,7 @@ index 9d7bb46..f767517 100644
 2.15.0
 
 
-From ff7da09e93f0e50ba276b5d6a44f0b8fa2c4401d Mon Sep 17 00:00:00 2001
+From 75ab0bf93fa2e959272a91121a2d1d1482d923f5 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:31:22 -0700
 Subject: [PATCH 31/49] Step 9.1: Remove insecure package
@@ -2201,7 +2201,7 @@ index 4931db8..7ac3b09 100644
 2.15.0
 
 
-From 1e0ab1ddd5610fb9256e83f2b3f631f6d4332349 Mon Sep 17 00:00:00 2001
+From 1d57eb3a1b8aa32166295b5c27bbef974e3f2221 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:32:21 -0700
 Subject: [PATCH 32/49] Step 9.2: Add methods for add, remove, update task
@@ -2253,7 +2253,7 @@ index 3bed819..af4962a 100644
 2.15.0
 
 
-From 9185313257362dd28fa7628c974eb5eaeadfcf36 Mon Sep 17 00:00:00 2001
+From 68b633661e9f58967c885f08a092124e0c0afd70 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:32:59 -0700
 Subject: [PATCH 33/49] Step 9.3: Update App component to use tasks.insert
@@ -2285,7 +2285,7 @@ index 89bc781..8f58f41 100644
 2.15.0
 
 
-From 0c4825a516050c144fa2e69430db072026e7d62d Mon Sep 17 00:00:00 2001
+From 8946486cb20de4ede768083e94df1550cdcb972c Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:33:38 -0700
 Subject: [PATCH 34/49] Step 9.4: Replace update and remove with methods
@@ -2324,7 +2324,7 @@ index f767517..a575453 100644
 2.15.0
 
 
-From afb999560351287cd15fd59f1ca2ef2d04765613 Mon Sep 17 00:00:00 2001
+From 445bb6a23882dbd536e588d207d1b43cedbb820a Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:34:33 -0700
 Subject: [PATCH 35/49] Step 10.1: Remove autopublish package
@@ -2362,7 +2362,7 @@ index 7ac3b09..c696266 100644
 2.15.0
 
 
-From c38afe3733376428b2af87d0f23a0c4c20cb7bf8 Mon Sep 17 00:00:00 2001
+From 6b6f68c2e6edf6a768ae8e39343ae0b5b1072232 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 16:27:05 +1100
 Subject: [PATCH 36/49] Step 10.2: Add publication for tasks
@@ -2393,7 +2393,7 @@ index af4962a..80d36bc 100644
 2.15.0
 
 
-From 32334b6f54b158a9ea914854646a69595776de0c Mon Sep 17 00:00:00 2001
+From 1d85c4005ff5623b801f9c97c90d12259ae59b12 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 16:28:14 +1100
 Subject: [PATCH 37/49] Step 10.3: Subscribe to tasks in App container
@@ -2419,7 +2419,7 @@ index 8f58f41..b6f3138 100644
 2.15.0
 
 
-From e96fa1c928185273dc51a07d5c875aedcbffe599 Mon Sep 17 00:00:00 2001
+From f57e0da86b1cbb7082a62071a9f2dc0750683ef6 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:36:29 -0700
 Subject: [PATCH 38/49] Step 10.4: Add tasks.setPrivate method
@@ -2454,7 +2454,7 @@ index 80d36bc..63feeca 100644
 2.15.0
 
 
-From 259ba9bb36a2b13f730b93b477f7fb0056e856ff Mon Sep 17 00:00:00 2001
+From e7f9feeac6410d74b7008af9a10a0496f37b6e08 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:36:59 -0700
 Subject: [PATCH 39/49] Step 10.5: Update renderTasks to pass in
@@ -2494,7 +2494,7 @@ index b6f3138..6698619 100644
 2.15.0
 
 
-From 90d1099a6abd5752338aa7377965411ebe184c80 Mon Sep 17 00:00:00 2001
+From fa52f3ed950a11d984e550e359d4996ca1b19cf4 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:38:04 -0700
 Subject: [PATCH 40/49] Step 10.7: Add private button, shown only to owner
@@ -2524,7 +2524,7 @@ index a575453..09ec93c 100644
 2.15.0
 
 
-From c3d270fb29a6679562d84acbd6c5312316536495 Mon Sep 17 00:00:00 2001
+From e8200b30c98bc1fe19090a06d18809f620f94443 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:38:33 -0700
 Subject: [PATCH 41/49] Step 10.8: Add private button event handler to Task
@@ -2552,7 +2552,7 @@ index 09ec93c..1c21f88 100644
 2.15.0
 
 
-From 929aa29c631b0b7fc425ad3bef8217ac19da53c5 Mon Sep 17 00:00:00 2001
+From 8392d78d99acce3cf0f0ea0b6417820061bc3c94 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 16:33:06 +1100
 Subject: [PATCH 42/49] Step 10.9: Install the classnames NPM package
@@ -2577,7 +2577,7 @@ index 09105cf..c2b7e92 100644
 2.15.0
 
 
-From 4e4398b6b7c1d64f3ee371cb3ecafc5e0f4ac1a1 Mon Sep 17 00:00:00 2001
+From 39940958db50e13e23c0326ada269a09172d26dd Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:39:22 -0700
 Subject: [PATCH 43/49] Step 10.10: Add private className to Task when needed
@@ -2613,7 +2613,7 @@ index 1c21f88..11e71ee 100644
 2.15.0
 
 
-From c813015db847c4a7c8a5a542bd8aa39a05c9b69b Mon Sep 17 00:00:00 2001
+From 25ea1a5e7b2cbf9b95c424bd680d39de06622b2c Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:39:58 -0700
 Subject: [PATCH 44/49] Step 10.11: Only publish tasks the current user can see
@@ -2646,7 +2646,7 @@ index 63feeca..5f76880 100644
 2.15.0
 
 
-From cc1f44b501fbb7b6c41cd7f6a72930700c2b5c51 Mon Sep 17 00:00:00 2001
+From 4a7d280160e9f9f9e178d351501370747f2488f7 Mon Sep 17 00:00:00 2001
 From: Sashko Stubailo <sashko@stubailo.com>
 Date: Mon, 13 Jul 2015 12:40:55 -0700
 Subject: [PATCH 45/49] Step 10.12: Add extra security to methods
@@ -2688,62 +2688,153 @@ index 5f76880..d7d72dd 100644
 2.15.0
 
 
-From 49ebf9b053d2592c3c109aec6092d3956bbc6e32 Mon Sep 17 00:00:00 2001
+From 1b5c293de682c355c63630dbec4df13149eb2ce6 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 16:35:58 +1100
 Subject: [PATCH 46/49] Step 11.1: Added practicalmeteor:mocha package
 
 ---
- .meteor/packages | 1 +
- .meteor/versions | 7 +++++++
- 2 files changed, 8 insertions(+)
+ .meteor/packages  |  1 +
+ .meteor/versions  |  3 +++
+ package-lock.json | 53 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+ package.json      |  3 +++
+ 4 files changed, 60 insertions(+)
 
 diff --git a/.meteor/packages b/.meteor/packages
-index 57d256c..6117a10 100644
+index 57d256c..e5c57c7 100644
 --- a/.meteor/packages
 +++ b/.meteor/packages
 @@ -20,3 +20,4 @@ shell-server@0.3.0            # Server-side component of the `meteor shell` comm
  react-meteor-data
  accounts-ui
  accounts-password
-+practicalmeteor:mocha
++meteortesting:mocha
 diff --git a/.meteor/versions b/.meteor/versions
-index c696266..4f052db 100644
+index c696266..2118114 100644
 --- a/.meteor/versions
 +++ b/.meteor/versions
-@@ -16,6 +16,7 @@ caching-compiler@1.1.9
- caching-html-compiler@1.1.2
- callback-hook@1.0.10
- check@1.2.5
-+coffeescript@1.0.17
- ddp@1.4.0
- ddp-client@2.2.0
- ddp-common@1.3.0
-@@ -59,6 +60,11 @@ npm-bcrypt@0.9.3
+@@ -45,6 +45,8 @@ localstorage@1.2.0
+ logging@1.1.19
+ meteor@1.8.2
+ meteor-base@1.2.0
++meteortesting:browser-tests@0.1.2
++meteortesting:mocha@0.5.0
+ minifier-css@1.2.16
+ minifier-js@2.2.2
+ minimongo@1.4.2
+@@ -59,6 +61,7 @@ npm-bcrypt@0.9.3
  npm-mongo@2.2.33
  observe-sequence@1.0.16
  ordered-dict@1.0.9
-+practicalmeteor:chai@2.1.0_1
-+practicalmeteor:loglevel@1.2.0_2
-+practicalmeteor:mocha@2.4.5_6
 +practicalmeteor:mocha-core@1.0.1
-+practicalmeteor:sinon@1.14.1_2
  promise@0.10.0
  random@1.0.10
  rate-limit@1.0.8
-@@ -82,6 +88,7 @@ templating-compiler@1.3.3
- templating-runtime@1.3.2
- templating-tools@1.1.2
- tmeasday:check-npm-versions@0.2.0
-+tmeasday:test-reporter-helpers@0.2.1
- tracker@1.1.3
- ui@1.0.13
- underscore@1.0.10
+diff --git a/package-lock.json b/package-lock.json
+index 5e61a56..a00521d 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -3,6 +3,12 @@
+   "requires": true,
+   "lockfileVersion": 1,
+   "dependencies": {
++    "assertion-error": {
++      "version": "1.0.2",
++      "resolved": "https://registry.npmjs.org/assertion-error/-/assertion-error-1.0.2.tgz",
++      "integrity": "sha1-E8pRXYYgbaC6xm6DTdOX2HWBCUw=",
++      "dev": true
++    },
+     "babel-runtime": {
+       "version": "6.26.0",
+       "resolved": "https://registry.npmjs.org/babel-runtime/-/babel-runtime-6.26.0.tgz",
+@@ -12,11 +18,46 @@
+         "regenerator-runtime": "0.11.0"
+       }
+     },
++    "chai": {
++      "version": "4.1.2",
++      "resolved": "https://registry.npmjs.org/chai/-/chai-4.1.2.tgz",
++      "integrity": "sha1-D2RYS6ZC8PKs4oBiefTwbKI61zw=",
++      "dev": true,
++      "requires": {
++        "assertion-error": "1.0.2",
++        "check-error": "1.0.2",
++        "deep-eql": "3.0.1",
++        "get-func-name": "2.0.0",
++        "pathval": "1.1.0",
++        "type-detect": "4.0.5"
++      }
++    },
++    "check-error": {
++      "version": "1.0.2",
++      "resolved": "https://registry.npmjs.org/check-error/-/check-error-1.0.2.tgz",
++      "integrity": "sha1-V00xLt2Iu13YkS6Sht1sCu1KrII=",
++      "dev": true
++    },
+     "core-js": {
+       "version": "2.5.1",
+       "resolved": "https://registry.npmjs.org/core-js/-/core-js-2.5.1.tgz",
+       "integrity": "sha1-rmh03GaTd4m4B1T/VCjfZoGcpQs="
+     },
++    "deep-eql": {
++      "version": "3.0.1",
++      "resolved": "https://registry.npmjs.org/deep-eql/-/deep-eql-3.0.1.tgz",
++      "integrity": "sha512-+QeIQyN5ZuO+3Uk5DYh6/1eKO0m0YmJFGNmFHGACpf1ClL1nmlV/p4gNgbl2pJGxgXb4faqo6UE+M5ACEMyVcw==",
++      "dev": true,
++      "requires": {
++        "type-detect": "4.0.5"
++      }
++    },
++    "get-func-name": {
++      "version": "2.0.0",
++      "resolved": "https://registry.npmjs.org/get-func-name/-/get-func-name-2.0.0.tgz",
++      "integrity": "sha1-6td0q+5y4gQJQzoGY2YCPdaIekE=",
++      "dev": true
++    },
+     "meteor-node-stubs": {
+       "version": "0.3.2",
+       "resolved": "https://registry.npmjs.org/meteor-node-stubs/-/meteor-node-stubs-0.3.2.tgz",
+@@ -674,10 +715,22 @@
+         }
+       }
+     },
++    "pathval": {
++      "version": "1.1.0",
++      "resolved": "https://registry.npmjs.org/pathval/-/pathval-1.1.0.tgz",
++      "integrity": "sha1-uULm1L3mUwBe9rcTYd74cn0GReA=",
++      "dev": true
++    },
+     "regenerator-runtime": {
+       "version": "0.11.0",
+       "resolved": "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.11.0.tgz",
+       "integrity": "sha512-/aA0kLeRb5N9K0d4fw7ooEbI+xDe+DKD499EQqygGqeS8N3xto15p09uY2xj7ixP81sNPXvRLnAQIqdVStgb1A=="
++    },
++    "type-detect": {
++      "version": "4.0.5",
++      "resolved": "https://registry.npmjs.org/type-detect/-/type-detect-4.0.5.tgz",
++      "integrity": "sha512-N9IvkQslUGYGC24RkJk1ba99foK6TkwC2FHAEBlQFBP0RxQZS8ZpJuAZcwiY/w9ZJHFQb1aOXBI60OdxhTrwEQ==",
++      "dev": true
+     }
+   }
+ }
+diff --git a/package.json b/package.json
+index c2b7e92..4569b8d 100644
+--- a/package.json
++++ b/package.json
+@@ -10,5 +10,8 @@
+     "meteor-node-stubs": "^0.3.2",
+     "react": "^16.1.1",
+     "react-dom": "^16.1.1"
++  },
++  "devDependencies": {
++    "chai": "^4.1.2"
+   }
+ }
 -- 
 2.15.0
 
 
-From 44df353d48159a8be887aae4c1741e4f7a5fc048 Mon Sep 17 00:00:00 2001
+From 6e1c027d7e31f8dcccc6108a1c0224552d5bc2c2 Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 16:36:17 +1100
 Subject: [PATCH 47/49] Step 11.2: Add a scaffold for a method test
@@ -2775,7 +2866,7 @@ index 0000000..05287ba
 2.15.0
 
 
-From 16ea918e502ca433dbf6e5dd9fac8053d2b1a882 Mon Sep 17 00:00:00 2001
+From abe4b404b2097e5c465ec1ad736865fb2c04985d Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 16:36:29 +1100
 Subject: [PATCH 48/49] Step 11.3: Prepare the database for each test
@@ -2819,7 +2910,7 @@ index 05287ba..1359e85 100644
 2.15.0
 
 
-From 5800c6b8ccbce4ea5f56a4c4db65c6121eec6cb5 Mon Sep 17 00:00:00 2001
+From c626318839efbd31df54954bf6dfda88a23ae62d Mon Sep 17 00:00:00 2001
 From: Tom Coleman <tom@thesnail.org>
 Date: Fri, 18 Mar 2016 16:36:42 +1100
 Subject: [PATCH 49/49] Step 11.4: Added test to check delete method
@@ -2829,14 +2920,14 @@ Subject: [PATCH 49/49] Step 11.4: Added test to check delete method
  1 file changed, 13 insertions(+)
 
 diff --git a/imports/api/tasks.tests.js b/imports/api/tasks.tests.js
-index 1359e85..9b61c5a 100644
+index 1359e85..1b59ec8 100644
 --- a/imports/api/tasks.tests.js
 +++ b/imports/api/tasks.tests.js
 @@ -2,6 +2,7 @@
  
  import { Meteor } from 'meteor/meteor';
  import { Random } from 'meteor/random';
-+import { assert } from 'meteor/practicalmeteor:chai';
++import { assert } from 'chai';
  
  import { Tasks } from './tasks.js';
  
