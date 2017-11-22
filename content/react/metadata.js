@@ -63,12 +63,12 @@ TutorialRegistry.registerTutorial("react", {
     {
       title: 'Testing',
       slug: "testing",
-      template: 'sharedStep11'
+      template: 'react-step11'
     },
     {
       title: 'Next steps',
       slug: "next-steps",
-      template: 'react-step11'
+      template: 'react-step12'
     }
   ]
 });
