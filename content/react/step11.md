@@ -23,17 +23,17 @@ If you do so, you should see a `0 passing` message in your console window.
 
 Let's add a simple test (that doesn't do anything yet):
 
-{{> DiffBox tutorialName="simple-todos" step="11.2"}}
+{{> DiffBox tutorialName="simple-todos-react" step="11.2"}}
 
 In any test we need to ensure the database is in the state we expect before beginning. We can use Mocha's `beforeEach` construct to do that easily:
 
-{{> DiffBox tutorialName="simple-todos" step="11.3"}}
+{{> DiffBox tutorialName="simple-todos-react" step="11.3"}}
 
 Here we create a single task that's associated with a random `userId` that'll be different for each test run.
 
 Now we can write the test to call the `tasks.remove` method "as" that user and verify the task is deleted:
 
-{{> DiffBox tutorialName="simple-todos" step="11.4"}}
+{{> DiffBox tutorialName="simple-todos-react" step="11.4"}}
 
 There's a lot more you can do in a Meteor test! You can read more about it in the Meteor Guide [article on testing](http://guide.meteor.com/testing.html).
 

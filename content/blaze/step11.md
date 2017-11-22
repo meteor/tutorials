@@ -1,4 +1,4 @@
-{{#template name="sharedStep11"}}
+{{#template name="blaze-step11"}}
 
 # Testing
 
