@@ -4,7 +4,7 @@ Collections are Meteor's way of storing persistent data. The special thing about
 
 You can read more about collections in the [Collections article](http://guide.meteor.com/collections.html) of the Meteor Guide.
 
-Creating a new collection is as easy as calling `MyCollection = new Mongo.Collection("my-collection");` in your JavaScript. On the server, this sets up a MongoDB collection called `my-collection`; on the client, this creates a cache connected to the server collection. We'll learn more about the client/server divide in step 12, but for now we can write our code with the assumption that the entire database is present on the client.
+Creating a new collection is as easy as calling `MyCollection = new Mongo.Collection("MyCollection");` in your JavaScript. On the server, this sets up a MongoDB collection called `MyCollection`; on the client, this creates a cache connected to the server collection. We'll learn more about the client/server divide in step 12, but for now we can write our code with the assumption that the entire database is present on the client.
 
 To create the collection, we define a new `tasks` module that creates a Mongo collection and exports it:
 
