@@ -6,20 +6,19 @@ Now that we've created a few features for our application, let's add a test to e
 
 We'll write a test that exercises one of our Methods (which form the "write" part of our app's API), and verifies it works correctly.
 
-To do so, we'll add a [test driver](http://guide.meteor.com/testing.html#test-driver) for the [Mocha](https://mochajs.org) JavaScript test framework, along with a test assertion library:
+To do so, we'll add a [test driver](http://guide.meteor.com/testing.html#test-driver) for the [Mocha](https://mochajs.org) JavaScript test framework:
 
 ```bash
-meteor add meteortesting:mocha
-meteor npm install --save-dev chai
+meteor add practicalmeteor:mocha
 ```
 
 We can now run our app in "test mode" by calling out a special command and specifying to use the driver (you'll need to stop the regular app from running, or specify an alternate port with `--port XYZ`):
 
 ```bash
-TEST_WATCH=1 meteor test --driver-package meteortesting:mocha
+meteor test --driver-package practicalmeteor:mocha
 ```
 
-If you do so, you should see a `0 passing` message in your console window.
+If you do so, you should see an empty test results page in your browser window.
 
 Let's add a simple test (that doesn't do anything yet):
 
