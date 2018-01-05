@@ -7,7 +7,7 @@ First, let's remove the body from our HTML entry-point (leaving just the `<head>
 
 {{> DiffBox tutorialName="simple-todos" step="2.1"}}
 
-Create a new directory with the name `imports` inside `simple-todos` folder. Then we create some new files in the `imports/` directory:
+Create a new directories with the name `imports/ui/` inside `simple-todos` folder. Then we create some new files in the `imports/ui/` directory:
 
 {{> DiffBox tutorialName="simple-todos" step="2.2"}}
 
