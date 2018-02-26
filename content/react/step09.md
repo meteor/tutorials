@@ -1,4 +1,6 @@
-{{#template name="react-step09"}}
+---
+title: 9. Security with methods
+---
 
 # Security with methods
 
@@ -18,13 +20,83 @@ If you try to use the app after removing this package, you will notice that none
 
 First, we need to define some methods. We need one method for each database operation we want to perform on the client. Methods should be defined in code that is executed on the client and the server - we will discuss this a bit later in the section titled _Optimistic UI_.
 
-{{> DiffBox step="9.2" tutorialName="simple-todos-react"}}
+**9.1 Add methods for add, remove, update task (`imports/api/tasks.js`)**
+```js
+import { Meteor } from 'meteor/meteor';
+import { Mongo } from 'meteor/mongo';
+import { check } from 'meteor/check';
+
+export const Tasks = new Mongo.Collection('tasks');
+
+Meteor.methods({
+  'tasks.insert'(text) {
+    check(text, String);
+
+    // Make sure the user is logged in before inserting a task
+    if (! this.userId) {
+      throw new Meteor.Error('not-authorized');
+    }
+
+    Tasks.insert({
+      text,
+      createdAt: new Date(),
+      owner: this.userId,
+      username: Meteor.users.findOne(this.userId).username,
+    });
+  },
+  'tasks.remove'(taskId) {
+    check(taskId, String);
+
+    Tasks.remove(taskId);
+  },
+  'tasks.setChecked'(taskId, setChecked) {
+    check(taskId, String);
+    check(setChecked, Boolean);
+
+    Tasks.update(taskId, { $set: { checked: setChecked } });
+  },
+});
+```
 
 Now that we have defined our methods, we need to update the places we were operating on the collection to use the methods instead:
 
-{{> DiffBox step="9.3" tutorialName="simple-todos-react"}}
+**9.2 Update App component to use tasks.insert method (`imports/ui/App.js`)**
+```js
+    ...
+    // Find the text field via the React ref
+    const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
 
-{{> DiffBox step="9.4" tutorialName="simple-todos-react"}}
+    Meteor.call('tasks.insert', text);
+
+    // Clear form
+    ReactDOM.findDOMNode(this.refs.textInput).value = '';
+    ...
+```
+
+**9.3 Replace update and remove with methods (`imports/ui/Task.js`)**
+```js
+import React, { Component } from 'react';
+import { Meteor } from 'meteor/meteor';
+
+import { Tasks } from '../api/tasks.js';
+
+...
+
+export default class Task extends Component {
+  toggleChecked() {
+    // Set the checked property to the opposite of its current value
+    Meteor.call('tasks.setChecked', this.props.task._id, !this.props.task.checked);
+  }
+
+  deleteThisTask() {
+    Meteor.call('tasks.remove', this.props.task._id);
+  }
+
+  render() {
+    ...
+  }
+}
+```
 
 Now all of our inputs and buttons will start working again. What did we gain from all of this work?
 
@@ -32,6 +104,4 @@ Now all of our inputs and buttons will start working again. What did we gain fro
 2. We can add extra validation logic to `setChecked` and `deleteTask` in later steps when users can make tasks private.
 3. Our client code is now more separated from our database logic. Instead of a lot of stuff happening inside our event handlers, we now have methods that can be called from anywhere.
 
-{{> step09OptimisticUI}}
-
-{{/template}}
+<!-- md shared/explanations/optimistic-ui.md -->

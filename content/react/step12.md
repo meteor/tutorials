@@ -1,4 +1,6 @@
-{{#template name="react-step12"}}
+---
+title: 12. Next steps
+---
 
 # What's next?
 
@@ -15,6 +17,4 @@ meteor create --example todos
 meteor create --example localmarket
 ```
 
-{{> step11NextSteps}}
-
-{{/template}}
+<!-- md shared/next-steps.md -->

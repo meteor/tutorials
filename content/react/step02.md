@@ -1,4 +1,7 @@
-{{#template name="react-step02"}}
+---
+title: 2. Components
+---
+
 # Defining views with React components
 
 To start working with React as our view library, let's add some NPM packages which will allow us to get started with React.
@@ -17,19 +20,87 @@ To get started, let's replace the code of the default starter app. Then we'll ta
 
 First, replace the content of the initial HTML file:
 
-{{> DiffBox tutorialName="simple-todos-react" step="2.2"}}
+**2.1 Replace starter HTML code (`client/main.html`)**
+```html
+<head>
+  <title>Todo List</title>
+</head>
+
+<body>
+  <div id="render-target"></div>
+</body>
+```
 
 Second, replace the contents of **`client/main.js`** with:
 
-{{> DiffBox tutorialName="simple-todos-react" step="2.3"}}
+**2.2 Replace starter JS (`client/main.js`)**
+```js
+import React from 'react';
+import { Meteor } from 'meteor/meteor';
+import { render } from 'react-dom';
+
+import App from '../imports/ui/App.js';
+
+Meteor.startup(() => {
+  render(<App />, document.getElementById('render-target'));
+});
+```
 
 Now we need to create a new directory called `imports`, a specially-named directory which will behave differently than other directories in the project.  Files outside the `imports` directory will be loaded automatically when the Meteor server starts, while files inside the `imports` directory will only load when an `import` statement is used to load them.
 
 After creating the `imports` directory, we will create two new files inside it:
 
-{{> DiffBox tutorialName="simple-todos-react" step="2.4"}}
+**2.3 Create App component (`imports/ui/App.js`)**
+```js
+import React, { Component } from 'react';
 
-{{> DiffBox tutorialName="simple-todos-react" step="2.5"}}
+import Task from './Task.js';
+
+// App component - represents the whole app
+export default class App extends Component {
+  getTasks() {
+    return [
+      { _id: 1, text: 'This is task 1' },
+      { _id: 2, text: 'This is task 2' },
+      { _id: 3, text: 'This is task 3' },
+    ];
+  }
+
+  renderTasks() {
+    return this.getTasks().map((task) => (
+      <Task key={task._id} task={task} />
+    ));
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <header>
+          <h1>Todo List</h1>
+        </header>
+
+        <ul>
+          {this.renderTasks()}
+        </ul>
+      </div>
+    );
+  }
+}
+```
+
+**2.4 Create Task component (`imports/ui/Task.js`)**
+```js
+import React, { Component } from 'react';
+
+// Task component - represents a single todo item
+export default class Task extends Component {
+  render() {
+    return (
+      <li>{this.props.task.text}</li>
+    );
+  }
+}
+```
 
 We just added three things to our app:
 
@@ -70,8 +141,134 @@ The most important method in every React component is `render()`, which is calle
 
 JSX is supported by the `ecmascript` Atmosphere package, which is included in all new Meteor apps by default.
 
-{{> DiffBox tutorialName="simple-todos-react" step="2.6"}}
+**2.5 Add CSS (client/main.css)**
+```css
+/* CSS declarations go here */
+body {
+  font-family: sans-serif;
+  background-color: #315481;
+  background-image: linear-gradient(to bottom, #315481, #918e82 100%);
+  background-attachment: fixed;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  padding: 0;
+  margin: 0;
+
+  font-size: 14px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  min-height: 100%;
+  background: white;
+}
+
+header {
+  background: #d2edf4;
+  background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
+  padding: 20px 15px 15px 15px;
+  position: relative;
+}
+
+#login-buttons {
+  display: block;
+}
+
+h1 {
+  font-size: 1.5em;
+  margin: 0;
+  margin-bottom: 10px;
+  display: inline-block;
+  margin-right: 1em;
+}
+
+form {
+  margin-top: 10px;
+  margin-bottom: -10px;
+  position: relative;
+}
+
+.new-task input {
+  box-sizing: border-box;
+  padding: 10px 0;
+  background: transparent;
+  border: none;
+  width: 100%;
+  padding-right: 80px;
+  font-size: 1em;
+}
+
+.new-task input:focus{
+  outline: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  background: white;
+}
+
+.delete {
+  float: right;
+  font-weight: bold;
+  background: none;
+  font-size: 1em;
+  border: none;
+  position: relative;
+}
+
+li {
+  position: relative;
+  list-style: none;
+  padding: 15px;
+  border-bottom: #eee solid 1px;
+}
+
+li .text {
+  margin-left: 10px;
+}
+
+li.checked {
+  color: #888;
+}
+
+li.checked .text {
+  text-decoration: line-through;
+}
+
+li.private {
+  background: #eee;
+  border-color: #ddd;
+}
+
+header .hide-completed {
+  float: right;
+}
+
+.toggle-private {
+  margin-left: 5px;
+}
+
+@media (max-width: 600px) {
+  li {
+    padding: 12px 15px;
+  }
+
+  .search {
+    width: 150px;
+    clear: both;
+  }
+
+  .new-task input {
+    padding-bottom: 5px;
+  }
+}
+```
 
 Now that you've added the CSS, the app should look a lot nicer. Check in your browser to see that the new styles have loaded.
-
-{{/template}}

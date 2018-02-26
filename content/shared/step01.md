@@ -1,4 +1,6 @@
-{{#template name="sharedStep01"}}
+---
+title: 1. Creating an app
+---
 
 # Creating your first app
 
@@ -38,4 +40,3 @@ You can play around with this default app for a bit before we continue. For exam
 > Meteor supports many newer JavaScript features, such as those in ECMAScript 2015 (ES6). If you haven't tried these next-generation JavaScript features yet, we recommend taking a look at [Luke Hoban's "ES6 features"](http://git.io/es6features) to familiarize yourself with the newer syntax.
 
 Now that you have some experience editing the files in your Meteor app, let's start working on a simple todo list application. If you find a bug or error in the tutorial, please file an issue or submit a pull request [on GitHub](https://github.com/meteor/tutorials).
-{{/template}}

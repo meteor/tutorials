@@ -1,0 +1,44 @@
+# Hexo Configuration
+## Docs: http://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: Meteor Tutorials
+github_repo: meteor/tutorials
+versions:
+  - '1.0'
+
+# This setting also defines the page order used to generate the Previous/Next links at the bottom of each page
+sidebar_categories:
+  null:
+    - index
+  React Tutorial:
+    - shared/step01
+    - react/step02
+    - react/step03
+    - react/step04
+    - react/step05
+    - shared/step06
+    - react/step07
+    - react/step08
+    - react/step09
+    - react/step10
+    - react/step11
+    - react/step12
+
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: http://tutorials.meteor.com/
+
+# Writing
+highlight:
+  enable: true
+  line_number: false
+
+include_markdown:
+  dir: source
+
+# TODO: temp
+deploy:
+  type: now
+  name: tutorials

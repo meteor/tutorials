@@ -1,4 +1,6 @@
-{{#template name="react-step10"}}
+---
+title: 10. Publish and subscribe
+---
 
 # Filtering data with publish and subscribe
 
@@ -14,11 +16,42 @@ When the app refreshes, the task list will be empty. Without the `autopublish` p
 
 First lets add a publication for all tasks:
 
-{{> DiffBox step="10.2" tutorialName="simple-todos-react"}}
+**10.1 Add publication for tasks (`imports/api/tasks.js`)**
+```js
+...
+export const Tasks = new Mongo.Collection('tasks');
+
+if (Meteor.isServer) {
+  // This code only runs on the server
+  Meteor.publish('tasks', function tasksPublication() {
+    return Tasks.find();
+  });
+}
+
+Meteor.methods({
+  'tasks.insert'(text) {
+    check(text, String);
+    ...
+  },
+  ...
+});
+```
 
 And then let's subscribe to that publication when the `App` component is created:
 
-{{> DiffBox step="10.3" tutorialName="simple-todos-react"}}
+**10.2 Subscribe to tasks in App container (`imports/ui/App.js`)**
+```js
+...
+export default withTracker(() => {
+  Meteor.subscribe('tasks');
+
+  return {
+    tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
+    incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
+    currentUser: Meteor.user(),
+  };
+})(App);
+```
 
 Once you have added this code, all of the tasks will reappear.
 
@@ -30,21 +63,93 @@ Let's add another property to tasks called "private" and a button for users to m
 
 First, we need to add a new method that we can call to set a task's private status:
 
-{{> DiffBox step="10.4" tutorialName="simple-todos-react"}}
+**10.3 Add tasks.setPrivate method (`imports/api/tasks.js`)**
+```js
+    ...
+    Tasks.update(taskId, { $set: { checked: setChecked } });
+  },
+  'tasks.setPrivate'(taskId, setToPrivate) {
+    check(taskId, String);
+    check(setToPrivate, Boolean);
+
+    const task = Tasks.findOne(taskId);
+
+    // Make sure only the task owner can make a task private
+    if (task.owner !== this.userId) {
+      throw new Meteor.Error('not-authorized');
+    }
+
+    Tasks.update(taskId, { $set: { private: setToPrivate } });
+  },
+});
+```
 
 Now, we need to pass a new property to the `Task` to decide whether we want
 to show the private button; the button should show up only if the currently
 logged in user owns this task:
 
-{{> DiffBox step="10.5" tutorialName="simple-todos-react"}}
+**10.4 Update renderTasks to pass in showPrivateButton (`imports/ui/App.js`)**
+```js
+    ...
+    if (this.state.hideCompleted) {
+      filteredTasks = filteredTasks.filter(task => !task.checked);
+    }
+    return filteredTasks.map((task) => {
+      const currentUserId = this.props.currentUser && this.props.currentUser._id;
+      const showPrivateButton = task.owner === currentUserId;
+
+      return (
+        <Task
+          key={task._id}
+          task={task}
+          showPrivateButton={showPrivateButton}
+        />
+      );
+    });
+  }
+
+  render() {
+    ...
+  }
+  ...
+```
 
 Let's add the button, using this new prop to decide whether it should be displayed:
 
-{{> DiffBox step="10.7" tutorialName="simple-todos-react"}}
+**10.5 Add private button, shown only to owner (`imports/ui/Task.js`)**
+```js
+          onClick={this.toggleChecked.bind(this)}
+        />
+
+        { this.props.showPrivateButton ? (
+          <button className="toggle-private" onClick={this.togglePrivate.bind(this)}>
+            { this.props.task.private ? 'Private' : 'Public' }
+          </button>
+        ) : ''}
+
+        <span className="text">
+          <strong>{this.props.task.username}</strong>: {this.props.task.text}
+        </span>
+```
 
 We need to define the event handler called by the button:
 
-{{> DiffBox step="10.8" tutorialName="simple-todos-react"}}
+**10.6 Add private button event handler to Task (`imports/ui/Task.js`)**
+```js
+    Meteor.call('tasks.remove', this.props.task._id);
+  }
+
+  togglePrivate() {
+    Meteor.call('tasks.setPrivate', this.props.task._id, ! this.props.task.private);
+  }
+
+  render() {
+    // Give tasks a different className when they are checked off,
+    // so that we can style them nicely in CSS
+    ...
+  }
+  ...
+```
 
 One last thing, let's update the class of the `<li>` element in the `Task` component to reflect it's privacy status. We'll use the `classnames` NPM Package for this:
 
@@ -54,14 +159,53 @@ meteor npm install --save classnames
 
 Then we'll use that package to choose a class based on the task are rendering:
 
-{{> DiffBox step="10.10" tutorialName="simple-todos-react"}}
+**10.7 Add private className to Task when needed (`imports/ui/Task.js`)**
+```js
+import React, { Component } from 'react';
+import { Meteor } from 'meteor/meteor';
+import classnames from 'classnames';
+
+import { Tasks } from '../api/tasks.js';
+
+  ...
+  render() {
+    // Give tasks a different className when they are checked off,
+    // so that we can style them nicely in CSS
+    const taskClassName = classnames({
+      checked: this.props.task.checked,
+      private: this.props.task.private,
+    });
+
+    return (
+      <li className={taskClassName}>
+        ...
+    );
+  }
+  ...
+```
 
 ### Selectively publishing tasks based on privacy status
 
 Now that we have a way of setting which tasks are private, we should modify our
 publication function to only send the tasks that a user is authorized to see:
 
-{{> DiffBox step="10.11" tutorialName="simple-todos-react"}}
+**10.8 Only publish tasks the current user can see (`imports/api/task.js`)**
+```js
+...
+if (Meteor.isServer) {
+ // This code only runs on the server
+ // Only publish tasks that are public or belong to the current user
+ Meteor.publish('tasks', function tasksPublication() {
+   return Tasks.find({
+     $or: [
+       { private: { $ne: true } },
+       { owner: this.userId },
+     ],
+   });
+ });
+}
+...
+```
 
 To test that this functionality works, you can use your browser's private browsing mode to log in as a different user. Put the two windows side by side and mark a task private to confirm that the other user can't see it. Now make it public again and it will reappear!
 
@@ -69,10 +213,38 @@ To test that this functionality works, you can use your browser's private browsi
 
 In order to finish up our private task feature, we need to add checks to our `deleteTask` and `setChecked` methods to make sure only the task owner can delete or check off a private task:
 
-{{> DiffBox step="10.12" tutorialName="simple-todos-react"}}
+**10.9 Add extra security to methods (`imports/api/task.js`)**
+```js
+  ...
+  'tasks.remove'(taskId) {
+    check(taskId, String);
+
+    const task = Tasks.findOne(taskId);
+    if (task.private && task.owner !== this.userId) {
+      // If the task is private, make sure only the owner can delete it
+      throw new Meteor.Error('not-authorized');
+    }
+
+    Tasks.remove(taskId);
+  },
+  'tasks.setChecked'(taskId, setChecked) {
+    check(taskId, String);
+    check(setChecked, Boolean);
+
+    const task = Tasks.findOne(taskId);
+    if (task.private && task.owner !== this.userId) {
+      // If the task is private, make sure only the owner can check it off
+      throw new Meteor.Error('not-authorized');
+    }
+
+    Tasks.update(taskId, { $set: { checked: setChecked } });
+  },
+  'tasks.setPrivate'(taskId, setToPrivate) {
+    ...
+  },
+...  
+```
 
 > Notice that with this code anyone can delete any public task. With some small modifications to the code, you should be able to make it so that only the owner can delete their tasks.
 
 We're done with our private task feature! Now our app is secure from attackers trying to view or modify someone's private tasks.
-
-{{/template}}

@@ -1,4 +1,6 @@
-{{#template name="react-step04"}}
+---
+title: 4. Forms and events
+---
 
 # Adding tasks with a form
 
@@ -6,7 +8,25 @@ In this step, we'll add an input field for users to add tasks to the list.
 
 First, let's add a form to our `App` component:
 
-{{> DiffBox step="4.1" tutorialName="simple-todos-react"}}
+**4.1 Add form for new tasks (`imports/ui/App.js`)**
+```js
+      ...
+      <div className="container">
+        <header>
+          <h1>Todo List</h1>
+
+          <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
+            <input
+              type="text"
+              ref="textInput"
+              placeholder="Type to add new tasks"
+            />
+          </form>
+        </header>
+
+        <ul>
+          ...
+```
 
 > Tip: You can add comments to your JSX code by wrapping them in `{/* ... */}`
 
@@ -14,7 +34,35 @@ You can see that the `form` element has an `onSubmit` attribute that references 
 
 Let's add a `handleSubmit` method to our `App` component:
 
-{{> DiffBox step="4.2" tutorialName="simple-todos-react"}}
+**4.2 Add handleSubmit method to App component (`imports/ui/App.js`)**
+```js
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import { withTracker } from 'meteor/react-meteor-data';
+
+import { Tasks } from '../api/tasks.js';
+...
+
+// App component - represents the whole app
+class App extends Component {
+  handleSubmit(event) {
+    event.preventDefault();
+
+    // Find the text field via the React ref
+    const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
+
+    Tasks.insert({
+      text,
+      createdAt: new Date(), // current time
+    });
+
+    // Clear form
+    ReactDOM.findDOMNode(this.refs.textInput).value = '';
+  }
+
+  ...
+}
+```
 
 Now your app has a new input field. To add a task, just type into the input field and hit enter. If you open a new browser window and open the app again, you'll see that the list is automatically synchronized between all clients.
 
@@ -34,9 +82,18 @@ Currently, our code displays all new tasks at the bottom of the list. That's not
 
 We can solve this by sorting the results using the `createdAt` field that is automatically added by our new code. Just add a sort option to the `find` call inside the data container wrapping the `App` component:
 
-{{> DiffBox step="4.3" tutorialName="simple-todos-react"}}
+**4.3 Update data container to sort tasks by time (`imports/ui/App.js`)**
+
+```js
+...
+
+export default withTracker(() => {
+  return {
+    tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
+  };
+})(App);
+```
 
 Let's go back to the browser and make sure this worked: any new tasks that you add should appear at the top of the list, rather than at the bottom.
 
 In the next step, we'll add some very important todo list features: checking off and deleting tasks.
-{{/template}}
