@@ -722,7 +722,7 @@ index fc36022..42ad1d5 100644
 +
 +    // Get value from form element
 +    const target = event.target;
-+    const text = target.text.value;
++    const text = target.children.text.value;
 +
 +    // Insert a task into the collection
 +    Tasks.insert({
