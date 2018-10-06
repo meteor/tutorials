@@ -11,6 +11,13 @@ meteor npm install --save react react-dom
 
 > Note: `meteor npm` supports the same features as `npm`, though the difference can be important.  Consult the [`meteor npm` documentation](https://docs.meteor.com/commandline.html#meteornpm) for more information.
 
+We also need to remove Meteor's default Blaze templating engine to let React handle our templates.
+
+```sh
+meteor remove blaze-html-templates
+meteor add static-html
+```
+
 ### Replace the starter code
 
 To get started, let's replace the code of the default starter app. Then we'll talk about what it does.
