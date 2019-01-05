@@ -1,4 +1,29 @@
 {{#template name="react-step02"}}
+# In a hurry?
+
+If you don't have time to follow this detailed tutorial right now, you have two options.
+
+To skip to the finished application explained by this tutorial, run the following commands:
+
+```sh
+git clone git@github.com:meteor/simple-todos-react.git
+cd simple-todos-react
+meteor npm install
+meteor
+```
+
+If you are an experienced React developer, most of this application will be self-explanatory, though you can always refer back to this tutorial to understand the details.
+
+Alternatively, as of Meteor 1.8, you can choose React instead of Blaze when creating a new Meteor application:
+
+```sh
+meteor create --react new-react-app
+cd new-react-app
+meteor
+```
+
+This application is different from the todo list you would build in this tutorial, but it's another great way to get started with React quickly.
+
 # Defining views with React components
 
 To start working with React as our view library, let's add some NPM packages which will allow us to get started with React.
