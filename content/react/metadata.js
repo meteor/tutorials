@@ -8,7 +8,7 @@ if (Meteor.isClient) {
 TutorialRegistry.registerTutorial("react", {
   title: "Simple Todos React",
   subtitle: "Learn how to use Meteor and React together",
-  tutorialSourceLink: "github.com/meteor/tutorials/content/angular",
+  tutorialSourceLink: "github.com/meteor/tutorials/content/react",
   steps: [
     {
       title: "Creating an app",
