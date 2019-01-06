@@ -4,17 +4,19 @@ Collections are Meteor's way of storing persistent data. The special thing about
 
 You can read more about collections in the [Collections article](http://guide.meteor.com/collections.html) of the Meteor Guide.
 
-Creating a new collection is as easy as calling `MyCollection = new Mongo.Collection("my-collection");` in your JavaScript. On the server, this sets up a MongoDB collection called `my-collection`; on the client, this creates a cache connected to the server collection. We'll learn more about the client/server divide in step 12, but for now we can write our code with the assumption that the entire database is present on the client.
+Creating a new collection is as easy as calling `new Mongo.Collection("my-collection")` in your JavaScript. On the server, this sets up a MongoDB collection called `my-collection`; on the client, it creates a cache connected to the server collection. We'll learn more about the client/server divide in step 12, but for now we can write our code with the assumption that the entire database is present on the client.
 
-To create the collection, we define a new `tasks` module that creates a Mongo collection and exports it:
+To create the collection, we define a new **`imports/api/tasks.js`** module that creates a Mongo collection and exports it:
 
 {{> DiffBox tutorialName=tutorialName step="3.1"}}
 
 Notice that we place this file in a new `imports/api` directory. This is a sensible place to store API-related files for the application. We will start by putting "collections" here and later we will add "publications" that read from them and "methods" that write to them. You can read more about how to structure your code in the [Application Structure article](http://guide.meteor.com/structure.html) of the Meteor Guide.
 
-We need to import that module on the server (this creates the MongoDB collection and sets up the plumbing to get the data to the client):
+We now need to import the `imports/api/tasks.js` module into `server/main.js`:
 
 {{> DiffBox tutorialName=tutorialName step="3.2"}}
+
+Importing `imports/api/tasks.js` on the server creates the MongoDB collection and sets up the plumbing to get the data to the client.
 
 {{/template}}
 
@@ -22,7 +24,7 @@ We need to import that module on the server (this creates the MongoDB collection
 
 ### Inserting tasks from the server-side database console
 
-Items inside collections are called _documents_. Let's use the server database console to insert some documents into our collection. In a new terminal tab, go to your app directory and type:
+Items inside collections are called _documents_. Let's use the server database console to insert some documents into our collection. While your app is running, in a new terminal tab, go to your app directory and type:
 
 ```bash
 meteor mongo
@@ -34,7 +36,7 @@ This opens a console into your app's local development database. Into the prompt
 db.tasks.insert({ text: "Hello world!", createdAt: new Date() });
 ```
 
-In your web browser, you will see the UI of your app immediately update to show the new task. You can see that we didn't have to write any code to connect the server-side database to our front-end code &mdash; it just happened automatically.
+In your web browser, you will see the UI of your app immediately update to show the new task. You can see that we didn't have to write any code to connect the server-side database to our front-end code&mdash;it just happened automatically.
 
 Insert a few more tasks from the database console with different text. In the next step, we'll see how to add functionality to our app's UI so that we can add tasks without using the database console.
 
@@ -55,7 +57,6 @@ What this means is that a newly created task actually appears on the screen _bef
 
 If the result from the server comes back and is consistent with the simulation on the client, everything remains as is. If the result on the server is different from the result of the simulation on the client, the UI is patched to reflect the actual state of the server.
 
-
-You can read more about methods and optimistic UI in the [Methods article](http://guide.meteor.com/methods.html) of the Meteor Guide, and our [blog post about optimistic UI](http://info.meteor.com/blog/optimistic-ui-with-meteor-latency-compensation).
+You can read more about methods and optimistic UI in the [Methods article](http://guide.meteor.com/methods.html) of the Meteor Guide, and our [blog post about optimistic UI](https://blog.meteor.com/optimistic-ui-with-meteor-67b5a78c3fcf).
 
 {{/template}}

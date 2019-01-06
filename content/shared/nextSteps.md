@@ -9,7 +9,7 @@ Here are some options for where you can go next:
 <div class="row">
   <hr />
   <div class="col-md-6">
-    <p>Don't forget to get on the mailing list - Meteor news, new releases, security alerts, and nothing else.</p>
+    <p>Don't forget to get on the mailing list&mdash;Meteor news, new releases, security alerts, and nothing else.</p>
   </div>
   <div class="col-md-6">
     {{> emailForm}}
