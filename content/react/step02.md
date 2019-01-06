@@ -36,6 +36,26 @@ meteor npm install --save react react-dom
 
 > Note: `meteor npm` supports the same features as `npm`, though the difference can be important.  Consult the [`meteor npm` documentation](https://docs.meteor.com/commandline.html#meteornpm) for more information.
 
+### Replace `blaze-html-templates` with `static-html`
+
+By default, new Meteor applications use Blaze as their templating engine. While it's possible for a Meteor application to use Blaze and React simultaneously, the application we're building in this tutorial does not need Blaze at all.
+
+To prevent processing `.html` files as Blaze templates, first remove the `blaze-html-templates` package:
+
+```sh
+meteor remove blaze-html-templates
+```
+
+Now, to ensure `.html` files are processed as generic, static HTML, add the `static-html` package:
+
+```sh
+meteor add static-html
+```
+
+The `static-html` package is not specific to React. It simply turns `<head>` and `<body>` fragments found in `.html` files into static HTML that will be served from the Meteor web server. Later, your React application will render its components into this HTML.
+
+Note that both `blaze-html-templates` and `static-html` are _Meteor packages_, rather than npm packages, because they need to register _compiler plugins_ that determine how `.html` files are processed. Controlling compilation is just one of several key features that make Meteor packages more powerful than npm packages.
+
 ### Replace the starter code
 
 To get started, let's replace the code of the default starter app. Then we'll talk about what it does.
