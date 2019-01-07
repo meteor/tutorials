@@ -4,7 +4,9 @@
 
 Now that we've created a few features for our application, let's add a test to ensure that we don't regress and that it works the way we expect.
 
-We'll write a test that exercises one of our Methods (which form the "write" part of our app's API), and verifies it works correctly.
+We'll write a test that exercises one of our Methods (which form the "write" part of our app's API) and verifies that it works correctly.
+
+### Install Meteor and npm dependencies
 
 To do so, we'll add a [test driver](http://guide.meteor.com/testing.html#test-driver) for the [Mocha](https://mochajs.org) JavaScript test framework, along with a test assertion library:
 
@@ -13,7 +15,9 @@ meteor add meteortesting:mocha
 meteor npm install --save-dev chai
 ```
 
-We can now run our app in "test mode" by calling out a special command and specifying to use the driver (you'll need to stop the regular app from running, or specify an alternate port with `--port XYZ`):
+### Run `meteor test` with a driver package
+
+We can now run our app in "test mode" by running `meteor test` and specifying a test driver package (you'll need to stop the regular app from running, or specify an alternate port with `--port XYZ`):
 
 ```bash
 TEST_WATCH=1 meteor test --driver-package meteortesting:mocha
@@ -36,6 +40,8 @@ simple-todos-react
 
 2 passing (10ms)
 ```
+
+### Understand existing tests
 
 Where are these two tests coming from? Every new Meteor application includes a **`tests/main.js`** module containing several example tests using the `describe`, `it`, and `assert` style popularized by testing frameworks like [Mocha](https://mochajs.org/#getting-started):
 
@@ -64,6 +70,8 @@ describe("simple-todos-react", function () {
 
 This module serves as the entry point for all your application tests. If you like, you can continue adding new tests to this module, using `Meteor.isServer` and `Meteor.isClient` to determine which tests run in which environment.
 
+### Import additional test modules
+
 However, if you would prefer to split your tests across multiple modules, you can do that too. Let's add a new test module called **`imports/api/tasks.tests.js`**:
 
 {{> DiffBox tutorialName="simple-todos-react" step="11.2"}}
@@ -82,13 +90,15 @@ The only remaining step is to import this new test module into the main `tests/m
 
 {{> DiffBox tutorialName="simple-todos-react" step="11.5"}}
 
-If you run the test command again,
+### Run `meteor test` again
+
+If you run the test command again (or if you left it running from before)
 
 ```bash
 TEST_WATCH=1 meteor test --driver-package meteortesting:mocha
 ```
 
-you should now see
+you should now see the output from the new test module we just added:
 
 ```bash
 Tasks
@@ -101,6 +111,8 @@ simple-todos-react
 
 3 passing (120ms)
 ```
+
+### Other useful testing commands
 
 To make it easier to type this command, you may want to add a shorthand to the [`"scripts"` section](https://docs.npmjs.com/misc/scripts) of your `package.json` file.
 
@@ -121,6 +133,8 @@ TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha
 ```
 
 This is almost the same as the earlier command, except that it also loads your application code as normal (due to `--full-app`), allowing you to interact with your app in the browser while running both client and server tests.
+
+### Further reading
 
 There's a lot more you can do with Meteor tests! You can read more about it in the Meteor Guide [article on testing](http://guide.meteor.com/testing.html).
 
