@@ -36,6 +36,8 @@ Open a new terminal in the same directory as your running app, and type:
 
 ```sh
 meteor npm install --save react react-dom
+meteor remove blaze-html-templates
+meteor add static-html
 ```
 
 > Note: `meteor npm` supports the same features as `npm`, though the difference can be important. Consult the [`meteor npm` documentation](https://docs.meteor.com/commandline.html#meteornpm) for more information.
