@@ -14,6 +14,8 @@ Here's the JavaScript code we need to add to listen to the `submit` event on the
 
 Now your app has a new input field. To add a task, just type into the input field and hit enter. If you open a new browser window and open the app again, you'll see that the list is automatically synchronized between all clients.
 
+*Note: In newer versions of meteor you will need to run ```meteor add insecure``` in the console in order to allow the client write access to the tasks collection on the server.
+
 ### Attaching events to templates
 
 Event listeners are added to templates in much the same way as helpers are: by calling `Template.templateName.events(...)` with a dictionary. The keys describe the event to listen for, and the values are _event handlers_ that are called when the event happens.
