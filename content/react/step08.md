@@ -9,7 +9,13 @@ Meteor comes with an accounts system and a drop-in login user interface that let
 To enable the accounts system and UI, we need to add the relevant packages. In your app directory, run the following command:
 
 ```bash
-meteor add accounts-ui accounts-password
+meteor add accounts-ui accounts-password jquery
+```
+
+For jQuery, you'll also need to install the npm package:
+
+```bash
+meteor npm install jquery
 ```
 
 ### Wrapping a Blaze component in React
