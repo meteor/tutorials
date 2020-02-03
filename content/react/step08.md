@@ -15,7 +15,7 @@ meteor add accounts-ui accounts-password jquery
 For jQuery, you'll also need to install the npm package:
 
 ```bash
-meteor npm install jquery
+meteor npm install --save jquery
 ```
 
 ### Wrapping a Blaze component in React
