@@ -1,7 +1,7 @@
-From 61ae7171815dd11fb481a840199aa6dc0ac2860e Mon Sep 17 00:00:00 2001
+From ec5e25a3c71c3d15157101cd56156bcb6a2a7604 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 09:42:33 -0600
-Subject: [PATCH 01/53] Step 2.1.1: Add the Vue NPM package
+Subject: [PATCH 01/55] Step 2.1.1: Add the Vue NPM package
 
 ---
  simple-todos/package-lock.json | 5 +++++
@@ -42,10 +42,65 @@ index f0c1811..a48f4a2 100644
 2.11.0
 
 
-From 332853354afc444e2466451fefda43d8a4697cf4 Mon Sep 17 00:00:00 2001
+From 1d073ac6beb3d0bd12fae13c22308d6b4f6e7d1c Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 10:47:35 -0600
+Subject: [PATCH 02/55] Step 2.1.2: Add akryum:vue-component Meteor package
+
+---
+ simple-todos/.meteor/packages | 1 +
+ simple-todos/.meteor/versions | 3 +++
+ 2 files changed, 4 insertions(+)
+
+diff --git a/simple-todos/.meteor/packages b/simple-todos/.meteor/packages
+index 403881a..d96de6f 100644
+--- a/simple-todos/.meteor/packages
++++ b/simple-todos/.meteor/packages
+@@ -21,3 +21,4 @@ shell-server@0.4.0            # Server-side component of the `meteor shell` comm
+ 
+ autopublish@1.0.7             # Publish all data to the clients (for prototyping)
+ insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
++akryum:vue-component
+diff --git a/simple-todos/.meteor/versions b/simple-todos/.meteor/versions
+index 09e2aa9..6ebc5af 100644
+--- a/simple-todos/.meteor/versions
++++ b/simple-todos/.meteor/versions
+@@ -1,3 +1,6 @@
++akryum:vue-component@0.15.2
++akryum:vue-component-dev-client@0.4.7
++akryum:vue-component-dev-server@0.1.4
+ allow-deny@1.1.0
+ autopublish@1.0.7
+ autoupdate@1.6.0
+-- 
+2.11.0
+
+
+From 373c8ed21efa0a0e75a82061ba2b38f26066c0a0 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 10:51:02 -0600
+Subject: [PATCH 03/55] Step 2.1.3: Update the.gitignore file to include the
+ .cache folder
+
+---
+ simple-todos/.gitignore | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/simple-todos/.gitignore b/simple-todos/.gitignore
+index c2658d7..d317530 100644
+--- a/simple-todos/.gitignore
++++ b/simple-todos/.gitignore
+@@ -1 +1,2 @@
+ node_modules/
++.cache
+-- 
+2.11.0
+
+
+From 11e7c8c799d8068a44240ef5f614323961e98ff6 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 09:44:14 -0600
-Subject: [PATCH 02/53] Step 2.1.2: Remove blaze-html-templates and add
+Subject: [PATCH 04/55] Step 2.1.4: Remove blaze-html-templates and add
  static-html
 
 ---
@@ -54,7 +109,7 @@ Subject: [PATCH 02/53] Step 2.1.2: Remove blaze-html-templates and add
  2 files changed, 2 insertions(+), 9 deletions(-)
 
 diff --git a/simple-todos/.meteor/packages b/simple-todos/.meteor/packages
-index 403881a..3eb7f29 100644
+index d96de6f..d855b1e 100644
 --- a/simple-todos/.meteor/packages
 +++ b/simple-todos/.meteor/packages
 @@ -7,7 +7,6 @@
@@ -65,16 +120,16 @@ index 403881a..3eb7f29 100644
  jquery                  # Wrapper package for npm-installed jquery
  reactive-var@1.0.11            # Reactive variable for tracker
  tracker@1.2.0                 # Meteor's client-side reactive programming library
-@@ -21,3 +20,4 @@ shell-server@0.4.0            # Server-side component of the `meteor shell` comm
- 
+@@ -22,3 +21,4 @@ shell-server@0.4.0            # Server-side component of the `meteor shell` comm
  autopublish@1.0.7             # Publish all data to the clients (for prototyping)
  insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
+ akryum:vue-component
 +static-html
 diff --git a/simple-todos/.meteor/versions b/simple-todos/.meteor/versions
-index 09e2aa9..83cb4d0 100644
+index 6ebc5af..820295c 100644
 --- a/simple-todos/.meteor/versions
 +++ b/simple-todos/.meteor/versions
-@@ -5,8 +5,6 @@ babel-compiler@7.5.1
+@@ -8,8 +8,6 @@ babel-compiler@7.5.1
  babel-runtime@1.5.0
  base64@1.0.12
  binary-heap@1.0.11
@@ -83,7 +138,7 @@ index 09e2aa9..83cb4d0 100644
  blaze-tools@1.0.10
  boilerplate-generator@1.6.0
  caching-compiler@1.2.1
-@@ -53,7 +51,6 @@ mongo-decimal@0.1.1
+@@ -56,7 +54,6 @@ mongo-decimal@0.1.1
  mongo-dev-server@1.1.0
  mongo-id@1.0.7
  npm-mongo@3.3.0
@@ -91,7 +146,7 @@ index 09e2aa9..83cb4d0 100644
  ordered-dict@1.1.0
  promise@0.11.2
  random@1.1.0
-@@ -63,17 +60,13 @@ retry@1.1.0
+@@ -66,17 +63,13 @@ retry@1.1.0
  routepolicy@1.1.0
  shell-server@0.4.0
  socket-stream-client@0.2.3
@@ -114,10 +169,10 @@ index 09e2aa9..83cb4d0 100644
 2.11.0
 
 
-From 0ecc27b4c77ddc066c3f49b575e16c2c2ec07e4e Mon Sep 17 00:00:00 2001
+From 490e36dcbca1137d7777328f4697b4eb59c42103 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 09:47:58 -0600
-Subject: [PATCH 03/53] Step 2.2: Replace starter HTML code
+Subject: [PATCH 05/55] Step 2.2: Replace starter HTML code
 
 ---
  simple-todos/client/main.html | 24 +++---------------------
@@ -161,10 +216,10 @@ index 15a7c7d..b4e3061 100644
 2.11.0
 
 
-From ee3010057583f2c6cfcfbf0782a760c9a39c200f Mon Sep 17 00:00:00 2001
+From ed9d5e8b8987f575d476e2eae3e4c452bab1cd6c Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 10:34:34 -0600
-Subject: [PATCH 04/53] Step 2.3: Replace starter JS
+Subject: [PATCH 06/55] Step 2.3: Replace starter JS
 
 ---
  simple-todos/client/main.js | 27 ++++++++-------------------
@@ -209,10 +264,10 @@ index ecb3282..bbd7003 100644
 2.11.0
 
 
-From 2d6533bce368832835bb1f4b5de2dba38cd14c6f Mon Sep 17 00:00:00 2001
+From a8045d47a0835162a7a579dcc23e53407207cf50 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 10:40:46 -0600
-Subject: [PATCH 05/53] Step 2.4: Create App component
+Subject: [PATCH 07/55] Step 2.4: Create App component
 
 ---
  simple-todos/imports/ui/App.vue | 37 +++++++++++++++++++++++++++++++++++++
@@ -266,10 +321,10 @@ index 0000000..f5502e4
 2.11.0
 
 
-From d40973c9c5d1461cb391ee3534016b11332cae5e Mon Sep 17 00:00:00 2001
+From a097aa498893e9c61bc50946222bf151ad4e5701 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 10:42:03 -0600
-Subject: [PATCH 06/53] Step 2.5: Create Task component
+Subject: [PATCH 08/55] Step 2.5: Create Task component
 
 ---
  simple-todos/imports/ui/Task.vue | 12 ++++++++++++
@@ -298,10 +353,10 @@ index 0000000..ef7b40a
 2.11.0
 
 
-From 9245fd188f77e06cdda28b52d73559875c931148 Mon Sep 17 00:00:00 2001
+From 0b695a08c1441243d6aaf4bc1f8be599212ee098 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 10:43:39 -0600
-Subject: [PATCH 07/53] Step 2.6: Add CSS
+Subject: [PATCH 09/55] Step 2.6: Add CSS
 
 ---
  simple-todos/client/main.css | 123 +++++++++++++++++++++++++++++++++++++++++++
@@ -443,65 +498,10 @@ index 7f354f0..3740214 100644
 2.11.0
 
 
-From 53defa9ff41c5d75ea73fa988db3781d269785d2 Mon Sep 17 00:00:00 2001
-From: Brian Mulhall <brian.e.mulhall@gmail.com>
-Date: Sun, 9 Feb 2020 10:47:35 -0600
-Subject: [PATCH 08/53] Step 2.7: Add akryum:vue-component Meteor package
-
----
- simple-todos/.meteor/packages | 1 +
- simple-todos/.meteor/versions | 3 +++
- 2 files changed, 4 insertions(+)
-
-diff --git a/simple-todos/.meteor/packages b/simple-todos/.meteor/packages
-index 3eb7f29..60da8d0 100644
---- a/simple-todos/.meteor/packages
-+++ b/simple-todos/.meteor/packages
-@@ -21,3 +21,4 @@ shell-server@0.4.0            # Server-side component of the `meteor shell` comm
- autopublish@1.0.7             # Publish all data to the clients (for prototyping)
- insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
- static-html
-+akryum:vue-component
-diff --git a/simple-todos/.meteor/versions b/simple-todos/.meteor/versions
-index 83cb4d0..820295c 100644
---- a/simple-todos/.meteor/versions
-+++ b/simple-todos/.meteor/versions
-@@ -1,3 +1,6 @@
-+akryum:vue-component@0.15.2
-+akryum:vue-component-dev-client@0.4.7
-+akryum:vue-component-dev-server@0.1.4
- allow-deny@1.1.0
- autopublish@1.0.7
- autoupdate@1.6.0
--- 
-2.11.0
-
-
-From 2fd25a70df264e2b1d94b0137e3a165459e9b847 Mon Sep 17 00:00:00 2001
-From: Brian Mulhall <brian.e.mulhall@gmail.com>
-Date: Sun, 9 Feb 2020 10:51:02 -0600
-Subject: [PATCH 09/53] Step 2.8: Update the.gitignore file to include the
- .cache folder
-
----
- simple-todos/.gitignore | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/simple-todos/.gitignore b/simple-todos/.gitignore
-index c2658d7..d317530 100644
---- a/simple-todos/.gitignore
-+++ b/simple-todos/.gitignore
-@@ -1 +1,2 @@
- node_modules/
-+.cache
--- 
-2.11.0
-
-
-From ef405a14537625d0adb049ce832995763237a269 Mon Sep 17 00:00:00 2001
+From 901e1d65125650e38563bdd56e0660d617f3d94a Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 10:51:34 -0600
-Subject: [PATCH 10/53] Step 3.1: Create tasks collection
+Subject: [PATCH 10/55] Step 3.1: Create tasks collection
 
 ---
  simple-todos/imports/api/tasks.js | 3 +++
@@ -522,10 +522,10 @@ index 0000000..dfeb446
 2.11.0
 
 
-From 1badebe0d574745ae682894df840b78822cfc13d Mon Sep 17 00:00:00 2001
+From 4fc5a676c4c554548a6832e74dd2fbfff5529f37 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 10:52:58 -0600
-Subject: [PATCH 11/53] Step 3.2: Load tasks collection on the server
+Subject: [PATCH 11/55] Step 3.2: Load tasks collection on the server
 
 ---
  simple-todos/server/main.js | 6 +-----
@@ -546,10 +546,10 @@ index 31a9e0e..ab941a4 100644
 2.11.0
 
 
-From e887b37c7e1b98b2024d446a93bc100698fc73ee Mon Sep 17 00:00:00 2001
+From c02324c22274a906b06744c5e569f677dc6927d0 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 10:54:24 -0600
-Subject: [PATCH 12/53] Step 3.3: Add vue-meteor-tracker npm package
+Subject: [PATCH 12/55] Step 3.3: Add vue-meteor-tracker npm package
 
 ---
  simple-todos/package-lock.json | 13 +++++++++++++
@@ -605,16 +605,15 @@ index a48f4a2..2433819 100644
 2.11.0
 
 
-From 1fbadb142d8ac3b315f0188c2c8c5bac16f848af Mon Sep 17 00:00:00 2001
+From c815a73f4dc4fc26fa5a06601be4fb67f0b63550 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
-Date: Sun, 9 Feb 2020 11:02:57 -0600
-Subject: [PATCH 13/53] Step 3.4: Modify App component to get tasks from
- collection
+Date: Sat, 15 Feb 2020 15:09:02 -0600
+Subject: [PATCH 13/55] Step 3.4: Add the VueMeteorTracker plugin to the root
+ Vue instance
 
 ---
- simple-todos/client/main.js     |  3 +++
- simple-todos/imports/ui/App.vue | 18 ++++++------------
- 2 files changed, 9 insertions(+), 12 deletions(-)
+ simple-todos/client/main.js | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/simple-todos/client/main.js b/simple-todos/client/main.js
 index bbd7003..0c928a3 100644
@@ -629,6 +628,20 @@ index bbd7003..0c928a3 100644
  
  import App from '../imports/ui/App.vue';
  
+-- 
+2.11.0
+
+
+From 392910e9754dfb9ae55512c2c91d729b852c408b Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 15 Feb 2020 15:09:27 -0600
+Subject: [PATCH 14/55] Step 3.5: Modify App component to get tasks from
+ collection
+
+---
+ simple-todos/imports/ui/App.vue | 18 ++++++------------
+ 1 file changed, 6 insertions(+), 12 deletions(-)
+
 diff --git a/simple-todos/imports/ui/App.vue b/simple-todos/imports/ui/App.vue
 index f5502e4..1b768bf 100644
 --- a/simple-todos/imports/ui/App.vue
@@ -676,10 +689,10 @@ index f5502e4..1b768bf 100644
 2.11.0
 
 
-From afadac7de628de0ece71c4e55bc65c9a394b3bfd Mon Sep 17 00:00:00 2001
+From 53a106b128c0400c0826771393e3d4e30c33e72d Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 11:09:17 -0600
-Subject: [PATCH 14/53] Step 4.1: Add form for new tasks
+Subject: [PATCH 15/55] Step 4.1: Add form for new tasks
 
 ---
  simple-todos/imports/ui/App.vue | 11 ++++++++++-
@@ -718,10 +731,10 @@ index 1b768bf..b3d25ad 100644
 2.11.0
 
 
-From df6549554be24f53e2119f1eb86cb8408f4fa937 Mon Sep 17 00:00:00 2001
+From f9e699d1d201afc2f89fa51df52de59525dd58ed Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 11:12:39 -0600
-Subject: [PATCH 15/53] Step 4.2: Add handleSubmit method to App component
+Subject: [PATCH 16/55] Step 4.2: Add handleSubmit method to App component
 
 ---
  simple-todos/imports/ui/App.vue | 12 +++++++++++-
@@ -754,10 +767,10 @@ index b3d25ad..c52ade2 100644
 2.11.0
 
 
-From 49bb200870f93c5e6bdfdbb249a4308f9ce52a70 Mon Sep 17 00:00:00 2001
+From 6933e8e1bcc58062c9de63ce76a8069b8aaae0d8 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 11:13:57 -0600
-Subject: [PATCH 16/53] Step 4.3: Update data container to sort tasks by time
+Subject: [PATCH 17/55] Step 4.3: Update data container to sort tasks by time
 
 ---
  simple-todos/imports/ui/App.vue | 2 +-
@@ -780,10 +793,10 @@ index c52ade2..9d30108 100644
 2.11.0
 
 
-From 0e9f02745e6e796dee5529bc0db239c779aaca28 Mon Sep 17 00:00:00 2001
+From fa9790b8aecb7847565b37349e9ac74a88f1742c Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 11:23:47 -0600
-Subject: [PATCH 17/53] Step 5.1: Update Task component to add features
+Subject: [PATCH 18/55] Step 5.1: Update Task component to add features
 
 ---
  simple-todos/imports/ui/Task.vue | 33 ++++++++++++++++++++++++++++++++-
@@ -842,20 +855,21 @@ index ef7b40a..c3b9bbf 100644
 2.11.0
 
 
-From 80331982a4b791a27e414f38a9154ae5923a56a7 Mon Sep 17 00:00:00 2001
+From e7bd9036a852cd1a5701ba80b14ac47b56f04c52 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
-Date: Sun, 9 Feb 2020 11:26:57 -0600
-Subject: [PATCH 18/53] Step 7.1: Add hide completed checkbox to App component
+Date: Sat, 15 Feb 2020 15:13:31 -0600
+Subject: [PATCH 19/55] Step 7.1: Add a hide completed tasks checkbox to the
+ App component
 
 ---
- simple-todos/imports/ui/App.vue | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ simple-todos/imports/ui/App.vue | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
 diff --git a/simple-todos/imports/ui/App.vue b/simple-todos/imports/ui/App.vue
-index 9d30108..20fc0a0 100644
+index 9d30108..bb86bc1 100644
 --- a/simple-todos/imports/ui/App.vue
 +++ b/simple-todos/imports/ui/App.vue
-@@ -2,6 +2,17 @@
+@@ -2,6 +2,18 @@
    <div className="container">
      <header>
        <h1>Todo List</h1>
@@ -865,6 +879,7 @@ index 9d30108..20fc0a0 100644
 +          type="checkbox"
 +          readOnly
 +          checked="hideCompleted"
++          v-model="hideCompleted"
 +          @click="toggleHideCompleted"
 +        />
 +        Hide Completed Tasks
@@ -877,20 +892,20 @@ index 9d30108..20fc0a0 100644
 2.11.0
 
 
-From 492f91ef9ca85a817da699efda2000f1f60362e4 Mon Sep 17 00:00:00 2001
+From d2fc1b1f8a6862a50d0fe299abfa5fc656fd0774 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 11:27:34 -0600
-Subject: [PATCH 19/53] Step 7.2: Add intial state to App component
+Subject: [PATCH 20/55] Step 7.2: Add intial state to App component
 
 ---
  simple-todos/imports/ui/App.vue | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/simple-todos/imports/ui/App.vue b/simple-todos/imports/ui/App.vue
-index 20fc0a0..a58fea6 100644
+index bb86bc1..233ca1d 100644
 --- a/simple-todos/imports/ui/App.vue
 +++ b/simple-todos/imports/ui/App.vue
-@@ -38,7 +38,8 @@ export default {
+@@ -39,7 +39,8 @@ export default {
    },
    data() {
      return {
@@ -904,28 +919,20 @@ index 20fc0a0..a58fea6 100644
 2.11.0
 
 
-From 1ec89b01bc9d339269de707016d478d02239906d Mon Sep 17 00:00:00 2001
+From ef66e9286c46641b1803902cc2855b2512b29b6d Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 11:31:10 -0600
-Subject: [PATCH 20/53] Step 7.3: Add toggleHideCompleted handler to App
+Subject: [PATCH 21/55] Step 7.3: Add toggleHideCompleted handler to App
 
 ---
- simple-todos/imports/ui/App.vue | 4 ++++
- 1 file changed, 4 insertions(+)
+ simple-todos/imports/ui/App.vue | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/simple-todos/imports/ui/App.vue b/simple-todos/imports/ui/App.vue
-index a58fea6..2465d9f 100644
+index 233ca1d..2465d9f 100644
 --- a/simple-todos/imports/ui/App.vue
 +++ b/simple-todos/imports/ui/App.vue
-@@ -8,6 +8,7 @@
-           type="checkbox"
-           readOnly
-           checked="hideCompleted"
-+          v-model="hideCompleted"
-           @click="toggleHideCompleted"
-         />
-         Hide Completed Tasks
-@@ -51,6 +52,9 @@ export default {
+@@ -52,6 +52,9 @@ export default {
  
        // Clear form
        this.newTask = "";
@@ -939,10 +946,10 @@ index a58fea6..2465d9f 100644
 2.11.0
 
 
-From 56d098b22cd3fcd9dd2370f1bfd67295eb35a0b3 Mon Sep 17 00:00:00 2001
+From 6880dfa7b5f69c7ca4d84474594a6af4f6ae5cd1 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 11:55:21 -0600
-Subject: [PATCH 21/53] Step 7.4: Filter tasks in renderTasks
+Subject: [PATCH 22/55] Step 7.4: Filter tasks in renderTasks
 
 ---
  simple-todos/imports/ui/App.vue | 6 +++++-
@@ -969,10 +976,10 @@ index 2465d9f..a9adcbe 100644
 2.11.0
 
 
-From 382fa4f4d9297f9fe97bf5a7b9f06d1fd15f4d11 Mon Sep 17 00:00:00 2001
+From 8d251ec47bd49b3d0dfe2bad52ae97be7add8c1a Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 11:56:25 -0600
-Subject: [PATCH 22/53] Step 7.5: Update data container to return
+Subject: [PATCH 23/55] Step 7.5: Update data container to return
  incompleteCount
 
 ---
@@ -997,10 +1004,10 @@ index a9adcbe..82438b2 100644
 2.11.0
 
 
-From b80597e4d6d623112bfb07ae330707bb4a3fb24f Mon Sep 17 00:00:00 2001
+From 242489f9101b3b209a67b4739859c27599259ab5 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 11:58:09 -0600
-Subject: [PATCH 23/53] Step 7.6: Display incompleteCount in the header
+Subject: [PATCH 24/55] Step 7.6: Display incompleteCount in the header
 
 ---
  simple-todos/imports/ui/App.vue | 2 +-
@@ -1023,10 +1030,10 @@ index 82438b2..2db6e4f 100644
 2.11.0
 
 
-From 50267a44003034526f8f39dc20702c94b07d6e8c Mon Sep 17 00:00:00 2001
+From 19ea47677e35f8175040e5db41e3b9674ddbcf5f Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 11:59:36 -0600
-Subject: [PATCH 24/53] Step 8.1: Add accounts-ui and accounts-password
+Subject: [PATCH 25/55] Step 8.1: Add accounts-ui and accounts-password
  packages
 
 ---
@@ -1035,13 +1042,13 @@ Subject: [PATCH 24/53] Step 8.1: Add accounts-ui and accounts-password
  2 files changed, 23 insertions(+)
 
 diff --git a/simple-todos/.meteor/packages b/simple-todos/.meteor/packages
-index 60da8d0..d7d8dc0 100644
+index d855b1e..9be51a6 100644
 --- a/simple-todos/.meteor/packages
 +++ b/simple-todos/.meteor/packages
 @@ -22,3 +22,5 @@ autopublish@1.0.7             # Publish all data to the clients (for prototyping
  insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
- static-html
  akryum:vue-component
+ static-html
 +accounts-ui
 +accounts-password
 diff --git a/simple-todos/.meteor/versions b/simple-todos/.meteor/versions
@@ -1127,10 +1134,10 @@ index 820295c..fc2bd38 100644
 2.11.0
 
 
-From 87dbb0d21a8f780a9147c42c5e7d85a1b3f17436 Mon Sep 17 00:00:00 2001
+From 2c1474efbbf88d326b27c92db7010476a86cabcd Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 12:16:09 -0600
-Subject: [PATCH 25/53] Step 8.2: Add the vuejs:blaze-integration meteor
+Subject: [PATCH 26/55] Step 8.2: Add the vuejs:blaze-integration meteor
  package
 
 ---
@@ -1139,11 +1146,11 @@ Subject: [PATCH 25/53] Step 8.2: Add the vuejs:blaze-integration meteor
  2 files changed, 5 insertions(+)
 
 diff --git a/simple-todos/.meteor/packages b/simple-todos/.meteor/packages
-index d7d8dc0..1dd828e 100644
+index 9be51a6..8b8837c 100644
 --- a/simple-todos/.meteor/packages
 +++ b/simple-todos/.meteor/packages
-@@ -24,3 +24,4 @@ static-html
- akryum:vue-component
+@@ -24,3 +24,4 @@ akryum:vue-component
+ static-html
  accounts-ui
  accounts-password
 +vuejs:blaze-integration
@@ -1179,10 +1186,10 @@ index fc2bd38..7a2c60c 100644
 2.11.0
 
 
-From 1b753659886c5e160bde9e9c8c35bf8634eef44b Mon Sep 17 00:00:00 2001
+From dfee793cf8a56d369de873f46a37f051200a85ba Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 12:16:27 -0600
-Subject: [PATCH 26/53] Step 8.3: Include sign in form
+Subject: [PATCH 27/55] Step 8.3: Include sign in form
 
 ---
  simple-todos/imports/ui/App.vue | 2 ++
@@ -1205,10 +1212,10 @@ index 2db6e4f..c068b9c 100644
 2.11.0
 
 
-From e60f2fe83c39cbcf5402d3997c745e8ba0fc6140 Mon Sep 17 00:00:00 2001
+From d18ea422bb38a9beff44755cbf3785766284264f Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 12:17:46 -0600
-Subject: [PATCH 27/53] Step 8.4: Configure accounts-ui
+Subject: [PATCH 28/55] Step 8.4: Configure accounts-ui
 
 ---
  simple-todos/imports/startup/accounts-config.js | 5 +++++
@@ -1231,10 +1238,10 @@ index 0000000..7519a14
 2.11.0
 
 
-From b9e6714425e9a1c0dfe818614f897cdded727188 Mon Sep 17 00:00:00 2001
+From 18defe405cb2be2971b79dc40d2ca9bf9178a95a Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 12:18:41 -0600
-Subject: [PATCH 28/53] Step 8.5: Import accounts configuration
+Subject: [PATCH 29/55] Step 8.5: Import accounts configuration
 
 ---
  simple-todos/client/main.js | 1 +
@@ -1256,10 +1263,10 @@ index 0c928a3..a008f75 100644
 2.11.0
 
 
-From c0c19f06597ca7ab03ea96e436d7042ce883449b Mon Sep 17 00:00:00 2001
+From a74749c3692f7987e2cd9258918954409c839fa7 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 12:19:57 -0600
-Subject: [PATCH 29/53] Step 8.6: Update insert to save username and owner
+Subject: [PATCH 30/55] Step 8.6: Update insert to save username and owner
 
 ---
  simple-todos/imports/ui/App.vue | 5 ++++-
@@ -1292,10 +1299,10 @@ index c068b9c..f664a7e 100644
 2.11.0
 
 
-From 844d865466553d9bcbfe5cfaa50eaa61e6aa069c Mon Sep 17 00:00:00 2001
+From d20b13d691b2c1f7467c8f85c60ffa3d440cea78 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 12:20:49 -0600
-Subject: [PATCH 30/53] Step 8.7: Update data container to return data about
+Subject: [PATCH 31/55] Step 8.7: Update data container to return data about
  user
 
 ---
@@ -1320,10 +1327,10 @@ index f664a7e..93feecd 100644
 2.11.0
 
 
-From 44d0a68163b433fbd94be005e254007d89901dee Mon Sep 17 00:00:00 2001
+From 213ba953a22174d164d5d63de33d176731d1f3eb Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 12:22:47 -0600
-Subject: [PATCH 31/53] Step 8.8: Wrap new task form to only show when logged
+Subject: [PATCH 32/55] Step 8.8: Wrap new task form to only show when logged
  in
 
 ---
@@ -1362,10 +1369,10 @@ index 93feecd..2be8005 100644
 2.11.0
 
 
-From 5308ecfb5286c2c362417c93342d17cd37ea1158 Mon Sep 17 00:00:00 2001
+From 7221ee549e3ca11d265ffbe1878dacfcf77abc0d Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 12:24:19 -0600
-Subject: [PATCH 32/53] Step 8.9: Update Task component to show username
+Subject: [PATCH 33/55] Step 8.9: Update Task component to show username
 
 ---
  simple-todos/imports/ui/Task.vue | 5 ++++-
@@ -1391,10 +1398,10 @@ index c3b9bbf..fe22cde 100644
 2.11.0
 
 
-From 64fd408d79d79cc96254e4f6bf45ed8ee6f36cc4 Mon Sep 17 00:00:00 2001
+From cb8f100ac64079ca061aa62d24a8f8d657ed0492 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 12:25:25 -0600
-Subject: [PATCH 33/53] Step 9.1: Remove insecure package
+Subject: [PATCH 34/55] Step 9.1: Remove insecure package
 
 ---
  simple-todos/.meteor/packages | 1 -
@@ -1402,7 +1409,7 @@ Subject: [PATCH 33/53] Step 9.1: Remove insecure package
  2 files changed, 2 deletions(-)
 
 diff --git a/simple-todos/.meteor/packages b/simple-todos/.meteor/packages
-index 1dd828e..8c80de5 100644
+index 8b8837c..27ddc02 100644
 --- a/simple-todos/.meteor/packages
 +++ b/simple-todos/.meteor/packages
 @@ -19,7 +19,6 @@ typescript@3.7.2              # Enable TypeScript syntax in .ts and .tsx modules
@@ -1410,8 +1417,8 @@ index 1dd828e..8c80de5 100644
  
  autopublish@1.0.7             # Publish all data to the clients (for prototyping)
 -insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
- static-html
  akryum:vue-component
+ static-html
  accounts-ui
 diff --git a/simple-todos/.meteor/versions b/simple-todos/.meteor/versions
 index 7a2c60c..63b33f3 100644
@@ -1429,10 +1436,10 @@ index 7a2c60c..63b33f3 100644
 2.11.0
 
 
-From 693a6826ca7bf23acd4ddce32056289ff442e729 Mon Sep 17 00:00:00 2001
+From bb7e943a2b741246b54d63c8f1c231fdbe7aaaa9 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 12:26:16 -0600
-Subject: [PATCH 34/53] Step 9.2: Add methods for add, remove, update task
+Subject: [PATCH 35/55] Step 9.2: Add methods for add, remove, update task
 
 ---
  simple-todos/imports/api/tasks.js | 33 ++++++++++++++++++++++++++++++++-
@@ -1484,10 +1491,10 @@ index dfeb446..d9d48fd 100644
 2.11.0
 
 
-From 9ec73a5651027f1a4b174c4d27d7c193ac6c6097 Mon Sep 17 00:00:00 2001
+From 72ef20f06fa2486d835eb627f29763fc83bd1047 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 12:28:13 -0600
-Subject: [PATCH 35/53] Step 9.3: Update App component to use tasks.insert
+Subject: [PATCH 36/55] Step 9.3: Update App component to use tasks.insert
  method
 
 ---
@@ -1516,10 +1523,10 @@ index 2be8005..7de1c05 100644
 2.11.0
 
 
-From f58f3e763da56b1d1e4307eb649d62e7e5026cde Mon Sep 17 00:00:00 2001
+From 035547b8f98f51e32308332d488e98995da42099 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 12:29:57 -0600
-Subject: [PATCH 36/53] Step 9.4: Replace update and remove with methods
+Subject: [PATCH 37/55] Step 9.4: Replace update and remove with methods
 
 ---
  simple-todos/imports/ui/Task.vue | 6 ++----
@@ -1548,10 +1555,10 @@ index fe22cde..457617f 100644
 2.11.0
 
 
-From 04ee804d05f2fb792cf1e209c424a34b703b90b1 Mon Sep 17 00:00:00 2001
+From e6e406b83a2e11632a4399993255658f4e5e13c4 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 12:32:45 -0600
-Subject: [PATCH 37/53] Step 10.1: Remove autopublish package
+Subject: [PATCH 38/55] Step 10.1: Remove autopublish package
 
 ---
  simple-todos/.meteor/packages | 1 -
@@ -1559,7 +1566,7 @@ Subject: [PATCH 37/53] Step 10.1: Remove autopublish package
  2 files changed, 2 deletions(-)
 
 diff --git a/simple-todos/.meteor/packages b/simple-todos/.meteor/packages
-index 8c80de5..fef3c8d 100644
+index 27ddc02..16a9b8e 100644
 --- a/simple-todos/.meteor/packages
 +++ b/simple-todos/.meteor/packages
 @@ -18,7 +18,6 @@ ecmascript@0.14.0              # Enable ECMAScript2015+ syntax in app code
@@ -1567,8 +1574,8 @@ index 8c80de5..fef3c8d 100644
  shell-server@0.4.0            # Server-side component of the `meteor shell` command
  
 -autopublish@1.0.7             # Publish all data to the clients (for prototyping)
- static-html
  akryum:vue-component
+ static-html
  accounts-ui
 diff --git a/simple-todos/.meteor/versions b/simple-todos/.meteor/versions
 index 63b33f3..f9303e2 100644
@@ -1586,10 +1593,10 @@ index 63b33f3..f9303e2 100644
 2.11.0
 
 
-From 40ef85490c8bdf2cb456092b725de4cd96004e37 Mon Sep 17 00:00:00 2001
+From 8b7d586501dc32b85b3057064377adcf655fd6cb Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 12:33:35 -0600
-Subject: [PATCH 38/53] Step 10.2: Add publication for tasks
+Subject: [PATCH 39/55] Step 10.2: Add publication for tasks
 
 ---
  simple-todos/imports/api/tasks.js | 7 +++++++
@@ -1617,10 +1624,10 @@ index d9d48fd..38f4642 100644
 2.11.0
 
 
-From fbb216763580bfe9c9bafb81fb44d14b209e5204 Mon Sep 17 00:00:00 2001
+From 4d13bb7bcf83a1459bc8a59ef2927a5ecbe4e10e Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 12:35:32 -0600
-Subject: [PATCH 39/53] Step 10.3: Subscribe to tasks in App container
+Subject: [PATCH 40/55] Step 10.3: Subscribe to tasks in App container
 
 ---
  simple-todos/imports/ui/App.vue | 4 ++++
@@ -1645,10 +1652,10 @@ index 7de1c05..e85a03f 100644
 2.11.0
 
 
-From 83de93f63840d5a5be2f4f23aaecdf50235c60c3 Mon Sep 17 00:00:00 2001
+From ccb2afd4e851fc4d381a224091822d5039af80dd Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 12:36:12 -0600
-Subject: [PATCH 40/53] Step 10.4: Add tasks.setPrivate method
+Subject: [PATCH 41/55] Step 10.4: Add tasks.setPrivate method
 
 ---
  simple-todos/imports/api/tasks.js | 13 +++++++++++++
@@ -1681,16 +1688,42 @@ index 38f4642..b567865 100644
 2.11.0
 
 
-From 159dfc3335c8dc99dd8cb42151d58a6f8f5a840b Mon Sep 17 00:00:00 2001
+From 9ebefadb0bf278008170f8f000fde22428ab076e Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
-Date: Sun, 9 Feb 2020 13:44:57 -0600
-Subject: [PATCH 41/53] Step 10.5: Update Task component to pass in
+Date: Sat, 15 Feb 2020 15:20:01 -0600
+Subject: [PATCH 42/55] Step 10.5: Update Task component to pass in
  showPrivateButton property
 
 ---
- simple-todos/imports/ui/App.vue  | 11 ++++++++++-
- simple-todos/imports/ui/Task.vue |  2 +-
- 2 files changed, 11 insertions(+), 2 deletions(-)
+ simple-todos/imports/ui/Task.vue | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/simple-todos/imports/ui/Task.vue b/simple-todos/imports/ui/Task.vue
+index 457617f..44e7ce7 100644
+--- a/simple-todos/imports/ui/Task.vue
++++ b/simple-todos/imports/ui/Task.vue
+@@ -22,7 +22,7 @@
+ import { Tasks } from "../api/tasks.js";
+ 
+ export default {
+-  props: ["task"],
++  props: ["task", "showPrivateButton"],
+   data() {
+     return {};
+   },
+-- 
+2.11.0
+
+
+From c57d72d9901476ad5a528251f52f2f182487827f Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 15 Feb 2020 15:21:25 -0600
+Subject: [PATCH 43/55] Step 10.6: Update the App component to include a show
+ private button
+
+---
+ simple-todos/imports/ui/App.vue | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
 diff --git a/simple-todos/imports/ui/App.vue b/simple-todos/imports/ui/App.vue
 index e85a03f..6d283f4 100644
@@ -1721,27 +1754,14 @@ index e85a03f..6d283f4 100644
      }
    },
    meteor: {
-diff --git a/simple-todos/imports/ui/Task.vue b/simple-todos/imports/ui/Task.vue
-index 457617f..44e7ce7 100644
---- a/simple-todos/imports/ui/Task.vue
-+++ b/simple-todos/imports/ui/Task.vue
-@@ -22,7 +22,7 @@
- import { Tasks } from "../api/tasks.js";
- 
- export default {
--  props: ["task"],
-+  props: ["task", "showPrivateButton"],
-   data() {
-     return {};
-   },
 -- 
 2.11.0
 
 
-From 1a9e7a85fd72d7142bd77197fb3dd27dcee5c93f Mon Sep 17 00:00:00 2001
+From 92d4746681e043ee950528a8f2a6f297b984ac31 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 13:45:48 -0600
-Subject: [PATCH 42/53] Step 10.7: Add private button, shown only to owner
+Subject: [PATCH 44/55] Step 10.7: Add private button, shown only to owner
 
 ---
  simple-todos/imports/ui/Task.vue | 6 ++++++
@@ -1768,10 +1788,10 @@ index 44e7ce7..2b5c670 100644
 2.11.0
 
 
-From a6f036cb7afd394c054e67cdc3dd18d63003453a Mon Sep 17 00:00:00 2001
+From a5568f2100581800dcdb01c651f048c77826db5d Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 13:46:07 -0600
-Subject: [PATCH 43/53] Step 10.8: Add private button event handler to Task
+Subject: [PATCH 45/55] Step 10.8: Add private button event handler to Task
 
 ---
  simple-todos/imports/ui/Task.vue | 3 +++
@@ -1795,10 +1815,10 @@ index 2b5c670..a1a3663 100644
 2.11.0
 
 
-From c925482fff92e88cf7d2d31f5b689e3f68ae9f38 Mon Sep 17 00:00:00 2001
+From fb165ad3b3ff1a5ae047bfcf6db44c8f00ededd5 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 13:47:59 -0600
-Subject: [PATCH 44/53] Step 10.9: Install the classnames NPM package
+Subject: [PATCH 46/55] Step 10.9: Install the classnames NPM package
 
 ---
  simple-todos/package-lock.json | 5 +++++
@@ -1837,10 +1857,10 @@ index 2433819..f45a870 100644
 2.11.0
 
 
-From 4c32b3970731989797860f1ca83f12b5afa2b8c3 Mon Sep 17 00:00:00 2001
+From ce8d0058cc949faba8e9010faaa2be07c10d9398 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 13:50:13 -0600
-Subject: [PATCH 45/53] Step 10.10: Add private className to Task when needed
+Subject: [PATCH 47/55] Step 10.10: Add private className to Task when needed
 
 ---
  simple-todos/imports/ui/Task.vue | 6 +++++-
@@ -1874,10 +1894,10 @@ index a1a3663..fa8bc58 100644
 2.11.0
 
 
-From 30206d220854b01139ad52f5011734b978da77a2 Mon Sep 17 00:00:00 2001
+From 39e48ae5d1cacd692a685093e748408aceeb165c Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 13:51:24 -0600
-Subject: [PATCH 46/53] Step 10.11: Only publish tasks the current user can see
+Subject: [PATCH 48/55] Step 10.11: Only publish tasks the current user can see
 
 ---
  simple-todos/imports/api/tasks.js | 7 ++++++-
@@ -1905,10 +1925,10 @@ index b567865..053db89 100644
 2.11.0
 
 
-From 9b018e725c90e330fd92af6966431c3befe86178 Mon Sep 17 00:00:00 2001
+From f1ee4ceceaef4a57d6e19bcd14a9230abdeb97b4 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 13:52:38 -0600
-Subject: [PATCH 47/53] Step 10.12: Add extra security to methods
+Subject: [PATCH 49/55] Step 10.12: Add extra security to methods
 
 ---
  simple-todos/imports/api/tasks.js | 12 ++++++++++++
@@ -1947,21 +1967,24 @@ index 053db89..1757738 100644
 2.11.0
 
 
-From 56c017bdb9ed3658aa0a2cdf72617ebeab27c873 Mon Sep 17 00:00:00 2001
+From d596b2d7de1926ac4aca0cb396393ebf4946db27 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
-Date: Sun, 9 Feb 2020 13:54:33 -0600
-Subject: [PATCH 48/53] Step 11.1: Added meteortesting:mocha meteor package
+Date: Sat, 15 Feb 2020 15:25:04 -0600
+Subject: [PATCH 50/55] Step 11.1: Added meteortesting:mocha meteor package and
+ the chai npm package
 
 ---
- simple-todos/.meteor/packages | 1 +
- simple-todos/.meteor/versions | 7 +++++++
- 2 files changed, 8 insertions(+)
+ simple-todos/.meteor/packages  |  1 +
+ simple-todos/.meteor/versions  |  7 +++++++
+ simple-todos/package-lock.json | 46 ++++++++++++++++++++++++++++++++++++++++++
+ simple-todos/package.json      |  1 +
+ 4 files changed, 55 insertions(+)
 
 diff --git a/simple-todos/.meteor/packages b/simple-todos/.meteor/packages
-index fef3c8d..d3238b4 100644
+index 16a9b8e..c7f03f7 100644
 --- a/simple-todos/.meteor/packages
 +++ b/simple-todos/.meteor/packages
-@@ -23,3 +23,4 @@ akryum:vue-component
+@@ -23,3 +23,4 @@ static-html
  accounts-ui
  accounts-password
  vuejs:blaze-integration
@@ -2001,14 +2024,100 @@ index f9303e2..f40faa3 100644
  vuejs:blaze-integration@0.2.0
  webapp@1.8.2
  webapp-hashing@1.0.9
+diff --git a/simple-todos/package-lock.json b/simple-todos/package-lock.json
+index 9848159..d4b19cd 100644
+--- a/simple-todos/package-lock.json
++++ b/simple-todos/package-lock.json
+@@ -11,11 +11,47 @@
+         "regenerator-runtime": "^0.13.2"
+       }
+     },
++    "assertion-error": {
++      "version": "1.1.0",
++      "resolved": "https://registry.npmjs.org/assertion-error/-/assertion-error-1.1.0.tgz",
++      "integrity": "sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw=="
++    },
++    "chai": {
++      "version": "4.2.0",
++      "resolved": "https://registry.npmjs.org/chai/-/chai-4.2.0.tgz",
++      "integrity": "sha512-XQU3bhBukrOsQCuwZndwGcCVQHyZi53fQ6Ys1Fym7E4olpIqqZZhhoFJoaKVvV17lWQoXYwgWN2nF5crA8J2jw==",
++      "requires": {
++        "assertion-error": "^1.1.0",
++        "check-error": "^1.0.2",
++        "deep-eql": "^3.0.1",
++        "get-func-name": "^2.0.0",
++        "pathval": "^1.1.0",
++        "type-detect": "^4.0.5"
++      }
++    },
++    "check-error": {
++      "version": "1.0.2",
++      "resolved": "https://registry.npmjs.org/check-error/-/check-error-1.0.2.tgz",
++      "integrity": "sha1-V00xLt2Iu13YkS6Sht1sCu1KrII="
++    },
+     "classnames": {
+       "version": "2.2.6",
+       "resolved": "https://registry.npmjs.org/classnames/-/classnames-2.2.6.tgz",
+       "integrity": "sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q=="
+     },
++    "deep-eql": {
++      "version": "3.0.1",
++      "resolved": "https://registry.npmjs.org/deep-eql/-/deep-eql-3.0.1.tgz",
++      "integrity": "sha512-+QeIQyN5ZuO+3Uk5DYh6/1eKO0m0YmJFGNmFHGACpf1ClL1nmlV/p4gNgbl2pJGxgXb4faqo6UE+M5ACEMyVcw==",
++      "requires": {
++        "type-detect": "^4.0.0"
++      }
++    },
++    "get-func-name": {
++      "version": "2.0.0",
++      "resolved": "https://registry.npmjs.org/get-func-name/-/get-func-name-2.0.0.tgz",
++      "integrity": "sha1-6td0q+5y4gQJQzoGY2YCPdaIekE="
++    },
+     "jquery": {
+       "version": "3.4.1",
+       "resolved": "https://registry.npmjs.org/jquery/-/jquery-3.4.1.tgz",
+@@ -587,11 +623,21 @@
+         }
+       }
+     },
++    "pathval": {
++      "version": "1.1.0",
++      "resolved": "https://registry.npmjs.org/pathval/-/pathval-1.1.0.tgz",
++      "integrity": "sha1-uULm1L3mUwBe9rcTYd74cn0GReA="
++    },
+     "regenerator-runtime": {
+       "version": "0.13.3",
+       "resolved": "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.13.3.tgz",
+       "integrity": "sha512-naKIZz2GQ8JWh///G7L3X6LaQUAMp2lvb1rvwwsURe/VXwD6VMfr+/1NuNw3ag8v2kY1aQ/go5SNn79O9JU7yw=="
+     },
++    "type-detect": {
++      "version": "4.0.8",
++      "resolved": "https://registry.npmjs.org/type-detect/-/type-detect-4.0.8.tgz",
++      "integrity": "sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g=="
++    },
+     "vue": {
+       "version": "2.6.11",
+       "resolved": "https://registry.npmjs.org/vue/-/vue-2.6.11.tgz",
+diff --git a/simple-todos/package.json b/simple-todos/package.json
+index f45a870..5c10bb3 100644
+--- a/simple-todos/package.json
++++ b/simple-todos/package.json
+@@ -9,6 +9,7 @@
+   },
+   "dependencies": {
+     "@babel/runtime": "^7.7.6",
++    "chai": "^4.2.0",
+     "classnames": "^2.2.6",
+     "jquery": "^3.4.1",
+     "meteor-node-stubs": "^1.0.0",
 -- 
 2.11.0
 
 
-From 7c266dd6ebd5bca41c7670d1be2018fe987c5308 Mon Sep 17 00:00:00 2001
+From 5dbebcad8cf55d4f78df4da8f2e0cd5ec73c8e3f Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 13:55:29 -0600
-Subject: [PATCH 49/53] Step 11.2: Add a scaffold for a method test
+Subject: [PATCH 51/55] Step 11.2: Add a scaffold for a method test
 
 ---
  simple-todos/imports/api/tasks.tests.js | 12 ++++++++++++
@@ -2038,10 +2147,10 @@ index 0000000..cd7ab10
 2.11.0
 
 
-From e448fa6afcfc27222c5e5e0fa01ebc5ecf7c2bd1 Mon Sep 17 00:00:00 2001
+From 1eb8057f5b350279d136e47f0986f99701ca10e8 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 13:58:06 -0600
-Subject: [PATCH 50/53] Step 11.3: Prepare the database for each test
+Subject: [PATCH 52/55] Step 11.3: Prepare the database for each test
 
 ---
  simple-todos/imports/api/tasks.tests.js | 21 +++++++++++++++++++--
@@ -2088,16 +2197,15 @@ index cd7ab10..f98d3cc 100644
 2.11.0
 
 
-From 9cb2cf1ae0039325b7886903296c1e2a904d0d93 Mon Sep 17 00:00:00 2001
+From 2a1ec211cceea22cc56fbd718d460e7bb287ea61 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 14:02:23 -0600
-Subject: [PATCH 51/53] Step 11.4: Added test to check delete method
+Subject: [PATCH 53/55] Step 11.4: Added test to check delete method
 
 ---
- simple-todos/imports/api/tasks.tests.js | 13 ++++++++
- simple-todos/package-lock.json          | 53 +++++++++++++++++++++++++++++++++
- simple-todos/package.json               |  3 ++
- 3 files changed, 69 insertions(+)
+ simple-todos/imports/api/tasks.tests.js | 13 +++++++++++++
+ simple-todos/package.json               |  3 +++
+ 2 files changed, 16 insertions(+)
 
 diff --git a/simple-todos/imports/api/tasks.tests.js b/simple-todos/imports/api/tasks.tests.js
 index f98d3cc..77f495f 100644
@@ -2130,92 +2238,11 @@ index f98d3cc..77f495f 100644
              });
          });
      });
-diff --git a/simple-todos/package-lock.json b/simple-todos/package-lock.json
-index 9848159..bb74e53 100644
---- a/simple-todos/package-lock.json
-+++ b/simple-todos/package-lock.json
-@@ -11,11 +11,52 @@
-         "regenerator-runtime": "^0.13.2"
-       }
-     },
-+    "assertion-error": {
-+      "version": "1.1.0",
-+      "resolved": "https://registry.npmjs.org/assertion-error/-/assertion-error-1.1.0.tgz",
-+      "integrity": "sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==",
-+      "dev": true
-+    },
-+    "chai": {
-+      "version": "4.2.0",
-+      "resolved": "https://registry.npmjs.org/chai/-/chai-4.2.0.tgz",
-+      "integrity": "sha512-XQU3bhBukrOsQCuwZndwGcCVQHyZi53fQ6Ys1Fym7E4olpIqqZZhhoFJoaKVvV17lWQoXYwgWN2nF5crA8J2jw==",
-+      "dev": true,
-+      "requires": {
-+        "assertion-error": "^1.1.0",
-+        "check-error": "^1.0.2",
-+        "deep-eql": "^3.0.1",
-+        "get-func-name": "^2.0.0",
-+        "pathval": "^1.1.0",
-+        "type-detect": "^4.0.5"
-+      }
-+    },
-+    "check-error": {
-+      "version": "1.0.2",
-+      "resolved": "https://registry.npmjs.org/check-error/-/check-error-1.0.2.tgz",
-+      "integrity": "sha1-V00xLt2Iu13YkS6Sht1sCu1KrII=",
-+      "dev": true
-+    },
-     "classnames": {
-       "version": "2.2.6",
-       "resolved": "https://registry.npmjs.org/classnames/-/classnames-2.2.6.tgz",
-       "integrity": "sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q=="
-     },
-+    "deep-eql": {
-+      "version": "3.0.1",
-+      "resolved": "https://registry.npmjs.org/deep-eql/-/deep-eql-3.0.1.tgz",
-+      "integrity": "sha512-+QeIQyN5ZuO+3Uk5DYh6/1eKO0m0YmJFGNmFHGACpf1ClL1nmlV/p4gNgbl2pJGxgXb4faqo6UE+M5ACEMyVcw==",
-+      "dev": true,
-+      "requires": {
-+        "type-detect": "^4.0.0"
-+      }
-+    },
-+    "get-func-name": {
-+      "version": "2.0.0",
-+      "resolved": "https://registry.npmjs.org/get-func-name/-/get-func-name-2.0.0.tgz",
-+      "integrity": "sha1-6td0q+5y4gQJQzoGY2YCPdaIekE=",
-+      "dev": true
-+    },
-     "jquery": {
-       "version": "3.4.1",
-       "resolved": "https://registry.npmjs.org/jquery/-/jquery-3.4.1.tgz",
-@@ -587,11 +628,23 @@
-         }
-       }
-     },
-+    "pathval": {
-+      "version": "1.1.0",
-+      "resolved": "https://registry.npmjs.org/pathval/-/pathval-1.1.0.tgz",
-+      "integrity": "sha1-uULm1L3mUwBe9rcTYd74cn0GReA=",
-+      "dev": true
-+    },
-     "regenerator-runtime": {
-       "version": "0.13.3",
-       "resolved": "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.13.3.tgz",
-       "integrity": "sha512-naKIZz2GQ8JWh///G7L3X6LaQUAMp2lvb1rvwwsURe/VXwD6VMfr+/1NuNw3ag8v2kY1aQ/go5SNn79O9JU7yw=="
-     },
-+    "type-detect": {
-+      "version": "4.0.8",
-+      "resolved": "https://registry.npmjs.org/type-detect/-/type-detect-4.0.8.tgz",
-+      "integrity": "sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==",
-+      "dev": true
-+    },
-     "vue": {
-       "version": "2.6.11",
-       "resolved": "https://registry.npmjs.org/vue/-/vue-2.6.11.tgz",
 diff --git a/simple-todos/package.json b/simple-todos/package.json
-index f45a870..eb798c2 100644
+index 5c10bb3..b284039 100644
 --- a/simple-todos/package.json
 +++ b/simple-todos/package.json
-@@ -21,5 +21,8 @@
+@@ -22,5 +22,8 @@
        "server": "server/main.js"
      },
      "testModule": "tests/main.js"
@@ -2228,10 +2255,10 @@ index f45a870..eb798c2 100644
 2.11.0
 
 
-From 82e46b65cd7f188ef62c923676abaacc1b000489 Mon Sep 17 00:00:00 2001
+From d789241f0e74c2dfb600b7a22a6ac830677b145c Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 14:03:43 -0600
-Subject: [PATCH 52/53] Step 11.5: Import tasks.tests.js into tests/main.js
+Subject: [PATCH 54/55] Step 11.5: Import tasks.tests.js into tests/main.js
 
 ---
  simple-todos/tests/main.js | 1 +
@@ -2251,10 +2278,10 @@ index 973d17e..d4d7d08 100644
 2.11.0
 
 
-From 4ad9d19b7c9883a1e212903ce6d8c03075121c7e Mon Sep 17 00:00:00 2001
+From 8b3a243d8f19b90b1c795ec8abe18b2204df99cd Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 15 Feb 2020 08:44:37 -0600
-Subject: [PATCH 53/53] repo refactor to match the correct format
+Subject: [PATCH 55/55] repo refactor to match the correct format
 
 ---
  simple-todos/.gitignore => .gitignore              |    1 +
@@ -2296,7 +2323,7 @@ Subject: [PATCH 53/53] repo refactor to match the correct format
  rename {simple-todos/imports => imports}/ui/App.vue (100%)
  rename {simple-todos/imports => imports}/ui/Task.vue (100%)
  rename simple-todos/package-lock.json => package-lock.json (99%)
- rename simple-todos/package.json => package.json (95%)
+ rename simple-todos/package.json => package.json (96%)
  rename {simple-todos/server => server}/main.js (100%)
  delete mode 100644 simple-todos/.vscode/typings/meteor.d.ts
  rename {simple-todos/tests => tests}/main.js (100%)
@@ -2376,7 +2403,7 @@ diff --git a/simple-todos/package-lock.json b/package-lock.json
 similarity index 99%
 rename from simple-todos/package-lock.json
 rename to package-lock.json
-index bb74e53..8cc2cf5 100644
+index d4b19cd..3fc0d85 100644
 --- a/simple-todos/package-lock.json
 +++ b/package-lock.json
 @@ -1,5 +1,5 @@
@@ -2387,10 +2414,10 @@ index bb74e53..8cc2cf5 100644
    "lockfileVersion": 1,
    "dependencies": {
 diff --git a/simple-todos/package.json b/package.json
-similarity index 95%
+similarity index 96%
 rename from simple-todos/package.json
 rename to package.json
-index eb798c2..88ac7cd 100644
+index b284039..95d8989 100644
 --- a/simple-todos/package.json
 +++ b/package.json
 @@ -1,5 +1,5 @@
