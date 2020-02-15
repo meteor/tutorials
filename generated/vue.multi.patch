@@ -2197,15 +2197,14 @@ index cd7ab10..f98d3cc 100644
 2.11.0
 
 
-From 2a1ec211cceea22cc56fbd718d460e7bb287ea61 Mon Sep 17 00:00:00 2001
+From d85f55b5b37c1fc67617d9d5f328cc2c19a3bebb Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
-Date: Sun, 9 Feb 2020 14:02:23 -0600
+Date: Sat, 15 Feb 2020 15:47:28 -0600
 Subject: [PATCH 53/55] Step 11.4: Added test to check delete method
 
 ---
  simple-todos/imports/api/tasks.tests.js | 13 +++++++++++++
- simple-todos/package.json               |  3 +++
- 2 files changed, 16 insertions(+)
+ 1 file changed, 13 insertions(+)
 
 diff --git a/simple-todos/imports/api/tasks.tests.js b/simple-todos/imports/api/tasks.tests.js
 index f98d3cc..77f495f 100644
@@ -2238,24 +2237,11 @@ index f98d3cc..77f495f 100644
              });
          });
      });
-diff --git a/simple-todos/package.json b/simple-todos/package.json
-index 5c10bb3..b284039 100644
---- a/simple-todos/package.json
-+++ b/simple-todos/package.json
-@@ -22,5 +22,8 @@
-       "server": "server/main.js"
-     },
-     "testModule": "tests/main.js"
-+  },
-+  "devDependencies": {
-+    "chai": "^4.2.0"
-   }
- }
 -- 
 2.11.0
 
 
-From d789241f0e74c2dfb600b7a22a6ac830677b145c Mon Sep 17 00:00:00 2001
+From 26d905e5cdbec899d8cb8d069c46201bbbe647de Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 14:03:43 -0600
 Subject: [PATCH 54/55] Step 11.5: Import tasks.tests.js into tests/main.js
@@ -2278,7 +2264,7 @@ index 973d17e..d4d7d08 100644
 2.11.0
 
 
-From 8b3a243d8f19b90b1c795ec8abe18b2204df99cd Mon Sep 17 00:00:00 2001
+From e06693ee660a52586f10dd3c1f3bf2d78693c281 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 15 Feb 2020 08:44:37 -0600
 Subject: [PATCH 55/55] repo refactor to match the correct format
@@ -2323,7 +2309,7 @@ Subject: [PATCH 55/55] repo refactor to match the correct format
  rename {simple-todos/imports => imports}/ui/App.vue (100%)
  rename {simple-todos/imports => imports}/ui/Task.vue (100%)
  rename simple-todos/package-lock.json => package-lock.json (99%)
- rename simple-todos/package.json => package.json (96%)
+ rename simple-todos/package.json => package.json (95%)
  rename {simple-todos/server => server}/main.js (100%)
  delete mode 100644 simple-todos/.vscode/typings/meteor.d.ts
  rename {simple-todos/tests => tests}/main.js (100%)
@@ -2414,10 +2400,10 @@ index d4b19cd..3fc0d85 100644
    "lockfileVersion": 1,
    "dependencies": {
 diff --git a/simple-todos/package.json b/package.json
-similarity index 96%
+similarity index 95%
 rename from simple-todos/package.json
 rename to package.json
-index b284039..95d8989 100644
+index 5c10bb3..801ff80 100644
 --- a/simple-todos/package.json
 +++ b/package.json
 @@ -1,5 +1,5 @@
