@@ -2,13 +2,15 @@
 
 # Adding tasks with a form
 
-In this step, we'll add an input field for users to add tasks to the list.
+In this step, we'll add an input field for users to add new tasks to the list.
 
 First, let's add a form to our `App` component:
 
 {{> DiffBox step="4.1" tutorialName="simple-todos-vue"}}
 
-You can see that the `form` element has a `@submit.prevent` attribute that references a method on the component called `handleSubmit`. In Vue, this is how you listen to browser events, like the submit event on the form. The `input` element has a `v-model` property which will let us easily access this element value later.
+This form will have an input element added to it that has a `v-model` attribute bound to `newTask`. `newTask` is also added to the Vue instance's data object. The `newTask` data field is bound via two-way binding to the input field. 
+
+You can see that the `form` element has a `@submit.prevent` attribute that references a method called `handleSubmit` defined in the component's `methods` object. In Vue, this is how you listen to browser events, like the submit event on the form. The `input` element also has a `v-model` property which will let us easily access this element's value later.
 
 Let's add a `handleSubmit` method to our `App` component:
 

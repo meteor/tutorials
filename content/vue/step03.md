@@ -12,7 +12,7 @@ To use data from a Meteor collection inside a Vue component, we can use a Meteor
 meteor npm install --save vue-meteor-tracker
 ```
 
-In your Vue component, add a meteor object :
+In your Vue component, add a meteor object:
 
 ```
 export default {
@@ -24,14 +24,13 @@ export default {
 
 {{> DiffBox step="3.4" tutorialName="simple-todos-vue"}}
 
-Add an object for each subscription in a \$subscribe object. The object key is the name of the publication and the value is either an array of parameters or a function returning an array of parameters. These subscription will be stopped when the component is destroyed.
+Add a field for each reactive Meteor data source that you need access to, in this case we want access to the Tasks Mongo Collection.
 
 ```
 export default {
   meteor: {
-    $subscribe: {
-      // Subscribes to the 'tastk' publication with no parameters
-      'tasks': []
+    tasks() {
+        return Tasks.find({}).fetch();
     }
   }
 }

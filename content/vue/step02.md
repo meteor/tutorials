@@ -21,7 +21,7 @@ The rest of this tutorial will take you on a step-by-step journey through the de
 
 ### Install Vue dependencies
 
-To start working with Vue as our view library, we first need to add the relevant npm packages.
+To start working with Vue as our view library, we first need to add the relevant npm package.
 
 Open a new terminal in the same directory as your running app, and type:
 
@@ -85,7 +85,7 @@ We just added three things to our app:
 
 1. An `App` Vue component in `imports/ui/App.vue`
 2. A `Task` Vue component in `imports/ui/Task.vue`
-3. Some initialization code (in our `client/main.js` client JavaScript entrypoint), in a `Meteor.startup` block, which knows how to call code when the page is loaded and ready. This code creates the root Vue instance and passes in the options object to the Vue instances contructor. This root Vue instance will be mounted to the `#app` html element.
+3. Some initialization code (in our `client/main.js` client JavaScript entrypoint), in a `Meteor.startup` block, which knows how to call code when the page is loaded and ready. This code creates the root Vue instance and passes in the options object to it's contructor. This root Vue instance will be mounted using the `#app` html element.
 
 You can read more about how imports work and how to structure your code in the [Application Structure article](http://guide.meteor.com/structure.html) of the Meteor Guide.
 

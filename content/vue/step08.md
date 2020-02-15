@@ -14,15 +14,16 @@ meteor add accounts-ui accounts-password
 
 ### Wrapping a Blaze component in Vue
 
-To use of the Blaze UI component from the `accounts-ui` package inside of a Vue component, we need to make use of the Vue and Blaze Integration package. So first we need to install this package.
+To use the Blaze UI component from the `accounts-ui` package inside of a Vue component, we need to make use of the Vue and Blaze Integration package. So we will first need to install this package.
 
 ```sh
 add meteor add vuejs:blaze-integration
 ```
 
+Let's include the `loginButtons` template in the App component by using the following syntax `<blaze-template template="loginButtons" tag="span"></blaze-template>`:
+
 {{> DiffBox step="8.2" tutorialName="simple-todos-vue"}}
 
-Let's include the `loginButtons` template in the App component by using the following syntax `<blaze-template template="loginButtons" tag="span"></blaze-template>`:
 
 {{> DiffBox step="8.3" tutorialName="simple-todos-vue"}}
 
