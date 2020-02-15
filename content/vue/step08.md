@@ -22,9 +22,6 @@ add meteor add vuejs:blaze-integration
 
 Let's include the `loginButtons` template in the App component by using the following syntax `<blaze-template template="loginButtons" tag="span"></blaze-template>`:
 
-{{> DiffBox step="8.2" tutorialName="simple-todos-vue"}}
-
-
 {{> DiffBox step="8.3" tutorialName="simple-todos-vue"}}
 
 Then, add the following code to configure the accounts UI to use usernames instead of email addresses:
