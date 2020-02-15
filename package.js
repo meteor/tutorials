@@ -1,6 +1,6 @@
 Package.describe({
   summary: 'Tutorial content, included in meteor.com via package',
-  version: '0.0.1',
+  version: '0.0.2',
   name: 'tutorials'
 });
 
@@ -23,6 +23,7 @@ Package.onUse(function (api) {
     'content/angular/metadata.js',
     'content/blaze/metadata.js',
     'content/react/metadata.js',
+    'content/vue/metadata.js',
   ]);
 
   api.addFiles([
@@ -59,6 +60,18 @@ Package.onUse(function (api) {
     'content/react/step10.md',
     'content/react/step11.md',
     'content/react/step12.md',
+
+    'content/vue/step02.md',
+    'content/vue/step03.md',
+    'content/vue/step04.md',
+    'content/vue/step05.md',
+    'content/vue/step07.md',
+    'content/vue/step08.md',
+    'content/vue/step09.md',
+    'content/vue/step10.md',
+    'content/vue/step11.md',
+    'content/vue/step12.md',
+
     'content/step00.html',
 
     'content/shared/explanations.md',
@@ -79,4 +92,5 @@ Package.onUse(function (api) {
   api.export('REACT_TUT');
   api.export('ANGULAR_TUT');
   api.export('BLAZE_TUT');
+  api.export('VUE_TUT');
 });
