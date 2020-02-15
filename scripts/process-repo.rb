@@ -20,7 +20,7 @@ if ARGV.length < 1
   exit 1
 end
 
-unless ["angular", "blaze", "react"].include? ARGV[0]
+unless ["angular", "blaze", "react", "vue"].include? ARGV[0]
   puts "Please pass the name of a view layer: blaze, angular, or react"
   exit 1
 end
