@@ -12,17 +12,21 @@ meteor remove autopublish
 
 When the app refreshes, the task list will be empty. Without the `autopublish` package, we will have to specify explicitly what the server sends to the client. The functions in Meteor that do this are `Meteor.publish` and `Meteor.subscribe`.
 
-First lets add a publication for all tasks:
+First lets add a publication for all the tasks we have in our Mongo collection:
 
 {{> DiffBox step="10.2" tutorialName="simple-todos-vue"}}
 
-And then let's subscribe to that publication when the `App` component is created:
+And then let's subscribe to that publication in the `App` component.
 
 {{> DiffBox step="10.3" tutorialName="simple-todos-vue"}}
 
 Once you have added this code, all of the tasks will reappear.
 
-Calling `Meteor.publish` on the server registers a _publication_ named `"tasks"`. When `Meteor.subscribe` is called on the client with the publication name, the client _subscribes_ to all the data from that publication, which in this case is all of the tasks in the database. To truly see the power of the publish/subscribe model, let's implement a feature that allows users to mark tasks as "private" so that no other users can see them.
+Calling `Meteor.publish` on the server registers a _publication_ named `"tasks"`.
+
+On the client we will add an object for each subscription we want to subscribe to in the `$subscribe` object. The object key is the name of the publication and the value is either an array of parameters or a function returning an array of parameters.
+
+To truly see the power of the publish/subscribe model, let's implement a feature that allows users to mark tasks as "private" so that no other users can see them.
 
 ### Adding a button to make tasks private
 
