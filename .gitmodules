@@ -7,9 +7,6 @@
 [submodule "repos/angular"]
 	path = repos/angular
 	url = git@github.com:meteor/simple-todos-angular.git
-[submodule "simple-todos-vue"]
-	path = simple-todos-vue
-	url = https://github.com/BrianMulhall/simple-todos-vue.git
 [submodule "repos/vue"]
 	path = repos/vue
 	url = https://github.com/BrianMulhall/simple-todos-vue.git
