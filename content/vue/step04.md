@@ -4,19 +4,19 @@
 
 In this step, we'll add an input field for users to add new tasks to the list.
 
-First, let's add a form to our `App` component:
+First, let's add a form to our `App` component's template and a `newTask` field to the `data` object of our Vue instance:
 
 {{> DiffBox step="4.1" tutorialName="simple-todos-vue"}}
 
-This form will have an input element added to it that has a `v-model` attribute bound to `newTask`. `newTask` is also added to the Vue instance's data object. The `newTask` data field is bound via two-way binding to the input field. 
+This form will have an input element added to it that has a `v-model` attribute bound to `newTask`. The `newTask` data field is bound via two-way binding to the input field.
 
-You can see that the `form` element has a `@submit.prevent` attribute that references a method called `handleSubmit` defined in the component's `methods` object. In Vue, this is how you listen to browser events, like the submit event on the form. The `input` element also has a `v-model` property which will let us easily access this element's value later.
+You can see that the `form` element has a `@submit.prevent` attribute that references a method called `handleSubmit` that we will later define in the component's `methods` object. In Vue, this is how you listen to browser events, like the submit event on the form.
 
-Let's add a `handleSubmit` method to our `App` component:
+We can now add that `handleSubmit` method to our `App` component's `methods` object:
 
 {{> DiffBox step="4.2" tutorialName="simple-todos-vue"}}
 
-Now your app has a new input field. To add a task, just type into the input field and hit enter. If you open a new browser window and open the app again, you'll see that the list is automatically synchronized between all clients.
+Now your app has a new input field. To add a new task, just type into the input field and hit enter. If you open a new browser window and open the app again, you'll see that the list is automatically synchronized between all clients.
 
 ### Listening for events in Vue
 

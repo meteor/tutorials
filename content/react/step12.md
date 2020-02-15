@@ -16,6 +16,6 @@ meteor create --example localmarket
 meteor create --react new-react-app
 ```
 
-{{> step11NextSteps}}
+{{> step12NextSteps}}
 
 {{/template}}
