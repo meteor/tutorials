@@ -24,6 +24,8 @@ export default {
 
 {{> DiffBox step="3.4" tutorialName="simple-todos-vue"}}
 
+{{> DiffBox step="3.5" tutorialName="simple-todos-vue"}}
+
 Add a field for each reactive Meteor data source that you need access to, in this case we want access to the Tasks Mongo Collection.
 
 ```
