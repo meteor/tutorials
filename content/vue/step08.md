@@ -4,9 +4,9 @@
 
 Meteor comes with an accounts system and a drop-in login user interface that lets you add multi-user functionality to your app in minutes.
 
-> Currently, this UI component uses Blaze, Meteor's default UI engine. In the future, there might also be a Vue-specific component for this.
+> Currently, this UI component uses Blaze, Meteor's default UI engine.
 
-To enable the accounts system and UI, we need to add the relevant packages. In your app directory, run the following command:
+To make use of the accounts system and UI, we need to add the relevant packages. In your app directory, run the following command:
 
 ```bash
 meteor add accounts-ui accounts-password
@@ -52,7 +52,7 @@ Modify the data container to get information about the currently logged in user:
 
 {{> DiffBox step="8.7" tutorialName="simple-todos-vue"}}
 
-Then, we can wrap our form in a `<template>` tag and add in a `v-if` directive to conditionally render the wrapped form only when there is a logged in user:
+Then, we can wrap our form in a `<template>` tag and add in the `v-if` directive to conditionally render our form only when there is a logged in user:
 
 {{> DiffBox step="8.8" tutorialName="simple-todos-vue"}}
 

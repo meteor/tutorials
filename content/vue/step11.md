@@ -12,7 +12,7 @@ To do so, we'll add a [test driver](http://guide.meteor.com/testing.html#test-dr
 
 ```bash
 meteor add meteortesting:mocha
-meteor npm install --save chai
+meteor npm install --save-dev chai
 ```
 
 ### Run `meteor test` with a driver package
