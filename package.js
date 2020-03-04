@@ -1,6 +1,6 @@
 Package.describe({
   summary: 'Tutorial content, included in meteor.com via package',
-  version: '0.0.2',
+  version: '0.0.3',
   name: 'tutorials'
 });
 
@@ -83,7 +83,8 @@ Package.onUse(function (api) {
 
     'generated/react.multi.patch',
     'generated/blaze.multi.patch',
-    'generated/angular.multi.patch'
+    'generated/angular.multi.patch',
+    'generated/vue.multi.patch',
   ], 'client');
 
   // Also, exports all of the templates from the content/ directory

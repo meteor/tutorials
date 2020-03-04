@@ -9,4 +9,4 @@
 	url = git@github.com:meteor/simple-todos-angular.git
 [submodule "repos/vue"]
 	path = repos/vue
-	url = https://github.com/BrianMulhall/simple-todos-vue.git
+	url = git@github.com:meteor/simple-todos-vue.git
