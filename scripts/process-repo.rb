@@ -16,12 +16,12 @@ require 'json'
 # Methodology: calls git log and parses output
 
 if ARGV.length < 1
-  puts "Please pass the name of a view layer: blaze, angular, or react"
+  puts "Please pass the name of a view layer: blaze, angular, vue, or react"
   exit 1
 end
 
-unless ["angular", "blaze", "react"].include? ARGV[0]
-  puts "Please pass the name of a view layer: blaze, angular, or react"
+unless ["angular", "blaze", "react", "vue"].include? ARGV[0]
+  puts "Please pass the name of a view layer: blaze, angular, vue, or react"
   exit 1
 end
 

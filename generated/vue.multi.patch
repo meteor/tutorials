@@ -1,0 +1,4446 @@
+From ec5e25a3c71c3d15157101cd56156bcb6a2a7604 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 09:42:33 -0600
+Subject: [PATCH 01/55] Step 2.1.1: Add the Vue NPM package
+
+---
+ simple-todos/package-lock.json | 5 +++++
+ simple-todos/package.json      | 3 ++-
+ 2 files changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/simple-todos/package-lock.json b/simple-todos/package-lock.json
+index cf9612a..331d03d 100644
+--- a/simple-todos/package-lock.json
++++ b/simple-todos/package-lock.json
+@@ -581,6 +581,11 @@
+       "version": "0.13.3",
+       "resolved": "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.13.3.tgz",
+       "integrity": "sha512-naKIZz2GQ8JWh///G7L3X6LaQUAMp2lvb1rvwwsURe/VXwD6VMfr+/1NuNw3ag8v2kY1aQ/go5SNn79O9JU7yw=="
++    },
++    "vue": {
++      "version": "2.6.11",
++      "resolved": "https://registry.npmjs.org/vue/-/vue-2.6.11.tgz",
++      "integrity": "sha512-VfPwgcGABbGAue9+sfrD4PuwFar7gPb1yl1UK1MwXoQPAw0BKSqWfoYCT/ThFrdEVWoI51dBuyCoiNU9bZDZxQ=="
+     }
+   }
+ }
+diff --git a/simple-todos/package.json b/simple-todos/package.json
+index f0c1811..a48f4a2 100644
+--- a/simple-todos/package.json
++++ b/simple-todos/package.json
+@@ -10,7 +10,8 @@
+   "dependencies": {
+     "@babel/runtime": "^7.7.6",
+     "jquery": "^3.4.1",
+-    "meteor-node-stubs": "^1.0.0"
++    "meteor-node-stubs": "^1.0.0",
++    "vue": "^2.6.11"
+   },
+   "meteor": {
+     "mainModule": {
+-- 
+2.11.0
+
+
+From 1d073ac6beb3d0bd12fae13c22308d6b4f6e7d1c Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 10:47:35 -0600
+Subject: [PATCH 02/55] Step 2.1.2: Add akryum:vue-component Meteor package
+
+---
+ simple-todos/.meteor/packages | 1 +
+ simple-todos/.meteor/versions | 3 +++
+ 2 files changed, 4 insertions(+)
+
+diff --git a/simple-todos/.meteor/packages b/simple-todos/.meteor/packages
+index 403881a..d96de6f 100644
+--- a/simple-todos/.meteor/packages
++++ b/simple-todos/.meteor/packages
+@@ -21,3 +21,4 @@ shell-server@0.4.0            # Server-side component of the `meteor shell` comm
+ 
+ autopublish@1.0.7             # Publish all data to the clients (for prototyping)
+ insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
++akryum:vue-component
+diff --git a/simple-todos/.meteor/versions b/simple-todos/.meteor/versions
+index 09e2aa9..6ebc5af 100644
+--- a/simple-todos/.meteor/versions
++++ b/simple-todos/.meteor/versions
+@@ -1,3 +1,6 @@
++akryum:vue-component@0.15.2
++akryum:vue-component-dev-client@0.4.7
++akryum:vue-component-dev-server@0.1.4
+ allow-deny@1.1.0
+ autopublish@1.0.7
+ autoupdate@1.6.0
+-- 
+2.11.0
+
+
+From 373c8ed21efa0a0e75a82061ba2b38f26066c0a0 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 10:51:02 -0600
+Subject: [PATCH 03/55] Step 2.1.3: Update the.gitignore file to include the
+ .cache folder
+
+---
+ simple-todos/.gitignore | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/simple-todos/.gitignore b/simple-todos/.gitignore
+index c2658d7..d317530 100644
+--- a/simple-todos/.gitignore
++++ b/simple-todos/.gitignore
+@@ -1 +1,2 @@
+ node_modules/
++.cache
+-- 
+2.11.0
+
+
+From 11e7c8c799d8068a44240ef5f614323961e98ff6 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 09:44:14 -0600
+Subject: [PATCH 04/55] Step 2.1.4: Remove blaze-html-templates and add
+ static-html
+
+---
+ simple-todos/.meteor/packages | 2 +-
+ simple-todos/.meteor/versions | 9 +--------
+ 2 files changed, 2 insertions(+), 9 deletions(-)
+
+diff --git a/simple-todos/.meteor/packages b/simple-todos/.meteor/packages
+index d96de6f..d855b1e 100644
+--- a/simple-todos/.meteor/packages
++++ b/simple-todos/.meteor/packages
+@@ -7,7 +7,6 @@
+ meteor-base@1.4.0             # Packages every Meteor app needs to have
+ mobile-experience@1.0.5       # Packages for a great mobile UX
+ mongo@1.8.0                   # The database Meteor supports right now
+-blaze-html-templates    # Compile .html files into Meteor Blaze views
+ jquery                  # Wrapper package for npm-installed jquery
+ reactive-var@1.0.11            # Reactive variable for tracker
+ tracker@1.2.0                 # Meteor's client-side reactive programming library
+@@ -22,3 +21,4 @@ shell-server@0.4.0            # Server-side component of the `meteor shell` comm
+ autopublish@1.0.7             # Publish all data to the clients (for prototyping)
+ insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
+ akryum:vue-component
++static-html
+diff --git a/simple-todos/.meteor/versions b/simple-todos/.meteor/versions
+index 6ebc5af..820295c 100644
+--- a/simple-todos/.meteor/versions
++++ b/simple-todos/.meteor/versions
+@@ -8,8 +8,6 @@ babel-compiler@7.5.1
+ babel-runtime@1.5.0
+ base64@1.0.12
+ binary-heap@1.0.11
+-blaze@2.3.4
+-blaze-html-templates@1.1.2
+ blaze-tools@1.0.10
+ boilerplate-generator@1.6.0
+ caching-compiler@1.2.1
+@@ -56,7 +54,6 @@ mongo-decimal@0.1.1
+ mongo-dev-server@1.1.0
+ mongo-id@1.0.7
+ npm-mongo@3.3.0
+-observe-sequence@1.0.16
+ ordered-dict@1.1.0
+ promise@0.11.2
+ random@1.1.0
+@@ -66,17 +63,13 @@ retry@1.1.0
+ routepolicy@1.1.0
+ shell-server@0.4.0
+ socket-stream-client@0.2.3
+-spacebars@1.0.15
+ spacebars-compiler@1.1.3
+ standard-minifier-css@1.6.0
+ standard-minifier-js@2.6.0
+-templating@1.3.2
+-templating-compiler@1.3.3
+-templating-runtime@1.3.2
++static-html@1.2.2
+ templating-tools@1.1.2
+ tracker@1.2.0
+ typescript@3.7.4
+-ui@1.0.13
+ underscore@1.0.10
+ webapp@1.8.2
+ webapp-hashing@1.0.9
+-- 
+2.11.0
+
+
+From 490e36dcbca1137d7777328f4697b4eb59c42103 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 09:47:58 -0600
+Subject: [PATCH 05/55] Step 2.2: Replace starter HTML code
+
+---
+ simple-todos/client/main.html | 24 +++---------------------
+ 1 file changed, 3 insertions(+), 21 deletions(-)
+
+diff --git a/simple-todos/client/main.html b/simple-todos/client/main.html
+index 15a7c7d..b4e3061 100644
+--- a/simple-todos/client/main.html
++++ b/simple-todos/client/main.html
+@@ -1,25 +1,7 @@
+ <head>
+-  <title>simple-todos</title>
++  <title>Todo List</title>
+ </head>
+ 
+ <body>
+-  <h1>Welcome to Meteor!</h1>
+-
+-  {{> hello}}
+-  {{> info}}
+-</body>
+-
+-<template name="hello">
+-  <button>Click Me</button>
+-  <p>You've pressed the button {{counter}} times.</p>
+-</template>
+-
+-<template name="info">
+-  <h2>Learn Meteor!</h2>
+-  <ul>
+-    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
+-    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
+-    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
+-    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
+-  </ul>
+-</template>
++  <div id="app"></div>
++</body>
+\ No newline at end of file
+-- 
+2.11.0
+
+
+From ed9d5e8b8987f575d476e2eae3e4c452bab1cd6c Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 10:34:34 -0600
+Subject: [PATCH 06/55] Step 2.3: Replace starter JS
+
+---
+ simple-todos/client/main.js | 27 ++++++++-------------------
+ 1 file changed, 8 insertions(+), 19 deletions(-)
+
+diff --git a/simple-todos/client/main.js b/simple-todos/client/main.js
+index ecb3282..bbd7003 100644
+--- a/simple-todos/client/main.js
++++ b/simple-todos/client/main.js
+@@ -1,22 +1,11 @@
+-import { Template } from 'meteor/templating';
+-import { ReactiveVar } from 'meteor/reactive-var';
++import { Meteor } from 'meteor/meteor';
++import Vue from 'vue';
+ 
+-import './main.html';
++import App from '../imports/ui/App.vue';
+ 
+-Template.hello.onCreated(function helloOnCreated() {
+-  // counter starts at 0
+-  this.counter = new ReactiveVar(0);
+-});
+-
+-Template.hello.helpers({
+-  counter() {
+-    return Template.instance().counter.get();
+-  },
+-});
+-
+-Template.hello.events({
+-  'click button'(event, instance) {
+-    // increment the counter when button is clicked
+-    instance.counter.set(instance.counter.get() + 1);
+-  },
++Meteor.startup(() => {
++  new Vue({
++    el: '#app',
++    ...App,
++  });
+ });
+-- 
+2.11.0
+
+
+From a8045d47a0835162a7a579dcc23e53407207cf50 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 10:40:46 -0600
+Subject: [PATCH 07/55] Step 2.4: Create App component
+
+---
+ simple-todos/imports/ui/App.vue | 37 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 37 insertions(+)
+ create mode 100644 simple-todos/imports/ui/App.vue
+
+diff --git a/simple-todos/imports/ui/App.vue b/simple-todos/imports/ui/App.vue
+new file mode 100644
+index 0000000..f5502e4
+--- /dev/null
++++ b/simple-todos/imports/ui/App.vue
+@@ -0,0 +1,37 @@
++<template>
++  <div className="container">
++    <header>
++      <h1>Todo List</h1>
++    </header>
++    <ul>
++      <Task
++        v-for="task in getTasks()"
++        v-bind:key="task._id"
++        v-bind:task="task"
++      />
++    </ul>
++  </div>
++</template>
++
++<script>
++import Vue from "vue";
++import Task from "./Task.vue";
++
++export default {
++  components: {
++    Task
++  },
++  data() {
++    return {};
++  },
++  methods: {
++    getTasks() {
++      return [
++        { _id: 1, text: "This is task 1" },
++        { _id: 2, text: "This is task 2" },
++        { _id: 3, text: "This is task 3" }
++      ];
++    }
++  }
++};
++</script>
+-- 
+2.11.0
+
+
+From a097aa498893e9c61bc50946222bf151ad4e5701 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 10:42:03 -0600
+Subject: [PATCH 08/55] Step 2.5: Create Task component
+
+---
+ simple-todos/imports/ui/Task.vue | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+ create mode 100644 simple-todos/imports/ui/Task.vue
+
+diff --git a/simple-todos/imports/ui/Task.vue b/simple-todos/imports/ui/Task.vue
+new file mode 100644
+index 0000000..ef7b40a
+--- /dev/null
++++ b/simple-todos/imports/ui/Task.vue
+@@ -0,0 +1,12 @@
++<template>
++  <li>{{ this.task.text }}</li>
++</template>
++
++<script>
++export default {
++  props: ["task"],
++  data() {
++    return {};
++  }
++};
++</script>
+-- 
+2.11.0
+
+
+From 0b695a08c1441243d6aaf4bc1f8be599212ee098 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 10:43:39 -0600
+Subject: [PATCH 09/55] Step 2.6: Add CSS
+
+---
+ simple-todos/client/main.css | 123 +++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 123 insertions(+)
+
+diff --git a/simple-todos/client/main.css b/simple-todos/client/main.css
+index 7f354f0..3740214 100644
+--- a/simple-todos/client/main.css
++++ b/simple-todos/client/main.css
+@@ -1,4 +1,127 @@
++/* CSS declarations go here */
+ body {
+   padding: 10px;
+   font-family: sans-serif;
++  background-color: #315481;
++  background-image: linear-gradient(to bottom, #315481, #918e82 100%);
++  background-attachment: fixed;
++
++  position: absolute;
++  top: 0;
++  bottom: 0;
++  left: 0;
++  right: 0;
++
++  padding: 0;
++  margin: 0;
++
++  font-size: 14px;
++}
++
++.container {
++  max-width: 600px;
++  margin: 0 auto;
++  min-height: 100%;
++  background: white;
++}
++
++header {
++  background: #d2edf4;
++  background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
++  padding: 20px 15px 15px 15px;
++  position: relative;
++}
++
++#login-buttons {
++  display: block;
++}
++
++h1 {
++  font-size: 1.5em;
++  margin: 0;
++  margin-bottom: 10px;
++  display: inline-block;
++  margin-right: 1em;
++}
++
++form {
++  margin-top: 10px;
++  margin-bottom: -10px;
++  position: relative;
++}
++
++.new-task input {
++  box-sizing: border-box;
++  padding: 10px 0;
++  background: transparent;
++  border: none;
++  width: 100%;
++  padding-right: 80px;
++  font-size: 1em;
++}
++
++.new-task input:focus {
++  outline: 0;
++}
++
++ul {
++  margin: 0;
++  padding: 0;
++  background: white;
++}
++
++.delete {
++  float: right;
++  font-weight: bold;
++  background: none;
++  font-size: 1em;
++  border: none;
++  position: relative;
++}
++
++li {
++  position: relative;
++  list-style: none;
++  padding: 15px;
++  border-bottom: #eee solid 1px;
++}
++
++li .text {
++  margin-left: 10px;
++}
++
++li.checked {
++  color: #888;
++}
++
++li.checked .text {
++  text-decoration: line-through;
++}
++
++li.private {
++  background: #eee;
++  border-color: #ddd;
++}
++
++header .hide-completed {
++  float: right;
++}
++
++.toggle-private {
++  margin-left: 5px;
++}
++
++@media (max-width: 600px) {
++  li {
++    padding: 12px 15px;
++  }
++
++  .search {
++    width: 150px;
++    clear: both;
++  }
++
++  .new-task input {
++    padding-bottom: 5px;
++  }
+ }
+-- 
+2.11.0
+
+
+From 901e1d65125650e38563bdd56e0660d617f3d94a Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 10:51:34 -0600
+Subject: [PATCH 10/55] Step 3.1: Create tasks collection
+
+---
+ simple-todos/imports/api/tasks.js | 3 +++
+ 1 file changed, 3 insertions(+)
+ create mode 100644 simple-todos/imports/api/tasks.js
+
+diff --git a/simple-todos/imports/api/tasks.js b/simple-todos/imports/api/tasks.js
+new file mode 100644
+index 0000000..dfeb446
+--- /dev/null
++++ b/simple-todos/imports/api/tasks.js
+@@ -0,0 +1,3 @@
++import { Mongo } from 'meteor/mongo';
++
++export const Tasks = new Mongo.Collection('tasks');
+\ No newline at end of file
+-- 
+2.11.0
+
+
+From 4fc5a676c4c554548a6832e74dd2fbfff5529f37 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 10:52:58 -0600
+Subject: [PATCH 11/55] Step 3.2: Load tasks collection on the server
+
+---
+ simple-todos/server/main.js | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+diff --git a/simple-todos/server/main.js b/simple-todos/server/main.js
+index 31a9e0e..ab941a4 100644
+--- a/simple-todos/server/main.js
++++ b/simple-todos/server/main.js
+@@ -1,5 +1 @@
+-import { Meteor } from 'meteor/meteor';
+-
+-Meteor.startup(() => {
+-  // code to run on server at startup
+-});
++import '../imports/api/tasks.js';
+-- 
+2.11.0
+
+
+From c02324c22274a906b06744c5e569f677dc6927d0 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 10:54:24 -0600
+Subject: [PATCH 12/55] Step 3.3: Add vue-meteor-tracker npm package
+
+---
+ simple-todos/package-lock.json | 13 +++++++++++++
+ simple-todos/package.json      |  3 ++-
+ 2 files changed, 15 insertions(+), 1 deletion(-)
+
+diff --git a/simple-todos/package-lock.json b/simple-todos/package-lock.json
+index 331d03d..e42bb10 100644
+--- a/simple-todos/package-lock.json
++++ b/simple-todos/package-lock.json
+@@ -16,6 +16,11 @@
+       "resolved": "https://registry.npmjs.org/jquery/-/jquery-3.4.1.tgz",
+       "integrity": "sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw=="
+     },
++    "lodash.omit": {
++      "version": "4.5.0",
++      "resolved": "https://registry.npmjs.org/lodash.omit/-/lodash.omit-4.5.0.tgz",
++      "integrity": "sha1-brGa5aHuHdnfC5aeZs4Lf6MLXmA="
++    },
+     "meteor-node-stubs": {
+       "version": "1.0.0",
+       "resolved": "https://registry.npmjs.org/meteor-node-stubs/-/meteor-node-stubs-1.0.0.tgz",
+@@ -586,6 +591,14 @@
+       "version": "2.6.11",
+       "resolved": "https://registry.npmjs.org/vue/-/vue-2.6.11.tgz",
+       "integrity": "sha512-VfPwgcGABbGAue9+sfrD4PuwFar7gPb1yl1UK1MwXoQPAw0BKSqWfoYCT/ThFrdEVWoI51dBuyCoiNU9bZDZxQ=="
++    },
++    "vue-meteor-tracker": {
++      "version": "2.0.0-beta.5",
++      "resolved": "https://registry.npmjs.org/vue-meteor-tracker/-/vue-meteor-tracker-2.0.0-beta.5.tgz",
++      "integrity": "sha512-egEEqAeKoy7moc4mdb/yM4+UDxk7yOAiIAW8gFz8umtAEYr7Ll8B1wLC0gtoY4IDUU8bCo0UzQjWvfXDMfl7YA==",
++      "requires": {
++        "lodash.omit": "^4.5.0"
++      }
+     }
+   }
+ }
+diff --git a/simple-todos/package.json b/simple-todos/package.json
+index a48f4a2..2433819 100644
+--- a/simple-todos/package.json
++++ b/simple-todos/package.json
+@@ -11,7 +11,8 @@
+     "@babel/runtime": "^7.7.6",
+     "jquery": "^3.4.1",
+     "meteor-node-stubs": "^1.0.0",
+-    "vue": "^2.6.11"
++    "vue": "^2.6.11",
++    "vue-meteor-tracker": "^2.0.0-beta.5"
+   },
+   "meteor": {
+     "mainModule": {
+-- 
+2.11.0
+
+
+From c815a73f4dc4fc26fa5a06601be4fb67f0b63550 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 15 Feb 2020 15:09:02 -0600
+Subject: [PATCH 13/55] Step 3.4: Add the VueMeteorTracker plugin to the root
+ Vue instance
+
+---
+ simple-todos/client/main.js | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/simple-todos/client/main.js b/simple-todos/client/main.js
+index bbd7003..0c928a3 100644
+--- a/simple-todos/client/main.js
++++ b/simple-todos/client/main.js
+@@ -1,5 +1,8 @@
+ import { Meteor } from 'meteor/meteor';
+ import Vue from 'vue';
++import VueMeteorTracker from 'vue-meteor-tracker';
++
++Vue.use(VueMeteorTracker);
+ 
+ import App from '../imports/ui/App.vue';
+ 
+-- 
+2.11.0
+
+
+From 392910e9754dfb9ae55512c2c91d729b852c408b Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 15 Feb 2020 15:09:27 -0600
+Subject: [PATCH 14/55] Step 3.5: Modify App component to get tasks from
+ collection
+
+---
+ simple-todos/imports/ui/App.vue | 18 ++++++------------
+ 1 file changed, 6 insertions(+), 12 deletions(-)
+
+diff --git a/simple-todos/imports/ui/App.vue b/simple-todos/imports/ui/App.vue
+index f5502e4..1b768bf 100644
+--- a/simple-todos/imports/ui/App.vue
++++ b/simple-todos/imports/ui/App.vue
+@@ -4,11 +4,7 @@
+       <h1>Todo List</h1>
+     </header>
+     <ul>
+-      <Task
+-        v-for="task in getTasks()"
+-        v-bind:key="task._id"
+-        v-bind:task="task"
+-      />
++      <Task v-for="task in tasks" v-bind:key="task._id" v-bind:task="task" />
+     </ul>
+   </div>
+ </template>
+@@ -16,6 +12,7 @@
+ <script>
+ import Vue from "vue";
+ import Task from "./Task.vue";
++import { Tasks } from "../api/tasks.js";
+ 
+ export default {
+   components: {
+@@ -24,13 +21,10 @@ export default {
+   data() {
+     return {};
+   },
+-  methods: {
+-    getTasks() {
+-      return [
+-        { _id: 1, text: "This is task 1" },
+-        { _id: 2, text: "This is task 2" },
+-        { _id: 3, text: "This is task 3" }
+-      ];
++  methods: {},
++  meteor: {
++    tasks() {
++      return Tasks.find({}).fetch();
+     }
+   }
+ };
+-- 
+2.11.0
+
+
+From 53a106b128c0400c0826771393e3d4e30c33e72d Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 11:09:17 -0600
+Subject: [PATCH 15/55] Step 4.1: Add form for new tasks
+
+---
+ simple-todos/imports/ui/App.vue | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/simple-todos/imports/ui/App.vue b/simple-todos/imports/ui/App.vue
+index 1b768bf..b3d25ad 100644
+--- a/simple-todos/imports/ui/App.vue
++++ b/simple-todos/imports/ui/App.vue
+@@ -2,6 +2,13 @@
+   <div className="container">
+     <header>
+       <h1>Todo List</h1>
++      <form className="new-task" @submit.prevent="handleSubmit">
++        <input
++          type="text"
++          placeholder="Type to add new tasks"
++          v-model="newTask"
++        />
++      </form>
+     </header>
+     <ul>
+       <Task v-for="task in tasks" v-bind:key="task._id" v-bind:task="task" />
+@@ -19,7 +26,9 @@ export default {
+     Task
+   },
+   data() {
+-    return {};
++    return {
++      newTask: ""
++    };
+   },
+   methods: {},
+   meteor: {
+-- 
+2.11.0
+
+
+From f9e699d1d201afc2f89fa51df52de59525dd58ed Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 11:12:39 -0600
+Subject: [PATCH 16/55] Step 4.2: Add handleSubmit method to App component
+
+---
+ simple-todos/imports/ui/App.vue | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+
+diff --git a/simple-todos/imports/ui/App.vue b/simple-todos/imports/ui/App.vue
+index b3d25ad..c52ade2 100644
+--- a/simple-todos/imports/ui/App.vue
++++ b/simple-todos/imports/ui/App.vue
+@@ -30,7 +30,17 @@ export default {
+       newTask: ""
+     };
+   },
+-  methods: {},
++  methods: {
++    handleSubmit(event) {
++      Tasks.insert({
++        text: this.newTask,
++        createdAt: new Date() // current time
++      });
++
++      // Clear form
++      this.newTask = "";
++    }
++  },
+   meteor: {
+     tasks() {
+       return Tasks.find({}).fetch();
+-- 
+2.11.0
+
+
+From 6933e8e1bcc58062c9de63ce76a8069b8aaae0d8 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 11:13:57 -0600
+Subject: [PATCH 17/55] Step 4.3: Update data container to sort tasks by time
+
+---
+ simple-todos/imports/ui/App.vue | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/simple-todos/imports/ui/App.vue b/simple-todos/imports/ui/App.vue
+index c52ade2..9d30108 100644
+--- a/simple-todos/imports/ui/App.vue
++++ b/simple-todos/imports/ui/App.vue
+@@ -43,7 +43,7 @@ export default {
+   },
+   meteor: {
+     tasks() {
+-      return Tasks.find({}).fetch();
++      return Tasks.find({}, { sort: { createdAt: -1 } }).fetch();
+     }
+   }
+ };
+-- 
+2.11.0
+
+
+From fa9790b8aecb7847565b37349e9ac74a88f1742c Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 11:23:47 -0600
+Subject: [PATCH 18/55] Step 5.1: Update Task component to add features
+
+---
+ simple-todos/imports/ui/Task.vue | 33 ++++++++++++++++++++++++++++++++-
+ 1 file changed, 32 insertions(+), 1 deletion(-)
+
+diff --git a/simple-todos/imports/ui/Task.vue b/simple-todos/imports/ui/Task.vue
+index ef7b40a..c3b9bbf 100644
+--- a/simple-todos/imports/ui/Task.vue
++++ b/simple-todos/imports/ui/Task.vue
+@@ -1,12 +1,43 @@
+ <template>
+-  <li>{{ this.task.text }}</li>
++  <li v-bind:class="taskClassName">
++    <button className="delete" @click="deleteThisTask">
++      &times;
++    </button>
++
++    <input
++      type="checkbox"
++      readOnly
++      v-bind:checked="!!this.task.checked"
++      @click="toggleChecked"
++    />
++
++    <span class="text">{{ this.task.text }}</span>
++  </li>
+ </template>
+ 
+ <script>
++import { Tasks } from "../api/tasks.js";
++
+ export default {
+   props: ["task"],
+   data() {
+     return {};
++  },
++  computed: {
++    taskClassName: function() {
++      return this.task.checked ? "checked" : "";
++    }
++  },
++  methods: {
++    toggleChecked() {
++      // Set the checked property to the opposite of its current value
++      Tasks.update(this.task._id, {
++        $set: { checked: !this.task.checked }
++      });
++    },
++    deleteThisTask() {
++      Tasks.remove(this.task._id);
++    }
+   }
+ };
+ </script>
+-- 
+2.11.0
+
+
+From e7bd9036a852cd1a5701ba80b14ac47b56f04c52 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 15 Feb 2020 15:13:31 -0600
+Subject: [PATCH 19/55] Step 7.1: Add a hide completed tasks checkbox to the
+ App component
+
+---
+ simple-todos/imports/ui/App.vue | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/simple-todos/imports/ui/App.vue b/simple-todos/imports/ui/App.vue
+index 9d30108..bb86bc1 100644
+--- a/simple-todos/imports/ui/App.vue
++++ b/simple-todos/imports/ui/App.vue
+@@ -2,6 +2,18 @@
+   <div className="container">
+     <header>
+       <h1>Todo List</h1>
++
++      <label className="hide-completed">
++        <input
++          type="checkbox"
++          readOnly
++          checked="hideCompleted"
++          v-model="hideCompleted"
++          @click="toggleHideCompleted"
++        />
++        Hide Completed Tasks
++      </label>
++
+       <form className="new-task" @submit.prevent="handleSubmit">
+         <input
+           type="text"
+-- 
+2.11.0
+
+
+From d2fc1b1f8a6862a50d0fe299abfa5fc656fd0774 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 11:27:34 -0600
+Subject: [PATCH 20/55] Step 7.2: Add intial state to App component
+
+---
+ simple-todos/imports/ui/App.vue | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/simple-todos/imports/ui/App.vue b/simple-todos/imports/ui/App.vue
+index bb86bc1..233ca1d 100644
+--- a/simple-todos/imports/ui/App.vue
++++ b/simple-todos/imports/ui/App.vue
+@@ -39,7 +39,8 @@ export default {
+   },
+   data() {
+     return {
+-      newTask: ""
++      newTask: "",
++      hideCompleted: false
+     };
+   },
+   methods: {
+-- 
+2.11.0
+
+
+From ef66e9286c46641b1803902cc2855b2512b29b6d Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 11:31:10 -0600
+Subject: [PATCH 21/55] Step 7.3: Add toggleHideCompleted handler to App
+
+---
+ simple-todos/imports/ui/App.vue | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/simple-todos/imports/ui/App.vue b/simple-todos/imports/ui/App.vue
+index 233ca1d..2465d9f 100644
+--- a/simple-todos/imports/ui/App.vue
++++ b/simple-todos/imports/ui/App.vue
+@@ -52,6 +52,9 @@ export default {
+ 
+       // Clear form
+       this.newTask = "";
++    },
++    toggleHideCompleted() {
++      this.hideCompleted = !this.hideCompleted;
+     }
+   },
+   meteor: {
+-- 
+2.11.0
+
+
+From 6880dfa7b5f69c7ca4d84474594a6af4f6ae5cd1 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 11:55:21 -0600
+Subject: [PATCH 22/55] Step 7.4: Filter tasks in renderTasks
+
+---
+ simple-todos/imports/ui/App.vue | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/simple-todos/imports/ui/App.vue b/simple-todos/imports/ui/App.vue
+index 2465d9f..a9adcbe 100644
+--- a/simple-todos/imports/ui/App.vue
++++ b/simple-todos/imports/ui/App.vue
+@@ -59,7 +59,11 @@ export default {
+   },
+   meteor: {
+     tasks() {
+-      return Tasks.find({}, { sort: { createdAt: -1 } }).fetch();
++      let filteredTasks = Tasks.find({}, { sort: { createdAt: -1 } }).fetch();
++      if (this.hideCompleted) {
++        filteredTasks = filteredTasks.filter(task => !task.checked);
++      }
++      return filteredTasks;
+     }
+   }
+ };
+-- 
+2.11.0
+
+
+From 8d251ec47bd49b3d0dfe2bad52ae97be7add8c1a Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 11:56:25 -0600
+Subject: [PATCH 23/55] Step 7.5: Update data container to return
+ incompleteCount
+
+---
+ simple-todos/imports/ui/App.vue | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/simple-todos/imports/ui/App.vue b/simple-todos/imports/ui/App.vue
+index a9adcbe..82438b2 100644
+--- a/simple-todos/imports/ui/App.vue
++++ b/simple-todos/imports/ui/App.vue
+@@ -64,6 +64,9 @@ export default {
+         filteredTasks = filteredTasks.filter(task => !task.checked);
+       }
+       return filteredTasks;
++    },
++    incompleteCount() {
++      return Tasks.find({ checked: { $ne: true } }).count();
+     }
+   }
+ };
+-- 
+2.11.0
+
+
+From 242489f9101b3b209a67b4739859c27599259ab5 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 11:58:09 -0600
+Subject: [PATCH 24/55] Step 7.6: Display incompleteCount in the header
+
+---
+ simple-todos/imports/ui/App.vue | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/simple-todos/imports/ui/App.vue b/simple-todos/imports/ui/App.vue
+index 82438b2..2db6e4f 100644
+--- a/simple-todos/imports/ui/App.vue
++++ b/simple-todos/imports/ui/App.vue
+@@ -1,7 +1,7 @@
+ <template>
+   <div className="container">
+     <header>
+-      <h1>Todo List</h1>
++      <h1>Todo List ({{ incompleteCount }})</h1>
+ 
+       <label className="hide-completed">
+         <input
+-- 
+2.11.0
+
+
+From 19ea47677e35f8175040e5db41e3b9674ddbcf5f Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 11:59:36 -0600
+Subject: [PATCH 25/55] Step 8.1: Add accounts-ui and accounts-password
+ packages
+
+---
+ simple-todos/.meteor/packages |  2 ++
+ simple-todos/.meteor/versions | 21 +++++++++++++++++++++
+ 2 files changed, 23 insertions(+)
+
+diff --git a/simple-todos/.meteor/packages b/simple-todos/.meteor/packages
+index d855b1e..9be51a6 100644
+--- a/simple-todos/.meteor/packages
++++ b/simple-todos/.meteor/packages
+@@ -22,3 +22,5 @@ autopublish@1.0.7             # Publish all data to the clients (for prototyping
+ insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
+ akryum:vue-component
+ static-html
++accounts-ui
++accounts-password
+diff --git a/simple-todos/.meteor/versions b/simple-todos/.meteor/versions
+index 820295c..fc2bd38 100644
+--- a/simple-todos/.meteor/versions
++++ b/simple-todos/.meteor/versions
+@@ -1,3 +1,7 @@
++accounts-base@1.5.0
++accounts-password@1.5.3
++accounts-ui@1.3.1
++accounts-ui-unstyled@1.4.2
+ akryum:vue-component@0.15.2
+ akryum:vue-component-dev-client@0.4.7
+ akryum:vue-component-dev-server@0.1.4
+@@ -8,6 +12,7 @@ babel-compiler@7.5.1
+ babel-runtime@1.5.0
+ base64@1.0.12
+ binary-heap@1.0.11
++blaze@2.3.4
+ blaze-tools@1.0.10
+ boilerplate-generator@1.6.0
+ caching-compiler@1.2.1
+@@ -17,6 +22,7 @@ check@1.3.1
+ ddp@1.4.0
+ ddp-client@2.3.3
+ ddp-common@1.4.0
++ddp-rate-limiter@1.0.7
+ ddp-server@2.3.1
+ deps@1.0.12
+ diff-sequence@1.1.1
+@@ -26,6 +32,7 @@ ecmascript-runtime@0.7.0
+ ecmascript-runtime-client@0.10.0
+ ecmascript-runtime-server@0.9.0
+ ejson@1.1.1
++email@1.2.3
+ es5-shim@4.8.0
+ fetch@0.1.1
+ geojson-utils@1.0.10
+@@ -37,7 +44,9 @@ insecure@1.0.7
+ inter-process-messaging@0.1.0
+ jquery@3.0.0
+ launch-screen@1.1.1
++less@2.8.0
+ livedata@1.0.18
++localstorage@1.2.0
+ logging@1.1.20
+ meteor@1.9.3
+ meteor-base@1.4.0
+@@ -53,20 +62,32 @@ mongo@1.8.1
+ mongo-decimal@0.1.1
+ mongo-dev-server@1.1.0
+ mongo-id@1.0.7
++npm-bcrypt@0.9.3
+ npm-mongo@3.3.0
++observe-sequence@1.0.16
+ ordered-dict@1.1.0
+ promise@0.11.2
+ random@1.1.0
++rate-limit@1.0.9
++reactive-dict@1.3.0
+ reactive-var@1.0.11
+ reload@1.3.0
+ retry@1.1.0
+ routepolicy@1.1.0
++service-configuration@1.0.11
++session@1.2.0
++sha@1.0.9
+ shell-server@0.4.0
+ socket-stream-client@0.2.3
++spacebars@1.0.15
+ spacebars-compiler@1.1.3
++srp@1.0.12
+ standard-minifier-css@1.6.0
+ standard-minifier-js@2.6.0
+ static-html@1.2.2
++templating@1.2.15
++templating-compiler@1.2.15
++templating-runtime@1.2.15
+ templating-tools@1.1.2
+ tracker@1.2.0
+ typescript@3.7.4
+-- 
+2.11.0
+
+
+From 2c1474efbbf88d326b27c92db7010476a86cabcd Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 12:16:09 -0600
+Subject: [PATCH 26/55] Step 8.2: Add the vuejs:blaze-integration meteor
+ package
+
+---
+ simple-todos/.meteor/packages | 1 +
+ simple-todos/.meteor/versions | 4 ++++
+ 2 files changed, 5 insertions(+)
+
+diff --git a/simple-todos/.meteor/packages b/simple-todos/.meteor/packages
+index 9be51a6..8b8837c 100644
+--- a/simple-todos/.meteor/packages
++++ b/simple-todos/.meteor/packages
+@@ -24,3 +24,4 @@ akryum:vue-component
+ static-html
+ accounts-ui
+ accounts-password
++vuejs:blaze-integration
+diff --git a/simple-todos/.meteor/versions b/simple-todos/.meteor/versions
+index fc2bd38..7a2c60c 100644
+--- a/simple-todos/.meteor/versions
++++ b/simple-todos/.meteor/versions
+@@ -19,6 +19,7 @@ caching-compiler@1.2.1
+ caching-html-compiler@1.1.3
+ callback-hook@1.3.0
+ check@1.3.1
++coffeescript@1.0.17
+ ddp@1.4.0
+ ddp-client@2.3.3
+ ddp-common@1.4.0
+@@ -66,6 +67,8 @@ npm-bcrypt@0.9.3
+ npm-mongo@3.3.0
+ observe-sequence@1.0.16
+ ordered-dict@1.1.0
++peerlibrary:computed-field@0.3.1
++peerlibrary:data-lookup@0.1.0
+ promise@0.11.2
+ random@1.1.0
+ rate-limit@1.0.9
+@@ -92,5 +95,6 @@ templating-tools@1.1.2
+ tracker@1.2.0
+ typescript@3.7.4
+ underscore@1.0.10
++vuejs:blaze-integration@0.2.0
+ webapp@1.8.2
+ webapp-hashing@1.0.9
+-- 
+2.11.0
+
+
+From dfee793cf8a56d369de873f46a37f051200a85ba Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 12:16:27 -0600
+Subject: [PATCH 27/55] Step 8.3: Include sign in form
+
+---
+ simple-todos/imports/ui/App.vue | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/simple-todos/imports/ui/App.vue b/simple-todos/imports/ui/App.vue
+index 2db6e4f..c068b9c 100644
+--- a/simple-todos/imports/ui/App.vue
++++ b/simple-todos/imports/ui/App.vue
+@@ -14,6 +14,8 @@
+         Hide Completed Tasks
+       </label>
+ 
++      <blaze-template template="loginButtons" tag="span"></blaze-template>
++
+       <form className="new-task" @submit.prevent="handleSubmit">
+         <input
+           type="text"
+-- 
+2.11.0
+
+
+From d18ea422bb38a9beff44755cbf3785766284264f Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 12:17:46 -0600
+Subject: [PATCH 28/55] Step 8.4: Configure accounts-ui
+
+---
+ simple-todos/imports/startup/accounts-config.js | 5 +++++
+ 1 file changed, 5 insertions(+)
+ create mode 100644 simple-todos/imports/startup/accounts-config.js
+
+diff --git a/simple-todos/imports/startup/accounts-config.js b/simple-todos/imports/startup/accounts-config.js
+new file mode 100644
+index 0000000..7519a14
+--- /dev/null
++++ b/simple-todos/imports/startup/accounts-config.js
+@@ -0,0 +1,5 @@
++import { Accounts } from 'meteor/accounts-base';
++
++Accounts.ui.config({
++    passwordSignupFields: 'USERNAME_ONLY'
++});
+\ No newline at end of file
+-- 
+2.11.0
+
+
+From 18defe405cb2be2971b79dc40d2ca9bf9178a95a Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 12:18:41 -0600
+Subject: [PATCH 29/55] Step 8.5: Import accounts configuration
+
+---
+ simple-todos/client/main.js | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/simple-todos/client/main.js b/simple-todos/client/main.js
+index 0c928a3..a008f75 100644
+--- a/simple-todos/client/main.js
++++ b/simple-todos/client/main.js
+@@ -4,6 +4,7 @@ import VueMeteorTracker from 'vue-meteor-tracker';
+ 
+ Vue.use(VueMeteorTracker);
+ 
++import '../imports/startup/accounts-config.js';
+ import App from '../imports/ui/App.vue';
+ 
+ Meteor.startup(() => {
+-- 
+2.11.0
+
+
+From a74749c3692f7987e2cd9258918954409c839fa7 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 12:19:57 -0600
+Subject: [PATCH 30/55] Step 8.6: Update insert to save username and owner
+
+---
+ simple-todos/imports/ui/App.vue | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/simple-todos/imports/ui/App.vue b/simple-todos/imports/ui/App.vue
+index c068b9c..f664a7e 100644
+--- a/simple-todos/imports/ui/App.vue
++++ b/simple-todos/imports/ui/App.vue
+@@ -31,6 +31,7 @@
+ </template>
+ 
+ <script>
++import { Meteor } from "meteor/meteor";
+ import Vue from "vue";
+ import Task from "./Task.vue";
+ import { Tasks } from "../api/tasks.js";
+@@ -49,7 +50,9 @@ export default {
+     handleSubmit(event) {
+       Tasks.insert({
+         text: this.newTask,
+-        createdAt: new Date() // current time
++        createdAt: new Date(), // current time
++        owner: Meteor.userId(), // _id of logged in user
++        username: Meteor.user().username // username of logged in user
+       });
+ 
+       // Clear form
+-- 
+2.11.0
+
+
+From d20b13d691b2c1f7467c8f85c60ffa3d440cea78 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 12:20:49 -0600
+Subject: [PATCH 31/55] Step 8.7: Update data container to return data about
+ user
+
+---
+ simple-todos/imports/ui/App.vue | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/simple-todos/imports/ui/App.vue b/simple-todos/imports/ui/App.vue
+index f664a7e..93feecd 100644
+--- a/simple-todos/imports/ui/App.vue
++++ b/simple-todos/imports/ui/App.vue
+@@ -72,6 +72,9 @@ export default {
+     },
+     incompleteCount() {
+       return Tasks.find({ checked: { $ne: true } }).count();
++    },
++    currentUser() {
++      return Meteor.user();
+     }
+   }
+ };
+-- 
+2.11.0
+
+
+From 213ba953a22174d164d5d63de33d176731d1f3eb Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 12:22:47 -0600
+Subject: [PATCH 32/55] Step 8.8: Wrap new task form to only show when logged
+ in
+
+---
+ simple-todos/imports/ui/App.vue | 17 +++++++++--------
+ 1 file changed, 9 insertions(+), 8 deletions(-)
+
+diff --git a/simple-todos/imports/ui/App.vue b/simple-todos/imports/ui/App.vue
+index 93feecd..2be8005 100644
+--- a/simple-todos/imports/ui/App.vue
++++ b/simple-todos/imports/ui/App.vue
+@@ -15,14 +15,15 @@
+       </label>
+ 
+       <blaze-template template="loginButtons" tag="span"></blaze-template>
+-
+-      <form className="new-task" @submit.prevent="handleSubmit">
+-        <input
+-          type="text"
+-          placeholder="Type to add new tasks"
+-          v-model="newTask"
+-        />
+-      </form>
++      <template v-if="currentUser">
++        <form className="new-task" @submit.prevent="handleSubmit">
++          <input
++            type="text"
++            placeholder="Type to add new tasks"
++            v-model="newTask"
++          />
++        </form>
++      </template>
+     </header>
+     <ul>
+       <Task v-for="task in tasks" v-bind:key="task._id" v-bind:task="task" />
+-- 
+2.11.0
+
+
+From 7221ee549e3ca11d265ffbe1878dacfcf77abc0d Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 12:24:19 -0600
+Subject: [PATCH 33/55] Step 8.9: Update Task component to show username
+
+---
+ simple-todos/imports/ui/Task.vue | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/simple-todos/imports/ui/Task.vue b/simple-todos/imports/ui/Task.vue
+index c3b9bbf..fe22cde 100644
+--- a/simple-todos/imports/ui/Task.vue
++++ b/simple-todos/imports/ui/Task.vue
+@@ -11,7 +11,10 @@
+       @click="toggleChecked"
+     />
+ 
+-    <span class="text">{{ this.task.text }}</span>
++    <span class="text">
++      <strong>{{ this.task.username }}</strong
++      >: {{ this.task.text }}
++    </span>
+   </li>
+ </template>
+ 
+-- 
+2.11.0
+
+
+From cb8f100ac64079ca061aa62d24a8f8d657ed0492 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 12:25:25 -0600
+Subject: [PATCH 34/55] Step 9.1: Remove insecure package
+
+---
+ simple-todos/.meteor/packages | 1 -
+ simple-todos/.meteor/versions | 1 -
+ 2 files changed, 2 deletions(-)
+
+diff --git a/simple-todos/.meteor/packages b/simple-todos/.meteor/packages
+index 8b8837c..27ddc02 100644
+--- a/simple-todos/.meteor/packages
++++ b/simple-todos/.meteor/packages
+@@ -19,7 +19,6 @@ typescript@3.7.2              # Enable TypeScript syntax in .ts and .tsx modules
+ shell-server@0.4.0            # Server-side component of the `meteor shell` command
+ 
+ autopublish@1.0.7             # Publish all data to the clients (for prototyping)
+-insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
+ akryum:vue-component
+ static-html
+ accounts-ui
+diff --git a/simple-todos/.meteor/versions b/simple-todos/.meteor/versions
+index 7a2c60c..63b33f3 100644
+--- a/simple-todos/.meteor/versions
++++ b/simple-todos/.meteor/versions
+@@ -41,7 +41,6 @@ hot-code-push@1.0.4
+ html-tools@1.0.11
+ htmljs@1.0.11
+ id-map@1.1.0
+-insecure@1.0.7
+ inter-process-messaging@0.1.0
+ jquery@3.0.0
+ launch-screen@1.1.1
+-- 
+2.11.0
+
+
+From bb7e943a2b741246b54d63c8f1c231fdbe7aaaa9 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 12:26:16 -0600
+Subject: [PATCH 35/55] Step 9.2: Add methods for add, remove, update task
+
+---
+ simple-todos/imports/api/tasks.js | 33 ++++++++++++++++++++++++++++++++-
+ 1 file changed, 32 insertions(+), 1 deletion(-)
+
+diff --git a/simple-todos/imports/api/tasks.js b/simple-todos/imports/api/tasks.js
+index dfeb446..d9d48fd 100644
+--- a/simple-todos/imports/api/tasks.js
++++ b/simple-todos/imports/api/tasks.js
+@@ -1,3 +1,34 @@
++import { Meteor } from 'meteor/meteor';
+ import { Mongo } from 'meteor/mongo';
++import { check } from 'meteor/check';
+ 
+-export const Tasks = new Mongo.Collection('tasks');
+\ No newline at end of file
++export const Tasks = new Mongo.Collection('tasks');
++
++Meteor.methods({
++    'tasks.insert'(text) {
++        check(text, String);
++
++        // Make sure the user is logged in before inserting a task
++        if (!this.userId) {
++            throw new Meteor.Error('not-authorized');
++        }
++
++        Tasks.insert({
++            text,
++            createdAt: new Date(),
++            owner: this.userId,
++            username: Meteor.users.findOne(this.userId).username,
++        });
++    },
++    'tasks.remove'(taskId) {
++        check(taskId, String);
++
++        Tasks.remove(taskId);
++    },
++    'tasks.setChecked'(taskId, setChecked) {
++        check(taskId, String);
++        check(setChecked, Boolean);
++
++        Tasks.update(taskId, { $set: { checked: setChecked } });
++    },
++});
+\ No newline at end of file
+-- 
+2.11.0
+
+
+From 72ef20f06fa2486d835eb627f29763fc83bd1047 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 12:28:13 -0600
+Subject: [PATCH 36/55] Step 9.3: Update App component to use tasks.insert
+ method
+
+---
+ simple-todos/imports/ui/App.vue | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
+
+diff --git a/simple-todos/imports/ui/App.vue b/simple-todos/imports/ui/App.vue
+index 2be8005..7de1c05 100644
+--- a/simple-todos/imports/ui/App.vue
++++ b/simple-todos/imports/ui/App.vue
+@@ -49,12 +49,7 @@ export default {
+   },
+   methods: {
+     handleSubmit(event) {
+-      Tasks.insert({
+-        text: this.newTask,
+-        createdAt: new Date(), // current time
+-        owner: Meteor.userId(), // _id of logged in user
+-        username: Meteor.user().username // username of logged in user
+-      });
++      Meteor.call("tasks.insert", this.newTask);
+ 
+       // Clear form
+       this.newTask = "";
+-- 
+2.11.0
+
+
+From 035547b8f98f51e32308332d488e98995da42099 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 12:29:57 -0600
+Subject: [PATCH 37/55] Step 9.4: Replace update and remove with methods
+
+---
+ simple-todos/imports/ui/Task.vue | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+diff --git a/simple-todos/imports/ui/Task.vue b/simple-todos/imports/ui/Task.vue
+index fe22cde..457617f 100644
+--- a/simple-todos/imports/ui/Task.vue
++++ b/simple-todos/imports/ui/Task.vue
+@@ -34,12 +34,10 @@ export default {
+   methods: {
+     toggleChecked() {
+       // Set the checked property to the opposite of its current value
+-      Tasks.update(this.task._id, {
+-        $set: { checked: !this.task.checked }
+-      });
++      Meteor.call("tasks.setChecked", this.task._id, !this.task.checked);
+     },
+     deleteThisTask() {
+-      Tasks.remove(this.task._id);
++      Meteor.call("tasks.remove", this.task._id);
+     }
+   }
+ };
+-- 
+2.11.0
+
+
+From e6e406b83a2e11632a4399993255658f4e5e13c4 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 12:32:45 -0600
+Subject: [PATCH 38/55] Step 10.1: Remove autopublish package
+
+---
+ simple-todos/.meteor/packages | 1 -
+ simple-todos/.meteor/versions | 1 -
+ 2 files changed, 2 deletions(-)
+
+diff --git a/simple-todos/.meteor/packages b/simple-todos/.meteor/packages
+index 27ddc02..16a9b8e 100644
+--- a/simple-todos/.meteor/packages
++++ b/simple-todos/.meteor/packages
+@@ -18,7 +18,6 @@ ecmascript@0.14.0              # Enable ECMAScript2015+ syntax in app code
+ typescript@3.7.2              # Enable TypeScript syntax in .ts and .tsx modules
+ shell-server@0.4.0            # Server-side component of the `meteor shell` command
+ 
+-autopublish@1.0.7             # Publish all data to the clients (for prototyping)
+ akryum:vue-component
+ static-html
+ accounts-ui
+diff --git a/simple-todos/.meteor/versions b/simple-todos/.meteor/versions
+index 63b33f3..f9303e2 100644
+--- a/simple-todos/.meteor/versions
++++ b/simple-todos/.meteor/versions
+@@ -6,7 +6,6 @@ akryum:vue-component@0.15.2
+ akryum:vue-component-dev-client@0.4.7
+ akryum:vue-component-dev-server@0.1.4
+ allow-deny@1.1.0
+-autopublish@1.0.7
+ autoupdate@1.6.0
+ babel-compiler@7.5.1
+ babel-runtime@1.5.0
+-- 
+2.11.0
+
+
+From 8b7d586501dc32b85b3057064377adcf655fd6cb Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 12:33:35 -0600
+Subject: [PATCH 39/55] Step 10.2: Add publication for tasks
+
+---
+ simple-todos/imports/api/tasks.js | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/simple-todos/imports/api/tasks.js b/simple-todos/imports/api/tasks.js
+index d9d48fd..38f4642 100644
+--- a/simple-todos/imports/api/tasks.js
++++ b/simple-todos/imports/api/tasks.js
+@@ -4,6 +4,13 @@ import { check } from 'meteor/check';
+ 
+ export const Tasks = new Mongo.Collection('tasks');
+ 
++if (Meteor.isServer) {
++    // This code only runs on the server
++    Meteor.publish('tasks', function tasksPublication() {
++        return Tasks.find();
++    });
++}
++
+ Meteor.methods({
+     'tasks.insert'(text) {
+         check(text, String);
+-- 
+2.11.0
+
+
+From 4d13bb7bcf83a1459bc8a59ef2927a5ecbe4e10e Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 12:35:32 -0600
+Subject: [PATCH 40/55] Step 10.3: Subscribe to tasks in App container
+
+---
+ simple-todos/imports/ui/App.vue | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/simple-todos/imports/ui/App.vue b/simple-todos/imports/ui/App.vue
+index 7de1c05..e85a03f 100644
+--- a/simple-todos/imports/ui/App.vue
++++ b/simple-todos/imports/ui/App.vue
+@@ -59,6 +59,10 @@ export default {
+     }
+   },
+   meteor: {
++    $subscribe: {
++      // Subscribes to the 'threads' publication with no parameters
++      tasks: []
++    },
+     tasks() {
+       let filteredTasks = Tasks.find({}, { sort: { createdAt: -1 } }).fetch();
+       if (this.hideCompleted) {
+-- 
+2.11.0
+
+
+From ccb2afd4e851fc4d381a224091822d5039af80dd Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 12:36:12 -0600
+Subject: [PATCH 41/55] Step 10.4: Add tasks.setPrivate method
+
+---
+ simple-todos/imports/api/tasks.js | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/simple-todos/imports/api/tasks.js b/simple-todos/imports/api/tasks.js
+index 38f4642..b567865 100644
+--- a/simple-todos/imports/api/tasks.js
++++ b/simple-todos/imports/api/tasks.js
+@@ -38,4 +38,17 @@ Meteor.methods({
+ 
+         Tasks.update(taskId, { $set: { checked: setChecked } });
+     },
++    'tasks.setPrivate'(taskId, setToPrivate) {
++        check(taskId, String);
++        check(setToPrivate, Boolean);
++
++        const task = Tasks.findOne(taskId);
++
++        // Make sure only the task owner can make a task private
++        if (task.owner !== this.userId) {
++            throw new Meteor.Error('not-authorized');
++        }
++
++        Tasks.update(taskId, { $set: { private: setToPrivate } });
++    },
+ });
+\ No newline at end of file
+-- 
+2.11.0
+
+
+From 9ebefadb0bf278008170f8f000fde22428ab076e Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 15 Feb 2020 15:20:01 -0600
+Subject: [PATCH 42/55] Step 10.5: Update Task component to pass in
+ showPrivateButton property
+
+---
+ simple-todos/imports/ui/Task.vue | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/simple-todos/imports/ui/Task.vue b/simple-todos/imports/ui/Task.vue
+index 457617f..44e7ce7 100644
+--- a/simple-todos/imports/ui/Task.vue
++++ b/simple-todos/imports/ui/Task.vue
+@@ -22,7 +22,7 @@
+ import { Tasks } from "../api/tasks.js";
+ 
+ export default {
+-  props: ["task"],
++  props: ["task", "showPrivateButton"],
+   data() {
+     return {};
+   },
+-- 
+2.11.0
+
+
+From c57d72d9901476ad5a528251f52f2f182487827f Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 15 Feb 2020 15:21:25 -0600
+Subject: [PATCH 43/55] Step 10.6: Update the App component to include a show
+ private button
+
+---
+ simple-todos/imports/ui/App.vue | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/simple-todos/imports/ui/App.vue b/simple-todos/imports/ui/App.vue
+index e85a03f..6d283f4 100644
+--- a/simple-todos/imports/ui/App.vue
++++ b/simple-todos/imports/ui/App.vue
+@@ -26,7 +26,12 @@
+       </template>
+     </header>
+     <ul>
+-      <Task v-for="task in tasks" v-bind:key="task._id" v-bind:task="task" />
++      <Task
++        v-for="task in tasks"
++        v-bind:key="task._id"
++        v-bind:task="task"
++        v-bind:showPrivateButton="showPrivateButton(task)"
++      />
+     </ul>
+   </div>
+ </template>
+@@ -56,6 +61,10 @@ export default {
+     },
+     toggleHideCompleted() {
+       this.hideCompleted = !this.hideCompleted;
++    },
++    showPrivateButton(task) {
++      const currentUserId = this.currentUser?._id;
++      return task.owner === currentUserId;
+     }
+   },
+   meteor: {
+-- 
+2.11.0
+
+
+From 92d4746681e043ee950528a8f2a6f297b984ac31 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 13:45:48 -0600
+Subject: [PATCH 44/55] Step 10.7: Add private button, shown only to owner
+
+---
+ simple-todos/imports/ui/Task.vue | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/simple-todos/imports/ui/Task.vue b/simple-todos/imports/ui/Task.vue
+index 44e7ce7..2b5c670 100644
+--- a/simple-todos/imports/ui/Task.vue
++++ b/simple-todos/imports/ui/Task.vue
+@@ -11,6 +11,12 @@
+       @click="toggleChecked"
+     />
+ 
++    <template v-if="this.showPrivateButton">
++      <button className="toggle-private" @click="togglePrivate">
++        {{ this.task.private ? "Private" : "Public" }}
++      </button>
++    </template>
++
+     <span class="text">
+       <strong>{{ this.task.username }}</strong
+       >: {{ this.task.text }}
+-- 
+2.11.0
+
+
+From a5568f2100581800dcdb01c651f048c77826db5d Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 13:46:07 -0600
+Subject: [PATCH 45/55] Step 10.8: Add private button event handler to Task
+
+---
+ simple-todos/imports/ui/Task.vue | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/simple-todos/imports/ui/Task.vue b/simple-todos/imports/ui/Task.vue
+index 2b5c670..a1a3663 100644
+--- a/simple-todos/imports/ui/Task.vue
++++ b/simple-todos/imports/ui/Task.vue
+@@ -44,6 +44,9 @@ export default {
+     },
+     deleteThisTask() {
+       Meteor.call("tasks.remove", this.task._id);
++    },
++    togglePrivate() {
++      Meteor.call("tasks.setPrivate", this.task._id, !this.task.private);
+     }
+   }
+ };
+-- 
+2.11.0
+
+
+From fb165ad3b3ff1a5ae047bfcf6db44c8f00ededd5 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 13:47:59 -0600
+Subject: [PATCH 46/55] Step 10.9: Install the classnames NPM package
+
+---
+ simple-todos/package-lock.json | 5 +++++
+ simple-todos/package.json      | 1 +
+ 2 files changed, 6 insertions(+)
+
+diff --git a/simple-todos/package-lock.json b/simple-todos/package-lock.json
+index e42bb10..9848159 100644
+--- a/simple-todos/package-lock.json
++++ b/simple-todos/package-lock.json
+@@ -11,6 +11,11 @@
+         "regenerator-runtime": "^0.13.2"
+       }
+     },
++    "classnames": {
++      "version": "2.2.6",
++      "resolved": "https://registry.npmjs.org/classnames/-/classnames-2.2.6.tgz",
++      "integrity": "sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q=="
++    },
+     "jquery": {
+       "version": "3.4.1",
+       "resolved": "https://registry.npmjs.org/jquery/-/jquery-3.4.1.tgz",
+diff --git a/simple-todos/package.json b/simple-todos/package.json
+index 2433819..f45a870 100644
+--- a/simple-todos/package.json
++++ b/simple-todos/package.json
+@@ -9,6 +9,7 @@
+   },
+   "dependencies": {
+     "@babel/runtime": "^7.7.6",
++    "classnames": "^2.2.6",
+     "jquery": "^3.4.1",
+     "meteor-node-stubs": "^1.0.0",
+     "vue": "^2.6.11",
+-- 
+2.11.0
+
+
+From ce8d0058cc949faba8e9010faaa2be07c10d9398 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 13:50:13 -0600
+Subject: [PATCH 47/55] Step 10.10: Add private className to Task when needed
+
+---
+ simple-todos/imports/ui/Task.vue | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/simple-todos/imports/ui/Task.vue b/simple-todos/imports/ui/Task.vue
+index a1a3663..fa8bc58 100644
+--- a/simple-todos/imports/ui/Task.vue
++++ b/simple-todos/imports/ui/Task.vue
+@@ -26,6 +26,7 @@
+ 
+ <script>
+ import { Tasks } from "../api/tasks.js";
++import classnames from "classnames";
+ 
+ export default {
+   props: ["task", "showPrivateButton"],
+@@ -34,7 +35,10 @@ export default {
+   },
+   computed: {
+     taskClassName: function() {
+-      return this.task.checked ? "checked" : "";
++      return classnames({
++        checked: this.task.checked,
++        private: this.task.private
++      });
+     }
+   },
+   methods: {
+-- 
+2.11.0
+
+
+From 39e48ae5d1cacd692a685093e748408aceeb165c Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 13:51:24 -0600
+Subject: [PATCH 48/55] Step 10.11: Only publish tasks the current user can see
+
+---
+ simple-todos/imports/api/tasks.js | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/simple-todos/imports/api/tasks.js b/simple-todos/imports/api/tasks.js
+index b567865..053db89 100644
+--- a/simple-todos/imports/api/tasks.js
++++ b/simple-todos/imports/api/tasks.js
+@@ -7,7 +7,12 @@ export const Tasks = new Mongo.Collection('tasks');
+ if (Meteor.isServer) {
+     // This code only runs on the server
+     Meteor.publish('tasks', function tasksPublication() {
+-        return Tasks.find();
++        return Tasks.find({
++            $or: [
++                { private: { $ne: true } },
++                { owner: this.userId },
++            ],
++        });
+     });
+ }
+ 
+-- 
+2.11.0
+
+
+From f1ee4ceceaef4a57d6e19bcd14a9230abdeb97b4 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 13:52:38 -0600
+Subject: [PATCH 49/55] Step 10.12: Add extra security to methods
+
+---
+ simple-todos/imports/api/tasks.js | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/simple-todos/imports/api/tasks.js b/simple-todos/imports/api/tasks.js
+index 053db89..1757738 100644
+--- a/simple-todos/imports/api/tasks.js
++++ b/simple-todos/imports/api/tasks.js
+@@ -35,12 +35,24 @@ Meteor.methods({
+     'tasks.remove'(taskId) {
+         check(taskId, String);
+ 
++        const task = Tasks.findOne(taskId);
++        if (task.private && task.owner !== this.userId) {
++            // If the task is private, make sure only the owner can delete it
++            throw new Meteor.Error('not-authorized');
++        }
++
+         Tasks.remove(taskId);
+     },
+     'tasks.setChecked'(taskId, setChecked) {
+         check(taskId, String);
+         check(setChecked, Boolean);
+ 
++        const task = Tasks.findOne(taskId);
++        if (task.private && task.owner !== this.userId) {
++            // If the task is private, make sure only the owner can check it off
++            throw new Meteor.Error('not-authorized');
++        }
++
+         Tasks.update(taskId, { $set: { checked: setChecked } });
+     },
+     'tasks.setPrivate'(taskId, setToPrivate) {
+-- 
+2.11.0
+
+
+From d596b2d7de1926ac4aca0cb396393ebf4946db27 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 15 Feb 2020 15:25:04 -0600
+Subject: [PATCH 50/55] Step 11.1: Added meteortesting:mocha meteor package and
+ the chai npm package
+
+---
+ simple-todos/.meteor/packages  |  1 +
+ simple-todos/.meteor/versions  |  7 +++++++
+ simple-todos/package-lock.json | 46 ++++++++++++++++++++++++++++++++++++++++++
+ simple-todos/package.json      |  1 +
+ 4 files changed, 55 insertions(+)
+
+diff --git a/simple-todos/.meteor/packages b/simple-todos/.meteor/packages
+index 16a9b8e..c7f03f7 100644
+--- a/simple-todos/.meteor/packages
++++ b/simple-todos/.meteor/packages
+@@ -23,3 +23,4 @@ static-html
+ accounts-ui
+ accounts-password
+ vuejs:blaze-integration
++meteortesting:mocha
+diff --git a/simple-todos/.meteor/versions b/simple-todos/.meteor/versions
+index f9303e2..f40faa3 100644
+--- a/simple-todos/.meteor/versions
++++ b/simple-todos/.meteor/versions
+@@ -39,16 +39,22 @@ geojson-utils@1.0.10
+ hot-code-push@1.0.4
+ html-tools@1.0.11
+ htmljs@1.0.11
++http@1.4.2
+ id-map@1.1.0
+ inter-process-messaging@0.1.0
+ jquery@3.0.0
+ launch-screen@1.1.1
+ less@2.8.0
+ livedata@1.0.18
++lmieulet:meteor-coverage@1.1.4
+ localstorage@1.2.0
+ logging@1.1.20
+ meteor@1.9.3
+ meteor-base@1.4.0
++meteorhacks:picker@1.0.3
++meteortesting:browser-tests@1.0.0
++meteortesting:mocha@1.1.4
++meteortesting:mocha-core@7.0.1
+ minifier-css@1.5.0
+ minifier-js@2.6.0
+ minimongo@1.4.5
+@@ -93,6 +99,7 @@ templating-tools@1.1.2
+ tracker@1.2.0
+ typescript@3.7.4
+ underscore@1.0.10
++url@1.2.0
+ vuejs:blaze-integration@0.2.0
+ webapp@1.8.2
+ webapp-hashing@1.0.9
+diff --git a/simple-todos/package-lock.json b/simple-todos/package-lock.json
+index 9848159..d4b19cd 100644
+--- a/simple-todos/package-lock.json
++++ b/simple-todos/package-lock.json
+@@ -11,11 +11,47 @@
+         "regenerator-runtime": "^0.13.2"
+       }
+     },
++    "assertion-error": {
++      "version": "1.1.0",
++      "resolved": "https://registry.npmjs.org/assertion-error/-/assertion-error-1.1.0.tgz",
++      "integrity": "sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw=="
++    },
++    "chai": {
++      "version": "4.2.0",
++      "resolved": "https://registry.npmjs.org/chai/-/chai-4.2.0.tgz",
++      "integrity": "sha512-XQU3bhBukrOsQCuwZndwGcCVQHyZi53fQ6Ys1Fym7E4olpIqqZZhhoFJoaKVvV17lWQoXYwgWN2nF5crA8J2jw==",
++      "requires": {
++        "assertion-error": "^1.1.0",
++        "check-error": "^1.0.2",
++        "deep-eql": "^3.0.1",
++        "get-func-name": "^2.0.0",
++        "pathval": "^1.1.0",
++        "type-detect": "^4.0.5"
++      }
++    },
++    "check-error": {
++      "version": "1.0.2",
++      "resolved": "https://registry.npmjs.org/check-error/-/check-error-1.0.2.tgz",
++      "integrity": "sha1-V00xLt2Iu13YkS6Sht1sCu1KrII="
++    },
+     "classnames": {
+       "version": "2.2.6",
+       "resolved": "https://registry.npmjs.org/classnames/-/classnames-2.2.6.tgz",
+       "integrity": "sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q=="
+     },
++    "deep-eql": {
++      "version": "3.0.1",
++      "resolved": "https://registry.npmjs.org/deep-eql/-/deep-eql-3.0.1.tgz",
++      "integrity": "sha512-+QeIQyN5ZuO+3Uk5DYh6/1eKO0m0YmJFGNmFHGACpf1ClL1nmlV/p4gNgbl2pJGxgXb4faqo6UE+M5ACEMyVcw==",
++      "requires": {
++        "type-detect": "^4.0.0"
++      }
++    },
++    "get-func-name": {
++      "version": "2.0.0",
++      "resolved": "https://registry.npmjs.org/get-func-name/-/get-func-name-2.0.0.tgz",
++      "integrity": "sha1-6td0q+5y4gQJQzoGY2YCPdaIekE="
++    },
+     "jquery": {
+       "version": "3.4.1",
+       "resolved": "https://registry.npmjs.org/jquery/-/jquery-3.4.1.tgz",
+@@ -587,11 +623,21 @@
+         }
+       }
+     },
++    "pathval": {
++      "version": "1.1.0",
++      "resolved": "https://registry.npmjs.org/pathval/-/pathval-1.1.0.tgz",
++      "integrity": "sha1-uULm1L3mUwBe9rcTYd74cn0GReA="
++    },
+     "regenerator-runtime": {
+       "version": "0.13.3",
+       "resolved": "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.13.3.tgz",
+       "integrity": "sha512-naKIZz2GQ8JWh///G7L3X6LaQUAMp2lvb1rvwwsURe/VXwD6VMfr+/1NuNw3ag8v2kY1aQ/go5SNn79O9JU7yw=="
+     },
++    "type-detect": {
++      "version": "4.0.8",
++      "resolved": "https://registry.npmjs.org/type-detect/-/type-detect-4.0.8.tgz",
++      "integrity": "sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g=="
++    },
+     "vue": {
+       "version": "2.6.11",
+       "resolved": "https://registry.npmjs.org/vue/-/vue-2.6.11.tgz",
+diff --git a/simple-todos/package.json b/simple-todos/package.json
+index f45a870..5c10bb3 100644
+--- a/simple-todos/package.json
++++ b/simple-todos/package.json
+@@ -9,6 +9,7 @@
+   },
+   "dependencies": {
+     "@babel/runtime": "^7.7.6",
++    "chai": "^4.2.0",
+     "classnames": "^2.2.6",
+     "jquery": "^3.4.1",
+     "meteor-node-stubs": "^1.0.0",
+-- 
+2.11.0
+
+
+From 5dbebcad8cf55d4f78df4da8f2e0cd5ec73c8e3f Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 13:55:29 -0600
+Subject: [PATCH 51/55] Step 11.2: Add a scaffold for a method test
+
+---
+ simple-todos/imports/api/tasks.tests.js | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+ create mode 100644 simple-todos/imports/api/tasks.tests.js
+
+diff --git a/simple-todos/imports/api/tasks.tests.js b/simple-todos/imports/api/tasks.tests.js
+new file mode 100644
+index 0000000..cd7ab10
+--- /dev/null
++++ b/simple-todos/imports/api/tasks.tests.js
+@@ -0,0 +1,12 @@
++/* eslint-env mocha */
++
++import { Meteor } from 'meteor/meteor';
++
++if (Meteor.isServer) {
++    describe('Tasks', () => {
++        describe('methods', () => {
++            it('can delete owned task', () => {
++            });
++        });
++    });
++}
+\ No newline at end of file
+-- 
+2.11.0
+
+
+From 1eb8057f5b350279d136e47f0986f99701ca10e8 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 13:58:06 -0600
+Subject: [PATCH 52/55] Step 11.3: Prepare the database for each test
+
+---
+ simple-todos/imports/api/tasks.tests.js | 21 +++++++++++++++++++--
+ 1 file changed, 19 insertions(+), 2 deletions(-)
+
+diff --git a/simple-todos/imports/api/tasks.tests.js b/simple-todos/imports/api/tasks.tests.js
+index cd7ab10..f98d3cc 100644
+--- a/simple-todos/imports/api/tasks.tests.js
++++ b/simple-todos/imports/api/tasks.tests.js
+@@ -1,12 +1,29 @@
+-/* eslint-env mocha */
++// eslint - env mocha
+ 
+ import { Meteor } from 'meteor/meteor';
++import { Random } from 'meteor/random';
++
++import { Tasks } from './tasks.js';
+ 
+ if (Meteor.isServer) {
+     describe('Tasks', () => {
+         describe('methods', () => {
++            const userId = Random.id();
++            let taskId;
++
++            beforeEach(() => {
++                Tasks.remove({});
++                taskId = Tasks.insert({
++                    text: 'test task',
++                    createdAt: new Date(),
++                    owner: userId,
++                    username: 'tmeasday',
++                });
++            });
++
+             it('can delete owned task', () => {
+             });
+         });
+     });
+-}
+\ No newline at end of file
++}
++
+-- 
+2.11.0
+
+
+From d85f55b5b37c1fc67617d9d5f328cc2c19a3bebb Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 15 Feb 2020 15:47:28 -0600
+Subject: [PATCH 53/55] Step 11.4: Added test to check delete method
+
+---
+ simple-todos/imports/api/tasks.tests.js | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/simple-todos/imports/api/tasks.tests.js b/simple-todos/imports/api/tasks.tests.js
+index f98d3cc..77f495f 100644
+--- a/simple-todos/imports/api/tasks.tests.js
++++ b/simple-todos/imports/api/tasks.tests.js
+@@ -2,6 +2,7 @@
+ 
+ import { Meteor } from 'meteor/meteor';
+ import { Random } from 'meteor/random';
++import { assert } from 'chai';
+ 
+ import { Tasks } from './tasks.js';
+ 
+@@ -22,6 +23,18 @@ if (Meteor.isServer) {
+             });
+ 
+             it('can delete owned task', () => {
++                // Find the internal implementation of the task method so we can
++                // test it in isolation
++                const deleteTask = Meteor.server.method_handlers['tasks.remove'];
++
++                // Set up a fake method invocation that looks like what the method expects
++                const invocation = { userId };
++
++                // Run the method with `this` set to the fake invocation
++                deleteTask.apply(invocation, [taskId]);
++
++                // Verify that the method does what we expected
++                assert.equal(Tasks.find().count(), 0);
+             });
+         });
+     });
+-- 
+2.11.0
+
+
+From 26d905e5cdbec899d8cb8d069c46201bbbe647de Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 9 Feb 2020 14:03:43 -0600
+Subject: [PATCH 54/55] Step 11.5: Import tasks.tests.js into tests/main.js
+
+---
+ simple-todos/tests/main.js | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/simple-todos/tests/main.js b/simple-todos/tests/main.js
+index 973d17e..d4d7d08 100644
+--- a/simple-todos/tests/main.js
++++ b/simple-todos/tests/main.js
+@@ -1,4 +1,5 @@
+ import assert from "assert";
++import "../imports/api/tasks.tests.js";
+ 
+ describe("simple-todos", function () {
+   it("package.json has correct name", async function () {
+-- 
+2.11.0
+
+
+From e06693ee660a52586f10dd3c1f3bf2d78693c281 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 15 Feb 2020 08:44:37 -0600
+Subject: [PATCH 55/55] repo refactor to match the correct format
+
+---
+ simple-todos/.gitignore => .gitignore              |    1 +
+ .../.meteor => .meteor}/.finished-upgraders        |    0
+ {simple-todos/.meteor => .meteor}/.gitignore       |    0
+ {simple-todos/.meteor => .meteor}/.id              |    0
+ {simple-todos/.meteor => .meteor}/packages         |    0
+ {simple-todos/.meteor => .meteor}/platforms        |    0
+ {simple-todos/.meteor => .meteor}/release          |    0
+ {simple-todos/.meteor => .meteor}/versions         |    0
+ {simple-todos/client => client}/main.css           |    0
+ {simple-todos/client => client}/main.html          |    0
+ {simple-todos/client => client}/main.js            |    0
+ {simple-todos/imports => imports}/api/tasks.js     |    0
+ .../imports => imports}/api/tasks.tests.js         |    0
+ .../imports => imports}/startup/accounts-config.js |    0
+ {simple-todos/imports => imports}/ui/App.vue       |    0
+ {simple-todos/imports => imports}/ui/Task.vue      |    0
+ .../package-lock.json => package-lock.json         |    2 +-
+ simple-todos/package.json => package.json          |    2 +-
+ {simple-todos/server => server}/main.js            |    0
+ simple-todos/.vscode/typings/meteor.d.ts           | 2013 --------------------
+ {simple-todos/tests => tests}/main.js              |    0
+ 21 files changed, 3 insertions(+), 2015 deletions(-)
+ rename simple-todos/.gitignore => .gitignore (72%)
+ rename {simple-todos/.meteor => .meteor}/.finished-upgraders (100%)
+ rename {simple-todos/.meteor => .meteor}/.gitignore (100%)
+ rename {simple-todos/.meteor => .meteor}/.id (100%)
+ rename {simple-todos/.meteor => .meteor}/packages (100%)
+ rename {simple-todos/.meteor => .meteor}/platforms (100%)
+ rename {simple-todos/.meteor => .meteor}/release (100%)
+ rename {simple-todos/.meteor => .meteor}/versions (100%)
+ rename {simple-todos/client => client}/main.css (100%)
+ rename {simple-todos/client => client}/main.html (100%)
+ rename {simple-todos/client => client}/main.js (100%)
+ rename {simple-todos/imports => imports}/api/tasks.js (100%)
+ rename {simple-todos/imports => imports}/api/tasks.tests.js (100%)
+ rename {simple-todos/imports => imports}/startup/accounts-config.js (100%)
+ rename {simple-todos/imports => imports}/ui/App.vue (100%)
+ rename {simple-todos/imports => imports}/ui/Task.vue (100%)
+ rename simple-todos/package-lock.json => package-lock.json (99%)
+ rename simple-todos/package.json => package.json (95%)
+ rename {simple-todos/server => server}/main.js (100%)
+ delete mode 100644 simple-todos/.vscode/typings/meteor.d.ts
+ rename {simple-todos/tests => tests}/main.js (100%)
+
+diff --git a/simple-todos/.gitignore b/.gitignore
+similarity index 72%
+rename from simple-todos/.gitignore
+rename to .gitignore
+index d317530..29f4632 100644
+--- a/simple-todos/.gitignore
++++ b/.gitignore
+@@ -1,2 +1,3 @@
+ node_modules/
+ .cache
++.vscode
+diff --git a/simple-todos/.meteor/.finished-upgraders b/.meteor/.finished-upgraders
+similarity index 100%
+rename from simple-todos/.meteor/.finished-upgraders
+rename to .meteor/.finished-upgraders
+diff --git a/simple-todos/.meteor/.gitignore b/.meteor/.gitignore
+similarity index 100%
+rename from simple-todos/.meteor/.gitignore
+rename to .meteor/.gitignore
+diff --git a/simple-todos/.meteor/.id b/.meteor/.id
+similarity index 100%
+rename from simple-todos/.meteor/.id
+rename to .meteor/.id
+diff --git a/simple-todos/.meteor/packages b/.meteor/packages
+similarity index 100%
+rename from simple-todos/.meteor/packages
+rename to .meteor/packages
+diff --git a/simple-todos/.meteor/platforms b/.meteor/platforms
+similarity index 100%
+rename from simple-todos/.meteor/platforms
+rename to .meteor/platforms
+diff --git a/simple-todos/.meteor/release b/.meteor/release
+similarity index 100%
+rename from simple-todos/.meteor/release
+rename to .meteor/release
+diff --git a/simple-todos/.meteor/versions b/.meteor/versions
+similarity index 100%
+rename from simple-todos/.meteor/versions
+rename to .meteor/versions
+diff --git a/simple-todos/client/main.css b/client/main.css
+similarity index 100%
+rename from simple-todos/client/main.css
+rename to client/main.css
+diff --git a/simple-todos/client/main.html b/client/main.html
+similarity index 100%
+rename from simple-todos/client/main.html
+rename to client/main.html
+diff --git a/simple-todos/client/main.js b/client/main.js
+similarity index 100%
+rename from simple-todos/client/main.js
+rename to client/main.js
+diff --git a/simple-todos/imports/api/tasks.js b/imports/api/tasks.js
+similarity index 100%
+rename from simple-todos/imports/api/tasks.js
+rename to imports/api/tasks.js
+diff --git a/simple-todos/imports/api/tasks.tests.js b/imports/api/tasks.tests.js
+similarity index 100%
+rename from simple-todos/imports/api/tasks.tests.js
+rename to imports/api/tasks.tests.js
+diff --git a/simple-todos/imports/startup/accounts-config.js b/imports/startup/accounts-config.js
+similarity index 100%
+rename from simple-todos/imports/startup/accounts-config.js
+rename to imports/startup/accounts-config.js
+diff --git a/simple-todos/imports/ui/App.vue b/imports/ui/App.vue
+similarity index 100%
+rename from simple-todos/imports/ui/App.vue
+rename to imports/ui/App.vue
+diff --git a/simple-todos/imports/ui/Task.vue b/imports/ui/Task.vue
+similarity index 100%
+rename from simple-todos/imports/ui/Task.vue
+rename to imports/ui/Task.vue
+diff --git a/simple-todos/package-lock.json b/package-lock.json
+similarity index 99%
+rename from simple-todos/package-lock.json
+rename to package-lock.json
+index d4b19cd..3fc0d85 100644
+--- a/simple-todos/package-lock.json
++++ b/package-lock.json
+@@ -1,5 +1,5 @@
+ {
+-  "name": "simple-todos",
++  "name": "simple-todos-vue",
+   "requires": true,
+   "lockfileVersion": 1,
+   "dependencies": {
+diff --git a/simple-todos/package.json b/package.json
+similarity index 95%
+rename from simple-todos/package.json
+rename to package.json
+index 5c10bb3..801ff80 100644
+--- a/simple-todos/package.json
++++ b/package.json
+@@ -1,5 +1,5 @@
+ {
+-  "name": "simple-todos",
++  "name": "simple-todos-vue",
+   "private": true,
+   "scripts": {
+     "start": "meteor run",
+diff --git a/simple-todos/server/main.js b/server/main.js
+similarity index 100%
+rename from simple-todos/server/main.js
+rename to server/main.js
+diff --git a/simple-todos/.vscode/typings/meteor.d.ts b/simple-todos/.vscode/typings/meteor.d.ts
+deleted file mode 100644
+index 9bb7d02..0000000
+--- a/simple-todos/.vscode/typings/meteor.d.ts
++++ /dev/null
+@@ -1,2013 +0,0 @@
+-// Generated by typings
+-// Source: https://raw.githubusercontent.com/meteor-typings/meteor/241d0e5335025e64fc3ea064de80a026a08f3f06/1.3/header.d.ts
+-
+-// Generated by typings
+-// Source: https://raw.githubusercontent.com/meteor-typings/meteor/241d0e5335025e64fc3ea064de80a026a08f3f06/1.3/main.d.ts
+-declare module Accounts {
+-  function user(): Meteor.User;
+-
+-  function userId(): string;
+-
+-  function createUser(options: {
+-    username ? : string;
+-    email ? : string;
+-    password ? : string;
+-    profile ? : Object;
+-  }, callback ? : Function): string;
+-
+-  function config(options: {
+-    sendVerificationEmail ? : boolean;
+-    forbidClientAccountCreation ? : boolean;
+-    restrictCreationByEmailDomain ? : string | Function;
+-    loginExpirationInDays ? : number;
+-    oauthSecretKey ? : string;
+-  }): void;
+-
+-  function onLogin(func: Function): {
+-    stop: () => void
+-  };
+-
+-  function onLoginFailure(func: Function): {
+-    stop: () => void
+-  };
+-
+-  function loginServicesConfigured(): boolean;
+-
+-  function onPageLoadLogin(func: Function): void;
+-}
+-
+-declare module "meteor/accounts-base" {
+-  /// <reference path="meteor.d.ts" />
+-
+-  module Accounts {
+-    function user(): Meteor.User;
+-
+-    function userId(): string;
+-
+-    function createUser(options: {
+-      username ? : string;
+-      email ? : string;
+-      password ? : string;
+-      profile ? : Object;
+-    }, callback ? : Function): string;
+-
+-    function config(options: {
+-      sendVerificationEmail ? : boolean;
+-      forbidClientAccountCreation ? : boolean;
+-      restrictCreationByEmailDomain ? : string | Function;
+-      loginExpirationInDays ? : number;
+-      oauthSecretKey ? : string;
+-    }): void;
+-
+-    function onLogin(func: Function): {
+-      stop: () => void
+-    };
+-
+-    function onLoginFailure(func: Function): {
+-      stop: () => void
+-    };
+-
+-    function loginServicesConfigured(): boolean;
+-
+-    function onPageLoadLogin(func: Function): void;
+-  }
+-}
+-declare module Accounts {
+-  function changePassword(oldPassword: string, newPassword: string, callback ? : Function): void;
+-
+-  function forgotPassword(options: {
+-    email ? : string;
+-  }, callback ? : Function): void;
+-
+-  function resetPassword(token: string, newPassword: string, callback ? : Function): void;
+-
+-  function verifyEmail(token: string, callback ? : Function): void;
+-
+-  function onEmailVerificationLink(callback: Function): void;
+-
+-  function onEnrollmentLink(callback: Function): void;
+-
+-  function onResetPasswordLink(callback: Function): void;
+-
+-  function loggingIn(): boolean;
+-
+-  function logout(callback ? : Function): void;
+-
+-  function logoutOtherClients(callback ? : Function): void;
+-
+-  var ui: {
+-    config(options: {
+-      requestPermissions ? : Object;
+-      requestOfflineToken ? : Object;
+-      forceApprovalPrompt ? : Object;
+-      passwordSignupFields ? : string;
+-    }): void;
+-  };
+-}
+-
+-declare module "meteor/accounts-base" {
+-  module Accounts {
+-    function changePassword(oldPassword: string, newPassword: string, callback ? : Function): void;
+-
+-    function forgotPassword(options: {
+-      email ? : string;
+-    }, callback ? : Function): void;
+-
+-    function resetPassword(token: string, newPassword: string, callback ? : Function): void;
+-
+-    function verifyEmail(token: string, callback ? : Function): void;
+-
+-    function onEmailVerificationLink(callback: Function): void;
+-
+-    function onEnrollmentLink(callback: Function): void;
+-
+-    function onResetPasswordLink(callback: Function): void;
+-
+-    function loggingIn(): boolean;
+-
+-    function logout(callback ? : Function): void;
+-
+-    function logoutOtherClients(callback ? : Function): void;
+-
+-    var ui: {
+-      config(options: {
+-        requestPermissions ? : Object;
+-        requestOfflineToken ? : Object;
+-        forceApprovalPrompt ? : Object;
+-        passwordSignupFields ? : string;
+-      }): void;
+-    };
+-  }
+-}
+-
+-interface EmailFields {
+-  from ? : () => string;
+-  subject ? : (user: Meteor.User) => string;
+-  text ? : (user: Meteor.User, url: string) => string;
+-  html ? : (user: Meteor.User, url: string) => string;
+-}
+-
+-interface Header {
+-  [id: string]: string;
+-}
+-
+-interface EmailTemplates {
+-  from: string;
+-  siteName: string;
+-  headers ? : Header;
+-  resetPassword: EmailFields;
+-  enrollAccount: EmailFields;
+-  verifyEmail: EmailFields;
+-}
+-
+-declare module Accounts {
+-  var emailTemplates: EmailTemplates;
+-
+-  function addEmail(userId: string, newEmail: string, verified ? : boolean): void;
+-
+-  function removeEmail(userId: string, email: string): void;
+-
+-  function onCreateUser(func: Function): void;
+-
+-  function findUserByEmail(email: string): Object;
+-
+-  function findUserByUsername(username: string): Object;
+-
+-  function sendEnrollmentEmail(userId: string, email ? : string): void;
+-
+-  function sendResetPasswordEmail(userId: string, email ? : string): void;
+-
+-  function sendVerificationEmail(userId: string, email ? : string): void;
+-
+-  function setUsername(userId: string, newUsername: string): void;
+-
+-  function setPassword(userId: string, newPassword: string, options ? : {
+-    logout ? : Object;
+-  }): void;
+-
+-  function validateNewUser(func: Function): boolean;
+-
+-  function validateLoginAttempt(func: Function): {
+-    stop: () => void
+-  };
+-
+-  interface IValidateLoginAttemptCbOpts {
+-    type: string;
+-    allowed: boolean;
+-    error: Meteor.Error;
+-    user: Meteor.User;
+-    connection: Meteor.Connection;
+-    methodName: string;
+-    methodArguments: any[];
+-  }
+-}
+-
+-declare module "meteor/accounts-base" {
+-  /// <reference path="meteor.d.ts" />
+-  /// <reference path="meteor_main.d.ts" />
+-
+-  interface EmailFields {
+-    from ? : () => string;
+-    subject ? : (user: Meteor.User) => string;
+-    text ? : (user: Meteor.User, url: string) => string;
+-    html ? : (user: Meteor.User, url: string) => string;
+-  }
+-
+-  interface Header {
+-    [id: string]: string;
+-  }
+-
+-  interface EmailTemplates {
+-    from: string;
+-    siteName: string;
+-    headers ? : Header;
+-    resetPassword: EmailFields;
+-    enrollAccount: EmailFields;
+-    verifyEmail: EmailFields;
+-  }
+-
+-  module Accounts {
+-    var emailTemplates: EmailTemplates;
+-
+-    function addEmail(userId: string, newEmail: string, verified ? : boolean): void;
+-
+-    function removeEmail(userId: string, email: string): void;
+-
+-    function onCreateUser(func: Function): void;
+-
+-    function findUserByEmail(email: string): Object;
+-
+-    function findUserByUsername(username: string): Object;
+-
+-    function sendEnrollmentEmail(userId: string, email ? : string): void;
+-
+-    function sendResetPasswordEmail(userId: string, email ? : string): void;
+-
+-    function sendVerificationEmail(userId: string, email ? : string): void;
+-
+-    function setUsername(userId: string, newUsername: string): void;
+-
+-    function setPassword(userId: string, newPassword: string, options ? : {
+-      logout ? : Object;
+-    }): void;
+-
+-    function validateNewUser(func: Function): boolean;
+-
+-    function validateLoginAttempt(func: Function): {
+-      stop: () => void
+-    };
+-
+-    interface IValidateLoginAttemptCbOpts {
+-      type: string;
+-      allowed: boolean;
+-      error: Meteor.Error;
+-      user: Meteor.User;
+-      connection: Meteor.Connection;
+-      methodName: string;
+-      methodArguments: any[];
+-    }
+-  }
+-}
+-
+-declare module Blaze {
+-  var View: ViewStatic;
+-
+-  interface ViewStatic {
+-    new(name ? : string, renderFunction ? : Function): View;
+-  }
+-
+-  interface View {
+-    name: string;
+-    parentView: View;
+-    isCreated: boolean;
+-    isRendered: boolean;
+-    isDestroyed: boolean;
+-    renderCount: number;
+-    autorun(runFunc: Function): void;
+-    onViewCreated(func: Function): void;
+-    onViewReady(func: Function): void;
+-    onViewDestroyed(func: Function): void;
+-    firstNode(): Node;
+-    lastNode(): Node;
+-    template: Template;
+-    templateInstance(): TemplateInstance;
+-  }
+-  var currentView: View;
+-
+-  function isTemplate(value: any): boolean;
+-
+-  interface HelpersMap {
+-    [key: string]: Function;
+-  }
+-
+-  interface EventsMap {
+-    [key: string]: Function;
+-  }
+-
+-  var Template: TemplateStatic;
+-
+-  interface TemplateStatic {
+-    new(viewName ? : string, renderFunction ? : Function): Template;
+-
+-    registerHelper(name: string, func: Function): void;
+-    instance(): TemplateInstance;
+-    currentData(): any;
+-    parentData(numLevels: number): any;
+-  }
+-
+-  interface Template {
+-    viewName: string;
+-    renderFunction: Function;
+-    constructView(): View;
+-    head: Template;
+-    find(selector: string): Template;
+-    findAll(selector: string): Template[];
+-    $: any;
+-    onCreated(cb: Function): void;
+-    onRendered(cb: Function): void;
+-    onDestroyed(cb: Function): void;
+-    created: Function;
+-    rendered: Function;
+-    destroyed: Function;
+-    helpers(helpersMap: HelpersMap): void;
+-    events(eventsMap: EventsMap): void;
+-  }
+-
+-  var TemplateInstance: TemplateInstanceStatic;
+-
+-  interface TemplateInstanceStatic {
+-    new(view: View): TemplateInstance;
+-  }
+-
+-  interface TemplateInstance {
+-    $(selector: string): any;
+-    autorun(runFunc: Function): Object;
+-    data: Object;
+-    find(selector ? : string): TemplateInstance;
+-    findAll(selector: string): TemplateInstance[];
+-    firstNode: Object;
+-    lastNode: Object;
+-    subscribe(name: string, ...args: any[]): Meteor.SubscriptionHandle;
+-    subscriptionsReady(): boolean;
+-    view: Object;
+-  }
+-
+-  function Each(argFunc: Function, contentFunc: Function, elseFunc ? : Function): View;
+-
+-  function Unless(conditionFunc: Function, contentFunc: Function, elseFunc ? : Function): View;
+-
+-  function If(conditionFunc: Function, contentFunc: Function, elseFunc ? : Function): View;
+-
+-  function Let(bindings: Function, contentFunc: Function): View;
+-
+-  function With(data: Object | Function, contentFunc: Function): View;
+-
+-  function getData(elementOrView ? : HTMLElement | View): Object;
+-
+-  function getView(element ? : HTMLElement): View;
+-
+-  function remove(renderedView: View): void;
+-
+-  function render(templateOrView: Template | View, parentNode: Node, nextNode ? : Node, parentView ? : View): View;
+-
+-  function renderWithData(templateOrView: Template | View, data: Object | Function, parentNode: Node, nextNode ? : Node, parentView ? : View): View;
+-
+-  function toHTML(templateOrView: Template | View): string;
+-
+-  function toHTMLWithData(templateOrView: Template | View, data: Object | Function): string;
+-}
+-
+-declare module "meteor/blaze" {
+-  /// <reference path="meteor.d.ts" />
+-
+-  module Blaze {
+-    var View: ViewStatic;
+-
+-    interface ViewStatic {
+-      new(name ? : string, renderFunction ? : Function): View;
+-    }
+-
+-    interface View {
+-      name: string;
+-      parentView: View;
+-      isCreated: boolean;
+-      isRendered: boolean;
+-      isDestroyed: boolean;
+-      renderCount: number;
+-      autorun(runFunc: Function): void;
+-      onViewCreated(func: Function): void;
+-      onViewReady(func: Function): void;
+-      onViewDestroyed(func: Function): void;
+-      firstNode(): Node;
+-      lastNode(): Node;
+-      template: Template;
+-      templateInstance(): TemplateInstance;
+-    }
+-    var currentView: View;
+-
+-    function isTemplate(value: any): boolean;
+-
+-    interface HelpersMap {
+-      [key: string]: Function;
+-    }
+-
+-    interface EventsMap {
+-      [key: string]: Function;
+-    }
+-
+-    var Template: TemplateStatic;
+-
+-    interface TemplateStatic {
+-      new(viewName ? : string, renderFunction ? : Function): Template;
+-
+-      registerHelper(name: string, func: Function): void;
+-      instance(): TemplateInstance;
+-      currentData(): any;
+-      parentData(numLevels: number): any;
+-    }
+-
+-    interface Template {
+-      viewName: string;
+-      renderFunction: Function;
+-      constructView(): View;
+-      head: Template;
+-      find(selector: string): Template;
+-      findAll(selector: string): Template[];
+-      $: any;
+-      onCreated(cb: Function): void;
+-      onRendered(cb: Function): void;
+-      onDestroyed(cb: Function): void;
+-      created: Function;
+-      rendered: Function;
+-      destroyed: Function;
+-      helpers(helpersMap: HelpersMap): void;
+-      events(eventsMap: EventsMap): void;
+-    }
+-
+-    var TemplateInstance: TemplateInstanceStatic;
+-
+-    interface TemplateInstanceStatic {
+-      new(view: View): TemplateInstance;
+-    }
+-
+-    interface TemplateInstance {
+-      $(selector: string): any;
+-      autorun(runFunc: Function): Object;
+-      data: Object;
+-      find(selector ? : string): TemplateInstance;
+-      findAll(selector: string): TemplateInstance[];
+-      firstNode: Object;
+-      lastNode: Object;
+-      subscribe(name: string, ...args: any[]): Meteor.SubscriptionHandle;
+-      subscriptionsReady(): boolean;
+-      view: Object;
+-    }
+-
+-    function Each(argFunc: Function, contentFunc: Function, elseFunc ? : Function): View;
+-
+-    function Unless(conditionFunc: Function, contentFunc: Function, elseFunc ? : Function): View;
+-
+-    function If(conditionFunc: Function, contentFunc: Function, elseFunc ? : Function): View;
+-
+-    function Let(bindings: Function, contentFunc: Function): View;
+-
+-    function With(data: Object | Function, contentFunc: Function): View;
+-
+-    function getData(elementOrView ? : HTMLElement | View): Object;
+-
+-    function getView(element ? : HTMLElement): View;
+-
+-    function remove(renderedView: View): void;
+-
+-    function render(templateOrView: Template | View, parentNode: Node, nextNode ? : Node, parentView ? : View): View;
+-
+-    function renderWithData(templateOrView: Template | View, data: Object | Function, parentNode: Node, nextNode ? : Node, parentView ? : View): View;
+-
+-    function toHTML(templateOrView: Template | View): string;
+-
+-    function toHTMLWithData(templateOrView: Template | View, data: Object | Function): string;
+-  }
+-}
+-declare module BrowserPolicy {
+-  interface framing {
+-    disallow(): void;
+-    restrictToOrigin(origin: string): void;
+-    allowAll(): void;
+-  }
+-
+-  interface content {
+-    allowEval(): void;
+-    allowInlineStyles(): void;
+-    allowInlineScripts(): void;
+-    allowSameOriginForAll(): void;
+-    allowDataUrlForAll(): void;
+-    allowOriginForAll(origin: string): void;
+-    allowImageOrigin(origin: string): void;
+-    allowFrameOrigin(origin: string): void;
+-    allowContentTypeSniffing(): void;
+-    allowAllContentOrigin(): void;
+-    allowAllContentDataUrl(): void;
+-    allowAllContentSameOrigin(): void;
+-
+-    disallowAll(): void;
+-    disallowInlineStyles(): void;
+-    disallowEval(): void;
+-    disallowInlineScripts(): void;
+-    disallowFont(): void;
+-    disallowObject(): void;
+-    disallowAllContent(): void;
+-  }
+-}
+-
+-declare module "meteor/browser-policy" {
+-  module BrowserPolicy {
+-    interface framing {
+-      disallow(): void;
+-      restrictToOrigin(origin: string): void;
+-      allowAll(): void;
+-    }
+-
+-    interface content {
+-      allowEval(): void;
+-      allowInlineStyles(): void;
+-      allowInlineScripts(): void;
+-      allowSameOriginForAll(): void;
+-      allowDataUrlForAll(): void;
+-      allowOriginForAll(origin: string): void;
+-      allowImageOrigin(origin: string): void;
+-      allowFrameOrigin(origin: string): void;
+-      allowContentTypeSniffing(): void;
+-      allowAllContentOrigin(): void;
+-      allowAllContentDataUrl(): void;
+-      allowAllContentSameOrigin(): void;
+-
+-      disallowAll(): void;
+-      disallowInlineStyles(): void;
+-      disallowEval(): void;
+-      disallowInlineScripts(): void;
+-      disallowFont(): void;
+-      disallowObject(): void;
+-      disallowAllContent(): void;
+-    }
+-  }
+-}
+-declare module Match {
+-  var Any: any;
+-  var String: any;
+-  var Integer: any;
+-  var Boolean: any;
+-  var undefined: any;
+-  var Object: any;
+-
+-  function Optional(pattern: any): boolean;
+-
+-  function ObjectIncluding(dico: any): boolean;
+-
+-  function OneOf(...patterns: any[]): any;
+-
+-  function Where(condition: any): any;
+-
+-  function test(value: any, pattern: any): boolean;
+-}
+-
+-declare function check(value: any, pattern: any): void;
+-
+-declare module "meteor/check" {
+-  module Match {
+-    var Any: any;
+-    var String: any;
+-    var Integer: any;
+-    var Boolean: any;
+-    var undefined: any;
+-    var Object: any;
+-
+-    function Optional(pattern: any): boolean;
+-
+-    function ObjectIncluding(dico: any): boolean;
+-
+-    function OneOf(...patterns: any[]): any;
+-
+-    function Where(condition: any): any;
+-
+-    function test(value: any, pattern: any): boolean;
+-  }
+-
+-  function check(value: any, pattern: any): void;
+-}
+-
+-declare module DDP {
+-  interface DDPStatic {
+-    subscribe(name: string, ...rest: any[]): Meteor.SubscriptionHandle;
+-    call(method: string, ...parameters: any[]): void;
+-    apply(method: string, ...parameters: any[]): void;
+-    methods(IMeteorMethodsDictionary: any): any;
+-    status(): DDPStatus;
+-    reconnect(): void;
+-    disconnect(): void;
+-    onReconnect(): void;
+-  }
+-
+-  function _allSubscriptionsReady(): boolean;
+-
+-  interface DDPStatus {
+-    connected: boolean;
+-    /**
+-     * connected,
+-     * connecting,
+-     * failed,
+-     * waiting,
+-     * offline
+-     */
+-    status: string;
+-    retryCount: number;
+-    retryTime ? : number;
+-    reason ? : string;
+-  }
+-
+-  function connect(url: string): DDPStatic;
+-}
+-
+-declare module DDPCommon {
+-  interface MethodInvocation {
+-    new(options: {}): MethodInvocation;
+-
+-    unblock(): void;
+-
+-    setUserId(userId: number): void;
+-  }
+-}
+-
+-declare module "meteor/ddp" {
+-  /// <reference path="meteor.d.ts" />
+-
+-  module DDP {
+-    interface DDPStatic {
+-      subscribe(name: string, ...rest: any[]): Meteor.SubscriptionHandle;
+-      call(method: string, ...parameters: any[]): void;
+-      apply(method: string, ...parameters: any[]): void;
+-      methods(IMeteorMethodsDictionary: any): any;
+-      status(): DDPStatus;
+-      reconnect(): void;
+-      disconnect(): void;
+-      onReconnect(): void;
+-    }
+-
+-    function _allSubscriptionsReady(): boolean;
+-
+-    interface DDPStatus {
+-      connected: boolean;
+-      /**
+-       * connected,
+-       * connecting,
+-       * failed,
+-       * waiting,
+-       * offline
+-       */
+-      status: string;
+-      retryCount: number;
+-      retryTime ? : number;
+-      reason ? : string;
+-    }
+-
+-    function connect(url: string): DDPStatic;
+-  }
+-
+-  module DDPCommon {
+-    interface MethodInvocation {
+-      new(options: {}): MethodInvocation;
+-
+-      unblock(): void;
+-
+-      setUserId(userId: number): void;
+-    }
+-  }
+-}
+-interface EJSONableCustomType {
+-  clone(): EJSONableCustomType;
+-  equals(other: Object): boolean;
+-  toJSONValue(): JSONable;
+-  typeName(): string;
+-}
+-interface EJSONable {
+-  [key: string]: number | string | boolean | Object | number[] | string[] | Object[] | Date | Uint8Array | EJSONableCustomType;
+-}
+-interface JSONable {
+-  [key: string]: number | string | boolean | Object | number[] | string[] | Object[];
+-}
+-interface EJSON extends EJSONable {}
+-
+-declare module EJSON {
+-  function addType(name: string, factory: (val: JSONable) => EJSONableCustomType): void;
+-
+-  function clone < T > (val: T): T;
+-
+-  function equals(a: EJSON, b: EJSON, options ? : {
+-    keyOrderSensitive ? : boolean;
+-  }): boolean;
+-
+-  function fromJSONValue(val: JSONable): any;
+-
+-  function isBinary(x: Object): boolean;
+-  var newBinary: any;
+-
+-  function parse(str: string): EJSON;
+-
+-  function stringify(val: EJSON, options ? : {
+-    indent ? : boolean | number | string;
+-    canonical ? : boolean;
+-  }): string;
+-
+-  function toJSONValue(val: EJSON): JSONable;
+-}
+-
+-declare module "meteor/ejson" {
+-  interface EJSONableCustomType {
+-    clone(): EJSONableCustomType;
+-    equals(other: Object): boolean;
+-    toJSONValue(): JSONable;
+-    typeName(): string;
+-  }
+-  interface EJSONable {
+-    [key: string]: number | string | boolean | Object | number[] | string[] | Object[] | Date | Uint8Array | EJSONableCustomType;
+-  }
+-  interface JSONable {
+-    [key: string]: number | string | boolean | Object | number[] | string[] | Object[];
+-  }
+-  interface EJSON extends EJSONable {}
+-
+-  module EJSON {
+-    function addType(name: string, factory: (val: JSONable) => EJSONableCustomType): void;
+-
+-    function clone < T > (val: T): T;
+-
+-    function equals(a: EJSON, b: EJSON, options ? : {
+-      keyOrderSensitive ? : boolean;
+-    }): boolean;
+-
+-    function fromJSONValue(val: JSONable): any;
+-
+-    function isBinary(x: Object): boolean;
+-    var newBinary: any;
+-
+-    function parse(str: string): EJSON;
+-
+-    function stringify(val: EJSON, options ? : {
+-      indent ? : boolean | number | string;
+-      canonical ? : boolean;
+-    }): string;
+-
+-    function toJSONValue(val: EJSON): JSONable;
+-  }
+-}
+-declare module Email {
+-  function send(options: {
+-    from ? : string;
+-    to ? : string | string[];
+-    cc ? : string | string[];
+-    bcc ? : string | string[];
+-    replyTo ? : string | string[];
+-    subject ? : string;
+-    text ? : string;
+-    html ? : string;
+-    headers ? : Object;
+-    attachments ? : Object[];
+-    mailComposer ? : MailComposer;
+-  }): void;
+-}
+-
+-interface MailComposerOptions {
+-  escapeSMTP: boolean;
+-  encoding: string;
+-  charset: string;
+-  keepBcc: boolean;
+-  forceEmbeddedImages: boolean;
+-}
+-
+-declare var MailComposer: MailComposerStatic;
+-interface MailComposerStatic {
+-  new(options: MailComposerOptions): MailComposer;
+-}
+-interface MailComposer {
+-  addHeader(name: string, value: string): void;
+-  setMessageOption(from: string, to: string, body: string, html: string): void;
+-  streamMessage(): void;
+-  pipe(stream: any /** fs.WriteStream **/ ): void;
+-}
+-
+-declare module "meteor/email" {
+-  module Email {
+-    function send(options: {
+-      from ? : string;
+-      to ? : string | string[];
+-      cc ? : string | string[];
+-      bcc ? : string | string[];
+-      replyTo ? : string | string[];
+-      subject ? : string;
+-      text ? : string;
+-      html ? : string;
+-      headers ? : Object;
+-      attachments ? : Object[];
+-      mailComposer ? : MailComposer;
+-    }): void;
+-  }
+-
+-  interface MailComposerOptions {
+-    escapeSMTP: boolean;
+-    encoding: string;
+-    charset: string;
+-    keepBcc: boolean;
+-    forceEmbeddedImages: boolean;
+-  }
+-
+-  var MailComposer: MailComposerStatic;
+-  interface MailComposerStatic {
+-    new(options: MailComposerOptions): MailComposer;
+-  }
+-  interface MailComposer {
+-    addHeader(name: string, value: string): void;
+-    setMessageOption(from: string, to: string, body: string, html: string): void;
+-    streamMessage(): void;
+-    pipe(stream: any /** fs.WriteStream **/ ): void;
+-  }
+-}
+-declare module HTTP {
+-  interface HTTPRequest {
+-    content ? : string;
+-    data ? : any;
+-    query ? : string;
+-    params ? : {
+-      [id: string]: string
+-    };
+-    auth ? : string;
+-    headers ? : {
+-      [id: string]: string
+-    };
+-    timeout ? : number;
+-    followRedirects ? : boolean;
+-  }
+-
+-  interface HTTPResponse {
+-    statusCode ? : number;
+-    headers ? : {
+-      [id: string]: string
+-    };
+-    content ? : string;
+-    data ? : any;
+-  }
+-
+-  function call(method: string, url: string, options ? : HTTP.HTTPRequest, asyncCallback ? : Function): HTTP.HTTPResponse;
+-
+-  function del(url: string, callOptions ? : HTTP.HTTPRequest, asyncCallback ? : Function): HTTP.HTTPResponse;
+-
+-  function get(url: string, callOptions ? : HTTP.HTTPRequest, asyncCallback ? : Function): HTTP.HTTPResponse;
+-
+-  function post(url: string, callOptions ? : HTTP.HTTPRequest, asyncCallback ? : Function): HTTP.HTTPResponse;
+-
+-  function put(url: string, callOptions ? : HTTP.HTTPRequest, asyncCallback ? : Function): HTTP.HTTPResponse;
+-
+-  function call(method: string, url: string, options ? : {
+-    content ? : string;
+-    data ? : Object;
+-    query ? : string;
+-    params ? : Object;
+-    auth ? : string;
+-    headers ? : Object;
+-    timeout ? : number;
+-    followRedirects ? : boolean;
+-    npmRequestOptions ? : Object;
+-    beforeSend ? : Function;
+-  }, asyncCallback ? : Function): HTTP.HTTPResponse;
+-}
+-
+-declare module "meteor/http" {
+-  module HTTP {
+-    interface HTTPRequest {
+-      content ? : string;
+-      data ? : any;
+-      query ? : string;
+-      params ? : {
+-        [id: string]: string
+-      };
+-      auth ? : string;
+-      headers ? : {
+-        [id: string]: string
+-      };
+-      timeout ? : number;
+-      followRedirects ? : boolean;
+-    }
+-
+-    interface HTTPResponse {
+-      statusCode ? : number;
+-      headers ? : {
+-        [id: string]: string
+-      };
+-      content ? : string;
+-      data ? : any;
+-    }
+-
+-    function call(method: string, url: string, options ? : HTTP.HTTPRequest, asyncCallback ? : Function): HTTP.HTTPResponse;
+-
+-    function del(url: string, callOptions ? : HTTP.HTTPRequest, asyncCallback ? : Function): HTTP.HTTPResponse;
+-
+-    function get(url: string, callOptions ? : HTTP.HTTPRequest, asyncCallback ? : Function): HTTP.HTTPResponse;
+-
+-    function post(url: string, callOptions ? : HTTP.HTTPRequest, asyncCallback ? : Function): HTTP.HTTPResponse;
+-
+-    function put(url: string, callOptions ? : HTTP.HTTPRequest, asyncCallback ? : Function): HTTP.HTTPResponse;
+-
+-    function call(method: string, url: string, options ? : {
+-      content ? : string;
+-      data ? : Object;
+-      query ? : string;
+-      params ? : Object;
+-      auth ? : string;
+-      headers ? : Object;
+-      timeout ? : number;
+-      followRedirects ? : boolean;
+-      npmRequestOptions ? : Object;
+-      beforeSend ? : Function;
+-    }, asyncCallback ? : Function): HTTP.HTTPResponse;
+-  }
+-}
+-
+-declare module Meteor {
+-  /** Global props **/
+-  var isClient: boolean;
+-  var isCordova: boolean;
+-  var isServer: boolean;
+-  var release: string;
+-  var settings: {
+-    [id: string]: any
+-  };
+-  /** props **/
+-
+-  /** User **/
+-  interface UserEmail {
+-    address: string;
+-    verified: boolean;
+-  }
+-  interface User {
+-    _id ? : string;
+-    username ? : string;
+-    emails ? : UserEmail[];
+-    createdAt ? : number;
+-    profile ? : any;
+-    services ? : any;
+-  }
+-
+-  function user(): User;
+-
+-  function userId(): string;
+-  var users: Mongo.Collection < User > ;
+-  /** User **/
+-
+-  /** Error **/
+-  var Error: ErrorStatic;
+-  interface ErrorStatic {
+-    new(error: string | number, reason ? : string, details ? : string): Error;
+-  }
+-  interface Error {
+-    error: string | number;
+-    reason ? : string;
+-    details ? : string;
+-  }
+-  /** Error **/
+-
+-  /** Method **/
+-  function methods(methods: Object): void;
+-
+-  function call(name: string, ...args: any[]): any;
+-
+-  function apply(name: string, args: EJSONable[], options ? : {
+-    wait ? : boolean;
+-    onResultReceived ? : Function;
+-  }, asyncCallback ? : Function): any;
+-  /** Method **/
+-
+-  /** Url **/
+-  function absoluteUrl(path ? : string, options ? : {
+-    secure ? : boolean;
+-    replaceLocalhost ? : boolean;
+-    rootUrl ? : string;
+-  }): string;
+-  /** Url **/
+-
+-  /** Timeout **/
+-  function setInterval(func: Function, delay: number): number;
+-
+-  function setTimeout(func: Function, delay: number): number;
+-
+-  function clearInterval(id: number): void;
+-
+-  function clearTimeout(id: number): void;
+-
+-  function defer(func: Function): void;
+-  /** Timeout **/
+-
+-  /** utils **/
+-  function startup(func: Function): void;
+-
+-  function wrapAsync(func: Function, context ? : Object): any;
+-  /** utils **/
+-
+-  /** Pub/Sub **/
+-  interface SubscriptionHandle {
+-    stop(): void;
+-    ready(): boolean;
+-  }
+-  interface LiveQueryHandle {
+-    stop(): void;
+-  }
+-  /** Pub/Sub **/
+-}
+-
+-declare module "meteor/meteor" {
+-  /// <reference path="mongo.d.ts" />
+-  /// <reference path="ejson.d.ts" />
+-
+-  module Meteor {
+-    /** Global props **/
+-    var isClient: boolean;
+-    var isCordova: boolean;
+-    var isServer: boolean;
+-    var release: string;
+-    var settings: {
+-      [id: string]: any
+-    };
+-    /** props **/
+-
+-    /** User **/
+-    interface UserEmail {
+-      address: string;
+-      verified: boolean;
+-    }
+-    interface User {
+-      _id ? : string;
+-      username ? : string;
+-      emails ? : UserEmail[];
+-      createdAt ? : number;
+-      profile ? : any;
+-      services ? : any;
+-    }
+-
+-    function user(): User;
+-
+-    function userId(): string;
+-    var users: Mongo.Collection < User > ;
+-    /** User **/
+-
+-    /** Error **/
+-    var Error: ErrorStatic;
+-    interface ErrorStatic {
+-      new(error: string | number, reason ? : string, details ? : string): Error;
+-    }
+-    interface Error {
+-      error: string | number;
+-      reason ? : string;
+-      details ? : string;
+-    }
+-    /** Error **/
+-
+-    /** Method **/
+-    function methods(methods: Object): void;
+-
+-    function call(name: string, ...args: any[]): any;
+-
+-    function apply(name: string, args: EJSONable[], options ? : {
+-      wait ? : boolean;
+-      onResultReceived ? : Function;
+-    }, asyncCallback ? : Function): any;
+-    /** Method **/
+-
+-    /** Url **/
+-    function absoluteUrl(path ? : string, options ? : {
+-      secure ? : boolean;
+-      replaceLocalhost ? : boolean;
+-      rootUrl ? : string;
+-    }): string;
+-    /** Url **/
+-
+-    /** Timeout **/
+-    function setInterval(func: Function, delay: number): number;
+-
+-    function setTimeout(func: Function, delay: number): number;
+-
+-    function clearInterval(id: number): void;
+-
+-    function clearTimeout(id: number): void;
+-
+-    function defer(func: Function): void;
+-    /** Timeout **/
+-
+-    /** utils **/
+-    function startup(func: Function): void;
+-
+-    function wrapAsync(func: Function, context ? : Object): any;
+-    /** utils **/
+-
+-    /** Pub/Sub **/
+-    interface SubscriptionHandle {
+-      stop(): void;
+-      ready(): boolean;
+-    }
+-    interface LiveQueryHandle {
+-      stop(): void;
+-    }
+-    /** Pub/Sub **/
+-  }
+-}
+-
+-declare module Meteor {
+-  /** Login **/
+-  interface LoginWithExternalServiceOptions {
+-    requestPermissions ? : string[];
+-    requestOfflineToken ? : Boolean;
+-    forceApprovalPrompt ? : Boolean;
+-    loginUrlParameters ? : Object;
+-    redirectUrl ? : string;
+-    loginHint ? : string;
+-    loginStyle ? : string;
+-  }
+-
+-  function loginWithMeteorDeveloperAccount(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
+-
+-  function loginWithFacebook(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
+-
+-  function loginWithGithub(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
+-
+-  function loginWithGoogle(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
+-
+-  function loginWithMeetup(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
+-
+-  function loginWithTwitter(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
+-
+-  function loginWithWeibo(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
+-
+-  function loggingIn(): boolean;
+-
+-  function loginWith < ExternalService > (options ? : {
+-    requestPermissions ? : string[];
+-    requestOfflineToken ? : boolean;
+-    loginUrlParameters ? : Object;
+-    userEmail ? : string;
+-    loginStyle ? : string;
+-    redirectUrl ? : string;
+-  }, callback ? : Function): void;
+-
+-  function loginWithPassword(user: Object | string, password: string, callback ? : Function): void;
+-
+-  function logout(callback ? : Function): void;
+-
+-  function logoutOtherClients(callback ? : Function): void;
+-  /** Login **/
+-
+-  /** Event **/
+-  interface Event {
+-    type: string;
+-    target: HTMLElement;
+-    currentTarget: HTMLElement;
+-    which: number;
+-    stopPropagation(): void;
+-    stopImmediatePropagation(): void;
+-    preventDefault(): void;
+-    isPropagationStopped(): boolean;
+-    isImmediatePropagationStopped(): boolean;
+-    isDefaultPrevented(): boolean;
+-  }
+-  interface EventHandlerFunction extends Function {
+-    (event ? : Meteor.Event, templateInstance ? : Blaze.TemplateInstance): void;
+-  }
+-  interface EventMap {
+-    [id: string]: Meteor.EventHandlerFunction;
+-  }
+-  /** Event **/
+-
+-  /** Connection **/
+-  function reconnect(): void;
+-
+-  function disconnect(): void;
+-  /** Connection **/
+-
+-  /** Status **/
+-  function status(): DDP.DDPStatus;
+-  /** Status **/
+-
+-  /** Pub/Sub **/
+-  function subscribe(name: string, ...args: any[]): Meteor.SubscriptionHandle;
+-  /** Pub/Sub **/
+-}
+-
+-declare module "meteor/meteor" {
+-  /// <reference path="meteor.d.ts" />
+-
+-  module Meteor {
+-    /** Login **/
+-    interface LoginWithExternalServiceOptions {
+-      requestPermissions ? : string[];
+-      requestOfflineToken ? : Boolean;
+-      forceApprovalPrompt ? : Boolean;
+-      loginUrlParameters ? : Object;
+-      redirectUrl ? : string;
+-      loginHint ? : string;
+-      loginStyle ? : string;
+-    }
+-
+-    function loginWithMeteorDeveloperAccount(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
+-
+-    function loginWithFacebook(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
+-
+-    function loginWithGithub(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
+-
+-    function loginWithGoogle(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
+-
+-    function loginWithMeetup(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
+-
+-    function loginWithTwitter(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
+-
+-    function loginWithWeibo(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
+-
+-    function loggingIn(): boolean;
+-
+-    function loginWith < ExternalService > (options ? : {
+-      requestPermissions ? : string[];
+-      requestOfflineToken ? : boolean;
+-      loginUrlParameters ? : Object;
+-      userEmail ? : string;
+-      loginStyle ? : string;
+-      redirectUrl ? : string;
+-    }, callback ? : Function): void;
+-
+-    function loginWithPassword(user: Object | string, password: string, callback ? : Function): void;
+-
+-    function logout(callback ? : Function): void;
+-
+-    function logoutOtherClients(callback ? : Function): void;
+-    /** Login **/
+-
+-    /** Event **/
+-    interface Event {
+-      type: string;
+-      target: HTMLElement;
+-      currentTarget: HTMLElement;
+-      which: number;
+-      stopPropagation(): void;
+-      stopImmediatePropagation(): void;
+-      preventDefault(): void;
+-      isPropagationStopped(): boolean;
+-      isImmediatePropagationStopped(): boolean;
+-      isDefaultPrevented(): boolean;
+-    }
+-    interface EventHandlerFunction extends Function {
+-      (event ? : Meteor.Event, templateInstance ? : Blaze.TemplateInstance): void;
+-    }
+-    interface EventMap {
+-      [id: string]: Meteor.EventHandlerFunction;
+-    }
+-    /** Event **/
+-
+-    /** Connection **/
+-    function reconnect(): void;
+-
+-    function disconnect(): void;
+-    /** Connection **/
+-
+-    /** Status **/
+-    function status(): DDP.DDPStatus;
+-    /** Status **/
+-
+-    /** Pub/Sub **/
+-    function subscribe(name: string, ...args: any[]): Meteor.SubscriptionHandle;
+-    /** Pub/Sub **/
+-  }
+-}
+-declare module Meteor {
+-  /** Connection **/
+-  interface Connection {
+-    id: string;
+-    close: Function;
+-    onClose: Function;
+-    clientAddress: string;
+-    httpHeaders: Object;
+-  }
+-
+-  function onConnection(callback: Function): void;
+-  /** Connection **/
+-
+-  function publish(name: string, func: Function): void;
+-}
+-
+-interface Subscription {
+-  added(collection: string, id: string, fields: Object): void;
+-  changed(collection: string, id: string, fields: Object): void;
+-  connection: Meteor.Connection;
+-  error(error: Error): void;
+-  onStop(func: Function): void;
+-  ready(): void;
+-  removed(collection: string, id: string): void;
+-  stop(): void;
+-  userId: string;
+-}
+-
+-declare module "meteor/meteor" {
+-  module Meteor {
+-    /** Connection **/
+-    interface Connection {
+-      id: string;
+-      close: Function;
+-      onClose: Function;
+-      clientAddress: string;
+-      httpHeaders: Object;
+-    }
+-
+-    function onConnection(callback: Function): void;
+-    /** Connection **/
+-
+-    function publish(name: string, func: Function): void;
+-  }
+-
+-  interface Subscription {
+-    added(collection: string, id: string, fields: Object): void;
+-    changed(collection: string, id: string, fields: Object): void;
+-    connection: Meteor.Connection;
+-    error(error: Error): void;
+-    onStop(func: Function): void;
+-    ready(): void;
+-    removed(collection: string, id: string): void;
+-    stop(): void;
+-    userId: string;
+-  }
+-}
+-declare module Mongo {
+-  interface Selector {
+-    [key: string]: any;
+-  }
+-  interface Selector extends Object {}
+-  interface Modifier {}
+-  interface SortSpecifier {}
+-  interface FieldSpecifier {
+-    [id: string]: Number;
+-  }
+-
+-  var Collection: CollectionStatic;
+-  interface CollectionStatic {
+-    new < T > (name: string, options ? : {
+-      connection ? : Object;
+-      idGeneration ? : string;
+-      transform ? : Function;
+-    }): Collection < T > ;
+-  }
+-  interface Collection < T > {
+-    allow(options: {
+-      insert ? : (userId: string, doc: T) => boolean;
+-      update ? : (userId: string, doc: T, fieldNames: string[], modifier: any) => boolean;
+-      remove ? : (userId: string, doc: T) => boolean;
+-      fetch ? : string[];
+-      transform ? : Function;
+-    }): boolean;
+-    deny(options: {
+-      insert ? : (userId: string, doc: T) => boolean;
+-      update ? : (userId: string, doc: T, fieldNames: string[], modifier: any) => boolean;
+-      remove ? : (userId: string, doc: T) => boolean;
+-      fetch ? : string[];
+-      transform ? : Function;
+-    }): boolean;
+-    find(selector ? : Selector | ObjectID | string, options ? : {
+-      sort ? : SortSpecifier;
+-      skip ? : number;
+-      limit ? : number;
+-      fields ? : FieldSpecifier;
+-      reactive ? : boolean;
+-      transform ? : Function;
+-    }): Cursor < T > ;
+-    findOne(selector ? : Selector | ObjectID | string, options ? : {
+-      sort ? : SortSpecifier;
+-      skip ? : number;
+-      fields ? : FieldSpecifier;
+-      reactive ? : boolean;
+-      transform ? : Function;
+-    }): T;
+-    insert(doc: T, callback ? : Function): string;
+-    rawCollection(): any;
+-    rawDatabase(): any;
+-    remove(selector: Selector | ObjectID | string, callback ? : Function): number;
+-    update(selector: Selector | ObjectID | string, modifier: Modifier, options ? : {
+-      multi ? : boolean;
+-      upsert ? : boolean;
+-    }, callback ? : Function): number;
+-    upsert(selector: Selector | ObjectID | string, modifier: Modifier, options ? : {
+-      multi ? : boolean;
+-    }, callback ? : Function): {
+-      numberAffected ? : number;insertedId ? : string;
+-    };
+-    _ensureIndex(indexName: string, options ? : {
+-      [key: string]: any
+-    }): void;
+-  }
+-
+-  var Cursor: CursorStatic;
+-  interface CursorStatic {
+-    new < T > (): Cursor < T > ;
+-  }
+-  interface ObserveCallbacks {
+-    added ? (document: Object) : void;
+-    addedAt ? (document: Object, atIndex: number, before: Object) : void;
+-    changed ? (newDocument: Object, oldDocument: Object) : void;
+-    changedAt ? (newDocument: Object, oldDocument: Object, indexAt: number) : void;
+-    removed ? (oldDocument: Object) : void;
+-    removedAt ? (oldDocument: Object, atIndex: number) : void;
+-    movedTo ? (document: Object, fromIndex: number, toIndex: number, before: Object) : void;
+-  }
+-  interface ObserveChangesCallbacks {
+-    added ? (id: string, fields: Object) : void;
+-    addedBefore ? (id: string, fields: Object, before: Object) : void;
+-    changed ? (id: string, fields: Object) : void;
+-    movedBefore ? (id: string, before: Object) : void;
+-    removed ? (id: string) : void;
+-  }
+-  interface Cursor < T > {
+-    count(): number;
+-    fetch(): Array < T > ;
+-    forEach(callback: < T > (doc: T, index: number, cursor: Cursor < T > ) => void, thisArg ? : any): void;
+-    map < U > (callback: (doc: T, index: number, cursor: Cursor < T > ) => U, thisArg ? : any): Array < U > ;
+-    observe(callbacks: ObserveCallbacks): Meteor.LiveQueryHandle;
+-    observeChanges(callbacks: ObserveChangesCallbacks): Meteor.LiveQueryHandle;
+-  }
+-
+-  var ObjectID: ObjectIDStatic;
+-  interface ObjectIDStatic {
+-    new(hexString ? : string): ObjectID;
+-  }
+-  interface ObjectID {}
+-}
+-
+-declare module "meteor/mongo" {
+-  module Mongo {
+-    interface Selector {
+-      [key: string]: any;
+-    }
+-    interface Selector extends Object {}
+-    interface Modifier {}
+-    interface SortSpecifier {}
+-    interface FieldSpecifier {
+-      [id: string]: Number;
+-    }
+-
+-    var Collection: CollectionStatic;
+-    interface CollectionStatic {
+-      new < T > (name: string, options ? : {
+-        connection ? : Object;
+-        idGeneration ? : string;
+-        transform ? : Function;
+-      }): Collection < T > ;
+-    }
+-    interface Collection < T > {
+-      allow(options: {
+-        insert ? : (userId: string, doc: T) => boolean;
+-        update ? : (userId: string, doc: T, fieldNames: string[], modifier: any) => boolean;
+-        remove ? : (userId: string, doc: T) => boolean;
+-        fetch ? : string[];
+-        transform ? : Function;
+-      }): boolean;
+-      deny(options: {
+-        insert ? : (userId: string, doc: T) => boolean;
+-        update ? : (userId: string, doc: T, fieldNames: string[], modifier: any) => boolean;
+-        remove ? : (userId: string, doc: T) => boolean;
+-        fetch ? : string[];
+-        transform ? : Function;
+-      }): boolean;
+-      find(selector ? : Selector | ObjectID | string, options ? : {
+-        sort ? : SortSpecifier;
+-        skip ? : number;
+-        limit ? : number;
+-        fields ? : FieldSpecifier;
+-        reactive ? : boolean;
+-        transform ? : Function;
+-      }): Cursor < T > ;
+-      findOne(selector ? : Selector | ObjectID | string, options ? : {
+-        sort ? : SortSpecifier;
+-        skip ? : number;
+-        fields ? : FieldSpecifier;
+-        reactive ? : boolean;
+-        transform ? : Function;
+-      }): T;
+-      insert(doc: T, callback ? : Function): string;
+-      rawCollection(): any;
+-      rawDatabase(): any;
+-      remove(selector: Selector | ObjectID | string, callback ? : Function): number;
+-      update(selector: Selector | ObjectID | string, modifier: Modifier, options ? : {
+-        multi ? : boolean;
+-        upsert ? : boolean;
+-      }, callback ? : Function): number;
+-      upsert(selector: Selector | ObjectID | string, modifier: Modifier, options ? : {
+-        multi ? : boolean;
+-      }, callback ? : Function): {
+-        numberAffected ? : number;insertedId ? : string;
+-      };
+-      _ensureIndex(indexName: string, options ? : {
+-        [key: string]: any
+-      }): void;
+-    }
+-
+-    var Cursor: CursorStatic;
+-    interface CursorStatic {
+-      new < T > (): Cursor < T > ;
+-    }
+-    interface ObserveCallbacks {
+-      added ? (document: Object) : void;
+-      addedAt ? (document: Object, atIndex: number, before: Object) : void;
+-      changed ? (newDocument: Object, oldDocument: Object) : void;
+-      changedAt ? (newDocument: Object, oldDocument: Object, indexAt: number) : void;
+-      removed ? (oldDocument: Object) : void;
+-      removedAt ? (oldDocument: Object, atIndex: number) : void;
+-      movedTo ? (document: Object, fromIndex: number, toIndex: number, before: Object) : void;
+-    }
+-    interface ObserveChangesCallbacks {
+-      added ? (id: string, fields: Object) : void;
+-      addedBefore ? (id: string, fields: Object, before: Object) : void;
+-      changed ? (id: string, fields: Object) : void;
+-      movedBefore ? (id: string, before: Object) : void;
+-      removed ? (id: string) : void;
+-    }
+-    interface Cursor < T > {
+-      count(): number;
+-      fetch(): Array < T > ;
+-      forEach(callback: < T > (doc: T, index: number, cursor: Cursor < T > ) => void, thisArg ? : any): void;
+-      map < U > (callback: (doc: T, index: number, cursor: Cursor < T > ) => U, thisArg ? : any): Array < U > ;
+-      observe(callbacks: ObserveCallbacks): Meteor.LiveQueryHandle;
+-      observeChanges(callbacks: ObserveChangesCallbacks): Meteor.LiveQueryHandle;
+-    }
+-
+-    var ObjectID: ObjectIDStatic;
+-    interface ObjectIDStatic {
+-      new(hexString ? : string): ObjectID;
+-    }
+-    interface ObjectID {}
+-  }
+-}
+-declare module Mongo {
+-  interface AllowDenyOptions {
+-    insert ? : (userId: string, doc: any) => boolean;
+-    update ? : (userId: string, doc: any, fieldNames: string[], modifier: any) => boolean;
+-    remove ? : (userId: string, doc: any) => boolean;
+-    fetch ? : string[];
+-    transform ? : Function;
+-  }
+-}
+-
+-declare module "meteor/mongo" {
+-  module Mongo {
+-    interface AllowDenyOptions {
+-      insert ? : (userId: string, doc: any) => boolean;
+-      update ? : (userId: string, doc: any, fieldNames: string[], modifier: any) => boolean;
+-      remove ? : (userId: string, doc: any) => boolean;
+-      fetch ? : string[];
+-      transform ? : Function;
+-    }
+-  }
+-}
+-declare module Random {
+-  function id(numberOfChars ? : number): string;
+-
+-  function secret(numberOfChars ? : number): string;
+-
+-  function fraction(): number;
+-  // @param numberOfDigits, @returns a random hex string of the given length
+-  function hexString(numberOfDigits: number): string;
+-  // @param array, @return a random element in array
+-  function choice(array: any[]): string;
+-  // @param str, @return a random char in str
+-  function choice(str: string): string;
+-}
+-
+-declare module "meteor/random" {
+-  module Random {
+-    function id(numberOfChars ? : number): string;
+-
+-    function secret(numberOfChars ? : number): string;
+-
+-    function fraction(): number;
+-    // @param numberOfDigits, @returns a random hex string of the given length
+-    function hexString(numberOfDigits: number): string;
+-    // @param array, @return a random element in array
+-    function choice(array: any[]): string;
+-    // @param str, @return a random char in str
+-    function choice(str: string): string;
+-  }
+-}
+-declare var ReactiveVar: ReactiveVarStatic;
+-interface ReactiveVarStatic {
+-  new < T > (initialValue: T, equalsFunc ? : Function): ReactiveVar < T > ;
+-}
+-interface ReactiveVar < T > {
+-  get(): T;
+-  set(newValue: T): void;
+-}
+-
+-declare module "meteor/reactive-var" {
+-  var ReactiveVar: ReactiveVarStatic;
+-  interface ReactiveVarStatic {
+-    new < T > (initialValue: T, equalsFunc ? : Function): ReactiveVar < T > ;
+-  }
+-  interface ReactiveVar < T > {
+-    get(): T;
+-    set(newValue: T): void;
+-  }
+-}
+-
+-declare module Session {
+-  function equals(key: string, value: string | number | boolean | any): boolean;
+-
+-  function get(key: string): any;
+-
+-  function set(key: string, value: EJSONable | any): void;
+-
+-  function setDefault(key: string, value: EJSONable | any): void;
+-}
+-
+-declare module "meteor/session" {
+-  /// <reference path="ejson.d.ts" />
+-
+-  module Session {
+-    function equals(key: string, value: string | number | boolean | any): boolean;
+-
+-    function get(key: string): any;
+-
+-    function set(key: string, value: EJSONable | any): void;
+-
+-    function setDefault(key: string, value: EJSONable | any): void;
+-  }
+-}
+-
+-declare var Template: TemplateStatic;
+-interface TemplateStatic extends Blaze.TemplateStatic {
+-  new(viewName ? : string, renderFunction ? : Function): Blaze.Template;
+-  body: Blaze.Template;
+-  [index: string]: any | Blaze.Template;
+-}
+-
+-declare module "meteor/templating" {
+-  /// <reference path="blaze.d.ts" />
+-
+-  var Template: TemplateStatic;
+-  interface TemplateStatic extends Blaze.TemplateStatic {
+-    new(viewName ? : string, renderFunction ? : Function): Blaze.Template;
+-    body: Blaze.Template;
+-    [index: string]: any | Blaze.Template;
+-  }
+-}
+-interface ILengthAble {
+-  length: number;
+-}
+-
+-interface ITinytestAssertions {
+-  ok(doc: Object): void;
+-  expect_fail(): void;
+-  fail(doc: Object): void;
+-  runId(): string;
+-  equal < T > (actual: T, expected: T, message ? : string, not ? : boolean): void;
+-  notEqual < T > (actual: T, expected: T, message ? : string): void;
+-  instanceOf(obj: Object, klass: Function, message ? : string): void;
+-  notInstanceOf(obj: Object, klass: Function, message ? : string): void;
+-  matches(actual: any, regexp: RegExp, message ? : string): void;
+-  notMatches(actual: any, regexp: RegExp, message ? : string): void;
+-  throws(f: Function, expected ? : string | RegExp): void;
+-  isTrue(v: boolean, msg ? : string): void;
+-  isFalse(v: boolean, msg ? : string): void;
+-  isNull(v: any, msg ? : string): void;
+-  isNotNull(v: any, msg ? : string): void;
+-  isUndefined(v: any, msg ? : string): void;
+-  isNotUndefined(v: any, msg ? : string): void;
+-  isNan(v: any, msg ? : string): void;
+-  isNotNan(v: any, msg ? : string): void;
+-  include < T > (s: Array < T > | Object | string, value: any, msg ? : string, not ? : boolean): void;
+-
+-  notInclude < T > (s: Array < T > | Object | string, value: any, msg ? : string, not ? : boolean): void;
+-  length(obj: ILengthAble, expected_length: number, msg ? : string): void;
+-  _stringEqual(actual: string, expected: string, msg ? : string): void;
+-}
+-
+-declare module Tinytest {
+-  function add(description: string, func: (test: ITinytestAssertions) => void): void;
+-
+-  function addAsync(description: string, func: (test: ITinytestAssertions) => void): void;
+-}
+-
+-declare module "meteor/tiny-test" {
+-  interface ILengthAble {
+-    length: number;
+-  }
+-
+-  interface ITinytestAssertions {
+-    ok(doc: Object): void;
+-    expect_fail(): void;
+-    fail(doc: Object): void;
+-    runId(): string;
+-    equal < T > (actual: T, expected: T, message ? : string, not ? : boolean): void;
+-    notEqual < T > (actual: T, expected: T, message ? : string): void;
+-    instanceOf(obj: Object, klass: Function, message ? : string): void;
+-    notInstanceOf(obj: Object, klass: Function, message ? : string): void;
+-    matches(actual: any, regexp: RegExp, message ? : string): void;
+-    notMatches(actual: any, regexp: RegExp, message ? : string): void;
+-    throws(f: Function, expected ? : string | RegExp): void;
+-    isTrue(v: boolean, msg ? : string): void;
+-    isFalse(v: boolean, msg ? : string): void;
+-    isNull(v: any, msg ? : string): void;
+-    isNotNull(v: any, msg ? : string): void;
+-    isUndefined(v: any, msg ? : string): void;
+-    isNotUndefined(v: any, msg ? : string): void;
+-    isNan(v: any, msg ? : string): void;
+-    isNotNan(v: any, msg ? : string): void;
+-    include < T > (s: Array < T > | Object | string, value: any, msg ? : string, not ? : boolean): void;
+-
+-    notInclude < T > (s: Array < T > | Object | string, value: any, msg ? : string, not ? : boolean): void;
+-    length(obj: ILengthAble, expected_length: number, msg ? : string): void;
+-    _stringEqual(actual: string, expected: string, msg ? : string): void;
+-  }
+-
+-  module Tinytest {
+-    function add(description: string, func: (test: ITinytestAssertions) => void): void;
+-
+-    function addAsync(description: string, func: (test: ITinytestAssertions) => void): void;
+-  }
+-}
+-declare module App {
+-  function accessRule(pattern: string, options ? : {
+-    type ? : string;
+-    launchExternal ? : boolean;
+-  }): void;
+-
+-  function configurePlugin(id: string, config: Object): void;
+-
+-  function icons(icons: Object): void;
+-
+-  function info(options: {
+-    id ? : string;
+-    version ? : string;
+-    name ? : string;
+-    description ? : string;
+-    author ? : string;
+-    email ? : string;
+-    website ? : string;
+-  }): void;
+-
+-  function launchScreens(launchScreens: Object): void;
+-
+-  function setPreference(name: string, value: string, platform ? : string): void;
+-}
+-
+-declare function execFileAsync(command: string, args ? : any[], options ? : {
+-  cwd ? : Object;
+-  env ? : Object;
+-  stdio ? : any[] | string;
+-  destination ? : any;
+-  waitForClose ? : string;
+-}): any;
+-declare function execFileSync(command: string, args ? : any[], options ? : {
+-  cwd ? : Object;
+-  env ? : Object;
+-  stdio ? : any[] | string;
+-  destination ? : any;
+-  waitForClose ? : string;
+-}): String;
+-
+-declare module Assets {
+-  function getBinary(assetPath: string, asyncCallback ? : Function): EJSON;
+-
+-  function getText(assetPath: string, asyncCallback ? : Function): string;
+-}
+-
+-declare module Cordova {
+-  function depends(dependencies: {
+-    [id: string]: string
+-  }): void;
+-}
+-
+-declare module Npm {
+-  function depends(dependencies: {
+-    [id: string]: string
+-  }): void;
+-
+-  function require(name: string): any;
+-}
+-
+-declare namespace Package {
+-  function describe(options: {
+-    summary ? : string;
+-    version ? : string;
+-    name ? : string;
+-    git ? : string;
+-    documentation ? : string;
+-    debugOnly ? : boolean;
+-    prodOnly ? : boolean;
+-    testOnly ? : boolean;
+-  }): void;
+-
+-  function onTest(func: (api: PackageAPI) => void): void;
+-
+-  function onUse(func: (api: PackageAPI) => void): void;
+-
+-  function registerBuildPlugin(options ? : {
+-    name ? : string;
+-    use ? : string | string[];
+-    sources ? : string[];
+-    npmDependencies ? : Object;
+-  }): void;
+-}
+-
+-interface PackageAPI {
+-  new(): PackageAPI;
+-  addAssets(filenames: string | string[], architecture: string | string[]): void;
+-  addFiles(filenames: string | string[], architecture ? : string | string[], options ? : {
+-    bare ? : boolean;
+-  }): void;
+-  export (exportedObjects: string | string[], architecture ? : string | string[], exportOptions ? : Object, testOnly ? : boolean): void;
+-  imply(packageNames: string | string[], architecture ? : string | string[]): void;
+-  use(packageNames: string | string[], architecture ? : string | string[], options ? : {
+-    weak ? : boolean;
+-    unordered ? : boolean;
+-  }): void;
+-  versionsFrom(meteorRelease: string | string[]): void;
+-}
+-
+-declare var console: Console;
+-
+-declare module "meteor/tools" {
+-  module App {
+-    function accessRule(pattern: string, options ? : {
+-      type ? : string;
+-      launchExternal ? : boolean;
+-    }): void;
+-
+-    function configurePlugin(id: string, config: Object): void;
+-
+-    function icons(icons: Object): void;
+-
+-    function info(options: {
+-      id ? : string;
+-      version ? : string;
+-      name ? : string;
+-      description ? : string;
+-      author ? : string;
+-      email ? : string;
+-      website ? : string;
+-    }): void;
+-
+-    function launchScreens(launchScreens: Object): void;
+-
+-    function setPreference(name: string, value: string, platform ? : string): void;
+-  }
+-
+-  function execFileAsync(command: string, args ? : any[], options ? : {
+-    cwd ? : Object;
+-    env ? : Object;
+-    stdio ? : any[] | string;
+-    destination ? : any;
+-    waitForClose ? : string;
+-  }): any;
+-
+-  function execFileSync(command: string, args ? : any[], options ? : {
+-    cwd ? : Object;
+-    env ? : Object;
+-    stdio ? : any[] | string;
+-    destination ? : any;
+-    waitForClose ? : string;
+-  }): String;
+-
+-  module Assets {
+-    function getBinary(assetPath: string, asyncCallback ? : Function): EJSON;
+-
+-    function getText(assetPath: string, asyncCallback ? : Function): string;
+-  }
+-
+-  module Cordova {
+-    function depends(dependencies: {
+-      [id: string]: string
+-    }): void;
+-  }
+-
+-  module Npm {
+-    function depends(dependencies: {
+-      [id: string]: string
+-    }): void;
+-
+-    function require(name: string): any;
+-  }
+-
+-  namespace Package {
+-    function describe(options: {
+-      summary ? : string;
+-      version ? : string;
+-      name ? : string;
+-      git ? : string;
+-      documentation ? : string;
+-      debugOnly ? : boolean;
+-      prodOnly ? : boolean;
+-      testOnly ? : boolean;
+-    }): void;
+-
+-    function onTest(func: (api: PackageAPI) => void): void;
+-
+-    function onUse(func: (api: PackageAPI) => void): void;
+-
+-    function registerBuildPlugin(options ? : {
+-      name ? : string;
+-      use ? : string | string[];
+-      sources ? : string[];
+-      npmDependencies ? : Object;
+-    }): void;
+-  }
+-
+-  interface PackageAPI {
+-    new(): PackageAPI;
+-    addAssets(filenames: string | string[], architecture: string | string[]): void;
+-    addFiles(filenames: string | string[], architecture ? : string | string[], options ? : {
+-      bare ? : boolean;
+-    }): void;
+-    export (exportedObjects: string | string[], architecture ? : string | string[], exportOptions ? : Object, testOnly ? : boolean): void;
+-    imply(packageNames: string | string[], architecture ? : string | string[]): void;
+-    use(packageNames: string | string[], architecture ? : string | string[], options ? : {
+-      weak ? : boolean;
+-      unordered ? : boolean;
+-    }): void;
+-    versionsFrom(meteorRelease: string | string[]): void;
+-  }
+-
+-  var console: Console;
+-}
+-declare module Tracker {
+-  function Computation(): void;
+-  interface Computation {
+-    firstRun: boolean;
+-    invalidate(): void;
+-    invalidated: boolean;
+-    onInvalidate(callback: Function): void;
+-    onStop(callback: Function): void;
+-    stop(): void;
+-    stopped: boolean;
+-  }
+-  var currentComputation: Computation;
+-
+-  var Dependency: DependencyStatic;
+-  interface DependencyStatic {
+-    new(): Dependency;
+-  }
+-  interface Dependency {
+-    changed(): void;
+-    depend(fromComputation ? : Computation): boolean;
+-    hasDependents(): boolean;
+-  }
+-
+-  var active: boolean;
+-
+-  function afterFlush(callback: Function): void;
+-
+-  function autorun(runFunc: (computation: Computation) => void, options ? : {
+-    onError ? : Function;
+-  }): Computation;
+-
+-  function flush(): void;
+-
+-  function nonreactive(func: Function): void;
+-
+-  function onInvalidate(callback: Function): void;
+-}
+-
+-declare module "meteor/tracker" {
+-  module Tracker {
+-    function Computation(): void;
+-    interface Computation {
+-      firstRun: boolean;
+-      invalidate(): void;
+-      invalidated: boolean;
+-      onInvalidate(callback: Function): void;
+-      onStop(callback: Function): void;
+-      stop(): void;
+-      stopped: boolean;
+-    }
+-    var currentComputation: Computation;
+-
+-    var Dependency: DependencyStatic;
+-    interface DependencyStatic {
+-      new(): Dependency;
+-    }
+-    interface Dependency {
+-      changed(): void;
+-      depend(fromComputation ? : Computation): boolean;
+-      hasDependents(): boolean;
+-    }
+-
+-    var active: boolean;
+-
+-    function afterFlush(callback: Function): void;
+-
+-    function autorun(runFunc: (computation: Computation) => void, options ? : {
+-      onError ? : Function;
+-    }): Computation;
+-
+-    function flush(): void;
+-
+-    function nonreactive(func: Function): void;
+-
+-    function onInvalidate(callback: Function): void;
+-  }
+-}
+\ No newline at end of file
+diff --git a/simple-todos/tests/main.js b/tests/main.js
+similarity index 100%
+rename from simple-todos/tests/main.js
+rename to tests/main.js
+-- 
+2.11.0
+

@@ -15,6 +15,6 @@ meteor create --example todos
 meteor create --example localmarket
 ```
 
-{{> step11NextSteps}}
+{{> step12NextSteps}}
 
 {{/template}}

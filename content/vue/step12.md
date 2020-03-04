@@ -1,4 +1,4 @@
-{{#template name="react-step12"}}
+{{#template name="vue-step12"}}
 
 # What's next?
 
@@ -13,7 +13,6 @@ functionality and social features.
 ```bash
 meteor create --example todos
 meteor create --example localmarket
-meteor create --react new-react-app
 ```
 
 {{> step12NextSteps}}
