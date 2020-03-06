@@ -37,6 +37,27 @@ Now we can write the test to call the `tasks.remove` method "as" that user and v
 
 {{> DiffBox tutorialName="simple-todos" step="11.4"}}
 
+The only remaining step is to import this new test module into the main tests/main.js module:
+
+{{> DiffBox tutorialName="simple-todos-react" step="11.5"}}
+
+Run meteor test again
+If you run the test command again (or if you left it running from before)
+
+TEST_WATCH=1 meteor test --driver-package meteortesting:mocha
+you should now see the output from the new test module we just added:
+
+Tasks
+  methods
+    ✓ can delete owned task
+
+simple-todos-react
+  ✓ package.json has correct name
+  ✓ server is not client
+
+3 passing (120ms)
+
+
 There's a lot more you can do in a Meteor test! You can read more about it in the Meteor Guide [article on testing](http://guide.meteor.com/testing.html).
 
 {{/template}}
