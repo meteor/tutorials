@@ -20,7 +20,7 @@ Event listeners are added to templates in much the same way as helpers are: by c
 
 In our case above, we are listening to the `submit` event on any element that matches the CSS selector `.new-task`. When this event is triggered by the user pressing enter inside the input field, our event handler function is called.
 
-The event handler gets an argument called `event` that has some information about the event that was triggered. In this case `event.target` is our form element, and we can get the value of our input with `event.target.text.value`. You can see all of the other properties of the `event` object by adding a `console.log(event)` and inspecting the object in your browser console.
+The event handler gets an argument called `event` that has some information about the event that was triggered. In this case `event.target` is our form element, and we can get the value of our input with `event.target.children.text.value`. You can see all of the other properties of the `event` object by adding a `console.log(event)` and inspecting the object in your browser console.
 
 Finally, in the last line of the event handler, we clear the input to prepare for another new task.
 
