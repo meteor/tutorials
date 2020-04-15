@@ -1,23 +1,28 @@
-From 51e340b7cd2b944bd0929206b1871f1c044c2aa2 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:05:51 -0700
-Subject: [PATCH 01/48] Step 1: Run `meteor create`
+From ef2d1ac05f604f2b80efc7e65ec112b699aeb82d Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 13:28:51 -0600
+Subject: [PATCH 01/48] Step 1: Run `meteor create` and add README file,
+ screenshot image, and license file
 
 ---
- .gitignore                  |  1 +
- .meteor/.finished-upgraders | 13 +++++++++
- .meteor/.gitignore          |  1 +
- .meteor/.id                 |  7 +++++
- .meteor/packages            | 21 ++++++++++++++
- .meteor/platforms           |  2 ++
- .meteor/release             |  1 +
- .meteor/versions            | 69 +++++++++++++++++++++++++++++++++++++++++++++
- client/main.css             |  1 +
- client/main.html            | 25 ++++++++++++++++
- client/main.js              | 22 +++++++++++++++
- package.json                | 10 +++++++
- server/main.js              |  5 ++++
- 13 files changed, 178 insertions(+)
+ .gitignore                  |    1 +
+ .meteor/.finished-upgraders |   19 +
+ .meteor/.gitignore          |    1 +
+ .meteor/.id                 |    7 +
+ .meteor/packages            |   23 +
+ .meteor/platforms           |    2 +
+ .meteor/release             |    1 +
+ .meteor/versions            |   79 ++
+ .vscode/typings/meteor.d.ts | 2013 +++++++++++++++++++++++++++++++++++++++++++
+ README.md                   |    2 +-
+ client/main.css             |    4 +
+ client/main.html            |   25 +
+ client/main.js              |   22 +
+ package-lock.json           |  586 +++++++++++++
+ package.json                |   22 +
+ server/main.js              |    5 +
+ tests/main.js               |   20 +
+ 17 files changed, 2831 insertions(+), 1 deletion(-)
  create mode 100644 .gitignore
  create mode 100644 .meteor/.finished-upgraders
  create mode 100644 .meteor/.gitignore
@@ -26,25 +31,28 @@ Subject: [PATCH 01/48] Step 1: Run `meteor create`
  create mode 100644 .meteor/platforms
  create mode 100644 .meteor/release
  create mode 100644 .meteor/versions
+ create mode 100644 .vscode/typings/meteor.d.ts
  create mode 100644 client/main.css
  create mode 100644 client/main.html
  create mode 100644 client/main.js
+ create mode 100644 package-lock.json
  create mode 100644 package.json
  create mode 100644 server/main.js
+ create mode 100644 tests/main.js
 
 diff --git a/.gitignore b/.gitignore
 new file mode 100644
-index 0000000..3c3629e
+index 0000000..c2658d7
 --- /dev/null
 +++ b/.gitignore
 @@ -0,0 +1 @@
-+node_modules
++node_modules/
 diff --git a/.meteor/.finished-upgraders b/.meteor/.finished-upgraders
 new file mode 100644
-index 0000000..dacc2c0
+index 0000000..c07b6ff
 --- /dev/null
 +++ b/.meteor/.finished-upgraders
-@@ -0,0 +1,13 @@
+@@ -0,0 +1,19 @@
 +# This file contains information which helps Meteor properly upgrade your
 +# app when you run 'meteor update'. You should check it into version control
 +# with your project.
@@ -58,6 +66,12 @@ index 0000000..dacc2c0
 +1.2.0-cordova-changes
 +1.2.0-breaking-changes
 +1.3.0-split-minifiers-package
++1.4.0-remove-old-dev-bundle-link
++1.4.1-add-shell-server-package
++1.4.3-split-account-service-packages
++1.5-add-dynamic-import-package
++1.7-split-underscore-from-meteor-base
++1.8.3-split-jquery-from-blaze
 diff --git a/.meteor/.gitignore b/.meteor/.gitignore
 new file mode 100644
 index 0000000..4083037
@@ -67,7 +81,7 @@ index 0000000..4083037
 +local
 diff --git a/.meteor/.id b/.meteor/.id
 new file mode 100644
-index 0000000..9a3be4f
+index 0000000..f0202ba
 --- /dev/null
 +++ b/.meteor/.id
 @@ -0,0 +1,7 @@
@@ -77,34 +91,36 @@ index 0000000..9a3be4f
 +#   - ensuring you don't accidentally deploy one app on top of another
 +#   - providing package authors with aggregated statistics
 +
-+1v2pn7n1jbklfu1hg4tnm
++n18mu7qp2iv8.yc43zesoklum
 diff --git a/.meteor/packages b/.meteor/packages
 new file mode 100644
-index 0000000..d4c8001
+index 0000000..0d859be
 --- /dev/null
 +++ b/.meteor/packages
-@@ -0,0 +1,21 @@
+@@ -0,0 +1,23 @@
 +# Meteor packages used by this project, one per line.
 +# Check this file (and the other files in this directory) into your repository.
 +#
 +# 'meteor add' and 'meteor remove' will edit this file for you,
 +# but you can also edit it by hand.
 +
-+meteor-base             # Packages every Meteor app needs to have
-+mobile-experience       # Packages for a great mobile UX
-+mongo                   # The database Meteor supports right now
++meteor-base@1.4.0             # Packages every Meteor app needs to have
++mobile-experience@1.0.5       # Packages for a great mobile UX
++mongo@1.8.0                   # The database Meteor supports right now
 +blaze-html-templates    # Compile .html files into Meteor Blaze views
-+reactive-var            # Reactive variable for tracker
-+jquery                  # Helpful client-side library
-+tracker                 # Meteor's client-side reactive programming library
++jquery                  # Wrapper package for npm-installed jquery
++reactive-var@1.0.11            # Reactive variable for tracker
++tracker@1.2.0                 # Meteor's client-side reactive programming library
 +
-+standard-minifier-css   # CSS minifier run for production mode
-+standard-minifier-js    # JS minifier run for production mode
-+es5-shim                # ECMAScript 5 compatibility for older browsers.
-+ecmascript              # Enable ECMAScript2015+ syntax in app code
++standard-minifier-css@1.6.0   # CSS minifier run for production mode
++standard-minifier-js@2.6.0    # JS minifier run for production mode
++es5-shim@4.8.0                # ECMAScript 5 compatibility for older browsers
++ecmascript@0.14.2              # Enable ECMAScript2015+ syntax in app code
++typescript@3.7.5              # Enable TypeScript syntax in .ts and .tsx modules
++shell-server@0.4.0            # Server-side component of the `meteor shell` command
 +
-+autopublish             # Publish all data to the clients (for prototyping)
-+insecure                # Allow all DB writes from clients (for prototyping)
++autopublish@1.0.7             # Publish all data to the clients (for prototyping)
++insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
 diff --git a/.meteor/platforms b/.meteor/platforms
 new file mode 100644
 index 0000000..efeba1b
@@ -115,101 +131,2145 @@ index 0000000..efeba1b
 +browser
 diff --git a/.meteor/release b/.meteor/release
 new file mode 100644
-index 0000000..ab70657
+index 0000000..8558e14
 --- /dev/null
 +++ b/.meteor/release
 @@ -0,0 +1 @@
-+METEOR@1.3-rc.2
++METEOR@1.9.2
 diff --git a/.meteor/versions b/.meteor/versions
 new file mode 100644
-index 0000000..c3395d2
+index 0000000..3af382b
 --- /dev/null
 +++ b/.meteor/versions
-@@ -0,0 +1,69 @@
-+allow-deny@1.0.2-rc.2
-+autopublish@1.0.5-rc.2
-+autoupdate@1.2.6-rc.2
-+babel-compiler@6.5.1-rc.2
-+babel-runtime@0.1.6-rc.2
-+base64@1.0.6-rc.2
-+binary-heap@1.0.6-rc.2
-+blaze@2.1.5-rc.2
-+blaze-html-templates@1.0.2-rc.2
-+blaze-tools@1.0.6-rc.2
-+boilerplate-generator@1.0.6-rc.2
-+caching-compiler@1.0.2-rc.2
-+caching-html-compiler@1.0.4-rc.2
-+callback-hook@1.0.6-rc.2
-+check@1.1.2-rc.2
-+ddp@1.2.3-rc.2
-+ddp-client@1.2.3-rc.2
-+ddp-common@1.2.3-rc.2
-+ddp-server@1.2.4-rc.2
-+deps@1.0.10-rc.2
-+diff-sequence@1.0.3-rc.2
-+ecmascript@0.4.1-rc.2
-+ecmascript-runtime@0.2.8-rc.2
-+ejson@1.0.9-rc.2
-+es5-shim@4.5.8-rc.2
-+fastclick@1.0.9-rc.2
-+geojson-utils@1.0.6-rc.2
-+hot-code-push@1.0.2-rc.2
-+html-tools@1.0.7-rc.2
-+htmljs@1.0.7-rc.2
-+http@1.1.3-rc.2
-+id-map@1.0.5-rc.2
-+insecure@1.0.5-rc.2
-+jquery@1.11.6-rc.2
-+launch-screen@1.0.7-rc.2
-+livedata@1.0.16-rc.2
-+logging@1.0.10-rc.2
-+meteor@1.1.12-rc.2
-+meteor-base@1.0.2-rc.2
-+minifier-css@1.1.9-rc.2
-+minifier-js@1.1.9-rc.2
-+minimongo@1.0.12-rc.2
-+mobile-experience@1.0.2-rc.2
-+mobile-status-bar@1.0.9-rc.2
-+modules@0.5.1-rc.2
-+modules-runtime@0.6.1-rc.2
-+mongo@1.1.5-rc.2
-+mongo-id@1.0.2-rc.2
-+npm-mongo@1.4.41-rc.2
-+observe-sequence@1.0.9-rc.2
-+ordered-dict@1.0.5-rc.2
-+promise@0.6.4-rc.2
-+random@1.0.7-rc.2
-+reactive-var@1.0.7-rc.2
-+reload@1.1.6-rc.2
-+retry@1.0.5-rc.2
-+routepolicy@1.0.8-rc.2
-+spacebars@1.0.9-rc.2
-+spacebars-compiler@1.0.9-rc.2
-+standard-minifier-css@1.0.4-rc.2
-+standard-minifier-js@1.0.4-rc.2
-+templating@1.1.7-rc.2
-+templating-tools@1.0.2-rc.2
-+tracker@1.0.11-rc.2
-+ui@1.0.9-rc.2
-+underscore@1.0.6-rc.2
-+url@1.0.7-rc.2
-+webapp@1.2.6-rc.2
-+webapp-hashing@1.0.7-rc.2
+@@ -0,0 +1,79 @@
++allow-deny@1.1.0
++autopublish@1.0.7
++autoupdate@1.6.0
++babel-compiler@7.5.2
++babel-runtime@1.5.0
++base64@1.0.12
++binary-heap@1.0.11
++blaze@2.3.4
++blaze-html-templates@1.1.2
++blaze-tools@1.0.10
++boilerplate-generator@1.6.0
++caching-compiler@1.2.1
++caching-html-compiler@1.1.3
++callback-hook@1.3.0
++check@1.3.1
++ddp@1.4.0
++ddp-client@2.3.3
++ddp-common@1.4.0
++ddp-server@2.3.1
++deps@1.0.12
++diff-sequence@1.1.1
++dynamic-import@0.5.1
++ecmascript@0.14.2
++ecmascript-runtime@0.7.0
++ecmascript-runtime-client@0.10.0
++ecmascript-runtime-server@0.9.0
++ejson@1.1.1
++es5-shim@4.8.0
++fetch@0.1.1
++geojson-utils@1.0.10
++hot-code-push@1.0.4
++html-tools@1.0.11
++htmljs@1.0.11
++id-map@1.1.0
++insecure@1.0.7
++inter-process-messaging@0.1.0
++jquery@3.0.0
++launch-screen@1.1.1
++livedata@1.0.18
++logging@1.1.20
++meteor@1.9.3
++meteor-base@1.4.0
++minifier-css@1.5.0
++minifier-js@2.6.0
++minimongo@1.4.5
++mobile-experience@1.0.5
++mobile-status-bar@1.0.14
++modern-browsers@0.1.5
++modules@0.15.0
++modules-runtime@0.12.0
++mongo@1.8.1
++mongo-decimal@0.1.1
++mongo-dev-server@1.1.0
++mongo-id@1.0.7
++npm-mongo@3.3.0
++observe-sequence@1.0.16
++ordered-dict@1.1.0
++promise@0.11.2
++random@1.1.0
++reactive-var@1.0.11
++reload@1.3.0
++retry@1.1.0
++routepolicy@1.1.0
++shell-server@0.4.0
++socket-stream-client@0.2.3
++spacebars@1.0.15
++spacebars-compiler@1.1.3
++standard-minifier-css@1.6.0
++standard-minifier-js@2.6.0
++templating@1.3.2
++templating-compiler@1.3.3
++templating-runtime@1.3.2
++templating-tools@1.1.2
++tracker@1.2.0
++typescript@3.7.5
++ui@1.0.13
++underscore@1.0.10
++webapp@1.8.2
++webapp-hashing@1.0.9
+diff --git a/.vscode/typings/meteor.d.ts b/.vscode/typings/meteor.d.ts
+new file mode 100644
+index 0000000..9bb7d02
+--- /dev/null
++++ b/.vscode/typings/meteor.d.ts
+@@ -0,0 +1,2013 @@
++// Generated by typings
++// Source: https://raw.githubusercontent.com/meteor-typings/meteor/241d0e5335025e64fc3ea064de80a026a08f3f06/1.3/header.d.ts
++
++// Generated by typings
++// Source: https://raw.githubusercontent.com/meteor-typings/meteor/241d0e5335025e64fc3ea064de80a026a08f3f06/1.3/main.d.ts
++declare module Accounts {
++  function user(): Meteor.User;
++
++  function userId(): string;
++
++  function createUser(options: {
++    username ? : string;
++    email ? : string;
++    password ? : string;
++    profile ? : Object;
++  }, callback ? : Function): string;
++
++  function config(options: {
++    sendVerificationEmail ? : boolean;
++    forbidClientAccountCreation ? : boolean;
++    restrictCreationByEmailDomain ? : string | Function;
++    loginExpirationInDays ? : number;
++    oauthSecretKey ? : string;
++  }): void;
++
++  function onLogin(func: Function): {
++    stop: () => void
++  };
++
++  function onLoginFailure(func: Function): {
++    stop: () => void
++  };
++
++  function loginServicesConfigured(): boolean;
++
++  function onPageLoadLogin(func: Function): void;
++}
++
++declare module "meteor/accounts-base" {
++  /// <reference path="meteor.d.ts" />
++
++  module Accounts {
++    function user(): Meteor.User;
++
++    function userId(): string;
++
++    function createUser(options: {
++      username ? : string;
++      email ? : string;
++      password ? : string;
++      profile ? : Object;
++    }, callback ? : Function): string;
++
++    function config(options: {
++      sendVerificationEmail ? : boolean;
++      forbidClientAccountCreation ? : boolean;
++      restrictCreationByEmailDomain ? : string | Function;
++      loginExpirationInDays ? : number;
++      oauthSecretKey ? : string;
++    }): void;
++
++    function onLogin(func: Function): {
++      stop: () => void
++    };
++
++    function onLoginFailure(func: Function): {
++      stop: () => void
++    };
++
++    function loginServicesConfigured(): boolean;
++
++    function onPageLoadLogin(func: Function): void;
++  }
++}
++declare module Accounts {
++  function changePassword(oldPassword: string, newPassword: string, callback ? : Function): void;
++
++  function forgotPassword(options: {
++    email ? : string;
++  }, callback ? : Function): void;
++
++  function resetPassword(token: string, newPassword: string, callback ? : Function): void;
++
++  function verifyEmail(token: string, callback ? : Function): void;
++
++  function onEmailVerificationLink(callback: Function): void;
++
++  function onEnrollmentLink(callback: Function): void;
++
++  function onResetPasswordLink(callback: Function): void;
++
++  function loggingIn(): boolean;
++
++  function logout(callback ? : Function): void;
++
++  function logoutOtherClients(callback ? : Function): void;
++
++  var ui: {
++    config(options: {
++      requestPermissions ? : Object;
++      requestOfflineToken ? : Object;
++      forceApprovalPrompt ? : Object;
++      passwordSignupFields ? : string;
++    }): void;
++  };
++}
++
++declare module "meteor/accounts-base" {
++  module Accounts {
++    function changePassword(oldPassword: string, newPassword: string, callback ? : Function): void;
++
++    function forgotPassword(options: {
++      email ? : string;
++    }, callback ? : Function): void;
++
++    function resetPassword(token: string, newPassword: string, callback ? : Function): void;
++
++    function verifyEmail(token: string, callback ? : Function): void;
++
++    function onEmailVerificationLink(callback: Function): void;
++
++    function onEnrollmentLink(callback: Function): void;
++
++    function onResetPasswordLink(callback: Function): void;
++
++    function loggingIn(): boolean;
++
++    function logout(callback ? : Function): void;
++
++    function logoutOtherClients(callback ? : Function): void;
++
++    var ui: {
++      config(options: {
++        requestPermissions ? : Object;
++        requestOfflineToken ? : Object;
++        forceApprovalPrompt ? : Object;
++        passwordSignupFields ? : string;
++      }): void;
++    };
++  }
++}
++
++interface EmailFields {
++  from ? : () => string;
++  subject ? : (user: Meteor.User) => string;
++  text ? : (user: Meteor.User, url: string) => string;
++  html ? : (user: Meteor.User, url: string) => string;
++}
++
++interface Header {
++  [id: string]: string;
++}
++
++interface EmailTemplates {
++  from: string;
++  siteName: string;
++  headers ? : Header;
++  resetPassword: EmailFields;
++  enrollAccount: EmailFields;
++  verifyEmail: EmailFields;
++}
++
++declare module Accounts {
++  var emailTemplates: EmailTemplates;
++
++  function addEmail(userId: string, newEmail: string, verified ? : boolean): void;
++
++  function removeEmail(userId: string, email: string): void;
++
++  function onCreateUser(func: Function): void;
++
++  function findUserByEmail(email: string): Object;
++
++  function findUserByUsername(username: string): Object;
++
++  function sendEnrollmentEmail(userId: string, email ? : string): void;
++
++  function sendResetPasswordEmail(userId: string, email ? : string): void;
++
++  function sendVerificationEmail(userId: string, email ? : string): void;
++
++  function setUsername(userId: string, newUsername: string): void;
++
++  function setPassword(userId: string, newPassword: string, options ? : {
++    logout ? : Object;
++  }): void;
++
++  function validateNewUser(func: Function): boolean;
++
++  function validateLoginAttempt(func: Function): {
++    stop: () => void
++  };
++
++  interface IValidateLoginAttemptCbOpts {
++    type: string;
++    allowed: boolean;
++    error: Meteor.Error;
++    user: Meteor.User;
++    connection: Meteor.Connection;
++    methodName: string;
++    methodArguments: any[];
++  }
++}
++
++declare module "meteor/accounts-base" {
++  /// <reference path="meteor.d.ts" />
++  /// <reference path="meteor_main.d.ts" />
++
++  interface EmailFields {
++    from ? : () => string;
++    subject ? : (user: Meteor.User) => string;
++    text ? : (user: Meteor.User, url: string) => string;
++    html ? : (user: Meteor.User, url: string) => string;
++  }
++
++  interface Header {
++    [id: string]: string;
++  }
++
++  interface EmailTemplates {
++    from: string;
++    siteName: string;
++    headers ? : Header;
++    resetPassword: EmailFields;
++    enrollAccount: EmailFields;
++    verifyEmail: EmailFields;
++  }
++
++  module Accounts {
++    var emailTemplates: EmailTemplates;
++
++    function addEmail(userId: string, newEmail: string, verified ? : boolean): void;
++
++    function removeEmail(userId: string, email: string): void;
++
++    function onCreateUser(func: Function): void;
++
++    function findUserByEmail(email: string): Object;
++
++    function findUserByUsername(username: string): Object;
++
++    function sendEnrollmentEmail(userId: string, email ? : string): void;
++
++    function sendResetPasswordEmail(userId: string, email ? : string): void;
++
++    function sendVerificationEmail(userId: string, email ? : string): void;
++
++    function setUsername(userId: string, newUsername: string): void;
++
++    function setPassword(userId: string, newPassword: string, options ? : {
++      logout ? : Object;
++    }): void;
++
++    function validateNewUser(func: Function): boolean;
++
++    function validateLoginAttempt(func: Function): {
++      stop: () => void
++    };
++
++    interface IValidateLoginAttemptCbOpts {
++      type: string;
++      allowed: boolean;
++      error: Meteor.Error;
++      user: Meteor.User;
++      connection: Meteor.Connection;
++      methodName: string;
++      methodArguments: any[];
++    }
++  }
++}
++
++declare module Blaze {
++  var View: ViewStatic;
++
++  interface ViewStatic {
++    new(name ? : string, renderFunction ? : Function): View;
++  }
++
++  interface View {
++    name: string;
++    parentView: View;
++    isCreated: boolean;
++    isRendered: boolean;
++    isDestroyed: boolean;
++    renderCount: number;
++    autorun(runFunc: Function): void;
++    onViewCreated(func: Function): void;
++    onViewReady(func: Function): void;
++    onViewDestroyed(func: Function): void;
++    firstNode(): Node;
++    lastNode(): Node;
++    template: Template;
++    templateInstance(): TemplateInstance;
++  }
++  var currentView: View;
++
++  function isTemplate(value: any): boolean;
++
++  interface HelpersMap {
++    [key: string]: Function;
++  }
++
++  interface EventsMap {
++    [key: string]: Function;
++  }
++
++  var Template: TemplateStatic;
++
++  interface TemplateStatic {
++    new(viewName ? : string, renderFunction ? : Function): Template;
++
++    registerHelper(name: string, func: Function): void;
++    instance(): TemplateInstance;
++    currentData(): any;
++    parentData(numLevels: number): any;
++  }
++
++  interface Template {
++    viewName: string;
++    renderFunction: Function;
++    constructView(): View;
++    head: Template;
++    find(selector: string): Template;
++    findAll(selector: string): Template[];
++    $: any;
++    onCreated(cb: Function): void;
++    onRendered(cb: Function): void;
++    onDestroyed(cb: Function): void;
++    created: Function;
++    rendered: Function;
++    destroyed: Function;
++    helpers(helpersMap: HelpersMap): void;
++    events(eventsMap: EventsMap): void;
++  }
++
++  var TemplateInstance: TemplateInstanceStatic;
++
++  interface TemplateInstanceStatic {
++    new(view: View): TemplateInstance;
++  }
++
++  interface TemplateInstance {
++    $(selector: string): any;
++    autorun(runFunc: Function): Object;
++    data: Object;
++    find(selector ? : string): TemplateInstance;
++    findAll(selector: string): TemplateInstance[];
++    firstNode: Object;
++    lastNode: Object;
++    subscribe(name: string, ...args: any[]): Meteor.SubscriptionHandle;
++    subscriptionsReady(): boolean;
++    view: Object;
++  }
++
++  function Each(argFunc: Function, contentFunc: Function, elseFunc ? : Function): View;
++
++  function Unless(conditionFunc: Function, contentFunc: Function, elseFunc ? : Function): View;
++
++  function If(conditionFunc: Function, contentFunc: Function, elseFunc ? : Function): View;
++
++  function Let(bindings: Function, contentFunc: Function): View;
++
++  function With(data: Object | Function, contentFunc: Function): View;
++
++  function getData(elementOrView ? : HTMLElement | View): Object;
++
++  function getView(element ? : HTMLElement): View;
++
++  function remove(renderedView: View): void;
++
++  function render(templateOrView: Template | View, parentNode: Node, nextNode ? : Node, parentView ? : View): View;
++
++  function renderWithData(templateOrView: Template | View, data: Object | Function, parentNode: Node, nextNode ? : Node, parentView ? : View): View;
++
++  function toHTML(templateOrView: Template | View): string;
++
++  function toHTMLWithData(templateOrView: Template | View, data: Object | Function): string;
++}
++
++declare module "meteor/blaze" {
++  /// <reference path="meteor.d.ts" />
++
++  module Blaze {
++    var View: ViewStatic;
++
++    interface ViewStatic {
++      new(name ? : string, renderFunction ? : Function): View;
++    }
++
++    interface View {
++      name: string;
++      parentView: View;
++      isCreated: boolean;
++      isRendered: boolean;
++      isDestroyed: boolean;
++      renderCount: number;
++      autorun(runFunc: Function): void;
++      onViewCreated(func: Function): void;
++      onViewReady(func: Function): void;
++      onViewDestroyed(func: Function): void;
++      firstNode(): Node;
++      lastNode(): Node;
++      template: Template;
++      templateInstance(): TemplateInstance;
++    }
++    var currentView: View;
++
++    function isTemplate(value: any): boolean;
++
++    interface HelpersMap {
++      [key: string]: Function;
++    }
++
++    interface EventsMap {
++      [key: string]: Function;
++    }
++
++    var Template: TemplateStatic;
++
++    interface TemplateStatic {
++      new(viewName ? : string, renderFunction ? : Function): Template;
++
++      registerHelper(name: string, func: Function): void;
++      instance(): TemplateInstance;
++      currentData(): any;
++      parentData(numLevels: number): any;
++    }
++
++    interface Template {
++      viewName: string;
++      renderFunction: Function;
++      constructView(): View;
++      head: Template;
++      find(selector: string): Template;
++      findAll(selector: string): Template[];
++      $: any;
++      onCreated(cb: Function): void;
++      onRendered(cb: Function): void;
++      onDestroyed(cb: Function): void;
++      created: Function;
++      rendered: Function;
++      destroyed: Function;
++      helpers(helpersMap: HelpersMap): void;
++      events(eventsMap: EventsMap): void;
++    }
++
++    var TemplateInstance: TemplateInstanceStatic;
++
++    interface TemplateInstanceStatic {
++      new(view: View): TemplateInstance;
++    }
++
++    interface TemplateInstance {
++      $(selector: string): any;
++      autorun(runFunc: Function): Object;
++      data: Object;
++      find(selector ? : string): TemplateInstance;
++      findAll(selector: string): TemplateInstance[];
++      firstNode: Object;
++      lastNode: Object;
++      subscribe(name: string, ...args: any[]): Meteor.SubscriptionHandle;
++      subscriptionsReady(): boolean;
++      view: Object;
++    }
++
++    function Each(argFunc: Function, contentFunc: Function, elseFunc ? : Function): View;
++
++    function Unless(conditionFunc: Function, contentFunc: Function, elseFunc ? : Function): View;
++
++    function If(conditionFunc: Function, contentFunc: Function, elseFunc ? : Function): View;
++
++    function Let(bindings: Function, contentFunc: Function): View;
++
++    function With(data: Object | Function, contentFunc: Function): View;
++
++    function getData(elementOrView ? : HTMLElement | View): Object;
++
++    function getView(element ? : HTMLElement): View;
++
++    function remove(renderedView: View): void;
++
++    function render(templateOrView: Template | View, parentNode: Node, nextNode ? : Node, parentView ? : View): View;
++
++    function renderWithData(templateOrView: Template | View, data: Object | Function, parentNode: Node, nextNode ? : Node, parentView ? : View): View;
++
++    function toHTML(templateOrView: Template | View): string;
++
++    function toHTMLWithData(templateOrView: Template | View, data: Object | Function): string;
++  }
++}
++declare module BrowserPolicy {
++  interface framing {
++    disallow(): void;
++    restrictToOrigin(origin: string): void;
++    allowAll(): void;
++  }
++
++  interface content {
++    allowEval(): void;
++    allowInlineStyles(): void;
++    allowInlineScripts(): void;
++    allowSameOriginForAll(): void;
++    allowDataUrlForAll(): void;
++    allowOriginForAll(origin: string): void;
++    allowImageOrigin(origin: string): void;
++    allowFrameOrigin(origin: string): void;
++    allowContentTypeSniffing(): void;
++    allowAllContentOrigin(): void;
++    allowAllContentDataUrl(): void;
++    allowAllContentSameOrigin(): void;
++
++    disallowAll(): void;
++    disallowInlineStyles(): void;
++    disallowEval(): void;
++    disallowInlineScripts(): void;
++    disallowFont(): void;
++    disallowObject(): void;
++    disallowAllContent(): void;
++  }
++}
++
++declare module "meteor/browser-policy" {
++  module BrowserPolicy {
++    interface framing {
++      disallow(): void;
++      restrictToOrigin(origin: string): void;
++      allowAll(): void;
++    }
++
++    interface content {
++      allowEval(): void;
++      allowInlineStyles(): void;
++      allowInlineScripts(): void;
++      allowSameOriginForAll(): void;
++      allowDataUrlForAll(): void;
++      allowOriginForAll(origin: string): void;
++      allowImageOrigin(origin: string): void;
++      allowFrameOrigin(origin: string): void;
++      allowContentTypeSniffing(): void;
++      allowAllContentOrigin(): void;
++      allowAllContentDataUrl(): void;
++      allowAllContentSameOrigin(): void;
++
++      disallowAll(): void;
++      disallowInlineStyles(): void;
++      disallowEval(): void;
++      disallowInlineScripts(): void;
++      disallowFont(): void;
++      disallowObject(): void;
++      disallowAllContent(): void;
++    }
++  }
++}
++declare module Match {
++  var Any: any;
++  var String: any;
++  var Integer: any;
++  var Boolean: any;
++  var undefined: any;
++  var Object: any;
++
++  function Optional(pattern: any): boolean;
++
++  function ObjectIncluding(dico: any): boolean;
++
++  function OneOf(...patterns: any[]): any;
++
++  function Where(condition: any): any;
++
++  function test(value: any, pattern: any): boolean;
++}
++
++declare function check(value: any, pattern: any): void;
++
++declare module "meteor/check" {
++  module Match {
++    var Any: any;
++    var String: any;
++    var Integer: any;
++    var Boolean: any;
++    var undefined: any;
++    var Object: any;
++
++    function Optional(pattern: any): boolean;
++
++    function ObjectIncluding(dico: any): boolean;
++
++    function OneOf(...patterns: any[]): any;
++
++    function Where(condition: any): any;
++
++    function test(value: any, pattern: any): boolean;
++  }
++
++  function check(value: any, pattern: any): void;
++}
++
++declare module DDP {
++  interface DDPStatic {
++    subscribe(name: string, ...rest: any[]): Meteor.SubscriptionHandle;
++    call(method: string, ...parameters: any[]): void;
++    apply(method: string, ...parameters: any[]): void;
++    methods(IMeteorMethodsDictionary: any): any;
++    status(): DDPStatus;
++    reconnect(): void;
++    disconnect(): void;
++    onReconnect(): void;
++  }
++
++  function _allSubscriptionsReady(): boolean;
++
++  interface DDPStatus {
++    connected: boolean;
++    /**
++     * connected,
++     * connecting,
++     * failed,
++     * waiting,
++     * offline
++     */
++    status: string;
++    retryCount: number;
++    retryTime ? : number;
++    reason ? : string;
++  }
++
++  function connect(url: string): DDPStatic;
++}
++
++declare module DDPCommon {
++  interface MethodInvocation {
++    new(options: {}): MethodInvocation;
++
++    unblock(): void;
++
++    setUserId(userId: number): void;
++  }
++}
++
++declare module "meteor/ddp" {
++  /// <reference path="meteor.d.ts" />
++
++  module DDP {
++    interface DDPStatic {
++      subscribe(name: string, ...rest: any[]): Meteor.SubscriptionHandle;
++      call(method: string, ...parameters: any[]): void;
++      apply(method: string, ...parameters: any[]): void;
++      methods(IMeteorMethodsDictionary: any): any;
++      status(): DDPStatus;
++      reconnect(): void;
++      disconnect(): void;
++      onReconnect(): void;
++    }
++
++    function _allSubscriptionsReady(): boolean;
++
++    interface DDPStatus {
++      connected: boolean;
++      /**
++       * connected,
++       * connecting,
++       * failed,
++       * waiting,
++       * offline
++       */
++      status: string;
++      retryCount: number;
++      retryTime ? : number;
++      reason ? : string;
++    }
++
++    function connect(url: string): DDPStatic;
++  }
++
++  module DDPCommon {
++    interface MethodInvocation {
++      new(options: {}): MethodInvocation;
++
++      unblock(): void;
++
++      setUserId(userId: number): void;
++    }
++  }
++}
++interface EJSONableCustomType {
++  clone(): EJSONableCustomType;
++  equals(other: Object): boolean;
++  toJSONValue(): JSONable;
++  typeName(): string;
++}
++interface EJSONable {
++  [key: string]: number | string | boolean | Object | number[] | string[] | Object[] | Date | Uint8Array | EJSONableCustomType;
++}
++interface JSONable {
++  [key: string]: number | string | boolean | Object | number[] | string[] | Object[];
++}
++interface EJSON extends EJSONable {}
++
++declare module EJSON {
++  function addType(name: string, factory: (val: JSONable) => EJSONableCustomType): void;
++
++  function clone < T > (val: T): T;
++
++  function equals(a: EJSON, b: EJSON, options ? : {
++    keyOrderSensitive ? : boolean;
++  }): boolean;
++
++  function fromJSONValue(val: JSONable): any;
++
++  function isBinary(x: Object): boolean;
++  var newBinary: any;
++
++  function parse(str: string): EJSON;
++
++  function stringify(val: EJSON, options ? : {
++    indent ? : boolean | number | string;
++    canonical ? : boolean;
++  }): string;
++
++  function toJSONValue(val: EJSON): JSONable;
++}
++
++declare module "meteor/ejson" {
++  interface EJSONableCustomType {
++    clone(): EJSONableCustomType;
++    equals(other: Object): boolean;
++    toJSONValue(): JSONable;
++    typeName(): string;
++  }
++  interface EJSONable {
++    [key: string]: number | string | boolean | Object | number[] | string[] | Object[] | Date | Uint8Array | EJSONableCustomType;
++  }
++  interface JSONable {
++    [key: string]: number | string | boolean | Object | number[] | string[] | Object[];
++  }
++  interface EJSON extends EJSONable {}
++
++  module EJSON {
++    function addType(name: string, factory: (val: JSONable) => EJSONableCustomType): void;
++
++    function clone < T > (val: T): T;
++
++    function equals(a: EJSON, b: EJSON, options ? : {
++      keyOrderSensitive ? : boolean;
++    }): boolean;
++
++    function fromJSONValue(val: JSONable): any;
++
++    function isBinary(x: Object): boolean;
++    var newBinary: any;
++
++    function parse(str: string): EJSON;
++
++    function stringify(val: EJSON, options ? : {
++      indent ? : boolean | number | string;
++      canonical ? : boolean;
++    }): string;
++
++    function toJSONValue(val: EJSON): JSONable;
++  }
++}
++declare module Email {
++  function send(options: {
++    from ? : string;
++    to ? : string | string[];
++    cc ? : string | string[];
++    bcc ? : string | string[];
++    replyTo ? : string | string[];
++    subject ? : string;
++    text ? : string;
++    html ? : string;
++    headers ? : Object;
++    attachments ? : Object[];
++    mailComposer ? : MailComposer;
++  }): void;
++}
++
++interface MailComposerOptions {
++  escapeSMTP: boolean;
++  encoding: string;
++  charset: string;
++  keepBcc: boolean;
++  forceEmbeddedImages: boolean;
++}
++
++declare var MailComposer: MailComposerStatic;
++interface MailComposerStatic {
++  new(options: MailComposerOptions): MailComposer;
++}
++interface MailComposer {
++  addHeader(name: string, value: string): void;
++  setMessageOption(from: string, to: string, body: string, html: string): void;
++  streamMessage(): void;
++  pipe(stream: any /** fs.WriteStream **/ ): void;
++}
++
++declare module "meteor/email" {
++  module Email {
++    function send(options: {
++      from ? : string;
++      to ? : string | string[];
++      cc ? : string | string[];
++      bcc ? : string | string[];
++      replyTo ? : string | string[];
++      subject ? : string;
++      text ? : string;
++      html ? : string;
++      headers ? : Object;
++      attachments ? : Object[];
++      mailComposer ? : MailComposer;
++    }): void;
++  }
++
++  interface MailComposerOptions {
++    escapeSMTP: boolean;
++    encoding: string;
++    charset: string;
++    keepBcc: boolean;
++    forceEmbeddedImages: boolean;
++  }
++
++  var MailComposer: MailComposerStatic;
++  interface MailComposerStatic {
++    new(options: MailComposerOptions): MailComposer;
++  }
++  interface MailComposer {
++    addHeader(name: string, value: string): void;
++    setMessageOption(from: string, to: string, body: string, html: string): void;
++    streamMessage(): void;
++    pipe(stream: any /** fs.WriteStream **/ ): void;
++  }
++}
++declare module HTTP {
++  interface HTTPRequest {
++    content ? : string;
++    data ? : any;
++    query ? : string;
++    params ? : {
++      [id: string]: string
++    };
++    auth ? : string;
++    headers ? : {
++      [id: string]: string
++    };
++    timeout ? : number;
++    followRedirects ? : boolean;
++  }
++
++  interface HTTPResponse {
++    statusCode ? : number;
++    headers ? : {
++      [id: string]: string
++    };
++    content ? : string;
++    data ? : any;
++  }
++
++  function call(method: string, url: string, options ? : HTTP.HTTPRequest, asyncCallback ? : Function): HTTP.HTTPResponse;
++
++  function del(url: string, callOptions ? : HTTP.HTTPRequest, asyncCallback ? : Function): HTTP.HTTPResponse;
++
++  function get(url: string, callOptions ? : HTTP.HTTPRequest, asyncCallback ? : Function): HTTP.HTTPResponse;
++
++  function post(url: string, callOptions ? : HTTP.HTTPRequest, asyncCallback ? : Function): HTTP.HTTPResponse;
++
++  function put(url: string, callOptions ? : HTTP.HTTPRequest, asyncCallback ? : Function): HTTP.HTTPResponse;
++
++  function call(method: string, url: string, options ? : {
++    content ? : string;
++    data ? : Object;
++    query ? : string;
++    params ? : Object;
++    auth ? : string;
++    headers ? : Object;
++    timeout ? : number;
++    followRedirects ? : boolean;
++    npmRequestOptions ? : Object;
++    beforeSend ? : Function;
++  }, asyncCallback ? : Function): HTTP.HTTPResponse;
++}
++
++declare module "meteor/http" {
++  module HTTP {
++    interface HTTPRequest {
++      content ? : string;
++      data ? : any;
++      query ? : string;
++      params ? : {
++        [id: string]: string
++      };
++      auth ? : string;
++      headers ? : {
++        [id: string]: string
++      };
++      timeout ? : number;
++      followRedirects ? : boolean;
++    }
++
++    interface HTTPResponse {
++      statusCode ? : number;
++      headers ? : {
++        [id: string]: string
++      };
++      content ? : string;
++      data ? : any;
++    }
++
++    function call(method: string, url: string, options ? : HTTP.HTTPRequest, asyncCallback ? : Function): HTTP.HTTPResponse;
++
++    function del(url: string, callOptions ? : HTTP.HTTPRequest, asyncCallback ? : Function): HTTP.HTTPResponse;
++
++    function get(url: string, callOptions ? : HTTP.HTTPRequest, asyncCallback ? : Function): HTTP.HTTPResponse;
++
++    function post(url: string, callOptions ? : HTTP.HTTPRequest, asyncCallback ? : Function): HTTP.HTTPResponse;
++
++    function put(url: string, callOptions ? : HTTP.HTTPRequest, asyncCallback ? : Function): HTTP.HTTPResponse;
++
++    function call(method: string, url: string, options ? : {
++      content ? : string;
++      data ? : Object;
++      query ? : string;
++      params ? : Object;
++      auth ? : string;
++      headers ? : Object;
++      timeout ? : number;
++      followRedirects ? : boolean;
++      npmRequestOptions ? : Object;
++      beforeSend ? : Function;
++    }, asyncCallback ? : Function): HTTP.HTTPResponse;
++  }
++}
++
++declare module Meteor {
++  /** Global props **/
++  var isClient: boolean;
++  var isCordova: boolean;
++  var isServer: boolean;
++  var release: string;
++  var settings: {
++    [id: string]: any
++  };
++  /** props **/
++
++  /** User **/
++  interface UserEmail {
++    address: string;
++    verified: boolean;
++  }
++  interface User {
++    _id ? : string;
++    username ? : string;
++    emails ? : UserEmail[];
++    createdAt ? : number;
++    profile ? : any;
++    services ? : any;
++  }
++
++  function user(): User;
++
++  function userId(): string;
++  var users: Mongo.Collection < User > ;
++  /** User **/
++
++  /** Error **/
++  var Error: ErrorStatic;
++  interface ErrorStatic {
++    new(error: string | number, reason ? : string, details ? : string): Error;
++  }
++  interface Error {
++    error: string | number;
++    reason ? : string;
++    details ? : string;
++  }
++  /** Error **/
++
++  /** Method **/
++  function methods(methods: Object): void;
++
++  function call(name: string, ...args: any[]): any;
++
++  function apply(name: string, args: EJSONable[], options ? : {
++    wait ? : boolean;
++    onResultReceived ? : Function;
++  }, asyncCallback ? : Function): any;
++  /** Method **/
++
++  /** Url **/
++  function absoluteUrl(path ? : string, options ? : {
++    secure ? : boolean;
++    replaceLocalhost ? : boolean;
++    rootUrl ? : string;
++  }): string;
++  /** Url **/
++
++  /** Timeout **/
++  function setInterval(func: Function, delay: number): number;
++
++  function setTimeout(func: Function, delay: number): number;
++
++  function clearInterval(id: number): void;
++
++  function clearTimeout(id: number): void;
++
++  function defer(func: Function): void;
++  /** Timeout **/
++
++  /** utils **/
++  function startup(func: Function): void;
++
++  function wrapAsync(func: Function, context ? : Object): any;
++  /** utils **/
++
++  /** Pub/Sub **/
++  interface SubscriptionHandle {
++    stop(): void;
++    ready(): boolean;
++  }
++  interface LiveQueryHandle {
++    stop(): void;
++  }
++  /** Pub/Sub **/
++}
++
++declare module "meteor/meteor" {
++  /// <reference path="mongo.d.ts" />
++  /// <reference path="ejson.d.ts" />
++
++  module Meteor {
++    /** Global props **/
++    var isClient: boolean;
++    var isCordova: boolean;
++    var isServer: boolean;
++    var release: string;
++    var settings: {
++      [id: string]: any
++    };
++    /** props **/
++
++    /** User **/
++    interface UserEmail {
++      address: string;
++      verified: boolean;
++    }
++    interface User {
++      _id ? : string;
++      username ? : string;
++      emails ? : UserEmail[];
++      createdAt ? : number;
++      profile ? : any;
++      services ? : any;
++    }
++
++    function user(): User;
++
++    function userId(): string;
++    var users: Mongo.Collection < User > ;
++    /** User **/
++
++    /** Error **/
++    var Error: ErrorStatic;
++    interface ErrorStatic {
++      new(error: string | number, reason ? : string, details ? : string): Error;
++    }
++    interface Error {
++      error: string | number;
++      reason ? : string;
++      details ? : string;
++    }
++    /** Error **/
++
++    /** Method **/
++    function methods(methods: Object): void;
++
++    function call(name: string, ...args: any[]): any;
++
++    function apply(name: string, args: EJSONable[], options ? : {
++      wait ? : boolean;
++      onResultReceived ? : Function;
++    }, asyncCallback ? : Function): any;
++    /** Method **/
++
++    /** Url **/
++    function absoluteUrl(path ? : string, options ? : {
++      secure ? : boolean;
++      replaceLocalhost ? : boolean;
++      rootUrl ? : string;
++    }): string;
++    /** Url **/
++
++    /** Timeout **/
++    function setInterval(func: Function, delay: number): number;
++
++    function setTimeout(func: Function, delay: number): number;
++
++    function clearInterval(id: number): void;
++
++    function clearTimeout(id: number): void;
++
++    function defer(func: Function): void;
++    /** Timeout **/
++
++    /** utils **/
++    function startup(func: Function): void;
++
++    function wrapAsync(func: Function, context ? : Object): any;
++    /** utils **/
++
++    /** Pub/Sub **/
++    interface SubscriptionHandle {
++      stop(): void;
++      ready(): boolean;
++    }
++    interface LiveQueryHandle {
++      stop(): void;
++    }
++    /** Pub/Sub **/
++  }
++}
++
++declare module Meteor {
++  /** Login **/
++  interface LoginWithExternalServiceOptions {
++    requestPermissions ? : string[];
++    requestOfflineToken ? : Boolean;
++    forceApprovalPrompt ? : Boolean;
++    loginUrlParameters ? : Object;
++    redirectUrl ? : string;
++    loginHint ? : string;
++    loginStyle ? : string;
++  }
++
++  function loginWithMeteorDeveloperAccount(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
++
++  function loginWithFacebook(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
++
++  function loginWithGithub(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
++
++  function loginWithGoogle(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
++
++  function loginWithMeetup(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
++
++  function loginWithTwitter(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
++
++  function loginWithWeibo(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
++
++  function loggingIn(): boolean;
++
++  function loginWith < ExternalService > (options ? : {
++    requestPermissions ? : string[];
++    requestOfflineToken ? : boolean;
++    loginUrlParameters ? : Object;
++    userEmail ? : string;
++    loginStyle ? : string;
++    redirectUrl ? : string;
++  }, callback ? : Function): void;
++
++  function loginWithPassword(user: Object | string, password: string, callback ? : Function): void;
++
++  function logout(callback ? : Function): void;
++
++  function logoutOtherClients(callback ? : Function): void;
++  /** Login **/
++
++  /** Event **/
++  interface Event {
++    type: string;
++    target: HTMLElement;
++    currentTarget: HTMLElement;
++    which: number;
++    stopPropagation(): void;
++    stopImmediatePropagation(): void;
++    preventDefault(): void;
++    isPropagationStopped(): boolean;
++    isImmediatePropagationStopped(): boolean;
++    isDefaultPrevented(): boolean;
++  }
++  interface EventHandlerFunction extends Function {
++    (event ? : Meteor.Event, templateInstance ? : Blaze.TemplateInstance): void;
++  }
++  interface EventMap {
++    [id: string]: Meteor.EventHandlerFunction;
++  }
++  /** Event **/
++
++  /** Connection **/
++  function reconnect(): void;
++
++  function disconnect(): void;
++  /** Connection **/
++
++  /** Status **/
++  function status(): DDP.DDPStatus;
++  /** Status **/
++
++  /** Pub/Sub **/
++  function subscribe(name: string, ...args: any[]): Meteor.SubscriptionHandle;
++  /** Pub/Sub **/
++}
++
++declare module "meteor/meteor" {
++  /// <reference path="meteor.d.ts" />
++
++  module Meteor {
++    /** Login **/
++    interface LoginWithExternalServiceOptions {
++      requestPermissions ? : string[];
++      requestOfflineToken ? : Boolean;
++      forceApprovalPrompt ? : Boolean;
++      loginUrlParameters ? : Object;
++      redirectUrl ? : string;
++      loginHint ? : string;
++      loginStyle ? : string;
++    }
++
++    function loginWithMeteorDeveloperAccount(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
++
++    function loginWithFacebook(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
++
++    function loginWithGithub(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
++
++    function loginWithGoogle(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
++
++    function loginWithMeetup(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
++
++    function loginWithTwitter(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
++
++    function loginWithWeibo(options ? : Meteor.LoginWithExternalServiceOptions, callback ? : Function): void;
++
++    function loggingIn(): boolean;
++
++    function loginWith < ExternalService > (options ? : {
++      requestPermissions ? : string[];
++      requestOfflineToken ? : boolean;
++      loginUrlParameters ? : Object;
++      userEmail ? : string;
++      loginStyle ? : string;
++      redirectUrl ? : string;
++    }, callback ? : Function): void;
++
++    function loginWithPassword(user: Object | string, password: string, callback ? : Function): void;
++
++    function logout(callback ? : Function): void;
++
++    function logoutOtherClients(callback ? : Function): void;
++    /** Login **/
++
++    /** Event **/
++    interface Event {
++      type: string;
++      target: HTMLElement;
++      currentTarget: HTMLElement;
++      which: number;
++      stopPropagation(): void;
++      stopImmediatePropagation(): void;
++      preventDefault(): void;
++      isPropagationStopped(): boolean;
++      isImmediatePropagationStopped(): boolean;
++      isDefaultPrevented(): boolean;
++    }
++    interface EventHandlerFunction extends Function {
++      (event ? : Meteor.Event, templateInstance ? : Blaze.TemplateInstance): void;
++    }
++    interface EventMap {
++      [id: string]: Meteor.EventHandlerFunction;
++    }
++    /** Event **/
++
++    /** Connection **/
++    function reconnect(): void;
++
++    function disconnect(): void;
++    /** Connection **/
++
++    /** Status **/
++    function status(): DDP.DDPStatus;
++    /** Status **/
++
++    /** Pub/Sub **/
++    function subscribe(name: string, ...args: any[]): Meteor.SubscriptionHandle;
++    /** Pub/Sub **/
++  }
++}
++declare module Meteor {
++  /** Connection **/
++  interface Connection {
++    id: string;
++    close: Function;
++    onClose: Function;
++    clientAddress: string;
++    httpHeaders: Object;
++  }
++
++  function onConnection(callback: Function): void;
++  /** Connection **/
++
++  function publish(name: string, func: Function): void;
++}
++
++interface Subscription {
++  added(collection: string, id: string, fields: Object): void;
++  changed(collection: string, id: string, fields: Object): void;
++  connection: Meteor.Connection;
++  error(error: Error): void;
++  onStop(func: Function): void;
++  ready(): void;
++  removed(collection: string, id: string): void;
++  stop(): void;
++  userId: string;
++}
++
++declare module "meteor/meteor" {
++  module Meteor {
++    /** Connection **/
++    interface Connection {
++      id: string;
++      close: Function;
++      onClose: Function;
++      clientAddress: string;
++      httpHeaders: Object;
++    }
++
++    function onConnection(callback: Function): void;
++    /** Connection **/
++
++    function publish(name: string, func: Function): void;
++  }
++
++  interface Subscription {
++    added(collection: string, id: string, fields: Object): void;
++    changed(collection: string, id: string, fields: Object): void;
++    connection: Meteor.Connection;
++    error(error: Error): void;
++    onStop(func: Function): void;
++    ready(): void;
++    removed(collection: string, id: string): void;
++    stop(): void;
++    userId: string;
++  }
++}
++declare module Mongo {
++  interface Selector {
++    [key: string]: any;
++  }
++  interface Selector extends Object {}
++  interface Modifier {}
++  interface SortSpecifier {}
++  interface FieldSpecifier {
++    [id: string]: Number;
++  }
++
++  var Collection: CollectionStatic;
++  interface CollectionStatic {
++    new < T > (name: string, options ? : {
++      connection ? : Object;
++      idGeneration ? : string;
++      transform ? : Function;
++    }): Collection < T > ;
++  }
++  interface Collection < T > {
++    allow(options: {
++      insert ? : (userId: string, doc: T) => boolean;
++      update ? : (userId: string, doc: T, fieldNames: string[], modifier: any) => boolean;
++      remove ? : (userId: string, doc: T) => boolean;
++      fetch ? : string[];
++      transform ? : Function;
++    }): boolean;
++    deny(options: {
++      insert ? : (userId: string, doc: T) => boolean;
++      update ? : (userId: string, doc: T, fieldNames: string[], modifier: any) => boolean;
++      remove ? : (userId: string, doc: T) => boolean;
++      fetch ? : string[];
++      transform ? : Function;
++    }): boolean;
++    find(selector ? : Selector | ObjectID | string, options ? : {
++      sort ? : SortSpecifier;
++      skip ? : number;
++      limit ? : number;
++      fields ? : FieldSpecifier;
++      reactive ? : boolean;
++      transform ? : Function;
++    }): Cursor < T > ;
++    findOne(selector ? : Selector | ObjectID | string, options ? : {
++      sort ? : SortSpecifier;
++      skip ? : number;
++      fields ? : FieldSpecifier;
++      reactive ? : boolean;
++      transform ? : Function;
++    }): T;
++    insert(doc: T, callback ? : Function): string;
++    rawCollection(): any;
++    rawDatabase(): any;
++    remove(selector: Selector | ObjectID | string, callback ? : Function): number;
++    update(selector: Selector | ObjectID | string, modifier: Modifier, options ? : {
++      multi ? : boolean;
++      upsert ? : boolean;
++    }, callback ? : Function): number;
++    upsert(selector: Selector | ObjectID | string, modifier: Modifier, options ? : {
++      multi ? : boolean;
++    }, callback ? : Function): {
++      numberAffected ? : number;insertedId ? : string;
++    };
++    _ensureIndex(indexName: string, options ? : {
++      [key: string]: any
++    }): void;
++  }
++
++  var Cursor: CursorStatic;
++  interface CursorStatic {
++    new < T > (): Cursor < T > ;
++  }
++  interface ObserveCallbacks {
++    added ? (document: Object) : void;
++    addedAt ? (document: Object, atIndex: number, before: Object) : void;
++    changed ? (newDocument: Object, oldDocument: Object) : void;
++    changedAt ? (newDocument: Object, oldDocument: Object, indexAt: number) : void;
++    removed ? (oldDocument: Object) : void;
++    removedAt ? (oldDocument: Object, atIndex: number) : void;
++    movedTo ? (document: Object, fromIndex: number, toIndex: number, before: Object) : void;
++  }
++  interface ObserveChangesCallbacks {
++    added ? (id: string, fields: Object) : void;
++    addedBefore ? (id: string, fields: Object, before: Object) : void;
++    changed ? (id: string, fields: Object) : void;
++    movedBefore ? (id: string, before: Object) : void;
++    removed ? (id: string) : void;
++  }
++  interface Cursor < T > {
++    count(): number;
++    fetch(): Array < T > ;
++    forEach(callback: < T > (doc: T, index: number, cursor: Cursor < T > ) => void, thisArg ? : any): void;
++    map < U > (callback: (doc: T, index: number, cursor: Cursor < T > ) => U, thisArg ? : any): Array < U > ;
++    observe(callbacks: ObserveCallbacks): Meteor.LiveQueryHandle;
++    observeChanges(callbacks: ObserveChangesCallbacks): Meteor.LiveQueryHandle;
++  }
++
++  var ObjectID: ObjectIDStatic;
++  interface ObjectIDStatic {
++    new(hexString ? : string): ObjectID;
++  }
++  interface ObjectID {}
++}
++
++declare module "meteor/mongo" {
++  module Mongo {
++    interface Selector {
++      [key: string]: any;
++    }
++    interface Selector extends Object {}
++    interface Modifier {}
++    interface SortSpecifier {}
++    interface FieldSpecifier {
++      [id: string]: Number;
++    }
++
++    var Collection: CollectionStatic;
++    interface CollectionStatic {
++      new < T > (name: string, options ? : {
++        connection ? : Object;
++        idGeneration ? : string;
++        transform ? : Function;
++      }): Collection < T > ;
++    }
++    interface Collection < T > {
++      allow(options: {
++        insert ? : (userId: string, doc: T) => boolean;
++        update ? : (userId: string, doc: T, fieldNames: string[], modifier: any) => boolean;
++        remove ? : (userId: string, doc: T) => boolean;
++        fetch ? : string[];
++        transform ? : Function;
++      }): boolean;
++      deny(options: {
++        insert ? : (userId: string, doc: T) => boolean;
++        update ? : (userId: string, doc: T, fieldNames: string[], modifier: any) => boolean;
++        remove ? : (userId: string, doc: T) => boolean;
++        fetch ? : string[];
++        transform ? : Function;
++      }): boolean;
++      find(selector ? : Selector | ObjectID | string, options ? : {
++        sort ? : SortSpecifier;
++        skip ? : number;
++        limit ? : number;
++        fields ? : FieldSpecifier;
++        reactive ? : boolean;
++        transform ? : Function;
++      }): Cursor < T > ;
++      findOne(selector ? : Selector | ObjectID | string, options ? : {
++        sort ? : SortSpecifier;
++        skip ? : number;
++        fields ? : FieldSpecifier;
++        reactive ? : boolean;
++        transform ? : Function;
++      }): T;
++      insert(doc: T, callback ? : Function): string;
++      rawCollection(): any;
++      rawDatabase(): any;
++      remove(selector: Selector | ObjectID | string, callback ? : Function): number;
++      update(selector: Selector | ObjectID | string, modifier: Modifier, options ? : {
++        multi ? : boolean;
++        upsert ? : boolean;
++      }, callback ? : Function): number;
++      upsert(selector: Selector | ObjectID | string, modifier: Modifier, options ? : {
++        multi ? : boolean;
++      }, callback ? : Function): {
++        numberAffected ? : number;insertedId ? : string;
++      };
++      _ensureIndex(indexName: string, options ? : {
++        [key: string]: any
++      }): void;
++    }
++
++    var Cursor: CursorStatic;
++    interface CursorStatic {
++      new < T > (): Cursor < T > ;
++    }
++    interface ObserveCallbacks {
++      added ? (document: Object) : void;
++      addedAt ? (document: Object, atIndex: number, before: Object) : void;
++      changed ? (newDocument: Object, oldDocument: Object) : void;
++      changedAt ? (newDocument: Object, oldDocument: Object, indexAt: number) : void;
++      removed ? (oldDocument: Object) : void;
++      removedAt ? (oldDocument: Object, atIndex: number) : void;
++      movedTo ? (document: Object, fromIndex: number, toIndex: number, before: Object) : void;
++    }
++    interface ObserveChangesCallbacks {
++      added ? (id: string, fields: Object) : void;
++      addedBefore ? (id: string, fields: Object, before: Object) : void;
++      changed ? (id: string, fields: Object) : void;
++      movedBefore ? (id: string, before: Object) : void;
++      removed ? (id: string) : void;
++    }
++    interface Cursor < T > {
++      count(): number;
++      fetch(): Array < T > ;
++      forEach(callback: < T > (doc: T, index: number, cursor: Cursor < T > ) => void, thisArg ? : any): void;
++      map < U > (callback: (doc: T, index: number, cursor: Cursor < T > ) => U, thisArg ? : any): Array < U > ;
++      observe(callbacks: ObserveCallbacks): Meteor.LiveQueryHandle;
++      observeChanges(callbacks: ObserveChangesCallbacks): Meteor.LiveQueryHandle;
++    }
++
++    var ObjectID: ObjectIDStatic;
++    interface ObjectIDStatic {
++      new(hexString ? : string): ObjectID;
++    }
++    interface ObjectID {}
++  }
++}
++declare module Mongo {
++  interface AllowDenyOptions {
++    insert ? : (userId: string, doc: any) => boolean;
++    update ? : (userId: string, doc: any, fieldNames: string[], modifier: any) => boolean;
++    remove ? : (userId: string, doc: any) => boolean;
++    fetch ? : string[];
++    transform ? : Function;
++  }
++}
++
++declare module "meteor/mongo" {
++  module Mongo {
++    interface AllowDenyOptions {
++      insert ? : (userId: string, doc: any) => boolean;
++      update ? : (userId: string, doc: any, fieldNames: string[], modifier: any) => boolean;
++      remove ? : (userId: string, doc: any) => boolean;
++      fetch ? : string[];
++      transform ? : Function;
++    }
++  }
++}
++declare module Random {
++  function id(numberOfChars ? : number): string;
++
++  function secret(numberOfChars ? : number): string;
++
++  function fraction(): number;
++  // @param numberOfDigits, @returns a random hex string of the given length
++  function hexString(numberOfDigits: number): string;
++  // @param array, @return a random element in array
++  function choice(array: any[]): string;
++  // @param str, @return a random char in str
++  function choice(str: string): string;
++}
++
++declare module "meteor/random" {
++  module Random {
++    function id(numberOfChars ? : number): string;
++
++    function secret(numberOfChars ? : number): string;
++
++    function fraction(): number;
++    // @param numberOfDigits, @returns a random hex string of the given length
++    function hexString(numberOfDigits: number): string;
++    // @param array, @return a random element in array
++    function choice(array: any[]): string;
++    // @param str, @return a random char in str
++    function choice(str: string): string;
++  }
++}
++declare var ReactiveVar: ReactiveVarStatic;
++interface ReactiveVarStatic {
++  new < T > (initialValue: T, equalsFunc ? : Function): ReactiveVar < T > ;
++}
++interface ReactiveVar < T > {
++  get(): T;
++  set(newValue: T): void;
++}
++
++declare module "meteor/reactive-var" {
++  var ReactiveVar: ReactiveVarStatic;
++  interface ReactiveVarStatic {
++    new < T > (initialValue: T, equalsFunc ? : Function): ReactiveVar < T > ;
++  }
++  interface ReactiveVar < T > {
++    get(): T;
++    set(newValue: T): void;
++  }
++}
++
++declare module Session {
++  function equals(key: string, value: string | number | boolean | any): boolean;
++
++  function get(key: string): any;
++
++  function set(key: string, value: EJSONable | any): void;
++
++  function setDefault(key: string, value: EJSONable | any): void;
++}
++
++declare module "meteor/session" {
++  /// <reference path="ejson.d.ts" />
++
++  module Session {
++    function equals(key: string, value: string | number | boolean | any): boolean;
++
++    function get(key: string): any;
++
++    function set(key: string, value: EJSONable | any): void;
++
++    function setDefault(key: string, value: EJSONable | any): void;
++  }
++}
++
++declare var Template: TemplateStatic;
++interface TemplateStatic extends Blaze.TemplateStatic {
++  new(viewName ? : string, renderFunction ? : Function): Blaze.Template;
++  body: Blaze.Template;
++  [index: string]: any | Blaze.Template;
++}
++
++declare module "meteor/templating" {
++  /// <reference path="blaze.d.ts" />
++
++  var Template: TemplateStatic;
++  interface TemplateStatic extends Blaze.TemplateStatic {
++    new(viewName ? : string, renderFunction ? : Function): Blaze.Template;
++    body: Blaze.Template;
++    [index: string]: any | Blaze.Template;
++  }
++}
++interface ILengthAble {
++  length: number;
++}
++
++interface ITinytestAssertions {
++  ok(doc: Object): void;
++  expect_fail(): void;
++  fail(doc: Object): void;
++  runId(): string;
++  equal < T > (actual: T, expected: T, message ? : string, not ? : boolean): void;
++  notEqual < T > (actual: T, expected: T, message ? : string): void;
++  instanceOf(obj: Object, klass: Function, message ? : string): void;
++  notInstanceOf(obj: Object, klass: Function, message ? : string): void;
++  matches(actual: any, regexp: RegExp, message ? : string): void;
++  notMatches(actual: any, regexp: RegExp, message ? : string): void;
++  throws(f: Function, expected ? : string | RegExp): void;
++  isTrue(v: boolean, msg ? : string): void;
++  isFalse(v: boolean, msg ? : string): void;
++  isNull(v: any, msg ? : string): void;
++  isNotNull(v: any, msg ? : string): void;
++  isUndefined(v: any, msg ? : string): void;
++  isNotUndefined(v: any, msg ? : string): void;
++  isNan(v: any, msg ? : string): void;
++  isNotNan(v: any, msg ? : string): void;
++  include < T > (s: Array < T > | Object | string, value: any, msg ? : string, not ? : boolean): void;
++
++  notInclude < T > (s: Array < T > | Object | string, value: any, msg ? : string, not ? : boolean): void;
++  length(obj: ILengthAble, expected_length: number, msg ? : string): void;
++  _stringEqual(actual: string, expected: string, msg ? : string): void;
++}
++
++declare module Tinytest {
++  function add(description: string, func: (test: ITinytestAssertions) => void): void;
++
++  function addAsync(description: string, func: (test: ITinytestAssertions) => void): void;
++}
++
++declare module "meteor/tiny-test" {
++  interface ILengthAble {
++    length: number;
++  }
++
++  interface ITinytestAssertions {
++    ok(doc: Object): void;
++    expect_fail(): void;
++    fail(doc: Object): void;
++    runId(): string;
++    equal < T > (actual: T, expected: T, message ? : string, not ? : boolean): void;
++    notEqual < T > (actual: T, expected: T, message ? : string): void;
++    instanceOf(obj: Object, klass: Function, message ? : string): void;
++    notInstanceOf(obj: Object, klass: Function, message ? : string): void;
++    matches(actual: any, regexp: RegExp, message ? : string): void;
++    notMatches(actual: any, regexp: RegExp, message ? : string): void;
++    throws(f: Function, expected ? : string | RegExp): void;
++    isTrue(v: boolean, msg ? : string): void;
++    isFalse(v: boolean, msg ? : string): void;
++    isNull(v: any, msg ? : string): void;
++    isNotNull(v: any, msg ? : string): void;
++    isUndefined(v: any, msg ? : string): void;
++    isNotUndefined(v: any, msg ? : string): void;
++    isNan(v: any, msg ? : string): void;
++    isNotNan(v: any, msg ? : string): void;
++    include < T > (s: Array < T > | Object | string, value: any, msg ? : string, not ? : boolean): void;
++
++    notInclude < T > (s: Array < T > | Object | string, value: any, msg ? : string, not ? : boolean): void;
++    length(obj: ILengthAble, expected_length: number, msg ? : string): void;
++    _stringEqual(actual: string, expected: string, msg ? : string): void;
++  }
++
++  module Tinytest {
++    function add(description: string, func: (test: ITinytestAssertions) => void): void;
++
++    function addAsync(description: string, func: (test: ITinytestAssertions) => void): void;
++  }
++}
++declare module App {
++  function accessRule(pattern: string, options ? : {
++    type ? : string;
++    launchExternal ? : boolean;
++  }): void;
++
++  function configurePlugin(id: string, config: Object): void;
++
++  function icons(icons: Object): void;
++
++  function info(options: {
++    id ? : string;
++    version ? : string;
++    name ? : string;
++    description ? : string;
++    author ? : string;
++    email ? : string;
++    website ? : string;
++  }): void;
++
++  function launchScreens(launchScreens: Object): void;
++
++  function setPreference(name: string, value: string, platform ? : string): void;
++}
++
++declare function execFileAsync(command: string, args ? : any[], options ? : {
++  cwd ? : Object;
++  env ? : Object;
++  stdio ? : any[] | string;
++  destination ? : any;
++  waitForClose ? : string;
++}): any;
++declare function execFileSync(command: string, args ? : any[], options ? : {
++  cwd ? : Object;
++  env ? : Object;
++  stdio ? : any[] | string;
++  destination ? : any;
++  waitForClose ? : string;
++}): String;
++
++declare module Assets {
++  function getBinary(assetPath: string, asyncCallback ? : Function): EJSON;
++
++  function getText(assetPath: string, asyncCallback ? : Function): string;
++}
++
++declare module Cordova {
++  function depends(dependencies: {
++    [id: string]: string
++  }): void;
++}
++
++declare module Npm {
++  function depends(dependencies: {
++    [id: string]: string
++  }): void;
++
++  function require(name: string): any;
++}
++
++declare namespace Package {
++  function describe(options: {
++    summary ? : string;
++    version ? : string;
++    name ? : string;
++    git ? : string;
++    documentation ? : string;
++    debugOnly ? : boolean;
++    prodOnly ? : boolean;
++    testOnly ? : boolean;
++  }): void;
++
++  function onTest(func: (api: PackageAPI) => void): void;
++
++  function onUse(func: (api: PackageAPI) => void): void;
++
++  function registerBuildPlugin(options ? : {
++    name ? : string;
++    use ? : string | string[];
++    sources ? : string[];
++    npmDependencies ? : Object;
++  }): void;
++}
++
++interface PackageAPI {
++  new(): PackageAPI;
++  addAssets(filenames: string | string[], architecture: string | string[]): void;
++  addFiles(filenames: string | string[], architecture ? : string | string[], options ? : {
++    bare ? : boolean;
++  }): void;
++  export (exportedObjects: string | string[], architecture ? : string | string[], exportOptions ? : Object, testOnly ? : boolean): void;
++  imply(packageNames: string | string[], architecture ? : string | string[]): void;
++  use(packageNames: string | string[], architecture ? : string | string[], options ? : {
++    weak ? : boolean;
++    unordered ? : boolean;
++  }): void;
++  versionsFrom(meteorRelease: string | string[]): void;
++}
++
++declare var console: Console;
++
++declare module "meteor/tools" {
++  module App {
++    function accessRule(pattern: string, options ? : {
++      type ? : string;
++      launchExternal ? : boolean;
++    }): void;
++
++    function configurePlugin(id: string, config: Object): void;
++
++    function icons(icons: Object): void;
++
++    function info(options: {
++      id ? : string;
++      version ? : string;
++      name ? : string;
++      description ? : string;
++      author ? : string;
++      email ? : string;
++      website ? : string;
++    }): void;
++
++    function launchScreens(launchScreens: Object): void;
++
++    function setPreference(name: string, value: string, platform ? : string): void;
++  }
++
++  function execFileAsync(command: string, args ? : any[], options ? : {
++    cwd ? : Object;
++    env ? : Object;
++    stdio ? : any[] | string;
++    destination ? : any;
++    waitForClose ? : string;
++  }): any;
++
++  function execFileSync(command: string, args ? : any[], options ? : {
++    cwd ? : Object;
++    env ? : Object;
++    stdio ? : any[] | string;
++    destination ? : any;
++    waitForClose ? : string;
++  }): String;
++
++  module Assets {
++    function getBinary(assetPath: string, asyncCallback ? : Function): EJSON;
++
++    function getText(assetPath: string, asyncCallback ? : Function): string;
++  }
++
++  module Cordova {
++    function depends(dependencies: {
++      [id: string]: string
++    }): void;
++  }
++
++  module Npm {
++    function depends(dependencies: {
++      [id: string]: string
++    }): void;
++
++    function require(name: string): any;
++  }
++
++  namespace Package {
++    function describe(options: {
++      summary ? : string;
++      version ? : string;
++      name ? : string;
++      git ? : string;
++      documentation ? : string;
++      debugOnly ? : boolean;
++      prodOnly ? : boolean;
++      testOnly ? : boolean;
++    }): void;
++
++    function onTest(func: (api: PackageAPI) => void): void;
++
++    function onUse(func: (api: PackageAPI) => void): void;
++
++    function registerBuildPlugin(options ? : {
++      name ? : string;
++      use ? : string | string[];
++      sources ? : string[];
++      npmDependencies ? : Object;
++    }): void;
++  }
++
++  interface PackageAPI {
++    new(): PackageAPI;
++    addAssets(filenames: string | string[], architecture: string | string[]): void;
++    addFiles(filenames: string | string[], architecture ? : string | string[], options ? : {
++      bare ? : boolean;
++    }): void;
++    export (exportedObjects: string | string[], architecture ? : string | string[], exportOptions ? : Object, testOnly ? : boolean): void;
++    imply(packageNames: string | string[], architecture ? : string | string[]): void;
++    use(packageNames: string | string[], architecture ? : string | string[], options ? : {
++      weak ? : boolean;
++      unordered ? : boolean;
++    }): void;
++    versionsFrom(meteorRelease: string | string[]): void;
++  }
++
++  var console: Console;
++}
++declare module Tracker {
++  function Computation(): void;
++  interface Computation {
++    firstRun: boolean;
++    invalidate(): void;
++    invalidated: boolean;
++    onInvalidate(callback: Function): void;
++    onStop(callback: Function): void;
++    stop(): void;
++    stopped: boolean;
++  }
++  var currentComputation: Computation;
++
++  var Dependency: DependencyStatic;
++  interface DependencyStatic {
++    new(): Dependency;
++  }
++  interface Dependency {
++    changed(): void;
++    depend(fromComputation ? : Computation): boolean;
++    hasDependents(): boolean;
++  }
++
++  var active: boolean;
++
++  function afterFlush(callback: Function): void;
++
++  function autorun(runFunc: (computation: Computation) => void, options ? : {
++    onError ? : Function;
++  }): Computation;
++
++  function flush(): void;
++
++  function nonreactive(func: Function): void;
++
++  function onInvalidate(callback: Function): void;
++}
++
++declare module "meteor/tracker" {
++  module Tracker {
++    function Computation(): void;
++    interface Computation {
++      firstRun: boolean;
++      invalidate(): void;
++      invalidated: boolean;
++      onInvalidate(callback: Function): void;
++      onStop(callback: Function): void;
++      stop(): void;
++      stopped: boolean;
++    }
++    var currentComputation: Computation;
++
++    var Dependency: DependencyStatic;
++    interface DependencyStatic {
++      new(): Dependency;
++    }
++    interface Dependency {
++      changed(): void;
++      depend(fromComputation ? : Computation): boolean;
++      hasDependents(): boolean;
++    }
++
++    var active: boolean;
++
++    function afterFlush(callback: Function): void;
++
++    function autorun(runFunc: (computation: Computation) => void, options ? : {
++      onError ? : Function;
++    }): Computation;
++
++    function flush(): void;
++
++    function nonreactive(func: Function): void;
++
++    function onInvalidate(callback: Function): void;
++  }
++}
+\ No newline at end of file
+diff --git a/README.md b/README.md
+index a212293..d32f876 100644
+--- a/README.md
++++ b/README.md
+@@ -8,4 +8,4 @@ Learn how to build this app by following the [Meteor Tutorial](http://www.meteor
+ 
+ Read more about building apps with Meteor in the [Meteor Guide](http://guide.meteor.com).
+ 
+-![screenshot](screenshot.png)
+\ No newline at end of file
++![screenshot](screenshot.png)
 diff --git a/client/main.css b/client/main.css
 new file mode 100644
-index 0000000..b6b4052
+index 0000000..7f354f0
 --- /dev/null
 +++ b/client/main.css
-@@ -0,0 +1 @@
-+/* CSS declarations go here */
+@@ -0,0 +1,4 @@
++body {
++  padding: 10px;
++  font-family: sans-serif;
++}
 diff --git a/client/main.html b/client/main.html
 new file mode 100644
-index 0000000..6fe0dc5
+index 0000000..15a7c7d
 --- /dev/null
 +++ b/client/main.html
 @@ -0,0 +1,25 @@
 +<head>
-+  <title>simple</title>
++  <title>simple-todos</title>
 +</head>
 +
 +<body>
@@ -227,10 +2287,10 @@ index 0000000..6fe0dc5
 +<template name="info">
 +  <h2>Learn Meteor!</h2>
 +  <ul>
-+    <li><a href="https://www.meteor.com/try">Do the Tutorial</a></li>
-+    <li><a href="http://guide.meteor.com">Follow the Guide</a></li>
-+    <li><a href="https://docs.meteor.com">Read the Docs</a></li>
-+    <li><a href="https://forums.meteor.com">Discussions</a></li>
++    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
++    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
++    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
++    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
 +  </ul>
 +</template>
 diff --git a/client/main.js b/client/main.js
@@ -261,20 +2321,624 @@ index 0000000..ecb3282
 +    instance.counter.set(instance.counter.get() + 1);
 +  },
 +});
+diff --git a/package-lock.json b/package-lock.json
+new file mode 100644
+index 0000000..d78ee75
+--- /dev/null
++++ b/package-lock.json
+@@ -0,0 +1,586 @@
++{
++  "name": "simple-todos",
++  "requires": true,
++  "lockfileVersion": 1,
++  "dependencies": {
++    "@babel/runtime": {
++      "version": "7.8.7",
++      "resolved": "https://registry.npmjs.org/@babel/runtime/-/runtime-7.8.7.tgz",
++      "integrity": "sha512-+AATMUFppJDw6aiR5NVPHqIQBlV/Pj8wY/EZH+lmvRdUo9xBaz/rF3alAwFJQavvKfeOlPE7oaaDHVbcySbCsg==",
++      "requires": {
++        "regenerator-runtime": "^0.13.4"
++      }
++    },
++    "jquery": {
++      "version": "3.4.1",
++      "resolved": "https://registry.npmjs.org/jquery/-/jquery-3.4.1.tgz",
++      "integrity": "sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw=="
++    },
++    "meteor-node-stubs": {
++      "version": "1.0.0",
++      "resolved": "https://registry.npmjs.org/meteor-node-stubs/-/meteor-node-stubs-1.0.0.tgz",
++      "integrity": "sha512-QJwyv23wyXD3uEMzk5Xr/y5ezoVlCbHvBbrgdkVadn84dmifLRbs0PtD6EeNw5NLIk+SQSfxld7IMdEsneGz5w==",
++      "requires": {
++        "assert": "^1.4.1",
++        "browserify-zlib": "^0.2.0",
++        "buffer": "^5.2.1",
++        "console-browserify": "^1.1.0",
++        "constants-browserify": "^1.0.0",
++        "crypto-browserify": "^3.12.0",
++        "domain-browser": "^1.2.0",
++        "events": "^3.0.0",
++        "https-browserify": "^1.0.0",
++        "os-browserify": "^0.3.0",
++        "path-browserify": "^1.0.0",
++        "process": "^0.11.10",
++        "punycode": "^2.1.1",
++        "querystring-es3": "^0.2.1",
++        "readable-stream": "^3.3.0",
++        "stream-browserify": "^2.0.2",
++        "stream-http": "^3.0.0",
++        "string_decoder": "^1.2.0",
++        "timers-browserify": "^2.0.10",
++        "tty-browserify": "0.0.1",
++        "url": "^0.11.0",
++        "util": "^0.11.1",
++        "vm-browserify": "^1.1.0"
++      },
++      "dependencies": {
++        "asn1.js": {
++          "version": "4.10.1",
++          "bundled": true,
++          "requires": {
++            "bn.js": "^4.0.0",
++            "inherits": "^2.0.1",
++            "minimalistic-assert": "^1.0.0"
++          }
++        },
++        "assert": {
++          "version": "1.4.1",
++          "bundled": true,
++          "requires": {
++            "util": "0.10.3"
++          },
++          "dependencies": {
++            "util": {
++              "version": "0.10.3",
++              "bundled": true,
++              "requires": {
++                "inherits": "2.0.1"
++              }
++            }
++          }
++        },
++        "base64-js": {
++          "version": "1.3.0",
++          "bundled": true
++        },
++        "bn.js": {
++          "version": "4.11.8",
++          "bundled": true
++        },
++        "brorand": {
++          "version": "1.1.0",
++          "bundled": true
++        },
++        "browserify-aes": {
++          "version": "1.2.0",
++          "bundled": true,
++          "requires": {
++            "buffer-xor": "^1.0.3",
++            "cipher-base": "^1.0.0",
++            "create-hash": "^1.1.0",
++            "evp_bytestokey": "^1.0.3",
++            "inherits": "^2.0.1",
++            "safe-buffer": "^5.0.1"
++          }
++        },
++        "browserify-cipher": {
++          "version": "1.0.1",
++          "bundled": true,
++          "requires": {
++            "browserify-aes": "^1.0.4",
++            "browserify-des": "^1.0.0",
++            "evp_bytestokey": "^1.0.0"
++          }
++        },
++        "browserify-des": {
++          "version": "1.0.2",
++          "bundled": true,
++          "requires": {
++            "cipher-base": "^1.0.1",
++            "des.js": "^1.0.0",
++            "inherits": "^2.0.1",
++            "safe-buffer": "^5.1.2"
++          }
++        },
++        "browserify-rsa": {
++          "version": "4.0.1",
++          "bundled": true,
++          "requires": {
++            "bn.js": "^4.1.0",
++            "randombytes": "^2.0.1"
++          }
++        },
++        "browserify-sign": {
++          "version": "4.0.4",
++          "bundled": true,
++          "requires": {
++            "bn.js": "^4.1.1",
++            "browserify-rsa": "^4.0.0",
++            "create-hash": "^1.1.0",
++            "create-hmac": "^1.1.2",
++            "elliptic": "^6.0.0",
++            "inherits": "^2.0.1",
++            "parse-asn1": "^5.0.0"
++          }
++        },
++        "browserify-zlib": {
++          "version": "0.2.0",
++          "bundled": true,
++          "requires": {
++            "pako": "~1.0.5"
++          }
++        },
++        "buffer": {
++          "version": "5.2.1",
++          "bundled": true,
++          "requires": {
++            "base64-js": "^1.0.2",
++            "ieee754": "^1.1.4"
++          }
++        },
++        "buffer-xor": {
++          "version": "1.0.3",
++          "bundled": true
++        },
++        "builtin-status-codes": {
++          "version": "3.0.0",
++          "bundled": true
++        },
++        "cipher-base": {
++          "version": "1.0.4",
++          "bundled": true,
++          "requires": {
++            "inherits": "^2.0.1",
++            "safe-buffer": "^5.0.1"
++          }
++        },
++        "console-browserify": {
++          "version": "1.1.0",
++          "bundled": true,
++          "requires": {
++            "date-now": "^0.1.4"
++          }
++        },
++        "constants-browserify": {
++          "version": "1.0.0",
++          "bundled": true
++        },
++        "core-util-is": {
++          "version": "1.0.2",
++          "bundled": true
++        },
++        "create-ecdh": {
++          "version": "4.0.3",
++          "bundled": true,
++          "requires": {
++            "bn.js": "^4.1.0",
++            "elliptic": "^6.0.0"
++          }
++        },
++        "create-hash": {
++          "version": "1.2.0",
++          "bundled": true,
++          "requires": {
++            "cipher-base": "^1.0.1",
++            "inherits": "^2.0.1",
++            "md5.js": "^1.3.4",
++            "ripemd160": "^2.0.1",
++            "sha.js": "^2.4.0"
++          }
++        },
++        "create-hmac": {
++          "version": "1.1.7",
++          "bundled": true,
++          "requires": {
++            "cipher-base": "^1.0.3",
++            "create-hash": "^1.1.0",
++            "inherits": "^2.0.1",
++            "ripemd160": "^2.0.0",
++            "safe-buffer": "^5.0.1",
++            "sha.js": "^2.4.8"
++          }
++        },
++        "crypto-browserify": {
++          "version": "3.12.0",
++          "bundled": true,
++          "requires": {
++            "browserify-cipher": "^1.0.0",
++            "browserify-sign": "^4.0.0",
++            "create-ecdh": "^4.0.0",
++            "create-hash": "^1.1.0",
++            "create-hmac": "^1.1.0",
++            "diffie-hellman": "^5.0.0",
++            "inherits": "^2.0.1",
++            "pbkdf2": "^3.0.3",
++            "public-encrypt": "^4.0.0",
++            "randombytes": "^2.0.0",
++            "randomfill": "^1.0.3"
++          }
++        },
++        "date-now": {
++          "version": "0.1.4",
++          "bundled": true
++        },
++        "des.js": {
++          "version": "1.0.0",
++          "bundled": true,
++          "requires": {
++            "inherits": "^2.0.1",
++            "minimalistic-assert": "^1.0.0"
++          }
++        },
++        "diffie-hellman": {
++          "version": "5.0.3",
++          "bundled": true,
++          "requires": {
++            "bn.js": "^4.1.0",
++            "miller-rabin": "^4.0.0",
++            "randombytes": "^2.0.0"
++          }
++        },
++        "domain-browser": {
++          "version": "1.2.0",
++          "bundled": true
++        },
++        "elliptic": {
++          "version": "6.4.1",
++          "bundled": true,
++          "requires": {
++            "bn.js": "^4.4.0",
++            "brorand": "^1.0.1",
++            "hash.js": "^1.0.0",
++            "hmac-drbg": "^1.0.0",
++            "inherits": "^2.0.1",
++            "minimalistic-assert": "^1.0.0",
++            "minimalistic-crypto-utils": "^1.0.0"
++          }
++        },
++        "events": {
++          "version": "3.0.0",
++          "bundled": true
++        },
++        "evp_bytestokey": {
++          "version": "1.0.3",
++          "bundled": true,
++          "requires": {
++            "md5.js": "^1.3.4",
++            "safe-buffer": "^5.1.1"
++          }
++        },
++        "hash-base": {
++          "version": "3.0.4",
++          "bundled": true,
++          "requires": {
++            "inherits": "^2.0.1",
++            "safe-buffer": "^5.0.1"
++          }
++        },
++        "hash.js": {
++          "version": "1.1.7",
++          "bundled": true,
++          "requires": {
++            "inherits": "^2.0.3",
++            "minimalistic-assert": "^1.0.1"
++          },
++          "dependencies": {
++            "inherits": {
++              "version": "2.0.3",
++              "bundled": true
++            }
++          }
++        },
++        "hmac-drbg": {
++          "version": "1.0.1",
++          "bundled": true,
++          "requires": {
++            "hash.js": "^1.0.3",
++            "minimalistic-assert": "^1.0.0",
++            "minimalistic-crypto-utils": "^1.0.1"
++          }
++        },
++        "https-browserify": {
++          "version": "1.0.0",
++          "bundled": true
++        },
++        "ieee754": {
++          "version": "1.1.13",
++          "bundled": true
++        },
++        "inherits": {
++          "version": "2.0.1",
++          "bundled": true
++        },
++        "isarray": {
++          "version": "1.0.0",
++          "bundled": true
++        },
++        "md5.js": {
++          "version": "1.3.5",
++          "bundled": true,
++          "requires": {
++            "hash-base": "^3.0.0",
++            "inherits": "^2.0.1",
++            "safe-buffer": "^5.1.2"
++          }
++        },
++        "miller-rabin": {
++          "version": "4.0.1",
++          "bundled": true,
++          "requires": {
++            "bn.js": "^4.0.0",
++            "brorand": "^1.0.1"
++          }
++        },
++        "minimalistic-assert": {
++          "version": "1.0.1",
++          "bundled": true
++        },
++        "minimalistic-crypto-utils": {
++          "version": "1.0.1",
++          "bundled": true
++        },
++        "os-browserify": {
++          "version": "0.3.0",
++          "bundled": true
++        },
++        "pako": {
++          "version": "1.0.10",
++          "bundled": true
++        },
++        "parse-asn1": {
++          "version": "5.1.4",
++          "bundled": true,
++          "requires": {
++            "asn1.js": "^4.0.0",
++            "browserify-aes": "^1.0.0",
++            "create-hash": "^1.1.0",
++            "evp_bytestokey": "^1.0.0",
++            "pbkdf2": "^3.0.3",
++            "safe-buffer": "^5.1.1"
++          }
++        },
++        "path-browserify": {
++          "version": "1.0.0",
++          "bundled": true
++        },
++        "pbkdf2": {
++          "version": "3.0.17",
++          "bundled": true,
++          "requires": {
++            "create-hash": "^1.1.2",
++            "create-hmac": "^1.1.4",
++            "ripemd160": "^2.0.1",
++            "safe-buffer": "^5.0.1",
++            "sha.js": "^2.4.8"
++          }
++        },
++        "process": {
++          "version": "0.11.10",
++          "bundled": true
++        },
++        "process-nextick-args": {
++          "version": "2.0.0",
++          "bundled": true
++        },
++        "public-encrypt": {
++          "version": "4.0.3",
++          "bundled": true,
++          "requires": {
++            "bn.js": "^4.1.0",
++            "browserify-rsa": "^4.0.0",
++            "create-hash": "^1.1.0",
++            "parse-asn1": "^5.0.0",
++            "randombytes": "^2.0.1",
++            "safe-buffer": "^5.1.2"
++          }
++        },
++        "punycode": {
++          "version": "2.1.1",
++          "bundled": true
++        },
++        "querystring": {
++          "version": "0.2.0",
++          "bundled": true
++        },
++        "querystring-es3": {
++          "version": "0.2.1",
++          "bundled": true
++        },
++        "randombytes": {
++          "version": "2.1.0",
++          "bundled": true,
++          "requires": {
++            "safe-buffer": "^5.1.0"
++          }
++        },
++        "randomfill": {
++          "version": "1.0.4",
++          "bundled": true,
++          "requires": {
++            "randombytes": "^2.0.5",
++            "safe-buffer": "^5.1.0"
++          }
++        },
++        "readable-stream": {
++          "version": "3.3.0",
++          "bundled": true,
++          "requires": {
++            "inherits": "^2.0.3",
++            "string_decoder": "^1.1.1",
++            "util-deprecate": "^1.0.1"
++          },
++          "dependencies": {
++            "inherits": {
++              "version": "2.0.3",
++              "bundled": true
++            }
++          }
++        },
++        "ripemd160": {
++          "version": "2.0.2",
++          "bundled": true,
++          "requires": {
++            "hash-base": "^3.0.0",
++            "inherits": "^2.0.1"
++          }
++        },
++        "safe-buffer": {
++          "version": "5.1.2",
++          "bundled": true
++        },
++        "setimmediate": {
++          "version": "1.0.5",
++          "bundled": true
++        },
++        "sha.js": {
++          "version": "2.4.11",
++          "bundled": true,
++          "requires": {
++            "inherits": "^2.0.1",
++            "safe-buffer": "^5.0.1"
++          }
++        },
++        "stream-browserify": {
++          "version": "2.0.2",
++          "bundled": true,
++          "requires": {
++            "inherits": "~2.0.1",
++            "readable-stream": "^2.0.2"
++          },
++          "dependencies": {
++            "readable-stream": {
++              "version": "2.3.6",
++              "bundled": true,
++              "requires": {
++                "core-util-is": "~1.0.0",
++                "inherits": "~2.0.3",
++                "isarray": "~1.0.0",
++                "process-nextick-args": "~2.0.0",
++                "safe-buffer": "~5.1.1",
++                "string_decoder": "~1.1.1",
++                "util-deprecate": "~1.0.1"
++              },
++              "dependencies": {
++                "inherits": {
++                  "version": "2.0.3",
++                  "bundled": true
++                }
++              }
++            },
++            "string_decoder": {
++              "version": "1.1.1",
++              "bundled": true,
++              "requires": {
++                "safe-buffer": "~5.1.0"
++              }
++            }
++          }
++        },
++        "stream-http": {
++          "version": "3.0.0",
++          "bundled": true,
++          "requires": {
++            "builtin-status-codes": "^3.0.0",
++            "inherits": "^2.0.1",
++            "readable-stream": "^3.0.6",
++            "xtend": "^4.0.0"
++          }
++        },
++        "string_decoder": {
++          "version": "1.2.0",
++          "bundled": true,
++          "requires": {
++            "safe-buffer": "~5.1.0"
++          }
++        },
++        "timers-browserify": {
++          "version": "2.0.10",
++          "bundled": true,
++          "requires": {
++            "setimmediate": "^1.0.4"
++          }
++        },
++        "tty-browserify": {
++          "version": "0.0.1",
++          "bundled": true
++        },
++        "url": {
++          "version": "0.11.0",
++          "bundled": true,
++          "requires": {
++            "punycode": "1.3.2",
++            "querystring": "0.2.0"
++          },
++          "dependencies": {
++            "punycode": {
++              "version": "1.3.2",
++              "bundled": true
++            }
++          }
++        },
++        "util": {
++          "version": "0.11.1",
++          "bundled": true,
++          "requires": {
++            "inherits": "2.0.3"
++          },
++          "dependencies": {
++            "inherits": {
++              "version": "2.0.3",
++              "bundled": true
++            }
++          }
++        },
++        "util-deprecate": {
++          "version": "1.0.2",
++          "bundled": true
++        },
++        "vm-browserify": {
++          "version": "1.1.0",
++          "bundled": true
++        },
++        "xtend": {
++          "version": "4.0.1",
++          "bundled": true
++        }
++      }
++    },
++    "regenerator-runtime": {
++      "version": "0.13.4",
++      "resolved": "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.13.4.tgz",
++      "integrity": "sha512-plpwicqEzfEyTQohIKktWigcLzmNStMGwbOUbykx51/29Z3JOGYldaaNGK7ngNXV+UcoqvIMmloZ48Sr74sd+g=="
++    }
++  }
++}
 diff --git a/package.json b/package.json
 new file mode 100644
-index 0000000..4164b14
+index 0000000..f0c1811
 --- /dev/null
 +++ b/package.json
-@@ -0,0 +1,10 @@
+@@ -0,0 +1,22 @@
 +{
 +  "name": "simple-todos",
 +  "private": true,
 +  "scripts": {
-+    "start": "meteor run"
++    "start": "meteor run",
++    "test": "meteor test --once --driver-package meteortesting:mocha",
++    "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
++    "visualize": "meteor --production --extra-packages bundle-visualizer"
 +  },
 +  "dependencies": {
-+    "meteor-node-stubs": "~0.2.0"
++    "@babel/runtime": "^7.7.6",
++    "jquery": "^3.4.1",
++    "meteor-node-stubs": "^1.0.0"
++  },
++  "meteor": {
++    "mainModule": {
++      "client": "client/main.js",
++      "server": "server/main.js"
++    },
++    "testModule": "tests/main.js"
 +  }
 +}
 diff --git a/server/main.js b/server/main.js
@@ -288,13 +2952,39 @@ index 0000000..31a9e0e
 +Meteor.startup(() => {
 +  // code to run on server at startup
 +});
+diff --git a/tests/main.js b/tests/main.js
+new file mode 100644
+index 0000000..973d17e
+--- /dev/null
++++ b/tests/main.js
+@@ -0,0 +1,20 @@
++import assert from "assert";
++
++describe("simple-todos", function () {
++  it("package.json has correct name", async function () {
++    const { name } = await import("../package.json");
++    assert.strictEqual(name, "simple-todos");
++  });
++
++  if (Meteor.isClient) {
++    it("client is not server", function () {
++      assert.strictEqual(Meteor.isServer, false);
++    });
++  }
++
++  if (Meteor.isServer) {
++    it("server is not client", function () {
++      assert.strictEqual(Meteor.isClient, false);
++    });
++  }
++});
 -- 
 2.11.0
 
 
-From 431f75b28f8ee985b3ac341da6c4d752d204b135 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:07:22 -0700
+From 611bb62ef87b58bcac339a4f09b575a42043f86a Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 13:33:25 -0600
 Subject: [PATCH 02/48] Step 2.1: Remove starter HTML code
 
 ---
@@ -302,12 +2992,12 @@ Subject: [PATCH 02/48] Step 2.1: Remove starter HTML code
  1 file changed, 22 deletions(-)
 
 diff --git a/client/main.html b/client/main.html
-index 6fe0dc5..7c48505 100644
+index 15a7c7d..135c0b2 100644
 --- a/client/main.html
 +++ b/client/main.html
 @@ -1,25 +1,3 @@
  <head>
-   <title>simple</title>
+   <title>simple-todos</title>
  </head>
 -
 -<body>
@@ -325,19 +3015,19 @@ index 6fe0dc5..7c48505 100644
 -<template name="info">
 -  <h2>Learn Meteor!</h2>
 -  <ul>
--    <li><a href="https://www.meteor.com/try">Do the Tutorial</a></li>
--    <li><a href="http://guide.meteor.com">Follow the Guide</a></li>
--    <li><a href="https://docs.meteor.com">Read the Docs</a></li>
--    <li><a href="https://forums.meteor.com">Discussions</a></li>
+-    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
+-    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
+-    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
+-    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
 -  </ul>
 -</template>
 -- 
 2.11.0
 
 
-From 99cffc464f80899ce34cf446179e8041c9f5114c Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Thu, 17 Mar 2016 13:11:52 +1100
+From b61c90776940f059f47407e8a735a89687f3806c Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 13:36:09 -0600
 Subject: [PATCH 03/48] Step 2.2: Add starter HTML code
 
 ---
@@ -347,34 +3037,35 @@ Subject: [PATCH 03/48] Step 2.2: Add starter HTML code
 
 diff --git a/imports/ui/body.html b/imports/ui/body.html
 new file mode 100644
-index 0000000..23a6507
+index 0000000..da9cc97
 --- /dev/null
 +++ b/imports/ui/body.html
 @@ -0,0 +1,17 @@
 +<body>
-+  <div class="container">
-+    <header>
-+      <h1>Todo List</h1>
-+    </header>
-+
-+    <ul>
-+      {{#each tasks}}
-+        {{> task}}
-+      {{/each}}
-+    </ul>
-+  </div>
-+</body>
-+
-+<template name="task">
-+  <li>{{text}}</li>
-+</template>
++    <div class="container">
++      <header>
++        <h1>Todo List</h1>
++      </header>
++  
++      <ul>
++        {{#each tasks}}
++          {{> task}}
++        {{/each}}
++      </ul>
++    </div>
++  </body>
++  
++  <template name="task">
++    <li>{{text}}</li>
++  </template>
+\ No newline at end of file
 -- 
 2.11.0
 
 
-From 30e9ac16a2de85e74d5a6d92b16e41b37e7faf5e Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:07:50 -0700
+From 2d21f980a180ceeacd110b1b9d83c424629cc416 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 13:36:54 -0600
 Subject: [PATCH 04/48] Step 2.3: Add starter JS code
 
 ---
@@ -384,7 +3075,7 @@ Subject: [PATCH 04/48] Step 2.3: Add starter JS code
 
 diff --git a/imports/ui/body.js b/imports/ui/body.js
 new file mode 100644
-index 0000000..3ad20b1
+index 0000000..4c3513b
 --- /dev/null
 +++ b/imports/ui/body.js
 @@ -0,0 +1,11 @@
@@ -399,13 +3090,14 @@ index 0000000..3ad20b1
 +    { text: 'This is task 3' },
 +  ],
 +});
+\ No newline at end of file
 -- 
 2.11.0
 
 
-From d63fe20a79a2dd9be0034b72bba93d9654d10d31 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:08:17 -0700
+From a608ad45d7addb784083e3fcc34981c2bdde84c9 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 13:37:40 -0600
 Subject: [PATCH 05/48] Step 2.4: Import starter JS
 
 ---
@@ -413,7 +3105,7 @@ Subject: [PATCH 05/48] Step 2.4: Import starter JS
  1 file changed, 1 insertion(+), 22 deletions(-)
 
 diff --git a/client/main.js b/client/main.js
-index ecb3282..4e7c1a4 100644
+index ecb3282..2a526f3 100644
 --- a/client/main.js
 +++ b/client/main.js
 @@ -1,22 +1 @@
@@ -440,27 +3132,29 @@ index ecb3282..4e7c1a4 100644
 -  },
 -});
 +import '../imports/ui/body.js';
+\ No newline at end of file
 -- 
 2.11.0
 
 
-From 63f980943c048f8084f5a42543ba3e13b4088800 Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Thu, 17 Mar 2016 12:13:09 +1100
+From 951c1eddcd13ad58845638521239f0eaed50e5a4 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 15:42:21 -0600
 Subject: [PATCH 06/48] Step 2.5: Add CSS
 
 ---
- client/main.css | 125 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 125 insertions(+)
+ client/main.css | 124 +++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 123 insertions(+), 1 deletion(-)
 
 diff --git a/client/main.css b/client/main.css
-index b6b4052..ed5e77e 100644
+index 7f354f0..cec3ae6 100644
 --- a/client/main.css
 +++ b/client/main.css
-@@ -1 +1,126 @@
- /* CSS declarations go here */
-+body {
-+  font-family: sans-serif;
+@@ -1,4 +1,126 @@
++/* CSS declarations go here */
+ body {
+-  padding: 10px;
+   font-family: sans-serif;
 +  background-color: #315481;
 +  background-image: linear-gradient(to bottom, #315481, #918e82 100%);
 +  background-attachment: fixed;
@@ -475,7 +3169,7 @@ index b6b4052..ed5e77e 100644
 +  margin: 0;
 +
 +  font-size: 14px;
-+}
+ }
 +
 +.container {
 +  max-width: 600px;
@@ -584,13 +3278,14 @@ index b6b4052..ed5e77e 100644
 +    padding-bottom: 5px;
 +  }
 +}
+\ No newline at end of file
 -- 
 2.11.0
 
 
-From bbe752d39cf04a51376c1cd089b053615cf08df9 Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Thu, 17 Mar 2016 12:15:47 +1100
+From d600626c103a48c3a6989100868a33bc7b977fe0 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 13:39:52 -0600
 Subject: [PATCH 07/48] Step 3.1: Create tasks collection
 
 ---
@@ -600,20 +3295,21 @@ Subject: [PATCH 07/48] Step 3.1: Create tasks collection
 
 diff --git a/imports/api/tasks.js b/imports/api/tasks.js
 new file mode 100644
-index 0000000..3bed819
+index 0000000..dfeb446
 --- /dev/null
 +++ b/imports/api/tasks.js
 @@ -0,0 +1,3 @@
 +import { Mongo } from 'meteor/mongo';
 +
 +export const Tasks = new Mongo.Collection('tasks');
+\ No newline at end of file
 -- 
 2.11.0
 
 
-From 85ec00cdd88b93b68d2f3c517060594a8f015062 Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Thu, 17 Mar 2016 12:20:32 +1100
+From db9dff617978fa5041f091e0d5a72cf31ee08683 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 13:40:19 -0600
 Subject: [PATCH 08/48] Step 3.2: Load tasks collection on the server
 
 ---
@@ -621,7 +3317,7 @@ Subject: [PATCH 08/48] Step 3.2: Load tasks collection on the server
  1 file changed, 1 insertion(+), 5 deletions(-)
 
 diff --git a/server/main.js b/server/main.js
-index 31a9e0e..ab941a4 100644
+index 31a9e0e..0bce0ec 100644
 --- a/server/main.js
 +++ b/server/main.js
 @@ -1,5 +1 @@
@@ -631,13 +3327,14 @@ index 31a9e0e..ab941a4 100644
 -  // code to run on server at startup
 -});
 +import '../imports/api/tasks.js';
+\ No newline at end of file
 -- 
 2.11.0
 
 
-From f6b008980d6f04b93e05bf777bdb0378308f4b57 Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Thu, 17 Mar 2016 12:16:03 +1100
+From 1d7b540ff19b8c5717b1d93d26c7f1a9860606ac Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 13:41:19 -0600
 Subject: [PATCH 09/48] Step 3.3: Load tasks from Tasks collection
 
 ---
@@ -645,7 +3342,7 @@ Subject: [PATCH 09/48] Step 3.3: Load tasks from Tasks collection
  1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/imports/ui/body.js b/imports/ui/body.js
-index 3ad20b1..fc36022 100644
+index 4c3513b..8505966 100644
 --- a/imports/ui/body.js
 +++ b/imports/ui/body.js
 @@ -1,11 +1,11 @@
@@ -661,86 +3358,96 @@ index 3ad20b1..fc36022 100644
 -    { text: 'This is task 2' },
 -    { text: 'This is task 3' },
 -  ],
-+  tasks() {
-+    return Tasks.find({});
-+  },
++    tasks() {
++        return Tasks.find({});
++      },
  });
+\ No newline at end of file
 -- 
 2.11.0
 
 
-From 5181113b59242497a2593b844337a93944b7d78a Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:10:21 -0700
+From 2d6a8451111fc83c84ff0326218b897c39434021 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 13:56:19 -0600
 Subject: [PATCH 10/48] Step 4.1: Add form for new tasks
 
 ---
- imports/ui/body.html | 4 ++++
- 1 file changed, 4 insertions(+)
+ imports/ui/body.html | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
 diff --git a/imports/ui/body.html b/imports/ui/body.html
-index 23a6507..0a1f952 100644
+index da9cc97..5b34b41 100644
 --- a/imports/ui/body.html
 +++ b/imports/ui/body.html
-@@ -2,6 +2,10 @@
-   <div class="container">
-     <header>
-       <h1>Todo List</h1>
+@@ -2,8 +2,15 @@
+     <div class="container">
+       <header>
+         <h1>Todo List</h1>
 +
-+      <form class="new-task">
-+        <input type="text" name="text" placeholder="Type to add new tasks" />
-+      </form>
-     </header>
- 
-     <ul>
++        <form class="new-task">
++            <input type="text" name="text" placeholder="Type to add new tasks" />
++          </form>
++
+       </header>
+   
++
++
+       <ul>
+         {{#each tasks}}
+           {{> task}}
 -- 
 2.11.0
 
 
-From 828c084621cc5bd0d9373d54f4eda6188260bbda Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Thu, 17 Mar 2016 12:19:59 +1100
+From e5154f4a0c879ed3fcbd1a49a3eefdfed9b00bc9 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 13:43:21 -0600
 Subject: [PATCH 11/48] Step 4.2: Add event handler for form submit
 
 ---
- imports/ui/body.js | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+ imports/ui/body.js | 22 +++++++++++++++++++++-
+ 1 file changed, 21 insertions(+), 1 deletion(-)
 
 diff --git a/imports/ui/body.js b/imports/ui/body.js
-index fc36022..42ad1d5 100644
+index 8505966..2424c08 100644
 --- a/imports/ui/body.js
 +++ b/imports/ui/body.js
-@@ -9,3 +9,23 @@ Template.body.helpers({
-     return Tasks.find({});
-   },
- });
+@@ -8,4 +8,24 @@ Template.body.helpers({
+     tasks() {
+         return Tasks.find({});
+       },
+-});
+\ No newline at end of file
++});
 +
 +Template.body.events({
-+  'submit .new-task'(event) {
-+    // Prevent default browser form submit
-+    event.preventDefault();
-+
-+    // Get value from form element
-+    const target = event.target;
-+    const text = target.text.value;
-+
-+    // Insert a task into the collection
-+    Tasks.insert({
-+      text,
-+      createdAt: new Date(), // current time
-+    });
-+
-+    // Clear form
-+    target.text.value = '';
-+  },
-+});
++    'submit .new-task'(event) {
++      // Prevent default browser form submit
++      event.preventDefault();
++  
++      // Get value from form element
++      const target = event.target;
++      const text = target.text.value;
++  
++      // Insert a task into the collection
++      Tasks.insert({
++        text,
++        createdAt: new Date(), // current time
++      });
++  
++      // Clear form
++      target.text.value = '';
++    },
++  });
+\ No newline at end of file
 -- 
 2.11.0
 
 
-From 0dc5c4c9c5bb0f8f769ef704a90a981de6090847 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:12:14 -0700
+From bc845fb7e24b41433d23d089e644e8634329e5ef Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 13:44:24 -0600
 Subject: [PATCH 12/48] Step 4.3: Show newest tasks at the top
 
 ---
@@ -748,26 +3455,26 @@ Subject: [PATCH 12/48] Step 4.3: Show newest tasks at the top
  1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/imports/ui/body.js b/imports/ui/body.js
-index 42ad1d5..6fbc9d5 100644
+index 2424c08..f1658fe 100644
 --- a/imports/ui/body.js
 +++ b/imports/ui/body.js
 @@ -6,7 +6,8 @@ import './body.html';
  
  Template.body.helpers({
-   tasks() {
--    return Tasks.find({});
-+    // Show newest tasks at the top
-+    return Tasks.find({}, { sort: { createdAt: -1 } });
-   },
+     tasks() {
+-        return Tasks.find({});
++        // Show newest tasks at the top
++        return Tasks.find({}, { sort: { createdAt: -1 } });
+       },
  });
  
 -- 
 2.11.0
 
 
-From 89bc3233dc87cba97d7e5a89f659dfc463b8da53 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:12:57 -0700
+From f38127bdce9f70c129cc7c03900a3ca972c0d86f Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 13:45:03 -0600
 Subject: [PATCH 13/48] Step 5.1: Add buttons to Task component
 
 ---
@@ -777,26 +3484,27 @@ Subject: [PATCH 13/48] Step 5.1: Add buttons to Task component
 
 diff --git a/imports/ui/task.html b/imports/ui/task.html
 new file mode 100644
-index 0000000..c4ab8e5
+index 0000000..e88dcd9
 --- /dev/null
 +++ b/imports/ui/task.html
 @@ -0,0 +1,9 @@
 +<template name="task">
-+  <li class="{{#if checked}}checked{{/if}}">
-+    <button class="delete">&times;</button>
-+
-+    <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
-+
-+    <span class="text">{{text}}</span>
-+  </li>
-+</template>
++    <li class="{{#if checked}}checked{{/if}}">
++      <button class="delete">&times;</button>
++  
++      <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
++  
++      <span class="text">{{text}}</span>
++    </li>
++  </template>
+\ No newline at end of file
 -- 
 2.11.0
 
 
-From acb70c80fb362a856eb7254d5b7dbe8492e2dc83 Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Thu, 17 Mar 2016 12:23:12 +1100
+From 2e4a90cd810d3948826872f5286a69c3479bb2e0 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 13:48:14 -0600
 Subject: [PATCH 14/48] Step 5.2: Remove Tasks component from Body file
 
 ---
@@ -804,24 +3512,25 @@ Subject: [PATCH 14/48] Step 5.2: Remove Tasks component from Body file
  1 file changed, 4 deletions(-)
 
 diff --git a/imports/ui/body.html b/imports/ui/body.html
-index 0a1f952..c40a87b 100644
+index 5b34b41..93552d3 100644
 --- a/imports/ui/body.html
 +++ b/imports/ui/body.html
-@@ -15,7 +15,3 @@
-     </ul>
-   </div>
- </body>
--
--<template name="task">
--  <li>{{text}}</li>
--</template>
+@@ -18,7 +18,3 @@
+       </ul>
+     </div>
+   </body>
+-  
+-  <template name="task">
+-    <li>{{text}}</li>
+-  </template>
+\ No newline at end of file
 -- 
 2.11.0
 
 
-From 4f27c1302376e197c5e69b476f19d9cd13522ade Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Thu, 17 Mar 2016 12:26:44 +1100
+From 9823ad1bd75f13a8912ba0de8af43db7efd1a05d Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 13:48:53 -0600
 Subject: [PATCH 15/48] Step 5.3: Add event handlers for Task buttons
 
 ---
@@ -831,7 +3540,7 @@ Subject: [PATCH 15/48] Step 5.3: Add event handlers for Task buttons
 
 diff --git a/imports/ui/task.js b/imports/ui/task.js
 new file mode 100644
-index 0000000..782f932
+index 0000000..06b36b2
 --- /dev/null
 +++ b/imports/ui/task.js
 @@ -0,0 +1,17 @@
@@ -852,13 +3561,14 @@ index 0000000..782f932
 +    Tasks.remove(this._id);
 +  },
 +});
+\ No newline at end of file
 -- 
 2.11.0
 
 
-From a26ed7b132ec652a7c4cd9f088f7eb3300e86389 Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Thu, 17 Mar 2016 12:26:57 +1100
+From 55fe8c51b1301f68cdc815799689bba463f378c4 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 13:49:24 -0600
 Subject: [PATCH 16/48] Step 5.4: Import Task component from the body
 
 ---
@@ -866,7 +3576,7 @@ Subject: [PATCH 16/48] Step 5.4: Import Task component from the body
  1 file changed, 1 insertion(+)
 
 diff --git a/imports/ui/body.js b/imports/ui/body.js
-index 6fbc9d5..bac22c6 100644
+index f1658fe..bc1e9df 100644
 --- a/imports/ui/body.js
 +++ b/imports/ui/body.js
 @@ -2,6 +2,7 @@ import { Template } from 'meteor/templating';
@@ -881,38 +3591,46 @@ index 6fbc9d5..bac22c6 100644
 2.11.0
 
 
-From 4bfaa6f070101cb0caf35ab30343e1126b0e6701 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:24:18 -0700
+From d0aec49b70b704c40f9e5a80562db6e847863544 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 13:50:06 -0600
 Subject: [PATCH 17/48] Step 7.1: Add hide-completed checkbox to HTML
 
 ---
- imports/ui/body.html | 5 +++++
- 1 file changed, 5 insertions(+)
+ imports/ui/body.html | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/imports/ui/body.html b/imports/ui/body.html
-index c40a87b..b634377 100644
+index 93552d3..4481687 100644
 --- a/imports/ui/body.html
 +++ b/imports/ui/body.html
 @@ -3,6 +3,11 @@
-     <header>
-       <h1>Todo List</h1>
+       <header>
+         <h1>Todo List</h1>
  
-+      <label class="hide-completed">
++    <label class="hide-completed">
 +        <input type="checkbox" />
 +        Hide Completed Tasks
 +      </label>
 +
-       <form class="new-task">
-         <input type="text" name="text" placeholder="Type to add new tasks" />
-       </form>
+         <form class="new-task">
+             <input type="text" name="text" placeholder="Type to add new tasks" />
+           </form>
+@@ -10,7 +15,6 @@
+       </header>
+   
+ 
+-
+       <ul>
+         {{#each tasks}}
+           {{> task}}
 -- 
 2.11.0
 
 
-From 11349ad2cad437421ad9fadb05f000fc2f24d928 Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Thu, 17 Mar 2016 12:33:00 +1100
+From d6ae48aa56b8ff14db87d6bb673db9a8134078d6 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 13:50:59 -0600
 Subject: [PATCH 18/48] Step 7.2: Add reactive-dict package
 
 ---
@@ -921,33 +3639,33 @@ Subject: [PATCH 18/48] Step 7.2: Add reactive-dict package
  2 files changed, 2 insertions(+)
 
 diff --git a/.meteor/packages b/.meteor/packages
-index d4c8001..a113025 100644
+index 0d859be..15c84f7 100644
 --- a/.meteor/packages
 +++ b/.meteor/packages
-@@ -19,3 +19,4 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
+@@ -21,3 +21,4 @@ shell-server@0.4.0            # Server-side component of the `meteor shell` comm
  
- autopublish             # Publish all data to the clients (for prototyping)
- insecure                # Allow all DB writes from clients (for prototyping)
+ autopublish@1.0.7             # Publish all data to the clients (for prototyping)
+ insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
 +reactive-dict
 diff --git a/.meteor/versions b/.meteor/versions
-index c3395d2..ccbd7bb 100644
+index 3af382b..70771e6 100644
 --- a/.meteor/versions
 +++ b/.meteor/versions
-@@ -51,6 +51,7 @@ observe-sequence@1.0.9-rc.2
- ordered-dict@1.0.5-rc.2
- promise@0.6.4-rc.2
- random@1.0.7-rc.2
-+reactive-dict@1.1.5-rc.2
- reactive-var@1.0.7-rc.2
- reload@1.1.6-rc.2
- retry@1.0.5-rc.2
+@@ -57,6 +57,7 @@ observe-sequence@1.0.16
+ ordered-dict@1.1.0
+ promise@0.11.2
+ random@1.1.0
++reactive-dict@1.3.0
+ reactive-var@1.0.11
+ reload@1.3.0
+ retry@1.1.0
 -- 
 2.11.0
 
 
-From 349bd90805ba098d08c9445c00fb6776f2cb8b08 Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Thu, 17 Mar 2016 12:29:41 +1100
+From bca010597f4af2b3dc01f32029661d3e4f5baf7a Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 13:52:19 -0600
 Subject: [PATCH 19/48] Step 7.3: Add state dictionary to the body
 
 ---
@@ -955,7 +3673,7 @@ Subject: [PATCH 19/48] Step 7.3: Add state dictionary to the body
  1 file changed, 5 insertions(+)
 
 diff --git a/imports/ui/body.js b/imports/ui/body.js
-index bac22c6..d429b10 100644
+index bc1e9df..1bd96b1 100644
 --- a/imports/ui/body.js
 +++ b/imports/ui/body.js
 @@ -1,10 +1,15 @@
@@ -968,19 +3686,19 @@ index bac22c6..d429b10 100644
  import './body.html';
  
 +Template.body.onCreated(function bodyOnCreated() {
-+  this.state = new ReactiveDict();
-+});
++    this.state = new ReactiveDict();
++  });
 +
  Template.body.helpers({
-   tasks() {
-     // Show newest tasks at the top
+     tasks() {
+         // Show newest tasks at the top
 -- 
 2.11.0
 
 
-From caa11a11d808123299380ee26229c9f358ba1775 Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Thu, 17 Mar 2016 12:30:11 +1100
+From e62e925d1bb40018cfadf09a0a6b29d2929dd38d Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 13:52:54 -0600
 Subject: [PATCH 20/48] Step 7.4: Add event handler for checkbox
 
 ---
@@ -988,24 +3706,25 @@ Subject: [PATCH 20/48] Step 7.4: Add event handler for checkbox
  1 file changed, 3 insertions(+)
 
 diff --git a/imports/ui/body.js b/imports/ui/body.js
-index d429b10..856dad4 100644
+index 1bd96b1..6a064f0 100644
 --- a/imports/ui/body.js
 +++ b/imports/ui/body.js
 @@ -35,4 +35,7 @@ Template.body.events({
-     // Clear form
-     target.text.value = '';
-   },
-+  'change .hide-completed input'(event, instance) {
-+    instance.state.set('hideCompleted', event.target.checked);
-+  },
- });
+       // Clear form
+       target.text.value = '';
+     },
++    'change .hide-completed input'(event, instance) {
++        instance.state.set('hideCompleted', event.target.checked);
++      },
+   });
+\ No newline at end of file
 -- 
 2.11.0
 
 
-From 10e30f2ff2b42a53bd675433f65d21ac2beb679e Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Thu, 17 Mar 2016 12:31:16 +1100
+From 60afe2159b407d19419c781921301b2b3bf1587e Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 13:53:36 -0600
 Subject: [PATCH 21/48] Step 7.5: Add helpers to body template
 
 ---
@@ -1013,30 +3732,30 @@ Subject: [PATCH 21/48] Step 7.5: Add helpers to body template
  1 file changed, 6 insertions(+), 1 deletion(-)
 
 diff --git a/imports/ui/body.js b/imports/ui/body.js
-index 856dad4..18422ae 100644
+index 6a064f0..5203c5c 100644
 --- a/imports/ui/body.js
 +++ b/imports/ui/body.js
 @@ -12,7 +12,12 @@ Template.body.onCreated(function bodyOnCreated() {
  
  Template.body.helpers({
-   tasks() {
--    // Show newest tasks at the top
-+    const instance = Template.instance();
-+    if (instance.state.get('hideCompleted')) {
-+      // If hide completed is checked, filter tasks
-+      return Tasks.find({ checked: { $ne: true } }, { sort: { createdAt: -1 } });
-+    }
-+    // Otherwise, return all of the tasks
-     return Tasks.find({}, { sort: { createdAt: -1 } });
-   },
+     tasks() {
+-        // Show newest tasks at the top
++        const instance = Template.instance();
++        if (instance.state.get('hideCompleted')) {
++          // If hide completed is checked, filter tasks
++          return Tasks.find({ checked: { $ne: true } }, { sort: { createdAt: -1 } });
++        }
++        // Otherwise, return all of the tasks
+         return Tasks.find({}, { sort: { createdAt: -1 } });
+       },
  });
 -- 
 2.11.0
 
 
-From 79b34c54716abd5aaa1a5d9f5068a8bd7c24e35b Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:26:17 -0700
+From cbe5d810a2f08ae385b459062629797abf42225b Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 13:54:12 -0600
 Subject: [PATCH 22/48] Step 7.6: Add incompleteCount helper to body
 
 ---
@@ -1044,52 +3763,71 @@ Subject: [PATCH 22/48] Step 7.6: Add incompleteCount helper to body
  1 file changed, 3 insertions(+)
 
 diff --git a/imports/ui/body.js b/imports/ui/body.js
-index 18422ae..3ca9a47 100644
+index 5203c5c..a3a3f50 100644
 --- a/imports/ui/body.js
 +++ b/imports/ui/body.js
-@@ -20,6 +20,9 @@ Template.body.helpers({
-     // Otherwise, return all of the tasks
-     return Tasks.find({}, { sort: { createdAt: -1 } });
-   },
-+  incompleteCount() {
-+    return Tasks.find({ checked: { $ne: true } }).count();
-+  },
+@@ -19,6 +19,9 @@ Template.body.helpers({
+         }
+         // Otherwise, return all of the tasks
+         return Tasks.find({}, { sort: { createdAt: -1 } });
++    },
++    incompleteCount() {
++        return Tasks.find({ checked: { $ne: true } }).count();
+       },
  });
  
- Template.body.events({
 -- 
 2.11.0
 
 
-From b26b4d486c9136a3db7beb5d63759b7fa1cdf0b3 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:26:37 -0700
+From 430e3a3843f3614015866a0159e7986ddeb59acb Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 15:50:47 -0600
 Subject: [PATCH 23/48] Step 7.7: Display incompleteCount
 
 ---
- imports/ui/body.html | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ imports/ui/body.html | 15 +++++++--------
+ 1 file changed, 7 insertions(+), 8 deletions(-)
 
 diff --git a/imports/ui/body.html b/imports/ui/body.html
-index b634377..6738d6c 100644
+index 4481687..1cb896a 100644
 --- a/imports/ui/body.html
 +++ b/imports/ui/body.html
-@@ -1,7 +1,7 @@
+@@ -1,20 +1,19 @@
  <body>
-   <div class="container">
-     <header>
--      <h1>Todo List</h1>
+     <div class="container">
+       <header>
+-        <h1>Todo List</h1>
 +      <h1>Todo List ({{incompleteCount}})</h1>
  
-       <label class="hide-completed">
-         <input type="checkbox" />
+-    <label class="hide-completed">
+-        <input type="checkbox" />
+-        Hide Completed Tasks
++      <label class="hide-completed">
++      <input type="checkbox" />
++          Hide Completed Tasks
+       </label>
+ 
+-        <form class="new-task">
+-            <input type="text" name="text" placeholder="Type to add new tasks" />
+-          </form>
++      <form class="new-task">
++        <input type="text" name="text" placeholder="Type to add new tasks" />
++      </form>
+ 
+       </header>
+   
+-
+       <ul>
+         {{#each tasks}}
+           {{> task}}
 -- 
 2.11.0
 
 
-From eaa7cfb2bf6257ec2f64f9cfe454c688de9cc6c3 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:27:03 -0700
+From d10463ce94e485ddb24f6051e628bdc3a4b61b77 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 13:59:41 -0600
 Subject: [PATCH 24/48] Step 8.1: Add accounts-ui and accounts-password
 
 ---
@@ -1098,84 +3836,87 @@ Subject: [PATCH 24/48] Step 8.1: Add accounts-ui and accounts-password
  2 files changed, 16 insertions(+)
 
 diff --git a/.meteor/packages b/.meteor/packages
-index a113025..5c68b39 100644
+index 15c84f7..f0279f8 100644
 --- a/.meteor/packages
 +++ b/.meteor/packages
-@@ -20,3 +20,5 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
- autopublish             # Publish all data to the clients (for prototyping)
- insecure                # Allow all DB writes from clients (for prototyping)
+@@ -22,3 +22,5 @@ shell-server@0.4.0            # Server-side component of the `meteor shell` comm
+ autopublish@1.0.7             # Publish all data to the clients (for prototyping)
+ insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
  reactive-dict
 +accounts-ui
 +accounts-password
 diff --git a/.meteor/versions b/.meteor/versions
-index ccbd7bb..b739407 100644
+index 70771e6..01349dc 100644
 --- a/.meteor/versions
 +++ b/.meteor/versions
 @@ -1,3 +1,7 @@
-+accounts-base@1.2.4-rc.2
-+accounts-password@1.1.6-rc.2
-+accounts-ui@1.1.7-rc.2
-+accounts-ui-unstyled@1.1.10-rc.2
- allow-deny@1.0.2-rc.2
- autopublish@1.0.5-rc.2
- autoupdate@1.2.6-rc.2
-@@ -16,12 +20,14 @@ check@1.1.2-rc.2
- ddp@1.2.3-rc.2
- ddp-client@1.2.3-rc.2
- ddp-common@1.2.3-rc.2
-+ddp-rate-limiter@1.0.2-rc.2
- ddp-server@1.2.4-rc.2
- deps@1.0.10-rc.2
- diff-sequence@1.0.3-rc.2
- ecmascript@0.4.1-rc.2
- ecmascript-runtime@0.2.8-rc.2
- ejson@1.0.9-rc.2
-+email@1.0.10-rc.2
- es5-shim@4.5.8-rc.2
- fastclick@1.0.9-rc.2
- geojson-utils@1.0.6-rc.2
-@@ -33,7 +39,9 @@ id-map@1.0.5-rc.2
- insecure@1.0.5-rc.2
- jquery@1.11.6-rc.2
- launch-screen@1.0.7-rc.2
-+less@2.5.5-rc.2
- livedata@1.0.16-rc.2
-+localstorage@1.0.7-rc.2
- logging@1.0.10-rc.2
- meteor@1.1.12-rc.2
- meteor-base@1.0.2-rc.2
-@@ -46,18 +54,24 @@ modules@0.5.1-rc.2
- modules-runtime@0.6.1-rc.2
- mongo@1.1.5-rc.2
- mongo-id@1.0.2-rc.2
-+npm-bcrypt@0.7.8_2
- npm-mongo@1.4.41-rc.2
- observe-sequence@1.0.9-rc.2
- ordered-dict@1.0.5-rc.2
- promise@0.6.4-rc.2
- random@1.0.7-rc.2
-+rate-limit@1.0.2-rc.2
- reactive-dict@1.1.5-rc.2
- reactive-var@1.0.7-rc.2
- reload@1.1.6-rc.2
- retry@1.0.5-rc.2
- routepolicy@1.0.8-rc.2
-+service-configuration@1.0.7-rc.2
-+session@1.1.3-rc.2
-+sha@1.0.5-rc.2
- spacebars@1.0.9-rc.2
- spacebars-compiler@1.0.9-rc.2
-+srp@1.0.6-rc.2
- standard-minifier-css@1.0.4-rc.2
- standard-minifier-js@1.0.4-rc.2
- templating@1.1.7-rc.2
++accounts-base@1.5.0
++accounts-password@1.5.3
++accounts-ui@1.3.1
++accounts-ui-unstyled@1.4.2
+ allow-deny@1.1.0
+ autopublish@1.0.7
+ autoupdate@1.6.0
+@@ -16,6 +20,7 @@ check@1.3.1
+ ddp@1.4.0
+ ddp-client@2.3.3
+ ddp-common@1.4.0
++ddp-rate-limiter@1.0.7
+ ddp-server@2.3.1
+ deps@1.0.12
+ diff-sequence@1.1.1
+@@ -25,6 +30,7 @@ ecmascript-runtime@0.7.0
+ ecmascript-runtime-client@0.10.0
+ ecmascript-runtime-server@0.9.0
+ ejson@1.1.1
++email@1.2.3
+ es5-shim@4.8.0
+ fetch@0.1.1
+ geojson-utils@1.0.10
+@@ -36,7 +42,9 @@ insecure@1.0.7
+ inter-process-messaging@0.1.0
+ jquery@3.0.0
+ launch-screen@1.1.1
++less@2.8.0
+ livedata@1.0.18
++localstorage@1.2.0
+ logging@1.1.20
+ meteor@1.9.3
+ meteor-base@1.4.0
+@@ -52,20 +60,26 @@ mongo@1.8.1
+ mongo-decimal@0.1.1
+ mongo-dev-server@1.1.0
+ mongo-id@1.0.7
++npm-bcrypt@0.9.3
+ npm-mongo@3.3.0
+ observe-sequence@1.0.16
+ ordered-dict@1.1.0
+ promise@0.11.2
+ random@1.1.0
++rate-limit@1.0.9
+ reactive-dict@1.3.0
+ reactive-var@1.0.11
+ reload@1.3.0
+ retry@1.1.0
+ routepolicy@1.1.0
++service-configuration@1.0.11
++session@1.2.0
++sha@1.0.9
+ shell-server@0.4.0
+ socket-stream-client@0.2.3
+ spacebars@1.0.15
+ spacebars-compiler@1.1.3
++srp@1.0.12
+ standard-minifier-css@1.6.0
+ standard-minifier-js@2.6.0
+ templating@1.3.2
 -- 
 2.11.0
 
 
-From bc9fb936699c1ce8a0643e5c563043d560a04811 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:27:23 -0700
+From da475a5f7d644b8590efef02508b44dc6205d3aa Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 14:00:37 -0600
 Subject: [PATCH 25/48] Step 8.2: Include loginButtons
 
 ---
@@ -1183,11 +3924,11 @@ Subject: [PATCH 25/48] Step 8.2: Include loginButtons
  1 file changed, 2 insertions(+)
 
 diff --git a/imports/ui/body.html b/imports/ui/body.html
-index 6738d6c..6c60a17 100644
+index 1cb896a..33917bd 100644
 --- a/imports/ui/body.html
 +++ b/imports/ui/body.html
 @@ -8,6 +8,8 @@
-         Hide Completed Tasks
+           Hide Completed Tasks
        </label>
  
 +      {{> loginButtons}}
@@ -1199,9 +3940,9 @@ index 6738d6c..6c60a17 100644
 2.11.0
 
 
-From 7c48c9aa89e26eac39cc67046f85e54bab5889fe Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Thu, 17 Mar 2016 12:36:02 +1100
+From e00d070124f30adb4e3e647cf7c8db90930fe135 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 14:01:28 -0600
 Subject: [PATCH 26/48] Step 8.3: Configure accounts-ui
 
 ---
@@ -1211,7 +3952,7 @@ Subject: [PATCH 26/48] Step 8.3: Configure accounts-ui
 
 diff --git a/imports/startup/accounts-config.js b/imports/startup/accounts-config.js
 new file mode 100644
-index 0000000..7e4f7e5
+index 0000000..4121009
 --- /dev/null
 +++ b/imports/startup/accounts-config.js
 @@ -0,0 +1,5 @@
@@ -1220,13 +3961,14 @@ index 0000000..7e4f7e5
 +Accounts.ui.config({
 +  passwordSignupFields: 'USERNAME_ONLY',
 +});
+\ No newline at end of file
 -- 
 2.11.0
 
 
-From 47fde1a42d5d6d1b765b2f16d0f0cc48e0567be1 Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Thu, 17 Mar 2016 12:36:36 +1100
+From 3abc8eb2f87033b45a9c9b874e9ba3bc927b7841 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 14:01:55 -0600
 Subject: [PATCH 27/48] Step 8.4: Import accounts configuration
 
 ---
@@ -1234,19 +3976,20 @@ Subject: [PATCH 27/48] Step 8.4: Import accounts configuration
  1 file changed, 1 insertion(+)
 
 diff --git a/client/main.js b/client/main.js
-index 4e7c1a4..739c50f 100644
+index 2a526f3..d7368df 100644
 --- a/client/main.js
 +++ b/client/main.js
 @@ -1 +1,2 @@
 +import '../imports/startup/accounts-config.js';
  import '../imports/ui/body.js';
+\ No newline at end of file
 -- 
 2.11.0
 
 
-From 2e4234a228346ca731731166ca12aa38c857d82d Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:28:24 -0700
+From 8b9858e960ef50e0176f3256af42bf7b5e9d6a1f Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 14:04:30 -0600
 Subject: [PATCH 28/48] Step 8.5: Update insert to include user data
 
 ---
@@ -1254,7 +3997,7 @@ Subject: [PATCH 28/48] Step 8.5: Update insert to include user data
  1 file changed, 3 insertions(+)
 
 diff --git a/imports/ui/body.js b/imports/ui/body.js
-index 3ca9a47..08fad55 100644
+index a3a3f50..3bef447 100644
 --- a/imports/ui/body.js
 +++ b/imports/ui/body.js
 @@ -1,3 +1,4 @@
@@ -1263,21 +4006,21 @@ index 3ca9a47..08fad55 100644
  import { ReactiveDict } from 'meteor/reactive-dict';
  
 @@ -38,6 +39,8 @@ Template.body.events({
-     Tasks.insert({
-       text,
-       createdAt: new Date(), // current time
-+      owner: Meteor.userId(),
-+      username: Meteor.user().username,
-     });
- 
-     // Clear form
+       Tasks.insert({
+         text,
+         createdAt: new Date(), // current time
++        owner: Meteor.userId(),
++        username: Meteor.user().username,
+       });
+   
+       // Clear form
 -- 
 2.11.0
 
 
-From 7083c5b56ba521ed7f34a7039bb3510e6f522534 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:28:47 -0700
+From e913f6dc094444e36cc57657f569d554343b60ee Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 14:05:14 -0600
 Subject: [PATCH 29/48] Step 8.6: Only show add task form if logged in
 
 ---
@@ -1285,7 +4028,7 @@ Subject: [PATCH 29/48] Step 8.6: Only show add task form if logged in
  1 file changed, 5 insertions(+), 3 deletions(-)
 
 diff --git a/imports/ui/body.html b/imports/ui/body.html
-index 6c60a17..6a9e4e1 100644
+index 33917bd..4bb5208 100644
 --- a/imports/ui/body.html
 +++ b/imports/ui/body.html
 @@ -10,9 +10,11 @@
@@ -1297,19 +4040,19 @@ index 6c60a17..6a9e4e1 100644
 -      </form>
 +      {{#if currentUser}}
 +        <form class="new-task">
-+          <input type="text" name="text" placeholder="Type to add new tasks" />
++            <input type="text" name="text" placeholder="Type to add new tasks" />
 +        </form>
 +      {{/if}}
-     </header>
  
-     <ul>
+       </header>
+   
 -- 
 2.11.0
 
 
-From da75b1705c5d5ae3470f47406c261d4303f95a87 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:29:11 -0700
+From 3deec55da32ad638a618086317fb563afb936d2d Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 14:05:50 -0600
 Subject: [PATCH 30/48] Step 8.7: Display username next to task
 
 ---
@@ -1317,24 +4060,25 @@ Subject: [PATCH 30/48] Step 8.7: Display username next to task
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/imports/ui/task.html b/imports/ui/task.html
-index c4ab8e5..c42e8fc 100644
+index e88dcd9..9fa8910 100644
 --- a/imports/ui/task.html
 +++ b/imports/ui/task.html
 @@ -4,6 +4,6 @@
- 
-     <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
- 
--    <span class="text">{{text}}</span>
-+    <span class="text"><strong>{{username}}</strong> - {{text}}</span>
-   </li>
- </template>
+   
+       <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+   
+-      <span class="text">{{text}}</span>
++      <span class="text"><strong>{{username}}</strong> - {{text}}</span>
+     </li>
+   </template>
+\ No newline at end of file
 -- 
 2.11.0
 
 
-From fc20c31540886a1c6b63673217f63e485c076cec Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:29:52 -0700
+From bab7b164fdbae9dbd1eb86cd5ae7426d9e889326 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 14:06:30 -0600
 Subject: [PATCH 31/48] Step 9.1: Remove insecure package
 
 ---
@@ -1343,44 +4087,44 @@ Subject: [PATCH 31/48] Step 9.1: Remove insecure package
  2 files changed, 2 deletions(-)
 
 diff --git a/.meteor/packages b/.meteor/packages
-index 5c68b39..d4578d9 100644
+index f0279f8..7a8a0a2 100644
 --- a/.meteor/packages
 +++ b/.meteor/packages
-@@ -18,7 +18,6 @@ es5-shim                # ECMAScript 5 compatibility for older browsers.
- ecmascript              # Enable ECMAScript2015+ syntax in app code
+@@ -20,7 +20,6 @@ typescript@3.7.5              # Enable TypeScript syntax in .ts and .tsx modules
+ shell-server@0.4.0            # Server-side component of the `meteor shell` command
  
- autopublish             # Publish all data to the clients (for prototyping)
--insecure                # Allow all DB writes from clients (for prototyping)
+ autopublish@1.0.7             # Publish all data to the clients (for prototyping)
+-insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
  reactive-dict
  accounts-ui
  accounts-password
 diff --git a/.meteor/versions b/.meteor/versions
-index b739407..3d9bd1e 100644
+index 01349dc..d4cc8a7 100644
 --- a/.meteor/versions
 +++ b/.meteor/versions
-@@ -36,7 +36,6 @@ html-tools@1.0.7-rc.2
- htmljs@1.0.7-rc.2
- http@1.1.3-rc.2
- id-map@1.0.5-rc.2
--insecure@1.0.5-rc.2
- jquery@1.11.6-rc.2
- launch-screen@1.0.7-rc.2
- less@2.5.5-rc.2
+@@ -38,7 +38,6 @@ hot-code-push@1.0.4
+ html-tools@1.0.11
+ htmljs@1.0.11
+ id-map@1.1.0
+-insecure@1.0.7
+ inter-process-messaging@0.1.0
+ jquery@3.0.0
+ launch-screen@1.1.1
 -- 
 2.11.0
 
 
-From aa0357a3c29f7fdedfbb7ff2b109e990831bb399 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:30:20 -0700
+From cada04125824de9f9b0d055101a606a952f7ef1f Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 14:07:39 -0600
 Subject: [PATCH 32/48] Step 9.2: Define some methods
 
 ---
- imports/api/tasks.js | 31 +++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+ imports/api/tasks.js | 33 ++++++++++++++++++++++++++++++++-
+ 1 file changed, 32 insertions(+), 1 deletion(-)
 
 diff --git a/imports/api/tasks.js b/imports/api/tasks.js
-index 3bed819..0201eb4 100644
+index dfeb446..329e381 100644
 --- a/imports/api/tasks.js
 +++ b/imports/api/tasks.js
 @@ -1,3 +1,34 @@
@@ -1388,22 +4132,24 @@ index 3bed819..0201eb4 100644
  import { Mongo } from 'meteor/mongo';
 +import { check } from 'meteor/check';
  
- export const Tasks = new Mongo.Collection('tasks');
+-export const Tasks = new Mongo.Collection('tasks');
+\ No newline at end of file
++export const Tasks = new Mongo.Collection('tasks');
 +
 +Meteor.methods({
 +  'tasks.insert'(text) {
 +    check(text, String);
 +
 +    // Make sure the user is logged in before inserting a task
-+    if (! Meteor.userId()) {
++    if (! this.userId) {
 +      throw new Meteor.Error('not-authorized');
 +    }
 +
 +    Tasks.insert({
 +      text,
 +      createdAt: new Date(),
-+      owner: Meteor.userId(),
-+      username: Meteor.user().username,
++      owner: this.userId,
++      username: Meteor.users.findOne(this.userId).username,
 +    });
 +  },
 +  'tasks.remove'(taskId) {
@@ -1418,60 +4164,62 @@ index 3bed819..0201eb4 100644
 +    Tasks.update(taskId, { $set: { checked: setChecked } });
 +  },
 +});
+\ No newline at end of file
 -- 
 2.11.0
 
 
-From f6f479327894e4d8f1cd559cdb587c93a86acb33 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:31:24 -0700
-Subject: [PATCH 33/48] Step 9.3: Replace insert with addTask method
+From 7586870655b6fcf79285d6efd70efe3e4f69885d Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 14:08:49 -0600
+Subject: [PATCH 33/48] Step 9.3: Replace insert with tasks.insert method
 
 ---
  imports/ui/body.js | 7 +------
  1 file changed, 1 insertion(+), 6 deletions(-)
 
 diff --git a/imports/ui/body.js b/imports/ui/body.js
-index 08fad55..988f6a5 100644
+index 3bef447..6fd5ce2 100644
 --- a/imports/ui/body.js
 +++ b/imports/ui/body.js
 @@ -36,12 +36,7 @@ Template.body.events({
-     const text = target.text.value;
- 
-     // Insert a task into the collection
--    Tasks.insert({
--      text,
--      createdAt: new Date(), // current time
--      owner: Meteor.userId(),
--      username: Meteor.user().username,
--    });
-+    Meteor.call('tasks.insert', text);
- 
-     // Clear form
-     target.text.value = '';
+       const text = target.text.value;
+   
+       // Insert a task into the collection
+-      Tasks.insert({
+-        text,
+-        createdAt: new Date(), // current time
+-        owner: Meteor.userId(),
+-        username: Meteor.user().username,
+-      });
++      Meteor.call('tasks.insert', text);
+   
+       // Clear form
+       target.text.value = '';
 -- 
 2.11.0
 
 
-From 574d23454196ee22d0ea3bc6cd152b41e37e42cd Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:31:46 -0700
+From bf48a7d3484927abb07fba451275589b1442bdec Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 14:09:51 -0600
 Subject: [PATCH 34/48] Step 9.4: Replace update and remove with methods
 
 ---
- imports/ui/task.js | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
+ imports/ui/task.js | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
 diff --git a/imports/ui/task.js b/imports/ui/task.js
-index 782f932..3775ceb 100644
+index 06b36b2..e0e8486 100644
 --- a/imports/ui/task.js
 +++ b/imports/ui/task.js
-@@ -1,17 +1,14 @@
+@@ -1,17 +1,18 @@
 +import { Meteor } from 'meteor/meteor';
  import { Template } from 'meteor/templating';
  
 -import { Tasks } from '../api/tasks.js';
--
++
+ 
  import './task.html';
  
  Template.task.events({
@@ -1481,19 +4229,22 @@ index 782f932..3775ceb 100644
 -      $set: { checked: ! this.checked },
 -    });
 +    Meteor.call('tasks.setChecked', this._id, !this.checked);
++
++
    },
    'click .delete'() {
 -    Tasks.remove(this._id);
 +    Meteor.call('tasks.remove', this._id);
    },
  });
+\ No newline at end of file
 -- 
 2.11.0
 
 
-From d96e7791d8be06e726b02b9a40abdc23630d99e6 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:32:19 -0700
+From 7f28e06bd232a32cc503b1e8d8a346ffebaa22e2 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 14:10:26 -0600
 Subject: [PATCH 35/48] Step 10.1: Remove autopublish
 
 ---
@@ -1502,36 +4253,36 @@ Subject: [PATCH 35/48] Step 10.1: Remove autopublish
  2 files changed, 2 deletions(-)
 
 diff --git a/.meteor/packages b/.meteor/packages
-index d4578d9..3ecf3a1 100644
+index 7a8a0a2..b186595 100644
 --- a/.meteor/packages
 +++ b/.meteor/packages
-@@ -17,7 +17,6 @@ standard-minifier-js    # JS minifier run for production mode
- es5-shim                # ECMAScript 5 compatibility for older browsers.
- ecmascript              # Enable ECMAScript2015+ syntax in app code
+@@ -19,7 +19,6 @@ ecmascript@0.14.2              # Enable ECMAScript2015+ syntax in app code
+ typescript@3.7.5              # Enable TypeScript syntax in .ts and .tsx modules
+ shell-server@0.4.0            # Server-side component of the `meteor shell` command
  
--autopublish             # Publish all data to the clients (for prototyping)
+-autopublish@1.0.7             # Publish all data to the clients (for prototyping)
  reactive-dict
  accounts-ui
  accounts-password
 diff --git a/.meteor/versions b/.meteor/versions
-index 3d9bd1e..4f59e62 100644
+index d4cc8a7..4c4e286 100644
 --- a/.meteor/versions
 +++ b/.meteor/versions
-@@ -3,7 +3,6 @@ accounts-password@1.1.6-rc.2
- accounts-ui@1.1.7-rc.2
- accounts-ui-unstyled@1.1.10-rc.2
- allow-deny@1.0.2-rc.2
--autopublish@1.0.5-rc.2
- autoupdate@1.2.6-rc.2
- babel-compiler@6.5.1-rc.2
- babel-runtime@0.1.6-rc.2
+@@ -3,7 +3,6 @@ accounts-password@1.5.3
+ accounts-ui@1.3.1
+ accounts-ui-unstyled@1.4.2
+ allow-deny@1.1.0
+-autopublish@1.0.7
+ autoupdate@1.6.0
+ babel-compiler@7.5.2
+ babel-runtime@1.5.0
 -- 
 2.11.0
 
 
-From 09284b4286add29217f39a59c7b7c63b93d6a74f Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Thu, 17 Mar 2016 12:45:32 +1100
+From 13aa473c73d118b9089caee9359bb7e7d84286aa Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 14:10:55 -0600
 Subject: [PATCH 36/48] Step 10.2: Add publication for tasks
 
 ---
@@ -1539,7 +4290,7 @@ Subject: [PATCH 36/48] Step 10.2: Add publication for tasks
  1 file changed, 7 insertions(+)
 
 diff --git a/imports/api/tasks.js b/imports/api/tasks.js
-index 0201eb4..234a839 100644
+index 329e381..cf4ddff 100644
 --- a/imports/api/tasks.js
 +++ b/imports/api/tasks.js
 @@ -4,6 +4,13 @@ import { check } from 'meteor/check';
@@ -1547,11 +4298,11 @@ index 0201eb4..234a839 100644
  export const Tasks = new Mongo.Collection('tasks');
  
 +if (Meteor.isServer) {
-+  // This code only runs on the server
-+  Meteor.publish('tasks', function tasksPublication() {
-+    return Tasks.find();
-+  });
-+}
++    // This code only runs on the server
++    Meteor.publish('tasks', function tasksPublication() {
++      return Tasks.find();
++    });
++  }
 +
  Meteor.methods({
    'tasks.insert'(text) {
@@ -1560,9 +4311,9 @@ index 0201eb4..234a839 100644
 2.11.0
 
 
-From cf3557458e16d0477f61cd2cdc5d07adbe225de6 Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Thu, 17 Mar 2016 12:45:58 +1100
+From 04c6e1757320fa0520af260298f1706d6d520b6a Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 14:11:29 -0600
 Subject: [PATCH 37/48] Step 10.3: Subscribe to tasks
 
 ---
@@ -1570,24 +4321,24 @@ Subject: [PATCH 37/48] Step 10.3: Subscribe to tasks
  1 file changed, 1 insertion(+)
 
 diff --git a/imports/ui/body.js b/imports/ui/body.js
-index 988f6a5..8a4407f 100644
+index 6fd5ce2..3954e2c 100644
 --- a/imports/ui/body.js
 +++ b/imports/ui/body.js
 @@ -9,6 +9,7 @@ import './body.html';
  
  Template.body.onCreated(function bodyOnCreated() {
-   this.state = new ReactiveDict();
-+  Meteor.subscribe('tasks');
- });
+     this.state = new ReactiveDict();
++    Meteor.subscribe('tasks');
+   });
  
  Template.body.helpers({
 -- 
 2.11.0
 
 
-From 559e0285e8d2ff713e00997b6f95463433fffa40 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:33:43 -0700
+From 50a4e171be75e7e22a87c05b5c6f69c957c2006f Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 14:11:58 -0600
 Subject: [PATCH 38/48] Step 10.4: Add private button
 
 ---
@@ -1595,14 +4346,14 @@ Subject: [PATCH 38/48] Step 10.4: Add private button
  1 file changed, 10 insertions(+)
 
 diff --git a/imports/ui/task.html b/imports/ui/task.html
-index c42e8fc..b9108ea 100644
+index 9fa8910..41734e5 100644
 --- a/imports/ui/task.html
 +++ b/imports/ui/task.html
 @@ -4,6 +4,16 @@
- 
-     <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
- 
-+    {{#if isOwner}}
+   
+       <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+   
++      {{#if isOwner}}
 +      <button class="toggle-private">
 +        {{#if private}}
 +          Private
@@ -1612,16 +4363,17 @@ index c42e8fc..b9108ea 100644
 +      </button>
 +    {{/if}}
 +
-     <span class="text"><strong>{{username}}</strong> - {{text}}</span>
-   </li>
- </template>
+       <span class="text"><strong>{{username}}</strong> - {{text}}</span>
+     </li>
+   </template>
+\ No newline at end of file
 -- 
 2.11.0
 
 
-From 0518f1f4682540652dfabb104fe9f8274ecab735 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:34:13 -0700
+From 167ce4498d952364b4b842152f0cb65fa2d4f1bd Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 15:54:49 -0600
 Subject: [PATCH 39/48] Step 10.5: Add private class to private tasks
 
 ---
@@ -1629,42 +4381,46 @@ Subject: [PATCH 39/48] Step 10.5: Add private class to private tasks
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/imports/ui/task.html b/imports/ui/task.html
-index b9108ea..218789f 100644
+index 41734e5..0badef2 100644
 --- a/imports/ui/task.html
 +++ b/imports/ui/task.html
 @@ -1,5 +1,5 @@
  <template name="task">
--  <li class="{{#if checked}}checked{{/if}}">
-+  <li class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}">
-     <button class="delete">&times;</button>
- 
-     <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+-    <li class="{{#if checked}}checked{{/if}}">
++    <li class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}">
+       <button class="delete">&times;</button>
+   
+       <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
 -- 
 2.11.0
 
 
-From 5f5dfb0eda840c8e796e07696e8412385453ead6 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:34:47 -0700
+From 46125bc1809001ad9e41e2544c6ac5f2f6431ab3 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 14:33:58 -0600
 Subject: [PATCH 40/48] Step 10.6: Define helper to check ownership
 
 ---
- imports/ui/task.js | 6 ++++++
- 1 file changed, 6 insertions(+)
+ imports/ui/task.js | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
 diff --git a/imports/ui/task.js b/imports/ui/task.js
-index 3775ceb..af4bcf6 100644
+index e0e8486..26275b8 100644
 --- a/imports/ui/task.js
 +++ b/imports/ui/task.js
-@@ -3,6 +3,12 @@ import { Template } from 'meteor/templating';
+@@ -1,10 +1,14 @@
+ import { Meteor } from 'meteor/meteor';
+ import { Template } from 'meteor/templating';
  
+-
+-
  import './task.html';
  
 +Template.task.helpers({
-+  isOwner() {
-+    return this.owner === Meteor.userId();
-+  },
-+});
++    isOwner() {
++      return this.owner === Meteor.userId();
++    },
++  });
 +
  Template.task.events({
    'click .toggle-checked'() {
@@ -1673,70 +4429,75 @@ index 3775ceb..af4bcf6 100644
 2.11.0
 
 
-From f3a0faebe7b53432e719148d109202a3179e207d Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:35:31 -0700
+From 8ea18f23f111df2020e0af3e9b266cec261df7de Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 14:34:44 -0600
 Subject: [PATCH 41/48] Step 10.7: Define method to set tasks to private
 
 ---
- imports/api/tasks.js | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ imports/api/tasks.js | 15 ++++++++++++++-
+ 1 file changed, 14 insertions(+), 1 deletion(-)
 
 diff --git a/imports/api/tasks.js b/imports/api/tasks.js
-index 234a839..f1d2c92 100644
+index cf4ddff..ba9577b 100644
 --- a/imports/api/tasks.js
 +++ b/imports/api/tasks.js
-@@ -38,4 +38,17 @@ Meteor.methods({
+@@ -37,5 +37,18 @@ Meteor.methods({
+     check(setChecked, Boolean);
  
      Tasks.update(taskId, { $set: { checked: setChecked } });
-   },
-+  'tasks.setPrivate'(taskId, setToPrivate) {
-+    check(taskId, String);
-+    check(setToPrivate, Boolean);
-+
-+    const task = Tasks.findOne(taskId);
-+
-+    // Make sure only the task owner can make a task private
-+    if (task.owner !== Meteor.userId()) {
-+      throw new Meteor.Error('not-authorized');
-+    }
-+
-+    Tasks.update(taskId, { $set: { private: setToPrivate } });
-+  },
+-  },
++    },
++    'tasks.setPrivate'(taskId, setToPrivate) {
++        check(taskId, String);
++        check(setToPrivate, Boolean);
++    
++        const task = Tasks.findOne(taskId);
++    
++        // Make sure only the task owner can make a task private
++        if (task.owner !== this.userId) {
++          throw new Meteor.Error('not-authorized');
++        }
++    
++        Tasks.update(taskId, { $set: { private: setToPrivate } });
++      },
  });
+\ No newline at end of file
 -- 
 2.11.0
 
 
-From e666e1411463ac2e076bd6b966c6ec9c85b504bd Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:35:55 -0700
+From f6a75f177953db9cf34f31079d2230ae14d3d267 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 14:37:33 -0600
 Subject: [PATCH 42/48] Step 10.8: Add event handler to call the setPrivate
- method
+ metho
 
 ---
  imports/ui/task.js | 3 +++
  1 file changed, 3 insertions(+)
 
 diff --git a/imports/ui/task.js b/imports/ui/task.js
-index af4bcf6..6b51496 100644
+index 26275b8..545fe3e 100644
 --- a/imports/ui/task.js
 +++ b/imports/ui/task.js
-@@ -17,4 +17,7 @@ Template.task.events({
+@@ -18,5 +18,8 @@ Template.task.events({
+   },
    'click .delete'() {
      Meteor.call('tasks.remove', this._id);
-   },
++    },
 +  'click .toggle-private'() {
 +    Meteor.call('tasks.setPrivate', this._id, !this.private);
-+  },
+   },
  });
+\ No newline at end of file
 -- 
 2.11.0
 
 
-From 1501ba07e7032887345eddef0fe542bfc8a21283 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:36:38 -0700
+From 03c600266aa57f8d951efb63f5d45fb789e0283e Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 14:39:12 -0600
 Subject: [PATCH 43/48] Step 10.9: Only publish tasks the user is allowed to
  see
 
@@ -1745,32 +4506,32 @@ Subject: [PATCH 43/48] Step 10.9: Only publish tasks the user is allowed to
  1 file changed, 7 insertions(+), 1 deletion(-)
 
 diff --git a/imports/api/tasks.js b/imports/api/tasks.js
-index f1d2c92..441feee 100644
+index ba9577b..9d25b98 100644
 --- a/imports/api/tasks.js
 +++ b/imports/api/tasks.js
 @@ -6,8 +6,14 @@ export const Tasks = new Mongo.Collection('tasks');
  
  if (Meteor.isServer) {
-   // This code only runs on the server
-+  // Only publish tasks that are public or belong to the current user
-   Meteor.publish('tasks', function tasksPublication() {
--    return Tasks.find();
-+    return Tasks.find({
-+      $or: [
-+        { private: { $ne: true } },
-+        { owner: this.userId },
-+      ],
-+    });
-   });
- }
+     // This code only runs on the server
++    // Only publish tasks that are public or belong to the current user
+     Meteor.publish('tasks', function tasksPublication() {
+-      return Tasks.find();
++      return Tasks.find({
++        $or: [
++          { private: { $ne: true } },
++          { owner: this.userId },
++        ],
++      });
+     });
+   }
  
 -- 
 2.11.0
 
 
-From b47254b75a77b7e17374a0cfefaa2b491db047bf Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Tue, 14 Jul 2015 19:37:36 -0700
+From 7137845c1e1c4fe95527112399f8d885c0172c75 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 14:40:02 -0600
 Subject: [PATCH 44/48] Step 10.10: Add some extra security to methods
 
 ---
@@ -1778,7 +4539,7 @@ Subject: [PATCH 44/48] Step 10.10: Add some extra security to methods
  1 file changed, 12 insertions(+)
 
 diff --git a/imports/api/tasks.js b/imports/api/tasks.js
-index 441feee..9d5b56a 100644
+index 9d25b98..20539e6 100644
 --- a/imports/api/tasks.js
 +++ b/imports/api/tasks.js
 @@ -36,12 +36,24 @@ Meteor.methods({
@@ -1786,7 +4547,7 @@ index 441feee..9d5b56a 100644
      check(taskId, String);
  
 +    const task = Tasks.findOne(taskId);
-+    if (task.private && task.owner !== Meteor.userId()) {
++    if (task.private && task.owner !== this.userId) {
 +      // If the task is private, make sure only the owner can delete it
 +      throw new Meteor.Error('not-authorized');
 +    }
@@ -1798,76 +4559,161 @@ index 441feee..9d5b56a 100644
      check(setChecked, Boolean);
  
 +    const task = Tasks.findOne(taskId);
-+    if (task.private && task.owner !== Meteor.userId()) {
++    if (task.private && task.owner !== this.userId) {
 +      // If the task is private, make sure only the owner can check it off
 +      throw new Meteor.Error('not-authorized');
 +    }
 +
      Tasks.update(taskId, { $set: { checked: setChecked } });
-   },
-   'tasks.setPrivate'(taskId, setToPrivate) {
+     },
+     'tasks.setPrivate'(taskId, setToPrivate) {
 -- 
 2.11.0
 
 
-From c9b1dd8bbc52eeebc6ea8d8c80147d11fc3a582d Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Thu, 17 Mar 2016 12:51:38 +1100
-Subject: [PATCH 45/48] Step 11.1: Added practicalmeteor:mocha package
+From 5ddaaf1c5bd065d6aa9649309bc9ec9ec71e8317 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 14:43:29 -0600
+Subject: [PATCH 45/48] Step 11.1: Added meteortesting:mocha meteor package and
+ the chai npm package
 
 ---
- .meteor/packages | 1 +
- .meteor/versions | 7 +++++++
- 2 files changed, 8 insertions(+)
+ .meteor/packages  |  1 +
+ .meteor/versions  |  7 +++++++
+ package-lock.json | 46 ++++++++++++++++++++++++++++++++++++++++++++++
+ package.json      |  1 +
+ 4 files changed, 55 insertions(+)
 
 diff --git a/.meteor/packages b/.meteor/packages
-index 3ecf3a1..6e6d2d4 100644
+index b186595..e1882e7 100644
 --- a/.meteor/packages
 +++ b/.meteor/packages
-@@ -20,3 +20,4 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
+@@ -22,3 +22,4 @@ shell-server@0.4.0            # Server-side component of the `meteor shell` comm
  reactive-dict
  accounts-ui
  accounts-password
-+practicalmeteor:mocha@2.1.1-rc.1
++meteortesting:mocha
 diff --git a/.meteor/versions b/.meteor/versions
-index 4f59e62..a03c196 100644
+index 4c4e286..c015430 100644
 --- a/.meteor/versions
 +++ b/.meteor/versions
-@@ -16,6 +16,7 @@ caching-compiler@1.0.2-rc.2
- caching-html-compiler@1.0.4-rc.2
- callback-hook@1.0.6-rc.2
- check@1.1.2-rc.2
-+coffeescript@1.0.15-rc.2
- ddp@1.2.3-rc.2
- ddp-client@1.2.3-rc.2
- ddp-common@1.2.3-rc.2
-@@ -56,6 +57,11 @@ npm-bcrypt@0.7.8_2
- npm-mongo@1.4.41-rc.2
- observe-sequence@1.0.9-rc.2
- ordered-dict@1.0.5-rc.2
-+practicalmeteor:chai@2.1.0_1
-+practicalmeteor:loglevel@1.2.0_2
-+practicalmeteor:mocha@2.1.1-rc.1
-+practicalmeteor:mocha-core@0.1.4
-+practicalmeteor:sinon@1.14.1_2
- promise@0.6.4-rc.2
- random@1.0.7-rc.2
- rate-limit@1.0.2-rc.2
-@@ -74,6 +80,7 @@ standard-minifier-css@1.0.4-rc.2
- standard-minifier-js@1.0.4-rc.2
- templating@1.1.7-rc.2
- templating-tools@1.0.2-rc.2
-+tmeasday:test-reporter-helpers@0.2.1
- tracker@1.0.11-rc.2
- ui@1.0.9-rc.2
- underscore@1.0.6-rc.2
+@@ -36,16 +36,22 @@ geojson-utils@1.0.10
+ hot-code-push@1.0.4
+ html-tools@1.0.11
+ htmljs@1.0.11
++http@1.4.2
+ id-map@1.1.0
+ inter-process-messaging@0.1.0
+ jquery@3.0.0
+ launch-screen@1.1.1
+ less@2.8.0
+ livedata@1.0.18
++lmieulet:meteor-coverage@1.1.4
+ localstorage@1.2.0
+ logging@1.1.20
+ meteor@1.9.3
+ meteor-base@1.4.0
++meteorhacks:picker@1.0.3
++meteortesting:browser-tests@1.3.2
++meteortesting:mocha@1.1.5
++meteortesting:mocha-core@7.0.1
+ minifier-css@1.5.0
+ minifier-js@2.6.0
+ minimongo@1.4.5
+@@ -88,5 +94,6 @@ tracker@1.2.0
+ typescript@3.7.5
+ ui@1.0.13
+ underscore@1.0.10
++url@1.2.0
+ webapp@1.8.2
+ webapp-hashing@1.0.9
+diff --git a/package-lock.json b/package-lock.json
+index d78ee75..28e381c 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -11,6 +11,42 @@
+         "regenerator-runtime": "^0.13.4"
+       }
+     },
++    "assertion-error": {
++      "version": "1.1.0",
++      "resolved": "https://registry.npmjs.org/assertion-error/-/assertion-error-1.1.0.tgz",
++      "integrity": "sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw=="
++    },
++    "chai": {
++      "version": "4.2.0",
++      "resolved": "https://registry.npmjs.org/chai/-/chai-4.2.0.tgz",
++      "integrity": "sha512-XQU3bhBukrOsQCuwZndwGcCVQHyZi53fQ6Ys1Fym7E4olpIqqZZhhoFJoaKVvV17lWQoXYwgWN2nF5crA8J2jw==",
++      "requires": {
++        "assertion-error": "^1.1.0",
++        "check-error": "^1.0.2",
++        "deep-eql": "^3.0.1",
++        "get-func-name": "^2.0.0",
++        "pathval": "^1.1.0",
++        "type-detect": "^4.0.5"
++      }
++    },
++    "check-error": {
++      "version": "1.0.2",
++      "resolved": "https://registry.npmjs.org/check-error/-/check-error-1.0.2.tgz",
++      "integrity": "sha1-V00xLt2Iu13YkS6Sht1sCu1KrII="
++    },
++    "deep-eql": {
++      "version": "3.0.1",
++      "resolved": "https://registry.npmjs.org/deep-eql/-/deep-eql-3.0.1.tgz",
++      "integrity": "sha512-+QeIQyN5ZuO+3Uk5DYh6/1eKO0m0YmJFGNmFHGACpf1ClL1nmlV/p4gNgbl2pJGxgXb4faqo6UE+M5ACEMyVcw==",
++      "requires": {
++        "type-detect": "^4.0.0"
++      }
++    },
++    "get-func-name": {
++      "version": "2.0.0",
++      "resolved": "https://registry.npmjs.org/get-func-name/-/get-func-name-2.0.0.tgz",
++      "integrity": "sha1-6td0q+5y4gQJQzoGY2YCPdaIekE="
++    },
+     "jquery": {
+       "version": "3.4.1",
+       "resolved": "https://registry.npmjs.org/jquery/-/jquery-3.4.1.tgz",
+@@ -577,10 +613,20 @@
+         }
+       }
+     },
++    "pathval": {
++      "version": "1.1.0",
++      "resolved": "https://registry.npmjs.org/pathval/-/pathval-1.1.0.tgz",
++      "integrity": "sha1-uULm1L3mUwBe9rcTYd74cn0GReA="
++    },
+     "regenerator-runtime": {
+       "version": "0.13.4",
+       "resolved": "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.13.4.tgz",
+       "integrity": "sha512-plpwicqEzfEyTQohIKktWigcLzmNStMGwbOUbykx51/29Z3JOGYldaaNGK7ngNXV+UcoqvIMmloZ48Sr74sd+g=="
++    },
++    "type-detect": {
++      "version": "4.0.8",
++      "resolved": "https://registry.npmjs.org/type-detect/-/type-detect-4.0.8.tgz",
++      "integrity": "sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g=="
+     }
+   }
+ }
+diff --git a/package.json b/package.json
+index f0c1811..d67f294 100644
+--- a/package.json
++++ b/package.json
+@@ -9,6 +9,7 @@
+   },
+   "dependencies": {
+     "@babel/runtime": "^7.7.6",
++    "chai": "^4.2.0",
+     "jquery": "^3.4.1",
+     "meteor-node-stubs": "^1.0.0"
+   },
 -- 
 2.11.0
 
 
-From 92f2ca1d2865a5fd196879bb0185fd2edf3c619c Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Fri, 18 Mar 2016 12:36:41 +1100
+From f1b6153e67c0a9912ae8431a0b432bb15c9ea6c1 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 14:44:55 -0600
 Subject: [PATCH 46/48] Step 11.2: Add a scaffold for a method test
 
 ---
@@ -1877,7 +4723,7 @@ Subject: [PATCH 46/48] Step 11.2: Add a scaffold for a method test
 
 diff --git a/imports/api/tasks.tests.js b/imports/api/tasks.tests.js
 new file mode 100644
-index 0000000..05287ba
+index 0000000..3e273a5
 --- /dev/null
 +++ b/imports/api/tasks.tests.js
 @@ -0,0 +1,12 @@
@@ -1886,31 +4732,32 @@ index 0000000..05287ba
 +import { Meteor } from 'meteor/meteor';
 +
 +if (Meteor.isServer) {
-+  describe('Tasks', () => {
-+    describe('methods', () => {
-+      it('can delete owned task', () => {
-+      });
++    describe('Tasks', () => {
++        describe('methods', () => {
++            it('can delete owned task', () => {
++            });
++        });
 +    });
-+  });
-+}
++} 
+\ No newline at end of file
 -- 
 2.11.0
 
 
-From cd403a50cacba784de11a7a94e6d55bc884b33fb Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Fri, 18 Mar 2016 12:37:45 +1100
+From 2418877f0df8b2bbf82cbb8e4cf603a36eab0ed0 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 14:46:13 -0600
 Subject: [PATCH 47/48] Step 11.3: Prepare the database for each test
 
 ---
- imports/api/tasks.tests.js | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ imports/api/tasks.tests.js | 26 ++++++++++++++++++++------
+ 1 file changed, 20 insertions(+), 6 deletions(-)
 
 diff --git a/imports/api/tasks.tests.js b/imports/api/tasks.tests.js
-index 05287ba..1359e85 100644
+index 3e273a5..1ac4e11 100644
 --- a/imports/api/tasks.tests.js
 +++ b/imports/api/tasks.tests.js
-@@ -1,10 +1,26 @@
+@@ -1,12 +1,26 @@
  /* eslint-env mocha */
  
  import { Meteor } from 'meteor/meteor';
@@ -1919,8 +4766,12 @@ index 05287ba..1359e85 100644
 +import { Tasks } from './tasks.js';
  
  if (Meteor.isServer) {
-   describe('Tasks', () => {
-     describe('methods', () => {
+-    describe('Tasks', () => {
+-        describe('methods', () => {
+-            it('can delete owned task', () => {
+-            });
++  describe('Tasks', () => {
++    describe('methods', () => {
 +      const userId = Random.id();
 +      let taskId;
 +
@@ -1931,27 +4782,31 @@ index 05287ba..1359e85 100644
 +          createdAt: new Date(),
 +          owner: userId,
 +          username: 'tmeasday',
-+        });
+         });
+-    });
+-} 
+\ No newline at end of file
 +      });
 +
-       it('can delete owned task', () => {
-       });
-     });
++      it('can delete owned task', () => {
++      });
++    });
+\ No newline at end of file
 -- 
 2.11.0
 
 
-From 9a08b96bae018a4ecb3d23dada624accdb817cb0 Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Fri, 18 Mar 2016 12:39:33 +1100
+From 90390ab98d7f6be21a54a20388f9d0106f15308a Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sat, 7 Mar 2020 14:47:48 -0600
 Subject: [PATCH 48/48] Step 11.4: Added test to check delete method
 
 ---
- imports/api/tasks.tests.js | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ imports/api/tasks.tests.js | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
 
 diff --git a/imports/api/tasks.tests.js b/imports/api/tasks.tests.js
-index 1359e85..9b61c5a 100644
+index 1ac4e11..2b9a878 100644
 --- a/imports/api/tasks.tests.js
 +++ b/imports/api/tasks.tests.js
 @@ -2,6 +2,7 @@
@@ -1962,11 +4817,13 @@ index 1359e85..9b61c5a 100644
  
  import { Tasks } from './tasks.js';
  
-@@ -22,6 +23,18 @@ if (Meteor.isServer) {
+@@ -20,7 +21,18 @@ if (Meteor.isServer) {
+           username: 'tmeasday',
+         });
        });
- 
+-
        it('can delete owned task', () => {
-+        // Find the internal implementation of the task method so we can
++            // Find the internal implementation of the task method so we can
 +        // test it in isolation
 +        const deleteTask = Meteor.server.method_handlers['tasks.remove'];
 +
@@ -1980,7 +4837,7 @@ index 1359e85..9b61c5a 100644
 +        assert.equal(Tasks.find().count(), 0);
        });
      });
-   });
+\ No newline at end of file
 -- 
 2.11.0
 

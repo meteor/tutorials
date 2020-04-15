@@ -814,7 +814,7 @@ index 0000000..837560f
 +  }
 +});
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From ed1f1867fe58bb128916d90581b2f8830e447bea Mon Sep 17 00:00:00 2001
@@ -1509,7 +1509,7 @@ index 8206ce4..abd6b4d 100644
    "meteor": {
      "mainModule": {
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From f2b631b5cae7505ff42b605556e2da8a2a237e21 Mon Sep 17 00:00:00 2001
@@ -1540,7 +1540,7 @@ index 4221036..738ed78 100644
  insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
 +static-html
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 78e0307ea8a972f211ebaf2cc76e150b7e671d4e Mon Sep 17 00:00:00 2001
@@ -1585,7 +1585,7 @@ index 811d863..1aae2d4 100644
 -  </ul>
 -</template>
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From caf09dfc3e477e751d946d115ad4d6f6c507b9a6 Mon Sep 17 00:00:00 2001
@@ -1631,7 +1631,7 @@ index ecb3282..00f2bbf 100644
 +  render(<App />, document.getElementById('render-target'));
  });
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From c6e13684ef344ca16d42d8e5f31d999a5cb366fe Mon Sep 17 00:00:00 2001
@@ -1685,7 +1685,7 @@ index 0000000..bad39ea
 +  }
 +}
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 236f406d7dddfce99781fa78b668212bc9481620 Mon Sep 17 00:00:00 2001
@@ -1715,7 +1715,7 @@ index 0000000..f0e1f80
 +  }
 +}
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From d776b8567fe2f012399903111c80cb5c9d4dce6c Mon Sep 17 00:00:00 2001
@@ -1860,7 +1860,7 @@ index 7f354f0..ed5e77e 100644
 +  }
  }
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 29440f1ac90bf5e8ec9a3924206f50f7f3b7ef5e Mon Sep 17 00:00:00 2001
@@ -1883,7 +1883,7 @@ index 0000000..3bed819
 +
 +export const Tasks = new Mongo.Collection('tasks');
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From c4d1abafe9a1154804ccb61f16ae87aef3a526c4 Mon Sep 17 00:00:00 2001
@@ -1907,7 +1907,7 @@ index 31a9e0e..ab941a4 100644
 -});
 +import '../imports/api/tasks.js';
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 7925b118ada123a34d7a05081cdfbcd43ac73971 Mon Sep 17 00:00:00 2001
@@ -1929,7 +1929,7 @@ index 738ed78..67fc141 100644
  static-html
 +react-meteor-data
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 3b00bc6d95e1c2b65102abc516669ba2e0e0a270 Mon Sep 17 00:00:00 2001
@@ -1982,7 +1982,7 @@ index bad39ea..3c1072d 100644
 +  };
 +})(App);
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From d39c408c684c85f125acabafe31ac2f6eecefd49 Mon Sep 17 00:00:00 2001
@@ -2014,7 +2014,7 @@ index 3c1072d..d8b597f 100644
  
          <ul>
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 815a444903547c2d5e1dcdf2e5829f0edc3b1238 Mon Sep 17 00:00:00 2001
@@ -2059,7 +2059,7 @@ index d8b597f..2b8fb3a 100644
      return this.props.tasks.map((task) => (
        <Task key={task._id} task={task} />
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 066802b1d86ab81b9eb84216850641079c3c5a8d Mon Sep 17 00:00:00 2001
@@ -2084,7 +2084,7 @@ index 2b8fb3a..9595e4a 100644
    };
  })(App);
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From eb209f2fa0c97317291df455d8bbbb4b0c6260a6 Mon Sep 17 00:00:00 2001
@@ -2143,7 +2143,7 @@ index f0e1f80..9d7bb46 100644
    }
  }
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 72acb7b3941c1d273c965b2b41a08f4d4d98a268 Mon Sep 17 00:00:00 2001
@@ -2177,7 +2177,7 @@ index 9595e4a..10a95ae 100644
              <input
                type="text"
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From a9ca1ac2ab0efb83bd3e802fab88066ec67b051b Mon Sep 17 00:00:00 2001
@@ -2209,7 +2209,7 @@ index 10a95ae..641aeee 100644
      event.preventDefault();
  
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 089461ee9c91b68ddf9eea287ef11825c29a60d8 Mon Sep 17 00:00:00 2001
@@ -2239,7 +2239,7 @@ index 641aeee..6cef154 100644
      return this.props.tasks.map((task) => (
        <Task key={task._id} task={task} />
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 4793cc907e8c014ed079464ded7af6776f071bc2 Mon Sep 17 00:00:00 2001
@@ -2269,7 +2269,7 @@ index 6cef154..6157c83 100644
      ));
    }
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From e081da29b47533a64faca30c20cd312edc4d71eb Mon Sep 17 00:00:00 2001
@@ -2294,7 +2294,7 @@ index 6157c83..2e324f0 100644
    };
  })(App);
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 067917069f0b8dba6d267be4392853b2c61a25f3 Mon Sep 17 00:00:00 2001
@@ -2320,7 +2320,7 @@ index 2e324f0..a0314af 100644
            <label className="hide-completed">
              <input
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 6522d3d188484cd9a320b8f68b383fcf04e26110 Mon Sep 17 00:00:00 2001
@@ -2345,7 +2345,7 @@ index 67fc141..622a2d1 100644
 +accounts-ui@1.3.1
 +accounts-password@1.5.1
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 8993c71a5c1fd251eaf1d028d748895daa579653 Mon Sep 17 00:00:00 2001
@@ -2385,7 +2385,7 @@ index 0000000..208d5af
 +  }
 +}
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 0d30ef0a6e336e1b6d12087c08ac4bbce6790bc2 Mon Sep 17 00:00:00 2001
@@ -2419,7 +2419,7 @@ index a0314af..0d1914f 100644
              <input
                type="text"
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 61858791062573b1f289bc5703a10d2f28305d14 Mon Sep 17 00:00:00 2001
@@ -2444,7 +2444,7 @@ index 0000000..28d795a
 +  passwordSignupFields: 'USERNAME_ONLY'
 +});
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From f1b92a299524914c309db86533637360756d0cd9 Mon Sep 17 00:00:00 2001
@@ -2469,7 +2469,7 @@ index 00f2bbf..2b50fc7 100644
  
  Meteor.startup(() => {
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 39a066815149de6a1b327fd389278e3c2da93e60 Mon Sep 17 00:00:00 2001
@@ -2502,7 +2502,7 @@ index 0d1914f..0ffb93a 100644
  
      // Clear form
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 7b8496c76622956e22b2919c7fe03cb926a0cd8b Mon Sep 17 00:00:00 2001
@@ -2527,7 +2527,7 @@ index 0ffb93a..c1171c0 100644
    };
  })(App);
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 4c6dac0b188dde5c0513acf68794977d3d667bd9 Mon Sep 17 00:00:00 2001
@@ -2568,7 +2568,7 @@ index c1171c0..89bc781 100644
  
          <ul>
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From f6bdd08b8af0e33b7878bb15c4750fc0f5fab6be Mon Sep 17 00:00:00 2001
@@ -2596,7 +2596,7 @@ index 9d7bb46..f767517 100644
      );
    }
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 4d5779ee9ff96ce9e8fa603d475ab0b4da04019f Mon Sep 17 00:00:00 2001
@@ -2621,7 +2621,7 @@ index 622a2d1..25792b7 100644
  react-meteor-data
  
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 3aab4a7dc4bcf44a232f3cd3e086e3156430a439 Mon Sep 17 00:00:00 2001
@@ -2673,7 +2673,7 @@ index 3bed819..af4962a 100644
 +  },
 +});
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 956468551db2f4e66001f0f2380d1bf38c072e0c Mon Sep 17 00:00:00 2001
@@ -2705,7 +2705,7 @@ index 89bc781..8f58f41 100644
      // Clear form
      ReactDOM.findDOMNode(this.refs.textInput).value = '';
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 7b6e746dbc5624bc967c3a0887d8eaacd6eaedc2 Mon Sep 17 00:00:00 2001
@@ -2744,7 +2744,7 @@ index f767517..a575453 100644
  
    render() {
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 8d55142bbe491533d16dbd65c7dc7cd19f32bc96 Mon Sep 17 00:00:00 2001
@@ -2769,7 +2769,7 @@ index 25792b7..d766aae 100644
  react-meteor-data
  
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From a7143b104d23bc25cbad7f7f6602d2e5f9891e65 Mon Sep 17 00:00:00 2001
@@ -2800,7 +2800,7 @@ index af4962a..80d36bc 100644
    'tasks.insert'(text) {
      check(text, String);
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From af291de5aaca777dc79ac9e36d0718b89943d0ba Mon Sep 17 00:00:00 2001
@@ -2826,7 +2826,7 @@ index 8f58f41..b6f3138 100644
      tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
      incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 15c69b14ebb7f53de1cc90516a3f0f5581991aaf Mon Sep 17 00:00:00 2001
@@ -2861,7 +2861,7 @@ index 80d36bc..63feeca 100644
 +  },
  });
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 29b517d0eda927af2d80683e4c994b31f119c635 Mon Sep 17 00:00:00 2001
@@ -2901,7 +2901,7 @@ index b6f3138..6698619 100644
  
    render() {
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From af84b39ff6d69994c4bb0f5fe147973c94f41184 Mon Sep 17 00:00:00 2001
@@ -2931,7 +2931,7 @@ index a575453..09ec93c 100644
            <strong>{this.props.task.username}</strong>: {this.props.task.text}
          </span>
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 9c381d631640cd40ab50701b96232201ccdb0b02 Mon Sep 17 00:00:00 2001
@@ -2959,7 +2959,7 @@ index 09ec93c..1c21f88 100644
      // Give tasks a different className when they are checked off,
      // so that we can style them nicely in CSS
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From d37622fb052f6c03dbbc039868caaad8d0f097c8 Mon Sep 17 00:00:00 2001
@@ -3001,7 +3001,7 @@ index abd6b4d..c8e04b2 100644
      "react": "^16.1.1",
      "react-dom": "^16.1.1"
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 5ccf6e352665e7e34c5be0bb30175d33a47e33f1 Mon Sep 17 00:00:00 2001
@@ -3037,7 +3037,7 @@ index 1c21f88..11e71ee 100644
      return (
        <li className={taskClassName}>
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From e97a41d84997797d825eaa536edfb26a83be6d7c Mon Sep 17 00:00:00 2001
@@ -3070,7 +3070,7 @@ index 63feeca..5f76880 100644
  }
  
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From dcc14bad56591c5ce6910fd7554bbc045da6891c Mon Sep 17 00:00:00 2001
@@ -3112,7 +3112,7 @@ index 5f76880..d7d72dd 100644
    },
    'tasks.setPrivate'(taskId, setToPrivate) {
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 28eddedba907d46606ecc00adc8eef3d2450745d Mon Sep 17 00:00:00 2001
@@ -3233,7 +3233,7 @@ index c8e04b2..5a9503b 100644
    }
  }
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From a48d54c8bb6454853ac70c8dcddba09fcee26295 Mon Sep 17 00:00:00 2001
@@ -3265,7 +3265,7 @@ index 0000000..05287ba
 +  });
 +}
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 164a4faa1344f377289673c2a5562ec6313b1055 Mon Sep 17 00:00:00 2001
@@ -3309,7 +3309,7 @@ index 05287ba..1359e85 100644
        });
      });
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From 08418db10efcebdac8b87d4050d6b33b4549de17 Mon Sep 17 00:00:00 2001
@@ -3353,7 +3353,7 @@ index 1359e85..1b59ec8 100644
      });
    });
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
 
 From eb182c53e2ecfca05cb3294a888bc6c4b95a34eb Mon Sep 17 00:00:00 2001
@@ -3376,5 +3376,5 @@ index 837560f..aae2dee 100644
  describe("simple-todos-react", function () {
    it("package.json has correct name", async function () {
 -- 
-2.1.0.60.g85f0837
+2.11.0
 
