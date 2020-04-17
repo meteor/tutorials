@@ -66,3 +66,12 @@ The different parts of the repository have quite different responsibilities, but
 4. `/generated/` (don't edit manually) This directory contains Git patch files generated from the step-by-step repos.
 5. `/repos/` This directory contains git submodules of all three step-by-step tutorial repositories.
 6. `/scripts/` This contains a script that is used to update `/generated/` from the repositories in `/repos/`.
+
+
+## Setup
+
+Run:
+
+1. `git submodule update --init --recursive`
+2. `meteor`
+
