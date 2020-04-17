@@ -1967,18 +1967,18 @@ index 053db89..1757738 100644
 2.11.0
 
 
-From d596b2d7de1926ac4aca0cb396393ebf4946db27 Mon Sep 17 00:00:00 2001
+From febe351073284c1126bd286d43f32dc26871445e Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
-Date: Sat, 15 Feb 2020 15:25:04 -0600
+Date: Sat, 15 Feb 2020 19:32:55 -0600
 Subject: [PATCH 50/55] Step 11.1: Added meteortesting:mocha meteor package and
  the chai npm package
 
 ---
  simple-todos/.meteor/packages  |  1 +
- simple-todos/.meteor/versions  |  7 +++++++
- simple-todos/package-lock.json | 46 ++++++++++++++++++++++++++++++++++++++++++
- simple-todos/package.json      |  1 +
- 4 files changed, 55 insertions(+)
+ simple-todos/.meteor/versions  |  7 ++++++
+ simple-todos/package-lock.json | 53 ++++++++++++++++++++++++++++++++++++++++++
+ simple-todos/package.json      |  3 +++
+ 4 files changed, 64 insertions(+)
 
 diff --git a/simple-todos/.meteor/packages b/simple-todos/.meteor/packages
 index 16a9b8e..c7f03f7 100644
@@ -2025,22 +2025,24 @@ index f9303e2..f40faa3 100644
  webapp@1.8.2
  webapp-hashing@1.0.9
 diff --git a/simple-todos/package-lock.json b/simple-todos/package-lock.json
-index 9848159..d4b19cd 100644
+index 9848159..bb74e53 100644
 --- a/simple-todos/package-lock.json
 +++ b/simple-todos/package-lock.json
-@@ -11,11 +11,47 @@
+@@ -11,11 +11,52 @@
          "regenerator-runtime": "^0.13.2"
        }
      },
 +    "assertion-error": {
 +      "version": "1.1.0",
 +      "resolved": "https://registry.npmjs.org/assertion-error/-/assertion-error-1.1.0.tgz",
-+      "integrity": "sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw=="
++      "integrity": "sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==",
++      "dev": true
 +    },
 +    "chai": {
 +      "version": "4.2.0",
 +      "resolved": "https://registry.npmjs.org/chai/-/chai-4.2.0.tgz",
 +      "integrity": "sha512-XQU3bhBukrOsQCuwZndwGcCVQHyZi53fQ6Ys1Fym7E4olpIqqZZhhoFJoaKVvV17lWQoXYwgWN2nF5crA8J2jw==",
++      "dev": true,
 +      "requires": {
 +        "assertion-error": "^1.1.0",
 +        "check-error": "^1.0.2",
@@ -2053,7 +2055,8 @@ index 9848159..d4b19cd 100644
 +    "check-error": {
 +      "version": "1.0.2",
 +      "resolved": "https://registry.npmjs.org/check-error/-/check-error-1.0.2.tgz",
-+      "integrity": "sha1-V00xLt2Iu13YkS6Sht1sCu1KrII="
++      "integrity": "sha1-V00xLt2Iu13YkS6Sht1sCu1KrII=",
++      "dev": true
 +    },
      "classnames": {
        "version": "2.2.6",
@@ -2064,6 +2067,7 @@ index 9848159..d4b19cd 100644
 +      "version": "3.0.1",
 +      "resolved": "https://registry.npmjs.org/deep-eql/-/deep-eql-3.0.1.tgz",
 +      "integrity": "sha512-+QeIQyN5ZuO+3Uk5DYh6/1eKO0m0YmJFGNmFHGACpf1ClL1nmlV/p4gNgbl2pJGxgXb4faqo6UE+M5ACEMyVcw==",
++      "dev": true,
 +      "requires": {
 +        "type-detect": "^4.0.0"
 +      }
@@ -2071,19 +2075,21 @@ index 9848159..d4b19cd 100644
 +    "get-func-name": {
 +      "version": "2.0.0",
 +      "resolved": "https://registry.npmjs.org/get-func-name/-/get-func-name-2.0.0.tgz",
-+      "integrity": "sha1-6td0q+5y4gQJQzoGY2YCPdaIekE="
++      "integrity": "sha1-6td0q+5y4gQJQzoGY2YCPdaIekE=",
++      "dev": true
 +    },
      "jquery": {
        "version": "3.4.1",
        "resolved": "https://registry.npmjs.org/jquery/-/jquery-3.4.1.tgz",
-@@ -587,11 +623,21 @@
+@@ -587,11 +628,23 @@
          }
        }
      },
 +    "pathval": {
 +      "version": "1.1.0",
 +      "resolved": "https://registry.npmjs.org/pathval/-/pathval-1.1.0.tgz",
-+      "integrity": "sha1-uULm1L3mUwBe9rcTYd74cn0GReA="
++      "integrity": "sha1-uULm1L3mUwBe9rcTYd74cn0GReA=",
++      "dev": true
 +    },
      "regenerator-runtime": {
        "version": "0.13.3",
@@ -2093,28 +2099,30 @@ index 9848159..d4b19cd 100644
 +    "type-detect": {
 +      "version": "4.0.8",
 +      "resolved": "https://registry.npmjs.org/type-detect/-/type-detect-4.0.8.tgz",
-+      "integrity": "sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g=="
++      "integrity": "sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==",
++      "dev": true
 +    },
      "vue": {
        "version": "2.6.11",
        "resolved": "https://registry.npmjs.org/vue/-/vue-2.6.11.tgz",
 diff --git a/simple-todos/package.json b/simple-todos/package.json
-index f45a870..5c10bb3 100644
+index f45a870..eb798c2 100644
 --- a/simple-todos/package.json
 +++ b/simple-todos/package.json
-@@ -9,6 +9,7 @@
-   },
-   "dependencies": {
-     "@babel/runtime": "^7.7.6",
-+    "chai": "^4.2.0",
-     "classnames": "^2.2.6",
-     "jquery": "^3.4.1",
-     "meteor-node-stubs": "^1.0.0",
+@@ -21,5 +21,8 @@
+       "server": "server/main.js"
+     },
+     "testModule": "tests/main.js"
++  },
++  "devDependencies": {
++    "chai": "^4.2.0"
+   }
+ }
 -- 
 2.11.0
 
 
-From 5dbebcad8cf55d4f78df4da8f2e0cd5ec73c8e3f Mon Sep 17 00:00:00 2001
+From b51a1ffbde94fd4c137e5738348d5b558100a11d Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 13:55:29 -0600
 Subject: [PATCH 51/55] Step 11.2: Add a scaffold for a method test
@@ -2147,7 +2155,7 @@ index 0000000..cd7ab10
 2.11.0
 
 
-From 1eb8057f5b350279d136e47f0986f99701ca10e8 Mon Sep 17 00:00:00 2001
+From 76cf89e9cba4a6992b63b9c892021dd2971a4b61 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 13:58:06 -0600
 Subject: [PATCH 52/55] Step 11.3: Prepare the database for each test
@@ -2197,7 +2205,7 @@ index cd7ab10..f98d3cc 100644
 2.11.0
 
 
-From d85f55b5b37c1fc67617d9d5f328cc2c19a3bebb Mon Sep 17 00:00:00 2001
+From db8003bb64ad8281abd3ad22de8f07962254db36 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 15 Feb 2020 15:47:28 -0600
 Subject: [PATCH 53/55] Step 11.4: Added test to check delete method
@@ -2241,7 +2249,7 @@ index f98d3cc..77f495f 100644
 2.11.0
 
 
-From 26d905e5cdbec899d8cb8d069c46201bbbe647de Mon Sep 17 00:00:00 2001
+From d57675eb6d45033fcca1cd27f317ae9a4bc6fc62 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 9 Feb 2020 14:03:43 -0600
 Subject: [PATCH 54/55] Step 11.5: Import tasks.tests.js into tests/main.js
@@ -2264,7 +2272,7 @@ index 973d17e..d4d7d08 100644
 2.11.0
 
 
-From e06693ee660a52586f10dd3c1f3bf2d78693c281 Mon Sep 17 00:00:00 2001
+From 059088a10238fed16bbed6ac71389f7620c4ecbc Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 15 Feb 2020 08:44:37 -0600
 Subject: [PATCH 55/55] repo refactor to match the correct format
@@ -2389,7 +2397,7 @@ diff --git a/simple-todos/package-lock.json b/package-lock.json
 similarity index 99%
 rename from simple-todos/package-lock.json
 rename to package-lock.json
-index d4b19cd..3fc0d85 100644
+index bb74e53..8cc2cf5 100644
 --- a/simple-todos/package-lock.json
 +++ b/package-lock.json
 @@ -1,5 +1,5 @@
@@ -2403,7 +2411,7 @@ diff --git a/simple-todos/package.json b/package.json
 similarity index 95%
 rename from simple-todos/package.json
 rename to package.json
-index 5c10bb3..801ff80 100644
+index eb798c2..88ac7cd 100644
 --- a/simple-todos/package.json
 +++ b/package.json
 @@ -1,5 +1,5 @@

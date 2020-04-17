@@ -13,29 +13,41 @@ meteor add meteortesting:mocha
 meteor npm install --save-dev chai
 ```
 
-> **New in Meteor 1.7+**: While the `meteor test ...` command does still work as specified below, the release of Meteor 1.7 includes a new feature which allows you to specify the location of the test module in `package.json` with a property named `"testModule"` within the `"meteor"` object, which you can read more about [in the changelog](https://docs.meteor.com/changelog.html#v1720180528). In order to get the expected behavior, such that the `meteor test ...` command only uses files whose names match the format `*.test[s].*` or `*.spec[s].*`, you should either remove the line `"testModule": "tests/main.js"` from your `package.json` file, or change it to an appropriate value, before running `meteor test ...`.
-
 We can now run our app in "test mode" by calling out a special command and specifying to use the driver (you'll need to stop the regular app from running, or specify an alternate port with `--port XYZ`):
 
 ```bash
 TEST_WATCH=1 meteor test --driver-package meteortesting:mocha
 ```
 
-If you do so, you should see an empty test results page in your browser window.
+If you do so, you should see test results for the two tests included by default in the `tests/main.js` file
 
-Let's add a simple test (that doesn't do anything yet):
+Let's add a new file in the `imports/api` folder named `tasks.test.js`. This file will be the home for all tests we make related to testing the applications's `tasks` api.  
+
+Once the file is created we can then add a new test case to the file.
 
 {{> DiffBox tutorialName="simple-todos" step="11.2"}}
 
-In any test we need to ensure the database is in the state we expect before beginning. We can use Mocha's `beforeEach` construct to do that easily:
+The `imports/api/tasks.test.js` file will need to be imported in the `tests/main.js` file because the `tests/main.js` file serves as the entry point for the meteor test command
 
 {{> DiffBox tutorialName="simple-todos" step="11.3"}}
 
-Here we create a single task that's associated with a random `userId` that'll be different for each test run.
+Now that we are able to run all three of our test cases, we need to continue building the test case in the `imports/api/tasks.test.js` file. 
 
-Now we can write the test to call the `tasks.remove` method "as" that user and verify the task is deleted:
+We first need to ensure the database is in the state we expect before our test case starts to run. To do so we can use Mocha's `beforeEach` construct.
 
 {{> DiffBox tutorialName="simple-todos" step="11.4"}}
+
+Here we create a single task that's associated with a random `userId` that'll be different for each test run.
+
+Now we can have our test case call the `tasks.remove` method "as" that user and verify the task is deleted:
+
+{{> DiffBox tutorialName="simple-todos" step="11.5"}}
+
+Running the test command again will allw you to see all three test cases are now passing.
+
+```bash
+TEST_WATCH=1 meteor test --driver-package meteortesting:mocha
+```
 
 There's a lot more you can do in a Meteor test! You can read more about it in the Meteor Guide [article on testing](http://guide.meteor.com/testing.html).
 

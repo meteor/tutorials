@@ -36,11 +36,15 @@ First, we need to add a new method that we can call to set a task's private stat
 
 {{> DiffBox step="10.4" tutorialName="simple-todos-vue"}}
 
-Now, we need to pass a new property to the `Task` to decide whether we want
-to show the private button; the button should show up only if the currently
+Now, we need to be able to pass a new property to the `Task` component to determine whether we will
+show the private button; the button should show up only if the currently
 logged in user owns this task:
 
 {{> DiffBox step="10.5" tutorialName="simple-todos-vue"}}
+
+The `App` component will be updated next to pass in the component property we just created in the previous step:
+
+{{> DiffBox step="10.6" tutorialName="simple-todos-vue"}}
 
 Let's add the button, using this new prop to decide whether it should be displayed:
 
