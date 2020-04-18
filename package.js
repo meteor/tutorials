@@ -1,6 +1,6 @@
 Package.describe({
   summary: 'Tutorial content, included in meteor.com via package',
-  version: '0.0.3',
+  version: '0.0.4',
   name: 'tutorials'
 });
 
@@ -24,6 +24,7 @@ Package.onUse(function (api) {
     'content/blaze/metadata.js',
     'content/react/metadata.js',
     'content/vue/metadata.js',
+    'content/svelte/metadata.js',
   ]);
 
   api.addFiles([
@@ -72,6 +73,17 @@ Package.onUse(function (api) {
     'content/vue/step11.md',
     'content/vue/step12.md',
 
+    'content/svelte/step02.md',
+    'content/svelte/step03.md',
+    'content/svelte/step04.md',
+    'content/svelte/step05.md',
+    'content/svelte/step07.md',
+    'content/svelte/step08.md',
+    'content/svelte/step09.md',
+    'content/svelte/step10.md',
+    'content/svelte/step11.md',
+    'content/svelte/step12.md',
+
     'content/step00.html',
 
     'content/shared/explanations.md',
@@ -85,6 +97,8 @@ Package.onUse(function (api) {
     'generated/blaze.multi.patch',
     'generated/angular.multi.patch',
     'generated/vue.multi.patch',
+    'generated/svelte.multi.patch',
+    
   ], 'client');
 
   // Also, exports all of the templates from the content/ directory
@@ -94,4 +108,5 @@ Package.onUse(function (api) {
   api.export('ANGULAR_TUT');
   api.export('BLAZE_TUT');
   api.export('VUE_TUT');
+  api.export('SVELTE_TUT');
 });
