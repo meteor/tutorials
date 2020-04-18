@@ -1,7 +1,7 @@
 From ef2d1ac05f604f2b80efc7e65ec112b699aeb82d Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 13:28:51 -0600
-Subject: [PATCH 01/48] Step 1: Run `meteor create` and add README file,
+Subject: [PATCH 01/49] Step 1: Run `meteor create` and add README file,
  screenshot image, and license file
 
 ---
@@ -2985,7 +2985,7 @@ index 0000000..973d17e
 From 611bb62ef87b58bcac339a4f09b575a42043f86a Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 13:33:25 -0600
-Subject: [PATCH 02/48] Step 2.1: Remove starter HTML code
+Subject: [PATCH 02/49] Step 2.1: Remove starter HTML code
 
 ---
  client/main.html | 22 ----------------------
@@ -3028,7 +3028,7 @@ index 15a7c7d..135c0b2 100644
 From b61c90776940f059f47407e8a735a89687f3806c Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 13:36:09 -0600
-Subject: [PATCH 03/48] Step 2.2: Add starter HTML code
+Subject: [PATCH 03/49] Step 2.2: Add starter HTML code
 
 ---
  imports/ui/body.html | 17 +++++++++++++++++
@@ -3066,7 +3066,7 @@ index 0000000..da9cc97
 From 2d21f980a180ceeacd110b1b9d83c424629cc416 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 13:36:54 -0600
-Subject: [PATCH 04/48] Step 2.3: Add starter JS code
+Subject: [PATCH 04/49] Step 2.3: Add starter JS code
 
 ---
  imports/ui/body.js | 11 +++++++++++
@@ -3098,7 +3098,7 @@ index 0000000..4c3513b
 From a608ad45d7addb784083e3fcc34981c2bdde84c9 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 13:37:40 -0600
-Subject: [PATCH 05/48] Step 2.4: Import starter JS
+Subject: [PATCH 05/49] Step 2.4: Import starter JS
 
 ---
  client/main.js | 23 +----------------------
@@ -3140,7 +3140,7 @@ index ecb3282..2a526f3 100644
 From 951c1eddcd13ad58845638521239f0eaed50e5a4 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 15:42:21 -0600
-Subject: [PATCH 06/48] Step 2.5: Add CSS
+Subject: [PATCH 06/49] Step 2.5: Add CSS
 
 ---
  client/main.css | 124 +++++++++++++++++++++++++++++++++++++++++++++++++++++++-
@@ -3286,7 +3286,7 @@ index 7f354f0..cec3ae6 100644
 From d600626c103a48c3a6989100868a33bc7b977fe0 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 13:39:52 -0600
-Subject: [PATCH 07/48] Step 3.1: Create tasks collection
+Subject: [PATCH 07/49] Step 3.1: Create tasks collection
 
 ---
  imports/api/tasks.js | 3 +++
@@ -3310,7 +3310,7 @@ index 0000000..dfeb446
 From db9dff617978fa5041f091e0d5a72cf31ee08683 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 13:40:19 -0600
-Subject: [PATCH 08/48] Step 3.2: Load tasks collection on the server
+Subject: [PATCH 08/49] Step 3.2: Load tasks collection on the server
 
 ---
  server/main.js | 6 +-----
@@ -3335,7 +3335,7 @@ index 31a9e0e..0bce0ec 100644
 From 1d7b540ff19b8c5717b1d93d26c7f1a9860606ac Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 13:41:19 -0600
-Subject: [PATCH 09/48] Step 3.3: Load tasks from Tasks collection
+Subject: [PATCH 09/49] Step 3.3: Load tasks from Tasks collection
 
 ---
  imports/ui/body.js | 10 +++++-----
@@ -3370,7 +3370,7 @@ index 4c3513b..8505966 100644
 From 2d6a8451111fc83c84ff0326218b897c39434021 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 13:56:19 -0600
-Subject: [PATCH 10/48] Step 4.1: Add form for new tasks
+Subject: [PATCH 10/49] Step 4.1: Add form for new tasks
 
 ---
  imports/ui/body.html | 7 +++++++
@@ -3403,7 +3403,7 @@ index da9cc97..5b34b41 100644
 From e5154f4a0c879ed3fcbd1a49a3eefdfed9b00bc9 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 13:43:21 -0600
-Subject: [PATCH 11/48] Step 4.2: Add event handler for form submit
+Subject: [PATCH 11/49] Step 4.2: Add event handler for form submit
 
 ---
  imports/ui/body.js | 22 +++++++++++++++++++++-
@@ -3448,7 +3448,7 @@ index 8505966..2424c08 100644
 From bc845fb7e24b41433d23d089e644e8634329e5ef Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 13:44:24 -0600
-Subject: [PATCH 12/48] Step 4.3: Show newest tasks at the top
+Subject: [PATCH 12/49] Step 4.3: Show newest tasks at the top
 
 ---
  imports/ui/body.js | 3 ++-
@@ -3475,7 +3475,7 @@ index 2424c08..f1658fe 100644
 From f38127bdce9f70c129cc7c03900a3ca972c0d86f Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 13:45:03 -0600
-Subject: [PATCH 13/48] Step 5.1: Add buttons to Task component
+Subject: [PATCH 13/49] Step 5.1: Add buttons to Task component
 
 ---
  imports/ui/task.html | 9 +++++++++
@@ -3505,7 +3505,7 @@ index 0000000..e88dcd9
 From 2e4a90cd810d3948826872f5286a69c3479bb2e0 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 13:48:14 -0600
-Subject: [PATCH 14/48] Step 5.2: Remove Tasks component from Body file
+Subject: [PATCH 14/49] Step 5.2: Remove Tasks component from Body file
 
 ---
  imports/ui/body.html | 4 ----
@@ -3531,7 +3531,7 @@ index 5b34b41..93552d3 100644
 From 9823ad1bd75f13a8912ba0de8af43db7efd1a05d Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 13:48:53 -0600
-Subject: [PATCH 15/48] Step 5.3: Add event handlers for Task buttons
+Subject: [PATCH 15/49] Step 5.3: Add event handlers for Task buttons
 
 ---
  imports/ui/task.js | 17 +++++++++++++++++
@@ -3569,7 +3569,7 @@ index 0000000..06b36b2
 From 55fe8c51b1301f68cdc815799689bba463f378c4 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 13:49:24 -0600
-Subject: [PATCH 16/48] Step 5.4: Import Task component from the body
+Subject: [PATCH 16/49] Step 5.4: Import Task component from the body
 
 ---
  imports/ui/body.js | 1 +
@@ -3594,7 +3594,7 @@ index f1658fe..bc1e9df 100644
 From d0aec49b70b704c40f9e5a80562db6e847863544 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 13:50:06 -0600
-Subject: [PATCH 17/48] Step 7.1: Add hide-completed checkbox to HTML
+Subject: [PATCH 17/49] Step 7.1: Add hide-completed checkbox to HTML
 
 ---
  imports/ui/body.html | 6 +++++-
@@ -3631,7 +3631,7 @@ index 93552d3..4481687 100644
 From d6ae48aa56b8ff14db87d6bb673db9a8134078d6 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 13:50:59 -0600
-Subject: [PATCH 18/48] Step 7.2: Add reactive-dict package
+Subject: [PATCH 18/49] Step 7.2: Add reactive-dict package
 
 ---
  .meteor/packages | 1 +
@@ -3666,7 +3666,7 @@ index 3af382b..70771e6 100644
 From bca010597f4af2b3dc01f32029661d3e4f5baf7a Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 13:52:19 -0600
-Subject: [PATCH 19/48] Step 7.3: Add state dictionary to the body
+Subject: [PATCH 19/49] Step 7.3: Add state dictionary to the body
 
 ---
  imports/ui/body.js | 5 +++++
@@ -3699,7 +3699,7 @@ index bc1e9df..1bd96b1 100644
 From e62e925d1bb40018cfadf09a0a6b29d2929dd38d Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 13:52:54 -0600
-Subject: [PATCH 20/48] Step 7.4: Add event handler for checkbox
+Subject: [PATCH 20/49] Step 7.4: Add event handler for checkbox
 
 ---
  imports/ui/body.js | 3 +++
@@ -3725,7 +3725,7 @@ index 1bd96b1..6a064f0 100644
 From 60afe2159b407d19419c781921301b2b3bf1587e Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 13:53:36 -0600
-Subject: [PATCH 21/48] Step 7.5: Add helpers to body template
+Subject: [PATCH 21/49] Step 7.5: Add helpers to body template
 
 ---
  imports/ui/body.js | 7 ++++++-
@@ -3756,7 +3756,7 @@ index 6a064f0..5203c5c 100644
 From cbe5d810a2f08ae385b459062629797abf42225b Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 13:54:12 -0600
-Subject: [PATCH 22/48] Step 7.6: Add incompleteCount helper to body
+Subject: [PATCH 22/49] Step 7.6: Add incompleteCount helper to body
 
 ---
  imports/ui/body.js | 3 +++
@@ -3783,7 +3783,7 @@ index 5203c5c..a3a3f50 100644
 From 430e3a3843f3614015866a0159e7986ddeb59acb Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 15:50:47 -0600
-Subject: [PATCH 23/48] Step 7.7: Display incompleteCount
+Subject: [PATCH 23/49] Step 7.7: Display incompleteCount
 
 ---
  imports/ui/body.html | 15 +++++++--------
@@ -3828,7 +3828,7 @@ index 4481687..1cb896a 100644
 From d10463ce94e485ddb24f6051e628bdc3a4b61b77 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 13:59:41 -0600
-Subject: [PATCH 24/48] Step 8.1: Add accounts-ui and accounts-password
+Subject: [PATCH 24/49] Step 8.1: Add accounts-ui and accounts-password
 
 ---
  .meteor/packages |  2 ++
@@ -3917,7 +3917,7 @@ index 70771e6..01349dc 100644
 From da475a5f7d644b8590efef02508b44dc6205d3aa Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 14:00:37 -0600
-Subject: [PATCH 25/48] Step 8.2: Include loginButtons
+Subject: [PATCH 25/49] Step 8.2: Include loginButtons
 
 ---
  imports/ui/body.html | 2 ++
@@ -3943,7 +3943,7 @@ index 1cb896a..33917bd 100644
 From e00d070124f30adb4e3e647cf7c8db90930fe135 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 14:01:28 -0600
-Subject: [PATCH 26/48] Step 8.3: Configure accounts-ui
+Subject: [PATCH 26/49] Step 8.3: Configure accounts-ui
 
 ---
  imports/startup/accounts-config.js | 5 +++++
@@ -3969,7 +3969,7 @@ index 0000000..4121009
 From 3abc8eb2f87033b45a9c9b874e9ba3bc927b7841 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 14:01:55 -0600
-Subject: [PATCH 27/48] Step 8.4: Import accounts configuration
+Subject: [PATCH 27/49] Step 8.4: Import accounts configuration
 
 ---
  client/main.js | 1 +
@@ -3990,7 +3990,7 @@ index 2a526f3..d7368df 100644
 From 8b9858e960ef50e0176f3256af42bf7b5e9d6a1f Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 14:04:30 -0600
-Subject: [PATCH 28/48] Step 8.5: Update insert to include user data
+Subject: [PATCH 28/49] Step 8.5: Update insert to include user data
 
 ---
  imports/ui/body.js | 3 +++
@@ -4021,7 +4021,7 @@ index a3a3f50..3bef447 100644
 From e913f6dc094444e36cc57657f569d554343b60ee Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 14:05:14 -0600
-Subject: [PATCH 29/48] Step 8.6: Only show add task form if logged in
+Subject: [PATCH 29/49] Step 8.6: Only show add task form if logged in
 
 ---
  imports/ui/body.html | 8 +++++---
@@ -4053,7 +4053,7 @@ index 33917bd..4bb5208 100644
 From 3deec55da32ad638a618086317fb563afb936d2d Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 14:05:50 -0600
-Subject: [PATCH 30/48] Step 8.7: Display username next to task
+Subject: [PATCH 30/49] Step 8.7: Display username next to task
 
 ---
  imports/ui/task.html | 2 +-
@@ -4079,7 +4079,7 @@ index e88dcd9..9fa8910 100644
 From bab7b164fdbae9dbd1eb86cd5ae7426d9e889326 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 14:06:30 -0600
-Subject: [PATCH 31/48] Step 9.1: Remove insecure package
+Subject: [PATCH 31/49] Step 9.1: Remove insecure package
 
 ---
  .meteor/packages | 1 -
@@ -4117,7 +4117,7 @@ index 01349dc..d4cc8a7 100644
 From cada04125824de9f9b0d055101a606a952f7ef1f Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 14:07:39 -0600
-Subject: [PATCH 32/48] Step 9.2: Define some methods
+Subject: [PATCH 32/49] Step 9.2: Define some methods
 
 ---
  imports/api/tasks.js | 33 ++++++++++++++++++++++++++++++++-
@@ -4172,7 +4172,7 @@ index dfeb446..329e381 100644
 From 7586870655b6fcf79285d6efd70efe3e4f69885d Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 14:08:49 -0600
-Subject: [PATCH 33/48] Step 9.3: Replace insert with tasks.insert method
+Subject: [PATCH 33/49] Step 9.3: Replace insert with tasks.insert method
 
 ---
  imports/ui/body.js | 7 +------
@@ -4203,7 +4203,7 @@ index 3bef447..6fd5ce2 100644
 From bf48a7d3484927abb07fba451275589b1442bdec Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 14:09:51 -0600
-Subject: [PATCH 34/48] Step 9.4: Replace update and remove with methods
+Subject: [PATCH 34/49] Step 9.4: Replace update and remove with methods
 
 ---
  imports/ui/task.js | 11 ++++++-----
@@ -4245,7 +4245,7 @@ index 06b36b2..e0e8486 100644
 From 7f28e06bd232a32cc503b1e8d8a346ffebaa22e2 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 14:10:26 -0600
-Subject: [PATCH 35/48] Step 10.1: Remove autopublish
+Subject: [PATCH 35/49] Step 10.1: Remove autopublish
 
 ---
  .meteor/packages | 1 -
@@ -4283,7 +4283,7 @@ index d4cc8a7..4c4e286 100644
 From 13aa473c73d118b9089caee9359bb7e7d84286aa Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 14:10:55 -0600
-Subject: [PATCH 36/48] Step 10.2: Add publication for tasks
+Subject: [PATCH 36/49] Step 10.2: Add publication for tasks
 
 ---
  imports/api/tasks.js | 7 +++++++
@@ -4314,7 +4314,7 @@ index 329e381..cf4ddff 100644
 From 04c6e1757320fa0520af260298f1706d6d520b6a Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 14:11:29 -0600
-Subject: [PATCH 37/48] Step 10.3: Subscribe to tasks
+Subject: [PATCH 37/49] Step 10.3: Subscribe to tasks
 
 ---
  imports/ui/body.js | 1 +
@@ -4339,7 +4339,7 @@ index 6fd5ce2..3954e2c 100644
 From 50a4e171be75e7e22a87c05b5c6f69c957c2006f Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 14:11:58 -0600
-Subject: [PATCH 38/48] Step 10.4: Add private button
+Subject: [PATCH 38/49] Step 10.4: Add private button
 
 ---
  imports/ui/task.html | 10 ++++++++++
@@ -4374,7 +4374,7 @@ index 9fa8910..41734e5 100644
 From 167ce4498d952364b4b842152f0cb65fa2d4f1bd Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 15:54:49 -0600
-Subject: [PATCH 39/48] Step 10.5: Add private class to private tasks
+Subject: [PATCH 39/49] Step 10.5: Add private class to private tasks
 
 ---
  imports/ui/task.html | 2 +-
@@ -4398,7 +4398,7 @@ index 41734e5..0badef2 100644
 From 46125bc1809001ad9e41e2544c6ac5f2f6431ab3 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 14:33:58 -0600
-Subject: [PATCH 40/48] Step 10.6: Define helper to check ownership
+Subject: [PATCH 40/49] Step 10.6: Define helper to check ownership
 
 ---
  imports/ui/task.js | 8 ++++++--
@@ -4432,7 +4432,7 @@ index e0e8486..26275b8 100644
 From 8ea18f23f111df2020e0af3e9b266cec261df7de Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 14:34:44 -0600
-Subject: [PATCH 41/48] Step 10.7: Define method to set tasks to private
+Subject: [PATCH 41/49] Step 10.7: Define method to set tasks to private
 
 ---
  imports/api/tasks.js | 15 ++++++++++++++-
@@ -4470,7 +4470,7 @@ index cf4ddff..ba9577b 100644
 From f6a75f177953db9cf34f31079d2230ae14d3d267 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 14:37:33 -0600
-Subject: [PATCH 42/48] Step 10.8: Add event handler to call the setPrivate
+Subject: [PATCH 42/49] Step 10.8: Add event handler to call the setPrivate
  metho
 
 ---
@@ -4498,7 +4498,7 @@ index 26275b8..545fe3e 100644
 From 03c600266aa57f8d951efb63f5d45fb789e0283e Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 14:39:12 -0600
-Subject: [PATCH 43/48] Step 10.9: Only publish tasks the user is allowed to
+Subject: [PATCH 43/49] Step 10.9: Only publish tasks the user is allowed to
  see
 
 ---
@@ -4532,7 +4532,7 @@ index ba9577b..9d25b98 100644
 From 7137845c1e1c4fe95527112399f8d885c0172c75 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 14:40:02 -0600
-Subject: [PATCH 44/48] Step 10.10: Add some extra security to methods
+Subject: [PATCH 44/49] Step 10.10: Add some extra security to methods
 
 ---
  imports/api/tasks.js | 12 ++++++++++++
@@ -4574,7 +4574,7 @@ index 9d25b98..20539e6 100644
 From 5ddaaf1c5bd065d6aa9649309bc9ec9ec71e8317 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 14:43:29 -0600
-Subject: [PATCH 45/48] Step 11.1: Added meteortesting:mocha meteor package and
+Subject: [PATCH 45/49] Step 11.1: Added meteortesting:mocha meteor package and
  the chai npm package
 
 ---
@@ -4711,10 +4711,10 @@ index f0c1811..d67f294 100644
 2.11.0
 
 
-From f1b6153e67c0a9912ae8431a0b432bb15c9ea6c1 Mon Sep 17 00:00:00 2001
+From 14fd85a4f8e3c5524c4c11429ee722f36665d6bd Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 14:44:55 -0600
-Subject: [PATCH 46/48] Step 11.2: Add a scaffold for a method test
+Subject: [PATCH 46/49] Step 11.2: Add a scaffold for a method test
 
 ---
  imports/api/tasks.tests.js | 12 ++++++++++++
@@ -4744,20 +4744,44 @@ index 0000000..3e273a5
 2.11.0
 
 
-From 2418877f0df8b2bbf82cbb8e4cf603a36eab0ed0 Mon Sep 17 00:00:00 2001
+From d34f67e5fdd61692b9567133989962fc64a74123 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
-Date: Sat, 7 Mar 2020 14:46:13 -0600
-Subject: [PATCH 47/48] Step 11.3: Prepare the database for each test
+Date: Tue, 14 Apr 2020 22:24:56 -0500
+Subject: [PATCH 47/49] Step 11.3: Add a reference to the new test file from
+ the test main module
 
 ---
- imports/api/tasks.tests.js | 26 ++++++++++++++++++++------
- 1 file changed, 20 insertions(+), 6 deletions(-)
+ tests/main.js | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/tests/main.js b/tests/main.js
+index 973d17e..679568e 100644
+--- a/tests/main.js
++++ b/tests/main.js
+@@ -1,4 +1,5 @@
+ import assert from "assert";
++import '../imports/api/tasks.tests';
+ 
+ describe("simple-todos", function () {
+   it("package.json has correct name", async function () {
+-- 
+2.11.0
+
+
+From a05a065437858cb3c2f1cd14ab2e2456100d8664 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Tue, 14 Apr 2020 22:27:46 -0500
+Subject: [PATCH 48/49] Step 11.4: Prepare the database for each test
+
+---
+ imports/api/tasks.tests.js | 26 +++++++++++++++++++++-----
+ 1 file changed, 21 insertions(+), 5 deletions(-)
 
 diff --git a/imports/api/tasks.tests.js b/imports/api/tasks.tests.js
-index 3e273a5..1ac4e11 100644
+index 3e273a5..2b72caf 100644
 --- a/imports/api/tasks.tests.js
 +++ b/imports/api/tasks.tests.js
-@@ -1,12 +1,26 @@
+@@ -1,12 +1,28 @@
  /* eslint-env mocha */
  
  import { Meteor } from 'meteor/meteor';
@@ -4783,47 +4807,48 @@ index 3e273a5..1ac4e11 100644
 +          owner: userId,
 +          username: 'tmeasday',
          });
--    });
--} 
-\ No newline at end of file
 +      });
 +
 +      it('can delete owned task', () => {
 +      });
-+    });
+     });
+-} 
+\ No newline at end of file
++  });
++}
 \ No newline at end of file
 -- 
 2.11.0
 
 
-From 90390ab98d7f6be21a54a20388f9d0106f15308a Mon Sep 17 00:00:00 2001
+From d2aca209de2305e1e3a53b3d2be4f36b2300c603 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
-Date: Sat, 7 Mar 2020 14:47:48 -0600
-Subject: [PATCH 48/48] Step 11.4: Added test to check delete method
+Date: Tue, 14 Apr 2020 21:20:29 -0500
+Subject: [PATCH 49/49] Step 11.5: Added a test to check the delete method
 
 ---
  imports/api/tasks.tests.js | 14 +++++++++++++-
  1 file changed, 13 insertions(+), 1 deletion(-)
 
 diff --git a/imports/api/tasks.tests.js b/imports/api/tasks.tests.js
-index 1ac4e11..2b9a878 100644
+index 2b72caf..cccbd11 100644
 --- a/imports/api/tasks.tests.js
 +++ b/imports/api/tasks.tests.js
 @@ -2,6 +2,7 @@
  
  import { Meteor } from 'meteor/meteor';
  import { Random } from 'meteor/random';
-+import { assert } from 'meteor/practicalmeteor:chai';
++import { assert } from 'chai';
  
  import { Tasks } from './tasks.js';
  
-@@ -20,7 +21,18 @@ if (Meteor.isServer) {
+@@ -20,8 +21,19 @@ if (Meteor.isServer) {
            username: 'tmeasday',
          });
        });
 -
        it('can delete owned task', () => {
-+            // Find the internal implementation of the task method so we can
++        // Find the internal implementation of the task method so we can
 +        // test it in isolation
 +        const deleteTask = Meteor.server.method_handlers['tasks.remove'];
 +
@@ -4834,10 +4859,10 @@ index 1ac4e11..2b9a878 100644
 +        deleteTask.apply(invocation, [taskId]);
 +
 +        // Verify that the method does what we expected
-+        assert.equal(Tasks.find().count(), 0);
++        assert.equal(Tasks.find({}).count(), 0);
        });
      });
-\ No newline at end of file
+   });
 -- 
 2.11.0
 
