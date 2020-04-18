@@ -68,28 +68,7 @@ The different parts of the repository have quite different responsibilities, but
 6. `/scripts/` This contains a script that is used to update `/generated/` from the repositories in `/repos/`.
 
 
-## Updating a Sub Module
+## Updating Sub Modules
 
 1. `git submodule update --init --recursive`
 2. `meteor`
-
-## Removing a Sub Module
-React
-1. `git submodule deinit -f -- repos/react`    
-2. `rm -rf .git/modules/repos/react`
-3. `git rm -f repos/react`
-
-Blaze
-1. `git submodule deinit -f -- repos/blaze`    
-2. `rm -rf .git/modules/repos/blaze`
-3. `git rm -f repos/blaze`
-
-Angular
-1. `git submodule deinit -f -- repos/angular`    
-2. `rm -rf .git/modules/repos/angular`
-3. `git rm -f repos/angular`
-
-Vue
-1. `git submodule deinit -f -- repos/vue`    
-2. `rm -rf .git/modules/repos/vue`
-3. `git rm -f repos/vue`
