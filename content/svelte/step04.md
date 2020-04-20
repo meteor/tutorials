@@ -1,44 +1,42 @@
-{{#template name="angular-step04"}}
+{{#template name="svelte-step04"}}
 
 # Adding tasks with a form
 
-In this step, we'll add an input field for users to add tasks to the list.
+In this step, we'll add an input field for users to add new tasks to the list.
 
-First, let's add a form to our HTML:
+First, let's add a form input to our `App` component's markup section and a `newTask` property as well. Svelte uses the export keyword to mark a variable declaration as a property or prop, which means it becomes accessible to consumers of the component:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="4.1"}}
+{{> DiffBox step="4.1" tutorialName="simple-todos-svelte"}}
 
-Here's the JavaScript code we need to add to listen to the `submit` event on the form:
+This form will have an input element added to it that has a `bind:value` attribute bound to `newTask`. The `newTask` data field is bound via two-way binding to the input field.
 
-{{> DiffBox tutorialName="simple-todos-angular" step="4.2"}}
+You can see that the `form` element has a `on:submit|preventDefault` attribute that references a method called `handleSubmit` that we will later be defined in the component.
 
-Now your app has a new input field. To add a task, just type into the input field and hit enter. If you open a new browser window and open the app again, you'll see that the list is automatically synchronized between all clients.
+We can now add that `handleSubmit` method to our `App` component script section:
 
-### Attaching events to templates
+{{> DiffBox step="4.2" tutorialName="simple-todos-svelte"}}
 
-As you can see, this is just a regular Angular application.
+Now your app has a new input field. To add a new task, just type into the input field and hit enter. If you open a new browser window and open the app again, you'll see that the list is automatically synchronized between all clients.
 
-In our case above, we are listening to the `submit` event on our form to call the `addTask` controller function.
+### Listening for events in Svelte
+
+
 
 ### Inserting into a collection
 
-Inside our controller function, we are adding a task to the `tasks` collection by simply calling `Tasks.insert()`. We can assign any properties to the task object, such as the time created, since we don't ever have to define a schema for the collection.
+Inside the event handler, we are adding a task to the `tasks` collection by calling `Tasks.insert()`. We can assign any properties to the task object, such as the time created, since we don't ever have to define a schema for the collection.
 
-Being able to insert anything into the database from the client isn't very secure, but it's okay for now. In step 9 we'll learn how we can make our app secure and restrict how data is inserted into the database.
+Being able to insert anything into the database from the client isn't very secure, but it's okay for now. In step 10 we'll learn how we can make our app secure and restrict how data is inserted into the database.
 
 ### Sorting our tasks
 
 Currently, our code displays all new tasks at the bottom of the list. That's not very good for a task list, because we want to see the newest tasks first.
 
-We can solve this by sorting the results using the `createdAt` field that is automatically added by our new code.
-Until now you probably used Angular sort filter to do so. you can still use that here, but we are going to use a different method because it is better for real world use cases.
+We can solve this by sorting the results using the `createdAt` field that is automatically added by our new code. Just add a sort option to the `find` call inside the data container wrapping the `App` component:
 
-Replace the `Tasks` collection variable with a function inside our `tasks` helper.
-The function will return the result of calling the `find` function with the `sort` parameter on our `Tasks` collection, like that:
+{{> DiffBox step="4.3" tutorialName="simple-todos-svelte"}}
 
-{{> DiffBox tutorialName="simple-todos-angular" step="4.3"}}
+Let's go back to the browser and make sure this worked: any new tasks that you add should appear at the top of the list, rather than at the bottom.
 
-To better understand the difference between using the sort filter and the collection options, check out the advanced tutorial about [search, sort and pagination](https://angular-meteor.com/tutorials/socially/angular1/search-sort-pagination-and-reactive-vars).
-
-In the next step, we'll add some very important todo list functions: checking off and deleting tasks.
+In the next step, we'll add some very important todo list features: checking off and deleting tasks.
 {{/template}}

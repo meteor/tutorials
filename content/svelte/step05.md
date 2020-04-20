@@ -1,44 +1,23 @@
-{{#template name="angular-step05"}}
+{{#template name="svelte-step05"}}
 
 # Checking off and deleting tasks
 
 Until now, we have only interacted with a collection by inserting documents. Now, we will learn how to update and remove them.
 
-Let's add two elements to our `todosList` component, a checkbox and a delete button:
+Let's add two new elements to our `task` component, a checkbox and a delete button, with event handlers for both:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="5.1"}}
-
-{{> DiffBox tutorialName="simple-todos-angular" step="5.2"}}
+{{> DiffBox step="5.1" tutorialName="simple-todos-svelte"}}
 
 ### Update
 
-As you can see we added two directives.
+In the code above, we call `Tasks.update` to check off a task.
 
-To watch `checked` state of each task.
+The `update` function on a collection takes two arguments. The first is a selector that identifies a subset of the collection, and the second is an update parameter that specifies what should be done to the matched objects.
 
-```html
-ng-checked="task.checked"
-```
+In this case, the selector is just the `_id` of the relevant task. The update parameter uses `$set` to toggle the `checked` field, which will represent whether the task has been completed.
 
-And to change current state by calling `setChecked` method of the controller.
+### Remove
 
-```html
-ng-click="$ctrl.setChecked(task)"
-```
+The code from above uses `Tasks.remove` to delete a task. The `remove` function takes one argument, a selector that determines which item to remove from the collection.
 
-### Delete
-
-We can delete task by clicking `removeTask` method.
-
-### Classes
-
-If you try checking off some tasks after adding all of the above code, you will see that checked off tasks have a line through them.
-
-Here we bind the checked state of a task to a class with `ng-class`:
-
-```html
-<li ng-class="{'checked': task.checked}">
-```
-
-With this code, if the `checked` property of a task is `true`, the `checked` class is added to our list item. Using this class, we can make checked-off tasks look different in our CSS.
 {{/template}}

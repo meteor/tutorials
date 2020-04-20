@@ -1,4 +1,4 @@
-{{#template name="angular-step10"}}
+{{#template name="svelte-step10"}}
 
 # Filtering data with publish and subscribe
 

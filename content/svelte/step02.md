@@ -1,77 +1,123 @@
-{{#template name="angular-step02"}}
-# Defining views with templates
+{{#template name="svelte-step02"}}
+# In a hurry?
 
-To use Angular in our app, we first need to remove the default UI package of Meteor, called `Blaze`.
+If you don't have time to follow this detailed tutorial right now, you have two options.
 
-We remove it by running:
+To skip to the finished application explained by this tutorial, run the following commands:
 
-    meteor remove blaze-html-templates
+```sh
+git clone git@github.com:meteor/simple-todos-svelte.git
+cd simple-todos-svelte
+meteor npm install
+meteor
+```
 
-Now we need to replace it with UI package for angular:
+If you are an experienced Svelte developer, most of this application will be self-explanatory, though you can always refer back to this tutorial to understand the details.
 
-    meteor add angular-templates
+# Working with Svelte
 
-To start working with [angular-meteor](http://angular-meteor.com/), let's add some NPM packages.
+The rest of this tutorial will take you on a step-by-step journey through the details of using Svelte with Meteor.
 
-    meteor npm install --save angular angular-meteor
+### Install Svelte dependencies
 
-> Note: `meteor npm` supports the same features as `npm`, though the difference can be important.  Consult the [`meteor npm` documentation](https://docs.meteor.com/commandline.html#meteornpm) for more information.
+To start working with Svelte as our view library, we first need to add the relevant npm package.
 
-To start working on our todos list app, let's replace the code of the default starter app with the code below. Then we'll talk about what it does.
+Open a new terminal in the same directory as your running app, and type:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="2.2"}}
+```sh
+meteor npm install --save svelte
+```
 
-{{> DiffBox tutorialName="simple-todos-angular" step="2.3"}}
+> Note: `meteor npm` supports the same features as `npm`, though the difference can be important. Consult the [`meteor npm` documentation](https://docs.meteor.com/commandline.html#meteornpm) for more information.
 
-Now we need to create a new directory called `imports`, a specially-named directory which will behave differently than other directories in the project.  Files outside the `imports` directory will be loaded automatically when the Meteor server starts, while files inside the `imports` directory will only load when an `import` statement is used to load them.
+We also need to add the svelte:compiler package to allow us to create files with the .svelte extension, which makes it possible to create Svelte components in the single file format.
 
-After creating the `imports` directory, we will create two new files inside it.
+```sh
+meteor add svelte:compiler
+```
 
-A template for the todosList component:
+### Replace `blaze-html-templates` with `static-html`
 
-{{> DiffBox tutorialName="simple-todos-angular" step="2.4"}}
+By default, new Meteor applications use Blaze as their templating engine. While it's possible for a Meteor application to use Blaze and Svelte simultaneously, the application we're building in this tutorial does not need Blaze at all. Since you created your Meteor application with `meteor create` the `blaze-html-templates` package is inlcuded, we recommend that you remove support for Blaze and add support for static HTML templates.
 
-And some functionality:
+To prevent processing `.html` files as Blaze templates, first remove the `blaze-html-templates` package:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="2.5"}}
+```sh
+meteor remove blaze-html-templates
+```
 
-We can now implement it into the application.
+Now, to ensure `.html` files are processed as static HTML, add the `static-html` package:
 
-First, we have to put component into a template:
+```sh
+meteor add static-html
+```
 
-{{> DiffBox tutorialName="simple-todos-angular" step="2.6"}}
+The `static-html` package is not specific to Svelte. It simply turns `<head>` and `<body>` fragments found in `.html` files into raw HTML that will be served from the Meteor web server. Later, your Svelte application will render its components into this HTML.
 
-Then add module to the application:
+Note that both `blaze-html-templates` and `static-html` are _Meteor packages_, rather than npm packages, because they need to register _compiler plugins_ that determine how `.html` files are processed. Controlling compilation is one of several key features that make Meteor packages more powerful than npm packages.
 
-{{> DiffBox tutorialName="simple-todos-angular" step="2.7"}}
+### Replace the starter code
+
+To get started, let's replace the code of the default starter app. Then we'll talk about what it does.
+
+First, replace the content of the **`client/main.html`** file:
+
+{{> DiffBox tutorialName="simple-todos-svelte" step="2.2"}}
+
+Second, replace the contents of the **`client/main.js`** module:
+
+{{> DiffBox tutorialName="simple-todos-svelte" step="2.3"}}
+
+Now we need to create a new directory called `imports`, with a directory called `ui` inside of it. There will soon be other directories besides `ui` within `imports`, but we'll start with `ui`.
+
+> Note: in previous versions of Meteor, the `imports` directory was special because files outside the `imports` directory were loaded automatically when the application started, whereas files inside the `imports` directory were only loaded when imported using an `import` declaration or a `require` statement. As of Meteor 1.7, the entry point for both client and server JavaScript is determined by the `meteor.mainModule` section in `package.json`. In other words, as far as JavaScript code is concerned, the entire application now behaves as if it was inside an `imports` directory, so you don't need to worry as much about the `imports` directory now.
 
 You can read more about how imports work and how to structure your code in the [Application Structure article](http://guide.meteor.com/structure.html) of the Meteor Guide.
 
-In our browser, the app should look pretty much like this:
+To continue converting your app to use Svelte, copy the following code into **`imports/ui/App.svelte`**:
+
+{{> DiffBox tutorialName="simple-todos-svelte" step="2.4"}}
+
+Now copy the following code into **`imports/ui/Task.svelte`**:
+
+{{> DiffBox tutorialName="simple-todos-svelte" step="2.5"}}
+
+We just added three things to our app:
+
+1. An `App` Svelte component in `imports/ui/App.svelte`
+2. A `Task` Svelte component in `imports/ui/Task.svelte`
+3. Some initialization code (in our `client/main.js` client JavaScript entry point), in a `Meteor.startup` block, which knows how to call code when the page is loaded and ready. This code creates the root Svelte component. This root Svelte coponent will be mounted using the `#app` html element.
+
+Later in the tutorial, we will refer to these components when adding or changing code.
+
+### Check the result
+
+In our browser, the app should **roughly** look like the following (though much less pretty):
 
 > #### Todo List
+>
 > - This is task 1
 > - This is task 2
 > - This is task 3
 
-Now let's find out what all these bits of code are doing!
+If your app doesn't look like this, use the GitHub link at the top right corner of each code snippet to see the entire file, and make sure your code matches the example.
 
-### HTML files in Meteor define templates
+### HTML files define static content
 
-Meteor parses all of the regular .HTML files in your app folder and identifies three top-level tags: **&lt;head>**, **&lt;body>**, and **&lt;template>**.
+Meteor parses all of the HTML files in your app folder and identifies three top-level tags: **`<head>`**, **`<body>`**, and **`<template>`**.
 
-Everything inside any &lt;head> tags is added to the `head` section of the HTML sent to the client, and everything inside &lt;body> tags is added to the `body` section, just like in a regular HTML file.
+Everything inside any `<head>` tags is added to the `head` section of the HTML sent to the client, and everything inside `<body>` tags is added to the `body` section, just like in a regular HTML file.
 
-The [angular-meteor package](http://angular-meteor.com/) parses all of the `html` files in your app folder and puts them in Angular's template cache with the id of their full path.
+### Define view components with Svelte
 
-So, for example, when a file named `my-angular-template.html` is placed in the `client` folder, it will be available for `ng-include` or `ui-router` with the name `client/my-angular-template.html`.
+In Svelte, single file components are created with the .svelte file extension and are comprised of three sections, the script section, the markup section and the style section. Within the script section you will write Javascript that runs when the component instance is created. The Svelte component format is fully explained in the  [Svelte Guide](https://svelte.dev/docs#Component_format)
 
-### Adding logic and data to templates
+### Add CSS styles to your app
 
-All of the code in your `html` files is compiled with Angular. Angular binds the data into our templates just like any other Angular app.
+In order to make your todo list more visually appealing, copy the following code into **`client/main.css`**:
 
-In the next step, we will see how we can use the $meteor service to bind our scope data to a database collection.
+{{> DiffBox tutorialName="simple-todos-svelte" step="2.6"}}
 
-{{> DiffBox tutorialName="simple-todos-angular" step="2.8"}}
+Now that you've added the CSS, the app should look a lot nicer. Check your browser to see that the new styles have loaded.
 
 {{/template}}

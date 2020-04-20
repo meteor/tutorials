@@ -10,7 +10,7 @@ First, let's add a form to our `App` component's template and a `newTask` field 
 
 This form will have an input element added to it that has a `v-model` attribute bound to `newTask`. The `newTask` data field is bound via two-way binding to the input field.
 
-You can see that the `form` element has a `@submit.prevent` attribute that references a method called `handleSubmit` that we will later define in the component's `methods` object. In Vue, this is how you listen to browser events, like the submit event on the form.
+You can see that the `form` element has a `@submit.prevent` attribute that references a method called `handleSubmit` that we will later be defined in the component's `methods` object. In Vue, this is how you listen to browser events, like the submit event on the form.
 
 We can now add that `handleSubmit` method to our `App` component's `methods` object:
 

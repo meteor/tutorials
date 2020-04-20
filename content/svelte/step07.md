@@ -1,59 +1,33 @@
-{{#template name="angular-step07"}}
+{{#template name="svelte-step07"}}
 
-# Filtering collections
+# Storing temporary UI data in Vue components data field
 
-In this step, we'll add a client-side data filtering feature to our app, so that users can check a box to see only incomplete tasks.
+In this step, we'll add a client-side data filtering feature to our app, so that users can check a box to only see incomplete tasks. We're going to learn how to use Vue's component state to store temporary information that is only used on the client.
 
-We're going to learn how to use Mongo's filtering API.
+First, we need to add a checkbox to our `App` component:
 
-First, we need to add a checkbox to our HTML:
+{{> DiffBox step="7.1" tutorialName="simple-todos-vue"}}
 
-{{> DiffBox tutorialName="simple-todos-angular" step="7.1"}}
+You can see that it reads from `this.hideCompleted`. We'll need to initialize the value of `this.hideCompleted` in the component's data object:
 
-This checkbox binds to the controller's `hideCompleted` variable.
+{{> DiffBox step="7.2" tutorialName="simple-todos-vue"}}
 
-Now, we need to update our `tasks` query each time `hideCompleted` changes.
+We can update `this.hideCompleted` from an event handler directly, which will then cause the component to re-render:
 
-### Filtering collection syntax
+{{> DiffBox step="7.3" tutorialName="simple-todos-vue"}}
 
-The query that returns all tasks (the current query looks like that:
+Now, we need to update the list of tasks to filter out completed tasks when `this.hideCompleted` is true:
 
-```js
-Tasks.find({}, { sort: { createdAt: -1 } })
-```
-
-and the query to return only the not completed todos looks like that:
-
-```js
-Tasks.find({ checked: {$ne: true} }, { sort: { createdAt: -1 } })
-```
-
-### Add reactivity
-
-We somehow want to update the query every time `hideComplete` changes.
-
-Let's implement some reactivity into `tasks` helper:
-
-{{> DiffBox tutorialName="simple-todos-angular" step="7.2"}}
-
-As you can see, we used `getReactively()` method. You can read more about it in the following chapter.
-
-### Connecting Angular bindings to Meteor's reactivity
-
-To make Meteor understand Angular bindings and the other way around, we use [$scope.getReactively](https://angular-meteor.com/api/angular-meteor/1.3.11/get-reactively) function that turns Angular
-scope variables into [Meteor reactive variables](http://docs.meteor.com/#/full/reactivevar_pkg).
+{{> DiffBox step="7.4" tutorialName="simple-todos-vue"}}
 
 Now if you check the box, the task list will only show tasks that haven't been completed.
 
-> To learn more about the [getReactively](https://angular-meteor.com/api/angular-meteor/1.3.11/get-reactively) feature
-> you can try the [advanced tutorial](http://angular-meteor.com/tutorial/step_12).
-
 ### One more feature: Showing a count of incomplete tasks
 
-Now that we have written a query that filters out completed tasks, we can use the same query to display a count of the tasks that haven't been checked off. To do this we need to add a scope function and change one line of the HTML.
+Now that we have written a query that filters out completed tasks, we can use the same query to display a count of the tasks that haven't been checked off. To do this we need to fetch a count in the meteor object of the Vue instace. Since we already have the data in the client-side collection, adding this extra count doesn't involve asking the server for anything.
 
-{{> DiffBox tutorialName="simple-todos-angular" step="7.3"}}
+{{> DiffBox step="7.5" tutorialName="simple-todos-vue"}}
 
-{{> DiffBox tutorialName="simple-todos-angular" step="7.4"}}
+{{> DiffBox step="7.6" tutorialName="simple-todos-vue"}}
 
 {{/template}}

@@ -1,4 +1,4 @@
-{{#template name="angular-step09"}}
+{{#template name="svelte-step09"}}
 
 # Security with methods
 
