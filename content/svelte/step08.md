@@ -12,25 +12,25 @@ To make use of the accounts system and UI, we need to add the relevant packages.
 meteor add accounts-ui accounts-password
 ```
 
-### Wrapping a Blaze component in Vue
+### Wrapping a Blaze component in Svelte
 
-To use the Blaze UI component from the `accounts-ui` package inside of a Vue component, we need to make use of the Vue and Blaze Integration package. So we will first need to install this package.
+To use the Blaze UI component from the `accounts-ui` package inside of a Svelte component, we need to make use of the Blaze package. So we will first need to install this package.
 
 ```sh
-meteor add vuejs:blaze-integration
+meteor add blaze
 ```
 
-Let's include the `loginButtons` template in the App component by using the following syntax `<blaze-template template="loginButtons" tag="span"></blaze-template>`:
+Let's include the `loginButtons` template in the App component by using the following syntax `<span id="loginButtons" ></span>`:
 
-{{> DiffBox step="8.3" tutorialName="simple-todos-vue"}}
+{{> DiffBox step="8.3" tutorialName="simple-todos-svelte"}}
 
 Then, add the following code to configure the accounts UI to use usernames instead of email addresses:
 
-{{> DiffBox step="8.4" tutorialName="simple-todos-vue"}}
+{{> DiffBox step="8.4" tutorialName="simple-todos-svelte"}}
 
 We also need to import that configuration code in our client side entrypoint:
 
-{{> DiffBox step="8.5" tutorialName="simple-todos-vue"}}
+{{> DiffBox step="8.5" tutorialName="simple-todos-svelte"}}
 
 ### Adding user-related functionality
 
@@ -46,19 +46,19 @@ To do this, we will add two new fields to the `tasks` collection:
 
 First, let's add some code to save these fields into the `handleSubmit` event handler:
 
-{{> DiffBox step="8.6" tutorialName="simple-todos-vue"}}
+{{> DiffBox step="8.6" tutorialName="simple-todos-svelte"}}
 
 Modify the data container to get information about the currently logged in user:
 
-{{> DiffBox step="8.7" tutorialName="simple-todos-vue"}}
+{{> DiffBox step="8.7" tutorialName="simple-todos-svelte"}}
 
-Then, we can wrap our form in a `<template>` tag and add in the `v-if` directive to conditionally render our form only when there is a logged in user:
+Then, we can wrap our form in a `{#if expression}{/if}` directive to conditionally render our form only when there is a logged in user:
 
-{{> DiffBox step="8.8" tutorialName="simple-todos-vue"}}
+{{> DiffBox step="8.8" tutorialName="simple-todos-svelte"}}
 
 Finally, add a statement to display the `username` field on each task right before the text:
 
-{{> DiffBox step="8.9" tutorialName="simple-todos-vue"}}
+{{> DiffBox step="8.9" tutorialName="simple-todos-svelte"}}
 
 In your browser, add some tasks and notice that your username shows up. Old tasks that we added before this step won't have usernames attached; you can just delete them.
 
