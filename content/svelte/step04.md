@@ -4,23 +4,19 @@
 
 In this step, we'll add an input field for users to add new tasks to the list.
 
-First, let's add a form input to our `App` component's markup section and a `newTask` property as well. Svelte uses the export keyword to mark a variable declaration as a property or prop, which means it becomes accessible to consumers of the component:
+First, let's add a form and a form input to our `App` component's markup section. Then we will add a `newTask` property to the `App` component's script section. Svelte uses the export keyword to mark a variable declaration as a property or prop, which means it becomes accessible to consumers of the component:
 
 {{> DiffBox step="4.1" tutorialName="simple-todos-svelte"}}
 
-This form will have an input element added to it that has a `bind:value` attribute bound to `newTask`. The `newTask` data field is bound via two-way binding to the input field.
+This form's input tag will have a `bind:value` attribute added to it and this will bind the input's value to the `newTask` property.
 
-You can see that the `form` element has a `on:submit|preventDefault` attribute that references a method called `handleSubmit` that we will later be defined in the component.
+The form tag has a `on:submit|preventDefault` attribute that references a method called `handleSubmit` that we will define next.
 
-We can now add that `handleSubmit` method to our `App` component script section:
+The `handleSubmit` method will be added to the `App` component's script section:
 
 {{> DiffBox step="4.2" tutorialName="simple-todos-svelte"}}
 
 Now your app has a new input field. To add a new task, just type into the input field and hit enter. If you open a new browser window and open the app again, you'll see that the list is automatically synchronized between all clients.
-
-### Listening for events in Svelte
-
-
 
 ### Inserting into a collection
 

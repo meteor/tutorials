@@ -18,18 +18,18 @@ If you try to use the app after removing this package, you will notice that none
 
 First, we need to define some methods. We need one method for each database operation we want to perform on the client. Methods should be defined in code that is executed on the client and the server - we will discuss this a bit later in the section titled _Optimistic UI_.
 
-{{> DiffBox tutorialName="simple-todos-angular" step="9.2"}}
+{{> DiffBox step="9.2" tutorialName="simple-todos-svelte"}}
 
-Now that we have defined our methods, we need to update the places we were operating on the collection to use the methods instead.
+Now that we have defined our methods, we need to update the places we were operating on the collection to use the methods instead:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="9.3"}}
+{{> DiffBox step="9.3" tutorialName="simple-todos-svelte"}}
 
-{{> DiffBox tutorialName="simple-todos-angular" step="9.4"}}
+{{> DiffBox step="9.4" tutorialName="simple-todos-svelte"}}
 
 Now all of our inputs and buttons will start working again. What did we gain from all of this work?
 
 1. When we insert tasks into the database, we can now securely verify that the user is logged in, that the `createdAt` field is correct, and that the `owner` and `username` fields are correct and the user isn't impersonating anyone.
-2. We can add extra validation logic to `setChecked` and `removeTask` in later steps when users can make tasks private.
+2. We can add extra validation logic to `setChecked` and `deleteTask` in later steps when users can make tasks private.
 3. Our client code is now more separated from our database logic. Instead of a lot of stuff happening inside our event handlers, we now have methods that can be called from anywhere.
 
 {{> step09OptimisticUI}}

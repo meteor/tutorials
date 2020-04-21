@@ -4,44 +4,64 @@
 
 Now that we have moved all of our app's sensitive code into methods, we need to learn about the other half of Meteor's security story. Until now, we have worked assuming the entire database is present on the client, meaning if we call `Tasks.find()` we will get every task in the collection. That's not good if users of our application want to store privacy-sensitive data. We need a way of controlling which data Meteor sends to the client-side database.
 
-Just like with `insecure` in the last step, all new Meteor apps start with the `autopublish` package. Let's remove it and see what happens:
+Just like with `insecure` in the last step, all new Meteor apps start with the `autopublish` package, which automatically synchronizes all of the database contents to the client. Let's remove it and see what happens:
 
 ```bash
 meteor remove autopublish
 ```
 
-When the app refreshes, the task list will be empty. Without the `autopublish` package, we will have to specify explicitly what the server sends to the client. The functions in Meteor that do this are `Meteor.publish` and [$scope.subscribe](http://angular-meteor.com/api/subscribe).
+When the app refreshes, the task list will be empty. Without the `autopublish` package, we will have to specify explicitly what the server sends to the client. The functions in Meteor that do this are `Meteor.publish` and `Meteor.subscribe`.
 
-Let's add them now.
+First lets add a publication for all the tasks we have in our Mongo collection:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="10.2"}}
+{{> DiffBox step="10.2" tutorialName="simple-todos-svelte"}}
 
-{{> DiffBox tutorialName="simple-todos-angular" step="10.3"}}
+And then let's subscribe to that publication in the `App` component.
+
+{{> DiffBox step="10.3" tutorialName="simple-todos-svelte"}}
 
 Once you have added this code, all of the tasks will reappear.
 
-Calling `Meteor.publish` on the server registers a _publication_ named `"tasks"`. When [$scope.subscribe](http://angular-meteor.com/api/subscribe) is called on the client with the publication name, the client _subscribes_ to all the data from that publication, which in this case is all of the tasks in the database. To truly see the power of the publish/subscribe model, let's implement a feature that allows users to mark tasks as "private" so that no other users can see them.
+Calling `Meteor.publish` on the server registers a _publication_ named `"tasks"`.
 
-### Implementing private tasks
+To truly see the power of the publish/subscribe model, let's implement a feature that allows users to mark tasks as "private" so that no other users can see them.
 
-First, let's add another property to tasks called "private" and a button for users to mark a task as private. This button should only show up for the owner of a task. It will display the current state of the item.
+### Adding a button to make tasks private
 
-{{> DiffBox tutorialName="simple-todos-angular" step="10.4"}}
+Let's add another property to tasks called "private" and a button for users to mark a task as private. This button should only show up for the owner of a task. We want the label to indicate the current status: public or private.
 
-{{> DiffBox tutorialName="simple-todos-angular" step="10.5"}}
+First, we need to add a new method that we can call to set a task's private status:
 
-We need to modify our JavaScript code in two places:
+{{> DiffBox step="10.4" tutorialName="simple-todos-svelte"}}
 
-{{> DiffBox tutorialName="simple-todos-angular" step="10.6"}}
+Now, we need to be able to pass a new property to the `Task` component to determine whether we will
+show the private button; the button should show up only if the currently
+logged in user owns this task:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="10.7"}}
+{{> DiffBox step="10.5" tutorialName="simple-todos-svelte"}}
+
+The `App` component will be updated next to pass in the component property we just created in the previous step:
+
+{{> DiffBox step="10.6" tutorialName="simple-todos-svelte"}}
+
+Let's add the button, using this new prop to decide whether it should be displayed:
+
+{{> DiffBox step="10.7" tutorialName="simple-todos-svelte"}}
+
+We need to define the event handler called by the button:
+
+{{> DiffBox step="10.8" tutorialName="simple-todos-svelte"}}
+
+One last thing, let's update the class of the `<li>` element in the `Task` component to reflect it's privacy status.
+
+{{> DiffBox step="10.9" tutorialName="simple-todos-vue"}}
 
 ### Selectively publishing tasks based on privacy status
 
 Now that we have a way of setting which tasks are private, we should modify our
 publication function to only send the tasks that a user is authorized to see:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="10.8"}}
+{{> DiffBox step="10.10" tutorialName="simple-todos-svelte"}}
 
 To test that this functionality works, you can use your browser's private browsing mode to log in as a different user. Put the two windows side by side and mark a task private to confirm that the other user can't see it. Now make it public again and it will reappear!
 
@@ -49,7 +69,7 @@ To test that this functionality works, you can use your browser's private browsi
 
 In order to finish up our private task feature, we need to add checks to our `deleteTask` and `setChecked` methods to make sure only the task owner can delete or check off a private task:
 
-{{> DiffBox tutorialName="simple-todos-angular" step="10.9"}}
+{{> DiffBox step="10.11" tutorialName="simple-todos-svelte"}}
 
 > Notice that with this code anyone can delete any public task. With some small modifications to the code, you should be able to make it so that only the owner can delete their tasks.
 
