@@ -86,7 +86,7 @@ We just added three things to our app:
 
 1. An `App` Svelte component in `imports/ui/App.svelte`
 2. A `Task` Svelte component in `imports/ui/Task.svelte`
-3. Some initialization code (in our `client/main.js` client JavaScript entry point), in a `Meteor.startup` block, which knows how to call code when the page is loaded and ready. This code creates the root Svelte component. This root Svelte coponent will be mounted using the `#app` html element.
+3. Some initialization code (in our `client/main.js` client JavaScript entry point), in a `Meteor.startup` block, which knows how to call code when the page is loaded and ready. This code creates a Svelte componentthat will be mounted using the `#app` html element.
 
 Later in the tutorial, we will refer to these components when adding or changing code.
 
