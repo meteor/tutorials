@@ -10,7 +10,7 @@ First, let's add a form and a form input to our `App` component's markup section
 
 This form's input tag will have a `bind:value` attribute added to it and this will bind the input's value to the `newTask` property.
 
-The form tag has a `on:submit|preventDefault` attribute that references a method called `handleSubmit` that we will define next.
+The form tag has a `on:submit|preventDefault` attribute that references the `handleSubmit` function that we will be defined next.
 
 The `handleSubmit` method will be added to the `App` component's script section:
 
