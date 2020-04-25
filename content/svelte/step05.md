@@ -4,7 +4,7 @@
 
 Until now, we have only interacted with a collection by inserting documents. Now, we will learn how to update and remove them.
 
-Let's add two new elements to our `task` component, a checkbox and a delete button, with event handlers for both:
+Let's add two new elements to our `Task` component, a checkbox and a delete button, with event handlers for both:
 
 {{> DiffBox step="5.1" tutorialName="simple-todos-svelte"}}
 

@@ -4,19 +4,17 @@
 
 In this step, we'll add an input field for users to add new tasks to the list.
 
-First, let's add a form and a form input to our `App` component's markup section. Then we will add a `newTask` property to the `App` component's script section. Svelte uses the export keyword to mark a variable declaration as a property or prop, which means it becomes accessible to consumers of the component:
+First, let's add a form and a form input to our `App` component's markup section. Then we will add a `newTask` property to the `App` component's script section:
 
 {{> DiffBox step="4.1" tutorialName="simple-todos-svelte"}}
 
 This form's input tag will have a `bind:value` attribute added to it and this will bind the input's value to the `newTask` property.
 
-The form tag has a `on:submit|preventDefault` attribute that references the `handleSubmit` function that we will be defined next.
-
-The `handleSubmit` method will be added to the `App` component's script section:
+Next, the `handleSubmit` method will be added to the `App` component's script section. In order to execute the `handleSubmit` function on our form's submit event we will add the `on:submit|preventDefault` attribute to the form tag:
 
 {{> DiffBox step="4.2" tutorialName="simple-todos-svelte"}}
 
-Now your app has a new input field. To add a new task, just type into the input field and hit enter. If you open a new browser window and open the app again, you'll see that the list is automatically synchronized between all clients.
+To add a new task, just type into the input field and hit enter. If you open a new browser window and open the app again, you'll see that the list is automatically synchronized between all clients.
 
 ### Inserting into a collection
 
@@ -28,7 +26,7 @@ Being able to insert anything into the database from the client isn't very secur
 
 Currently, our code displays all new tasks at the bottom of the list. That's not very good for a task list, because we want to see the newest tasks first.
 
-We can solve this by sorting the results using the `createdAt` field that is automatically added by our new code. Just add a sort option to the `find` call inside the data container wrapping the `App` component:
+We can solve this by sorting the results using the `createdAt` field that is automatically added by our new code. Just add a sort option to the `Tasks.find` call inside the `App` component:
 
 {{> DiffBox step="4.3" tutorialName="simple-todos-svelte"}}
 

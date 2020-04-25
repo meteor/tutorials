@@ -20,7 +20,7 @@ With these installed we can now run our app in "test mode" by running `meteor te
 TEST_WATCH=1 meteor test --driver-package meteortesting:mocha
 ```
 
-After running that command, you should see the test results for the two tests included by default in the `tests/main.js` file
+After running that command, you should see the test results for the two tests included by default in the `tests/main.js` file from when we ran the `meteor create` command
 
 ```bash
 --------------------------------
@@ -40,7 +40,7 @@ simple-todos-svelte
 
 ### Understand existing tests
 
-Where are these two tests coming from? Every new Meteor application includes a **`tests/main.js`** module containing several example tests using the `describe`, `it`, and `assert` style popularized by testing frameworks like [Mocha](https://mochajs.org/#getting-started):
+Every new Meteor application includes a **`tests/main.js`** module containing several example tests using the `describe`, `it`, and `assert` style popularized by testing frameworks like [Mocha](https://mochajs.org/#getting-started):
 
 ```js
 import assert from "assert";
@@ -65,15 +65,15 @@ describe("simple-todos-svelte", function() {
 });
 ```
 
-This module serves as the entry point for all your application tests. If you like, you can continue adding new tests to this module, using `Meteor.isServer` and `Meteor.isClient` to determine which tests run in which environment.
+This module serves as the entry point for all your application tests, and it is defined as such in the `package.json` file. Under the `meteor` field in the `package.json` file is the `testModule` field and it is this field that refers to the entry point for the `meteor test` command. If you would like to, you can continue adding new tests to this module, using `Meteor.isServer` and `Meteor.isClient` to determine which tests run will run in which environment.
 
 ### Import additional test modules
 
-However, if you would prefer to split your tests across multiple modules, you can do that too. Let's add a new test module called **`imports/api/tasks.tests.js`**:
+However, if you would prefer to split your tests across multiple modules, you can do that too. We will demonstrate this approach now. Let's add a new test module called **`imports/api/tasks.tests.js`**:
 
 {{> DiffBox tutorialName="simple-todos-svelte" step="11.2"}}
 
-In any test we need to ensure the database is in the state we expect before beginning. We can use Mocha's `beforeEach` construct to do that easily:
+In any test we make we need to ensure the database is in the state we expect before beginning. We can use Mocha's `beforeEach` construct to do test setup tasks:
 
 {{> DiffBox tutorialName="simple-todos-svelte" step="11.3"}}
 

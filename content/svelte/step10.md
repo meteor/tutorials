@@ -16,19 +16,19 @@ First lets add a publication for all the tasks we have in our Mongo collection:
 
 {{> DiffBox step="10.2" tutorialName="simple-todos-svelte"}}
 
-And then let's subscribe to that publication in the `App` component.
+Calling `Meteor.publish` on the server registers a _publication_ named `"tasks"`.
+
+And then let's subscribe to that publication in the `App` component's `onMount` event handler. This event handler is called when the component has been added to the DOM.
 
 {{> DiffBox step="10.3" tutorialName="simple-todos-svelte"}}
 
 Once you have added this code, all of the tasks will reappear.
 
-Calling `Meteor.publish` on the server registers a _publication_ named `"tasks"`.
-
 To truly see the power of the publish/subscribe model, let's implement a feature that allows users to mark tasks as "private" so that no other users can see them.
 
 ### Adding a button to make tasks private
 
-Let's add another property to tasks called "private" and a button for users to mark a task as private. This button should only show up for the owner of a task. We want the label to indicate the current status: public or private.
+Let's add another property to `Task` component called `showPrivateButton` and a button for users to mark a task as private. This button should only show up for the owner of a task. We want the label to indicate the current status: public or private.
 
 First, we need to add a new method that we can call to set a task's private status:
 
@@ -54,7 +54,7 @@ We need to define the event handler called by the button:
 
 One last thing, let's update the class of the `<li>` element in the `Task` component to reflect it's privacy status.
 
-{{> DiffBox step="10.9" tutorialName="simple-todos-vue"}}
+{{> DiffBox step="10.9" tutorialName="simple-todos-svelte"}}
 
 ### Selectively publishing tasks based on privacy status
 

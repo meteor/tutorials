@@ -30,17 +30,17 @@ meteor npm install --save svelte
 
 > Note: `meteor npm` supports the same features as `npm`, though the difference can be important. Consult the [`meteor npm` documentation](https://docs.meteor.com/commandline.html#meteornpm) for more information.
 
-We also need to add the svelte:compiler package to allow us to create files with the .svelte extension, which makes it possible to create Svelte components in the single file format.
+We also need to add the svelte:compiler Meteor package to allow us to create files with the .svelte extension, which makes it possible to create Svelte components in the single file format, and the rdb:svelte-meteor-data Meteor package which allows us to consume Meteor's reactive data sources inside of our Svelte components.
 
 ```sh
-meteor add svelte:compiler
+meteor add svelte:compiler rdb:svelte-meteor-data
 ```
 
 ### Replace `blaze-html-templates` with `static-html`
 
-By default, new Meteor applications use Blaze as their templating engine. While it's possible for a Meteor application to use Blaze and Svelte simultaneously, the application we're building in this tutorial does not need Blaze at all. Since you created your Meteor application with `meteor create` the `blaze-html-templates` package is inlcuded, we recommend that you remove support for Blaze and add support for static HTML templates.
+By default, new Meteor applications use Blaze as their templating engine, but the application we're building in this tutorial does not need the `blaze-html-templates` Meteor package.
 
-To prevent processing `.html` files as Blaze templates, first remove the `blaze-html-templates` package:
+First remove the `blaze-html-templates` package:
 
 ```sh
 meteor remove blaze-html-templates
@@ -52,7 +52,7 @@ Now, to ensure `.html` files are processed as static HTML, add the `static-html`
 meteor add static-html
 ```
 
-The `static-html` package is not specific to Svelte. It simply turns `<head>` and `<body>` fragments found in `.html` files into raw HTML that will be served from the Meteor web server. Later, your Svelte application will render its components into this HTML.
+The `static-html` package is not specifically for building a Svelte application. It simply turns `<head>` and `<body>` fragments found in `.html` files into raw HTML that will be served from the Meteor web server. Later, your Svelte application will render its components into this HTML.
 
 Note that both `blaze-html-templates` and `static-html` are _Meteor packages_, rather than npm packages, because they need to register _compiler plugins_ that determine how `.html` files are processed. Controlling compilation is one of several key features that make Meteor packages more powerful than npm packages.
 
@@ -86,9 +86,11 @@ We just added three things to our app:
 
 1. An `App` Svelte component in `imports/ui/App.svelte`
 2. A `Task` Svelte component in `imports/ui/Task.svelte`
-3. Some initialization code (in our `client/main.js` client JavaScript entry point), in a `Meteor.startup` block, which knows how to call code when the page is loaded and ready. This code creates a Svelte componentthat will be mounted using the `#app` html element.
+3. Some initialization code (in our `client/main.js` client JavaScript entry point), in a `Meteor.startup` block, which knows how to call code when the page is loaded and ready. This code creates a Svelte component that will be mounted using the `#app` html element.
 
-Later in the tutorial, we will refer to these components when adding or changing code.
+### Define view components with Svelte
+
+In Svelte, single file components are created with the .svelte file extension and are comprised of three sections, the script section, the markup section and the style section. Within the script section you will write Javascript that runs when the component instance is created. The Svelte component format is fully explained in the [Svelte Guide](https://svelte.dev/docs#Component_format)
 
 ### Check the result
 
@@ -101,16 +103,6 @@ In our browser, the app should **roughly** look like the following (though much 
 > - This is task 3
 
 If your app doesn't look like this, use the GitHub link at the top right corner of each code snippet to see the entire file, and make sure your code matches the example.
-
-### HTML files define static content
-
-Meteor parses all of the HTML files in your app folder and identifies three top-level tags: **`<head>`**, **`<body>`**, and **`<template>`**.
-
-Everything inside any `<head>` tags is added to the `head` section of the HTML sent to the client, and everything inside `<body>` tags is added to the `body` section, just like in a regular HTML file.
-
-### Define view components with Svelte
-
-In Svelte, single file components are created with the .svelte file extension and are comprised of three sections, the script section, the markup section and the style section. Within the script section you will write Javascript that runs when the component instance is created. The Svelte component format is fully explained in the  [Svelte Guide](https://svelte.dev/docs#Component_format)
 
 ### Add CSS styles to your app
 
