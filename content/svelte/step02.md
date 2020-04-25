@@ -22,7 +22,7 @@ The rest of this tutorial will take you on a step-by-step journey through the de
 
 To start working with Svelte as our view library, we first need to add the relevant npm package.
 
-Open a new terminal in the same directory as your running app, and type:
+Open a new terminal in the same directory as your running app, and run the following commands:
 
 ```sh
 meteor npm install --save svelte

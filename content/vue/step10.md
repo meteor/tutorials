@@ -54,13 +54,13 @@ We need to define the event handler called by the button:
 
 {{> DiffBox step="10.8" tutorialName="simple-todos-vue"}}
 
-One last thing, let's update the class of the `<li>` element in the `Task` component to reflect it's privacy status. We'll use the `classnames` NPM Package for this:
+One last thing, let's update the class of the `<li>` element in the `Task` component to reflect it's privacy status. We'll use the `classnames`  package for this:
 
 ```bash
 meteor npm install --save classnames
 ```
 
-Then we'll use that package to choose a class based on the task are rendering:
+Then we'll use that package to choose a class based on the task we are rendering:
 
 {{> DiffBox step="10.10" tutorialName="simple-todos-vue"}}
 

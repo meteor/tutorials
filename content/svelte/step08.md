@@ -30,7 +30,7 @@ Then, add the following code to configure the accounts UI to use usernames inste
 
 {{> DiffBox step="8.4" tutorialName="simple-todos-svelte"}}
 
-We also need to import that configuration code into our client side entrypoint:
+We also need to import that configuration file into our client side entrypoint:
 
 {{> DiffBox step="8.5" tutorialName="simple-todos-svelte"}}
 
