@@ -34,17 +34,16 @@ First, we need to add a new method that we can call to set a task's private stat
 
 {{> DiffBox step="10.4" tutorialName="simple-todos-svelte"}}
 
-Now, we need to be able to pass a new property to the `Task` component to determine whether we will
-show the private button; the button should show up only if the currently
-logged in user owns this task:
+Now, we need to update the `Task` component to include a new `showPrivateButton` field:
 
 {{> DiffBox step="10.5" tutorialName="simple-todos-svelte"}}
 
-The `App` component will be updated next to pass in the component property we just created in the previous step:
+The `Task` component will need to determine whether to show the button when a user logs in and logs out of 
+the application:
 
 {{> DiffBox step="10.6" tutorialName="simple-todos-svelte"}}
 
-Let's add the button, using this new prop to decide whether it should be displayed:
+Now let's add the button:
 
 {{> DiffBox step="10.7" tutorialName="simple-todos-svelte"}}
 
