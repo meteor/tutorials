@@ -14,13 +14,13 @@ meteor add accounts-ui accounts-password
 
 ### Wrapping a Blaze component in Svelte
 
-To use the Blaze UI component from the `accounts-ui` package inside of a Svelte component, we need to make use of the Blaze package. So we will first need to install this package.
+To use the login Blaze template from the `accounts-ui` package inside of a Svelte component, we need to first add the `svelte:blaze-integration` Meteor package:
 
 ```sh
-meteor add blaze
+meteor add svelte:blaze-integration
 ```
 
-Let's include the `loginButtons` template in the `App` component:
+Now we can include the `loginButtons` template in the `App` component:
 
 {{> DiffBox step="8.3" tutorialName="simple-todos-svelte"}}
 
