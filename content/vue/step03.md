@@ -6,13 +6,12 @@
 
 ### 3.3 Using data from a collection inside a Vue component
 
-To use data from a Meteor collection inside a Vue component, we can use a Meteor package called `vue-meteor-tracker`, which allows us to create a "data container" to feed Meteor's reactive data into Vue's component hierarchy.
+To use data from a Meteor collection inside a Vue component, we can use a package called `vue-meteor-tracker`, which allows us to create a "data container" to feed Meteor's reactive data into Vue's component hierarchy.
 
 ```bash
 meteor npm install --save vue-meteor-tracker
 ```
-
-In your Vue component, add a meteor object:
+In your Vue component, we can now add a `meteor` object:
 
 ```
 export default {
@@ -38,7 +37,7 @@ export default {
 }
 ```
 
-When you make these changes to the code, you'll notice that the tasks that used to be in the todo list have disappeared. That's because our database is currently empty&mdash;we need to insert some tasks!
+When you make these changes to the code, you'll notice that the tasks that used to be in the todo list have disappeared. That's because our database is currently empty&mdash;so we need to insert some tasks!
 
 {{> step03InsertingTasksFromConsole}}
 

@@ -10,3 +10,6 @@
 [submodule "repos/vue"]
 	path = repos/vue
 	url = git@github.com:meteor/simple-todos-vue.git
+[submodule "repos/svelte"]
+	path = repos/svelte
+	url = git@github.com:meteor/simple-todos-svelte.git

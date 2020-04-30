@@ -1,4 +1,4 @@
-{{#template name="vue-step10"}}
+{{#template name="svelte-step10"}}
 
 # Filtering data with publish and subscribe
 
@@ -14,62 +14,53 @@ When the app refreshes, the task list will be empty. Without the `autopublish` p
 
 First lets add a publication for all the tasks we have in our Mongo collection:
 
-{{> DiffBox step="10.2" tutorialName="simple-todos-vue"}}
-
-And then let's subscribe to that publication in the `App` component.
-
-{{> DiffBox step="10.3" tutorialName="simple-todos-vue"}}
-
-Once you have added this code, all of the tasks will reappear.
+{{> DiffBox step="10.2" tutorialName="simple-todos-svelte"}}
 
 Calling `Meteor.publish` on the server registers a _publication_ named `"tasks"`.
 
-On the client we will add an object for each subscription we want to subscribe to in the `$subscribe` object. The object key is the name of the publication and the value is either an array of parameters or a function returning an array of parameters.
+And then let's subscribe to that publication in the `App` component's `onMount` event handler. This event handler is called when the component has been added to the DOM.
+
+{{> DiffBox step="10.3" tutorialName="simple-todos-svelte"}}
+
+Once you have added this code, all of the tasks will reappear.
 
 To truly see the power of the publish/subscribe model, let's implement a feature that allows users to mark tasks as "private" so that no other users can see them.
 
 ### Adding a button to make tasks private
 
-Let's add another property to tasks called "private" and a button for users to mark a task as private. This button should only show up for the owner of a task. We want the label to indicate the current status: public or private.
+Let's add another property to `Task` component called `showPrivateButton` and a button for users to mark a task as private. This button should only show up for the owner of a task. We want the label to indicate the current status: public or private.
 
 First, we need to add a new method that we can call to set a task's private status:
 
-{{> DiffBox step="10.4" tutorialName="simple-todos-vue"}}
+{{> DiffBox step="10.4" tutorialName="simple-todos-svelte"}}
 
-Now, we need to be able to pass a new property to the `Task` component to determine whether we will
-show the private button; the button should show up only if the currently
-logged in user owns this task:
+Now, we need to update the `Task` component to include a new `showPrivateButton` field:
 
-{{> DiffBox step="10.5" tutorialName="simple-todos-vue"}}
+{{> DiffBox step="10.5" tutorialName="simple-todos-svelte"}}
 
-The `App` component will be updated next to pass in the component property we just created in the previous step:
+The `Task` component will need to determine whether to show the button when a user logs in and logs out of 
+the application:
 
-{{> DiffBox step="10.6" tutorialName="simple-todos-vue"}}
+{{> DiffBox step="10.6" tutorialName="simple-todos-svelte"}}
 
-Let's add the button, using this new prop to decide whether it should be displayed:
+Now let's add the button:
 
-{{> DiffBox step="10.7" tutorialName="simple-todos-vue"}}
+{{> DiffBox step="10.7" tutorialName="simple-todos-svelte"}}
 
 We need to define the event handler called by the button:
 
-{{> DiffBox step="10.8" tutorialName="simple-todos-vue"}}
+{{> DiffBox step="10.8" tutorialName="simple-todos-svelte"}}
 
-One last thing, let's update the class of the `<li>` element in the `Task` component to reflect it's privacy status. We'll use the `classnames`  package for this:
+One last thing, let's update the class of the `<li>` element in the `Task` component to reflect it's privacy status.
 
-```bash
-meteor npm install --save classnames
-```
-
-Then we'll use that package to choose a class based on the task we are rendering:
-
-{{> DiffBox step="10.10" tutorialName="simple-todos-vue"}}
+{{> DiffBox step="10.9" tutorialName="simple-todos-svelte"}}
 
 ### Selectively publishing tasks based on privacy status
 
 Now that we have a way of setting which tasks are private, we should modify our
 publication function to only send the tasks that a user is authorized to see:
 
-{{> DiffBox step="10.11" tutorialName="simple-todos-vue"}}
+{{> DiffBox step="10.10" tutorialName="simple-todos-svelte"}}
 
 To test that this functionality works, you can use your browser's private browsing mode to log in as a different user. Put the two windows side by side and mark a task private to confirm that the other user can't see it. Now make it public again and it will reappear!
 
@@ -77,7 +68,7 @@ To test that this functionality works, you can use your browser's private browsi
 
 In order to finish up our private task feature, we need to add checks to our `deleteTask` and `setChecked` methods to make sure only the task owner can delete or check off a private task:
 
-{{> DiffBox step="10.12" tutorialName="simple-todos-vue"}}
+{{> DiffBox step="10.11" tutorialName="simple-todos-svelte"}}
 
 > Notice that with this code anyone can delete any public task. With some small modifications to the code, you should be able to make it so that only the owner can delete their tasks.
 

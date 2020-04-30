@@ -1,4 +1,4 @@
-{{#template name="vue-step12"}}
+{{#template name="svelte-step12"}}
 
 # What's next?
 
