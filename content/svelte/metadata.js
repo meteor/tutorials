@@ -38,7 +38,7 @@ TutorialRegistry.registerTutorial("svelte", {
     {
       title: 'Running on mobile',
       slug: "running-on-mobile",
-      template: 'sharedStep06
+      template: 'sharedStep06'
     },
     {
       title: 'Filtering Collections',
