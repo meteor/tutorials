@@ -778,20 +778,20 @@ index a694b10..54053d6 100644
 2.11.0
 
 
-From c7628a6d5768cb0409db97e5cd8e57bb27a5bf05 Mon Sep 17 00:00:00 2001
+From 38ad8264c42771d338f1149cdb1b6111d8bce111 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
-Date: Thu, 23 Apr 2020 20:16:17 -0500
+Date: Thu, 14 May 2020 22:04:12 -0500
 Subject: [PATCH 18/50] Step 7.3: Filter out tasks when the checkbox is checked
 
 ---
- imports/ui/App.svelte | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
+ imports/ui/App.svelte | 13 ++++++++++---
+ 1 file changed, 10 insertions(+), 3 deletions(-)
 
 diff --git a/imports/ui/App.svelte b/imports/ui/App.svelte
-index 54053d6..635761f 100644
+index 54053d6..3f6a6d3 100644
 --- a/imports/ui/App.svelte
 +++ b/imports/ui/App.svelte
-@@ -1,12 +1,18 @@
+@@ -1,12 +1,19 @@
  <script>
 -  import { useTracker } from 'meteor/rdb:svelte-meteor-data';
 +  import { useTracker } from 'meteor/rdb:svelte-meteor-data';  
@@ -800,6 +800,7 @@ index 54053d6..635761f 100644
    
    let newTask = "";
    let hideCompleted = false;
++  let tasks;
  
 -  $: tasks = useTracker(() => Tasks.find({}, { sort: { createdAt: -1 } }).fetch());
 +  const taskStore = Tasks.find({}, { sort: { createdAt: -1 } });
@@ -812,15 +813,7 @@ index 54053d6..635761f 100644
  
   function handleSubmit(event) {
        Tasks.insert({
-@@ -17,7 +23,6 @@
-       // Clear form
-       newTask = "";
-   };
--
- </script>
-  
- <div class="container">
-@@ -39,7 +44,7 @@
+@@ -39,7 +46,7 @@
      </form>
    </header>
    <ul>
@@ -833,7 +826,7 @@ index 54053d6..635761f 100644
 2.11.0
 
 
-From e718756c3b1fa43e9ae35d88c1b0049fc16d3abb Mon Sep 17 00:00:00 2001
+From 61d8832a4a8e39a5dcf2d8c82068ee807dfe20d6 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Wed, 22 Apr 2020 19:32:39 -0500
 Subject: [PATCH 19/50] Step 7.4: Update data container to return
@@ -844,12 +837,12 @@ Subject: [PATCH 19/50] Step 7.4: Update data container to return
  1 file changed, 2 insertions(+)
 
 diff --git a/imports/ui/App.svelte b/imports/ui/App.svelte
-index 635761f..b327fcc 100644
+index 3f6a6d3..d43bf4e 100644
 --- a/imports/ui/App.svelte
 +++ b/imports/ui/App.svelte
-@@ -6,6 +6,8 @@
-   let newTask = "";
+@@ -7,6 +7,8 @@
    let hideCompleted = false;
+   let tasks;
  
 +  $: incompleteCount = useTracker(() => Tasks.find({ checked: { $ne: true } }).count()); 
 +
@@ -860,7 +853,7 @@ index 635761f..b327fcc 100644
 2.11.0
 
 
-From d2f4b56f1e78840eddcb87b67abc203aac327c30 Mon Sep 17 00:00:00 2001
+From 1a11d9fb2cfac3c34ee816f905031a302cef983a Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Wed, 22 Apr 2020 19:30:39 -0500
 Subject: [PATCH 20/50] Step 7.5: Display incompleteCount in the header
@@ -870,10 +863,10 @@ Subject: [PATCH 20/50] Step 7.5: Display incompleteCount in the header
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/imports/ui/App.svelte b/imports/ui/App.svelte
-index b327fcc..b610a9e 100644
+index d43bf4e..e3cb30c 100644
 --- a/imports/ui/App.svelte
 +++ b/imports/ui/App.svelte
-@@ -29,7 +29,7 @@
+@@ -31,7 +31,7 @@
   
  <div class="container">
    <header>
@@ -886,7 +879,7 @@ index b327fcc..b610a9e 100644
 2.11.0
 
 
-From b5569adb791fd894683baf7d0da976d021766541 Mon Sep 17 00:00:00 2001
+From 22c2e48a17f64ac9779cebc5b31fffd41eeb0e0a Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Fri, 17 Apr 2020 21:18:20 -0500
 Subject: [PATCH 21/50] Step 8.1: Add accounts-ui and accounts-password
@@ -985,7 +978,7 @@ index 3e3d9d7..17951fd 100644
 2.11.0
 
 
-From 669e44a43d51752cb5457b7488d67a4df67fb632 Mon Sep 17 00:00:00 2001
+From 6e21d1c731d06039480f15f30f73a57a85c0bec6 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Mon, 27 Apr 2020 18:46:48 -0500
 Subject: [PATCH 22/50] Step 8.2: Add the svelte:blaze-integration Meteor
@@ -1022,7 +1015,7 @@ index 17951fd..284aa86 100644
 2.11.0
 
 
-From 46ff0824487351c4f86a38b0acaecb6bbc88809e Mon Sep 17 00:00:00 2001
+From 2f629d3418a6ba7f602568841e66b0d4e7c98eb5 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Mon, 27 Apr 2020 18:36:21 -0500
 Subject: [PATCH 23/50] Step 8.3: Include the login template in the App
@@ -1033,7 +1026,7 @@ Subject: [PATCH 23/50] Step 8.3: Include the login template in the App
  1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/imports/ui/App.svelte b/imports/ui/App.svelte
-index b610a9e..0112995 100644
+index e3cb30c..9e9f410 100644
 --- a/imports/ui/App.svelte
 +++ b/imports/ui/App.svelte
 @@ -1,8 +1,9 @@
@@ -1046,8 +1039,8 @@ index b610a9e..0112995 100644
 +
    let newTask = "";
    let hideCompleted = false;
- 
-@@ -37,6 +38,9 @@
+   let tasks;
+@@ -39,6 +40,9 @@
        />
        Hide Completed Tasks
      </label>
@@ -1061,7 +1054,7 @@ index b610a9e..0112995 100644
 2.11.0
 
 
-From 2984c7a4fea74c43dc50719a4cffa58018be6d29 Mon Sep 17 00:00:00 2001
+From ff888e69dcd4c8003ca6258e7501c2eb3b7eb753 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 18 Apr 2020 12:27:32 -0500
 Subject: [PATCH 24/50] Step 8.4: Configure accounts-ui
@@ -1087,7 +1080,7 @@ index 0000000..7519a14
 2.11.0
 
 
-From ff3bfa99699399d13ca0f32246806e4d67ce00be Mon Sep 17 00:00:00 2001
+From cdfc9c712bdac40f640feac99c2277eecccd6252 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 18 Apr 2020 12:27:49 -0500
 Subject: [PATCH 25/50] Step 8.5: Import accounts configuration
@@ -1112,7 +1105,7 @@ index 376cf55..4bf0f6f 100644
 2.11.0
 
 
-From b4972513c3b060f2229d41ef47cd7eb68b4e2500 Mon Sep 17 00:00:00 2001
+From f3112ac9ad89dea0844c69198f1209bc65674d94 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 18 Apr 2020 12:29:44 -0500
 Subject: [PATCH 26/50] Step 8.6: Update insert to save username and owner
@@ -1122,7 +1115,7 @@ Subject: [PATCH 26/50] Step 8.6: Update insert to save username and owner
  1 file changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/imports/ui/App.svelte b/imports/ui/App.svelte
-index 0112995..79df14d 100644
+index 9e9f410..690515f 100644
 --- a/imports/ui/App.svelte
 +++ b/imports/ui/App.svelte
 @@ -1,4 +1,5 @@
@@ -1131,7 +1124,7 @@ index 0112995..79df14d 100644
    import { useTracker } from 'meteor/rdb:svelte-meteor-data';  
    import { BlazeTemplate } from 'meteor/svelte:blaze-integration';
    import Task from './Task.svelte';
-@@ -20,7 +21,9 @@
+@@ -21,7 +22,9 @@
   function handleSubmit(event) {
        Tasks.insert({
          text: newTask,
@@ -1146,26 +1139,25 @@ index 0112995..79df14d 100644
 2.11.0
 
 
-From 4dda0c9823dcf50af5d967763c0da3518c90e6d1 Mon Sep 17 00:00:00 2001
+From fe72e5953cc44ddc6119b9378aa7cd2cc68d0147 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 26 Apr 2020 12:19:35 -0500
 Subject: [PATCH 27/50] Step 8.7: Update the App component to store the current
  user
 
 ---
- imports/ui/App.svelte | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ imports/ui/App.svelte | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
 diff --git a/imports/ui/App.svelte b/imports/ui/App.svelte
-index 79df14d..44ef424 100644
+index 690515f..5351727 100644
 --- a/imports/ui/App.svelte
 +++ b/imports/ui/App.svelte
-@@ -7,9 +7,13 @@
- 
+@@ -8,9 +8,12 @@
    let newTask = "";
    let hideCompleted = false;
+   let tasks;
 -
-+  let tasks = [];
 +  let currentUser;
 +  
    $: incompleteCount = useTracker(() => Tasks.find({ checked: { $ne: true } }).count()); 
@@ -1175,7 +1167,7 @@ index 79df14d..44ef424 100644
    const taskStore = Tasks.find({}, { sort: { createdAt: -1 } });
    $: {
        tasks = $taskStore;
-@@ -18,7 +22,7 @@
+@@ -19,7 +22,7 @@
        }
    };
  
@@ -1188,7 +1180,7 @@ index 79df14d..44ef424 100644
 2.11.0
 
 
-From 1d2d332480b2c6f16683881a38921dfa35838786 Mon Sep 17 00:00:00 2001
+From 3d67128c566f675c828644d264f86a0f4378aab2 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Thu, 23 Apr 2020 20:28:46 -0500
 Subject: [PATCH 28/50] Step 8.8: Wrap new task form to only show when logged
@@ -1199,10 +1191,10 @@ Subject: [PATCH 28/50] Step 8.8: Wrap new task form to only show when logged
  1 file changed, 2 insertions(+)
 
 diff --git a/imports/ui/App.svelte b/imports/ui/App.svelte
-index 44ef424..b3aeb60 100644
+index 5351727..a05a6ea 100644
 --- a/imports/ui/App.svelte
 +++ b/imports/ui/App.svelte
-@@ -48,6 +48,7 @@
+@@ -49,6 +49,7 @@
      
      <BlazeTemplate template="loginButtons" />
  
@@ -1210,7 +1202,7 @@ index 44ef424..b3aeb60 100644
      <form class="new-task" on:submit|preventDefault={handleSubmit}>
        <input
          type="text"
-@@ -55,6 +56,7 @@
+@@ -56,6 +57,7 @@
          bind:value={newTask}
        />
      </form>
@@ -1222,7 +1214,7 @@ index 44ef424..b3aeb60 100644
 2.11.0
 
 
-From 7f48e5334dd38c2915ce69e22bb8c45444400f86 Mon Sep 17 00:00:00 2001
+From 47fd21c50287e622698b3626a2f6e5709a55d091 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 18 Apr 2020 12:40:09 -0500
 Subject: [PATCH 29/50] Step 8.9: Update Task component to show a tasks user
@@ -1250,7 +1242,7 @@ index 943c931..a0962b2 100644
 2.11.0
 
 
-From e0d261e57d12ed7b1675d4823a14943de2ead65b Mon Sep 17 00:00:00 2001
+From ed93a24d13aea0a785592fa0e0553e8bfebb3a6b Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 18 Apr 2020 12:40:54 -0500
 Subject: [PATCH 30/50] Step 9.1: Remove insecure package
@@ -1288,7 +1280,7 @@ index 284aa86..5100a9e 100644
 2.11.0
 
 
-From 7da33365493c87c3c7b1c6fdb2f90a83fc6b07a5 Mon Sep 17 00:00:00 2001
+From 502b898295a1ae6791de135b645ab0585c8a38a1 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 18 Apr 2020 12:42:13 -0500
 Subject: [PATCH 31/50] Step 9.2: Add methods for add, remove, update task
@@ -1343,7 +1335,7 @@ index dfeb446..d9d48fd 100644
 2.11.0
 
 
-From c10423749d90e60283f43e57d9a8d4cc7a998c62 Mon Sep 17 00:00:00 2001
+From 96b1a12daeba18d9c85f2e7970a84380addc395b Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 18 Apr 2020 12:44:33 -0500
 Subject: [PATCH 32/50] Step 9.3: Update App component to use tasks.insert
@@ -1354,7 +1346,7 @@ Subject: [PATCH 32/50] Step 9.3: Update App component to use tasks.insert
  1 file changed, 2 insertions(+), 7 deletions(-)
 
 diff --git a/imports/ui/App.svelte b/imports/ui/App.svelte
-index b3aeb60..44b6877 100644
+index a05a6ea..7e31cd3 100644
 --- a/imports/ui/App.svelte
 +++ b/imports/ui/App.svelte
 @@ -22,13 +22,8 @@
@@ -1377,7 +1369,7 @@ index b3aeb60..44b6877 100644
 2.11.0
 
 
-From 0232bf692ae44acaf08246978688d79c858ae013 Mon Sep 17 00:00:00 2001
+From d8585f7b45667244a3171cf16da43f5628ab3aa1 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 18 Apr 2020 12:46:49 -0500
 Subject: [PATCH 33/50] Step 9.4: Replace update and remove with Meteor methods
@@ -1410,7 +1402,7 @@ index a0962b2..92bc421 100644
 2.11.0
 
 
-From 2115f1771db09284be83cfc3aafa625033b5ad50 Mon Sep 17 00:00:00 2001
+From 1647cf282edd3deec53aeda230f01e77c32ce8d0 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 18 Apr 2020 12:47:35 -0500
 Subject: [PATCH 34/50] Step 10.1: Remove autopublish package
@@ -1448,7 +1440,7 @@ index 5100a9e..21b4674 100644
 2.11.0
 
 
-From 56c4536277f43aa9b8ee77d78bd6500a35ce7b73 Mon Sep 17 00:00:00 2001
+From cbf8ff7454661d23a8a5f6b77e796c3314f119a2 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 18 Apr 2020 12:48:31 -0500
 Subject: [PATCH 35/50] Step 10.2: Add publication for tasks
@@ -1479,7 +1471,7 @@ index d9d48fd..38f4642 100644
 2.11.0
 
 
-From b1be977bc0ae04d868944c9a2e477bffa98a6d41 Mon Sep 17 00:00:00 2001
+From 1ae134e27520456f5954dffcee78932bdb6534a4 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Mon, 27 Apr 2020 18:49:05 -0500
 Subject: [PATCH 36/50] Step 10.3: Subscribe to tasks in App container
@@ -1489,7 +1481,7 @@ Subject: [PATCH 36/50] Step 10.3: Subscribe to tasks in App container
  1 file changed, 5 insertions(+)
 
 diff --git a/imports/ui/App.svelte b/imports/ui/App.svelte
-index 44b6877..9f491fd 100644
+index 7e31cd3..324f9b8 100644
 --- a/imports/ui/App.svelte
 +++ b/imports/ui/App.svelte
 @@ -1,5 +1,6 @@
@@ -1500,7 +1492,7 @@ index 44b6877..9f491fd 100644
    import { BlazeTemplate } from 'meteor/svelte:blaze-integration';
    import Task from './Task.svelte';
 @@ -10,6 +11,10 @@
-   let tasks = [];
+   let tasks;
    let currentUser;
    
 +  onMount(async () => {
@@ -1514,7 +1506,7 @@ index 44b6877..9f491fd 100644
 2.11.0
 
 
-From be90d1ac26acdde27e7ecfdf9f5f22335558c8a0 Mon Sep 17 00:00:00 2001
+From 9a79d8871cd0bb51b8d3afcc168ffdf58973d3ba Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 18 Apr 2020 12:51:47 -0500
 Subject: [PATCH 37/50] Step 10.4: Add tasks.setPrivate method
@@ -1550,7 +1542,7 @@ index 38f4642..b567865 100644
 2.11.0
 
 
-From d68aee96c4e9749a4eea620d4829a935ee74d95d Mon Sep 17 00:00:00 2001
+From 8a616003b4007e32011cc7c8286c4e1e5dc3ba12 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 26 Apr 2020 16:03:05 -0500
 Subject: [PATCH 38/50] Step 10.5: Update Task component to add a
@@ -1576,7 +1568,7 @@ index 92bc421..332c4c1 100644
 2.11.0
 
 
-From 0f2e8443b409a665e07a3ceff72c5192899b6a61 Mon Sep 17 00:00:00 2001
+From 4e5abcf2e7312740629b017da27b3fa642a2ea57 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Fri, 1 May 2020 19:18:34 -0500
 Subject: [PATCH 39/50] Step 10.6: Update the Task component to show a private
@@ -1615,7 +1607,7 @@ index 332c4c1..ceb7383 100644
 2.11.0
 
 
-From f6c2ea7cf437ec9e34ca20bef5ba5d839a9ee25b Mon Sep 17 00:00:00 2001
+From 7c5b0a1e4eae6868ffae0c4cd193c25ddae9a050 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 18 Apr 2020 13:05:19 -0500
 Subject: [PATCH 40/50] Step 10.7: Add a private button to the Task
@@ -1646,7 +1638,7 @@ index ceb7383..d3a942e 100644
 2.11.0
 
 
-From df3ad0840ef8509b7cf47a21dd9cca55e11e6a3f Mon Sep 17 00:00:00 2001
+From 7c69236e99ba6e65e09ffb5e750a1bd58679bdc4 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 18 Apr 2020 13:05:32 -0500
 Subject: [PATCH 41/50] Step 10.8: Add private button event handler to the Task
@@ -1674,7 +1666,7 @@ index d3a942e..dee13c9 100644
 2.11.0
 
 
-From 0f922d6ec0b96127cb665b78de127527b7c12a0e Mon Sep 17 00:00:00 2001
+From 966f6308e2ee29df9bb7d59ce01f679b84c5e3ff Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Mon, 20 Apr 2020 20:24:53 -0500
 Subject: [PATCH 42/50] Step 10.9: Add private class to Task when needed
@@ -1704,7 +1696,7 @@ index dee13c9..ec564e7 100644
 2.11.0
 
 
-From c5bd4dc5d2caa09cbe8d20e65c4fa7006ad66c42 Mon Sep 17 00:00:00 2001
+From 9dd2c20ef31667ceacbdb7f90b210a984ed4ad91 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 18 Apr 2020 13:59:04 -0500
 Subject: [PATCH 43/50] Step 10.10: Only publish tasks the current user can see
@@ -1735,7 +1727,7 @@ index b567865..053db89 100644
 2.11.0
 
 
-From fd2219532baa7a859bb63ca0a26654e7db6f04cf Mon Sep 17 00:00:00 2001
+From b7cebd4ca936dc5d24e1e782aeadf12fff1ca42a Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 18 Apr 2020 14:00:14 -0500
 Subject: [PATCH 44/50] Step 10.11: Add extra security to methods
@@ -1777,7 +1769,7 @@ index 053db89..1757738 100644
 2.11.0
 
 
-From 3b7436a16e0e2332bb4ff72ada1d85b7c8f20c1b Mon Sep 17 00:00:00 2001
+From d7625efcabe3c68678eaf54fa2de410a2327b92d Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 18 Apr 2020 14:02:33 -0500
 Subject: [PATCH 45/50] Step 11.1: Added meteortesting:mocha meteor package and
@@ -1926,7 +1918,7 @@ index c514034..c3defed 100644
 2.11.0
 
 
-From b87d7adce41fa66a925a683e9046ed16e0fbaf44 Mon Sep 17 00:00:00 2001
+From 5d044cb5fa16feb7cd23ee3afc414a2a1c743f37 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 18 Apr 2020 14:03:33 -0500
 Subject: [PATCH 46/50] Step 11.2: Add a scaffold for a method test
@@ -1959,7 +1951,7 @@ index 0000000..cd7ab10
 2.11.0
 
 
-From 5055ae28551ebc5b61f95f57674cb46bd0608a37 Mon Sep 17 00:00:00 2001
+From c16b5e144b67f57605096e770e32e155602add90 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 18 Apr 2020 14:05:01 -0500
 Subject: [PATCH 47/50] Step 11.3: Prepare the database for each test
@@ -2003,7 +1995,7 @@ index cd7ab10..f7e064c 100644
 2.11.0
 
 
-From 72a341372ddadaaefc4d1de8c636b9824f2b8474 Mon Sep 17 00:00:00 2001
+From 55e069cbd54bfe2ab3e715f05899b2de584f516f Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 18 Apr 2020 14:05:52 -0500
 Subject: [PATCH 48/50] Step 11.4: Added test to check delete method
@@ -2047,7 +2039,7 @@ index f7e064c..8e668f2 100644
 2.11.0
 
 
-From ddd014e72b6979983d49c6fbce76a8790393d0e1 Mon Sep 17 00:00:00 2001
+From f6fd1363a44646b21b9786bd3f2ee568f6554257 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 18 Apr 2020 14:07:06 -0500
 Subject: [PATCH 49/50] Step 11.5: Import tasks.tests.js into tests/main.js
@@ -2070,7 +2062,7 @@ index dc4e49e..3461ed9 100644
 2.11.0
 
 
-From 5be5c2960d0361d8a432886c8f6abba3099afdb4 Mon Sep 17 00:00:00 2001
+From cf3cdc05205329e0277ec30f5f3c465672c1f66e Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Wed, 22 Apr 2020 23:13:08 -0500
 Subject: [PATCH 50/50] README, screenshot, and license
