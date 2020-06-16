@@ -63,7 +63,7 @@ publication function to only send the tasks that a user is authorized to see:
 
 {{> DiffBox step="10.11" tutorialName="simple-todos-react"}}
 
-To test that this functionality works, you can use your browser's private browsing mode to log in as a different user. Put the two windows side by side and mark a task private to confirm that the other user can't see it. Now make it public again and it will reappear!
+To test that this functionality works, simply mark a task as private and log out; log in again to make it reappear. You can also use your browser's private browsing mode to log in as a different user. Put the two windows side by side and mark a task private to confirm that the other user can't see it. Now make it public again and it will reappear!
 
 ### Extra method security
 
