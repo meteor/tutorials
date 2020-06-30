@@ -1,6 +1,6 @@
 Package.describe({
   summary: 'Tutorial content, included in meteor.com via package',
-  version: '0.0.4',
+  version: '0.0.5',
   name: 'tutorials'
 });
 
@@ -51,16 +51,17 @@ Package.onUse(function (api) {
     'content/blaze/step11.md',
     'content/blaze/step12.md',
 
+    'content/react/step01.md',
     'content/react/step02.md',
     'content/react/step03.md',
     'content/react/step04.md',
     'content/react/step05.md',
+    'content/react/step06.md',
     'content/react/step07.md',
     'content/react/step08.md',
     'content/react/step09.md',
     'content/react/step10.md',
     'content/react/step11.md',
-    'content/react/step12.md',
 
     'content/vue/step02.md',
     'content/vue/step03.md',

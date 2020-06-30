@@ -13,7 +13,7 @@ TutorialRegistry.registerTutorial("react", {
     {
       title: "Creating an app",
       slug: "creating-an-app",
-      template: "sharedStep01"
+      template: "react-step01"
     },
     {
       title: 'Components',
@@ -38,7 +38,7 @@ TutorialRegistry.registerTutorial("react", {
     {
       title: 'Running on mobile',
       slug: "running-on-mobile",
-      template: "sharedStep06"
+      template: "react-step06"
     },
     {
       title: 'Temporary UI state',
@@ -64,11 +64,6 @@ TutorialRegistry.registerTutorial("react", {
       title: 'Testing',
       slug: "testing",
       template: 'react-step11'
-    },
-    {
-      title: 'Next steps',
-      slug: "next-steps",
-      template: 'react-step12'
     }
   ]
 });

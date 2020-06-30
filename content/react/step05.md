@@ -1,23 +1,45 @@
-{{#template name="react-step05"}}
+In this step we will store some state using React Hooks.
 
-# Checking off and deleting tasks
+## Step 5.1: Add State Hook
 
-Until now, we have only interacted with a collection by inserting documents. Now, we will learn how to update and remove them.
+First we need to import the `useState` function from the React library. Afterwards we initialize the hook with `false`.
 
-Let's add two new elements to our `task` component, a checkbox and a delete button, with event handlers for both:
+The `useState` function returns an array pair, where the first element is our value, and the second is a setter function. Hence the _array destructuring_.
 
-{{> DiffBox step="5.1" tutorialName="simple-todos-react"}}
+Bear in mind that the names used for the constants do not belong to the React API, you can name them whatever you like.
 
-### Update
+{{{ diffStep 5.1 noTitle=true }}}
 
-In the code above, we call `Tasks.update` to check off a task.
+You can read more about the `useState` hook [here](https://reactjs.org/docs/hooks-state.html).
 
-The `update` function on a collection takes two arguments. The first is a selector that identifies a subset of the collection, and the second is an update parameter that specifies what should be done to the matched objects.
+## Step 5.2: Add Filtering Checkbox
 
-In this case, the selector is just the `_id` of the relevant task. The update parameter uses `$set` to toggle the `checked` field, which will represent whether the task has been completed.
+This is straightforward, but since it quite didn't look right we made some improvements to our styling as well. 
 
-### Remove
+> Remember, we use the `Boolean` cast in case we have `undefined` values. We also use the `readOnly` attribute since we are not using `onChange`.
 
-The code from above uses `Tasks.remove` to delete a task. The `remove` function takes one argument, a selector that determines which item to remove from the collection.
+{{{ diffStep 5.2 noTitle=true }}}
 
-{{/template}}
+## Step 5.3: Filter Tasks
+
+Meteor allows you to leverage all Node.js' ecosystem, including a well-known library called Lodash. This library helps us write code in a more declarative manner.
+
+Not strictly necessary in this case, but it is a good idea for us to import only used functions for larger projects since not everything needs to be included in the final bundle files.
+
+So, for simplicity we use `_` to namespace all of Lodash's functions.
+
+Now, if the user has selected the `checkbox` to hide completed tasks, we will include our `checked: false` clause to the query.
+
+{{{ diffStep 5.3 noTitle=true }}}
+
+## Step 5.4: Count Incomplete Tasks
+
+We can count our incomplete tasks quite simply with the help of the cursor method `count()`.
+
+{{{ diffStep 5.4 noTitle=true }}}
+
+## Step 5.5: Render Count
+
+Finally we just modify our header to display the render count.
+
+{{{ diffStep 5.5 noTitle=true }}}
