@@ -18,7 +18,7 @@ We need to remove it, because as the name suggests it is `insecure`.
 meteor remove insecure
 ```
 
-{{{ diffStep 7.1 noTitle=true }}}
+{{> DiffBox tutorialName="simple-todos-react" step="7.1"}}
 
 Now our app does not work anymore. We revoked all client-side database permissions.
 
@@ -43,13 +43,13 @@ If the result matches that of the server everything remains as is, otherwise the
 
 > You can read more about Optimistic UI [here](https://blog.meteor.com/optimistic-ui-with-meteor-67b5a78c3fcf).
 
-{{{ diffStep 7.2 noTitle=true }}}
+{{> DiffBox tutorialName="simple-todos-react" step="7.2"}}
 
 ## Step 7.3: Implement Method Calls
 
 As we have defined our methods, we need to update the places we were operating the collection to use them instead.
 
-{{{ diffStep 7.3 noTitle=true }}}
+{{> DiffBox tutorialName="simple-todos-react" step="7.3"}}
 
 Now all of our inputs and buttons will start working again. What we gained?
 

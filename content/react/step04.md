@@ -10,17 +10,17 @@ First, we need to add a `<checkbox>` element to our `Task` component.
 
 > You are also invited to experient and see how the app behaves for learning purposes.
 
-{{{ diffStep 4.1 files="imports/ui/Task.jsx" noTitle=true}}}
+{{> DiffBox tutorialName="simple-todos-react" step="4.1"}}
 
 Now we can update our task document toggling its state from `checked: false` to `checked: true` and vice-versa.
 
-{{{ diffStep 4.1 files="imports/ui/App.jsx" noTitle=true}}}
+{{> DiffBox tutorialName="simple-todos-react" step="4.2"}}
 
 ## Step 4.2: Add Delete Button
 
 We can remove our task with just a few lines of code.
 
-{{{ diffStep 4.2 noTitle=true}}}
+{{> DiffBox tutorialName="simple-todos-react" step="4.3"}}
 
 ## Step 4.3: Add Styling
 
@@ -32,21 +32,21 @@ First, let's install the `classnames` package which helps us manage conditional 
 npm i classnames
 ```
 
-{{{ diffStep 4.3 files="package.json" noTitle=true}}}
+{{> DiffBox tutorialName="simple-todos-react" step="4.4"}}
 
 If our task is `checked` then the respective class will be applied to it.
 
-{{{ diffStep 4.3 files="imports/ui/Task.jsx" noTitle=true}}}
+{{> DiffBox tutorialName="simple-todos-react" step="4.5"}}
 
 Let's add proper classes to our parent elements.
 
-{{{ diffStep 4.3 files="imports/ui/App.jsx" noTitle=true}}}
+{{> DiffBox tutorialName="simple-todos-react" step="4.6"}}
 
 Finally, we add the CSS styling which will normalize and differentiate our checked tasks visually.
 
 > You can learn more about CSS Flexible Box Module [here](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox).
 
-{{{ diffStep 4.3 files="client/main.css" noTitle=true}}}
+{{> DiffBox tutorialName="simple-todos-react" step="4.7"}}
 
 Now we have a proper style foundation, nothing fancy, but we have the right semantics in place.
 

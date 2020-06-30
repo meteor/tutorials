@@ -8,7 +8,7 @@ The `useState` function returns an array pair, where the first element is our va
 
 Bear in mind that the names used for the constants do not belong to the React API, you can name them whatever you like.
 
-{{{ diffStep 5.1 noTitle=true }}}
+{{> DiffBox tutorialName="simple-todos-react" step="5.1"}}
 
 You can read more about the `useState` hook [here](https://reactjs.org/docs/hooks-state.html).
 
@@ -18,7 +18,7 @@ This is straightforward, but since it quite didn't look right we made some impro
 
 > Remember, we use the `Boolean` cast in case we have `undefined` values. We also use the `readOnly` attribute since we are not using `onChange`.
 
-{{{ diffStep 5.2 noTitle=true }}}
+{{> DiffBox tutorialName="simple-todos-react" step="5.2"}}
 
 ## Step 5.3: Filter Tasks
 
@@ -30,16 +30,16 @@ So, for simplicity we use `_` to namespace all of Lodash's functions.
 
 Now, if the user has selected the `checkbox` to hide completed tasks, we will include our `checked: false` clause to the query.
 
-{{{ diffStep 5.3 noTitle=true }}}
+{{> DiffBox tutorialName="simple-todos-react" step="5.3"}}
 
 ## Step 5.4: Count Incomplete Tasks
 
 We can count our incomplete tasks quite simply with the help of the cursor method `count()`.
 
-{{{ diffStep 5.4 noTitle=true }}}
+{{> DiffBox tutorialName="simple-todos-react" step="5.4"}}
 
 ## Step 5.5: Render Count
 
 Finally we just modify our header to display the render count.
 
-{{{ diffStep 5.5 noTitle=true }}}
+{{> DiffBox tutorialName="simple-todos-react" step="5.5"}}

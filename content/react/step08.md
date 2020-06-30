@@ -8,7 +8,7 @@ Just like with `insecure` in the last step, all new Meteor apps start with the `
 meteor remove autopublish
 ```
 
-{{{ diffStep 8.1 noTitle=true }}}
+{{> DiffBox tutorialName="simple-todos-react" step="8.1"}}
 
 When the app refreshes, the task list will be empty. Without the `autopublish` package, we will have to specify explicitly what the server sends to the client. The functions in Meteor that do this are `Meteor.publish` and `Meteor.subscribe`.
 
@@ -16,13 +16,13 @@ When the app refreshes, the task list will be empty. Without the `autopublish` p
 
 For now let's add a publication for all tasks.
 
-{{{ diffStep 8.2 noTitle=true }}}
+{{> DiffBox tutorialName="simple-todos-react" step="8.2"}}
 
 ## Step 8.3: Tasks Subscription
 
 Then we can quickly subscribe to tha publication.
 
-{{{ diffStep 8.3 noTitle=true }}}
+{{> DiffBox tutorialName="simple-todos-react" step="8.3"}}
 
 Once you have done this, all the tasks will reappear.
 
@@ -32,34 +32,34 @@ Calling `Meteor.publish` on the server registers a publication named "tasks". Wh
 
 Let's add a new property to tasks called `isPrivate` and write a method for setting it.
 
-{{{ diffStep 8.4 noTitle=true }}}
+{{> DiffBox tutorialName="simple-todos-react" step="8.4"}}
 
 ## Step 8.5: Toggle Private
 
 Now we just setup some wiring up to our `Task Component` and add a toggleable button.
 
-{{{ diffStep 8.5 noTitle=true }}}
+{{> DiffBox tutorialName="simple-todos-react" step="8.5"}}
 
 ## Step 8.6: Add Private Class
 
 We need a CSS class for future design work as well.
 
-{{{ diffStep 8.6 noTitle=true }}}
+{{> DiffBox tutorialName="simple-todos-react" step="8.6"}}
 
 ## Step 8.7: Publish Visible Tasks
 
 We should only publish tasks visible to the user, that is, if they are not private or if they are owned by the current user.
 
-{{{ diffStep 8.7 noTitle=true }}}
+{{> DiffBox tutorialName="simple-todos-react" step="8.7"}}
 
 ## Step 8.8: Check User Permission
 
 Only the owner of a task should be able to change certain things.
 
-{{{ diffStep 8.8 noTitle=true }}}
+{{> DiffBox tutorialName="simple-todos-react" step="8.8"}}
 
 ## Step 8.9: Remove Unneeded Code
 
 At this point of development we do not need this boilerplate anymore.
 
-{{{ diffStep 8.9 noTitle=true }}}
+{{> DiffBox tutorialName="simple-todos-react" step="8.9"}}

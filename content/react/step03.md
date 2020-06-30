@@ -8,15 +8,15 @@ First we need to create a simple form component to encapsulate our logic. As you
 
 Please note the _array destructuring_ `[text, setText]`, where `text` is the stored value which we want to use, which in this case will be a _string_; and `setText` is a _function_ used to update that value.
 
-{{{diffStep 3.1 noTitle=true files="imports/ui/TaskForm.jsx"}}}
+{{> DiffBox tutorialName="simple-todos-react" step="3.1"}}
 
 Then we can simply add this to our `App` component:
 
-{{{diffStep 3.1 noTitle=true files="imports/ui/App.jsx"}}}
+{{> DiffBox tutorialName="simple-todos-react" step="3.2"}}
 
 You also can style it, for now we only need some margin at the top so the form doesn't seem a little off the mark.
 
-{{{diffStep 3.1 noTitle=true files="client/main.css"}}}
+{{> DiffBox tutorialName="simple-todos-react" step="3.3"}}
 
 ## Step 3.2: Add Submit Handler
 
@@ -26,10 +26,10 @@ As you can see we are using the `useState` React Hook to store the `value` of ou
 
 > In more complex applications you might want to implement some `debounce` or `throttle` logic if there are too many calculations happening between potentially frequent events like `onChange`. There are libraries which will help you with this, like [Lodash](https://lodash.com/), for instance.
 
-{{{diffStep 3.2 noTitle=true}}}
+{{> DiffBox tutorialName="simple-todos-react" step="3.4"}}
 
 ## Step 3.3: Show Newest Tasks First
 
 Now we just need to make a change which will make our hypothetical user very happy: we need to show the newest tasks first. We can accomplish quite quickly by sorting our [Mongo](https://guide.meteor.com/collections.html#mongo-collections) query.
 
-{{{diffStep 3.3 noTitle=true}}}
+{{> DiffBox tutorialName="simple-todos-react" step="3.5"}}

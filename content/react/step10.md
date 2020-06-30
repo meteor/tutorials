@@ -11,7 +11,7 @@ meteor add meteortesting:mocha
 meteor npm install --save-dev chai
 ```
 
-{{{ diffStep 10.1 noTitle=true files=".meteor/packages,.meteor/versions,package.json" }}}
+{{> DiffBox tutorialName="simple-todos-react" step="10.1"}}
 
 We can now run our app in "test mode" by running meteor test and specifying a test driver package (you'll need to stop the regular app from running, or specify an alternate port with --port XYZ):
 
@@ -35,13 +35,13 @@ Where are these two tests coming from? Every new Meteor application includes a `
 
 However, if you would prefer to split your tests across multiple modules, you can do that too. Let's add a new test module called `imports/api/tasks.tests.js`:
 
-{{{ diffStep 10.2 noTitle=true }}}
+{{> DiffBox tutorialName="simple-todos-react" step="10.2"}}
 
 ## Step 10.3: Prepare Database
 
 In any test we need to ensure the database is in the state we expect before beginning. We can use Mocha's `beforeEach` construct to do that easily:
 
-{{{ diffStep 10.3 noTitle=true }}}
+{{> DiffBox tutorialName="simple-todos-react" step="10.3"}}
 
 Here we create a single task that's associated with a random userId that'll be different for each test run.
 
@@ -49,13 +49,13 @@ Here we create a single task that's associated with a random userId that'll be d
 
 Now we can write the test to call the `tasks.remove` method "as" that user and verify the task got deleted:
 
-{{{ diffStep 10.4 noTitle=true }}}
+{{> DiffBox tutorialName="simple-todos-react" step="10.4"}}
 
 ## Step 10.5: Import Test
 
 The only remaining step is to import this new test module into the main `tests/main.js` module:
 
-{{{ diffStep 10.5 noTitle=true }}}
+{{> DiffBox tutorialName="simple-todos-react" step="10.5"}}
 
 If you run the test command again or left it running in watch mode before, you should see the following output:
 

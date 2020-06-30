@@ -8,7 +8,7 @@ In this step we will implement all the necessary code to have a basic collection
 
 We can create a new tasks collection by creating a module at `imports/api/tasks.js` which instantiates a new Mongo collection and exports it.
 
-{{{diffStep 2.1 noTitle=true}}}
+{{> DiffBox tutorialName="simple-todos-react" step="2.1"}}
 
 Notice that we stored the file in the `imports/api` directory, which is a sensible place to store API-related code, like publications and methods.
 
@@ -20,7 +20,7 @@ For our collection to work we need to import it in the server so it sets some pl
 
 Now it is easy to check if there is data or not in our collection, otherwise we can insert some sample data easily as well.
 
-{{{diffStep 2.2 noTitle=true}}}
+{{> DiffBox tutorialName="simple-todos-react" step="2.2"}}
 
 ## Step 2.3: Render Tasks Collection
 
@@ -28,4 +28,4 @@ Now comes the fun part, we will render our tasks using a React Functional Compon
 
 > For more information about React Hooks click [here](https://reactjs.org/docs/hooks-faq.html).
 
-{{{diffStep 2.3 noTitle=true}}}
+{{> DiffBox tutorialName="simple-todos-react" step="2.3"}}
