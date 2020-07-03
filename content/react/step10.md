@@ -1,3 +1,5 @@
+{{#template name="react-step10"}}
+
 Now we've created a few features for our application, let's add a test to ensure that we don't regress and that it works the way we expect.
 
 We'll write a test which executes one of our Methods and verifies that it works correctly.
@@ -92,3 +94,5 @@ TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha
 This is almost the same as the earlier command, except that it also loads your application code as normal (due to `--full-app`), allowing you to interact with your app in the browser while running both client and server tests.
 
 > There's a lot more you can do with Meteor tests! You can read more about it in the Meteor Guide [article on testing](https://guide.meteor.com/testing.html).
+
+{{/template}}

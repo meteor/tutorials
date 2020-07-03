@@ -1,3 +1,5 @@
+{{#template name="react-step06"}}
+
 ## Step 6.1: Password Authentication
 
 Meteor already comes with a basic authentication and account management system out of the box, so we only need to run a single command to enable username and password authentication:
@@ -59,3 +61,5 @@ In order to better manage our tasks, every task should have an owner.
 We also can better organize our tasks by showing the username of the owner.
 
 {{> DiffBox tutorialName="simple-todos-react" step="6.8"}}
+
+{{/template}}

@@ -1,3 +1,5 @@
+{{#template name="react-step05"}}
+
 In this step we will store some state using React Hooks.
 
 ## Step 5.1: Add State Hook
@@ -43,3 +45,5 @@ We can count our incomplete tasks quite simply with the help of the cursor metho
 Finally we just modify our header to display the render count.
 
 {{> DiffBox tutorialName="simple-todos-react" step="5.5"}}
+
+{{/template}}

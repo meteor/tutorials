@@ -1,3 +1,5 @@
+{{#template name="react-step04"}}
+
 Up until now we have only inserted documents into our collection. Let's take a look at how we can update and remove them by interacting with the user interface.
 
 ## Step 4.1: Add Checkbox
@@ -50,5 +52,4 @@ Finally, we add the CSS styling which will normalize and differentiate our check
 
 Now we have a proper style foundation, nothing fancy, but we have the right semantics in place.
 
-
-
+{{/template}}

@@ -4,6 +4,8 @@ One of the main ways in which a user can insert or edit data in a website is thr
 
 ## Step 3.1: Create Task Form
 
+{{#template name="react-step03"}}
+
 First we need to create a simple form component to encapsulate our logic. As you can see we set up the `useState` React Hook.
 
 Please note the _array destructuring_ `[text, setText]`, where `text` is the stored value which we want to use, which in this case will be a _string_; and `setText` is a _function_ used to update that value.
@@ -33,3 +35,5 @@ As you can see we are using the `useState` React Hook to store the `value` of ou
 Now we just need to make a change which will make our hypothetical user very happy: we need to show the newest tasks first. We can accomplish quite quickly by sorting our [Mongo](https://guide.meteor.com/collections.html#mongo-collections) query.
 
 {{> DiffBox tutorialName="simple-todos-react" step="3.5"}}
+
+{{/template}}

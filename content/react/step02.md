@@ -1,3 +1,5 @@
+{{#template name="react-step02"}}
+
 In order to take advantage of our database and manipulate our data in more powerful ways we need to create a _collection_, which is where we will store our _documents_ or objects.
 
 > You can read more about collections [here](http://guide.meteor.com/collections.html).
@@ -29,3 +31,5 @@ Now comes the fun part, we will render our tasks using a React Functional Compon
 > For more information about React Hooks click [here](https://reactjs.org/docs/hooks-faq.html).
 
 {{> DiffBox tutorialName="simple-todos-react" step="2.3"}}
+
+{{/template}}

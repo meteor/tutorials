@@ -1,3 +1,5 @@
+{{#template name="react-step07"}}
+
 Before this step, any user of the app could edit any part of the database. This might be fine for quick prototyping, but real applications need to control access to its data.
 
 In Meteor, the easiest way to accomplish that is by declaring _methods_, instead of calling `insert`, `update`, or `remove` directly.
@@ -56,3 +58,5 @@ Now all of our inputs and buttons will start working again. What we gained?
 1. When we insert tasks into the database, we can securely verify that the user is authenticated; the `createdAt` field is correct; and the `owner` and `username` fields are legitimate.
 2. We can add extra validation logic to the methods later if we want.
 3. Our client code is more isolated from our database logic. Instead of a lot of stuff happening in our event handlers, we have methods callable from anywhere.
+
+{{/template}}

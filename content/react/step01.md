@@ -1,3 +1,5 @@
+{{#template name="react-step01"}}
+
 In this tutorial we will build a simple to-do tasks app using [React](https://reactjs.org) with the Meteor platform. Meteor works out-of-the-box with several other frameworks like [Blaze](https://guide.meteor.com/blaze.html), [Angular](https://guide.meteor.com/angular.html) and [Vue](https://guide.meteor.com/vue.html). 
 
 ## Step 1.1: Create Meteor Project
@@ -50,3 +52,5 @@ Let's define some sample data which will be used shortly.
 Now we can implement some simple rendering logic with React. We can now use our previous `Task` component to render our list items.
 
 {{{diffStep 1.4 noTitle=true}}}
+
+{{/template}}

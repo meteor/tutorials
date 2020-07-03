@@ -1,4 +1,6 @@
-> Currently, Meteor on Windows does not support mobile builds. If you are using Meteor on Windows, you should skip this step.
+{{#template name="react-step09"}}
+
+Currently, Meteor on Windows does not support mobile builds. If you are using Meteor on Windows, you should skip this step.
 
 So far, we've been building our app and testing only in a web browser, but Meteor has been designed to work across different platforms - your simple todo list website can become an iOS or Android app in just a few commands.
 
@@ -60,3 +62,5 @@ meteor run ios-device
 ```
 
 This will open Xcode with a project for your iOS app. You can use Xcode to then launch the app on any device or simulator that Xcode supports.
+
+{{/template}}
