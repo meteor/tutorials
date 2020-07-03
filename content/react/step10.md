@@ -13,8 +13,6 @@ meteor add meteortesting:mocha
 meteor npm install --save-dev chai
 ```
 
-{{> DiffBox tutorialName="simple-todos-react" step="10.1"}}
-
 We can now run our app in "test mode" by running meteor test and specifying a test driver package (you'll need to stop the regular app from running, or specify an alternate port with --port XYZ):
 
 ```shell script
@@ -23,7 +21,7 @@ TEST_WATCH=1 meteor test --driver-package meteortesting:mocha
 
 It should output something like this:
 
-```text
+```
 simple-todos-react
   ✓ package.json has correct name
   ✓ server is not client
@@ -61,7 +59,7 @@ The only remaining step is to import this new test module into the main `tests/m
 
 If you run the test command again or left it running in watch mode before, you should see the following output:
 
-```text
+```
 Tasks
   methods
     ✓ can delete owned task
