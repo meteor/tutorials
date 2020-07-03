@@ -1,24 +1,29 @@
-From 35076b35c8a082593273e11e20a7d02380fb649a Mon Sep 17 00:00:00 2001
-From: Ben Newman <ben@meteor.com>
-Date: Sat, 5 Jan 2019 20:50:38 -0500
-Subject: [PATCH 01/51] Step 1: Run `meteor create`
+From a59d4da9d13e077fd0c9993c7bc79dbbab135f06 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 28 Jun 2020 14:34:39 -0500
+Subject: [PATCH 01/57] Step 1: Run `meteor create --react`
 
 ---
  .gitignore                  |   1 +
- .meteor/.finished-upgraders |  18 ++
+ .meteor/.finished-upgraders |  19 ++
  .meteor/.gitignore          |   1 +
  .meteor/.id                 |   7 +
- .meteor/packages            |  21 ++
+ .meteor/packages            |  22 ++
  .meteor/platforms           |   2 +
  .meteor/release             |   1 +
+ .meteor/versions            |  72 +++++
  client/main.css             |   4 +
- client/main.html            |  25 ++
- client/main.js              |  22 ++
- package-lock.json           | 547 ++++++++++++++++++++++++++++++++++++++++++++
- package.json                |  21 ++
- server/main.js              |   5 +
+ client/main.html            |   7 +
+ client/main.jsx             |   8 +
+ imports/api/links.js        |   3 +
+ imports/ui/App.jsx          |  11 +
+ imports/ui/Hello.jsx        |  16 ++
+ imports/ui/Info.jsx         |  20 ++
+ package-lock.json           | 644 ++++++++++++++++++++++++++++++++++++++++++++
+ package.json                |  23 ++
+ server/main.js              |  31 +++
  tests/main.js               |  20 ++
- 14 files changed, 695 insertions(+)
+ 19 files changed, 912 insertions(+)
  create mode 100644 .gitignore
  create mode 100644 .meteor/.finished-upgraders
  create mode 100644 .meteor/.gitignore
@@ -26,9 +31,14 @@ Subject: [PATCH 01/51] Step 1: Run `meteor create`
  create mode 100644 .meteor/packages
  create mode 100644 .meteor/platforms
  create mode 100644 .meteor/release
+ create mode 100644 .meteor/versions
  create mode 100644 client/main.css
  create mode 100644 client/main.html
- create mode 100644 client/main.js
+ create mode 100644 client/main.jsx
+ create mode 100644 imports/api/links.js
+ create mode 100644 imports/ui/App.jsx
+ create mode 100644 imports/ui/Hello.jsx
+ create mode 100644 imports/ui/Info.jsx
  create mode 100644 package-lock.json
  create mode 100644 package.json
  create mode 100644 server/main.js
@@ -43,10 +53,10 @@ index 0000000..c2658d7
 +node_modules/
 diff --git a/.meteor/.finished-upgraders b/.meteor/.finished-upgraders
 new file mode 100644
-index 0000000..4538749
+index 0000000..c07b6ff
 --- /dev/null
 +++ b/.meteor/.finished-upgraders
-@@ -0,0 +1,18 @@
+@@ -0,0 +1,19 @@
 +# This file contains information which helps Meteor properly upgrade your
 +# app when you run 'meteor update'. You should check it into version control
 +# with your project.
@@ -65,6 +75,7 @@ index 0000000..4538749
 +1.4.3-split-account-service-packages
 +1.5-add-dynamic-import-package
 +1.7-split-underscore-from-meteor-base
++1.8.3-split-jquery-from-blaze
 diff --git a/.meteor/.gitignore b/.meteor/.gitignore
 new file mode 100644
 index 0000000..4083037
@@ -74,7 +85,7 @@ index 0000000..4083037
 +local
 diff --git a/.meteor/.id b/.meteor/.id
 new file mode 100644
-index 0000000..01a6691
+index 0000000..40036be
 --- /dev/null
 +++ b/.meteor/.id
 @@ -0,0 +1,7 @@
@@ -84,13 +95,13 @@ index 0000000..01a6691
 +#   - ensuring you don't accidentally deploy one app on top of another
 +#   - providing package authors with aggregated statistics
 +
-+nmc6tl5lwnhl.ashi2q55wa2
++icx08c5o8tue.o91vpgtmehj
 diff --git a/.meteor/packages b/.meteor/packages
 new file mode 100644
-index 0000000..4221036
+index 0000000..1bb7891
 --- /dev/null
 +++ b/.meteor/packages
-@@ -0,0 +1,21 @@
+@@ -0,0 +1,22 @@
 +# Meteor packages used by this project, one per line.
 +# Check this file (and the other files in this directory) into your repository.
 +#
@@ -98,20 +109,21 @@ index 0000000..4221036
 +# but you can also edit it by hand.
 +
 +meteor-base@1.4.0             # Packages every Meteor app needs to have
-+mobile-experience@1.0.5       # Packages for a great mobile UX
-+mongo@1.6.0                   # The database Meteor supports right now
-+blaze-html-templates@1.0.4 # Compile .html files into Meteor Blaze views
++mobile-experience@1.1.0       # Packages for a great mobile UX
++mongo@1.10.0                   # The database Meteor supports right now
 +reactive-var@1.0.11            # Reactive variable for tracker
-+tracker@1.2.0                 # Meteor's client-side reactive programming library
 +
-+standard-minifier-css@1.5.2   # CSS minifier run for production mode
-+standard-minifier-js@2.4.0    # JS minifier run for production mode
++standard-minifier-css@1.6.0   # CSS minifier run for production mode
++standard-minifier-js@2.6.0    # JS minifier run for production mode
 +es5-shim@4.8.0                # ECMAScript 5 compatibility for older browsers
-+ecmascript@0.12.4              # Enable ECMAScript2015+ syntax in app code
-+shell-server@0.4.0            # Server-side component of the `meteor shell` command
++ecmascript@0.14.3              # Enable ECMAScript2015+ syntax in app code
++typescript@3.7.6              # Enable TypeScript syntax in .ts and .tsx modules
++shell-server@0.5.0            # Server-side component of the `meteor shell` command
 +
 +autopublish@1.0.7             # Publish all data to the clients (for prototyping)
 +insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
++static-html             # Define static page content in .html files
++react-meteor-data       # React higher-order component for reactively tracking Meteor data
 diff --git a/.meteor/platforms b/.meteor/platforms
 new file mode 100644
 index 0000000..efeba1b
@@ -122,11 +134,89 @@ index 0000000..efeba1b
 +browser
 diff --git a/.meteor/release b/.meteor/release
 new file mode 100644
-index 0000000..91e05fc
+index 0000000..3ea2652
 --- /dev/null
 +++ b/.meteor/release
 @@ -0,0 +1 @@
-+METEOR@1.8.0.2
++METEOR@1.10.2
+diff --git a/.meteor/versions b/.meteor/versions
+new file mode 100644
+index 0000000..cf01612
+--- /dev/null
++++ b/.meteor/versions
+@@ -0,0 +1,72 @@
++allow-deny@1.1.0
++autopublish@1.0.7
++autoupdate@1.6.0
++babel-compiler@7.5.3
++babel-runtime@1.5.0
++base64@1.0.12
++binary-heap@1.0.11
++blaze-tools@1.0.10
++boilerplate-generator@1.7.0
++caching-compiler@1.2.2
++caching-html-compiler@1.1.3
++callback-hook@1.3.0
++check@1.3.1
++ddp@1.4.0
++ddp-client@2.3.3
++ddp-common@1.4.0
++ddp-server@2.3.1
++deps@1.0.12
++diff-sequence@1.1.1
++dynamic-import@0.5.2
++ecmascript@0.14.3
++ecmascript-runtime@0.7.0
++ecmascript-runtime-client@0.10.0
++ecmascript-runtime-server@0.9.0
++ejson@1.1.1
++es5-shim@4.8.0
++fetch@0.1.1
++geojson-utils@1.0.10
++hot-code-push@1.0.4
++html-tools@1.0.11
++htmljs@1.0.11
++id-map@1.1.0
++insecure@1.0.7
++inter-process-messaging@0.1.1
++launch-screen@1.2.0
++livedata@1.0.18
++logging@1.1.20
++meteor@1.9.3
++meteor-base@1.4.0
++minifier-css@1.5.0
++minifier-js@2.6.0
++minimongo@1.6.0
++mobile-experience@1.1.0
++mobile-status-bar@1.1.0
++modern-browsers@0.1.5
++modules@0.15.0
++modules-runtime@0.12.0
++mongo@1.10.0
++mongo-decimal@0.1.1
++mongo-dev-server@1.1.0
++mongo-id@1.0.7
++npm-mongo@3.7.1
++ordered-dict@1.1.0
++promise@0.11.2
++random@1.2.0
++react-meteor-data@2.1.0
++reactive-var@1.0.11
++reload@1.3.0
++retry@1.1.0
++routepolicy@1.1.0
++shell-server@0.5.0
++socket-stream-client@0.3.0
++spacebars-compiler@1.1.3
++standard-minifier-css@1.6.0
++standard-minifier-js@2.6.0
++static-html@1.2.2
++templating-tools@1.1.2
++tracker@1.2.0
++typescript@3.7.6
++underscore@1.0.10
++webapp@1.9.1
++webapp-hashing@1.0.9
 diff --git a/client/main.css b/client/main.css
 new file mode 100644
 index 0000000..7f354f0
@@ -139,110 +229,165 @@ index 0000000..7f354f0
 +}
 diff --git a/client/main.html b/client/main.html
 new file mode 100644
-index 0000000..811d863
+index 0000000..830871b
 --- /dev/null
 +++ b/client/main.html
-@@ -0,0 +1,25 @@
+@@ -0,0 +1,7 @@
 +<head>
 +  <title>simple-todos-react</title>
 +</head>
 +
 +<body>
-+  <h1>Welcome to Meteor!</h1>
-+
-+  {{> hello}}
-+  {{> info}}
++  <div id="react-target"></div>
 +</body>
-+
-+<template name="hello">
-+  <button>Click Me</button>
-+  <p>You've pressed the button {{counter}} times.</p>
-+</template>
-+
-+<template name="info">
-+  <h2>Learn Meteor!</h2>
-+  <ul>
-+    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
-+    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
-+    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
-+    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
-+  </ul>
-+</template>
-diff --git a/client/main.js b/client/main.js
+diff --git a/client/main.jsx b/client/main.jsx
 new file mode 100644
-index 0000000..ecb3282
+index 0000000..a42cee8
 --- /dev/null
-+++ b/client/main.js
-@@ -0,0 +1,22 @@
-+import { Template } from 'meteor/templating';
-+import { ReactiveVar } from 'meteor/reactive-var';
++++ b/client/main.jsx
+@@ -0,0 +1,8 @@
++import React from 'react';
++import { Meteor } from 'meteor/meteor';
++import { render } from 'react-dom';
++import { App } from '/imports/ui/App';
 +
-+import './main.html';
-+
-+Template.hello.onCreated(function helloOnCreated() {
-+  // counter starts at 0
-+  this.counter = new ReactiveVar(0);
++Meteor.startup(() => {
++  render(<App/>, document.getElementById('react-target'));
 +});
+diff --git a/imports/api/links.js b/imports/api/links.js
+new file mode 100644
+index 0000000..050c508
+--- /dev/null
++++ b/imports/api/links.js
+@@ -0,0 +1,3 @@
++import { Mongo } from 'meteor/mongo';
 +
-+Template.hello.helpers({
-+  counter() {
-+    return Template.instance().counter.get();
-+  },
-+});
++export const LinksCollection = new Mongo.Collection('links');
+diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
+new file mode 100644
+index 0000000..6f7340c
+--- /dev/null
++++ b/imports/ui/App.jsx
+@@ -0,0 +1,11 @@
++import React from 'react';
++import { Hello } from './Hello.jsx';
++import { Info } from './Info.jsx';
 +
-+Template.hello.events({
-+  'click button'(event, instance) {
-+    // increment the counter when button is clicked
-+    instance.counter.set(instance.counter.get() + 1);
-+  },
-+});
++export const App = () => (
++  <div>
++    <h1>Welcome to Meteor!</h1>
++    <Hello/>
++    <Info/>
++  </div>
++);
+diff --git a/imports/ui/Hello.jsx b/imports/ui/Hello.jsx
+new file mode 100644
+index 0000000..15e0f18
+--- /dev/null
++++ b/imports/ui/Hello.jsx
+@@ -0,0 +1,16 @@
++import React, { useState } from 'react';
++
++export const Hello = () => {
++  const [counter, setCounter] = useState(0);
++
++  const increment = () => {
++    setCounter(counter + 1);
++  };
++
++  return (
++    <div>
++      <button onClick={increment}>Click Me</button>
++      <p>You've pressed the button {counter} times.</p>
++    </div>
++  );
++};
+diff --git a/imports/ui/Info.jsx b/imports/ui/Info.jsx
+new file mode 100644
+index 0000000..62a0100
+--- /dev/null
++++ b/imports/ui/Info.jsx
+@@ -0,0 +1,20 @@
++import React from 'react';
++import { useTracker } from 'meteor/react-meteor-data';
++import { LinksCollection } from '../api/links';
++
++export const Info = () => {
++  const links = useTracker(() => {
++    return LinksCollection.find().fetch();
++  });
++
++  return (
++    <div>
++      <h2>Learn Meteor!</h2>
++      <ul>{links.map(
++        link => <li key={link._id}>
++          <a href={link.url} target="_blank">{link.title}</a>
++        </li>
++      )}</ul>
++    </div>
++  );
++};
 diff --git a/package-lock.json b/package-lock.json
 new file mode 100644
-index 0000000..383b245
+index 0000000..2d85f98
 --- /dev/null
 +++ b/package-lock.json
-@@ -0,0 +1,547 @@
+@@ -0,0 +1,644 @@
 +{
 +  "name": "simple-todos-react",
 +  "requires": true,
 +  "lockfileVersion": 1,
 +  "dependencies": {
 +    "@babel/runtime": {
-+      "version": "7.2.0",
-+      "resolved": "https://registry.npmjs.org/@babel/runtime/-/runtime-7.2.0.tgz",
-+      "integrity": "sha512-oouEibCbHMVdZSDlJBO6bZmID/zA/G/Qx3H1d3rSNPTD+L8UNKvCat7aKWSJ74zYbm5zWGh0GQN0hKj8zYFTCg==",
++      "version": "7.10.3",
++      "resolved": "https://registry.npmjs.org/@babel/runtime/-/runtime-7.10.3.tgz",
++      "integrity": "sha512-RzGO0RLSdokm9Ipe/YD+7ww8X2Ro79qiXZF3HU9ljrM+qnJmH1Vqth+hbiQZy761LnMJTMitHDuKVYTk3k4dLw==",
 +      "requires": {
-+        "regenerator-runtime": "^0.12.0"
++        "regenerator-runtime": "^0.13.4"
++      }
++    },
++    "js-tokens": {
++      "version": "4.0.0",
++      "resolved": "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz",
++      "integrity": "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ=="
++    },
++    "loose-envify": {
++      "version": "1.4.0",
++      "resolved": "https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz",
++      "integrity": "sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==",
++      "requires": {
++        "js-tokens": "^3.0.0 || ^4.0.0"
 +      }
 +    },
 +    "meteor-node-stubs": {
-+      "version": "0.4.1",
-+      "resolved": "https://registry.npmjs.org/meteor-node-stubs/-/meteor-node-stubs-0.4.1.tgz",
-+      "integrity": "sha512-UO2OStvLOKoApmOdIP5eCqoLaa/ritMXRg4ffJVdkNLEsczzPvTjgC0Mxk4cM4R8MZkwll90FYgjDf5qUTJdMA==",
++      "version": "1.0.0",
++      "resolved": "https://registry.npmjs.org/meteor-node-stubs/-/meteor-node-stubs-1.0.0.tgz",
++      "integrity": "sha512-QJwyv23wyXD3uEMzk5Xr/y5ezoVlCbHvBbrgdkVadn84dmifLRbs0PtD6EeNw5NLIk+SQSfxld7IMdEsneGz5w==",
 +      "requires": {
 +        "assert": "^1.4.1",
-+        "browserify-zlib": "^0.1.4",
-+        "buffer": "^4.9.1",
++        "browserify-zlib": "^0.2.0",
++        "buffer": "^5.2.1",
 +        "console-browserify": "^1.1.0",
 +        "constants-browserify": "^1.0.0",
-+        "crypto-browserify": "^3.11.0",
-+        "domain-browser": "^1.1.7",
-+        "events": "^1.1.1",
-+        "https-browserify": "0.0.1",
-+        "os-browserify": "^0.2.1",
-+        "path-browserify": "0.0.0",
-+        "process": "^0.11.9",
-+        "punycode": "^1.4.1",
++        "crypto-browserify": "^3.12.0",
++        "domain-browser": "^1.2.0",
++        "events": "^3.0.0",
++        "https-browserify": "^1.0.0",
++        "os-browserify": "^0.3.0",
++        "path-browserify": "^1.0.0",
++        "process": "^0.11.10",
++        "punycode": "^2.1.1",
 +        "querystring-es3": "^0.2.1",
-+        "readable-stream": "^2.3.6",
-+        "stream-browserify": "^2.0.1",
-+        "stream-http": "^2.8.0",
-+        "string_decoder": "^1.1.0",
-+        "timers-browserify": "^1.4.2",
-+        "tty-browserify": "0.0.0",
++        "readable-stream": "^3.3.0",
++        "stream-browserify": "^2.0.2",
++        "stream-http": "^3.0.0",
++        "string_decoder": "^1.2.0",
++        "timers-browserify": "^2.0.10",
++        "tty-browserify": "0.0.1",
 +        "url": "^0.11.0",
-+        "util": "^0.10.3",
-+        "vm-browserify": "0.0.4"
++        "util": "^0.11.1",
++        "vm-browserify": "^1.1.0"
 +      },
 +      "dependencies": {
 +        "asn1.js": {
@@ -259,6 +404,15 @@ index 0000000..383b245
 +          "bundled": true,
 +          "requires": {
 +            "util": "0.10.3"
++          },
++          "dependencies": {
++            "util": {
++              "version": "0.10.3",
++              "bundled": true,
++              "requires": {
++                "inherits": "2.0.1"
++              }
++            }
 +          }
 +        },
 +        "base64-js": {
@@ -295,12 +449,13 @@ index 0000000..383b245
 +          }
 +        },
 +        "browserify-des": {
-+          "version": "1.0.1",
++          "version": "1.0.2",
 +          "bundled": true,
 +          "requires": {
 +            "cipher-base": "^1.0.1",
 +            "des.js": "^1.0.0",
-+            "inherits": "^2.0.1"
++            "inherits": "^2.0.1",
++            "safe-buffer": "^5.1.2"
 +          }
 +        },
 +        "browserify-rsa": {
@@ -325,19 +480,18 @@ index 0000000..383b245
 +          }
 +        },
 +        "browserify-zlib": {
-+          "version": "0.1.4",
++          "version": "0.2.0",
 +          "bundled": true,
 +          "requires": {
-+            "pako": "~0.2.0"
++            "pako": "~1.0.5"
 +          }
 +        },
 +        "buffer": {
-+          "version": "4.9.1",
++          "version": "5.2.1",
 +          "bundled": true,
 +          "requires": {
 +            "base64-js": "^1.0.2",
-+            "ieee754": "^1.1.4",
-+            "isarray": "^1.0.0"
++            "ieee754": "^1.1.4"
 +          }
 +        },
 +        "buffer-xor": {
@@ -445,7 +599,7 @@ index 0000000..383b245
 +          "bundled": true
 +        },
 +        "elliptic": {
-+          "version": "6.4.0",
++          "version": "6.4.1",
 +          "bundled": true,
 +          "requires": {
 +            "bn.js": "^4.4.0",
@@ -458,7 +612,7 @@ index 0000000..383b245
 +          }
 +        },
 +        "events": {
-+          "version": "1.1.1",
++          "version": "3.0.0",
 +          "bundled": true
 +        },
 +        "evp_bytestokey": {
@@ -478,11 +632,11 @@ index 0000000..383b245
 +          }
 +        },
 +        "hash.js": {
-+          "version": "1.1.3",
++          "version": "1.1.7",
 +          "bundled": true,
 +          "requires": {
 +            "inherits": "^2.0.3",
-+            "minimalistic-assert": "^1.0.0"
++            "minimalistic-assert": "^1.0.1"
 +          },
 +          "dependencies": {
 +            "inherits": {
@@ -501,15 +655,11 @@ index 0000000..383b245
 +          }
 +        },
 +        "https-browserify": {
-+          "version": "0.0.1",
++          "version": "1.0.0",
 +          "bundled": true
 +        },
 +        "ieee754": {
-+          "version": "1.1.11",
-+          "bundled": true
-+        },
-+        "indexof": {
-+          "version": "0.0.1",
++          "version": "1.1.13",
 +          "bundled": true
 +        },
 +        "inherits": {
@@ -521,11 +671,12 @@ index 0000000..383b245
 +          "bundled": true
 +        },
 +        "md5.js": {
-+          "version": "1.3.4",
++          "version": "1.3.5",
 +          "bundled": true,
 +          "requires": {
 +            "hash-base": "^3.0.0",
-+            "inherits": "^2.0.1"
++            "inherits": "^2.0.1",
++            "safe-buffer": "^5.1.2"
 +          }
 +        },
 +        "miller-rabin": {
@@ -545,30 +696,31 @@ index 0000000..383b245
 +          "bundled": true
 +        },
 +        "os-browserify": {
-+          "version": "0.2.1",
++          "version": "0.3.0",
 +          "bundled": true
 +        },
 +        "pako": {
-+          "version": "0.2.9",
++          "version": "1.0.10",
 +          "bundled": true
 +        },
 +        "parse-asn1": {
-+          "version": "5.1.1",
++          "version": "5.1.4",
 +          "bundled": true,
 +          "requires": {
 +            "asn1.js": "^4.0.0",
 +            "browserify-aes": "^1.0.0",
 +            "create-hash": "^1.1.0",
 +            "evp_bytestokey": "^1.0.0",
-+            "pbkdf2": "^3.0.3"
++            "pbkdf2": "^3.0.3",
++            "safe-buffer": "^5.1.1"
 +          }
 +        },
 +        "path-browserify": {
-+          "version": "0.0.0",
++          "version": "1.0.0",
 +          "bundled": true
 +        },
 +        "pbkdf2": {
-+          "version": "3.0.16",
++          "version": "3.0.17",
 +          "bundled": true,
 +          "requires": {
 +            "create-hash": "^1.1.2",
@@ -587,18 +739,19 @@ index 0000000..383b245
 +          "bundled": true
 +        },
 +        "public-encrypt": {
-+          "version": "4.0.2",
++          "version": "4.0.3",
 +          "bundled": true,
 +          "requires": {
 +            "bn.js": "^4.1.0",
 +            "browserify-rsa": "^4.0.0",
 +            "create-hash": "^1.1.0",
 +            "parse-asn1": "^5.0.0",
-+            "randombytes": "^2.0.1"
++            "randombytes": "^2.0.1",
++            "safe-buffer": "^5.1.2"
 +          }
 +        },
 +        "punycode": {
-+          "version": "1.4.1",
++          "version": "2.1.1",
 +          "bundled": true
 +        },
 +        "querystring": {
@@ -610,7 +763,7 @@ index 0000000..383b245
 +          "bundled": true
 +        },
 +        "randombytes": {
-+          "version": "2.0.6",
++          "version": "2.1.0",
 +          "bundled": true,
 +          "requires": {
 +            "safe-buffer": "^5.1.0"
@@ -625,16 +778,12 @@ index 0000000..383b245
 +          }
 +        },
 +        "readable-stream": {
-+          "version": "2.3.6",
++          "version": "3.3.0",
 +          "bundled": true,
 +          "requires": {
-+            "core-util-is": "~1.0.0",
-+            "inherits": "~2.0.3",
-+            "isarray": "~1.0.0",
-+            "process-nextick-args": "~2.0.0",
-+            "safe-buffer": "~5.1.1",
-+            "string_decoder": "~1.1.1",
-+            "util-deprecate": "~1.0.1"
++            "inherits": "^2.0.3",
++            "string_decoder": "^1.1.1",
++            "util-deprecate": "^1.0.1"
 +          },
 +          "dependencies": {
 +            "inherits": {
@@ -655,6 +804,10 @@ index 0000000..383b245
 +          "version": "5.1.2",
 +          "bundled": true
 +        },
++        "setimmediate": {
++          "version": "1.0.5",
++          "bundled": true
++        },
 +        "sha.js": {
 +          "version": "2.4.11",
 +          "bundled": true,
@@ -664,44 +817,67 @@ index 0000000..383b245
 +          }
 +        },
 +        "stream-browserify": {
-+          "version": "2.0.1",
++          "version": "2.0.2",
 +          "bundled": true,
 +          "requires": {
 +            "inherits": "~2.0.1",
 +            "readable-stream": "^2.0.2"
++          },
++          "dependencies": {
++            "readable-stream": {
++              "version": "2.3.6",
++              "bundled": true,
++              "requires": {
++                "core-util-is": "~1.0.0",
++                "inherits": "~2.0.3",
++                "isarray": "~1.0.0",
++                "process-nextick-args": "~2.0.0",
++                "safe-buffer": "~5.1.1",
++                "string_decoder": "~1.1.1",
++                "util-deprecate": "~1.0.1"
++              },
++              "dependencies": {
++                "inherits": {
++                  "version": "2.0.3",
++                  "bundled": true
++                }
++              }
++            },
++            "string_decoder": {
++              "version": "1.1.1",
++              "bundled": true,
++              "requires": {
++                "safe-buffer": "~5.1.0"
++              }
++            }
 +          }
 +        },
 +        "stream-http": {
-+          "version": "2.8.1",
++          "version": "3.0.0",
 +          "bundled": true,
 +          "requires": {
 +            "builtin-status-codes": "^3.0.0",
 +            "inherits": "^2.0.1",
-+            "readable-stream": "^2.3.3",
-+            "to-arraybuffer": "^1.0.0",
++            "readable-stream": "^3.0.6",
 +            "xtend": "^4.0.0"
 +          }
 +        },
 +        "string_decoder": {
-+          "version": "1.1.1",
++          "version": "1.2.0",
 +          "bundled": true,
 +          "requires": {
 +            "safe-buffer": "~5.1.0"
 +          }
 +        },
 +        "timers-browserify": {
-+          "version": "1.4.2",
++          "version": "2.0.10",
 +          "bundled": true,
 +          "requires": {
-+            "process": "~0.11.0"
++            "setimmediate": "^1.0.4"
 +          }
 +        },
-+        "to-arraybuffer": {
-+          "version": "1.0.1",
-+          "bundled": true
-+        },
 +        "tty-browserify": {
-+          "version": "0.0.0",
++          "version": "0.0.1",
 +          "bundled": true
 +        },
 +        "url": {
@@ -719,10 +895,16 @@ index 0000000..383b245
 +          }
 +        },
 +        "util": {
-+          "version": "0.10.3",
++          "version": "0.11.1",
 +          "bundled": true,
 +          "requires": {
-+            "inherits": "2.0.1"
++            "inherits": "2.0.3"
++          },
++          "dependencies": {
++            "inherits": {
++              "version": "2.0.3",
++              "bundled": true
++            }
 +          }
 +        },
 +        "util-deprecate": {
@@ -730,11 +912,8 @@ index 0000000..383b245
 +          "bundled": true
 +        },
 +        "vm-browserify": {
-+          "version": "0.0.4",
-+          "bundled": true,
-+          "requires": {
-+            "indexof": "0.0.1"
-+          }
++          "version": "1.1.0",
++          "bundled": true
 +        },
 +        "xtend": {
 +          "version": "4.0.1",
@@ -742,19 +921,69 @@ index 0000000..383b245
 +        }
 +      }
 +    },
++    "object-assign": {
++      "version": "4.1.1",
++      "resolved": "https://registry.npmjs.org/object-assign/-/object-assign-4.1.1.tgz",
++      "integrity": "sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM="
++    },
++    "prop-types": {
++      "version": "15.7.2",
++      "resolved": "https://registry.npmjs.org/prop-types/-/prop-types-15.7.2.tgz",
++      "integrity": "sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==",
++      "requires": {
++        "loose-envify": "^1.4.0",
++        "object-assign": "^4.1.1",
++        "react-is": "^16.8.1"
++      }
++    },
++    "react": {
++      "version": "16.13.1",
++      "resolved": "https://registry.npmjs.org/react/-/react-16.13.1.tgz",
++      "integrity": "sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w==",
++      "requires": {
++        "loose-envify": "^1.1.0",
++        "object-assign": "^4.1.1",
++        "prop-types": "^15.6.2"
++      }
++    },
++    "react-dom": {
++      "version": "16.13.1",
++      "resolved": "https://registry.npmjs.org/react-dom/-/react-dom-16.13.1.tgz",
++      "integrity": "sha512-81PIMmVLnCNLO/fFOQxdQkvEq/+Hfpv24XNJfpyZhTRfO0QcmQIF/PgCa1zCOj2w1hrn12MFLyaJ/G0+Mxtfag==",
++      "requires": {
++        "loose-envify": "^1.1.0",
++        "object-assign": "^4.1.1",
++        "prop-types": "^15.6.2",
++        "scheduler": "^0.19.1"
++      }
++    },
++    "react-is": {
++      "version": "16.13.1",
++      "resolved": "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz",
++      "integrity": "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="
++    },
 +    "regenerator-runtime": {
-+      "version": "0.12.1",
-+      "resolved": "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.12.1.tgz",
-+      "integrity": "sha512-odxIc1/vDlo4iZcfXqRYFj0vpXFNoGdKMAUieAlFYO6m/nl5e9KR/beGf41z4a1FI+aQgtjhuaSlDxQ0hmkrHg=="
++      "version": "0.13.5",
++      "resolved": "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.13.5.tgz",
++      "integrity": "sha512-ZS5w8CpKFinUzOwW3c83oPeVXoNsrLsaCoLtJvAClH135j/R77RuymhiSErhm2lKcwSCIpmvIWSbDkIfAqKQlA=="
++    },
++    "scheduler": {
++      "version": "0.19.1",
++      "resolved": "https://registry.npmjs.org/scheduler/-/scheduler-0.19.1.tgz",
++      "integrity": "sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==",
++      "requires": {
++        "loose-envify": "^1.1.0",
++        "object-assign": "^4.1.1"
++      }
 +    }
 +  }
 +}
 diff --git a/package.json b/package.json
 new file mode 100644
-index 0000000..8206ce4
+index 0000000..11c1d49
 --- /dev/null
 +++ b/package.json
-@@ -0,0 +1,21 @@
+@@ -0,0 +1,23 @@
 +{
 +  "name": "simple-todos-react",
 +  "private": true,
@@ -765,12 +994,14 @@ index 0000000..8206ce4
 +    "visualize": "meteor --production --extra-packages bundle-visualizer"
 +  },
 +  "dependencies": {
-+    "@babel/runtime": "^7.1.5",
-+    "meteor-node-stubs": "^0.4.1"
++    "@babel/runtime": "^7.8.4",
++    "meteor-node-stubs": "^1.0.0",
++    "react": "^16.13.0",
++    "react-dom": "^16.13.0"
 +  },
 +  "meteor": {
 +    "mainModule": {
-+      "client": "client/main.js",
++      "client": "client/main.jsx",
 +      "server": "server/main.js"
 +    },
 +    "testModule": "tests/main.js"
@@ -778,14 +1009,40 @@ index 0000000..8206ce4
 +}
 diff --git a/server/main.js b/server/main.js
 new file mode 100644
-index 0000000..31a9e0e
+index 0000000..13e6a4f
 --- /dev/null
 +++ b/server/main.js
-@@ -0,0 +1,5 @@
+@@ -0,0 +1,31 @@
 +import { Meteor } from 'meteor/meteor';
++import { LinksCollection } from '/imports/api/links';
++
++function insertLink({ title, url }) {
++  LinksCollection.insert({title, url, createdAt: new Date()});
++}
 +
 +Meteor.startup(() => {
-+  // code to run on server at startup
++  // If the Links collection is empty, add some data.
++  if (LinksCollection.find().count() === 0) {
++    insertLink({
++      title: 'Do the Tutorial',
++      url: 'https://www.meteor.com/tutorials/react/creating-an-app'
++    });
++
++    insertLink({
++      title: 'Follow the Guide',
++      url: 'http://guide.meteor.com'
++    });
++
++    insertLink({
++      title: 'Read the Docs',
++      url: 'https://docs.meteor.com'
++    });
++
++    insertLink({
++      title: 'Discussions',
++      url: 'https://forums.meteor.com'
++    });
++  }
 +});
 diff --git a/tests/main.js b/tests/main.js
 new file mode 100644
@@ -817,1056 +1074,228 @@ index 0000000..837560f
 2.11.0
 
 
-From ed1f1867fe58bb128916d90581b2f8830e447bea Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:02:01 -0700
-Subject: [PATCH 02/51] Step 2.1.1: Add the React NPM packages
+From 6b20b16e7246adb2b2a7be9cc5964ecacbe9c7e0 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 28 Jun 2020 15:33:13 -0500
+Subject: [PATCH 02/57] Step 1.1: Remove unused files and code
 
 ---
- package-lock.json | 274 ++++++++++++++++++++++++++++++++++++++++--------------
- package.json      |   4 +-
- 2 files changed, 205 insertions(+), 73 deletions(-)
+ imports/api/links.js |  3 ---
+ imports/ui/App.jsx   |  4 ----
+ imports/ui/Hello.jsx | 16 ----------------
+ imports/ui/Info.jsx  | 20 --------------------
+ server/main.js       | 28 +---------------------------
+ 5 files changed, 1 insertion(+), 70 deletions(-)
+ delete mode 100644 imports/api/links.js
+ delete mode 100644 imports/ui/Hello.jsx
+ delete mode 100644 imports/ui/Info.jsx
 
-diff --git a/package-lock.json b/package-lock.json
-index 383b245..f8e8a5e 100644
---- a/package-lock.json
-+++ b/package-lock.json
-@@ -11,6 +11,19 @@
-         "regenerator-runtime": "^0.12.0"
-       }
-     },
-+    "js-tokens": {
-+      "version": "4.0.0",
-+      "resolved": "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz",
-+      "integrity": "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ=="
-+    },
-+    "loose-envify": {
-+      "version": "1.4.0",
-+      "resolved": "https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz",
-+      "integrity": "sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==",
-+      "requires": {
-+        "js-tokens": "^3.0.0 || ^4.0.0"
-+      }
-+    },
-     "meteor-node-stubs": {
-       "version": "0.4.1",
-       "resolved": "https://registry.npmjs.org/meteor-node-stubs/-/meteor-node-stubs-0.4.1.tgz",
-@@ -43,7 +56,8 @@
-       "dependencies": {
-         "asn1.js": {
-           "version": "4.10.1",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/asn1.js/-/asn1.js-4.10.1.tgz",
-+          "integrity": "sha512-p32cOF5q0Zqs9uBiONKYLm6BClCoBCM5O9JfeUSlnQLBTxYdTK+pW+nXflm8UkKd2UYlEbYz5qEi0JuZR9ckSw==",
-           "requires": {
-             "bn.js": "^4.0.0",
-             "inherits": "^2.0.1",
-@@ -52,26 +66,31 @@
-         },
-         "assert": {
-           "version": "1.4.1",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/assert/-/assert-1.4.1.tgz",
-+          "integrity": "sha1-mZEtWRg2tab1s0XA8H7vwI/GXZE=",
-           "requires": {
-             "util": "0.10.3"
-           }
-         },
-         "base64-js": {
-           "version": "1.3.0",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/base64-js/-/base64-js-1.3.0.tgz",
-+          "integrity": "sha512-ccav/yGvoa80BQDljCxsmmQ3Xvx60/UpBIij5QN21W3wBi/hhIC9OoO+KLpu9IJTS9j4DRVJ3aDDF9cMSoa2lw=="
-         },
-         "bn.js": {
-           "version": "4.11.8",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/bn.js/-/bn.js-4.11.8.tgz",
-+          "integrity": "sha512-ItfYfPLkWHUjckQCk8xC+LwxgK8NYcXywGigJgSwOP8Y2iyWT4f2vsZnoOXTTbo+o5yXmIUJ4gn5538SO5S3gA=="
-         },
-         "brorand": {
-           "version": "1.1.0",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/brorand/-/brorand-1.1.0.tgz",
-+          "integrity": "sha1-EsJe/kCkXjwyPrhnWgoM5XsiNx8="
-         },
-         "browserify-aes": {
-           "version": "1.2.0",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/browserify-aes/-/browserify-aes-1.2.0.tgz",
-+          "integrity": "sha512-+7CHXqGuspUn/Sl5aO7Ea0xWGAtETPXNSAjHo48JfLdPWcMng33Xe4znFvQweqc/uzk5zSOI3H52CYnjCfb5hA==",
-           "requires": {
-             "buffer-xor": "^1.0.3",
-             "cipher-base": "^1.0.0",
-@@ -83,7 +102,8 @@
-         },
-         "browserify-cipher": {
-           "version": "1.0.1",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/browserify-cipher/-/browserify-cipher-1.0.1.tgz",
-+          "integrity": "sha512-sPhkz0ARKbf4rRQt2hTpAHqn47X3llLkUGn+xEJzLjwY8LRs2p0v7ljvI5EyoRO/mexrNunNECisZs+gw2zz1w==",
-           "requires": {
-             "browserify-aes": "^1.0.4",
-             "browserify-des": "^1.0.0",
-@@ -92,7 +112,8 @@
-         },
-         "browserify-des": {
-           "version": "1.0.1",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/browserify-des/-/browserify-des-1.0.1.tgz",
-+          "integrity": "sha512-zy0Cobe3hhgpiOM32Tj7KQ3Vl91m0njwsjzZQK1L+JDf11dzP9qIvjreVinsvXrgfjhStXwUWAEpB9D7Gwmayw==",
-           "requires": {
-             "cipher-base": "^1.0.1",
-             "des.js": "^1.0.0",
-@@ -101,7 +122,8 @@
-         },
-         "browserify-rsa": {
-           "version": "4.0.1",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/browserify-rsa/-/browserify-rsa-4.0.1.tgz",
-+          "integrity": "sha1-IeCr+vbyApzy+vsTNWenAdQTVSQ=",
-           "requires": {
-             "bn.js": "^4.1.0",
-             "randombytes": "^2.0.1"
-@@ -109,7 +131,8 @@
-         },
-         "browserify-sign": {
-           "version": "4.0.4",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/browserify-sign/-/browserify-sign-4.0.4.tgz",
-+          "integrity": "sha1-qk62jl17ZYuqa/alfmMMvXqT0pg=",
-           "requires": {
-             "bn.js": "^4.1.1",
-             "browserify-rsa": "^4.0.0",
-@@ -122,14 +145,16 @@
-         },
-         "browserify-zlib": {
-           "version": "0.1.4",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/browserify-zlib/-/browserify-zlib-0.1.4.tgz",
-+          "integrity": "sha1-uzX4pRn2AOD6a4SFJByXnQFB+y0=",
-           "requires": {
-             "pako": "~0.2.0"
-           }
-         },
-         "buffer": {
-           "version": "4.9.1",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/buffer/-/buffer-4.9.1.tgz",
-+          "integrity": "sha1-bRu2AbB6TvztlwlBMgkwJ8lbwpg=",
-           "requires": {
-             "base64-js": "^1.0.2",
-             "ieee754": "^1.1.4",
-@@ -138,15 +163,18 @@
-         },
-         "buffer-xor": {
-           "version": "1.0.3",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/buffer-xor/-/buffer-xor-1.0.3.tgz",
-+          "integrity": "sha1-JuYe0UIvtw3ULm42cp7VHYVf6Nk="
-         },
-         "builtin-status-codes": {
-           "version": "3.0.0",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz",
-+          "integrity": "sha1-hZgoeOIbmOHGZCXgPQF0eI9Wnug="
-         },
-         "cipher-base": {
-           "version": "1.0.4",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/cipher-base/-/cipher-base-1.0.4.tgz",
-+          "integrity": "sha512-Kkht5ye6ZGmwv40uUDZztayT2ThLQGfnj/T71N/XzeZeo3nf8foyW7zGTsPYkEya3m5f3cAypH+qe7YOrM1U2Q==",
-           "requires": {
-             "inherits": "^2.0.1",
-             "safe-buffer": "^5.0.1"
-@@ -154,22 +182,26 @@
-         },
-         "console-browserify": {
-           "version": "1.1.0",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/console-browserify/-/console-browserify-1.1.0.tgz",
-+          "integrity": "sha1-8CQcRXMKn8YyOyBtvzjtx0HQuxA=",
-           "requires": {
-             "date-now": "^0.1.4"
-           }
-         },
-         "constants-browserify": {
-           "version": "1.0.0",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/constants-browserify/-/constants-browserify-1.0.0.tgz",
-+          "integrity": "sha1-wguW2MYXdIqvHBYCF2DNJ/y4y3U="
-         },
-         "core-util-is": {
-           "version": "1.0.2",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.2.tgz",
-+          "integrity": "sha1-tf1UIgqivFq1eqtxQMlAdUUDwac="
-         },
-         "create-ecdh": {
-           "version": "4.0.3",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/create-ecdh/-/create-ecdh-4.0.3.tgz",
-+          "integrity": "sha512-GbEHQPMOswGpKXM9kCWVrremUcBmjteUaQ01T9rkKCPDXfUHX0IoP9LpHYo2NPFampa4e+/pFDc3jQdxrxQLaw==",
-           "requires": {
-             "bn.js": "^4.1.0",
-             "elliptic": "^6.0.0"
-@@ -177,7 +209,8 @@
-         },
-         "create-hash": {
-           "version": "1.2.0",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/create-hash/-/create-hash-1.2.0.tgz",
-+          "integrity": "sha512-z00bCGNHDG8mHAkP7CtT1qVu+bFQUPjYq/4Iv3C3kWjTFV10zIjfSoeqXo9Asws8gwSHDGj/hl2u4OGIjapeCg==",
-           "requires": {
-             "cipher-base": "^1.0.1",
-             "inherits": "^2.0.1",
-@@ -188,7 +221,8 @@
-         },
-         "create-hmac": {
-           "version": "1.1.7",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/create-hmac/-/create-hmac-1.1.7.tgz",
-+          "integrity": "sha512-MJG9liiZ+ogc4TzUwuvbER1JRdgvUFSB5+VR/g5h82fGaIRWMWddtKBHi7/sVhfjQZ6SehlyhvQYrcYkaUIpLg==",
-           "requires": {
-             "cipher-base": "^1.0.3",
-             "create-hash": "^1.1.0",
-@@ -200,7 +234,8 @@
-         },
-         "crypto-browserify": {
-           "version": "3.12.0",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/crypto-browserify/-/crypto-browserify-3.12.0.tgz",
-+          "integrity": "sha512-fz4spIh+znjO2VjL+IdhEpRJ3YN6sMzITSBijk6FK2UvTqruSQW+/cCZTSNsMiZNvUeq0CqurF+dAbyiGOY6Wg==",
-           "requires": {
-             "browserify-cipher": "^1.0.0",
-             "browserify-sign": "^4.0.0",
-@@ -217,11 +252,13 @@
-         },
-         "date-now": {
-           "version": "0.1.4",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/date-now/-/date-now-0.1.4.tgz",
-+          "integrity": "sha1-6vQ5/U1ISK105cx9vvIAZyueNFs="
-         },
-         "des.js": {
-           "version": "1.0.0",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/des.js/-/des.js-1.0.0.tgz",
-+          "integrity": "sha1-wHTS4qpqipoH29YfmhXCzYPsjsw=",
-           "requires": {
-             "inherits": "^2.0.1",
-             "minimalistic-assert": "^1.0.0"
-@@ -229,7 +266,8 @@
-         },
-         "diffie-hellman": {
-           "version": "5.0.3",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/diffie-hellman/-/diffie-hellman-5.0.3.tgz",
-+          "integrity": "sha512-kqag/Nl+f3GwyK25fhUMYj81BUOrZ9IuJsjIcDE5icNM9FJHAVm3VcUDxdLPoQtTuUylWm6ZIknYJwwaPxsUzg==",
-           "requires": {
-             "bn.js": "^4.1.0",
-             "miller-rabin": "^4.0.0",
-@@ -238,11 +276,13 @@
-         },
-         "domain-browser": {
-           "version": "1.2.0",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/domain-browser/-/domain-browser-1.2.0.tgz",
-+          "integrity": "sha512-jnjyiM6eRyZl2H+W8Q/zLMA481hzi0eszAaBUzIVnmYVDBbnLxVNnfu1HgEBvCbL+71FrxMl3E6lpKH7Ge3OXA=="
-         },
-         "elliptic": {
-           "version": "6.4.0",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.4.0.tgz",
-+          "integrity": "sha1-ysmvh2LIWDYYcAPI3+GT5eLq5d8=",
-           "requires": {
-             "bn.js": "^4.4.0",
-             "brorand": "^1.0.1",
-@@ -255,11 +295,13 @@
-         },
-         "events": {
-           "version": "1.1.1",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/events/-/events-1.1.1.tgz",
-+          "integrity": "sha1-nr23Y1rQmccNzEwqH1AEKI6L2SQ="
-         },
-         "evp_bytestokey": {
-           "version": "1.0.3",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/evp_bytestokey/-/evp_bytestokey-1.0.3.tgz",
-+          "integrity": "sha512-/f2Go4TognH/KvCISP7OUsHn85hT9nUkxxA9BEWxFn+Oj9o8ZNLm/40hdlgSLyuOimsrTKLUMEorQexp/aPQeA==",
-           "requires": {
-             "md5.js": "^1.3.4",
-             "safe-buffer": "^5.1.1"
-@@ -267,7 +309,8 @@
-         },
-         "hash-base": {
-           "version": "3.0.4",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/hash-base/-/hash-base-3.0.4.tgz",
-+          "integrity": "sha1-X8hoaEfs1zSZQDMZprCj8/auSRg=",
-           "requires": {
-             "inherits": "^2.0.1",
-             "safe-buffer": "^5.0.1"
-@@ -275,7 +318,8 @@
-         },
-         "hash.js": {
-           "version": "1.1.3",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/hash.js/-/hash.js-1.1.3.tgz",
-+          "integrity": "sha512-/UETyP0W22QILqS+6HowevwhEFJ3MBJnwTf75Qob9Wz9t0DPuisL8kW8YZMK62dHAKE1c1p+gY1TtOLY+USEHA==",
-           "requires": {
-             "inherits": "^2.0.3",
-             "minimalistic-assert": "^1.0.0"
-@@ -283,13 +327,15 @@
-           "dependencies": {
-             "inherits": {
-               "version": "2.0.3",
--              "bundled": true
-+              "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.3.tgz",
-+              "integrity": "sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4="
-             }
-           }
-         },
-         "hmac-drbg": {
-           "version": "1.0.1",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/hmac-drbg/-/hmac-drbg-1.0.1.tgz",
-+          "integrity": "sha1-0nRXAQJabHdabFRXk+1QL8DGSaE=",
-           "requires": {
-             "hash.js": "^1.0.3",
-             "minimalistic-assert": "^1.0.0",
-@@ -298,27 +344,33 @@
-         },
-         "https-browserify": {
-           "version": "0.0.1",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/https-browserify/-/https-browserify-0.0.1.tgz",
-+          "integrity": "sha1-P5E2XKvmC3ftDruiS0VOPgnZWoI="
-         },
-         "ieee754": {
-           "version": "1.1.11",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/ieee754/-/ieee754-1.1.11.tgz",
-+          "integrity": "sha512-VhDzCKN7K8ufStx/CLj5/PDTMgph+qwN5Pkd5i0sGnVwk56zJ0lkT8Qzi1xqWLS0Wp29DgDtNeS7v8/wMoZeHg=="
-         },
-         "indexof": {
-           "version": "0.0.1",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/indexof/-/indexof-0.0.1.tgz",
-+          "integrity": "sha1-gtwzbSMrkGIXnQWrMpOmYFn9Q10="
-         },
-         "inherits": {
-           "version": "2.0.1",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.1.tgz",
-+          "integrity": "sha1-sX0I0ya0Qj5Wjv9xn5GwscvfafE="
-         },
-         "isarray": {
-           "version": "1.0.0",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/isarray/-/isarray-1.0.0.tgz",
-+          "integrity": "sha1-u5NdSFgsuhaMBoNJV6VKPgcSTxE="
-         },
-         "md5.js": {
-           "version": "1.3.4",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/md5.js/-/md5.js-1.3.4.tgz",
-+          "integrity": "sha1-6b296UogpawYsENA/Fdk1bCdkB0=",
-           "requires": {
-             "hash-base": "^3.0.0",
-             "inherits": "^2.0.1"
-@@ -326,7 +378,8 @@
-         },
-         "miller-rabin": {
-           "version": "4.0.1",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/miller-rabin/-/miller-rabin-4.0.1.tgz",
-+          "integrity": "sha512-115fLhvZVqWwHPbClyntxEVfVDfl9DLLTuJvq3g2O/Oxi8AiNouAHvDSzHS0viUJc+V5vm3eq91Xwqn9dp4jRA==",
-           "requires": {
-             "bn.js": "^4.0.0",
-             "brorand": "^1.0.1"
-@@ -334,23 +387,28 @@
-         },
-         "minimalistic-assert": {
-           "version": "1.0.1",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/minimalistic-assert/-/minimalistic-assert-1.0.1.tgz",
-+          "integrity": "sha512-UtJcAD4yEaGtjPezWuO9wC4nwUnVH/8/Im3yEHQP4b67cXlD/Qr9hdITCU1xDbSEXg2XKNaP8jsReV7vQd00/A=="
-         },
-         "minimalistic-crypto-utils": {
-           "version": "1.0.1",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/minimalistic-crypto-utils/-/minimalistic-crypto-utils-1.0.1.tgz",
-+          "integrity": "sha1-9sAMHAsIIkblxNmd+4x8CDsrWCo="
-         },
-         "os-browserify": {
-           "version": "0.2.1",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/os-browserify/-/os-browserify-0.2.1.tgz",
-+          "integrity": "sha1-Y/xMzuXS13Y9Jrv4YBB45sLgBE8="
-         },
-         "pako": {
-           "version": "0.2.9",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/pako/-/pako-0.2.9.tgz",
-+          "integrity": "sha1-8/dSL073gjSNqBYbrZ7P1Rv4OnU="
-         },
-         "parse-asn1": {
-           "version": "5.1.1",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/parse-asn1/-/parse-asn1-5.1.1.tgz",
-+          "integrity": "sha512-KPx7flKXg775zZpnp9SxJlz00gTd4BmJ2yJufSc44gMCRrRQ7NSzAcSJQfifuOLgW6bEi+ftrALtsgALeB2Adw==",
-           "requires": {
-             "asn1.js": "^4.0.0",
-             "browserify-aes": "^1.0.0",
-@@ -361,11 +419,13 @@
-         },
-         "path-browserify": {
-           "version": "0.0.0",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/path-browserify/-/path-browserify-0.0.0.tgz",
-+          "integrity": "sha1-oLhwcpquIUAFt9UDLsLLuw+0RRo="
-         },
-         "pbkdf2": {
-           "version": "3.0.16",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/pbkdf2/-/pbkdf2-3.0.16.tgz",
-+          "integrity": "sha512-y4CXP3thSxqf7c0qmOF+9UeOTrifiVTIM+u7NWlq+PRsHbr7r7dpCmvzrZxa96JJUNi0Y5w9VqG5ZNeCVMoDcA==",
-           "requires": {
-             "create-hash": "^1.1.2",
-             "create-hmac": "^1.1.4",
-@@ -376,15 +436,18 @@
-         },
-         "process": {
-           "version": "0.11.10",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/process/-/process-0.11.10.tgz",
-+          "integrity": "sha1-czIwDoQBYb2j5podHZGn1LwW8YI="
-         },
-         "process-nextick-args": {
-           "version": "2.0.0",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/process-nextick-args/-/process-nextick-args-2.0.0.tgz",
-+          "integrity": "sha512-MtEC1TqN0EU5nephaJ4rAtThHtC86dNN9qCuEhtshvpVBkAW5ZO7BASN9REnF9eoXGcRub+pFuKEpOHE+HbEMw=="
-         },
-         "public-encrypt": {
-           "version": "4.0.2",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/public-encrypt/-/public-encrypt-4.0.2.tgz",
-+          "integrity": "sha512-4kJ5Esocg8X3h8YgJsKAuoesBgB7mqH3eowiDzMUPKiRDDE7E/BqqZD1hnTByIaAFiwAw246YEltSq7tdrOH0Q==",
-           "requires": {
-             "bn.js": "^4.1.0",
-             "browserify-rsa": "^4.0.0",
-@@ -395,26 +458,31 @@
-         },
-         "punycode": {
-           "version": "1.4.1",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/punycode/-/punycode-1.4.1.tgz",
-+          "integrity": "sha1-wNWmOycYgArY4esPpSachN1BhF4="
-         },
-         "querystring": {
-           "version": "0.2.0",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/querystring/-/querystring-0.2.0.tgz",
-+          "integrity": "sha1-sgmEkgO7Jd+CDadW50cAWHhSFiA="
-         },
-         "querystring-es3": {
-           "version": "0.2.1",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/querystring-es3/-/querystring-es3-0.2.1.tgz",
-+          "integrity": "sha1-nsYfeQSYdXB9aUFFlv2Qek1xHnM="
-         },
-         "randombytes": {
-           "version": "2.0.6",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/randombytes/-/randombytes-2.0.6.tgz",
-+          "integrity": "sha512-CIQ5OFxf4Jou6uOKe9t1AOgqpeU5fd70A8NPdHSGeYXqXsPe6peOwI0cUl88RWZ6sP1vPMV3avd/R6cZ5/sP1A==",
-           "requires": {
-             "safe-buffer": "^5.1.0"
-           }
-         },
-         "randomfill": {
-           "version": "1.0.4",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/randomfill/-/randomfill-1.0.4.tgz",
-+          "integrity": "sha512-87lcbR8+MhcWcUiQ+9e+Rwx8MyR2P7qnt15ynUlbm3TU/fjbgz4GsvfSUDTemtCCtVCqb4ZcEFlyPNTh9bBTLw==",
-           "requires": {
-             "randombytes": "^2.0.5",
-             "safe-buffer": "^5.1.0"
-@@ -422,7 +490,8 @@
-         },
-         "readable-stream": {
-           "version": "2.3.6",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.3.6.tgz",
-+          "integrity": "sha512-tQtKA9WIAhBF3+VLAseyMqZeBjW0AHJoxOtYqSUZNJxauErmLbVm2FW1y+J/YA9dUrAC39ITejlZWhVIwawkKw==",
-           "requires": {
-             "core-util-is": "~1.0.0",
-             "inherits": "~2.0.3",
-@@ -435,13 +504,15 @@
-           "dependencies": {
-             "inherits": {
-               "version": "2.0.3",
--              "bundled": true
-+              "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.3.tgz",
-+              "integrity": "sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4="
-             }
-           }
-         },
-         "ripemd160": {
-           "version": "2.0.2",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/ripemd160/-/ripemd160-2.0.2.tgz",
-+          "integrity": "sha512-ii4iagi25WusVoiC4B4lq7pbXfAp3D9v5CwfkY33vffw2+pkDjY1D8GaN7spsxvCSx8dkPqOZCEZyfxcmJG2IA==",
-           "requires": {
-             "hash-base": "^3.0.0",
-             "inherits": "^2.0.1"
-@@ -449,11 +520,13 @@
-         },
-         "safe-buffer": {
-           "version": "5.1.2",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.1.2.tgz",
-+          "integrity": "sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g=="
-         },
-         "sha.js": {
-           "version": "2.4.11",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/sha.js/-/sha.js-2.4.11.tgz",
-+          "integrity": "sha512-QMEp5B7cftE7APOjk5Y6xgrbWu+WkLVQwk8JNjZ8nKRciZaByEW6MubieAiToS7+dwvrjGhH8jRXz3MVd0AYqQ==",
-           "requires": {
-             "inherits": "^2.0.1",
-             "safe-buffer": "^5.0.1"
-@@ -461,7 +534,8 @@
-         },
-         "stream-browserify": {
-           "version": "2.0.1",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/stream-browserify/-/stream-browserify-2.0.1.tgz",
-+          "integrity": "sha1-ZiZu5fm9uZQKTkUUyvtDu3Hlyds=",
-           "requires": {
-             "inherits": "~2.0.1",
-             "readable-stream": "^2.0.2"
-@@ -469,7 +543,8 @@
-         },
-         "stream-http": {
-           "version": "2.8.1",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/stream-http/-/stream-http-2.8.1.tgz",
-+          "integrity": "sha512-cQ0jo17BLca2r0GfRdZKYAGLU6JRoIWxqSOakUMuKOT6MOK7AAlE856L33QuDmAy/eeOrhLee3dZKX0Uadu93A==",
-           "requires": {
-             "builtin-status-codes": "^3.0.0",
-             "inherits": "^2.0.1",
-@@ -480,29 +555,34 @@
-         },
-         "string_decoder": {
-           "version": "1.1.1",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/string_decoder/-/string_decoder-1.1.1.tgz",
-+          "integrity": "sha512-n/ShnvDi6FHbbVfviro+WojiFzv+s8MPMHBczVePfUpDJLwoLT0ht1l4YwBCbi8pJAveEEdnkHyPyTP/mzRfwg==",
-           "requires": {
-             "safe-buffer": "~5.1.0"
-           }
-         },
-         "timers-browserify": {
-           "version": "1.4.2",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/timers-browserify/-/timers-browserify-1.4.2.tgz",
-+          "integrity": "sha1-ycWLV1voQHN1y14kYtrO50NZ9B0=",
-           "requires": {
-             "process": "~0.11.0"
-           }
-         },
-         "to-arraybuffer": {
-           "version": "1.0.1",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/to-arraybuffer/-/to-arraybuffer-1.0.1.tgz",
-+          "integrity": "sha1-fSKbH8xjfkZsoIEYCDanqr/4P0M="
-         },
-         "tty-browserify": {
-           "version": "0.0.0",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/tty-browserify/-/tty-browserify-0.0.0.tgz",
-+          "integrity": "sha1-oVe6QC2iTpv5V/mqadUk7tQpAaY="
-         },
-         "url": {
-           "version": "0.11.0",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/url/-/url-0.11.0.tgz",
-+          "integrity": "sha1-ODjpfPxgUh63PFJajlW/3Z4uKPE=",
-           "requires": {
-             "punycode": "1.3.2",
-             "querystring": "0.2.0"
-@@ -510,38 +590,88 @@
-           "dependencies": {
-             "punycode": {
-               "version": "1.3.2",
--              "bundled": true
-+              "resolved": "https://registry.npmjs.org/punycode/-/punycode-1.3.2.tgz",
-+              "integrity": "sha1-llOgNvt8HuQjQvIyXM7v6jkmxI0="
-             }
-           }
-         },
-         "util": {
-           "version": "0.10.3",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/util/-/util-0.10.3.tgz",
-+          "integrity": "sha1-evsa/lCAUkZInj23/g7TeTNqwPk=",
-           "requires": {
-             "inherits": "2.0.1"
-           }
-         },
-         "util-deprecate": {
-           "version": "1.0.2",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz",
-+          "integrity": "sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8="
-         },
-         "vm-browserify": {
-           "version": "0.0.4",
--          "bundled": true,
-+          "resolved": "https://registry.npmjs.org/vm-browserify/-/vm-browserify-0.0.4.tgz",
-+          "integrity": "sha1-XX6kW7755Kb/ZflUOOCofDV9WnM=",
-           "requires": {
-             "indexof": "0.0.1"
-           }
-         },
-         "xtend": {
-           "version": "4.0.1",
--          "bundled": true
-+          "resolved": "https://registry.npmjs.org/xtend/-/xtend-4.0.1.tgz",
-+          "integrity": "sha1-pcbVMr5lbiPbgg77lDofBJmNY68="
-         }
-       }
-     },
-+    "object-assign": {
-+      "version": "4.1.1",
-+      "resolved": "https://registry.npmjs.org/object-assign/-/object-assign-4.1.1.tgz",
-+      "integrity": "sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM="
-+    },
-+    "prop-types": {
-+      "version": "15.6.2",
-+      "resolved": "https://registry.npmjs.org/prop-types/-/prop-types-15.6.2.tgz",
-+      "integrity": "sha512-3pboPvLiWD7dkI3qf3KbUe6hKFKa52w+AE0VCqECtf+QHAKgOL37tTaNCnuX1nAAQ4ZhyP+kYVKf8rLmJ/feDQ==",
-+      "requires": {
-+        "loose-envify": "^1.3.1",
-+        "object-assign": "^4.1.1"
-+      }
-+    },
-+    "react": {
-+      "version": "16.7.0",
-+      "resolved": "https://registry.npmjs.org/react/-/react-16.7.0.tgz",
-+      "integrity": "sha512-StCz3QY8lxTb5cl2HJxjwLFOXPIFQp+p+hxQfc8WE0QiLfCtIlKj8/+5tjjKm8uSTlAW+fCPaavGFS06V9Ar3A==",
-+      "requires": {
-+        "loose-envify": "^1.1.0",
-+        "object-assign": "^4.1.1",
-+        "prop-types": "^15.6.2",
-+        "scheduler": "^0.12.0"
-+      }
-+    },
-+    "react-dom": {
-+      "version": "16.7.0",
-+      "resolved": "https://registry.npmjs.org/react-dom/-/react-dom-16.7.0.tgz",
-+      "integrity": "sha512-D0Ufv1ExCAmF38P2Uh1lwpminZFRXEINJe53zRAbm4KPwSyd6DY/uDoS0Blj9jvPpn1+wivKpZYc8aAAN/nAkg==",
-+      "requires": {
-+        "loose-envify": "^1.1.0",
-+        "object-assign": "^4.1.1",
-+        "prop-types": "^15.6.2",
-+        "scheduler": "^0.12.0"
-+      }
-+    },
-     "regenerator-runtime": {
-       "version": "0.12.1",
-       "resolved": "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.12.1.tgz",
-       "integrity": "sha512-odxIc1/vDlo4iZcfXqRYFj0vpXFNoGdKMAUieAlFYO6m/nl5e9KR/beGf41z4a1FI+aQgtjhuaSlDxQ0hmkrHg=="
-+    },
-+    "scheduler": {
-+      "version": "0.12.0",
-+      "resolved": "https://registry.npmjs.org/scheduler/-/scheduler-0.12.0.tgz",
-+      "integrity": "sha512-t7MBR28Akcp4Jm+QoR63XgAi9YgCUmgvDHqf5otgAj4QvdoBE4ImCX0ffehefePPG+aitiYHp0g/mW6s4Tp+dw==",
-+      "requires": {
-+        "loose-envify": "^1.1.0",
-+        "object-assign": "^4.1.1"
-+      }
-     }
-   }
- }
-diff --git a/package.json b/package.json
-index 8206ce4..abd6b4d 100644
---- a/package.json
-+++ b/package.json
-@@ -9,7 +9,9 @@
-   },
-   "dependencies": {
-     "@babel/runtime": "^7.1.5",
--    "meteor-node-stubs": "^0.4.1"
-+    "meteor-node-stubs": "^0.4.1",
-+    "react": "^16.1.1",
-+    "react-dom": "^16.1.1"
-   },
-   "meteor": {
-     "mainModule": {
--- 
-2.11.0
-
-
-From f2b631b5cae7505ff42b605556e2da8a2a237e21 Mon Sep 17 00:00:00 2001
-From: Ben Newman <ben@meteor.com>
-Date: Sat, 5 Jan 2019 20:33:42 -0500
-Subject: [PATCH 03/51] Step 2.1.2: Remove blaze-html-templates and add
- static-html
-
----
- .meteor/packages | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/.meteor/packages b/.meteor/packages
-index 4221036..738ed78 100644
---- a/.meteor/packages
-+++ b/.meteor/packages
-@@ -7,7 +7,6 @@
- meteor-base@1.4.0             # Packages every Meteor app needs to have
- mobile-experience@1.0.5       # Packages for a great mobile UX
- mongo@1.6.0                   # The database Meteor supports right now
--blaze-html-templates@1.0.4 # Compile .html files into Meteor Blaze views
- reactive-var@1.0.11            # Reactive variable for tracker
- tracker@1.2.0                 # Meteor's client-side reactive programming library
- 
-@@ -19,3 +18,4 @@ shell-server@0.4.0            # Server-side component of the `meteor shell` comm
- 
- autopublish@1.0.7             # Publish all data to the clients (for prototyping)
- insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
-+static-html
--- 
-2.11.0
-
-
-From 78e0307ea8a972f211ebaf2cc76e150b7e671d4e Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:03:54 -0700
-Subject: [PATCH 04/51] Step 2.2: Replace starter HTML code
-
----
- client/main.html | 22 ++--------------------
- 1 file changed, 2 insertions(+), 20 deletions(-)
-
-diff --git a/client/main.html b/client/main.html
-index 811d863..1aae2d4 100644
---- a/client/main.html
-+++ b/client/main.html
-@@ -1,25 +1,7 @@
- <head>
--  <title>simple-todos-react</title>
-+  <title>Todo List</title>
- </head>
- 
- <body>
--  <h1>Welcome to Meteor!</h1>
+diff --git a/imports/api/links.js b/imports/api/links.js
+deleted file mode 100644
+index 050c508..0000000
+--- a/imports/api/links.js
++++ /dev/null
+@@ -1,3 +0,0 @@
+-import { Mongo } from 'meteor/mongo';
 -
--  {{> hello}}
--  {{> info}}
-+  <div id="render-target"></div>
- </body>
--
--<template name="hello">
--  <button>Click Me</button>
--  <p>You've pressed the button {{counter}} times.</p>
--</template>
--
--<template name="info">
--  <h2>Learn Meteor!</h2>
--  <ul>
--    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
--    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
--    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
--    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
--  </ul>
--</template>
--- 
-2.11.0
-
-
-From caf09dfc3e477e751d946d115ad4d6f6c507b9a6 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:05:08 -0700
-Subject: [PATCH 05/51] Step 2.3: Replace starter JS
-
----
- client/main.js | 25 ++++++-------------------
- 1 file changed, 6 insertions(+), 19 deletions(-)
-
-diff --git a/client/main.js b/client/main.js
-index ecb3282..00f2bbf 100644
---- a/client/main.js
-+++ b/client/main.js
-@@ -1,22 +1,9 @@
--import { Template } from 'meteor/templating';
--import { ReactiveVar } from 'meteor/reactive-var';
-+import React from 'react';
-+import { Meteor } from 'meteor/meteor';
-+import { render } from 'react-dom';
+-export const LinksCollection = new Mongo.Collection('links');
+diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
+index 6f7340c..81ff97f 100644
+--- a/imports/ui/App.jsx
++++ b/imports/ui/App.jsx
+@@ -1,11 +1,7 @@
+ import React from 'react';
+-import { Hello } from './Hello.jsx';
+-import { Info } from './Info.jsx';
  
--import './main.html';
-+import App from '../imports/ui/App.js';
+ export const App = () => (
+   <div>
+     <h1>Welcome to Meteor!</h1>
+-    <Hello/>
+-    <Info/>
+   </div>
+ );
+diff --git a/imports/ui/Hello.jsx b/imports/ui/Hello.jsx
+deleted file mode 100644
+index 15e0f18..0000000
+--- a/imports/ui/Hello.jsx
++++ /dev/null
+@@ -1,16 +0,0 @@
+-import React, { useState } from 'react';
+-
+-export const Hello = () => {
+-  const [counter, setCounter] = useState(0);
+-
+-  const increment = () => {
+-    setCounter(counter + 1);
+-  };
+-
+-  return (
+-    <div>
+-      <button onClick={increment}>Click Me</button>
+-      <p>You've pressed the button {counter} times.</p>
+-    </div>
+-  );
+-};
+diff --git a/imports/ui/Info.jsx b/imports/ui/Info.jsx
+deleted file mode 100644
+index 62a0100..0000000
+--- a/imports/ui/Info.jsx
++++ /dev/null
+@@ -1,20 +0,0 @@
+-import React from 'react';
+-import { useTracker } from 'meteor/react-meteor-data';
+-import { LinksCollection } from '../api/links';
+-
+-export const Info = () => {
+-  const links = useTracker(() => {
+-    return LinksCollection.find().fetch();
+-  });
+-
+-  return (
+-    <div>
+-      <h2>Learn Meteor!</h2>
+-      <ul>{links.map(
+-        link => <li key={link._id}>
+-          <a href={link.url} target="_blank">{link.title}</a>
+-        </li>
+-      )}</ul>
+-    </div>
+-  );
+-};
+diff --git a/server/main.js b/server/main.js
+index 13e6a4f..69bfbca 100644
+--- a/server/main.js
++++ b/server/main.js
+@@ -1,31 +1,5 @@
+ import { Meteor } from 'meteor/meteor';
+-import { LinksCollection } from '/imports/api/links';
+-
+-function insertLink({ title, url }) {
+-  LinksCollection.insert({title, url, createdAt: new Date()});
+-}
  
--Template.hello.onCreated(function helloOnCreated() {
--  // counter starts at 0
--  this.counter = new ReactiveVar(0);
--});
+ Meteor.startup(() => {
+-  // If the Links collection is empty, add some data.
+-  if (LinksCollection.find().count() === 0) {
+-    insertLink({
+-      title: 'Do the Tutorial',
+-      url: 'https://www.meteor.com/tutorials/react/creating-an-app'
+-    });
 -
--Template.hello.helpers({
--  counter() {
--    return Template.instance().counter.get();
--  },
--});
+-    insertLink({
+-      title: 'Follow the Guide',
+-      url: 'http://guide.meteor.com'
+-    });
 -
--Template.hello.events({
--  'click button'(event, instance) {
--    // increment the counter when button is clicked
--    instance.counter.set(instance.counter.get() + 1);
--  },
-+Meteor.startup(() => {
-+  render(<App />, document.getElementById('render-target'));
+-    insertLink({
+-      title: 'Read the Docs',
+-      url: 'https://docs.meteor.com'
+-    });
+-
+-    insertLink({
+-      title: 'Discussions',
+-      url: 'https://forums.meteor.com'
+-    });
+-  }
++  
  });
 -- 
 2.11.0
 
 
-From c6e13684ef344ca16d42d8e5f31d999a5cb366fe Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:05:58 -0700
-Subject: [PATCH 06/51] Step 2.4: Create App component
+From 7dbc50497ccf09ec693809d7550c13a83f6da298 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 28 Jun 2020 15:33:34 -0500
+Subject: [PATCH 03/57] Step 1.2: Create Task Component
 
 ---
- imports/ui/App.js | 34 ++++++++++++++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
- create mode 100644 imports/ui/App.js
+ imports/ui/Task.jsx | 5 +++++
+ 1 file changed, 5 insertions(+)
+ create mode 100644 imports/ui/Task.jsx
 
-diff --git a/imports/ui/App.js b/imports/ui/App.js
+diff --git a/imports/ui/Task.jsx b/imports/ui/Task.jsx
 new file mode 100644
-index 0000000..bad39ea
+index 0000000..49146bd
 --- /dev/null
-+++ b/imports/ui/App.js
-@@ -0,0 +1,34 @@
-+import React, { Component } from 'react';
++++ b/imports/ui/Task.jsx
+@@ -0,0 +1,5 @@
++import React from 'react';
 +
-+import Task from './Task.js';
-+
-+// App component - represents the whole app
-+export default class App extends Component {
-+  getTasks() {
-+    return [
-+      { _id: 1, text: 'This is task 1' },
-+      { _id: 2, text: 'This is task 2' },
-+      { _id: 3, text: 'This is task 3' },
-+    ];
-+  }
-+
-+  renderTasks() {
-+    return this.getTasks().map((task) => (
-+      <Task key={task._id} task={task} />
-+    ));
-+  }
-+
-+  render() {
-+    return (
-+      <div className="container">
-+        <header>
-+          <h1>Todo List</h1>
-+        </header>
-+
-+        <ul>
-+          {this.renderTasks()}
-+        </ul>
-+      </div>
-+    );
-+  }
-+}
++export const Task = ({ task }) => {
++  return <li>{task.text}</li>
++};
 -- 
 2.11.0
 
 
-From 236f406d7dddfce99781fa78b668212bc9481620 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:06:31 -0700
-Subject: [PATCH 07/51] Step 2.5: Create Task component
+From 861919718c6c62cb18f8d6677af137e5f0dce34f Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 28 Jun 2020 15:09:42 -0500
+Subject: [PATCH 04/57] Step 1.3: Create Sample Tasks
 
 ---
- imports/ui/Task.js | 10 ++++++++++
- 1 file changed, 10 insertions(+)
- create mode 100644 imports/ui/Task.js
+ imports/ui/App.jsx | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/imports/ui/Task.js b/imports/ui/Task.js
-new file mode 100644
-index 0000000..f0e1f80
---- /dev/null
-+++ b/imports/ui/Task.js
-@@ -0,0 +1,10 @@
-+import React, { Component } from 'react';
+diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
+index 81ff97f..45f6b23 100644
+--- a/imports/ui/App.jsx
++++ b/imports/ui/App.jsx
+@@ -1,5 +1,11 @@
+ import React from 'react';
+ 
++const tasks = [
++  {_id: 1, text: 'First Task'},
++  {_id: 2, text: 'Second Task'},
++  {_id: 3, text: 'Third Task'},
++];
 +
-+// Task component - represents a single todo item
-+export default class Task extends Component {
-+  render() {
-+    return (
-+      <li>{this.props.task.text}</li>
-+    );
-+  }
-+}
+ export const App = () => (
+   <div>
+     <h1>Welcome to Meteor!</h1>
 -- 
 2.11.0
 
 
-From d776b8567fe2f012399903111c80cb5c9d4dce6c Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:07:02 -0700
-Subject: [PATCH 08/51] Step 2.6: Add CSS
+From 251eedf6904a989a35c80d91b0fc72598ae6df60 Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Mon, 16 Dec 2019 19:17:28 -0400
+Subject: [PATCH 05/57] Step 1.4: Render Sample Tasks
 
 ---
- client/main.css | 124 +++++++++++++++++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 123 insertions(+), 1 deletion(-)
+ imports/ui/App.jsx | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/client/main.css b/client/main.css
-index 7f354f0..ed5e77e 100644
---- a/client/main.css
-+++ b/client/main.css
-@@ -1,4 +1,126 @@
-+/* CSS declarations go here */
- body {
--  padding: 10px;
-   font-family: sans-serif;
-+  background-color: #315481;
-+  background-image: linear-gradient(to bottom, #315481, #918e82 100%);
-+  background-attachment: fixed;
+diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
+index 45f6b23..7b25080 100644
+--- a/imports/ui/App.jsx
++++ b/imports/ui/App.jsx
+@@ -1,4 +1,6 @@
+ import React from 'react';
++import { Task } from './Task';
 +
-+  position: absolute;
-+  top: 0;
-+  bottom: 0;
-+  left: 0;
-+  right: 0;
+ 
+ const tasks = [
+   {_id: 1, text: 'First Task'},
+@@ -9,5 +11,9 @@ const tasks = [
+ export const App = () => (
+   <div>
+     <h1>Welcome to Meteor!</h1>
 +
-+  padding: 0;
-+  margin: 0;
-+
-+  font-size: 14px;
-+}
-+
-+.container {
-+  max-width: 600px;
-+  margin: 0 auto;
-+  min-height: 100%;
-+  background: white;
-+}
-+
-+header {
-+  background: #d2edf4;
-+  background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
-+  padding: 20px 15px 15px 15px;
-+  position: relative;
-+}
-+
-+#login-buttons {
-+  display: block;
-+}
-+
-+h1 {
-+  font-size: 1.5em;
-+  margin: 0;
-+  margin-bottom: 10px;
-+  display: inline-block;
-+  margin-right: 1em;
-+}
-+
-+form {
-+  margin-top: 10px;
-+  margin-bottom: -10px;
-+  position: relative;
-+}
-+
-+.new-task input {
-+  box-sizing: border-box;
-+  padding: 10px 0;
-+  background: transparent;
-+  border: none;
-+  width: 100%;
-+  padding-right: 80px;
-+  font-size: 1em;
-+}
-+
-+.new-task input:focus{
-+  outline: 0;
-+}
-+
-+ul {
-+  margin: 0;
-+  padding: 0;
-+  background: white;
-+}
-+
-+.delete {
-+  float: right;
-+  font-weight: bold;
-+  background: none;
-+  font-size: 1em;
-+  border: none;
-+  position: relative;
-+}
-+
-+li {
-+  position: relative;
-+  list-style: none;
-+  padding: 15px;
-+  border-bottom: #eee solid 1px;
-+}
-+
-+li .text {
-+  margin-left: 10px;
-+}
-+
-+li.checked {
-+  color: #888;
-+}
-+
-+li.checked .text {
-+  text-decoration: line-through;
-+}
-+
-+li.private {
-+  background: #eee;
-+  border-color: #ddd;
-+}
-+
-+header .hide-completed {
-+  float: right;
-+}
-+
-+.toggle-private {
-+  margin-left: 5px;
-+}
-+
-+@media (max-width: 600px) {
-+  li {
-+    padding: 12px 15px;
-+  }
-+
-+  .search {
-+    width: 150px;
-+    clear: both;
-+  }
-+
-+  .new-task input {
-+    padding-bottom: 5px;
-+  }
- }
++    <ul>
++      { tasks.map(task => <Task key={ task._id } task={ task }/>) }
++    </ul>
+   </div>
+ );
 -- 
 2.11.0
 
 
-From 29440f1ac90bf5e8ec9a3924206f50f7f3b7ef5e Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Fri, 18 Mar 2016 15:32:35 +1100
-Subject: [PATCH 09/51] Step 3.1: Create tasks collection
+From d56565cb756e46661c584a674cad3b67e268774c Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Tue, 17 Dec 2019 15:40:17 -0400
+Subject: [PATCH 06/57] Step 2.1: Create Tasks Collection
 
 ---
  imports/api/tasks.js | 3 +++
@@ -1875,1097 +1304,553 @@ Subject: [PATCH 09/51] Step 3.1: Create tasks collection
 
 diff --git a/imports/api/tasks.js b/imports/api/tasks.js
 new file mode 100644
-index 0000000..3bed819
+index 0000000..f086cc0
 --- /dev/null
 +++ b/imports/api/tasks.js
 @@ -0,0 +1,3 @@
 +import { Mongo } from 'meteor/mongo';
 +
-+export const Tasks = new Mongo.Collection('tasks');
++export default new Mongo.Collection('tasks');
 -- 
 2.11.0
 
 
-From c4d1abafe9a1154804ccb61f16ae87aef3a526c4 Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Fri, 18 Mar 2016 15:33:03 +1100
-Subject: [PATCH 10/51] Step 3.2: Load tasks collection on the server
+From 1c5ece035dd08b2ce65169ad77aa4a3317f929e1 Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Tue, 17 Dec 2019 15:49:01 -0400
+Subject: [PATCH 07/57] Step 2.2: Initialize Tasks Collection
 
 ---
- server/main.js | 6 +-----
- 1 file changed, 1 insertion(+), 5 deletions(-)
+ server/main.js | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
 diff --git a/server/main.js b/server/main.js
-index 31a9e0e..ab941a4 100644
+index 69bfbca..46f8a7c 100644
 --- a/server/main.js
 +++ b/server/main.js
-@@ -1,5 +1 @@
--import { Meteor } from 'meteor/meteor';
--
--Meteor.startup(() => {
--  // code to run on server at startup
--});
-+import '../imports/api/tasks.js';
--- 
-2.11.0
-
-
-From 7925b118ada123a34d7a05081cdfbcd43ac73971 Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Fri, 18 Mar 2016 15:37:12 +1100
-Subject: [PATCH 11/51] Step 3.3: Add react-meteor-data package
-
----
- .meteor/packages | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/.meteor/packages b/.meteor/packages
-index 738ed78..67fc141 100644
---- a/.meteor/packages
-+++ b/.meteor/packages
-@@ -19,3 +19,4 @@ shell-server@0.4.0            # Server-side component of the `meteor shell` comm
- autopublish@1.0.7             # Publish all data to the clients (for prototyping)
- insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
- static-html
-+react-meteor-data
--- 
-2.11.0
-
-
-From 3b00bc6d95e1c2b65102abc516669ba2e0e0a270 Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Fri, 18 Mar 2016 15:37:54 +1100
-Subject: [PATCH 12/51] Step 3.4: Modify App component to get tasks from
- collection
-
----
- imports/ui/App.js | 21 +++++++++++----------
- 1 file changed, 11 insertions(+), 10 deletions(-)
-
-diff --git a/imports/ui/App.js b/imports/ui/App.js
-index bad39ea..3c1072d 100644
---- a/imports/ui/App.js
-+++ b/imports/ui/App.js
-@@ -1,19 +1,14 @@
- import React, { Component } from 'react';
-+import { withTracker } from 'meteor/react-meteor-data';
-+
-+import { Tasks } from '../api/tasks.js';
- 
- import Task from './Task.js';
- 
- // App component - represents the whole app
--export default class App extends Component {
--  getTasks() {
--    return [
--      { _id: 1, text: 'This is task 1' },
--      { _id: 2, text: 'This is task 2' },
--      { _id: 3, text: 'This is task 3' },
--    ];
--  }
--
-+class App extends Component {
-   renderTasks() {
--    return this.getTasks().map((task) => (
-+    return this.props.tasks.map((task) => (
-       <Task key={task._id} task={task} />
-     ));
-   }
-@@ -32,3 +27,9 @@ export default class App extends Component {
-     );
-   }
- }
-+
-+export default withTracker(() => {
-+  return {
-+    tasks: Tasks.find({}).fetch(),
-+  };
-+})(App);
--- 
-2.11.0
-
-
-From d39c408c684c85f125acabafe31ac2f6eecefd49 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:13:37 -0700
-Subject: [PATCH 13/51] Step 4.1: Add form for new tasks
-
----
- imports/ui/App.js | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/imports/ui/App.js b/imports/ui/App.js
-index 3c1072d..d8b597f 100644
---- a/imports/ui/App.js
-+++ b/imports/ui/App.js
-@@ -18,6 +18,14 @@ class App extends Component {
-       <div className="container">
-         <header>
-           <h1>Todo List</h1>
-+
-+          <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
-+            <input
-+              type="text"
-+              ref="textInput"
-+              placeholder="Type to add new tasks"
-+            />
-+          </form>
-         </header>
- 
-         <ul>
--- 
-2.11.0
-
-
-From 815a444903547c2d5e1dcdf2e5829f0edc3b1238 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:14:08 -0700
-Subject: [PATCH 14/51] Step 4.2: Add handleSubmit method to App component
-
----
- imports/ui/App.js | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
-
-diff --git a/imports/ui/App.js b/imports/ui/App.js
-index d8b597f..2b8fb3a 100644
---- a/imports/ui/App.js
-+++ b/imports/ui/App.js
-@@ -1,4 +1,5 @@
- import React, { Component } from 'react';
-+import ReactDOM from 'react-dom';
- import { withTracker } from 'meteor/react-meteor-data';
- 
- import { Tasks } from '../api/tasks.js';
-@@ -7,6 +8,21 @@ import Task from './Task.js';
- 
- // App component - represents the whole app
- class App extends Component {
-+  handleSubmit(event) {
-+    event.preventDefault();
-+
-+    // Find the text field via the React ref
-+    const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
-+
-+    Tasks.insert({
-+      text,
-+      createdAt: new Date(), // current time
-+    });
-+
-+    // Clear form
-+    ReactDOM.findDOMNode(this.refs.textInput).value = '';
-+  }
-+
-   renderTasks() {
-     return this.props.tasks.map((task) => (
-       <Task key={task._id} task={task} />
--- 
-2.11.0
-
-
-From 066802b1d86ab81b9eb84216850641079c3c5a8d Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:14:40 -0700
-Subject: [PATCH 15/51] Step 4.3: Update data container to sort tasks by time
-
----
- imports/ui/App.js | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/imports/ui/App.js b/imports/ui/App.js
-index 2b8fb3a..9595e4a 100644
---- a/imports/ui/App.js
-+++ b/imports/ui/App.js
-@@ -54,6 +54,6 @@ class App extends Component {
- 
- export default withTracker(() => {
-   return {
--    tasks: Tasks.find({}).fetch(),
-+    tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
-   };
- })(App);
--- 
-2.11.0
-
-
-From eb209f2fa0c97317291df455d8bbbb4b0c6260a6 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:17:06 -0700
-Subject: [PATCH 16/51] Step 5.1: Update Task component to add features
-
----
- imports/ui/Task.js | 32 +++++++++++++++++++++++++++++++-
- 1 file changed, 31 insertions(+), 1 deletion(-)
-
-diff --git a/imports/ui/Task.js b/imports/ui/Task.js
-index f0e1f80..9d7bb46 100644
---- a/imports/ui/Task.js
-+++ b/imports/ui/Task.js
-@@ -1,10 +1,40 @@
- import React, { Component } from 'react';
- 
-+import { Tasks } from '../api/tasks.js';
-+
- // Task component - represents a single todo item
- export default class Task extends Component {
-+  toggleChecked() {
-+    // Set the checked property to the opposite of its current value
-+    Tasks.update(this.props.task._id, {
-+      $set: { checked: !this.props.task.checked },
-+    });
-+  }
-+
-+  deleteThisTask() {
-+    Tasks.remove(this.props.task._id);
-+  }
-+
-   render() {
-+    // Give tasks a different className when they are checked off,
-+    // so that we can style them nicely in CSS
-+    const taskClassName = this.props.task.checked ? 'checked' : '';
-+
-     return (
--      <li>{this.props.task.text}</li>
-+      <li className={taskClassName}>
-+        <button className="delete" onClick={this.deleteThisTask.bind(this)}>
-+          &times;
-+        </button>
-+
-+        <input
-+          type="checkbox"
-+          readOnly
-+          checked={!!this.props.task.checked}
-+          onClick={this.toggleChecked.bind(this)}
-+        />
-+
-+        <span className="text">{this.props.task.text}</span>
-+      </li>
-     );
-   }
- }
--- 
-2.11.0
-
-
-From 72acb7b3941c1d273c965b2b41a08f4d4d98a268 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:21:30 -0700
-Subject: [PATCH 17/51] Step 7.1: Add hide completed checkbox to App component
-
----
- imports/ui/App.js | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/imports/ui/App.js b/imports/ui/App.js
-index 9595e4a..10a95ae 100644
---- a/imports/ui/App.js
-+++ b/imports/ui/App.js
-@@ -35,6 +35,16 @@ class App extends Component {
-         <header>
-           <h1>Todo List</h1>
- 
-+          <label className="hide-completed">
-+            <input
-+              type="checkbox"
-+              readOnly
-+              checked={this.state.hideCompleted}
-+              onClick={this.toggleHideCompleted.bind(this)}
-+            />
-+            Hide Completed Tasks
-+          </label>
-+
-           <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
-             <input
-               type="text"
--- 
-2.11.0
-
-
-From a9ca1ac2ab0efb83bd3e802fab88066ec67b051b Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:22:07 -0700
-Subject: [PATCH 18/51] Step 7.2: Add intial state to App component
-
----
- imports/ui/App.js | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/imports/ui/App.js b/imports/ui/App.js
-index 10a95ae..641aeee 100644
---- a/imports/ui/App.js
-+++ b/imports/ui/App.js
-@@ -8,6 +8,14 @@ import Task from './Task.js';
- 
- // App component - represents the whole app
- class App extends Component {
-+  constructor(props) {
-+    super(props);
-+
-+    this.state = {
-+      hideCompleted: false,
-+    };
-+  }
-+
-   handleSubmit(event) {
-     event.preventDefault();
- 
--- 
-2.11.0
-
-
-From 089461ee9c91b68ddf9eea287ef11825c29a60d8 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:22:32 -0700
-Subject: [PATCH 19/51] Step 7.3: Add toggleHideCompleted handler to App
-
----
- imports/ui/App.js | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/imports/ui/App.js b/imports/ui/App.js
-index 641aeee..6cef154 100644
---- a/imports/ui/App.js
-+++ b/imports/ui/App.js
-@@ -31,6 +31,12 @@ class App extends Component {
-     ReactDOM.findDOMNode(this.refs.textInput).value = '';
-   }
- 
-+  toggleHideCompleted() {
-+    this.setState({
-+      hideCompleted: !this.state.hideCompleted,
-+    });
-+  }
-+
-   renderTasks() {
-     return this.props.tasks.map((task) => (
-       <Task key={task._id} task={task} />
--- 
-2.11.0
-
-
-From 4793cc907e8c014ed079464ded7af6776f071bc2 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:23:02 -0700
-Subject: [PATCH 20/51] Step 7.4: Filter tasks in renderTasks
-
----
- imports/ui/App.js | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
-
-diff --git a/imports/ui/App.js b/imports/ui/App.js
-index 6cef154..6157c83 100644
---- a/imports/ui/App.js
-+++ b/imports/ui/App.js
-@@ -38,7 +38,11 @@ class App extends Component {
-   }
- 
-   renderTasks() {
--    return this.props.tasks.map((task) => (
-+    let filteredTasks = this.props.tasks;
-+    if (this.state.hideCompleted) {
-+      filteredTasks = filteredTasks.filter(task => !task.checked);
-+    }
-+    return filteredTasks.map((task) => (
-       <Task key={task._id} task={task} />
-     ));
-   }
--- 
-2.11.0
-
-
-From e081da29b47533a64faca30c20cd312edc4d71eb Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:23:44 -0700
-Subject: [PATCH 21/51] Step 7.5: Update data container to return
- incompleteCount
-
----
- imports/ui/App.js | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/imports/ui/App.js b/imports/ui/App.js
-index 6157c83..2e324f0 100644
---- a/imports/ui/App.js
-+++ b/imports/ui/App.js
-@@ -83,5 +83,6 @@ class App extends Component {
- export default withTracker(() => {
-   return {
-     tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
-+    incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
-   };
- })(App);
--- 
-2.11.0
-
-
-From 067917069f0b8dba6d267be4392853b2c61a25f3 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:24:09 -0700
-Subject: [PATCH 22/51] Step 7.6: Display incompleteCount in the header
-
----
- imports/ui/App.js | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/imports/ui/App.js b/imports/ui/App.js
-index 2e324f0..a0314af 100644
---- a/imports/ui/App.js
-+++ b/imports/ui/App.js
-@@ -51,7 +51,7 @@ class App extends Component {
-     return (
-       <div className="container">
-         <header>
--          <h1>Todo List</h1>
-+          <h1>Todo List ({this.props.incompleteCount})</h1>
- 
-           <label className="hide-completed">
-             <input
--- 
-2.11.0
-
-
-From 6522d3d188484cd9a320b8f68b383fcf04e26110 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:26:02 -0700
-Subject: [PATCH 23/51] Step 8.1: Add accounts-ui and accounts-password
- packages
-
----
- .meteor/packages | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/.meteor/packages b/.meteor/packages
-index 67fc141..622a2d1 100644
---- a/.meteor/packages
-+++ b/.meteor/packages
-@@ -20,3 +20,6 @@ autopublish@1.0.7             # Publish all data to the clients (for prototyping
- insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
- static-html
- react-meteor-data
-+
-+accounts-ui@1.3.1
-+accounts-password@1.5.1
--- 
-2.11.0
-
-
-From 8993c71a5c1fd251eaf1d028d748895daa579653 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:26:59 -0700
-Subject: [PATCH 24/51] Step 8.2: Create Accounts UI wrapper component
-
----
- imports/ui/AccountsUIWrapper.js | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
- create mode 100644 imports/ui/AccountsUIWrapper.js
-
-diff --git a/imports/ui/AccountsUIWrapper.js b/imports/ui/AccountsUIWrapper.js
-new file mode 100644
-index 0000000..208d5af
---- /dev/null
-+++ b/imports/ui/AccountsUIWrapper.js
-@@ -0,0 +1,20 @@
-+import React, { Component } from 'react';
-+import ReactDOM from 'react-dom';
-+import { Template } from 'meteor/templating';
-+import { Blaze } from 'meteor/blaze';
-+
-+export default class AccountsUIWrapper extends Component {
-+  componentDidMount() {
-+    // Use Meteor Blaze to render login buttons
-+    this.view = Blaze.render(Template.loginButtons,
-+      ReactDOM.findDOMNode(this.refs.container));
-+  }
-+  componentWillUnmount() {
-+    // Clean up Blaze view
-+    Blaze.remove(this.view);
-+  }
-+  render() {
-+    // Just render a placeholder container that will be filled in
-+    return <span ref="container" />;
-+  }
-+}
--- 
-2.11.0
-
-
-From 0d30ef0a6e336e1b6d12087c08ac4bbce6790bc2 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:27:36 -0700
-Subject: [PATCH 25/51] Step 8.3: Include sign in form
-
----
- imports/ui/App.js | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/imports/ui/App.js b/imports/ui/App.js
-index a0314af..0d1914f 100644
---- a/imports/ui/App.js
-+++ b/imports/ui/App.js
-@@ -5,6 +5,7 @@ import { withTracker } from 'meteor/react-meteor-data';
- import { Tasks } from '../api/tasks.js';
- 
- import Task from './Task.js';
-+import AccountsUIWrapper from './AccountsUIWrapper.js';
- 
- // App component - represents the whole app
- class App extends Component {
-@@ -63,6 +64,8 @@ class App extends Component {
-             Hide Completed Tasks
-           </label>
- 
-+          <AccountsUIWrapper />
-+
-           <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
-             <input
-               type="text"
--- 
-2.11.0
-
-
-From 61858791062573b1f289bc5703a10d2f28305d14 Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Fri, 18 Mar 2016 16:13:48 +1100
-Subject: [PATCH 26/51] Step 8.4: Configure accounts-ui
-
----
- imports/startup/accounts-config.js | 5 +++++
- 1 file changed, 5 insertions(+)
- create mode 100644 imports/startup/accounts-config.js
-
-diff --git a/imports/startup/accounts-config.js b/imports/startup/accounts-config.js
-new file mode 100644
-index 0000000..28d795a
---- /dev/null
-+++ b/imports/startup/accounts-config.js
-@@ -0,0 +1,5 @@
-+import { Accounts } from 'meteor/accounts-base';
-+
-+Accounts.ui.config({
-+  passwordSignupFields: 'USERNAME_ONLY'
-+});
--- 
-2.11.0
-
-
-From f1b92a299524914c309db86533637360756d0cd9 Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Fri, 18 Mar 2016 16:14:08 +1100
-Subject: [PATCH 27/51] Step 8.5: Import accounts configuration
-
----
- client/main.js | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/client/main.js b/client/main.js
-index 00f2bbf..2b50fc7 100644
---- a/client/main.js
-+++ b/client/main.js
-@@ -2,6 +2,7 @@ import React from 'react';
+@@ -1,5 +1,16 @@
  import { Meteor } from 'meteor/meteor';
- import { render } from 'react-dom';
- 
-+import '../imports/startup/accounts-config.js';
- import App from '../imports/ui/App.js';
++import Tasks from '/imports/api/tasks';
  
  Meteor.startup(() => {
--- 
-2.11.0
-
-
-From 39a066815149de6a1b327fd389278e3c2da93e60 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:28:46 -0700
-Subject: [PATCH 28/51] Step 8.6: Update insert to save username and owner
-
----
- imports/ui/App.js | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/imports/ui/App.js b/imports/ui/App.js
-index 0d1914f..0ffb93a 100644
---- a/imports/ui/App.js
-+++ b/imports/ui/App.js
-@@ -1,5 +1,6 @@
- import React, { Component } from 'react';
- import ReactDOM from 'react-dom';
-+import { Meteor } from 'meteor/meteor';
- import { withTracker } from 'meteor/react-meteor-data';
- 
- import { Tasks } from '../api/tasks.js';
-@@ -26,6 +27,8 @@ class App extends Component {
-     Tasks.insert({
-       text,
-       createdAt: new Date(), // current time
-+      owner: Meteor.userId(),           // _id of logged in user
-+      username: Meteor.user().username,  // username of logged in user
-     });
- 
-     // Clear form
--- 
-2.11.0
-
-
-From 7b8496c76622956e22b2919c7fe03cb926a0cd8b Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:29:16 -0700
-Subject: [PATCH 29/51] Step 8.7: Update data container to return data about
- user
-
----
- imports/ui/App.js | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/imports/ui/App.js b/imports/ui/App.js
-index 0ffb93a..c1171c0 100644
---- a/imports/ui/App.js
-+++ b/imports/ui/App.js
-@@ -90,5 +90,6 @@ export default withTracker(() => {
-   return {
-     tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
-     incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
-+    currentUser: Meteor.user(),
-   };
- })(App);
--- 
-2.11.0
-
-
-From 4c6dac0b188dde5c0513acf68794977d3d667bd9 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:30:06 -0700
-Subject: [PATCH 30/51] Step 8.8: Wrap new task form to only show when logged
- in
-
----
- imports/ui/App.js | 16 +++++++++-------
- 1 file changed, 9 insertions(+), 7 deletions(-)
-
-diff --git a/imports/ui/App.js b/imports/ui/App.js
-index c1171c0..89bc781 100644
---- a/imports/ui/App.js
-+++ b/imports/ui/App.js
-@@ -69,13 +69,15 @@ class App extends Component {
- 
-           <AccountsUIWrapper />
- 
--          <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
--            <input
--              type="text"
--              ref="textInput"
--              placeholder="Type to add new tasks"
--            />
--          </form>
-+          { this.props.currentUser ?
-+            <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
-+              <input
-+                type="text"
-+                ref="textInput"
-+                placeholder="Type to add new tasks"
-+              />
-+            </form> : ''
-+          }
-         </header>
- 
-         <ul>
--- 
-2.11.0
-
-
-From f6bdd08b8af0e33b7878bb15c4750fc0f5fab6be Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:30:48 -0700
-Subject: [PATCH 31/51] Step 8.9: Update Task component to show username
-
----
- imports/ui/Task.js | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/imports/ui/Task.js b/imports/ui/Task.js
-index 9d7bb46..f767517 100644
---- a/imports/ui/Task.js
-+++ b/imports/ui/Task.js
-@@ -33,7 +33,9 @@ export default class Task extends Component {
-           onClick={this.toggleChecked.bind(this)}
-         />
- 
--        <span className="text">{this.props.task.text}</span>
-+        <span className="text">
-+          <strong>{this.props.task.username}</strong>: {this.props.task.text}
-+        </span>
-       </li>
-     );
-   }
--- 
-2.11.0
-
-
-From 4d5779ee9ff96ce9e8fa603d475ab0b4da04019f Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:31:22 -0700
-Subject: [PATCH 32/51] Step 9.1: Remove insecure package
-
----
- .meteor/packages | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/.meteor/packages b/.meteor/packages
-index 622a2d1..25792b7 100644
---- a/.meteor/packages
-+++ b/.meteor/packages
-@@ -17,7 +17,6 @@ ecmascript@0.12.4              # Enable ECMAScript2015+ syntax in app code
- shell-server@0.4.0            # Server-side component of the `meteor shell` command
- 
- autopublish@1.0.7             # Publish all data to the clients (for prototyping)
--insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
- static-html
- react-meteor-data
- 
--- 
-2.11.0
-
-
-From 3aab4a7dc4bcf44a232f3cd3e086e3156430a439 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:32:21 -0700
-Subject: [PATCH 33/51] Step 9.2: Add methods for add, remove, update task
-
----
- imports/api/tasks.js | 31 +++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
-
-diff --git a/imports/api/tasks.js b/imports/api/tasks.js
-index 3bed819..af4962a 100644
---- a/imports/api/tasks.js
-+++ b/imports/api/tasks.js
-@@ -1,3 +1,34 @@
-+import { Meteor } from 'meteor/meteor';
- import { Mongo } from 'meteor/mongo';
-+import { check } from 'meteor/check';
- 
- export const Tasks = new Mongo.Collection('tasks');
-+
-+Meteor.methods({
-+  'tasks.insert'(text) {
-+    check(text, String);
-+
-+    // Make sure the user is logged in before inserting a task
-+    if (! this.userId) {
-+      throw new Meteor.Error('not-authorized');
-+    }
-+
-+    Tasks.insert({
-+      text,
-+      createdAt: new Date(),
-+      owner: this.userId,
-+      username: Meteor.users.findOne(this.userId).username,
-+    });
-+  },
-+  'tasks.remove'(taskId) {
-+    check(taskId, String);
-+
-+    Tasks.remove(taskId);
-+  },
-+  'tasks.setChecked'(taskId, setChecked) {
-+    check(taskId, String);
-+    check(setChecked, Boolean);
-+
-+    Tasks.update(taskId, { $set: { checked: setChecked } });
-+  },
-+});
--- 
-2.11.0
-
-
-From 956468551db2f4e66001f0f2380d1bf38c072e0c Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:32:59 -0700
-Subject: [PATCH 34/51] Step 9.3: Update App component to use tasks.insert
- method
-
----
- imports/ui/App.js | 7 +------
- 1 file changed, 1 insertion(+), 6 deletions(-)
-
-diff --git a/imports/ui/App.js b/imports/ui/App.js
-index 89bc781..8f58f41 100644
---- a/imports/ui/App.js
-+++ b/imports/ui/App.js
-@@ -24,12 +24,7 @@ class App extends Component {
-     // Find the text field via the React ref
-     const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
- 
--    Tasks.insert({
--      text,
--      createdAt: new Date(), // current time
--      owner: Meteor.userId(),           // _id of logged in user
--      username: Meteor.user().username,  // username of logged in user
--    });
-+    Meteor.call('tasks.insert', text);
- 
-     // Clear form
-     ReactDOM.findDOMNode(this.refs.textInput).value = '';
--- 
-2.11.0
-
-
-From 7b6e746dbc5624bc967c3a0887d8eaacd6eaedc2 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:33:38 -0700
-Subject: [PATCH 35/51] Step 9.4: Replace update and remove with methods
-
----
- imports/ui/Task.js | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
-
-diff --git a/imports/ui/Task.js b/imports/ui/Task.js
-index f767517..a575453 100644
---- a/imports/ui/Task.js
-+++ b/imports/ui/Task.js
-@@ -1,4 +1,5 @@
- import React, { Component } from 'react';
-+import { Meteor } from 'meteor/meteor';
- 
- import { Tasks } from '../api/tasks.js';
- 
-@@ -6,13 +7,11 @@ import { Tasks } from '../api/tasks.js';
- export default class Task extends Component {
-   toggleChecked() {
-     // Set the checked property to the opposite of its current value
--    Tasks.update(this.props.task._id, {
--      $set: { checked: !this.props.task.checked },
--    });
-+    Meteor.call('tasks.setChecked', this.props.task._id, !this.props.task.checked);
-   }
- 
-   deleteThisTask() {
--    Tasks.remove(this.props.task._id);
-+    Meteor.call('tasks.remove', this.props.task._id);
-   }
- 
-   render() {
--- 
-2.11.0
-
-
-From 8d55142bbe491533d16dbd65c7dc7cd19f32bc96 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:34:33 -0700
-Subject: [PATCH 36/51] Step 10.1: Remove autopublish package
-
----
- .meteor/packages | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/.meteor/packages b/.meteor/packages
-index 25792b7..d766aae 100644
---- a/.meteor/packages
-+++ b/.meteor/packages
-@@ -16,7 +16,6 @@ es5-shim@4.8.0                # ECMAScript 5 compatibility for older browsers
- ecmascript@0.12.4              # Enable ECMAScript2015+ syntax in app code
- shell-server@0.4.0            # Server-side component of the `meteor shell` command
- 
--autopublish@1.0.7             # Publish all data to the clients (for prototyping)
- static-html
- react-meteor-data
- 
--- 
-2.11.0
-
-
-From a7143b104d23bc25cbad7f7f6602d2e5f9891e65 Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Fri, 18 Mar 2016 16:27:05 +1100
-Subject: [PATCH 37/51] Step 10.2: Add publication for tasks
-
----
- imports/api/tasks.js | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/imports/api/tasks.js b/imports/api/tasks.js
-index af4962a..80d36bc 100644
---- a/imports/api/tasks.js
-+++ b/imports/api/tasks.js
-@@ -4,6 +4,13 @@ import { check } from 'meteor/check';
- 
- export const Tasks = new Mongo.Collection('tasks');
- 
-+if (Meteor.isServer) {
-+  // This code only runs on the server
-+  Meteor.publish('tasks', function tasksPublication() {
-+    return Tasks.find();
-+  });
-+}
-+
- Meteor.methods({
-   'tasks.insert'(text) {
-     check(text, String);
--- 
-2.11.0
-
-
-From af291de5aaca777dc79ac9e36d0718b89943d0ba Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Fri, 18 Mar 2016 16:28:14 +1100
-Subject: [PATCH 38/51] Step 10.3: Subscribe to tasks in App container
-
----
- imports/ui/App.js | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/imports/ui/App.js b/imports/ui/App.js
-index 8f58f41..b6f3138 100644
---- a/imports/ui/App.js
-+++ b/imports/ui/App.js
-@@ -84,6 +84,8 @@ class App extends Component {
- }
- 
- export default withTracker(() => {
-+  Meteor.subscribe('tasks');
-+
-   return {
-     tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
-     incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
--- 
-2.11.0
-
-
-From 15c69b14ebb7f53de1cc90516a3f0f5581991aaf Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:36:29 -0700
-Subject: [PATCH 39/51] Step 10.4: Add tasks.setPrivate method
-
----
- imports/api/tasks.js | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
-
-diff --git a/imports/api/tasks.js b/imports/api/tasks.js
-index 80d36bc..63feeca 100644
---- a/imports/api/tasks.js
-+++ b/imports/api/tasks.js
-@@ -38,4 +38,17 @@ Meteor.methods({
- 
-     Tasks.update(taskId, { $set: { checked: setChecked } });
-   },
-+  'tasks.setPrivate'(taskId, setToPrivate) {
-+    check(taskId, String);
-+    check(setToPrivate, Boolean);
-+
-+    const task = Tasks.findOne(taskId);
-+
-+    // Make sure only the task owner can make a task private
-+    if (task.owner !== this.userId) {
-+      throw new Meteor.Error('not-authorized');
-+    }
-+
-+    Tasks.update(taskId, { $set: { private: setToPrivate } });
-+  },
+-  
++  if (Tasks.find().count() === 0) {
++    [
++      'First Task',
++      'Second Task',
++      'Third Task',
++      'Fourth Task',
++      'Fifth Task',
++      'Sixth Task',
++      'Seventh Task'
++    ].forEach(insertTask)
++  }
  });
 -- 
 2.11.0
 
 
-From 29b517d0eda927af2d80683e4c994b31f119c635 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:36:59 -0700
-Subject: [PATCH 40/51] Step 10.5: Update renderTasks to pass in
- showPrivateButton
+From 9c44a0868e9e239b1157577ce13ac2ce1da1f759 Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Tue, 17 Dec 2019 16:17:29 -0400
+Subject: [PATCH 08/57] Step 2.3: Render Tasks Collection
 
 ---
- imports/ui/App.js | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
+ imports/ui/App.jsx | 27 +++++++++++++--------------
+ 1 file changed, 13 insertions(+), 14 deletions(-)
 
-diff --git a/imports/ui/App.js b/imports/ui/App.js
-index b6f3138..6698619 100644
---- a/imports/ui/App.js
-+++ b/imports/ui/App.js
-@@ -41,9 +41,18 @@ class App extends Component {
-     if (this.state.hideCompleted) {
-       filteredTasks = filteredTasks.filter(task => !task.checked);
-     }
--    return filteredTasks.map((task) => (
--      <Task key={task._id} task={task} />
--    ));
-+    return filteredTasks.map((task) => {
-+      const currentUserId = this.props.currentUser && this.props.currentUser._id;
-+      const showPrivateButton = task.owner === currentUserId;
-+
-+      return (
-+        <Task
-+          key={task._id}
-+          task={task}
-+          showPrivateButton={showPrivateButton}
-+        />
-+      );
-+    });
-   }
+diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
+index 7b25080..7bf1d31 100644
+--- a/imports/ui/App.jsx
++++ b/imports/ui/App.jsx
+@@ -1,19 +1,18 @@
+ import React from 'react';
++import { useTracker } from 'meteor/react-meteor-data';
+ import { Task } from './Task';
++import Tasks from '/imports/api/tasks';
  
-   render() {
++export const App = () => {
++  const tasks = useTracker(() => Tasks.find({}).fetch());
+ 
+-const tasks = [
+-  {_id: 1, text: 'First Task'},
+-  {_id: 2, text: 'Second Task'},
+-  {_id: 3, text: 'Third Task'},
+-];
++  return (
++    <div>
++      <h1>Welcome to Meteor!</h1>
+ 
+-export const App = () => (
+-  <div>
+-    <h1>Welcome to Meteor!</h1>
+-
+-    <ul>
+-      { tasks.map(task => <Task key={ task._id } task={ task }/>) }
+-    </ul>
+-  </div>
+-);
++      <ul>
++        { tasks.map(task => <Task key={ task._id } task={ task }/>) }
++      </ul>
++    </div>
++  );
++};
 -- 
 2.11.0
 
 
-From af84b39ff6d69994c4bb0f5fe147973c94f41184 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:38:04 -0700
-Subject: [PATCH 41/51] Step 10.7: Add private button, shown only to owner
+From 25bf5b72d9f551a325c4a35e05ba51e7034ccbfd Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 28 Jun 2020 15:52:53 -0500
+Subject: [PATCH 09/57] Step 3.1: Create Task Form
 
 ---
- imports/ui/Task.js | 6 ++++++
- 1 file changed, 6 insertions(+)
+ imports/ui/TaskForm.jsx | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+ create mode 100644 imports/ui/TaskForm.jsx
 
-diff --git a/imports/ui/Task.js b/imports/ui/Task.js
-index a575453..09ec93c 100644
---- a/imports/ui/Task.js
-+++ b/imports/ui/Task.js
-@@ -32,6 +32,12 @@ export default class Task extends Component {
-           onClick={this.toggleChecked.bind(this)}
-         />
- 
-+        { this.props.showPrivateButton ? (
-+          <button className="toggle-private" onClick={this.togglePrivate.bind(this)}>
-+            { this.props.task.private ? 'Private' : 'Public' }
-+          </button>
-+        ) : ''}
+diff --git a/imports/ui/TaskForm.jsx b/imports/ui/TaskForm.jsx
+new file mode 100644
+index 0000000..31d2711
+--- /dev/null
++++ b/imports/ui/TaskForm.jsx
+@@ -0,0 +1,16 @@
++import React, { useState } from 'react';
 +
-         <span className="text">
-           <strong>{this.props.task.username}</strong>: {this.props.task.text}
-         </span>
++export const TaskForm = () => {
++  const [text, setText] = useState("");
++
++  return (
++    <form className="task-form">
++      <input
++        type="text"
++        placeholder="Type to add new tasks"
++      />
++
++      <button type="submit">Add Task</button>
++    </form>
++  );
++};
 -- 
 2.11.0
 
 
-From 9c381d631640cd40ab50701b96232201ccdb0b02 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:38:33 -0700
-Subject: [PATCH 42/51] Step 10.8: Add private button event handler to Task
+From 22e7167796586fed082fcb5d196c50f0c5646e08 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 28 Jun 2020 15:55:13 -0500
+Subject: [PATCH 10/57] Step 3.2: Add Newly Created Task Form to the App
+ Component
 
 ---
- imports/ui/Task.js | 4 ++++
+ imports/ui/App.jsx | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
+index 7bf1d31..0bb8827 100644
+--- a/imports/ui/App.jsx
++++ b/imports/ui/App.jsx
+@@ -2,6 +2,7 @@ import React from 'react';
+ import { useTracker } from 'meteor/react-meteor-data';
+ import { Task } from './Task';
+ import Tasks from '/imports/api/tasks';
++import { TaskForm } from './TaskForm';
+ 
+ export const App = () => {
+   const tasks = useTracker(() => Tasks.find({}).fetch());
+@@ -13,6 +14,8 @@ export const App = () => {
+       <ul>
+         { tasks.map(task => <Task key={ task._id } task={ task }/>) }
+       </ul>
++
++      <TaskForm/>
+     </div>
+   );
+ };
+-- 
+2.11.0
+
+
+From 08f410f6918bdfb2d54456d494ba0776332905c8 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 28 Jun 2020 15:55:45 -0500
+Subject: [PATCH 11/57] Step 3.3: Update the App's Style-sheet
+
+---
+ client/main.css | 4 ++++
  1 file changed, 4 insertions(+)
 
-diff --git a/imports/ui/Task.js b/imports/ui/Task.js
-index 09ec93c..1c21f88 100644
---- a/imports/ui/Task.js
-+++ b/imports/ui/Task.js
-@@ -14,6 +14,10 @@ export default class Task extends Component {
-     Meteor.call('tasks.remove', this.props.task._id);
-   }
- 
-+  togglePrivate() {
-+    Meteor.call('tasks.setPrivate', this.props.task._id, ! this.props.task.private);
-+  }
+diff --git a/client/main.css b/client/main.css
+index 7f354f0..73e4759 100644
+--- a/client/main.css
++++ b/client/main.css
+@@ -2,3 +2,7 @@ body {
+   padding: 10px;
+   font-family: sans-serif;
+ }
 +
-   render() {
-     // Give tasks a different className when they are checked off,
-     // so that we can style them nicely in CSS
++.task-form {
++  margin-top: 1rem;
++}
 -- 
 2.11.0
 
 
-From d37622fb052f6c03dbbc039868caaad8d0f097c8 Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Fri, 18 Mar 2016 16:33:06 +1100
-Subject: [PATCH 43/51] Step 10.9: Install the classnames NPM package
+From 274258509c76647a2f2eb6b1259106772c77ba6c Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Mon, 6 Jan 2020 17:51:19 -0400
+Subject: [PATCH 12/57] Step 3.4: Add Submit Handler
+
+---
+ imports/ui/TaskForm.jsx | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
+
+diff --git a/imports/ui/TaskForm.jsx b/imports/ui/TaskForm.jsx
+index 31d2711..82f09f9 100644
+--- a/imports/ui/TaskForm.jsx
++++ b/imports/ui/TaskForm.jsx
+@@ -1,13 +1,27 @@
+ import React, { useState } from 'react';
++import Tasks from '/imports/api/tasks';
+ 
+ export const TaskForm = () => {
+   const [text, setText] = useState("");
+ 
++  const handleSubmit = () => {
++    if (!text) return;
++
++    Tasks.insert({
++      text: text.trim(),
++      createdAt: new Date()
++    });
++
++    setText("");
++  };
++
+   return (
+-    <form className="task-form">
++    <form className="task-form" onSubmit={handleSubmit}>
+       <input
+         type="text"
+         placeholder="Type to add new tasks"
++        value={text}
++        onChange={(e) => setText(e.target.value)}
+       />
+ 
+       <button type="submit">Add Task</button>
+-- 
+2.11.0
+
+
+From 0a88600b5e474212d78941f539356f036ef1a9b6 Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Mon, 6 Jan 2020 17:56:24 -0400
+Subject: [PATCH 13/57] Step 3.5: Show Newest Tasks First
+
+---
+ imports/ui/App.jsx | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
+index 0bb8827..ae17c13 100644
+--- a/imports/ui/App.jsx
++++ b/imports/ui/App.jsx
+@@ -5,7 +5,7 @@ import Tasks from '/imports/api/tasks';
+ import { TaskForm } from './TaskForm';
+ 
+ export const App = () => {
+-  const tasks = useTracker(() => Tasks.find({}).fetch());
++  const tasks = useTracker(() => Tasks.find({}, { sort: { createdAt: -1 } }).fetch());
+ 
+   return (
+     <div>
+-- 
+2.11.0
+
+
+From c39164dcf46572fcc4f21e06e6ae4aa72f631240 Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Wed, 15 Jan 2020 19:19:27 -0400
+Subject: [PATCH 14/57] Step 4.1: Add Checkbox to the Task Component
+
+---
+ imports/ui/Task.jsx | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
+
+diff --git a/imports/ui/Task.jsx b/imports/ui/Task.jsx
+index 49146bd..5b81dd8 100644
+--- a/imports/ui/Task.jsx
++++ b/imports/ui/Task.jsx
+@@ -1,5 +1,15 @@
+ import React from 'react';
+ 
+-export const Task = ({ task }) => {
+-  return <li>{task.text}</li>
++export const Task = ({ task, onCheckboxClick }) => {
++  return (
++    <li>
++      <input
++        type="checkbox"
++        checked={ Boolean(task.isChecked) }
++        onClick={ () => onCheckboxClick(task) }
++        readOnly
++      />
++      <span>{ task.text }</span>
++    </li>
++  );
+ };
+-- 
+2.11.0
+
+
+From f7e012f5ae0e0bf198d4a3f4f8a573b0fd59c682 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 28 Jun 2020 16:13:00 -0500
+Subject: [PATCH 15/57] Step 4.2: Add Updated Task Component to the App
+ Component
+
+---
+ imports/ui/App.jsx | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
+index ae17c13..c7e4c15 100644
+--- a/imports/ui/App.jsx
++++ b/imports/ui/App.jsx
+@@ -4,6 +4,14 @@ import { Task } from './Task';
+ import Tasks from '/imports/api/tasks';
+ import { TaskForm } from './TaskForm';
+ 
++const toggleChecked = ({ _id, isChecked }) => {
++  Tasks.update(_id, {
++    $set: {
++      isChecked: !isChecked
++    }
++  })
++};
++
+ export const App = () => {
+   const tasks = useTracker(() => Tasks.find({}, { sort: { createdAt: -1 } }).fetch());
+ 
+@@ -12,7 +20,7 @@ export const App = () => {
+       <h1>Welcome to Meteor!</h1>
+ 
+       <ul>
+-        { tasks.map(task => <Task key={ task._id } task={ task }/>) }
++        { tasks.map(task => <Task key={ task._id } task={ task } onCheckboxClick={toggleChecked} />) }
+       </ul>
+ 
+       <TaskForm/>
+-- 
+2.11.0
+
+
+From 1e7b3e7fd9e59589d846a7a8b08ba7c9b17059ee Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Wed, 15 Jan 2020 19:25:32 -0400
+Subject: [PATCH 16/57] Step 4.3: Add Delete Button to the Task Component
+
+---
+ imports/ui/Task.jsx | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/imports/ui/Task.jsx b/imports/ui/Task.jsx
+index 5b81dd8..321521a 100644
+--- a/imports/ui/Task.jsx
++++ b/imports/ui/Task.jsx
+@@ -1,8 +1,9 @@
+ import React from 'react';
+ 
+-export const Task = ({ task, onCheckboxClick }) => {
++export const Task = ({ task, onCheckboxClick, onDeleteClick }) => {
+   return (
+     <li>
++      <button onClick={ () => onDeleteClick(task) }>&times;</button>
+       <input
+         type="checkbox"
+         checked={ Boolean(task.isChecked) }
+-- 
+2.11.0
+
+
+From b756e29db70e0c711881c2b33f7971a17f09c3cc Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 28 Jun 2020 16:22:23 -0500
+Subject: [PATCH 17/57] Step 4.4: Update the App Component
+
+---
+ imports/ui/App.jsx | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
+index c7e4c15..a3a8da5 100644
+--- a/imports/ui/App.jsx
++++ b/imports/ui/App.jsx
+@@ -12,6 +12,8 @@ const toggleChecked = ({ _id, isChecked }) => {
+   })
+ };
+ 
++const deleteTask = ({ _id }) => Tasks.remove(_id);
++
+ export const App = () => {
+   const tasks = useTracker(() => Tasks.find({}, { sort: { createdAt: -1 } }).fetch());
+ 
+@@ -20,7 +22,12 @@ export const App = () => {
+       <h1>Welcome to Meteor!</h1>
+ 
+       <ul>
+-        { tasks.map(task => <Task key={ task._id } task={ task } onCheckboxClick={toggleChecked} />) }
++        { tasks.map(task => <Task
++          key={ task._id }
++          task={ task }
++          onCheckboxClick={toggleChecked}
++          onDeleteClick={deleteTask}
++        />) }
+       </ul>
+ 
+       <TaskForm/>
+-- 
+2.11.0
+
+
+From 82778e6ae460391a11628350a56de6867ff0bad2 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 28 Jun 2020 16:25:33 -0500
+Subject: [PATCH 18/57] Step 4.5: Update the App's Style-sheet
+
+---
+ client/main.css | 39 ++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 38 insertions(+), 1 deletion(-)
+
+diff --git a/client/main.css b/client/main.css
+index 73e4759..ad5f676 100644
+--- a/client/main.css
++++ b/client/main.css
+@@ -3,6 +3,43 @@ body {
+   font-family: sans-serif;
+ }
+ 
+-.task-form {
++.simple-todos-react {
++  margin: 0 auto;
++  max-width: 512px;
++}
++
++.simple-todos-react .tasks {
++  padding: 0;
++  margin: 0;
++  list-style: none;
++}
++
++.simple-todos-react .tasks .task {
++  display: flex;
++  align-items: center;
++  height: 32px;
++}
++
++.simple-todos-react .tasks .task span {
++  flex-grow: 1;
++}
++
++.simple-todos-react .tasks .task button {
++  cursor: pointer;
++  background: transparent;
++  outline: none;
++  border: none;
++}
++
++.simple-todos-react .tasks .task.checked span {
++  text-decoration: line-through;
++}
++
++.simple-todos-react .task-form {
+   margin-top: 1rem;
++  display: flex;
++}
++
++.simple-todos-react .task-form input {
++  flex-grow: 1;
+ }
+-- 
+2.11.0
+
+
+From b8c7c4b85eda8b63fc987132ccf37a366a0ce8f0 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 28 Jun 2020 16:26:07 -0500
+Subject: [PATCH 19/57] Step 4.6: Update the Styling in the Task Component
+
+---
+ imports/ui/Task.jsx | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/imports/ui/Task.jsx b/imports/ui/Task.jsx
+index 321521a..6059bf0 100644
+--- a/imports/ui/Task.jsx
++++ b/imports/ui/Task.jsx
+@@ -1,16 +1,21 @@
+ import React from 'react';
++import classnames from 'classnames';
+ 
+ export const Task = ({ task, onCheckboxClick, onDeleteClick }) => {
++  const classes = classnames('task', {
++    'checked': Boolean(task.isChecked)
++  });
++
+   return (
+-    <li>
++    <li className={classes}>
+       <button onClick={ () => onDeleteClick(task) }>&times;</button>
++      <span>{ task.text }</span>
+       <input
+         type="checkbox"
+         checked={ Boolean(task.isChecked) }
+         onClick={ () => onCheckboxClick(task) }
+         readOnly
+       />
+-      <span>{ task.text }</span>
+     </li>
+   );
+ };
+-- 
+2.11.0
+
+
+From 5eb55195d7ee116d09ccbcadcc318812331f9236 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 28 Jun 2020 16:26:22 -0500
+Subject: [PATCH 20/57] Step 4.7: Update the Styling in the App Component
+
+---
+ imports/ui/App.jsx | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
+index a3a8da5..537f3e8 100644
+--- a/imports/ui/App.jsx
++++ b/imports/ui/App.jsx
+@@ -18,10 +18,10 @@ export const App = () => {
+   const tasks = useTracker(() => Tasks.find({}, { sort: { createdAt: -1 } }).fetch());
+ 
+   return (
+-    <div>
++    <div className="simple-todos-react">
+       <h1>Welcome to Meteor!</h1>
+ 
+-      <ul>
++      <ul className="tasks">
+         { tasks.map(task => <Task
+           key={ task._id }
+           task={ task }
+-- 
+2.11.0
+
+
+From fcea034dbdf64c14d737bdd076a9aae8aa0468e0 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 28 Jun 2020 16:27:37 -0500
+Subject: [PATCH 21/57] Step 4.8: Add the classnames Node package to the
+ application
 
 ---
  package-lock.json | 5 +++++
@@ -2973,11 +1858,11 @@ Subject: [PATCH 43/51] Step 10.9: Install the classnames NPM package
  2 files changed, 6 insertions(+)
 
 diff --git a/package-lock.json b/package-lock.json
-index f8e8a5e..1279b54 100644
+index 2d85f98..cc06d12 100644
 --- a/package-lock.json
 +++ b/package-lock.json
 @@ -11,6 +11,11 @@
-         "regenerator-runtime": "^0.12.0"
+         "regenerator-runtime": "^0.13.4"
        }
      },
 +    "classnames": {
@@ -2989,159 +1874,1849 @@ index f8e8a5e..1279b54 100644
        "version": "4.0.0",
        "resolved": "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz",
 diff --git a/package.json b/package.json
-index abd6b4d..c8e04b2 100644
+index 11c1d49..dc562d9 100644
 --- a/package.json
 +++ b/package.json
 @@ -9,6 +9,7 @@
    },
    "dependencies": {
-     "@babel/runtime": "^7.1.5",
+     "@babel/runtime": "^7.8.4",
 +    "classnames": "^2.2.6",
-     "meteor-node-stubs": "^0.4.1",
-     "react": "^16.1.1",
-     "react-dom": "^16.1.1"
+     "meteor-node-stubs": "^1.0.0",
+     "react": "^16.13.0",
+     "react-dom": "^16.13.0"
 -- 
 2.11.0
 
 
-From 5ccf6e352665e7e34c5be0bb30175d33a47e33f1 Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:39:22 -0700
-Subject: [PATCH 44/51] Step 10.10: Add private className to Task when needed
+From 5da9c908e73620238f599ca85c8906d86f754344 Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Sat, 25 Jan 2020 09:31:03 -0400
+Subject: [PATCH 22/57] Step 5.1: Add State Hook
 
 ---
- imports/ui/Task.js | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ imports/ui/App.jsx | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/imports/ui/Task.js b/imports/ui/Task.js
-index 1c21f88..11e71ee 100644
---- a/imports/ui/Task.js
-+++ b/imports/ui/Task.js
+diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
+index 537f3e8..7611f58 100644
+--- a/imports/ui/App.jsx
++++ b/imports/ui/App.jsx
+@@ -1,4 +1,4 @@
+-import React from 'react';
++import React, { useState } from 'react';
+ import { useTracker } from 'meteor/react-meteor-data';
+ import { Task } from './Task';
+ import Tasks from '/imports/api/tasks';
+@@ -15,6 +15,8 @@ const toggleChecked = ({ _id, isChecked }) => {
+ const deleteTask = ({ _id }) => Tasks.remove(_id);
+ 
+ export const App = () => {
++  const [hideCompleted, setHideCompleted] = useState(false);
++
+   const tasks = useTracker(() => Tasks.find({}, { sort: { createdAt: -1 } }).fetch());
+ 
+   return (
+-- 
+2.11.0
+
+
+From cbe7fb05660e1881a7826bd87ab2fcab21d14b01 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 28 Jun 2020 18:21:26 -0500
+Subject: [PATCH 23/57] Step 5.2: Update App's Style-sheet
+
+---
+ client/main.css | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/client/main.css b/client/main.css
+index ad5f676..1316d92 100644
+--- a/client/main.css
++++ b/client/main.css
+@@ -1,6 +1,6 @@
+ body {
+-  padding: 10px;
+-  font-family: sans-serif;
++  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
++  font-size: 14px;
+ }
+ 
+ .simple-todos-react {
+@@ -8,6 +8,10 @@ body {
+   max-width: 512px;
+ }
+ 
++.simple-todos-react .filters {
++  margin-bottom: 1rem;
++}
++
+ .simple-todos-react .tasks {
+   padding: 0;
+   margin: 0;
+-- 
+2.11.0
+
+
+From 06c972828e5a30210794b5e36f1466c4846452ba Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 28 Jun 2020 18:21:57 -0500
+Subject: [PATCH 24/57] Step 5.3: Add Filtering Checkbox
+
+---
+ imports/ui/App.jsx | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
+index 7611f58..2f641ef 100644
+--- a/imports/ui/App.jsx
++++ b/imports/ui/App.jsx
+@@ -23,6 +23,18 @@ export const App = () => {
+     <div className="simple-todos-react">
+       <h1>Welcome to Meteor!</h1>
+ 
++      <div className="filters">
++        <label>
++          <input
++              type="checkbox"
++              readOnly
++              checked={ Boolean(hideCompleted) }
++              onClick={() => setHideCompleted(!hideCompleted)}
++          />
++          Hide Completed
++        </label>
++      </div>
++
+       <ul className="tasks">
+         { tasks.map(task => <Task
+           key={ task._id }
+-- 
+2.11.0
+
+
+From efffc4bafa9fd8b08cfaf03fa49b7d3e336ec0a5 Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Sat, 25 Jan 2020 09:55:51 -0400
+Subject: [PATCH 25/57] Step 5.4: Add the lodash Node package to the
+ application
+
+---
+ package-lock.json | 5 +++++
+ package.json      | 1 +
+ 2 files changed, 6 insertions(+)
+
+diff --git a/package-lock.json b/package-lock.json
+index cc06d12..d166b14 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -21,6 +21,11 @@
+       "resolved": "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz",
+       "integrity": "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ=="
+     },
++    "lodash": {
++      "version": "4.17.15",
++      "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.15.tgz",
++      "integrity": "sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A=="
++    },
+     "loose-envify": {
+       "version": "1.4.0",
+       "resolved": "https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz",
+diff --git a/package.json b/package.json
+index dc562d9..1ab1388 100644
+--- a/package.json
++++ b/package.json
+@@ -10,6 +10,7 @@
+   "dependencies": {
+     "@babel/runtime": "^7.8.4",
+     "classnames": "^2.2.6",
++    "lodash": "^4.17.15",
+     "meteor-node-stubs": "^1.0.0",
+     "react": "^16.13.0",
+     "react-dom": "^16.13.0"
+-- 
+2.11.0
+
+
+From 7f7c5fdc657be683faf96409e529bfd39ffefc17 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 28 Jun 2020 18:31:44 -0500
+Subject: [PATCH 26/57] Step 5.5: Filter Tasks
+
+---
+ imports/ui/App.jsx | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
+index 2f641ef..4ebd0dd 100644
+--- a/imports/ui/App.jsx
++++ b/imports/ui/App.jsx
 @@ -1,5 +1,6 @@
- import React, { Component } from 'react';
- import { Meteor } from 'meteor/meteor';
-+import classnames from 'classnames';
+ import React, { useState } from 'react';
+ import { useTracker } from 'meteor/react-meteor-data';
++import _ from 'lodash';
+ import { Task } from './Task';
+ import Tasks from '/imports/api/tasks';
+ import { TaskForm } from './TaskForm';
+@@ -15,9 +16,15 @@ const toggleChecked = ({ _id, isChecked }) => {
+ const deleteTask = ({ _id }) => Tasks.remove(_id);
  
- import { Tasks } from '../api/tasks.js';
+ export const App = () => {
++  const filter = {};
++
+   const [hideCompleted, setHideCompleted] = useState(false);
  
-@@ -21,7 +22,10 @@ export default class Task extends Component {
-   render() {
-     // Give tasks a different className when they are checked off,
-     // so that we can style them nicely in CSS
--    const taskClassName = this.props.task.checked ? 'checked' : '';
-+    const taskClassName = classnames({
-+      checked: this.props.task.checked,
-+      private: this.props.task.private,
-+    });
+-  const tasks = useTracker(() => Tasks.find({}, { sort: { createdAt: -1 } }).fetch());
++  if (hideCompleted) {
++    _.set(filter, 'checked', false);
++  }
++
++  const tasks = useTracker(() => Tasks.find(filter, { sort: { createdAt: -1 } }).fetch());
  
-     return (
-       <li className={taskClassName}>
+   return (
+     <div className="simple-todos-react">
 -- 
 2.11.0
 
 
-From e97a41d84997797d825eaa536edfb26a83be6d7c Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:39:58 -0700
-Subject: [PATCH 45/51] Step 10.11: Only publish tasks the current user can see
+From 4ecdab4ae4df1dfe7b5d8fa113da9ea68f04f5d5 Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Sat, 1 Feb 2020 10:42:06 -0400
+Subject: [PATCH 27/57] Step 5.4: Count Incomplete Tasks
 
 ---
- imports/api/tasks.js | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ imports/ui/App.jsx | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
+index 4ebd0dd..64ee93a 100644
+--- a/imports/ui/App.jsx
++++ b/imports/ui/App.jsx
+@@ -24,7 +24,10 @@ export const App = () => {
+     _.set(filter, 'checked', false);
+   }
+ 
+-  const tasks = useTracker(() => Tasks.find(filter, { sort: { createdAt: -1 } }).fetch());
++  const { tasks, incompleteTasksCount } = useTracker(() => ({
++    tasks: Tasks.find(filter, { sort: { createdAt: -1 } }).fetch(),
++    incompleteTasksCount: Tasks.find({ checked: { $ne: true }}).count()
++  }));
+ 
+   return (
+     <div className="simple-todos-react">
+-- 
+2.11.0
+
+
+From b6f183889b22dd994b9a6b194446a52147cb795b Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Sat, 1 Feb 2020 10:43:55 -0400
+Subject: [PATCH 28/57] Step 5.5: Render Count
+
+---
+ imports/ui/App.jsx | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
+index 64ee93a..49348f0 100644
+--- a/imports/ui/App.jsx
++++ b/imports/ui/App.jsx
+@@ -31,7 +31,7 @@ export const App = () => {
+ 
+   return (
+     <div className="simple-todos-react">
+-      <h1>Welcome to Meteor!</h1>
++      <h1>Todo List ({ incompleteTasksCount })</h1>
+ 
+       <div className="filters">
+         <label>
+-- 
+2.11.0
+
+
+From 34142133acb2ce655498c7ddce1b21e98005fe41 Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Fri, 7 Feb 2020 18:18:52 -0400
+Subject: [PATCH 29/57] Step 6.1: Password Authentication
+
+---
+ .meteor/packages |  1 +
+ .meteor/versions | 14 ++++++++++++--
+ 2 files changed, 13 insertions(+), 2 deletions(-)
+
+diff --git a/.meteor/packages b/.meteor/packages
+index 1bb7891..58c3431 100644
+--- a/.meteor/packages
++++ b/.meteor/packages
+@@ -20,3 +20,4 @@ autopublish@1.0.7             # Publish all data to the clients (for prototyping
+ insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
+ static-html             # Define static page content in .html files
+ react-meteor-data       # React higher-order component for reactively tracking Meteor data
++accounts-password
+diff --git a/.meteor/versions b/.meteor/versions
+index cf01612..06d5275 100644
+--- a/.meteor/versions
++++ b/.meteor/versions
+@@ -1,3 +1,5 @@
++accounts-base@1.6.0
++accounts-password@1.6.0
+ allow-deny@1.1.0
+ autopublish@1.0.7
+ autoupdate@1.6.0
+@@ -14,6 +16,7 @@ check@1.3.1
+ ddp@1.4.0
+ ddp-client@2.3.3
+ ddp-common@1.4.0
++ddp-rate-limiter@1.0.7
+ ddp-server@2.3.1
+ deps@1.0.12
+ diff-sequence@1.1.1
+@@ -23,6 +26,7 @@ ecmascript-runtime@0.7.0
+ ecmascript-runtime-client@0.10.0
+ ecmascript-runtime-server@0.9.0
+ ejson@1.1.1
++email@1.2.3
+ es5-shim@4.8.0
+ fetch@0.1.1
+ geojson-utils@1.0.10
+@@ -34,6 +38,7 @@ insecure@1.0.7
+ inter-process-messaging@0.1.1
+ launch-screen@1.2.0
+ livedata@1.0.18
++localstorage@1.2.0
+ logging@1.1.20
+ meteor@1.9.3
+ meteor-base@1.4.0
+@@ -49,18 +54,23 @@ mongo@1.10.0
+ mongo-decimal@0.1.1
+ mongo-dev-server@1.1.0
+ mongo-id@1.0.7
+-npm-mongo@3.7.1
++npm-bcrypt@0.9.3
++npm-mongo@3.7.0
+ ordered-dict@1.1.0
+ promise@0.11.2
+ random@1.2.0
+-react-meteor-data@2.1.0
++rate-limit@1.0.9
++react-meteor-data@2.0.1
+ reactive-var@1.0.11
+ reload@1.3.0
+ retry@1.1.0
+ routepolicy@1.1.0
++service-configuration@1.0.11
++sha@1.0.9
+ shell-server@0.5.0
+ socket-stream-client@0.3.0
+ spacebars-compiler@1.1.3
++srp@1.1.0
+ standard-minifier-css@1.6.0
+ standard-minifier-js@2.6.0
+ static-html@1.2.2
+-- 
+2.11.0
+
+
+From 4872cf304e7b977b046d644bd887bf58daaead67 Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Fri, 7 Feb 2020 18:50:26 -0400
+Subject: [PATCH 30/57] Step 6.2: Install BCrypt
+
+---
+ package-lock.json | 487 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ package.json      |   3 +-
+ 2 files changed, 489 insertions(+), 1 deletion(-)
+
+diff --git a/package-lock.json b/package-lock.json
+index d166b14..4b215dd 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -11,11 +11,200 @@
+         "regenerator-runtime": "^0.13.4"
+       }
+     },
++    "abbrev": {
++      "version": "1.1.1",
++      "resolved": "https://registry.npmjs.org/abbrev/-/abbrev-1.1.1.tgz",
++      "integrity": "sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q=="
++    },
++    "ansi-regex": {
++      "version": "2.1.1",
++      "resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-2.1.1.tgz",
++      "integrity": "sha1-w7M6te42DYbg5ijwRorn7yfWVN8="
++    },
++    "aproba": {
++      "version": "1.2.0",
++      "resolved": "https://registry.npmjs.org/aproba/-/aproba-1.2.0.tgz",
++      "integrity": "sha512-Y9J6ZjXtoYh8RnXVCMOU/ttDmk1aBjunq9vO0ta5x85WDQiQfUF9sIPBITdbiiIVcBo03Hi3jMxigBtsddlXRw=="
++    },
++    "are-we-there-yet": {
++      "version": "1.1.5",
++      "resolved": "https://registry.npmjs.org/are-we-there-yet/-/are-we-there-yet-1.1.5.tgz",
++      "integrity": "sha512-5hYdAkZlcG8tOLujVDTgCT+uPX0VnpAH28gWsLfzpXYm7wP6mp5Q/gYyR7YQ0cKVJcXJnl3j2kpBan13PtQf6w==",
++      "requires": {
++        "delegates": "^1.0.0",
++        "readable-stream": "^2.0.6"
++      }
++    },
++    "balanced-match": {
++      "version": "1.0.0",
++      "resolved": "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.0.tgz",
++      "integrity": "sha1-ibTRmasr7kneFk6gK4nORi1xt2c="
++    },
++    "bcrypt": {
++      "version": "3.0.8",
++      "resolved": "https://registry.npmjs.org/bcrypt/-/bcrypt-3.0.8.tgz",
++      "integrity": "sha512-jKV6RvLhI36TQnPDvUFqBEnGX9c8dRRygKxCZu7E+MgLfKZbmmXL8a7/SFFOyHoPNX9nV81cKRC5tbQfvEQtpw==",
++      "requires": {
++        "nan": "2.14.0",
++        "node-pre-gyp": "0.14.0"
++      }
++    },
++    "brace-expansion": {
++      "version": "1.1.11",
++      "resolved": "https://registry.npmjs.org/brace-expansion/-/brace-expansion-1.1.11.tgz",
++      "integrity": "sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==",
++      "requires": {
++        "balanced-match": "^1.0.0",
++        "concat-map": "0.0.1"
++      }
++    },
++    "chownr": {
++      "version": "1.1.3",
++      "resolved": "https://registry.npmjs.org/chownr/-/chownr-1.1.3.tgz",
++      "integrity": "sha512-i70fVHhmV3DtTl6nqvZOnIjbY0Pe4kAUjwHj8z0zAdgBtYrJyYwLKCCuRBQ5ppkyL0AkN7HKRnETdmdp1zqNXw=="
++    },
+     "classnames": {
+       "version": "2.2.6",
+       "resolved": "https://registry.npmjs.org/classnames/-/classnames-2.2.6.tgz",
+       "integrity": "sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q=="
+     },
++    "code-point-at": {
++      "version": "1.1.0",
++      "resolved": "https://registry.npmjs.org/code-point-at/-/code-point-at-1.1.0.tgz",
++      "integrity": "sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c="
++    },
++    "concat-map": {
++      "version": "0.0.1",
++      "resolved": "https://registry.npmjs.org/concat-map/-/concat-map-0.0.1.tgz",
++      "integrity": "sha1-2Klr13/Wjfd5OnMDajug1UBdR3s="
++    },
++    "console-control-strings": {
++      "version": "1.1.0",
++      "resolved": "https://registry.npmjs.org/console-control-strings/-/console-control-strings-1.1.0.tgz",
++      "integrity": "sha1-PXz0Rk22RG6mRL9LOVB/mFEAjo4="
++    },
++    "core-util-is": {
++      "version": "1.0.2",
++      "resolved": "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.2.tgz",
++      "integrity": "sha1-tf1UIgqivFq1eqtxQMlAdUUDwac="
++    },
++    "debug": {
++      "version": "3.2.6",
++      "resolved": "https://registry.npmjs.org/debug/-/debug-3.2.6.tgz",
++      "integrity": "sha512-mel+jf7nrtEl5Pn1Qx46zARXKDpBbvzezse7p7LqINmdoIk8PYP5SySaxEmYv6TZ0JyEKA1hsCId6DIhgITtWQ==",
++      "requires": {
++        "ms": "^2.1.1"
++      }
++    },
++    "deep-extend": {
++      "version": "0.6.0",
++      "resolved": "https://registry.npmjs.org/deep-extend/-/deep-extend-0.6.0.tgz",
++      "integrity": "sha512-LOHxIOaPYdHlJRtCQfDIVZtfw/ufM8+rVj649RIHzcm/vGwQRXFt6OPqIFWsm2XEMrNIEtWR64sY1LEKD2vAOA=="
++    },
++    "delegates": {
++      "version": "1.0.0",
++      "resolved": "https://registry.npmjs.org/delegates/-/delegates-1.0.0.tgz",
++      "integrity": "sha1-hMbhWbgZBP3KWaDvRM2HDTElD5o="
++    },
++    "detect-libc": {
++      "version": "1.0.3",
++      "resolved": "https://registry.npmjs.org/detect-libc/-/detect-libc-1.0.3.tgz",
++      "integrity": "sha1-+hN8S9aY7fVc1c0CrFWfkaTEups="
++    },
++    "fs-minipass": {
++      "version": "1.2.7",
++      "resolved": "https://registry.npmjs.org/fs-minipass/-/fs-minipass-1.2.7.tgz",
++      "integrity": "sha512-GWSSJGFy4e9GUeCcbIkED+bgAoFyj7XF1mV8rma3QW4NIqX9Kyx79N/PF61H5udOV3aY1IaMLs6pGbH71nlCTA==",
++      "requires": {
++        "minipass": "^2.6.0"
++      }
++    },
++    "fs.realpath": {
++      "version": "1.0.0",
++      "resolved": "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz",
++      "integrity": "sha1-FQStJSMVjKpA20onh8sBQRmU6k8="
++    },
++    "gauge": {
++      "version": "2.7.4",
++      "resolved": "https://registry.npmjs.org/gauge/-/gauge-2.7.4.tgz",
++      "integrity": "sha1-LANAXHU4w51+s3sxcCLjJfsBi/c=",
++      "requires": {
++        "aproba": "^1.0.3",
++        "console-control-strings": "^1.0.0",
++        "has-unicode": "^2.0.0",
++        "object-assign": "^4.1.0",
++        "signal-exit": "^3.0.0",
++        "string-width": "^1.0.1",
++        "strip-ansi": "^3.0.1",
++        "wide-align": "^1.1.0"
++      }
++    },
++    "glob": {
++      "version": "7.1.6",
++      "resolved": "https://registry.npmjs.org/glob/-/glob-7.1.6.tgz",
++      "integrity": "sha512-LwaxwyZ72Lk7vZINtNNrywX0ZuLyStrdDtabefZKAY5ZGJhVtgdznluResxNmPitE0SAO+O26sWTHeKSI2wMBA==",
++      "requires": {
++        "fs.realpath": "^1.0.0",
++        "inflight": "^1.0.4",
++        "inherits": "2",
++        "minimatch": "^3.0.4",
++        "once": "^1.3.0",
++        "path-is-absolute": "^1.0.0"
++      }
++    },
++    "has-unicode": {
++      "version": "2.0.1",
++      "resolved": "https://registry.npmjs.org/has-unicode/-/has-unicode-2.0.1.tgz",
++      "integrity": "sha1-4Ob+aijPUROIVeCG0Wkedx3iqLk="
++    },
++    "iconv-lite": {
++      "version": "0.4.24",
++      "resolved": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.4.24.tgz",
++      "integrity": "sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==",
++      "requires": {
++        "safer-buffer": ">= 2.1.2 < 3"
++      }
++    },
++    "ignore-walk": {
++      "version": "3.0.3",
++      "resolved": "https://registry.npmjs.org/ignore-walk/-/ignore-walk-3.0.3.tgz",
++      "integrity": "sha512-m7o6xuOaT1aqheYHKf8W6J5pYH85ZI9w077erOzLje3JsB1gkafkAhHHY19dqjulgIZHFm32Cp5uNZgcQqdJKw==",
++      "requires": {
++        "minimatch": "^3.0.4"
++      }
++    },
++    "inflight": {
++      "version": "1.0.6",
++      "resolved": "https://registry.npmjs.org/inflight/-/inflight-1.0.6.tgz",
++      "integrity": "sha1-Sb1jMdfQLQwJvJEKEHW6gWW1bfk=",
++      "requires": {
++        "once": "^1.3.0",
++        "wrappy": "1"
++      }
++    },
++    "inherits": {
++      "version": "2.0.4",
++      "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.4.tgz",
++      "integrity": "sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ=="
++    },
++    "ini": {
++      "version": "1.3.5",
++      "resolved": "https://registry.npmjs.org/ini/-/ini-1.3.5.tgz",
++      "integrity": "sha512-RZY5huIKCMRWDUqZlEi72f/lmXKMvuszcMBduliQ3nnWbx9X/ZBQO7DijMEYS9EhHBb2qacRUMtC7svLwe0lcw=="
++    },
++    "is-fullwidth-code-point": {
++      "version": "1.0.0",
++      "resolved": "https://registry.npmjs.org/is-fullwidth-code-point/-/is-fullwidth-code-point-1.0.0.tgz",
++      "integrity": "sha1-754xOG8DGn8NZDr4L95QxFfvAMs=",
++      "requires": {
++        "number-is-nan": "^1.0.0"
++      }
++    },
++    "isarray": {
++      "version": "1.0.0",
++      "resolved": "https://registry.npmjs.org/isarray/-/isarray-1.0.0.tgz",
++      "integrity": "sha1-u5NdSFgsuhaMBoNJV6VKPgcSTxE="
++    },
+     "js-tokens": {
+       "version": "4.0.0",
+       "resolved": "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz",
+@@ -595,11 +784,171 @@
+         }
+       }
+     },
++    "minimatch": {
++      "version": "3.0.4",
++      "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-3.0.4.tgz",
++      "integrity": "sha512-yJHVQEhyqPLUTgt9B83PXu6W3rx4MvvHvSUvToogpwoGDOUQ+yDrR0HRot+yOCdCO7u4hX3pWft6kWBBcqh0UA==",
++      "requires": {
++        "brace-expansion": "^1.1.7"
++      }
++    },
++    "minimist": {
++      "version": "0.0.8",
++      "resolved": "https://registry.npmjs.org/minimist/-/minimist-0.0.8.tgz",
++      "integrity": "sha1-hX/Kv8M5fSYluCKCYuhqp6ARsF0="
++    },
++    "minipass": {
++      "version": "2.9.0",
++      "resolved": "https://registry.npmjs.org/minipass/-/minipass-2.9.0.tgz",
++      "integrity": "sha512-wxfUjg9WebH+CUDX/CdbRlh5SmfZiy/hpkxaRI16Y9W56Pa75sWgd/rvFilSgrauD9NyFymP/+JFV3KwzIsJeg==",
++      "requires": {
++        "safe-buffer": "^5.1.2",
++        "yallist": "^3.0.0"
++      }
++    },
++    "minizlib": {
++      "version": "1.3.3",
++      "resolved": "https://registry.npmjs.org/minizlib/-/minizlib-1.3.3.tgz",
++      "integrity": "sha512-6ZYMOEnmVsdCeTJVE0W9ZD+pVnE8h9Hma/iOwwRDsdQoePpoX56/8B6z3P9VNwppJuBKNRuFDRNRqRWexT9G9Q==",
++      "requires": {
++        "minipass": "^2.9.0"
++      }
++    },
++    "mkdirp": {
++      "version": "0.5.1",
++      "resolved": "https://registry.npmjs.org/mkdirp/-/mkdirp-0.5.1.tgz",
++      "integrity": "sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=",
++      "requires": {
++        "minimist": "0.0.8"
++      }
++    },
++    "ms": {
++      "version": "2.1.2",
++      "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz",
++      "integrity": "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w=="
++    },
++    "nan": {
++      "version": "2.14.0",
++      "resolved": "https://registry.npmjs.org/nan/-/nan-2.14.0.tgz",
++      "integrity": "sha512-INOFj37C7k3AfaNTtX8RhsTw7qRy7eLET14cROi9+5HAVbbHuIWUHEauBv5qT4Av2tWasiTY1Jw6puUNqRJXQg=="
++    },
++    "needle": {
++      "version": "2.3.2",
++      "resolved": "https://registry.npmjs.org/needle/-/needle-2.3.2.tgz",
++      "integrity": "sha512-DUzITvPVDUy6vczKKYTnWc/pBZ0EnjMJnQ3y+Jo5zfKFimJs7S3HFCxCRZYB9FUZcrzUQr3WsmvZgddMEIZv6w==",
++      "requires": {
++        "debug": "^3.2.6",
++        "iconv-lite": "^0.4.4",
++        "sax": "^1.2.4"
++      }
++    },
++    "node-pre-gyp": {
++      "version": "0.14.0",
++      "resolved": "https://registry.npmjs.org/node-pre-gyp/-/node-pre-gyp-0.14.0.tgz",
++      "integrity": "sha512-+CvDC7ZttU/sSt9rFjix/P05iS43qHCOOGzcr3Ry99bXG7VX953+vFyEuph/tfqoYu8dttBkE86JSKBO2OzcxA==",
++      "requires": {
++        "detect-libc": "^1.0.2",
++        "mkdirp": "^0.5.1",
++        "needle": "^2.2.1",
++        "nopt": "^4.0.1",
++        "npm-packlist": "^1.1.6",
++        "npmlog": "^4.0.2",
++        "rc": "^1.2.7",
++        "rimraf": "^2.6.1",
++        "semver": "^5.3.0",
++        "tar": "^4.4.2"
++      }
++    },
++    "nopt": {
++      "version": "4.0.1",
++      "resolved": "https://registry.npmjs.org/nopt/-/nopt-4.0.1.tgz",
++      "integrity": "sha1-0NRoWv1UFRk8jHUFYC0NF81kR00=",
++      "requires": {
++        "abbrev": "1",
++        "osenv": "^0.1.4"
++      }
++    },
++    "npm-bundled": {
++      "version": "1.1.1",
++      "resolved": "https://registry.npmjs.org/npm-bundled/-/npm-bundled-1.1.1.tgz",
++      "integrity": "sha512-gqkfgGePhTpAEgUsGEgcq1rqPXA+tv/aVBlgEzfXwA1yiUJF7xtEt3CtVwOjNYQOVknDk0F20w58Fnm3EtG0fA==",
++      "requires": {
++        "npm-normalize-package-bin": "^1.0.1"
++      }
++    },
++    "npm-normalize-package-bin": {
++      "version": "1.0.1",
++      "resolved": "https://registry.npmjs.org/npm-normalize-package-bin/-/npm-normalize-package-bin-1.0.1.tgz",
++      "integrity": "sha512-EPfafl6JL5/rU+ot6P3gRSCpPDW5VmIzX959Ob1+ySFUuuYHWHekXpwdUZcKP5C+DS4GEtdJluwBjnsNDl+fSA=="
++    },
++    "npm-packlist": {
++      "version": "1.4.8",
++      "resolved": "https://registry.npmjs.org/npm-packlist/-/npm-packlist-1.4.8.tgz",
++      "integrity": "sha512-5+AZgwru5IevF5ZdnFglB5wNlHG1AOOuw28WhUq8/8emhBmLv6jX5by4WJCh7lW0uSYZYS6DXqIsyZVIXRZU9A==",
++      "requires": {
++        "ignore-walk": "^3.0.1",
++        "npm-bundled": "^1.0.1",
++        "npm-normalize-package-bin": "^1.0.1"
++      }
++    },
++    "npmlog": {
++      "version": "4.1.2",
++      "resolved": "https://registry.npmjs.org/npmlog/-/npmlog-4.1.2.tgz",
++      "integrity": "sha512-2uUqazuKlTaSI/dC8AzicUck7+IrEaOnN/e0jd3Xtt1KcGpwx30v50mL7oPyr/h9bL3E4aZccVwpwP+5W9Vjkg==",
++      "requires": {
++        "are-we-there-yet": "~1.1.2",
++        "console-control-strings": "~1.1.0",
++        "gauge": "~2.7.3",
++        "set-blocking": "~2.0.0"
++      }
++    },
++    "number-is-nan": {
++      "version": "1.0.1",
++      "resolved": "https://registry.npmjs.org/number-is-nan/-/number-is-nan-1.0.1.tgz",
++      "integrity": "sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0="
++    },
+     "object-assign": {
+       "version": "4.1.1",
+       "resolved": "https://registry.npmjs.org/object-assign/-/object-assign-4.1.1.tgz",
+       "integrity": "sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM="
+     },
++    "once": {
++      "version": "1.4.0",
++      "resolved": "https://registry.npmjs.org/once/-/once-1.4.0.tgz",
++      "integrity": "sha1-WDsap3WWHUsROsF9nFC6753Xa9E=",
++      "requires": {
++        "wrappy": "1"
++      }
++    },
++    "os-homedir": {
++      "version": "1.0.2",
++      "resolved": "https://registry.npmjs.org/os-homedir/-/os-homedir-1.0.2.tgz",
++      "integrity": "sha1-/7xJiDNuDoM94MFox+8VISGqf7M="
++    },
++    "os-tmpdir": {
++      "version": "1.0.2",
++      "resolved": "https://registry.npmjs.org/os-tmpdir/-/os-tmpdir-1.0.2.tgz",
++      "integrity": "sha1-u+Z0BseaqFxc/sdm/lc0VV36EnQ="
++    },
++    "osenv": {
++      "version": "0.1.5",
++      "resolved": "https://registry.npmjs.org/osenv/-/osenv-0.1.5.tgz",
++      "integrity": "sha512-0CWcCECdMVc2Rw3U5w9ZjqX6ga6ubk1xDVKxtBQPK7wis/0F2r9T6k4ydGYhecl7YUBxBVxhL5oisPsNxAPe2g==",
++      "requires": {
++        "os-homedir": "^1.0.0",
++        "os-tmpdir": "^1.0.0"
++      }
++    },
++    "path-is-absolute": {
++      "version": "1.0.1",
++      "resolved": "https://registry.npmjs.org/path-is-absolute/-/path-is-absolute-1.0.1.tgz",
++      "integrity": "sha1-F0uSaHNVNP+8es5r9TpanhtcX18="
++    },
++    "process-nextick-args": {
++      "version": "2.0.1",
++      "resolved": "https://registry.npmjs.org/process-nextick-args/-/process-nextick-args-2.0.1.tgz",
++      "integrity": "sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag=="
++    },
+     "prop-types": {
+       "version": "15.7.2",
+       "resolved": "https://registry.npmjs.org/prop-types/-/prop-types-15.7.2.tgz",
+@@ -610,6 +959,24 @@
+         "react-is": "^16.8.1"
+       }
+     },
++    "rc": {
++      "version": "1.2.8",
++      "resolved": "https://registry.npmjs.org/rc/-/rc-1.2.8.tgz",
++      "integrity": "sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==",
++      "requires": {
++        "deep-extend": "^0.6.0",
++        "ini": "~1.3.0",
++        "minimist": "^1.2.0",
++        "strip-json-comments": "~2.0.1"
++      },
++      "dependencies": {
++        "minimist": {
++          "version": "1.2.0",
++          "resolved": "https://registry.npmjs.org/minimist/-/minimist-1.2.0.tgz",
++          "integrity": "sha1-o1AIsg9BOD7sH7kU9M1d95omQoQ="
++        }
++      }
++    },
+     "react": {
+       "version": "16.13.1",
+       "resolved": "https://registry.npmjs.org/react/-/react-16.13.1.tgz",
+@@ -636,11 +1003,48 @@
+       "resolved": "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz",
+       "integrity": "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="
+     },
++    "readable-stream": {
++      "version": "2.3.7",
++      "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.3.7.tgz",
++      "integrity": "sha512-Ebho8K4jIbHAxnuxi7o42OrZgF/ZTNcsZj6nRKyUmkhLFq8CHItp/fy6hQZuZmP/n3yZ9VBUbp4zz/mX8hmYPw==",
++      "requires": {
++        "core-util-is": "~1.0.0",
++        "inherits": "~2.0.3",
++        "isarray": "~1.0.0",
++        "process-nextick-args": "~2.0.0",
++        "safe-buffer": "~5.1.1",
++        "string_decoder": "~1.1.1",
++        "util-deprecate": "~1.0.1"
++      }
++    },
+     "regenerator-runtime": {
+       "version": "0.13.5",
+       "resolved": "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.13.5.tgz",
+       "integrity": "sha512-ZS5w8CpKFinUzOwW3c83oPeVXoNsrLsaCoLtJvAClH135j/R77RuymhiSErhm2lKcwSCIpmvIWSbDkIfAqKQlA=="
+     },
++    "rimraf": {
++      "version": "2.7.1",
++      "resolved": "https://registry.npmjs.org/rimraf/-/rimraf-2.7.1.tgz",
++      "integrity": "sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==",
++      "requires": {
++        "glob": "^7.1.3"
++      }
++    },
++    "safe-buffer": {
++      "version": "5.1.2",
++      "resolved": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.1.2.tgz",
++      "integrity": "sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g=="
++    },
++    "safer-buffer": {
++      "version": "2.1.2",
++      "resolved": "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz",
++      "integrity": "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg=="
++    },
++    "sax": {
++      "version": "1.2.4",
++      "resolved": "https://registry.npmjs.org/sax/-/sax-1.2.4.tgz",
++      "integrity": "sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw=="
++    },
+     "scheduler": {
+       "version": "0.19.1",
+       "resolved": "https://registry.npmjs.org/scheduler/-/scheduler-0.19.1.tgz",
+@@ -649,6 +1053,89 @@
+         "loose-envify": "^1.1.0",
+         "object-assign": "^4.1.1"
+       }
++    },
++    "semver": {
++      "version": "5.7.1",
++      "resolved": "https://registry.npmjs.org/semver/-/semver-5.7.1.tgz",
++      "integrity": "sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ=="
++    },
++    "set-blocking": {
++      "version": "2.0.0",
++      "resolved": "https://registry.npmjs.org/set-blocking/-/set-blocking-2.0.0.tgz",
++      "integrity": "sha1-BF+XgtARrppoA93TgrJDkrPYkPc="
++    },
++    "signal-exit": {
++      "version": "3.0.2",
++      "resolved": "https://registry.npmjs.org/signal-exit/-/signal-exit-3.0.2.tgz",
++      "integrity": "sha1-tf3AjxKH6hF4Yo5BXiUTK3NkbG0="
++    },
++    "string-width": {
++      "version": "1.0.2",
++      "resolved": "https://registry.npmjs.org/string-width/-/string-width-1.0.2.tgz",
++      "integrity": "sha1-EYvfW4zcUaKn5w0hHgfisLmxB9M=",
++      "requires": {
++        "code-point-at": "^1.0.0",
++        "is-fullwidth-code-point": "^1.0.0",
++        "strip-ansi": "^3.0.0"
++      }
++    },
++    "string_decoder": {
++      "version": "1.1.1",
++      "resolved": "https://registry.npmjs.org/string_decoder/-/string_decoder-1.1.1.tgz",
++      "integrity": "sha512-n/ShnvDi6FHbbVfviro+WojiFzv+s8MPMHBczVePfUpDJLwoLT0ht1l4YwBCbi8pJAveEEdnkHyPyTP/mzRfwg==",
++      "requires": {
++        "safe-buffer": "~5.1.0"
++      }
++    },
++    "strip-ansi": {
++      "version": "3.0.1",
++      "resolved": "https://registry.npmjs.org/strip-ansi/-/strip-ansi-3.0.1.tgz",
++      "integrity": "sha1-ajhfuIU9lS1f8F0Oiq+UJ43GPc8=",
++      "requires": {
++        "ansi-regex": "^2.0.0"
++      }
++    },
++    "strip-json-comments": {
++      "version": "2.0.1",
++      "resolved": "https://registry.npmjs.org/strip-json-comments/-/strip-json-comments-2.0.1.tgz",
++      "integrity": "sha1-PFMZQukIwml8DsNEhYwobHygpgo="
++    },
++    "tar": {
++      "version": "4.4.13",
++      "resolved": "https://registry.npmjs.org/tar/-/tar-4.4.13.tgz",
++      "integrity": "sha512-w2VwSrBoHa5BsSyH+KxEqeQBAllHhccyMFVHtGtdMpF4W7IRWfZjFiQceJPChOeTsSDVUpER2T8FA93pr0L+QA==",
++      "requires": {
++        "chownr": "^1.1.1",
++        "fs-minipass": "^1.2.5",
++        "minipass": "^2.8.6",
++        "minizlib": "^1.2.1",
++        "mkdirp": "^0.5.0",
++        "safe-buffer": "^5.1.2",
++        "yallist": "^3.0.3"
++      }
++    },
++    "util-deprecate": {
++      "version": "1.0.2",
++      "resolved": "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz",
++      "integrity": "sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8="
++    },
++    "wide-align": {
++      "version": "1.1.3",
++      "resolved": "https://registry.npmjs.org/wide-align/-/wide-align-1.1.3.tgz",
++      "integrity": "sha512-QGkOQc8XL6Bt5PwnsExKBPuMKBxnGxWWW3fU55Xt4feHozMUhdUMaBCk290qpm/wG5u/RSKzwdAC4i51YigihA==",
++      "requires": {
++        "string-width": "^1.0.2 || 2"
++      }
++    },
++    "wrappy": {
++      "version": "1.0.2",
++      "resolved": "https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz",
++      "integrity": "sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8="
++    },
++    "yallist": {
++      "version": "3.1.1",
++      "resolved": "https://registry.npmjs.org/yallist/-/yallist-3.1.1.tgz",
++      "integrity": "sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g=="
+     }
+   }
+ }
+diff --git a/package.json b/package.json
+index 1ab1388..5fbd35a 100644
+--- a/package.json
++++ b/package.json
+@@ -8,7 +8,8 @@
+     "visualize": "meteor --production --extra-packages bundle-visualizer"
+   },
+   "dependencies": {
+-    "@babel/runtime": "^7.8.4",
++    "@babel/runtime": "^7.6.0",
++    "bcrypt": "^3.0.8",
+     "classnames": "^2.2.6",
+     "lodash": "^4.17.15",
+     "meteor-node-stubs": "^1.0.0",
+-- 
+2.11.0
+
+
+From c1e7194d9728117f881162b57662866b55c4065e Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Fri, 7 Feb 2020 19:33:36 -0400
+Subject: [PATCH 31/57] Step 6.3: Create User Account
+
+---
+ server/main.js | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/server/main.js b/server/main.js
+index 46f8a7c..03edae0 100644
+--- a/server/main.js
++++ b/server/main.js
+@@ -2,6 +2,13 @@ import { Meteor } from 'meteor/meteor';
+ import Tasks from '/imports/api/tasks';
+ 
+ Meteor.startup(() => {
++  if (!Accounts.findUserByUsername('meteorite')) {
++    Accounts.createUser({
++      username: 'meteorite',
++      password: 'password'
++    });
++  }
++
+   if (Tasks.find().count() === 0) {
+     [
+       'First Task',
+-- 
+2.11.0
+
+
+From a1d695a3ee83ba9dd01bd43dab084f5e1b5e9e4e Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Fri, 7 Feb 2020 19:38:11 -0400
+Subject: [PATCH 32/57] Step 6.4: Login Form
+
+---
+ imports/ui/LoginForm.jsx | 40 ++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 40 insertions(+)
+ create mode 100644 imports/ui/LoginForm.jsx
+
+diff --git a/imports/ui/LoginForm.jsx b/imports/ui/LoginForm.jsx
+new file mode 100644
+index 0000000..c024cfb
+--- /dev/null
++++ b/imports/ui/LoginForm.jsx
+@@ -0,0 +1,40 @@
++import React, { useState } from 'react';
++
++export const LoginForm = () => {
++  const [username, setUsername] = useState('');
++  const [password, setPassword] = useState('');
++
++  const submit = (e) => {
++    e.preventDefault();
++
++    Meteor.loginWithPassword(username, password);
++  };
++
++  return (
++    <form onSubmit={submit} className="login-form">
++      <label htmlFor="username">Username</label>
++
++      <input
++          type="text"
++          placeholder="Username"
++          name="username"
++          required
++
++          onChange={(e) => setUsername(e.currentTarget.value)}
++      />
++
++      <label htmlFor="password">Password</label>
++
++      <input
++          type="password"
++          placeholder="Password"
++          name="password"
++          required
++
++          onChange={(e) => setPassword(e.currentTarget.value)}
++      />
++
++      <button type="submit">Log In</button>
++    </form>
++  );
++};
+-- 
+2.11.0
+
+
+From 21c3fa6ee14d30084c8513d255b7f7278b3df308 Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Fri, 7 Feb 2020 19:38:53 -0400
+Subject: [PATCH 33/57] Step 6.5: Require Authentication
+
+---
+ imports/ui/App.jsx | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
+
+diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
+index 49348f0..bc21456 100644
+--- a/imports/ui/App.jsx
++++ b/imports/ui/App.jsx
+@@ -4,6 +4,7 @@ import _ from 'lodash';
+ import { Task } from './Task';
+ import Tasks from '/imports/api/tasks';
+ import { TaskForm } from './TaskForm';
++import { LoginForm } from './LoginForm';
+ 
+ const toggleChecked = ({ _id, isChecked }) => {
+   Tasks.update(_id, {
+@@ -24,11 +25,20 @@ export const App = () => {
+     _.set(filter, 'checked', false);
+   }
+ 
+-  const { tasks, incompleteTasksCount } = useTracker(() => ({
++  const { tasks, incompleteTasksCount, user } = useTracker(() => ({
+     tasks: Tasks.find(filter, { sort: { createdAt: -1 } }).fetch(),
+-    incompleteTasksCount: Tasks.find({ checked: { $ne: true }}).count()
++    incompleteTasksCount: Tasks.find({ checked: { $ne: true }}).count(),
++    user: Meteor.user(),
+   }));
+ 
++  if (!user) {
++    return (
++      <div className="simple-todos-react">
++        <LoginForm/>
++      </div>
++    );
++  }
++
+   return (
+     <div className="simple-todos-react">
+       <h1>Todo List ({ incompleteTasksCount })</h1>
+-- 
+2.11.0
+
+
+From a5154842b26c4f7f59864b5eda3d20a7f3a02389 Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Fri, 7 Feb 2020 19:39:16 -0400
+Subject: [PATCH 34/57] Step 6.6: Basic Styling
+
+---
+ client/main.css | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
+diff --git a/client/main.css b/client/main.css
+index 1316d92..aa0c282 100644
+--- a/client/main.css
++++ b/client/main.css
+@@ -47,3 +47,26 @@ body {
+ .simple-todos-react .task-form input {
+   flex-grow: 1;
+ }
++
++.simple-todos-react .login-form {
++  margin-top: 2rem;
++}
++
++.simple-todos-react .login-form label,
++.simple-todos-react .login-form input {
++  display: block;
++  width: 100%;
++  box-sizing: border-box;
++}
++
++.simple-todos-react .login-form label {
++  margin-bottom: .4rem;
++}
++
++.simple-todos-react .login-form input {
++  margin-bottom: .8rem;
++}
++
++.simple-todos-react .login-form button[type=submit] {
++  float: right;
++}
+-- 
+2.11.0
+
+
+From af53d770c38763f0a9526eb1b370712657067d14 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 28 Jun 2020 18:44:43 -0500
+Subject: [PATCH 35/57] Step 6.7: Add a New Task Owner Component to the
+ Application
+
+---
+ imports/ui/TaskForm.jsx | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/imports/ui/TaskForm.jsx b/imports/ui/TaskForm.jsx
+index 82f09f9..4ed897a 100644
+--- a/imports/ui/TaskForm.jsx
++++ b/imports/ui/TaskForm.jsx
+@@ -1,7 +1,7 @@
+ import React, { useState } from 'react';
+ import Tasks from '/imports/api/tasks';
+ 
+-export const TaskForm = () => {
++export const TaskForm = ({ user }) => {
+   const [text, setText] = useState("");
+ 
+   const handleSubmit = () => {
+@@ -9,7 +9,8 @@ export const TaskForm = () => {
+ 
+     Tasks.insert({
+       text: text.trim(),
+-      createdAt: new Date()
++      createdAt: new Date(),
++      owner: user._id,
+     });
+ 
+     setText("");
+-- 
+2.11.0
+
+
+From 6083d7c8adb594e3b4ee6e2445eea388a0d5da1e Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 28 Jun 2020 18:45:34 -0500
+Subject: [PATCH 36/57] Step 6.8: Add the New Task Owner Component to the App
+ Component
+
+---
+ imports/ui/App.jsx | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
+index bc21456..a6aaa0d 100644
+--- a/imports/ui/App.jsx
++++ b/imports/ui/App.jsx
+@@ -64,7 +64,7 @@ export const App = () => {
+         />) }
+       </ul>
+ 
+-      <TaskForm/>
++      <TaskForm user={user}/>
+     </div>
+   );
+ };
+-- 
+2.11.0
+
+
+From 1530cb2c90305a18efdb828a19e768bab263d269 Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Fri, 7 Feb 2020 20:04:17 -0400
+Subject: [PATCH 37/57] Step 6.9: Task Owner Username
+
+---
+ imports/ui/Task.jsx | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/imports/ui/Task.jsx b/imports/ui/Task.jsx
+index 6059bf0..cae285b 100644
+--- a/imports/ui/Task.jsx
++++ b/imports/ui/Task.jsx
+@@ -1,15 +1,18 @@
+ import React from 'react';
+ import classnames from 'classnames';
++import _ from 'lodash';
+ 
+ export const Task = ({ task, onCheckboxClick, onDeleteClick }) => {
+   const classes = classnames('task', {
+     'checked': Boolean(task.isChecked)
+   });
+ 
++  const owner = _.first(Accounts.users.find(task.owner).fetch());
++
+   return (
+     <li className={classes}>
+       <button onClick={ () => onDeleteClick(task) }>&times;</button>
+-      <span>{ task.text }</span>
++      <span>{ task.text } { owner && <i>({ owner.username })</i> }</span>
+       <input
+         type="checkbox"
+         checked={ Boolean(task.isChecked) }
+-- 
+2.11.0
+
+
+From 6e6c6b8c4b803683e6d42f9a210d0bba82751037 Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Sat, 8 Feb 2020 07:54:52 -0400
+Subject: [PATCH 38/57] Step 7.1: Disable Quick Prototyping
+
+---
+ .meteor/packages | 1 -
+ .meteor/versions | 1 -
+ 2 files changed, 2 deletions(-)
+
+diff --git a/.meteor/packages b/.meteor/packages
+index 58c3431..f0118f6 100644
+--- a/.meteor/packages
++++ b/.meteor/packages
+@@ -17,7 +17,6 @@ typescript@3.7.6              # Enable TypeScript syntax in .ts and .tsx modules
+ shell-server@0.5.0            # Server-side component of the `meteor shell` command
+ 
+ autopublish@1.0.7             # Publish all data to the clients (for prototyping)
+-insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
+ static-html             # Define static page content in .html files
+ react-meteor-data       # React higher-order component for reactively tracking Meteor data
+ accounts-password
+diff --git a/.meteor/versions b/.meteor/versions
+index 06d5275..35614e3 100644
+--- a/.meteor/versions
++++ b/.meteor/versions
+@@ -34,7 +34,6 @@ hot-code-push@1.0.4
+ html-tools@1.0.11
+ htmljs@1.0.11
+ id-map@1.1.0
+-insecure@1.0.7
+ inter-process-messaging@0.1.1
+ launch-screen@1.2.0
+ livedata@1.0.18
+-- 
+2.11.0
+
+
+From db0a4f81d6d5e912838641a17b78767a82cba462 Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Sat, 8 Feb 2020 08:15:25 -0400
+Subject: [PATCH 39/57] Step 7.2: Add Task Methods
+
+---
+ imports/api/tasks.js | 45 ++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 44 insertions(+), 1 deletion(-)
 
 diff --git a/imports/api/tasks.js b/imports/api/tasks.js
-index 63feeca..5f76880 100644
+index f086cc0..b666f73 100644
 --- a/imports/api/tasks.js
 +++ b/imports/api/tasks.js
-@@ -6,8 +6,14 @@ export const Tasks = new Mongo.Collection('tasks');
+@@ -1,3 +1,46 @@
+ import { Mongo } from 'meteor/mongo';
++import { check } from 'meteor/check';
+ 
+-export default new Mongo.Collection('tasks');
++export const Tasks = new Mongo.Collection('tasks');
++
++Meteor.methods({
++  'tasks.insert'(text) {
++    check(text, String);
++
++    if (!this.userId) {
++      throw new Meteor.Error('Not authorized.');
++    }
++
++    Tasks.insert({
++      text,
++      createdAt: new Date,
++      owner: this.userId,
++      username: Meteor.users.findOne(this.userId).username
++    })
++  },
++
++  'tasks.remove'(taskId) {
++    check(taskId, String);
++
++    if (!this.userId) {
++      throw new Meteor.Error('Not authorized.');
++    }
++
++    Tasks.remove(taskId);
++  },
++
++  'tasks.setChecked'(taskId, isChecked) {
++    check(taskId, String);
++    check(isChecked, Boolean);
++
++    if (!this.userId) {
++      throw new Meteor.Error('Not authorized.');
++    }
++
++    Tasks.update(taskId, {
++      $set: {
++        isChecked
++      }
++    });
++  }
++});
+\ No newline at end of file
+-- 
+2.11.0
+
+
+From b4db47ab57ab792e6c85ba4ef64a5ed0f6a8ddc1 Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Sat, 8 Feb 2020 08:18:34 -0400
+Subject: [PATCH 40/57] Step 7.3: Update the main.js Server File
+
+---
+ server/main.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/server/main.js b/server/main.js
+index 03edae0..6c3f703 100644
+--- a/server/main.js
++++ b/server/main.js
+@@ -1,5 +1,5 @@
+ import { Meteor } from 'meteor/meteor';
+-import Tasks from '/imports/api/tasks';
++import { Tasks } from '/imports/api/tasks';
+ 
+ Meteor.startup(() => {
+   if (!Accounts.findUserByUsername('meteorite')) {
+-- 
+2.11.0
+
+
+From f5cd5f4ddbcbb09c33a7bd5c7359fdf82c973cf4 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 28 Jun 2020 21:46:23 -0500
+Subject: [PATCH 41/57] Step 7.4: Update the TaskForm Component
+
+---
+ imports/ui/TaskForm.jsx | 11 +++--------
+ 1 file changed, 3 insertions(+), 8 deletions(-)
+
+diff --git a/imports/ui/TaskForm.jsx b/imports/ui/TaskForm.jsx
+index 4ed897a..a2803cc 100644
+--- a/imports/ui/TaskForm.jsx
++++ b/imports/ui/TaskForm.jsx
+@@ -1,17 +1,12 @@
+-import React, { useState } from 'react';
+-import Tasks from '/imports/api/tasks';
++import React, {useState} from 'react';
+ 
+-export const TaskForm = ({ user }) => {
++export const TaskForm = () => {
+   const [text, setText] = useState("");
+ 
+   const handleSubmit = () => {
+     if (!text) return;
+ 
+-    Tasks.insert({
+-      text: text.trim(),
+-      createdAt: new Date(),
+-      owner: user._id,
+-    });
++    Meteor.call('tasks.insert', text.trim());
+ 
+     setText("");
+   };
+-- 
+2.11.0
+
+
+From a04fa62b6d65219f8f9be6ccef22b0f27ceffca8 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 28 Jun 2020 21:47:05 -0500
+Subject: [PATCH 42/57] Step 7.5: Update the Task Component
+
+---
+ imports/ui/Task.jsx | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
+
+diff --git a/imports/ui/Task.jsx b/imports/ui/Task.jsx
+index cae285b..3d0f41b 100644
+--- a/imports/ui/Task.jsx
++++ b/imports/ui/Task.jsx
+@@ -1,18 +1,15 @@
+ import React from 'react';
+ import classnames from 'classnames';
+-import _ from 'lodash';
+ 
+ export const Task = ({ task, onCheckboxClick, onDeleteClick }) => {
+   const classes = classnames('task', {
+     'checked': Boolean(task.isChecked)
+   });
+ 
+-  const owner = _.first(Accounts.users.find(task.owner).fetch());
+-
+   return (
+     <li className={classes}>
+       <button onClick={ () => onDeleteClick(task) }>&times;</button>
+-      <span>{ task.text } { owner && <i>({ owner.username })</i> }</span>
++      <span>{ task.text } { task.username && <i>({ task.username })</i> }</span>
+       <input
+         type="checkbox"
+         checked={ Boolean(task.isChecked) }
+-- 
+2.11.0
+
+
+From c4fafb61ac1f09c45d3b8ab82a924667bc296f66 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Sun, 28 Jun 2020 21:47:27 -0500
+Subject: [PATCH 43/57] Step 7.6: Update the App Component
+
+---
+ imports/ui/App.jsx | 12 ++++--------
+ 1 file changed, 4 insertions(+), 8 deletions(-)
+
+diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
+index a6aaa0d..f9b8dc7 100644
+--- a/imports/ui/App.jsx
++++ b/imports/ui/App.jsx
+@@ -2,19 +2,15 @@ import React, { useState } from 'react';
+ import { useTracker } from 'meteor/react-meteor-data';
+ import _ from 'lodash';
+ import { Task } from './Task';
+-import Tasks from '/imports/api/tasks';
++import { Tasks } from '/imports/api/tasks';
+ import { TaskForm } from './TaskForm';
+ import { LoginForm } from './LoginForm';
+ 
+ const toggleChecked = ({ _id, isChecked }) => {
+-  Tasks.update(_id, {
+-    $set: {
+-      isChecked: !isChecked
+-    }
+-  })
++  Meteor.call('tasks.setChecked', _id, !isChecked);
+ };
+ 
+-const deleteTask = ({ _id }) => Tasks.remove(_id);
++const deleteTask = ({ _id }) => Meteor.call('tasks.remove', _id);
+ 
+ export const App = () => {
+   const filter = {};
+@@ -64,7 +60,7 @@ export const App = () => {
+         />) }
+       </ul>
+ 
+-      <TaskForm user={user}/>
++      <TaskForm />
+     </div>
+   );
+ };
+-- 
+2.11.0
+
+
+From f64a7437d484a68a80a43786cbb1480dcc9d9f87 Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Sat, 8 Feb 2020 11:11:19 -0400
+Subject: [PATCH 44/57] Step 8.1: More Security
+
+---
+ .meteor/packages | 1 -
+ .meteor/versions | 1 -
+ 2 files changed, 2 deletions(-)
+
+diff --git a/.meteor/packages b/.meteor/packages
+index f0118f6..b681e77 100644
+--- a/.meteor/packages
++++ b/.meteor/packages
+@@ -16,7 +16,6 @@ ecmascript@0.14.3              # Enable ECMAScript2015+ syntax in app code
+ typescript@3.7.6              # Enable TypeScript syntax in .ts and .tsx modules
+ shell-server@0.5.0            # Server-side component of the `meteor shell` command
+ 
+-autopublish@1.0.7             # Publish all data to the clients (for prototyping)
+ static-html             # Define static page content in .html files
+ react-meteor-data       # React higher-order component for reactively tracking Meteor data
+ accounts-password
+diff --git a/.meteor/versions b/.meteor/versions
+index 35614e3..588c3c5 100644
+--- a/.meteor/versions
++++ b/.meteor/versions
+@@ -1,7 +1,6 @@
+ accounts-base@1.6.0
+ accounts-password@1.6.0
+ allow-deny@1.1.0
+-autopublish@1.0.7
+ autoupdate@1.6.0
+ babel-compiler@7.5.3
+ babel-runtime@1.5.0
+-- 
+2.11.0
+
+
+From 279bc805029a87b22bb0f482d83c3507faf6f976 Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Sat, 8 Feb 2020 19:47:51 -0400
+Subject: [PATCH 45/57] Step 8.2: Tasks Publication
+
+---
+ imports/api/tasks.js | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/imports/api/tasks.js b/imports/api/tasks.js
+index b666f73..a0165fe 100644
+--- a/imports/api/tasks.js
++++ b/imports/api/tasks.js
+@@ -43,4 +43,8 @@ Meteor.methods({
+       }
+     });
+   }
+-});
+\ No newline at end of file
++});
++
++if (Meteor.isServer) {
++  Meteor.publish('tasks', function() { return Tasks.find() })
++}
+-- 
+2.11.0
+
+
+From dc171086fb9f5dd788f80e2e1a7a6c09c7c208ed Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Sat, 8 Feb 2020 19:48:15 -0400
+Subject: [PATCH 46/57] Step 8.3: Tasks Subscription
+
+---
+ imports/ui/App.jsx | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
+
+diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
+index f9b8dc7..4914ed8 100644
+--- a/imports/ui/App.jsx
++++ b/imports/ui/App.jsx
+@@ -21,11 +21,15 @@ export const App = () => {
+     _.set(filter, 'checked', false);
+   }
+ 
+-  const { tasks, incompleteTasksCount, user } = useTracker(() => ({
+-    tasks: Tasks.find(filter, { sort: { createdAt: -1 } }).fetch(),
+-    incompleteTasksCount: Tasks.find({ checked: { $ne: true }}).count(),
+-    user: Meteor.user(),
+-  }));
++  const { tasks, incompleteTasksCount, user } = useTracker(() => {
++    Meteor.subscribe('tasks');
++
++    return ({
++      tasks: Tasks.find(filter, {sort: {createdAt: -1}}).fetch(),
++      incompleteTasksCount: Tasks.find({checked: {$ne: true}}).count(),
++      user: Meteor.user(),
++    });
++  });
+ 
+   if (!user) {
+     return (
+-- 
+2.11.0
+
+
+From c4b18ae0ea93b161304a608807ec0748048a3114 Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Sat, 8 Feb 2020 19:51:17 -0400
+Subject: [PATCH 47/57] Step 8.4: Private Task Method
+
+---
+ imports/api/tasks.js | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+
+diff --git a/imports/api/tasks.js b/imports/api/tasks.js
+index a0165fe..eb32582 100644
+--- a/imports/api/tasks.js
++++ b/imports/api/tasks.js
+@@ -42,6 +42,21 @@ Meteor.methods({
+         isChecked
+       }
+     });
++  },
++
++  'tasks.setPrivate'(taskId, isPrivate) {
++    check(taskId, String);
++    check(isPrivate, Boolean);
++
++    if (!this.userId) {
++      throw new Meteor.Error('Not authorized.');
++    }
++
++    Tasks.update(taskId, {
++      $set: {
++        isPrivate
++      }
++    })
+   }
+ });
+ 
+-- 
+2.11.0
+
+
+From 573d51dfbf9a02a74c459cfb7a7468e2eb30a9c6 Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Mon, 29 Jun 2020 19:07:38 -0500
+Subject: [PATCH 48/57] Step 8.5: Add a Toggle Private Button to the Task
+ Component
+
+---
+ imports/ui/Task.jsx | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/imports/ui/Task.jsx b/imports/ui/Task.jsx
+index 3d0f41b..bee59b4 100644
+--- a/imports/ui/Task.jsx
++++ b/imports/ui/Task.jsx
+@@ -1,7 +1,7 @@
+ import React from 'react';
+ import classnames from 'classnames';
+ 
+-export const Task = ({ task, onCheckboxClick, onDeleteClick }) => {
++export const Task = ({ task, onCheckboxClick, onDeleteClick, onTogglePrivateClick }) => {
+   const classes = classnames('task', {
+     'checked': Boolean(task.isChecked)
+   });
+@@ -9,6 +9,7 @@ export const Task = ({ task, onCheckboxClick, onDeleteClick }) => {
+   return (
+     <li className={classes}>
+       <button onClick={ () => onDeleteClick(task) }>&times;</button>
++      <button onClick={ () => onTogglePrivateClick(task) }>{ task.isPrivate ? 'Private' : 'Public' }</button>
+       <span>{ task.text } { task.username && <i>({ task.username })</i> }</span>
+       <input
+         type="checkbox"
+-- 
+2.11.0
+
+
+From e62c9496eb21284989429b459cd6c3c20f1e5a7f Mon Sep 17 00:00:00 2001
+From: Brian Mulhall <brian.e.mulhall@gmail.com>
+Date: Mon, 29 Jun 2020 19:09:32 -0500
+Subject: [PATCH 49/57] Step 8.6: Update the App Component
+
+---
+ imports/ui/App.jsx | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/imports/ui/App.jsx b/imports/ui/App.jsx
+index 4914ed8..fa4b042 100644
+--- a/imports/ui/App.jsx
++++ b/imports/ui/App.jsx
+@@ -10,6 +10,10 @@ const toggleChecked = ({ _id, isChecked }) => {
+   Meteor.call('tasks.setChecked', _id, !isChecked);
+ };
+ 
++const togglePrivate = ({ _id, isPrivate }) => {
++  Meteor.call('tasks.setPrivate', _id, !isPrivate);
++};
++
+ const deleteTask = ({ _id }) => Meteor.call('tasks.remove', _id);
+ 
+ export const App = () => {
+@@ -61,6 +65,7 @@ export const App = () => {
+           task={ task }
+           onCheckboxClick={toggleChecked}
+           onDeleteClick={deleteTask}
++          onTogglePrivateClick={togglePrivate}
+         />) }
+       </ul>
+ 
+-- 
+2.11.0
+
+
+From 3c807cfe0faff0fb9e53a867dc046e16d69b752a Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Wed, 12 Feb 2020 15:26:37 -0400
+Subject: [PATCH 50/57] Step 8.7: Publish Visible Tasks
+
+---
+ imports/api/tasks.js | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/imports/api/tasks.js b/imports/api/tasks.js
+index eb32582..1f353ee 100644
+--- a/imports/api/tasks.js
++++ b/imports/api/tasks.js
+@@ -61,5 +61,12 @@ Meteor.methods({
+ });
  
  if (Meteor.isServer) {
-   // This code only runs on the server
-+  // Only publish tasks that are public or belong to the current user
-   Meteor.publish('tasks', function tasksPublication() {
--    return Tasks.find();
+-  Meteor.publish('tasks', function() { return Tasks.find() })
++  Meteor.publish('tasks', function() {
 +    return Tasks.find({
 +      $or: [
 +        { private: { $ne: true } },
-+        { owner: this.userId },
-+      ],
++        { owner: this.userId }
++      ]
 +    });
-   });
++  })
  }
- 
 -- 
 2.11.0
 
 
-From dcc14bad56591c5ce6910fd7554bbc045da6891c Mon Sep 17 00:00:00 2001
-From: Sashko Stubailo <sashko@stubailo.com>
-Date: Mon, 13 Jul 2015 12:40:55 -0700
-Subject: [PATCH 46/51] Step 10.12: Add extra security to methods
+From 83128875c3f7a618bc130989ab9990b3f0a921a4 Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Sat, 15 Feb 2020 07:11:45 -0400
+Subject: [PATCH 51/57] Step 8.8: Check User Permission
 
 ---
- imports/api/tasks.js | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ imports/api/tasks.js | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
 
 diff --git a/imports/api/tasks.js b/imports/api/tasks.js
-index 5f76880..d7d72dd 100644
+index 1f353ee..7e04b0d 100644
 --- a/imports/api/tasks.js
 +++ b/imports/api/tasks.js
-@@ -36,12 +36,24 @@ Meteor.methods({
+@@ -22,7 +22,9 @@ Meteor.methods({
    'tasks.remove'(taskId) {
      check(taskId, String);
  
+-    if (!this.userId) {
 +    const task = Tasks.findOne(taskId);
-+    if (task.private && task.owner !== this.userId) {
-+      // If the task is private, make sure only the owner can delete it
-+      throw new Meteor.Error('not-authorized');
-+    }
 +
-     Tasks.remove(taskId);
-   },
-   'tasks.setChecked'(taskId, setChecked) {
-     check(taskId, String);
-     check(setChecked, Boolean);
++    if (!this.userId || task.owner !== this.userId) {
+       throw new Meteor.Error('Not authorized.');
+     }
  
+@@ -33,7 +35,9 @@ Meteor.methods({
+     check(taskId, String);
+     check(isChecked, Boolean);
+ 
+-    if (!this.userId) {
 +    const task = Tasks.findOne(taskId);
-+    if (task.private && task.owner !== this.userId) {
-+      // If the task is private, make sure only the owner can check it off
-+      throw new Meteor.Error('not-authorized');
-+    }
 +
-     Tasks.update(taskId, { $set: { checked: setChecked } });
-   },
-   'tasks.setPrivate'(taskId, setToPrivate) {
++    if (task.isPrivate && task.owner !== this.userId) {
+       throw new Meteor.Error('Not authorized.');
+     }
+ 
+@@ -48,7 +52,9 @@ Meteor.methods({
+     check(taskId, String);
+     check(isPrivate, Boolean);
+ 
+-    if (!this.userId) {
++    const task = Tasks.findOne(taskId);
++
++    if (!this.userId || task.owner !== this.userId) {
+       throw new Meteor.Error('Not authorized.');
+     }
+ 
 -- 
 2.11.0
 
 
-From 28eddedba907d46606ecc00adc8eef3d2450745d Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Fri, 18 Mar 2016 16:35:58 +1100
-Subject: [PATCH 47/51] Step 11.1: Added practicalmeteor:mocha package
+From cc40f9161cc6b335d4f53ae90e6df70af79551f2 Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Sat, 15 Feb 2020 07:15:36 -0400
+Subject: [PATCH 52/57] Step 8.9: Remove Unneeded Code
 
 ---
- .meteor/packages  |  2 ++
+ server/main.js | 15 ++-------------
+ 1 file changed, 2 insertions(+), 13 deletions(-)
+
+diff --git a/server/main.js b/server/main.js
+index 6c3f703..6da8bf7 100644
+--- a/server/main.js
++++ b/server/main.js
+@@ -1,5 +1,6 @@
+ import { Meteor } from 'meteor/meteor';
+-import { Tasks } from '/imports/api/tasks';
++import '/imports/api/links';
++import '/imports/api/tasks';
+ 
+ Meteor.startup(() => {
+   if (!Accounts.findUserByUsername('meteorite')) {
+@@ -8,16 +9,4 @@ Meteor.startup(() => {
+       password: 'password'
+     });
+   }
+-
+-  if (Tasks.find().count() === 0) {
+-    [
+-      'First Task',
+-      'Second Task',
+-      'Third Task',
+-      'Fourth Task',
+-      'Fifth Task',
+-      'Sixth Task',
+-      'Seventh Task'
+-    ].forEach(insertTask)
+-  }
+ });
+-- 
+2.11.0
+
+
+From bced6210166f1fe0ba126a032f9bcdb00b8331e7 Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Sat, 15 Feb 2020 12:18:36 -0400
+Subject: [PATCH 53/57] Step 10.1: Install Dependencies
+
+---
+ .meteor/packages  |  1 +
+ .meteor/versions  |  7 +++++++
  package-lock.json | 53 +++++++++++++++++++++++++++++++++++++++++++++++++++++
  package.json      |  3 +++
- 3 files changed, 58 insertions(+)
+ 4 files changed, 64 insertions(+)
 
 diff --git a/.meteor/packages b/.meteor/packages
-index d766aae..f7c1185 100644
+index b681e77..12812a0 100644
 --- a/.meteor/packages
 +++ b/.meteor/packages
-@@ -21,3 +21,5 @@ react-meteor-data
- 
- accounts-ui@1.3.1
- accounts-password@1.5.1
-+
+@@ -19,3 +19,4 @@ shell-server@0.5.0            # Server-side component of the `meteor shell` comm
+ static-html             # Define static page content in .html files
+ react-meteor-data       # React higher-order component for reactively tracking Meteor data
+ accounts-password
 +meteortesting:mocha
+diff --git a/.meteor/versions b/.meteor/versions
+index 588c3c5..68d97f0 100644
+--- a/.meteor/versions
++++ b/.meteor/versions
+@@ -32,14 +32,20 @@ geojson-utils@1.0.10
+ hot-code-push@1.0.4
+ html-tools@1.0.11
+ htmljs@1.0.11
++http@1.4.2
+ id-map@1.1.0
+ inter-process-messaging@0.1.1
+ launch-screen@1.2.0
+ livedata@1.0.18
++lmieulet:meteor-coverage@1.1.4
+ localstorage@1.2.0
+ logging@1.1.20
+ meteor@1.9.3
+ meteor-base@1.4.0
++meteorhacks:picker@1.0.3
++meteortesting:browser-tests@1.0.0
++meteortesting:mocha@1.1.4
++meteortesting:mocha-core@7.0.1
+ minifier-css@1.5.0
+ minifier-js@2.6.0
+ minimongo@1.6.0
+@@ -76,5 +82,6 @@ templating-tools@1.1.2
+ tracker@1.2.0
+ typescript@3.7.6
+ underscore@1.0.10
++url@1.3.0
+ webapp@1.9.1
+ webapp-hashing@1.0.9
 diff --git a/package-lock.json b/package-lock.json
-index 1279b54..98389bd 100644
+index 4b215dd..a96e596 100644
 --- a/package-lock.json
 +++ b/package-lock.json
-@@ -11,11 +11,52 @@
-         "regenerator-runtime": "^0.12.0"
+@@ -35,6 +35,12 @@
+         "readable-stream": "^2.0.6"
        }
      },
 +    "assertion-error": {
@@ -3150,6 +3725,13 @@ index 1279b54..98389bd 100644
 +      "integrity": "sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==",
 +      "dev": true
 +    },
+     "balanced-match": {
+       "version": "1.0.0",
+       "resolved": "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.0.tgz",
+@@ -58,6 +64,26 @@
+         "concat-map": "0.0.1"
+       }
+     },
 +    "chai": {
 +      "version": "4.2.0",
 +      "resolved": "https://registry.npmjs.org/chai/-/chai-4.2.0.tgz",
@@ -3170,10 +3752,12 @@ index 1279b54..98389bd 100644
 +      "integrity": "sha1-V00xLt2Iu13YkS6Sht1sCu1KrII=",
 +      "dev": true
 +    },
-     "classnames": {
-       "version": "2.2.6",
-       "resolved": "https://registry.npmjs.org/classnames/-/classnames-2.2.6.tgz",
-       "integrity": "sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q=="
+     "chownr": {
+       "version": "1.1.3",
+       "resolved": "https://registry.npmjs.org/chownr/-/chownr-1.1.3.tgz",
+@@ -96,6 +122,15 @@
+         "ms": "^2.1.1"
+       }
      },
 +    "deep-eql": {
 +      "version": "3.0.1",
@@ -3184,18 +3768,25 @@ index 1279b54..98389bd 100644
 +        "type-detect": "^4.0.0"
 +      }
 +    },
+     "deep-extend": {
+       "version": "0.6.0",
+       "resolved": "https://registry.npmjs.org/deep-extend/-/deep-extend-0.6.0.tgz",
+@@ -139,6 +174,12 @@
+         "wide-align": "^1.1.0"
+       }
+     },
 +    "get-func-name": {
 +      "version": "2.0.0",
 +      "resolved": "https://registry.npmjs.org/get-func-name/-/get-func-name-2.0.0.tgz",
 +      "integrity": "sha1-6td0q+5y4gQJQzoGY2YCPdaIekE=",
 +      "dev": true
 +    },
-     "js-tokens": {
-       "version": "4.0.0",
-       "resolved": "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz",
-@@ -633,6 +674,12 @@
-       "resolved": "https://registry.npmjs.org/object-assign/-/object-assign-4.1.1.tgz",
-       "integrity": "sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM="
+     "glob": {
+       "version": "7.1.6",
+       "resolved": "https://registry.npmjs.org/glob/-/glob-7.1.6.tgz",
+@@ -944,6 +985,12 @@
+       "resolved": "https://registry.npmjs.org/path-is-absolute/-/path-is-absolute-1.0.1.tgz",
+       "integrity": "sha1-F0uSaHNVNP+8es5r9TpanhtcX18="
      },
 +    "pathval": {
 +      "version": "1.1.0",
@@ -3203,27 +3794,27 @@ index 1279b54..98389bd 100644
 +      "integrity": "sha1-uULm1L3mUwBe9rcTYd74cn0GReA=",
 +      "dev": true
 +    },
-     "prop-types": {
-       "version": "15.6.2",
-       "resolved": "https://registry.npmjs.org/prop-types/-/prop-types-15.6.2.tgz",
-@@ -677,6 +724,12 @@
-         "loose-envify": "^1.1.0",
-         "object-assign": "^4.1.1"
+     "process-nextick-args": {
+       "version": "2.0.1",
+       "resolved": "https://registry.npmjs.org/process-nextick-args/-/process-nextick-args-2.0.1.tgz",
+@@ -1114,6 +1161,12 @@
+         "yallist": "^3.0.3"
        }
-+    },
+     },
 +    "type-detect": {
 +      "version": "4.0.8",
 +      "resolved": "https://registry.npmjs.org/type-detect/-/type-detect-4.0.8.tgz",
 +      "integrity": "sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==",
 +      "dev": true
-     }
-   }
- }
++    },
+     "util-deprecate": {
+       "version": "1.0.2",
+       "resolved": "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz",
 diff --git a/package.json b/package.json
-index c8e04b2..5a9503b 100644
+index 5fbd35a..c79bd64 100644
 --- a/package.json
 +++ b/package.json
-@@ -20,5 +20,8 @@
+@@ -22,5 +22,8 @@
        "server": "server/main.js"
      },
      "testModule": "tests/main.js"
@@ -3236,24 +3827,22 @@ index c8e04b2..5a9503b 100644
 2.11.0
 
 
-From a48d54c8bb6454853ac70c8dcddba09fcee26295 Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Fri, 18 Mar 2016 16:36:17 +1100
-Subject: [PATCH 48/51] Step 11.2: Add a scaffold for a method test
+From 5adacf436fc1e04f2e7e150bf691b339b2123fa6 Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Sat, 15 Feb 2020 12:32:46 -0400
+Subject: [PATCH 54/57] Step 10.2: Scaffold Test
 
 ---
- imports/api/tasks.tests.js | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ imports/api/tasks.tests.js | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
  create mode 100644 imports/api/tasks.tests.js
 
 diff --git a/imports/api/tasks.tests.js b/imports/api/tasks.tests.js
 new file mode 100644
-index 0000000..05287ba
+index 0000000..daa9150
 --- /dev/null
 +++ b/imports/api/tasks.tests.js
-@@ -0,0 +1,12 @@
-+/* eslint-env mocha */
-+
+@@ -0,0 +1,10 @@
 +import { Meteor } from 'meteor/meteor';
 +
 +if (Meteor.isServer) {
@@ -3264,26 +3853,25 @@ index 0000000..05287ba
 +    });
 +  });
 +}
+\ No newline at end of file
 -- 
 2.11.0
 
 
-From 164a4faa1344f377289673c2a5562ec6313b1055 Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Fri, 18 Mar 2016 16:36:29 +1100
-Subject: [PATCH 49/51] Step 11.3: Prepare the database for each test
+From 47535a7d3a61f2833a1d945085d531e00a9d3939 Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Sat, 15 Feb 2020 12:34:40 -0400
+Subject: [PATCH 55/57] Step 10.3: Prepare Database
 
 ---
- imports/api/tasks.tests.js | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ imports/api/tasks.tests.js | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
 diff --git a/imports/api/tasks.tests.js b/imports/api/tasks.tests.js
-index 05287ba..1359e85 100644
+index daa9150..35b6f52 100644
 --- a/imports/api/tasks.tests.js
 +++ b/imports/api/tasks.tests.js
-@@ -1,10 +1,26 @@
- /* eslint-env mocha */
- 
+@@ -1,8 +1,25 @@
  import { Meteor } from 'meteor/meteor';
 +import { Random } from 'meteor/random';
 +
@@ -3297,11 +3885,12 @@ index 05287ba..1359e85 100644
 +
 +      beforeEach(() => {
 +        Tasks.remove({});
++
 +        taskId = Tasks.insert({
-+          text: 'test task',
++          text: 'Test Task',
 +          createdAt: new Date(),
 +          owner: userId,
-+          username: 'tmeasday',
++          username: 'meteorite',
 +        });
 +      });
 +
@@ -3312,42 +3901,40 @@ index 05287ba..1359e85 100644
 2.11.0
 
 
-From 08418db10efcebdac8b87d4050d6b33b4549de17 Mon Sep 17 00:00:00 2001
-From: Tom Coleman <tom@thesnail.org>
-Date: Fri, 18 Mar 2016 16:36:42 +1100
-Subject: [PATCH 50/51] Step 11.4: Added test to check delete method
+From 5bb1ab3937ae5cfdde24c0446ff4c5d5d374b8ab Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Sat, 15 Feb 2020 12:38:33 -0400
+Subject: [PATCH 56/57] Step 10.4: Test Task Removal
 
 ---
- imports/api/tasks.tests.js | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ imports/api/tasks.tests.js | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
 diff --git a/imports/api/tasks.tests.js b/imports/api/tasks.tests.js
-index 1359e85..1b59ec8 100644
+index 35b6f52..60969e0 100644
 --- a/imports/api/tasks.tests.js
 +++ b/imports/api/tasks.tests.js
-@@ -2,6 +2,7 @@
- 
+@@ -1,5 +1,6 @@
  import { Meteor } from 'meteor/meteor';
  import { Random } from 'meteor/random';
 +import { assert } from 'chai';
  
  import { Tasks } from './tasks.js';
  
-@@ -22,6 +23,18 @@ if (Meteor.isServer) {
+@@ -21,6 +22,17 @@ if (Meteor.isServer) {
        });
  
        it('can delete owned task', () => {
-+        // Find the internal implementation of the task method so we can
-+        // test it in isolation
++        // Isolate internal method implementation.
 +        const deleteTask = Meteor.server.method_handlers['tasks.remove'];
 +
-+        // Set up a fake method invocation that looks like what the method expects
++        // Set up a fake method call context.
 +        const invocation = { userId };
 +
-+        // Run the method with `this` set to the fake invocation
++        // Run the method with `this` set to the mock context.
 +        deleteTask.apply(invocation, [taskId]);
 +
-+        // Verify that the method does what we expected
++        // Check its behavior.
 +        assert.equal(Tasks.find().count(), 0);
        });
      });
@@ -3356,25 +3943,27 @@ index 1359e85..1b59ec8 100644
 2.11.0
 
 
-From eb182c53e2ecfca05cb3294a888bc6c4b95a34eb Mon Sep 17 00:00:00 2001
-From: Ben Newman <ben@benjamn.com>
-Date: Sun, 6 Jan 2019 19:24:16 -0500
-Subject: [PATCH 51/51] Step 11.5: Import tasks.tests.js into tests/main.js
+From 976d58cba251046776a81fd8ea0fab3ee02d7b7e Mon Sep 17 00:00:00 2001
+From: Leonardo Venturini <leovenbag@gmail.com>
+Date: Sat, 15 Feb 2020 12:40:41 -0400
+Subject: [PATCH 57/57] Step 10.5: Import Test
 
 ---
- tests/main.js | 1 +
- 1 file changed, 1 insertion(+)
+ tests/main.js | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/tests/main.js b/tests/main.js
-index 837560f..aae2dee 100644
+index 837560f..2017994 100644
 --- a/tests/main.js
 +++ b/tests/main.js
-@@ -1,4 +1,5 @@
+@@ -1,5 +1,7 @@
  import assert from "assert";
-+import "../imports/api/tasks.tests.js";
  
++import "../imports/api/tasks.tests.js";
++
  describe("simple-todos-react", function () {
    it("package.json has correct name", async function () {
+     const { name } = await import("../package.json");
 -- 
 2.11.0
 
