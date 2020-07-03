@@ -43,14 +43,11 @@ After we have all the files set, we can create our first React component for our
 
 Let's define some sample data which will be used shortly.
 
-{{> DiffBox tutorialName="simple-todos-react" step="1.4"}}
-
-
 
 ## Step 1.4: Render Sample Tasks
 
 Now we can implement some simple rendering logic with React. We can now use our previous `Task` component to render our list items.
 
-{{{diffStep 1.4 noTitle=true}}}
+{{> DiffBox tutorialName="simple-todos-react" step="1.4"}}
 
 {{/template}}
