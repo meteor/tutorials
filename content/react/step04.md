@@ -30,7 +30,7 @@ Our user interface up until this point has looked quite ugly. Let's add some bas
 
 First, let's install the `classnames` package which helps us manage conditional styling:
 
-```shell script
+```
 npm i classnames
 ```
 

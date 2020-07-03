@@ -8,14 +8,14 @@ We'll write a test which executes one of our Methods and verifies that it works 
 
 We'll add a test driver for the Mocha JavaScript test framework, along with a test assertion library:
 
-```shell script
+```
 meteor add meteortesting:mocha
 meteor npm install --save-dev chai
 ```
 
 We can now run our app in "test mode" by running meteor test and specifying a test driver package (you'll need to stop the regular app from running, or specify an alternate port with --port XYZ):
 
-```shell script
+```
 TEST_WATCH=1 meteor test --driver-package meteortesting:mocha
 ```
 
@@ -77,7 +77,7 @@ In fact, new Meteor apps come with a few preconfigured npm scripts, which you ar
 
 The standard `npm test` command runs the following command:
 
-```shell script
+```
 meteor test --once --driver-package meteortesting:mocha
 ```
 
@@ -85,7 +85,7 @@ This command is suitable for running in a Continuous Integration (CI) environmen
 
 If you would like to run your tests while developing your application (and re-run them whenever the development server restarts), consider using meteor npm run test-app, which is equivalent to:
 
-```shell script
+```
 TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha
 ```
 

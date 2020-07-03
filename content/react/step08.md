@@ -6,7 +6,7 @@ Now we have moved all of our app's sensitive code into methods, we need to learn
 
 Just like with `insecure` in the last step, all new Meteor apps start with the `autopublish` package, which automatically synchronizes all the database contents to the client. Let's remove it and see what happens:
 
-```shell script
+```
 meteor remove autopublish
 ```
 

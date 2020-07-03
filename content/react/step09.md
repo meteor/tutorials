@@ -14,7 +14,7 @@ Follow this [guide](https://guide.meteor.com/mobile.html#installing-prerequisite
 
 When you're done, type:
 
-```shell script
+```
 meteor add-platform ios
 meteor run ios
 ```
@@ -27,13 +27,13 @@ Follow this [guide](https://guide.meteor.com/mobile.html#installing-prerequisite
 
 When you are done installing everything, type:
 
-```shell script
+```
 meteor add-platform android
 ```
 
 After you agree to the license terms, type:
 
-```shell script
+```
 metoer run android
 ```
 
@@ -45,7 +45,7 @@ First, complete all the steps above to set up the Android tools on your system. 
 
 Then, run the following command:
 
-```shell script
+```
 meteor run android-device
 ```
 
@@ -57,7 +57,7 @@ The app will be built and installed on your device.
 
 If you have an Apple developer account, you can also run your app on an iOS device. Run the following command:
 
-```shell script
+```
 meteor run ios-device
 ```
 

@@ -6,7 +6,7 @@ In this tutorial we will build a simple to-do tasks app using [React](https://re
 
 First we need to install Meteor and the easiest way to setup Meteor with React is by using the command:
 
-```shell script
+```
 meteor create --react simple-todos-react
 ```
 
@@ -20,7 +20,7 @@ For now you don't need to worry about the files located in the `client` director
 
 You can run your Meteor app using: 
 
-```shell script
+```
 meteor run
 ```
 
