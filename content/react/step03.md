@@ -1,10 +1,10 @@
+{{#template name="react-step03"}}
+
 All apps need to allow the user to perform some types of interaction with the data that is stored. In our case, the first type of interaction is to insert new tasks, or our app would not have much value, would it?
 
 One of the main ways in which a user can insert or edit data in a website is through forms, in most cases it is a good idea to use the `<form>` tag since it gives semantic meaning to the elements inside it.
 
 ## Step 3.1: Create Task Form
-
-{{#template name="react-step03"}}
 
 First we need to create a simple form component to encapsulate our logic. As you can see we set up the `useState` React Hook.
 

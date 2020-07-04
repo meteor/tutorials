@@ -28,7 +28,6 @@ Don't worry, Meteor will keep your app in sync with all your changes from now on
 
 Most of your React application will be located inside the `imports` directory, and this file is the entry point of your React To-do app:
 
-{{> DiffBox tutorialName="simple-todos-react" step="1.2"}}
 
 > Note: in previous versions of Meteor, the `imports` directory was special because files outside the `imports` directory were loaded automatically when the application started, whereas files inside the `imports` directory were only loaded when imported using an `import` declaration or a `require` statement. As of Meteor 1.7, the entry point for both client and server JavaScript is determined by the `meteor.mainModule` section in `package.json`. In other words, as far as JavaScript code is concerned, the entire application now behaves as if it was inside an `imports` directory, so you don't need to worry as much about the `imports` directory now.
 
@@ -37,12 +36,14 @@ Most of your React application will be located inside the `imports` directory, a
 
 After we have all the files set, we can create our first React component for our To-Do App.
 
-{{> DiffBox tutorialName="simple-todos-react" step="1.3"}}
+{{> DiffBox tutorialName="simple-todos-react" step="1.2"}}
+
 
 ## Step 1.3: Create Sample Tasks
 
 Let's define some sample data which will be used shortly.
 
+{{> DiffBox tutorialName="simple-todos-react" step="1.3"}}
 
 ## Step 1.4: Render Sample Tasks
 
