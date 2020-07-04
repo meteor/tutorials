@@ -2078,10 +2078,10 @@ index 2f641ef..4ebd0dd 100644
 2.11.0
 
 
-From 4ecdab4ae4df1dfe7b5d8fa113da9ea68f04f5d5 Mon Sep 17 00:00:00 2001
+From 38fb3409d47378c9639705c6dcf64c097399c34e Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 1 Feb 2020 10:42:06 -0400
-Subject: [PATCH 27/57] Step 5.4: Count Incomplete Tasks
+Subject: [PATCH 27/57] Step 5.6: Count Incomplete Tasks
 
 ---
  imports/ui/App.jsx | 5 ++++-
@@ -2107,10 +2107,10 @@ index 4ebd0dd..64ee93a 100644
 2.11.0
 
 
-From b6f183889b22dd994b9a6b194446a52147cb795b Mon Sep 17 00:00:00 2001
+From fb01fd235f008f58077fe680c8cf9d5ce1b22e7d Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 1 Feb 2020 10:43:55 -0400
-Subject: [PATCH 28/57] Step 5.5: Render Count
+Subject: [PATCH 28/57] Step 5.7: Render Count
 
 ---
  imports/ui/App.jsx | 2 +-
@@ -2133,7 +2133,7 @@ index 64ee93a..49348f0 100644
 2.11.0
 
 
-From 34142133acb2ce655498c7ddce1b21e98005fe41 Mon Sep 17 00:00:00 2001
+From 5e29cd63d1b03868a5eeb359cc0af5c813f28b76 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Fri, 7 Feb 2020 18:18:52 -0400
 Subject: [PATCH 29/57] Step 6.1: Password Authentication
@@ -2216,7 +2216,7 @@ index cf01612..06d5275 100644
 2.11.0
 
 
-From 4872cf304e7b977b046d644bd887bf58daaead67 Mon Sep 17 00:00:00 2001
+From bf4923385abe170ca12e3d0a22809a4b54a7f24c Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Fri, 7 Feb 2020 18:50:26 -0400
 Subject: [PATCH 30/57] Step 6.2: Install BCrypt
@@ -2785,7 +2785,7 @@ index 1ab1388..5fbd35a 100644
 2.11.0
 
 
-From c1e7194d9728117f881162b57662866b55c4065e Mon Sep 17 00:00:00 2001
+From 37e5d52494756427a0ebe8535ebe023f364a8f14 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Fri, 7 Feb 2020 19:33:36 -0400
 Subject: [PATCH 31/57] Step 6.3: Create User Account
@@ -2816,7 +2816,7 @@ index 46f8a7c..03edae0 100644
 2.11.0
 
 
-From a1d695a3ee83ba9dd01bd43dab084f5e1b5e9e4e Mon Sep 17 00:00:00 2001
+From 55ca49140421d8c194fc0c60d517dba132126242 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Fri, 7 Feb 2020 19:38:11 -0400
 Subject: [PATCH 32/57] Step 6.4: Login Form
@@ -2876,7 +2876,7 @@ index 0000000..c024cfb
 2.11.0
 
 
-From 21c3fa6ee14d30084c8513d255b7f7278b3df308 Mon Sep 17 00:00:00 2001
+From ca682940ed8b615973c3485bea2917a79d34b48f Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Fri, 7 Feb 2020 19:38:53 -0400
 Subject: [PATCH 33/57] Step 6.5: Require Authentication
@@ -2924,7 +2924,7 @@ index 49348f0..bc21456 100644
 2.11.0
 
 
-From a5154842b26c4f7f59864b5eda3d20a7f3a02389 Mon Sep 17 00:00:00 2001
+From e7b6d9e653fb3c536af903a08adbd8f79843a2bb Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Fri, 7 Feb 2020 19:39:16 -0400
 Subject: [PATCH 34/57] Step 6.6: Basic Styling
@@ -2968,7 +2968,7 @@ index 1316d92..aa0c282 100644
 2.11.0
 
 
-From af53d770c38763f0a9526eb1b370712657067d14 Mon Sep 17 00:00:00 2001
+From 8399bb6656800b6e70d2893a7f0d5b65bd6471c2 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 18:44:43 -0500
 Subject: [PATCH 35/57] Step 6.7: Add a New Task Owner Component to the
@@ -3005,7 +3005,7 @@ index 82f09f9..4ed897a 100644
 2.11.0
 
 
-From 6083d7c8adb594e3b4ee6e2445eea388a0d5da1e Mon Sep 17 00:00:00 2001
+From ebd8dcfa607e68e304c3729b24ed1eeb41622c76 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 18:45:34 -0500
 Subject: [PATCH 36/57] Step 6.8: Add the New Task Owner Component to the App
@@ -3032,7 +3032,7 @@ index bc21456..a6aaa0d 100644
 2.11.0
 
 
-From 1530cb2c90305a18efdb828a19e768bab263d269 Mon Sep 17 00:00:00 2001
+From 367a3db989dbb278b107c0063a6541dae61bc1c9 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Fri, 7 Feb 2020 20:04:17 -0400
 Subject: [PATCH 37/57] Step 6.9: Task Owner Username
@@ -3069,7 +3069,7 @@ index 6059bf0..cae285b 100644
 2.11.0
 
 
-From 6e6c6b8c4b803683e6d42f9a210d0bba82751037 Mon Sep 17 00:00:00 2001
+From bc4cd2185f594cbe7767e5fbce283e141aca1dec Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 8 Feb 2020 07:54:52 -0400
 Subject: [PATCH 38/57] Step 7.1: Disable Quick Prototyping
@@ -3107,7 +3107,7 @@ index 06d5275..35614e3 100644
 2.11.0
 
 
-From db0a4f81d6d5e912838641a17b78767a82cba462 Mon Sep 17 00:00:00 2001
+From 8cdd60c69bd84809a758da69df45fe9c7f0e589e Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 8 Feb 2020 08:15:25 -0400
 Subject: [PATCH 39/57] Step 7.2: Add Task Methods
@@ -3173,7 +3173,7 @@ index f086cc0..b666f73 100644
 2.11.0
 
 
-From b4db47ab57ab792e6c85ba4ef64a5ed0f6a8ddc1 Mon Sep 17 00:00:00 2001
+From 2d73389ee8fafd5176aff65e00434d500410c49e Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 8 Feb 2020 08:18:34 -0400
 Subject: [PATCH 40/57] Step 7.3: Update the main.js Server File
@@ -3197,7 +3197,7 @@ index 03edae0..6c3f703 100644
 2.11.0
 
 
-From f5cd5f4ddbcbb09c33a7bd5c7359fdf82c973cf4 Mon Sep 17 00:00:00 2001
+From 9c9e03e776ac1cc16d8d2e4deb7c6bb18016dbb5 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 21:46:23 -0500
 Subject: [PATCH 41/57] Step 7.4: Update the TaskForm Component
@@ -3235,7 +3235,7 @@ index 4ed897a..a2803cc 100644
 2.11.0
 
 
-From a04fa62b6d65219f8f9be6ccef22b0f27ceffca8 Mon Sep 17 00:00:00 2001
+From b1c0ba2e6ae0dafafc279941ce6237b159b7090f Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 21:47:05 -0500
 Subject: [PATCH 42/57] Step 7.5: Update the Task Component
@@ -3272,7 +3272,7 @@ index cae285b..3d0f41b 100644
 2.11.0
 
 
-From c4fafb61ac1f09c45d3b8ab82a924667bc296f66 Mon Sep 17 00:00:00 2001
+From 8a95ddf8c985aaa35c54b449a9b956898b493787 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 21:47:27 -0500
 Subject: [PATCH 43/57] Step 7.6: Update the App Component
@@ -3321,7 +3321,7 @@ index a6aaa0d..f9b8dc7 100644
 2.11.0
 
 
-From f64a7437d484a68a80a43786cbb1480dcc9d9f87 Mon Sep 17 00:00:00 2001
+From 02e0d0329b88c9375c5352ca7681129ef6a41359 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 8 Feb 2020 11:11:19 -0400
 Subject: [PATCH 44/57] Step 8.1: More Security
@@ -3359,7 +3359,7 @@ index 35614e3..588c3c5 100644
 2.11.0
 
 
-From 279bc805029a87b22bb0f482d83c3507faf6f976 Mon Sep 17 00:00:00 2001
+From bef1a89b0587761bf8707708dd9e2b4065b69cbf Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 8 Feb 2020 19:47:51 -0400
 Subject: [PATCH 45/57] Step 8.2: Tasks Publication
@@ -3387,7 +3387,7 @@ index b666f73..a0165fe 100644
 2.11.0
 
 
-From dc171086fb9f5dd788f80e2e1a7a6c09c7c208ed Mon Sep 17 00:00:00 2001
+From 03b68a421a7c7ac3c854292041a68e110df09736 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 8 Feb 2020 19:48:15 -0400
 Subject: [PATCH 46/57] Step 8.3: Tasks Subscription
@@ -3425,7 +3425,7 @@ index f9b8dc7..4914ed8 100644
 2.11.0
 
 
-From c4b18ae0ea93b161304a608807ec0748048a3114 Mon Sep 17 00:00:00 2001
+From cb403749816172c165cee9b33d4aadd3da181b18 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 8 Feb 2020 19:51:17 -0400
 Subject: [PATCH 47/57] Step 8.4: Private Task Method
@@ -3464,7 +3464,7 @@ index a0165fe..eb32582 100644
 2.11.0
 
 
-From 573d51dfbf9a02a74c459cfb7a7468e2eb30a9c6 Mon Sep 17 00:00:00 2001
+From b1768495b909be03cc522908012d1dbce82b4819 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Mon, 29 Jun 2020 19:07:38 -0500
 Subject: [PATCH 48/57] Step 8.5: Add a Toggle Private Button to the Task
@@ -3499,7 +3499,7 @@ index 3d0f41b..bee59b4 100644
 2.11.0
 
 
-From e62c9496eb21284989429b459cd6c3c20f1e5a7f Mon Sep 17 00:00:00 2001
+From 5ccce4fc30beade70be222ac8aa57ab7ff2fd71b Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Mon, 29 Jun 2020 19:09:32 -0500
 Subject: [PATCH 49/57] Step 8.6: Update the App Component
@@ -3535,7 +3535,7 @@ index 4914ed8..fa4b042 100644
 2.11.0
 
 
-From 3c807cfe0faff0fb9e53a867dc046e16d69b752a Mon Sep 17 00:00:00 2001
+From 91a83438fe0b6ec374d58e6d10fa8d04935c1a5f Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Wed, 12 Feb 2020 15:26:37 -0400
 Subject: [PATCH 50/57] Step 8.7: Publish Visible Tasks
@@ -3566,7 +3566,7 @@ index eb32582..1f353ee 100644
 2.11.0
 
 
-From 83128875c3f7a618bc130989ab9990b3f0a921a4 Mon Sep 17 00:00:00 2001
+From 194435b83a7ac5b985b2576e9af23224007c76de Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 15 Feb 2020 07:11:45 -0400
 Subject: [PATCH 51/57] Step 8.8: Check User Permission
@@ -3616,7 +3616,7 @@ index 1f353ee..7e04b0d 100644
 2.11.0
 
 
-From cc40f9161cc6b335d4f53ae90e6df70af79551f2 Mon Sep 17 00:00:00 2001
+From 1c067761fa2ae42c35d5b301797ab6f7326ff01d Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 15 Feb 2020 07:15:36 -0400
 Subject: [PATCH 52/57] Step 8.9: Remove Unneeded Code
@@ -3658,7 +3658,7 @@ index 6c3f703..6da8bf7 100644
 2.11.0
 
 
-From bced6210166f1fe0ba126a032f9bcdb00b8331e7 Mon Sep 17 00:00:00 2001
+From 1f45bd2dd950a5708fb23bbfab944423392c3e0f Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 15 Feb 2020 12:18:36 -0400
 Subject: [PATCH 53/57] Step 10.1: Install Dependencies
@@ -3827,7 +3827,7 @@ index 5fbd35a..c79bd64 100644
 2.11.0
 
 
-From 5adacf436fc1e04f2e7e150bf691b339b2123fa6 Mon Sep 17 00:00:00 2001
+From fa4b6a0e317e310850d7cdc3a0802a747c66fec3 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 15 Feb 2020 12:32:46 -0400
 Subject: [PATCH 54/57] Step 10.2: Scaffold Test
@@ -3858,7 +3858,7 @@ index 0000000..daa9150
 2.11.0
 
 
-From 47535a7d3a61f2833a1d945085d531e00a9d3939 Mon Sep 17 00:00:00 2001
+From 2ad8ca06f3e31540acdaae42984c6255914edd85 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 15 Feb 2020 12:34:40 -0400
 Subject: [PATCH 55/57] Step 10.3: Prepare Database
@@ -3901,7 +3901,7 @@ index daa9150..35b6f52 100644
 2.11.0
 
 
-From 5bb1ab3937ae5cfdde24c0446ff4c5d5d374b8ab Mon Sep 17 00:00:00 2001
+From b46224044582712e2b14dc02570e5fb1a0f3300b Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 15 Feb 2020 12:38:33 -0400
 Subject: [PATCH 56/57] Step 10.4: Test Task Removal
@@ -3943,7 +3943,7 @@ index 35b6f52..60969e0 100644
 2.11.0
 
 
-From 976d58cba251046776a81fd8ea0fab3ee02d7b7e Mon Sep 17 00:00:00 2001
+From b69e9b6c710b5b00eec8fb21b41ac0e7d9434998 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 15 Feb 2020 12:40:41 -0400
 Subject: [PATCH 57/57] Step 10.5: Import Test

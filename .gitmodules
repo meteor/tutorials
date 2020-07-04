@@ -11,3 +11,6 @@
 	path = repos/svelte
 	url = git@github.com:meteor/simple-todos-svelte.git
 
+[submodule "repos/react"]
+	path = repos/react
+	url = https://github.com/BrianMulhall/simple-todos-react.git
