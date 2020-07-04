@@ -10,7 +10,6 @@ meteor add accounts-password
 
 > There are many more authentication methods supported. You can read more about the accounts system [here](https://docs.meteor.com/api/accounts.html).
 
-{{> DiffBox tutorialName="simple-todos-react" step="6.1"}}
 
 ## Step 6.2: Install BCrypt
 
