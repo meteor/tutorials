@@ -20,8 +20,6 @@ We need to remove it, because as the name suggests it is `insecure`.
 meteor remove insecure
 ```
 
-{{> DiffBox tutorialName="simple-todos-react" step="7.1"}}
-
 Now our app does not work anymore. We revoked all client-side database permissions.
 
 ## Step 7.2: Add Task Methods

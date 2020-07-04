@@ -10,8 +10,6 @@ Just like with `insecure` in the last step, all new Meteor apps start with the `
 meteor remove autopublish
 ```
 
-{{> DiffBox tutorialName="simple-todos-react" step="8.1"}}
-
 When the app refreshes, the task list will be empty. Without the `autopublish` package, we will have to specify explicitly what the server sends to the client. The functions in Meteor that do this are `Meteor.publish` and `Meteor.subscribe`.
 
 ## Step 8.2: Tasks Publication

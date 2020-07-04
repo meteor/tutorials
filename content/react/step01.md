@@ -14,8 +14,6 @@ After this command is run, Meteor will create several boilerplate files for you.
 
 These are the files responsible for bootstrapping your client user interface:
 
-{{> DiffBox tutorialName="simple-todos-react" step="1.1"}}
-
 For now you don't need to worry about the files located in the `client` directory, Meteor has already set them up for you.
 
 You can run your Meteor app using: 
