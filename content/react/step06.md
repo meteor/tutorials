@@ -16,10 +16,8 @@ meteor add accounts-password
 You might get a warning saying that you are using a pure-JavaScript implementation of _bcrypt_. To fix that you can just run the following command:
 
 ```
-meteor npm install bcrypt
+meteor npm install --save bcrypt
 ```
-
-{{> DiffBox tutorialName="simple-todos-react" step="6.2"}}
 
 ## Step 6.3: Create User Account
 
