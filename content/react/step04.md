@@ -14,17 +14,19 @@ First, we need to add a `<checkbox>` element to our `Task` component.
 
 {{> DiffBox tutorialName="simple-todos-react" step="4.1"}}
 
+## Step 4.2: 
+
 Now we can update our task document toggling its state from `checked: false` to `checked: true` and vice-versa.
 
 {{> DiffBox tutorialName="simple-todos-react" step="4.2"}}
 
-## Step 4.2: Add Delete Button
+## Step 4.3: 
 
 We can remove our task with just a few lines of code.
 
 {{> DiffBox tutorialName="simple-todos-react" step="4.3"}}
 
-## Step 4.3: Add Styling
+## Step 4.4: 
 
 Our user interface up until this point has looked quite ugly. Let's add some basic styling which will serve as the foundation for a more professional looking app.
 
@@ -36,13 +38,19 @@ npm i classnames
 
 {{> DiffBox tutorialName="simple-todos-react" step="4.4"}}
 
+## Step 4.5: 
+
 If our task is `checked` then the respective class will be applied to it.
 
 {{> DiffBox tutorialName="simple-todos-react" step="4.5"}}
 
+## Step 4.6: 
+
 Let's add proper classes to our parent elements.
 
 {{> DiffBox tutorialName="simple-todos-react" step="4.6"}}
+
+## Step 4.7: Update the styling
 
 Finally, we add the CSS styling which will normalize and differentiate our checked tasks visually.
 

@@ -12,15 +12,19 @@ Please note the _array destructuring_ `[text, setText]`, where `text` is the sto
 
 {{> DiffBox tutorialName="simple-todos-react" step="3.1"}}
 
+## Step 3.2: Update the App component
+
 Then we can simply add this to our `App` component:
 
 {{> DiffBox tutorialName="simple-todos-react" step="3.2"}}
+
+## Step 3.3: Update the Stylesheet
 
 You also can style it, for now we only need some margin at the top so the form doesn't seem a little off the mark.
 
 {{> DiffBox tutorialName="simple-todos-react" step="3.3"}}
 
-## Step 3.2: Add Submit Handler
+## Step 3.4: Add Submit Handler
 
 Now we can attach our submit handler to our form using the `onSubmit` event; and also plug our React Hook into the `onChange` event present in our input element.
 
@@ -30,7 +34,7 @@ As you can see we are using the `useState` React Hook to store the `value` of ou
 
 {{> DiffBox tutorialName="simple-todos-react" step="3.4"}}
 
-## Step 3.3: Show Newest Tasks First
+## Step 3.5: Show Newest Tasks First
 
 Now we just need to make a change which will make our hypothetical user very happy: we need to show the newest tasks first. We can accomplish quite quickly by sorting our [Mongo](https://guide.meteor.com/collections.html#mongo-collections) query.
 
