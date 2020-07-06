@@ -1,23 +1,59 @@
 {{#template name="react-step05"}}
 
-# Checking off and deleting tasks
+In this step we will store some state using React Hooks.
 
-Until now, we have only interacted with a collection by inserting documents. Now, we will learn how to update and remove them.
+## Step 5.1: Add State Hook
 
-Let's add two new elements to our `task` component, a checkbox and a delete button, with event handlers for both:
+First we need to import the `useState` function from the React library. Afterwards we initialize the hook with `false`.
 
-{{> DiffBox step="5.1" tutorialName="simple-todos-react"}}
+The `useState` function returns an array pair, where the first element is our value, and the second is a setter function. Hence the _array destructuring_.
 
-### Update
+Bear in mind that the names used for the constants do not belong to the React API, you can name them whatever you like.
 
-In the code above, we call `Tasks.update` to check off a task.
+{{> DiffBox tutorialName="simple-todos-react" step="5.1"}}
 
-The `update` function on a collection takes two arguments. The first is a selector that identifies a subset of the collection, and the second is an update parameter that specifies what should be done to the matched objects.
+You can read more about the `useState` hook [here](https://reactjs.org/docs/hooks-state.html).
 
-In this case, the selector is just the `_id` of the relevant task. The update parameter uses `$set` to toggle the `checked` field, which will represent whether the task has been completed.
+## Step 5.2: Update the Application's Stylesheet
 
-### Remove
+{{> DiffBox tutorialName="simple-todos-react" step="5.2"}}
 
-The code from above uses `Tasks.remove` to delete a task. The `remove` function takes one argument, a selector that determines which item to remove from the collection.
+## Step 5.3: Add Filtering Checkbox
+
+This is straightforward, but since it quite didn't look right we made some improvements to our styling as well. 
+
+> Remember, we use the `Boolean` cast in case we have `undefined` values. We also use the `readOnly` attribute since we are not using `onChange`.
+
+{{> DiffBox tutorialName="simple-todos-react" step="5.3"}}
+
+## Step 5.4: Add the lodash Node package to the application
+
+Meteor allows you to leverage all Node.js' ecosystem, including a well-known library called Lodash. This library helps us write code in a more declarative manner.
+
+Not strictly necessary in this case, but it is a good idea for us to import only used functions for larger projects since not everything needs to be included in the final bundle files.
+
+So, for simplicity we use `_` to namespace all of Lodash's functions.
+
+```
+meteor npm install --save-dev lodash
+```
+
+## Step 5.5: Filter Tasks
+
+Now, if the user has selected the `checkbox` to hide completed tasks, we will include our `checked: false` clause to the query.
+
+{{> DiffBox tutorialName="simple-todos-react" step="5.5"}}
+
+## Step 5.6: Render Count
+
+Update the App component in order to calculate the number of incomplete tasks.
+
+{{> DiffBox tutorialName="simple-todos-react" step="5.6"}}
+
+## Step 5.7: Render Count
+
+Finally we just modify our header to display the render count.
+
+{{> DiffBox tutorialName="simple-todos-react" step="5.7"}}
 
 {{/template}}

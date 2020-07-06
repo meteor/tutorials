@@ -13,62 +13,57 @@ TutorialRegistry.registerTutorial("react", {
     {
       title: "Creating an app",
       slug: "creating-an-app",
-      template: "sharedStep01"
-    },
-    {
-      title: 'Components',
-      slug: "components",
-      template: 'react-step02'
+      template: "react-step01"
     },
     {
       title: 'Collections',
       slug: "collections",
-      template: 'react-step03'
+      template: 'react-step02'
     },
     {
       title: 'Forms and events',
       slug: "forms-and-events",
-      template: 'react-step04'
+      template: 'react-step03'
     },
     {
       title: 'Update and remove',
       slug: "update-and-remove",
+      template: 'react-step04'
+    },
+    {
+      title: 'Hooks',
+      slug: "hooks",
       template: 'react-step05'
-    },
-    {
-      title: 'Running on mobile',
-      slug: "running-on-mobile",
-      template: "sharedStep06"
-    },
-    {
-      title: 'Temporary UI state',
-      slug: "temporary-ui-state",
-      template: 'react-step07'
     },
     {
       title: 'Adding user accounts',
       slug: "adding-user-accounts",
-      template: 'react-step08'
-    },
-    {
-      title: 'Security with methods',
-      slug: "security-with-methods",
-      template: 'react-step09'
+      template: "react-step06"
     },
     {
       title: 'Publish and subscribe',
       slug: "publish-and-subscribe",
-      template: 'react-step10'
+      template: 'react-step07'
+    },
+    {
+      title: 'Security',
+      slug: "security",
+      template: 'react-step08'
+    },
+    {
+      title: 'Running on mobile',
+      slug: "running-on-mobile",
+      template: 'react-step09'
     },
     {
       title: 'Testing',
       slug: "testing",
-      template: 'react-step11'
+      template: 'react-step10'
     },
     {
       title: 'Next steps',
       slug: "next-steps",
-      template: 'react-step12'
+      template: 'react-step11'
     }
   ]
 });

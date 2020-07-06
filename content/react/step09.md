@@ -1,37 +1,66 @@
 {{#template name="react-step09"}}
 
-# Security with methods
+Currently, Meteor on Windows does not support mobile builds. If you are using Meteor on Windows, you should skip this step.
 
-Before this step, any user of the app could edit any part of the database. This might be okay for very small internal apps or demos, but any real application needs to control permissions for its data. In Meteor, the best way to do this is by declaring _methods_. Instead of the client code directly calling `insert`, `update`, and `remove`, it will instead call methods that will check if the user is authorized to complete the action and then make any changes to the database on the client's behalf.
+So far, we've been building our app and testing only in a web browser, but Meteor has been designed to work across different platforms - your simple todo list website can become an iOS or Android app in just a few commands.
 
-### Removing `insecure`
+Meteor makes it easy to set up all the tools required to build mobile apps, but downloading all the programs can take a while - for Android the download is about 300MB and for iOS you need to install Xcode which is about 2GB. If you don't want to wait to download these tools, feel free to skip to the next step.
 
-Every newly created Meteor project has the `insecure` package added by default. This is the package that allows us to edit the database from the client. It's useful when prototyping, but now we are taking off the training wheels. To remove this package, go to your app directory and run:
+## iOS Simulator
 
-```bash
-meteor remove insecure
+If you have a Mac, you can run your app inside the iOS simulator.
+
+Follow this [guide](https://guide.meteor.com/mobile.html#installing-prerequisites-ios) to install all the development prerequisites for iOS. 
+
+When you're done, type:
+
+```
+meteor add-platform ios
+meteor run ios
 ```
 
-If you try to use the app after removing this package, you will notice that none of the inputs or buttons work anymore. This is because all client-side database permissions have been revoked. Now we need to rewrite some parts of our app to use methods.
+You will see the iOS simulator pop up with your app running inside.
 
-### Defining methods
+## Android Emulator
 
-First, we need to define some methods. We need one method for each database operation we want to perform on the client. Methods should be defined in code that is executed on the client and the server - we will discuss this a bit later in the section titled _Optimistic UI_.
+Follow this [guide](https://guide.meteor.com/mobile.html#installing-prerequisites-android) to install all the development prerequisites for Android.
 
-{{> DiffBox step="9.2" tutorialName="simple-todos-react"}}
+When you are done installing everything, type:
 
-Now that we have defined our methods, we need to update the places we were operating on the collection to use the methods instead:
+```
+meteor add-platform android
+```
 
-{{> DiffBox step="9.3" tutorialName="simple-todos-react"}}
+After you agree to the license terms, type:
 
-{{> DiffBox step="9.4" tutorialName="simple-todos-react"}}
+```
+metoer run android
+```
 
-Now all of our inputs and buttons will start working again. What did we gain from all of this work?
+After some initialization, you will see an Android emulator pop up, running your app inside a native Android wrapper. The emulator can be somewhat slow, so if you want to see what it's really like using your app, you should run it on an actual device.
 
-1. When we insert tasks into the database, we can now securely verify that the user is logged in, that the `createdAt` field is correct, and that the `owner` and `username` fields are correct and the user isn't impersonating anyone.
-2. We can add extra validation logic to `setChecked` and `deleteTask` in later steps when users can make tasks private.
-3. Our client code is now more separated from our database logic. Instead of a lot of stuff happening inside our event handlers, we now have methods that can be called from anywhere.
+## Android Device
 
-{{> step09OptimisticUI}}
+First, complete all the steps above to set up the Android tools on your system. Then, make sure you have [USB Debugging](http://developer.android.com/tools/device.html#developer-device-options) enabled on your phone and it is plugged into your computer with a USB cable. Also, you must quit the Android emulator before running on a device.
+
+Then, run the following command:
+
+```
+meteor run android-device
+```
+
+The app will be built and installed on your device.
+
+## iPhone or iPad
+
+> This requires an Apple developer account.
+
+If you have an Apple developer account, you can also run your app on an iOS device. Run the following command:
+
+```
+meteor run ios-device
+```
+
+This will open Xcode with a project for your iOS app. You can use Xcode to then launch the app on any device or simulator that Xcode supports.
 
 {{/template}}

@@ -1,25 +1,43 @@
 {{#template name="react-step03"}}
 
-# Storing tasks in a collection
+All apps need to allow the user to perform some types of interaction with the data that is stored. In our case, the first type of interaction is to insert new tasks, or our app would not have much value, would it?
 
-{{> step03CollectionsIntro tutorialName="simple-todos-react"}}
+One of the main ways in which a user can insert or edit data in a website is through forms, in most cases it is a good idea to use the `<form>` tag since it gives semantic meaning to the elements inside it.
 
-### 3.3 Using data from a collection inside a React component
+## Step 3.1: Create Task Form
 
-To use data from a Meteor collection inside a React component, we can use a Meteor package called `react-meteor-data`, which allows us to create a "data container" to feed Meteor's reactive data into React's component hierarchy.
+First we need to create a simple form component to encapsulate our logic. As you can see we set up the `useState` React Hook.
 
-```bash
-meteor add react-meteor-data
-```
+Please note the _array destructuring_ `[text, setText]`, where `text` is the stored value which we want to use, which in this case will be a _string_; and `setText` is a _function_ used to update that value.
 
-To use `react-meteor-data`, we need to wrap our component in a *container* using the `withTracker` [Higher Order Component](https://reactjs.org/docs/higher-order-components.html):
+{{> DiffBox tutorialName="simple-todos-react" step="3.1"}}
 
-{{> DiffBox step="3.4" tutorialName="simple-todos-react"}}
+## Step 3.2: Update the App component
 
-The wrapped `App` component fetches tasks from the `Tasks` collection and supplies them to the underlying `App` component it wraps as the `tasks` prop. It does this in a reactive way, so that when the contents of the database change, the `App` re-renders, as we'll soon see!
+Then we can simply add this to our `App` component:
 
-When you make these changes to the code, you'll notice that the tasks that used to be in the todo list have disappeared. That's because our database is currently empty&mdash;we need to insert some tasks!
+{{> DiffBox tutorialName="simple-todos-react" step="3.2"}}
 
-{{> step03InsertingTasksFromConsole}}
+## Step 3.3: Update the Stylesheet
+
+You also can style it, for now we only need some margin at the top so the form doesn't seem a little off the mark.
+
+{{> DiffBox tutorialName="simple-todos-react" step="3.3"}}
+
+## Step 3.4: Add Submit Handler
+
+Now we can attach our submit handler to our form using the `onSubmit` event; and also plug our React Hook into the `onChange` event present in our input element.
+
+As you can see we are using the `useState` React Hook to store the `value` of our `<input>` element. Note that we also need to set our `value` attribute to the `text` constant as well, this will allow the `input`element to stay in sync with our hook.
+
+> In more complex applications you might want to implement some `debounce` or `throttle` logic if there are too many calculations happening between potentially frequent events like `onChange`. There are libraries which will help you with this, like [Lodash](https://lodash.com/), for instance.
+
+{{> DiffBox tutorialName="simple-todos-react" step="3.4"}}
+
+## Step 3.5: Show Newest Tasks First
+
+Now we just need to make a change which will make our hypothetical user very happy: we need to show the newest tasks first. We can accomplish quite quickly by sorting our [Mongo](https://guide.meteor.com/collections.html#mongo-collections) query.
+
+{{> DiffBox tutorialName="simple-todos-react" step="3.5"}}
 
 {{/template}}

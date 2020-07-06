@@ -1,33 +1,60 @@
 {{#template name="react-step07"}}
 
-# Storing temporary UI data in component state
+Before this step, any user of the app could edit any part of the database. This might be fine for quick prototyping, but real applications need to control access to its data.
 
-In this step, we'll add a client-side data filtering feature to our app, so that users can check a box to only see incomplete tasks. We're going to learn how to use React's component state to store temporary information that is only used on the client.
+In Meteor, the easiest way to accomplish that is by declaring _methods_, instead of calling `insert`, `update`, or `remove` directly.
 
-First, we need to add a checkbox to our `App` component:
+With methods, you can verify if the user is authenticated and authorized to perform certain actions and then change the database accordingly.
 
-{{> DiffBox step="7.1" tutorialName="simple-todos-react"}}
+> You can read more about Methods [here](https://guide.meteor.com/methods.html).
 
-You can see that it reads from `this.state.hideCompleted`. React components have a special field called `state` where you can store encapsulated component data. We'll need to initialize the value of `this.state.hideCompleted` in the component's constructor:
+## Step 7.1: Disable Quick Prototyping
 
-{{> DiffBox step="7.2" tutorialName="simple-todos-react"}}
+Every newly created Meteor project has the `insecure` package installed by default.
 
-We can update `this.state` from an event handler by calling `this.setState`, which will update the state property asynchronously and then cause the component to re-render:
+This package allows us to edit the database from the client, which is useful for quick prototyping.
 
-{{> DiffBox step="7.3" tutorialName="simple-todos-react"}}
+We need to remove it, because as the name suggests it is `insecure`.
 
-Now, we need to update our `renderTasks` function to filter out completed tasks when `this.state.hideCompleted` is true:
+```
+meteor remove insecure
+```
 
-{{> DiffBox step="7.4" tutorialName="simple-todos-react"}}
+Now our app does not work anymore. We revoked all client-side database permissions.
 
-Now if you check the box, the task list will only show tasks that haven't been completed.
+## Step 7.2: Add Task Methods
 
-### One more feature: Showing a count of incomplete tasks
+Now we need to define methods.
 
-Now that we have written a query that filters out completed tasks, we can use the same query to display a count of the tasks that haven't been checked off. To do this we need to fetch a count in our data container and add a line to our `render` method. Since we already have the data in the client-side collection, adding this extra count doesn't involve asking the server for anything.
+We need one method for each database operation we want to perform on the client.
 
-{{> DiffBox step="7.5" tutorialName="simple-todos-react"}}
+Methods should be defined in code executed both in the client, and the server for Optimistic UI support.
 
-{{> DiffBox step="7.6" tutorialName="simple-todos-react"}}
+### Optimistic UI
+
+When we call a method on the client using `Meteor.call`, two things happen in parallel:
+
+1. The client sends a request to the sever to run the method in a secure environment.
+2. A simulation of the method runs directly on the client trying to predict the outcome of the call.
+
+This means that a newly created task actually appears on the screen before the result comes back from the server.
+
+If the result matches that of the server everything remains as is, otherwise the UI gets patched to reflect the actual state of the server.
+
+> You can read more about Optimistic UI [here](https://blog.meteor.com/optimistic-ui-with-meteor-67b5a78c3fcf).
+
+{{> DiffBox tutorialName="simple-todos-react" step="7.2"}}
+
+## Step 7.3: Implement Method Calls
+
+As we have defined our methods, we need to update the places we were operating the collection to use them instead.
+
+{{> DiffBox tutorialName="simple-todos-react" step="7.3"}}
+
+Now all of our inputs and buttons will start working again. What we gained?
+
+1. When we insert tasks into the database, we can securely verify that the user is authenticated; the `createdAt` field is correct; and the `owner` and `username` fields are legitimate.
+2. We can add extra validation logic to the methods later if we want.
+3. Our client code is more isolated from our database logic. Instead of a lot of stuff happening in our event handlers, we have methods callable from anywhere.
 
 {{/template}}

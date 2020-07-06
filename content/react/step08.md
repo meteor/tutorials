@@ -1,74 +1,67 @@
 {{#template name="react-step08"}}
 
-# Adding user accounts
+Now we have moved all of our app's sensitive code into methods, we need to learn about the other half of Meteor's security story. Until now, we have worked assuming the entire database is present on the client, meaning if we call `Tasks.find()` we will get every task in the collection. That's not good if users of our application want to store privacy-sensitive data. We need a way of controlling which data Meteor sends to the client-side database.
 
-Meteor comes with an accounts system and a drop-in login user interface that lets you add multi-user functionality to your app in minutes.
+## Step 8.1: More Security
 
-> Currently, this UI component uses Blaze, Meteor's default UI engine. In the future, there might also be a React-specific component for this.
+Just like with `insecure` in the last step, all new Meteor apps start with the `autopublish` package, which automatically synchronizes all the database contents to the client. Let's remove it and see what happens:
 
-To enable the accounts system and UI, we need to add the relevant packages. In your app directory, run the following command:
-
-```bash
-meteor add accounts-ui accounts-password
+```
+meteor remove autopublish
 ```
 
-### Wrapping a Blaze component in React
+When the app refreshes, the task list will be empty. Without the `autopublish` package, we will have to specify explicitly what the server sends to the client. The functions in Meteor that do this are `Meteor.publish` and `Meteor.subscribe`.
 
-To use the Blaze UI component from the `accounts-ui` package, we need to wrap it in a React component. To do so, let's create a new component called `AccountsUIWrapper` in a new file:
+## Step 8.2: Tasks Publication
 
-{{> DiffBox step="8.2" tutorialName="simple-todos-react"}}
+For now let's add a publication for all tasks.
 
-Let's include the component we just defined inside App:
+{{> DiffBox tutorialName="simple-todos-react" step="8.2"}}
 
-{{> DiffBox step="8.3" tutorialName="simple-todos-react"}}
+## Step 8.3: Tasks Subscription
 
-Then, add the following code to configure the accounts UI to use usernames instead of email addresses:
+Then we can quickly subscribe to tha publication.
 
-{{> DiffBox step="8.4" tutorialName="simple-todos-react"}}
+{{> DiffBox tutorialName="simple-todos-react" step="8.3"}}
 
-We also need to import that configuration code in our client side entrypoint: 
+Once you have done this, all the tasks will reappear.
 
-{{> DiffBox step="8.5" tutorialName="simple-todos-react"}}
+Calling `Meteor.publish` on the server registers a publication named "tasks". When `Meteor.subscribe` is called on the client with the publication name, the client subscribes to all the data from that publication, which in this case is all the tasks in the database. To truly see the power of the `publish/subscribe` model, let's implement a feature that allows users to mark tasks as "private" so that no other users can see them.
 
-### Adding user-related functionality
+## Step 8.4: Private Task Method
 
-Now users can create accounts and log into your app! This is very nice, but logging in and out isn't very useful yet. Let's add two features:
+Let's add a new property to tasks called `isPrivate` and write a method for setting it.
 
-1. Only display the new task input field to logged in users
-2. Show which user created each task
+{{> DiffBox tutorialName="simple-todos-react" step="8.4"}}
 
-To do this, we will add two new fields to the `tasks` collection:
+## Step 8.5: Toggle Private
 
-1. `owner` - the `_id` of the user that created the task.
-2. `username` - the `username` of the user that created the task. We will save the username directly in the task object so that we don't have to look up the user every time we display the task.
+Now we just setup some wiring up to our `Task Component` and add a toggleable button.
 
-First, let's add some code to save these fields into the `handleSubmit` event handler:
+{{> DiffBox tutorialName="simple-todos-react" step="8.5"}}
 
-{{> DiffBox step="8.6" tutorialName="simple-todos-react"}}
+## Step 8.6: Add Private Class
 
-Modify the data container to get information about the currently logged in user:
+We need a CSS class for future design work as well.
 
-{{> DiffBox step="8.7" tutorialName="simple-todos-react"}}
+{{> DiffBox tutorialName="simple-todos-react" step="8.6"}}
 
-Then, in our render method, add a conditional statement to only show the form when there is a logged in user:
+## Step 8.7: Publish Visible Tasks
 
-{{> DiffBox step="8.8" tutorialName="simple-todos-react"}}
+We should only publish tasks visible to the user, that is, if they are not private or if they are owned by the current user.
 
-Finally, add a statement to display the `username` field on each task right before the text:
+{{> DiffBox tutorialName="simple-todos-react" step="8.7"}}
 
-{{> DiffBox step="8.9" tutorialName="simple-todos-react"}}
+## Step 8.8: Check User Permission
 
-In your browser, add some tasks and notice that your username shows up. Old tasks that we added before this step won't have usernames attached; you can just delete them.
+Only the owner of a task should be able to change certain things.
 
-Now, users can log in and we can track which user each task belongs to. Let's look at some of the concepts we just discovered in more detail.
+{{> DiffBox tutorialName="simple-todos-react" step="8.8"}}
 
-### Automatic accounts UI
+## Step 8.9: Remove Unneeded Code
 
-If our app has the `accounts-ui` package, all we have to do to add a login dropdown is render the included UI component. This dropdown detects which login methods have been added to the app and displays the appropriate controls. In our case, the only enabled login method is `accounts-password`, so the dropdown displays a password field. If you are adventurous, you can add the `accounts-facebook` package to enable Facebook login in your app - the Facebook button will automatically appear in the dropdown.
+At this point of development we do not need this boilerplate anymore.
 
-### Getting information about the logged-in user
+{{> DiffBox tutorialName="simple-todos-react" step="8.9"}}
 
-In your data container, you can use `Meteor.user()` to check if a user is logged in and get information about them. For example, `Meteor.user().username` contains the logged in user's username. You can also use `Meteor.userId()` to just get the current user's `_id`.
-
-In the next step, we will learn how to make our app more secure by doing data validation on the server.
 {{/template}}

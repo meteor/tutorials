@@ -1,42 +1,63 @@
 {{#template name="react-step04"}}
 
-# Adding tasks with a form
+Up until now we have only inserted documents into our collection. Let's take a look at how we can update and remove them by interacting with the user interface.
 
-In this step, we'll add an input field for users to add tasks to the list.
+## Step 4.1: Add Checkbox
 
-First, let's add a form to our `App` component:
+First, we need to add a `<checkbox>` element to our `Task` component.
+ 
+> Be sure to add the `readOnly` attribute since we are not using `onChange` to update the state.
+ 
+> We also have to force our `checked` prop to a `boolean` since React understands that an `undefined` value as inexistent, therefore causing the component to switch from uncontrolled to a controlled one.
 
-{{> DiffBox step="4.1" tutorialName="simple-todos-react"}}
+> You are also invited to experient and see how the app behaves for learning purposes.
 
-> Tip: You can add comments to your JSX code by wrapping them in `{/* ... */}`
+{{> DiffBox tutorialName="simple-todos-react" step="4.1"}}
 
-You can see that the `form` element has an `onSubmit` attribute that references a method on the component called `handleSubmit`. In React, this is how you listen to browser events, like the submit event on the form. The `input` element has a `ref` property which will let us easily access this element later.
+## Step 4.2: 
 
-Let's add a `handleSubmit` method to our `App` component:
+Now we can update our task document toggling its state from `checked: false` to `checked: true` and vice-versa.
 
-{{> DiffBox step="4.2" tutorialName="simple-todos-react"}}
+{{> DiffBox tutorialName="simple-todos-react" step="4.2"}}
 
-Now your app has a new input field. To add a task, just type into the input field and hit enter. If you open a new browser window and open the app again, you'll see that the list is automatically synchronized between all clients.
+## Step 4.3: 
 
-### Listening for events in React
+We can remove our task with just a few lines of code.
 
-As you can see, in React you handle DOM events by directly referencing a method on the component. Inside the event handler, you can reference elements from the component by giving them a `ref` property and using `ReactDOM.findDOMNode`. Read more about the different kinds of events React supports, and how the event system works, in the [React docs](https://facebook.github.io/react/docs/events.html).
+{{> DiffBox tutorialName="simple-todos-react" step="4.3"}}
 
-### Inserting into a collection
+## Step 4.4: 
 
-Inside the event handler, we are adding a task to the `tasks` collection by calling `Tasks.insert()`. We can assign any properties to the task object, such as the time created, since we don't ever have to define a schema for the collection.
+Our user interface up until this point has looked quite ugly. Let's add some basic styling which will serve as the foundation for a more professional looking app.
 
-Being able to insert anything into the database from the client isn't very secure, but it's okay for now. In step 10 we'll learn how we can make our app secure and restrict how data is inserted into the database.
+First, let's install the `classnames` package which helps us manage conditional styling:
 
-### Sorting our tasks
+```
+npm i classnames
+```
 
-Currently, our code displays all new tasks at the bottom of the list. That's not very good for a task list, because we want to see the newest tasks first.
+{{> DiffBox tutorialName="simple-todos-react" step="4.4"}}
 
-We can solve this by sorting the results using the `createdAt` field that is automatically added by our new code. Just add a sort option to the `find` call inside the data container wrapping the `App` component:
+## Step 4.5: 
 
-{{> DiffBox step="4.3" tutorialName="simple-todos-react"}}
+If our task is `checked` then the respective class will be applied to it.
 
-Let's go back to the browser and make sure this worked: any new tasks that you add should appear at the top of the list, rather than at the bottom.
+{{> DiffBox tutorialName="simple-todos-react" step="4.5"}}
 
-In the next step, we'll add some very important todo list features: checking off and deleting tasks.
+## Step 4.6: 
+
+Let's add proper classes to our parent elements.
+
+{{> DiffBox tutorialName="simple-todos-react" step="4.6"}}
+
+## Step 4.7: Update the styling
+
+Finally, we add the CSS styling which will normalize and differentiate our checked tasks visually.
+
+> You can learn more about CSS Flexible Box Module [here](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox).
+
+{{> DiffBox tutorialName="simple-todos-react" step="4.7"}}
+
+Now we have a proper style foundation, nothing fancy, but we have the right semantics in place.
+
 {{/template}}
