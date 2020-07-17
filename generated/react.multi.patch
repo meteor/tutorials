@@ -1,4 +1,4 @@
-From a59d4da9d13e077fd0c9993c7bc79dbbab135f06 Mon Sep 17 00:00:00 2001
+From 4a964d9b903b3bffa8462fa8e255a5735bb61d5d Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 14:34:39 -0500
 Subject: [PATCH 01/57] Step 1: Run `meteor create --react`
@@ -11,17 +11,17 @@ Subject: [PATCH 01/57] Step 1: Run `meteor create --react`
  .meteor/packages            |  22 ++
  .meteor/platforms           |   2 +
  .meteor/release             |   1 +
- .meteor/versions            |  72 +++++
+ .meteor/versions            |  72 ++++
  client/main.css             |   4 +
  client/main.html            |   7 +
  client/main.jsx             |   8 +
  imports/api/links.js        |   3 +
  imports/ui/App.jsx          |  11 +
- imports/ui/Hello.jsx        |  16 ++
+ imports/ui/Hello.jsx        |  16 +
  imports/ui/Info.jsx         |  20 ++
- package-lock.json           | 644 ++++++++++++++++++++++++++++++++++++++++++++
+ package-lock.json           | 644 ++++++++++++++++++++++++++++++++++++
  package.json                |  23 ++
- server/main.js              |  31 +++
+ server/main.js              |  31 ++
  tests/main.js               |  20 ++
  19 files changed, 912 insertions(+)
  create mode 100644 .gitignore
@@ -1071,10 +1071,10 @@ index 0000000..837560f
 +  }
 +});
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 6b20b16e7246adb2b2a7be9cc5964ecacbe9c7e0 Mon Sep 17 00:00:00 2001
+From 9c00bb47767710382123df866646996cb9acc812 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 15:33:13 -0500
 Subject: [PATCH 02/57] Step 1.1: Remove unused files and code
@@ -1201,10 +1201,10 @@ index 13e6a4f..69bfbca 100644
 +  
  });
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 7dbc50497ccf09ec693809d7550c13a83f6da298 Mon Sep 17 00:00:00 2001
+From fdecf7bcfdd9077c52e967d6af66b90742ac7a5c Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 15:33:34 -0500
 Subject: [PATCH 03/57] Step 1.2: Create Task Component
@@ -1226,10 +1226,10 @@ index 0000000..49146bd
 +  return <li>{task.text}</li>
 +};
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 861919718c6c62cb18f8d6677af137e5f0dce34f Mon Sep 17 00:00:00 2001
+From 5aebff31f1de76217930f2b2bdf8e4dcec0433af Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 15:09:42 -0500
 Subject: [PATCH 04/57] Step 1.3: Create Sample Tasks
@@ -1255,10 +1255,10 @@ index 81ff97f..45f6b23 100644
    <div>
      <h1>Welcome to Meteor!</h1>
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 251eedf6904a989a35c80d91b0fc72598ae6df60 Mon Sep 17 00:00:00 2001
+From c86362e5c20a9b48bf59d2b52cf320a8b3219e2c Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Mon, 16 Dec 2019 19:17:28 -0400
 Subject: [PATCH 05/57] Step 1.4: Render Sample Tasks
@@ -1289,10 +1289,10 @@ index 45f6b23..7b25080 100644
    </div>
  );
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From d56565cb756e46661c584a674cad3b67e268774c Mon Sep 17 00:00:00 2001
+From f4f808c74c4f9c49b99bac3635830c178ff151d0 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Tue, 17 Dec 2019 15:40:17 -0400
 Subject: [PATCH 06/57] Step 2.1: Create Tasks Collection
@@ -1312,10 +1312,10 @@ index 0000000..f086cc0
 +
 +export default new Mongo.Collection('tasks');
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 1c5ece035dd08b2ce65169ad77aa4a3317f929e1 Mon Sep 17 00:00:00 2001
+From 008dd01084636b00cc395baba6d01c2022030194 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Tue, 17 Dec 2019 15:49:01 -0400
 Subject: [PATCH 07/57] Step 2.2: Initialize Tasks Collection
@@ -1347,10 +1347,10 @@ index 69bfbca..46f8a7c 100644
 +  }
  });
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 9c44a0868e9e239b1157577ce13ac2ce1da1f759 Mon Sep 17 00:00:00 2001
+From 59d93c03f3be0480e42dfade87a8c5f0c59aa937 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Tue, 17 Dec 2019 16:17:29 -0400
 Subject: [PATCH 08/57] Step 2.3: Render Tasks Collection
@@ -1397,10 +1397,10 @@ index 7b25080..7bf1d31 100644
 +  );
 +};
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 25bf5b72d9f551a325c4a35e05ba51e7034ccbfd Mon Sep 17 00:00:00 2001
+From 2c163babc2022e569a2fef6949f2b770397f25aa Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 15:52:53 -0500
 Subject: [PATCH 09/57] Step 3.1: Create Task Form
@@ -1433,10 +1433,10 @@ index 0000000..31d2711
 +  );
 +};
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 22e7167796586fed082fcb5d196c50f0c5646e08 Mon Sep 17 00:00:00 2001
+From 99c723643e8f620c91d295be6c01a01cf4eb4f22 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 15:55:13 -0500
 Subject: [PATCH 10/57] Step 3.2: Add Newly Created Task Form to the App
@@ -1468,10 +1468,10 @@ index 7bf1d31..0bb8827 100644
    );
  };
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 08f410f6918bdfb2d54456d494ba0776332905c8 Mon Sep 17 00:00:00 2001
+From e231efcd460274c4db24acf094a2ca2dae706386 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 15:55:45 -0500
 Subject: [PATCH 11/57] Step 3.3: Update the App's Style-sheet
@@ -1493,10 +1493,10 @@ index 7f354f0..73e4759 100644
 +  margin-top: 1rem;
 +}
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 274258509c76647a2f2eb6b1259106772c77ba6c Mon Sep 17 00:00:00 2001
+From ce88c7d3d84500aac6b2ebfa7fb1cdbef9acc669 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Mon, 6 Jan 2020 17:51:19 -0400
 Subject: [PATCH 12/57] Step 3.4: Add Submit Handler
@@ -1539,10 +1539,10 @@ index 31d2711..82f09f9 100644
  
        <button type="submit">Add Task</button>
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 0a88600b5e474212d78941f539356f036ef1a9b6 Mon Sep 17 00:00:00 2001
+From 4da9f1c617c1fc8e67e0c798388d90f2b827dbc0 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Mon, 6 Jan 2020 17:56:24 -0400
 Subject: [PATCH 13/57] Step 3.5: Show Newest Tasks First
@@ -1565,10 +1565,10 @@ index 0bb8827..ae17c13 100644
    return (
      <div>
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From c39164dcf46572fcc4f21e06e6ae4aa72f631240 Mon Sep 17 00:00:00 2001
+From a7ba895c680946736f926e8b3037cb2f8c932e7e Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Wed, 15 Jan 2020 19:19:27 -0400
 Subject: [PATCH 14/57] Step 4.1: Add Checkbox to the Task Component
@@ -1600,10 +1600,10 @@ index 49146bd..5b81dd8 100644
 +  );
  };
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From f7e012f5ae0e0bf198d4a3f4f8a573b0fd59c682 Mon Sep 17 00:00:00 2001
+From 8336cc4db3007be941de9c109fbbe4960f246831 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 16:13:00 -0500
 Subject: [PATCH 15/57] Step 4.2: Add Updated Task Component to the App
@@ -1642,10 +1642,10 @@ index ae17c13..c7e4c15 100644
  
        <TaskForm/>
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 1e7b3e7fd9e59589d846a7a8b08ba7c9b17059ee Mon Sep 17 00:00:00 2001
+From 9713aa7ed4557db0c8ed0a432a57ff46d10f11d8 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Wed, 15 Jan 2020 19:25:32 -0400
 Subject: [PATCH 16/57] Step 4.3: Add Delete Button to the Task Component
@@ -1670,10 +1670,10 @@ index 5b81dd8..321521a 100644
          type="checkbox"
          checked={ Boolean(task.isChecked) }
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From b756e29db70e0c711881c2b33f7971a17f09c3cc Mon Sep 17 00:00:00 2001
+From 67a6cad3fad2892dfa36b78ab0ace0412f704d82 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 16:22:23 -0500
 Subject: [PATCH 17/57] Step 4.4: Update the App Component
@@ -1710,10 +1710,10 @@ index c7e4c15..a3a8da5 100644
  
        <TaskForm/>
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 82778e6ae460391a11628350a56de6867ff0bad2 Mon Sep 17 00:00:00 2001
+From 42f13a921e008e2bbcd65a9c0a7f12c395819866 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 16:25:33 -0500
 Subject: [PATCH 18/57] Step 4.5: Update the App's Style-sheet
@@ -1772,10 +1772,10 @@ index 73e4759..ad5f676 100644
 +  flex-grow: 1;
  }
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From b8c7c4b85eda8b63fc987132ccf37a366a0ce8f0 Mon Sep 17 00:00:00 2001
+From fdd697b242df0e7f57ae7265f2b6c9412165324c Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 16:26:07 -0500
 Subject: [PATCH 19/57] Step 4.6: Update the Styling in the Task Component
@@ -1813,10 +1813,10 @@ index 321521a..6059bf0 100644
    );
  };
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 5eb55195d7ee116d09ccbcadcc318812331f9236 Mon Sep 17 00:00:00 2001
+From 1a7d5abe7027cee3145860d30a2a4f733b3533e1 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 16:26:22 -0500
 Subject: [PATCH 20/57] Step 4.7: Update the Styling in the App Component
@@ -1843,10 +1843,10 @@ index a3a8da5..537f3e8 100644
            key={ task._id }
            task={ task }
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From fcea034dbdf64c14d737bdd076a9aae8aa0468e0 Mon Sep 17 00:00:00 2001
+From cbbf2b75f5278e7278c95bb9429d787c6be66ef3 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 16:27:37 -0500
 Subject: [PATCH 21/57] Step 4.8: Add the classnames Node package to the
@@ -1886,10 +1886,10 @@ index 11c1d49..dc562d9 100644
      "react": "^16.13.0",
      "react-dom": "^16.13.0"
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 5da9c908e73620238f599ca85c8906d86f754344 Mon Sep 17 00:00:00 2001
+From 3826ab9bb42bcae3ef29c0c63df132044694a7a6 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 25 Jan 2020 09:31:03 -0400
 Subject: [PATCH 22/57] Step 5.1: Add State Hook
@@ -1918,10 +1918,10 @@ index 537f3e8..7611f58 100644
  
    return (
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From cbe7fb05660e1881a7826bd87ab2fcab21d14b01 Mon Sep 17 00:00:00 2001
+From 68a7ed0a76942bf35f894a6435641fbe966e5d4f Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 18:21:26 -0500
 Subject: [PATCH 23/57] Step 5.2: Update App's Style-sheet
@@ -1955,10 +1955,10 @@ index ad5f676..1316d92 100644
    padding: 0;
    margin: 0;
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 06c972828e5a30210794b5e36f1466c4846452ba Mon Sep 17 00:00:00 2001
+From 5813ae46a27aad53df38e325961521f79e9afcb3 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 18:21:57 -0500
 Subject: [PATCH 24/57] Step 5.3: Add Filtering Checkbox
@@ -1991,10 +1991,10 @@ index 7611f58..2f641ef 100644
          { tasks.map(task => <Task
            key={ task._id }
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From efffc4bafa9fd8b08cfaf03fa49b7d3e336ec0a5 Mon Sep 17 00:00:00 2001
+From 90d0779e50e04269169be289881ab9421535b35a Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 25 Jan 2020 09:55:51 -0400
 Subject: [PATCH 25/57] Step 5.4: Add the lodash Node package to the
@@ -2034,10 +2034,10 @@ index dc562d9..1ab1388 100644
      "react": "^16.13.0",
      "react-dom": "^16.13.0"
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 7f7c5fdc657be683faf96409e529bfd39ffefc17 Mon Sep 17 00:00:00 2001
+From 0255a76bcd7cef1d63d8f323f14e7b900775f9fa Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 18:31:44 -0500
 Subject: [PATCH 26/57] Step 5.5: Filter Tasks
@@ -2075,10 +2075,10 @@ index 2f641ef..4ebd0dd 100644
    return (
      <div className="simple-todos-react">
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 38fb3409d47378c9639705c6dcf64c097399c34e Mon Sep 17 00:00:00 2001
+From 022823f90ca7e4db2579fb50f6873ead77a0c501 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 1 Feb 2020 10:42:06 -0400
 Subject: [PATCH 27/57] Step 5.6: Count Incomplete Tasks
@@ -2104,10 +2104,10 @@ index 4ebd0dd..64ee93a 100644
    return (
      <div className="simple-todos-react">
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From fb01fd235f008f58077fe680c8cf9d5ce1b22e7d Mon Sep 17 00:00:00 2001
+From 892f3a796d77ba74910d6b1805ea5d42f6376c9e Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 1 Feb 2020 10:43:55 -0400
 Subject: [PATCH 28/57] Step 5.7: Render Count
@@ -2130,10 +2130,10 @@ index 64ee93a..49348f0 100644
        <div className="filters">
          <label>
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 5e29cd63d1b03868a5eeb359cc0af5c813f28b76 Mon Sep 17 00:00:00 2001
+From 0bd44dc5f9ed7da7be243850b0ea4a99f27654bc Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Fri, 7 Feb 2020 18:18:52 -0400
 Subject: [PATCH 29/57] Step 6.1: Password Authentication
@@ -2213,16 +2213,16 @@ index cf01612..06d5275 100644
  standard-minifier-js@2.6.0
  static-html@1.2.2
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From bf4923385abe170ca12e3d0a22809a4b54a7f24c Mon Sep 17 00:00:00 2001
+From ed88753b2662462014619a2c0e06bdb0b8f3119a Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Fri, 7 Feb 2020 18:50:26 -0400
 Subject: [PATCH 30/57] Step 6.2: Install BCrypt
 
 ---
- package-lock.json | 487 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ package-lock.json | 487 ++++++++++++++++++++++++++++++++++++++++++++++
  package.json      |   3 +-
  2 files changed, 489 insertions(+), 1 deletion(-)
 
@@ -2782,10 +2782,10 @@ index 1ab1388..5fbd35a 100644
      "lodash": "^4.17.15",
      "meteor-node-stubs": "^1.0.0",
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 37e5d52494756427a0ebe8535ebe023f364a8f14 Mon Sep 17 00:00:00 2001
+From 5718da4ae074f5383fded2a71f8cf25f9d230d34 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Fri, 7 Feb 2020 19:33:36 -0400
 Subject: [PATCH 31/57] Step 6.3: Create User Account
@@ -2813,10 +2813,10 @@ index 46f8a7c..03edae0 100644
      [
        'First Task',
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 55ca49140421d8c194fc0c60d517dba132126242 Mon Sep 17 00:00:00 2001
+From c7bc7a0b2ed1e14c23a6018c608ed6dec89a0645 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Fri, 7 Feb 2020 19:38:11 -0400
 Subject: [PATCH 32/57] Step 6.4: Login Form
@@ -2873,10 +2873,10 @@ index 0000000..c024cfb
 +  );
 +};
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From ca682940ed8b615973c3485bea2917a79d34b48f Mon Sep 17 00:00:00 2001
+From e2222df89e7841ec703d6737f431fd4388ce0cbe Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Fri, 7 Feb 2020 19:38:53 -0400
 Subject: [PATCH 33/57] Step 6.5: Require Authentication
@@ -2921,10 +2921,10 @@ index 49348f0..bc21456 100644
      <div className="simple-todos-react">
        <h1>Todo List ({ incompleteTasksCount })</h1>
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From e7b6d9e653fb3c536af903a08adbd8f79843a2bb Mon Sep 17 00:00:00 2001
+From 0a702bbf24ddc824794e0b7b3d09eaf9af2f3800 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Fri, 7 Feb 2020 19:39:16 -0400
 Subject: [PATCH 34/57] Step 6.6: Basic Styling
@@ -2965,10 +2965,10 @@ index 1316d92..aa0c282 100644
 +  float: right;
 +}
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 8399bb6656800b6e70d2893a7f0d5b65bd6471c2 Mon Sep 17 00:00:00 2001
+From a3c651db30b5d7b00ab3768b500628a52262c1cd Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 18:44:43 -0500
 Subject: [PATCH 35/57] Step 6.7: Add a New Task Owner Component to the
@@ -3002,10 +3002,10 @@ index 82f09f9..4ed897a 100644
  
      setText("");
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From ebd8dcfa607e68e304c3729b24ed1eeb41622c76 Mon Sep 17 00:00:00 2001
+From f44235c5566ed9d29eaed76a30ae8cb0f46dd1fc Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 18:45:34 -0500
 Subject: [PATCH 36/57] Step 6.8: Add the New Task Owner Component to the App
@@ -3029,10 +3029,10 @@ index bc21456..a6aaa0d 100644
    );
  };
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 367a3db989dbb278b107c0063a6541dae61bc1c9 Mon Sep 17 00:00:00 2001
+From cdd75c714ad21768a3b9817fefd13faa4a649617 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Fri, 7 Feb 2020 20:04:17 -0400
 Subject: [PATCH 37/57] Step 6.9: Task Owner Username
@@ -3066,10 +3066,10 @@ index 6059bf0..cae285b 100644
          type="checkbox"
          checked={ Boolean(task.isChecked) }
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From bc4cd2185f594cbe7767e5fbce283e141aca1dec Mon Sep 17 00:00:00 2001
+From af6af9309cdc61c9b8bac4463605b0e902b5a46d Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 8 Feb 2020 07:54:52 -0400
 Subject: [PATCH 38/57] Step 7.1: Disable Quick Prototyping
@@ -3104,16 +3104,16 @@ index 06d5275..35614e3 100644
  launch-screen@1.2.0
  livedata@1.0.18
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 8cdd60c69bd84809a758da69df45fe9c7f0e589e Mon Sep 17 00:00:00 2001
+From e361f4896e83b6ab3b985c5a2d83d8e3be9592f0 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 8 Feb 2020 08:15:25 -0400
 Subject: [PATCH 39/57] Step 7.2: Add Task Methods
 
 ---
- imports/api/tasks.js | 45 ++++++++++++++++++++++++++++++++++++++++++++-
+ imports/api/tasks.js | 45 +++++++++++++++++++++++++++++++++++++++++++-
  1 file changed, 44 insertions(+), 1 deletion(-)
 
 diff --git a/imports/api/tasks.js b/imports/api/tasks.js
@@ -3170,10 +3170,10 @@ index f086cc0..b666f73 100644
 +});
 \ No newline at end of file
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 2d73389ee8fafd5176aff65e00434d500410c49e Mon Sep 17 00:00:00 2001
+From e8ff2759631cf2a709e7d54ee2d031f5c8fbb0ba Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 8 Feb 2020 08:18:34 -0400
 Subject: [PATCH 40/57] Step 7.3: Update the main.js Server File
@@ -3194,10 +3194,10 @@ index 03edae0..6c3f703 100644
  Meteor.startup(() => {
    if (!Accounts.findUserByUsername('meteorite')) {
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 9c9e03e776ac1cc16d8d2e4deb7c6bb18016dbb5 Mon Sep 17 00:00:00 2001
+From fcbc3d45129ac89b7f8d1ee6f26afd39ddb40627 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 21:46:23 -0500
 Subject: [PATCH 41/57] Step 7.4: Update the TaskForm Component
@@ -3232,10 +3232,10 @@ index 4ed897a..a2803cc 100644
      setText("");
    };
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From b1c0ba2e6ae0dafafc279941ce6237b159b7090f Mon Sep 17 00:00:00 2001
+From 3221bda8001ba4aa18d5768998b6fe2cd2bf6042 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 21:47:05 -0500
 Subject: [PATCH 42/57] Step 7.5: Update the Task Component
@@ -3269,10 +3269,10 @@ index cae285b..3d0f41b 100644
          type="checkbox"
          checked={ Boolean(task.isChecked) }
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 8a95ddf8c985aaa35c54b449a9b956898b493787 Mon Sep 17 00:00:00 2001
+From b19f696e1a27567ef231568b92db53cf3a2247d9 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sun, 28 Jun 2020 21:47:27 -0500
 Subject: [PATCH 43/57] Step 7.6: Update the App Component
@@ -3318,10 +3318,10 @@ index a6aaa0d..f9b8dc7 100644
    );
  };
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 02e0d0329b88c9375c5352ca7681129ef6a41359 Mon Sep 17 00:00:00 2001
+From 073a40001a05c36a1b0cdc0ddeecb6df5b74d4be Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 8 Feb 2020 11:11:19 -0400
 Subject: [PATCH 44/57] Step 8.1: More Security
@@ -3356,10 +3356,10 @@ index 35614e3..588c3c5 100644
  babel-compiler@7.5.3
  babel-runtime@1.5.0
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From bef1a89b0587761bf8707708dd9e2b4065b69cbf Mon Sep 17 00:00:00 2001
+From fa44ee9f435b42cca526ff5c6a3300feb317148c Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 8 Feb 2020 19:47:51 -0400
 Subject: [PATCH 45/57] Step 8.2: Tasks Publication
@@ -3384,10 +3384,10 @@ index b666f73..a0165fe 100644
 +  Meteor.publish('tasks', function() { return Tasks.find() })
 +}
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 03b68a421a7c7ac3c854292041a68e110df09736 Mon Sep 17 00:00:00 2001
+From 33bd1baf0fe691552b5720944e2e3796e38faf7a Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 8 Feb 2020 19:48:15 -0400
 Subject: [PATCH 46/57] Step 8.3: Tasks Subscription
@@ -3422,10 +3422,10 @@ index f9b8dc7..4914ed8 100644
    if (!user) {
      return (
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From cb403749816172c165cee9b33d4aadd3da181b18 Mon Sep 17 00:00:00 2001
+From 75917d6223c1722fe0591dc1eda54f3e72a2a2ad Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 8 Feb 2020 19:51:17 -0400
 Subject: [PATCH 47/57] Step 8.4: Private Task Method
@@ -3461,10 +3461,10 @@ index a0165fe..eb32582 100644
  });
  
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From b1768495b909be03cc522908012d1dbce82b4819 Mon Sep 17 00:00:00 2001
+From f2125daa7e4ff9ef6dd525cff574dff94c0b3ba8 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Mon, 29 Jun 2020 19:07:38 -0500
 Subject: [PATCH 48/57] Step 8.5: Add a Toggle Private Button to the Task
@@ -3496,10 +3496,10 @@ index 3d0f41b..bee59b4 100644
        <input
          type="checkbox"
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 5ccce4fc30beade70be222ac8aa57ab7ff2fd71b Mon Sep 17 00:00:00 2001
+From e3434e00e922ead358dc4ee83c9c186d8eaaa3d0 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Mon, 29 Jun 2020 19:09:32 -0500
 Subject: [PATCH 49/57] Step 8.6: Update the App Component
@@ -3532,10 +3532,10 @@ index 4914ed8..fa4b042 100644
        </ul>
  
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 91a83438fe0b6ec374d58e6d10fa8d04935c1a5f Mon Sep 17 00:00:00 2001
+From 8782c63dfbc907b94ae7334a7f84f7a3bf7cdb24 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Wed, 12 Feb 2020 15:26:37 -0400
 Subject: [PATCH 50/57] Step 8.7: Publish Visible Tasks
@@ -3563,10 +3563,10 @@ index eb32582..1f353ee 100644
 +  })
  }
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 194435b83a7ac5b985b2576e9af23224007c76de Mon Sep 17 00:00:00 2001
+From 3a9ac53752406df5d447dec10dce7388981a202d Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 15 Feb 2020 07:11:45 -0400
 Subject: [PATCH 51/57] Step 8.8: Check User Permission
@@ -3613,31 +3613,30 @@ index 1f353ee..7e04b0d 100644
      }
  
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 1c067761fa2ae42c35d5b301797ab6f7326ff01d Mon Sep 17 00:00:00 2001
-From: Leonardo Venturini <leovenbag@gmail.com>
-Date: Sat, 15 Feb 2020 07:15:36 -0400
+From fbd1f3ad065bde656e53df505b6ef633e0f9030d Mon Sep 17 00:00:00 2001
+From: filipenevola <filipenevola@gmail.com>
+Date: Fri, 17 Jul 2020 14:07:08 -0400
 Subject: [PATCH 52/57] Step 8.9: Remove Unneeded Code
 
 ---
- server/main.js | 15 ++-------------
- 1 file changed, 2 insertions(+), 13 deletions(-)
+ server/main.js | 14 +-------------
+ 1 file changed, 1 insertion(+), 13 deletions(-)
 
 diff --git a/server/main.js b/server/main.js
-index 6c3f703..6da8bf7 100644
+index 6c3f703..249fb28 100644
 --- a/server/main.js
 +++ b/server/main.js
-@@ -1,5 +1,6 @@
+@@ -1,5 +1,5 @@
  import { Meteor } from 'meteor/meteor';
 -import { Tasks } from '/imports/api/tasks';
-+import '/imports/api/links';
 +import '/imports/api/tasks';
  
  Meteor.startup(() => {
    if (!Accounts.findUserByUsername('meteorite')) {
-@@ -8,16 +9,4 @@ Meteor.startup(() => {
+@@ -8,16 +8,4 @@ Meteor.startup(() => {
        password: 'password'
      });
    }
@@ -3655,10 +3654,10 @@ index 6c3f703..6da8bf7 100644
 -  }
  });
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 1f45bd2dd950a5708fb23bbfab944423392c3e0f Mon Sep 17 00:00:00 2001
+From 21968baf3ea71efd633d6a5e4f508d2f3621b001 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 15 Feb 2020 12:18:36 -0400
 Subject: [PATCH 53/57] Step 10.1: Install Dependencies
@@ -3666,7 +3665,7 @@ Subject: [PATCH 53/57] Step 10.1: Install Dependencies
 ---
  .meteor/packages  |  1 +
  .meteor/versions  |  7 +++++++
- package-lock.json | 53 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+ package-lock.json | 53 +++++++++++++++++++++++++++++++++++++++++++++++
  package.json      |  3 +++
  4 files changed, 64 insertions(+)
 
@@ -3824,10 +3823,10 @@ index 5fbd35a..c79bd64 100644
    }
  }
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From fa4b6a0e317e310850d7cdc3a0802a747c66fec3 Mon Sep 17 00:00:00 2001
+From 2b8fc28d38974281a81acde1aa81d5d036162a11 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 15 Feb 2020 12:32:46 -0400
 Subject: [PATCH 54/57] Step 10.2: Scaffold Test
@@ -3855,10 +3854,10 @@ index 0000000..daa9150
 +}
 \ No newline at end of file
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From 2ad8ca06f3e31540acdaae42984c6255914edd85 Mon Sep 17 00:00:00 2001
+From 63526a887178b0eded545b94bca3eb03a796508c Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 15 Feb 2020 12:34:40 -0400
 Subject: [PATCH 55/57] Step 10.3: Prepare Database
@@ -3898,10 +3897,10 @@ index daa9150..35b6f52 100644
        });
      });
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From b46224044582712e2b14dc02570e5fb1a0f3300b Mon Sep 17 00:00:00 2001
+From befdbcbe563378e4889a5b7af29b1df8f9f7471d Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 15 Feb 2020 12:38:33 -0400
 Subject: [PATCH 56/57] Step 10.4: Test Task Removal
@@ -3940,10 +3939,10 @@ index 35b6f52..60969e0 100644
      });
    });
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
 
-From b69e9b6c710b5b00eec8fb21b41ac0e7d9434998 Mon Sep 17 00:00:00 2001
+From 4ea4d89bf069531748e5387550848c78a9a62366 Mon Sep 17 00:00:00 2001
 From: Leonardo Venturini <leovenbag@gmail.com>
 Date: Sat, 15 Feb 2020 12:40:41 -0400
 Subject: [PATCH 57/57] Step 10.5: Import Test
@@ -3965,5 +3964,5 @@ index 837560f..2017994 100644
    it("package.json has correct name", async function () {
      const { name } = await import("../package.json");
 -- 
-2.11.0
+2.24.3 (Apple Git-128)
 
