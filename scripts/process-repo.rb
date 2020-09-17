@@ -4,10 +4,10 @@ require 'json'
 
 # Goal: go through a repository, parse titles of the form:
 # Step 8.2: Step content
-# 
+#
 # Generate a dictionary where the keys are step numbers,
 # and the values are the title of the commit and the sha of the commit
-# 
+#
 # Output a file with VAR_NAME = <JSON blob> that can be included in this
 # package
 
@@ -16,12 +16,12 @@ require 'json'
 # Methodology: calls git log and parses output
 
 if ARGV.length < 1
-  puts "Please pass the name of a view layer: blaze, angular, vue, svelte or react"
+  puts "Please pass the name of a view layer: blaze, angular, vue or svelte"
   exit 1
 end
 
-unless ["angular", "blaze", "react", "svelte" , "vue"].include? ARGV[0]
-  puts "Please pass the name of a view layer: blaze, angular, vue, svelte or react"
+unless ["angular", "blaze", "svelte" , "vue"].include? ARGV[0]
+  puts "Please pass the name of a view layer: blaze, angular, vue or svelte"
   exit 1
 end
 

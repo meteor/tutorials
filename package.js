@@ -22,7 +22,6 @@ Package.onUse(function (api) {
   api.addFiles([
     'content/angular/metadata.js',
     'content/blaze/metadata.js',
-    'content/react/metadata.js',
     'content/vue/metadata.js',
     'content/svelte/metadata.js',
   ]);
@@ -50,18 +49,6 @@ Package.onUse(function (api) {
     'content/blaze/step10.md',
     'content/blaze/step11.md',
     'content/blaze/step12.md',
-
-    'content/react/step01.md',
-    'content/react/step02.md',
-    'content/react/step03.md',
-    'content/react/step04.md',
-    'content/react/step05.md',
-    'content/react/step06.md',
-    'content/react/step07.md',
-    'content/react/step08.md',
-    'content/react/step09.md',
-    'content/react/step10.md',
-    'content/react/step11.md',
 
     'content/vue/step02.md',
     'content/vue/step03.md',
@@ -94,18 +81,16 @@ Package.onUse(function (api) {
     'content/shared/step01.md',
     'content/shared/step06.md',
 
-    'generated/react.multi.patch',
     'generated/blaze.multi.patch',
     'generated/angular.multi.patch',
     'generated/vue.multi.patch',
     'generated/svelte.multi.patch',
-    
+
   ], 'client');
 
   // Also, exports all of the templates from the content/ directory
   api.export('TUTORIAL_PAGES');
 
-  api.export('REACT_TUT');
   api.export('ANGULAR_TUT');
   api.export('BLAZE_TUT');
   api.export('VUE_TUT');
