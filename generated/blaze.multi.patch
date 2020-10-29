@@ -4471,7 +4471,7 @@ From f6a75f177953db9cf34f31079d2230ae14d3d267 Mon Sep 17 00:00:00 2001
 From: Brian Mulhall <brian.e.mulhall@gmail.com>
 Date: Sat, 7 Mar 2020 14:37:33 -0600
 Subject: [PATCH 42/49] Step 10.8: Add event handler to call the setPrivate
- metho
+ method
 
 ---
  imports/ui/task.js | 3 +++
