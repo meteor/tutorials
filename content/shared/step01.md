@@ -7,7 +7,7 @@ In this tutorial, we are going to create a simple app to manage a 'to do' list a
 To create the app, open your terminal and type:
 
 ```bash
-meteor create simple-todos
+meteor create simple-todos --blaze
 ```
 
 This will create a new folder called `simple-todos` with all of the files that a Meteor app needs:
