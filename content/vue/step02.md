@@ -91,7 +91,7 @@ We just added three things to our app:
 
 ### Define view components with Vue
 
-In Vue, single file components are created with the .vue file extension and are comprised of three sections, the script section, the template section and the style section. Within the script section you will define a Vue instance that supports the template section. This Vue instace, like the root Vue instance created in `main.js`, is fully documented in the [Vue.js Guide](https://vuejs.org/v2/guide/instance.html)
+In Vue, single file components are created with the .vue file extension and are comprised of three sections, the script section, the template section and the style section. Within the script section you will define a Vue instance that supports the template section. This Vue instance, like the root Vue instance created in `main.js`, is fully documented in the [Vue.js Guide](https://vuejs.org/v2/guide/instance.html)
 
 ### Check the result
 
