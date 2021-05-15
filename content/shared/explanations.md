@@ -30,6 +30,8 @@ Items inside collections are called _documents_. Let's use the server database c
 meteor mongo
 ```
 
+*Note: For newer version of mongo you may need to run ```meteor add autopublish``` for your tasks collection to be automatically published to the client.
+
 This opens a console into your app's local development database. Into the prompt, type:
 
 ```js
