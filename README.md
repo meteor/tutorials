@@ -1,3 +1,11 @@
+We no longer use this repository, we have now different repos for each technology:
+
+- https://github.com/meteor/react-tutorial
+- https://github.com/meteor/blaze-tutorial
+- https://github.com/meteor/vue-tutorial
+- https://github.com/meteor/svelte-tutorial
+- https://github.com/meteor/angular-tutorial
+
 # Official Meteor tutorials
 
 This repository contains the content and view code for the official Meteor tutorials at [meteor.com](https://www.meteor.com/tutorials/blaze/creating-an-app).
