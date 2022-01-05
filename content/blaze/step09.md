@@ -6,7 +6,7 @@ Before this step, any user of the app could edit any part of the database. This 
 
 ### Removing `insecure`
 
-Every newly created Meteor project has the `insecure` package added by default. This is the package that allows us to edit the database from the client. It's useful when prototyping, but now we are taking off the training wheels. To remove this package, go to your app directory and run:
+Remember when we added `insecure` earlier? This is the package that allows us to edit the database from the client. It's useful when prototyping, but now we are taking off the training wheels. To remove this package, go to your app directory and run:
 
 ```bash
 meteor remove insecure
